@@ -3,17 +3,11 @@ version: "v0.4"
 project:
   name: "The sharp corner threshold for five-colour cubes"
   description: >-
-    A computer-assisted proof that every collection of fifteen five-colour
-    cubes contains eight forming a five-colour corner solution, with an
-    elementary fourteen-cube counterexample. The Lean development is partial:
-    it proves interval and packed checker soundness, chunk composition,
-    calibration, selected case exclusions, physical catalogue and incidence
-    correctness, the fourteen-cube lower bound, the physical Hall/multiplicity
-    bridge to packed target constraints, the anchor budget, global symmetry
-    transport, the two anchor orbits, two-variety capacities, anchor selection,
-    the shared-corner exclusion and complete physical coverage by the integer
-    root problems, and their equivalence to the packed archive cases.
-    The full replay and final physical threshold assembly remain unchecked.
+    A computer-assisted proof, fully formalised in Lean, that every collection
+    of fifteen five-colour cubes contains eight forming a five-colour corner
+    solution, with an elementary fourteen-cube counterexample. The proof
+    includes physical geometry, Hall reduction, root coverage, budget
+    projection, complete replay of 279 certificates, and final sharpness assembly.
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
   license: "Apache-2.0"
@@ -49,44 +43,26 @@ related_formalizations:
       theorem is imported.
 status:
   scope: >-
-    INCOMPLETE physical formalisation. Proved: reference interval checker
-    soundness, base-1024 arithmetic and semantic bridge, packed checker
-    soundness, all 19,125 cut-weight calibrations, bounded chunk composition,
-    selected case exclusions, completeness and uniqueness of the 75 physical
-    varieties, all 45,000 incidence bits, rotation transport, and the physical
-    fourteen-cube lower-bound theorem. Also proved: physical matching/Hall
-    equivalence, exact multiplicity transport, the bound of seven copies per
-    variety, agreement of all 19,125 packed masks and deficiency bounds with
-    physical Hall cuts, and the anchor Hall budget. Global colour permutations
-    and reflection preserve solvability, multiplicities and anchor budgets;
-    the two colour orbits (60 adjacent, 15 opposite varieties) and their chosen
-    representatives are certified. Two-variety capacity bounds and all 26,775
-    exported upper bounds are checked, giving root-box membership under the
-    anchor, class and Hall-budget premises. Explicit physical symmetry witnesses
-    reduce all 1,537 eligible cover/multiplicity combinations to exported roots.
-    Anchor selection and the shared-corner exclusion are proved, completing
-    the reduction of every fifteen-cube physical counterexample to an admissible
-    vector in one of the 357 integer root problems. All 357 archived headers,
-    packed bounds and decoded constraint families are identified with those
-    integer models. The threshold and sharp threshold are derived conditionally
-    on the concrete archive exclusions, and a final assembly is generated.
-    A further kernel-checked reduction proves 49 root containments and 29
-    direct budget-capacity exclusions, leaving 279 roots. The reduced physical
-    coverage theorem and archive-to-sharp-threshold implication are proved;
-    they reuse unchanged case IDs and certificates. The original 357-case
-    replay remains available. A general Hall-budget projection lemma and its
-    concrete root transport are proved. All 279 projected headers, projection
-    hypotheses, retained-root coverage and exact packed/integer semantics are
-    kernel-checked. Projected.sharp_threshold_of_exclusions derives sharpness
-    conditionally on the 279 smaller exclusions (499,829 instructions).
-    Their separate C++ replay is complete; their full Lean replay is in progress.
-    Complete archive replay and verification of that assembly remain unfinished;
-    the full physical threshold remains unproved.
-    Physical.Threshold15 and Physical.SharpThreshold15 are target propositions,
-    not proved theorems. A Mathlib-only geometric comparator challenge and its
-    proved bridge are supplied; the upper-bound transfers are conditional on
-    Physical.Threshold15. The full comparator solution has not been checked,
-    and no Palomar submission exists. The five intentional theorem holes in
+    COMPLETE physical sharp-threshold formalisation. Lean proves completeness
+    and uniqueness of the 75 varieties, all 45,000 compatibility bits, the
+    fourteen-cube obstruction, physical matching/Hall equivalence, multiplicity
+    and symmetry transport, anchor selection, two-variety bounds, shared-corner
+    exclusion and complete coverage by 357 integer root problems. The packed
+    arithmetic and certificate checker are proved sound, including all 19,125
+    cut calibrations and bounded chunk composition. Checked containments and
+    initial budget bounds leave 279 roots; the Hall-budget projection reduces
+    their totals and budgets while preserving every target failure. All
+    projected headers, bounds and constraint families are identified with
+    their integer models. All 279 projected certificates (499,829 instructions)
+    have passed Lean kernel replay. The final assembly proves unconditional
+    Physical.Threshold15 and Physical.SharpThreshold15 via
+    Packed.ProjectedChunks.threshold15 and sharpThreshold15. Their axiom audit
+    contains only propext, Classical.choice and Quot.sound.
+    The default target builds the infrastructure and selected cases; full
+    generated replay is opt-in and reproducible from the committed archive.
+    Solution.lean transfers the result to the Mathlib-only geometric challenge
+    and builds successfully. Its full external comparator check is running.
+    No Palomar submission exists. The five intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -116,19 +92,13 @@ automation:
     as a contributor to this manuscript. No native_decide is used.
 fidelity:
   divergences: >-
-    The paper proves the sharp threshold by an elementary lower bound and
-    a computer-assisted upper bound with complete C++ certificate replay.
-    Lean proves the checking machinery, selected finite exclusions, physical
-    catalogue/incidence correctness, the fourteen-cube obstruction, physical
-    Hall and multiplicity equivalence to the packed target constraints, and
-    the anchor Hall lemma, global symmetry transport, anchor normalisation,
-    two-variety capacities, anchor selection, the shared-corner exclusion,
-    complete physical coverage by the integer root problems, and exact
-    equivalence of all packed archive cases to those models. The
-    lower bound uses 75 kernel-checked deficient corner sets, rather than the
-    paper's elementary classification of the three possible targets. Lean
-    does not yet prove the paper's complete physical threshold theorem.
-    Full generated replay sources are ignored and reproducible; logs are transient build
-    outputs. No human peer review or publication-priority claim is made.
+    Both the paper and Lean prove the complete physical sharp threshold.
+    The lower bound in Lean uses 75 kernel-checked deficient corner sets,
+    rather than the paper's elementary classification of the three possible
+    targets. The upper bound formalises the physical reduction and budget
+    projection, then checks all 279 projected interval certificates and their
+    final composition. Generated replay sources are ignored and reproducible;
+    logs are transient build outputs. No human peer review or publication-priority
+    claim is made.
 review:
   status: "Automated checks and AI review only; author and independent human review pending"

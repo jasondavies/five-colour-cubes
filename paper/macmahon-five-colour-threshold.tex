@@ -25,10 +25,10 @@ Berkove, Eickemeyer and Schulman (2018). The lower bound has an elementary
 proof. For the upper bound, anchored Hall deficiencies and a shared-corner
 argument give 357 finite cases. Containment, budget bounds and a deletion
 lemma give 279 smaller problems, each with a separately checked interval
-certificate. Lean proves the interval and packed
-checkers sound, verifies selected certificates and the fourteen-cube
-obstruction, and reduces physical counterexamples to the packed root problems.
-Complete formal verification of the upper bound remains unfinished.
+certificate. Lean proves the interval and packed checkers sound, verifies all
+279 certificates and the fourteen-cube obstruction, and connects the finite
+problems to physical cube arrangements, yielding a complete formal proof of
+the sharp threshold.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -430,15 +430,13 @@ neighbourhood masks by the Lean kernel.
 Chunk composition requires exact agreement of both boundary vectors and a
 proof excluding each referenced box; the exporter is untrusted. A limit of
 128 instructions gives 4,786 chunks for the projected archive, compared with
-109,449 for the original archive. All 105 certificates in the original archive
-with at most 500 instructions have passed kernel replay. Their exact case IDs and
-instruction counts are in \path{data/lean-small-replay-cases.json}, tied to
-the certificate archive by its SHA-256 hash; \texttt{make small-replay WORKERS=2}
-reproduces this check. The projected archive has 156 certificates of at most
-500 instructions; its full replay is in progress.
-The dependencies of the 78 declarations listed explicitly in
-\path{Audit.lean} lie in
-\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
+109,449 for the original archive. All 279 projected certificates have passed
+kernel replay, together with their final assembly into the physical threshold
+and sharpness theorems. The exact case mapping and certificate hashes are in
+\path{data/q5-projected-root-manifest.json}.
+The 78 declarations listed in \path{Audit.lean} and the final replay theorems
+have audited dependencies confined to \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
 
 Lean proves completeness and uniqueness of the 75 cube varieties and checks
@@ -458,29 +456,28 @@ Lemma~\ref{lem:projection} is formalised by
 \path{FiveColour/RootProjection.lean}; all concrete projection hypotheses
 and coverage of the retained roots are kernel-checked.
 
-The final conditional theorem is
-\path{FiveColour.Packed.Projected.sharp_threshold_of_exclusions}, in
-\path{FiveColour/ProjectedBridge.lean}: exclusions of precisely the 279
-projected packed problems imply the physical sharp threshold.
-The same namespace's \path{root_model} and \path{problem_model} identify
-all coordinate bounds, the prescribed total, budget and Hall-cut families
-with their integer meanings. This checks the entire admissibility predicate,
-not just the packed boundary vectors. The original and intermediate
-interfaces are documented in \path{FiveColour/README.md}.
-Check these modules and the audit with:
+The projected archive's integer semantics are established in
+\path{FiveColour/ProjectedBridge.lean}. The identifications include all
+coordinate bounds, prescribed totals, budgets and Hall-cut families.
+This checks the entire admissibility predicate, not just the packed boundary
+vectors. The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
+assembles all 279 exclusions into the unconditional theorems
+\path{FiveColour.Packed.ProjectedChunks.threshold15} and
+\path{FiveColour.Packed.ProjectedChunks.sharpThreshold15}.
+The original and intermediate interfaces are documented in
+\path{FiveColour/README.md}. Reproduce the full proof and its axiom audit with:
 \begin{verbatim}
-lake build FiveColour.ProjectedBridge FiveColour.LowerBound
-lake build FiveColour
-python3 -S scripts/audit_lean.py
+make check WORKERS=2
+make projected-replay-data WORKERS=8
+make projected-replay WORKERS=8
 \end{verbatim}
-Complete replay and checking the final aggregate remain before
-Theorem~\ref{thm:main} is proved in Lean.
 
 The review archive supplies certificates, code and reproduction commands.
 A Mathlib-only comparator challenge states the puzzle geometrically.
-Model equivalence is already proved by \path{FiveColour.Puzzle.hasSolution_iff}
-in \path{FiveColour/ComparatorBridge.lean}; only applying the completed
-threshold theorem and checking the full comparator solution await replay.
+Model equivalence is proved by \path{FiveColour.Puzzle.hasSolution_iff}
+in \path{FiveColour/ComparatorBridge.lean}. The solution module applies the
+completed threshold theorem and builds in Lean; external comparator checking
+is in progress.
 Mathematical questions left
 open here include classifying all fourteen-cube obstructions and determining
 the five-colour frame numbers for larger cubes.

@@ -26,48 +26,33 @@ separate C++ checker accepts every archived interval certificate. This supplies
 the five-colour corner value listed as unknown in Table 7 of
 [Berkove, Eickemeyer and Schulman (2018)](https://doi.org/10.5281/zenodo.10680216).
 
-**The physical threshold is not yet proved in Lean.** Lean proves checker
-soundness, packed arithmetic, chunk composition and selected case exclusions.
-It also proves completeness and uniqueness of the 75 physical varieties,
-correctness of every compatibility bit, and that the fourteen-cube example has
-no solution. Physical Hall deficiencies are proved equivalent to the packed
-checker's target constraints, with exact multiplicity counts, bounds 0–7 and
-the anchor Hall budget. Colour permutations and global reflection preserve
-solvability, multiplicities and Hall budgets; the two colour orbits and their
-anchor representatives are certified. Lean also proves the two-variety capacity
-bound and checks all 26,775 upper bounds in the 357 exported roots, conditional
-on each root's anchor, class bounds and Hall budget. Verified physical symmetry
-witnesses map every eligible anchor cover to an exported root, preserving those
-premises. Anchor selection and the shared-corner exclusion are also proved:
-every hypothetical fifteen-cube counterexample yields an admissible integer
-vector in one of the 357 root boxes. All 357 packed archive headers and their
-constraint families are proved equal to the integer models. The final assembly
-is wired to consume the replay exclusions; complete archive replay and checking
-that full assembly remain outstanding.
+**The physical sharp threshold is proved in Lean.** All 279 projected
+certificates have passed kernel replay, their final assembly has checked, and
+the final axiom audit permits only `propext`, `Classical.choice` and `Quot.sound`.
+The unconditional theorems are
+`FiveColour.Packed.ProjectedChunks.threshold15` and `sharpThreshold15`, in the
+generated `FiveColour/ProjectedChunks/Threshold.lean` module.
 
-A further [kernel-checked reduction](FiveColour/RootReduction.lean) removes 49
-roots contained in other roots and excludes 29 more by their initial budget
-capacity bounds. Only **279 roots** require further exclusion proofs. The
-[case manifest](data/q5-root-reduction.json) preserves the original case IDs;
-`Physical.counterexample_reduced_root` proves coverage, and
-`Archive.sharp_threshold_of_reduced_exclusions` consumes just these 279
-unchanged archive cases. A [Hall-budget projection](FiveColour/RootProjection.lean)
-then deletes copies while preserving the anchor and all target failures. It
-reduces 277 roots to budget zero and two to budget one, with totals from 9 to 15.
+The proof includes completeness and uniqueness of the 75 physical varieties,
+all 45,000 compatibility bits, the fourteen-cube obstruction, physical Hall
+and multiplicity transport, symmetry, anchor selection and coverage by 357
+integer roots. A [checked reduction](FiveColour/RootReduction.lean) removes 49
+contained roots and excludes 29 by their initial budget bounds. A
+[Hall-budget projection](FiveColour/RootProjection.lean) reduces the remaining
+279 problems: 277 have budget zero and two have budget one, with totals from
+9 to 15. All bounds, totals and constraint families are identified with the
+packed archive in [ProjectedBridge.lean](FiveColour/ProjectedBridge.lean).
+
 The [projected manifest](data/q5-projected-root-manifest.json) maps local IDs
-0–278 to original root IDs and records the fixed proof hashes. Its archive has
-**499,829 instructions, 95.69% fewer** than the original 11,599,651.
+0–278 to original root IDs and records fixed proof hashes. Its archive has
+**499,829 instructions, 95.69% fewer** than the original 11,599,651. Both
+archives pass the separate C++ checker; the completed Lean proof uses the
+projected archive. The original replay route remains available.
 
-All projected headers and their full semantic bridge are kernel-checked.
-`Packed.Projected.sharp_threshold_of_exclusions`, in
-[ProjectedBridge.lean](FiveColour/ProjectedBridge.lean), derives the physical
-sharp threshold from exactly these 279 exclusions. The separate C++ checker
-accepts them all. Full Lean replay of their proof bodies is in progress; the
-instruction reduction is not a measured replay speedup. The original archive
-and replay route remain available.
-
-`Threshold15` and `SharpThreshold15` are propositions in `FiveColour/Problem.lean`,
-not proved theorems. The generic corner–rotation equivalence is already available from the pinned dependency.
+`make check` builds and audits the proof infrastructure and selected cases.
+Reproducing the complete threshold proof additionally requires the
+[full projected replay](#complete-lean-replay), whose generated sources are
+ignored and regenerated from the committed archive.
 
 The research and manuscript were developed by GPT-6-Astra (OpenAI), used through
 Codex, under Jason Davies's direction. Author review and submission approval of
@@ -127,7 +112,8 @@ contains portable Git URLs and fixed revisions.
 
 ## Complete Lean replay
 
-The preferred route uses the projected archive:
+All 279 cases, final assembly and the axiom audit have passed. Reproduce the
+completed proof using the projected archive:
 
 ```sh
 make projected-replay-data WORKERS=8
@@ -234,8 +220,8 @@ local bootstrap's `--materialize` option copies cached dependencies inside this
 checkout without changing their sources or the portable manifest. The two-target lower-bound check has passed Lean, NanoDa and con-ron;
 it does not certify the upper bound.
 [Solution.lean](Solution.lean) connects the geometric statements to the generated
-full-replay theorem, and is excluded from default build targets until that
-replay is complete. The full comparator has not passed; no Palomar submission
+full-replay theorem and builds successfully. It remains opt-in because its
+generated dependencies must first be reproduced. The full comparator check is running; no Palomar submission
 has been made.
 
 ## Files and release status
@@ -249,7 +235,6 @@ has been made.
 See [data provenance and regeneration](data/README.md). No transient verification
 logs are committed. The GitHub remote is the intended location
 `https://github.com/jasondavies/macmahon-five-colour-threshold`.
-Before submission, complete the physical Lean theorem, settle dependency
-access, review the manuscript, run the full comparator and finalise Palomar
-metadata. The comparator statement and bridge are prepared; verification of
-the complete solution remains pending.
+Before submission, settle dependency access, review the manuscript, finish
+the full comparator check and finalise Palomar metadata. The physical Lean
+threshold proof is complete; public release and Palomar submission remain pending.

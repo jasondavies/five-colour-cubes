@@ -1,6 +1,23 @@
 # Mathematical inputs and certificates
 
-The durable proof archive is `q5-certificates.tar.gz` (3,516,042 bytes), SHA-256:
+The completed Lean proof uses `q5-projected-certificates.tar.gz` (313,094 bytes),
+containing 279 certificates with 499,829 instructions. Its SHA-256 is:
+
+```text
+e7b40f79831b5e0a44b374397d90bc4068f43d07e4226e1a45a829fd5b900e4a
+```
+
+`q5-projected-root-cases.txt` specifies the problems. The fixed manifest
+`q5-projected-root-manifest.json` maps their local indices to the original
+case IDs, records individual proof hashes, and supplies two zero-budget
+counterexamples explaining the exceptional budget-one cases. Its entries
+are proof inputs, not a mutable validation log. The separate audit
+`scripts/check_five_colour_root_projection.py` checks all transformations,
+physical incidence and witnesses, and replays every certificate.
+`make projected-replay-data` and `make projected-replay` reproduce the
+completed Lean proof and final axiom audit.
+
+The original proof archive is `q5-certificates.tar.gz` (3,516,042 bytes), SHA-256:
 
 ```text
 2792f86f9b87bc231aafe94679b9abd90b28163748ba7821e00371cd7699d1a3
@@ -57,7 +74,7 @@ bytes, so changing the checked archive requires reviewing its hash in
 cache. The archived certificate hash matches the research checkout exactly.
 
 The fixed `lean-small-replay-cases.json` selects all 105 certificates with at most
-500 instructions directly from the archive bytecode. It is checked by
+500 instructions directly from the original archive bytecode. It is checked by
 `python3 -S scripts/small_replay_cases.py --check`; `make small-replay` verifies
 the corresponding Lean proofs and their linked integer exclusions.
 

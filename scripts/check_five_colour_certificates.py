@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Replay the archived certificates and run rejection and positive controls.
 
-This validates a separate C++ certificate checker. Full Lean replay and the
-physical-to-Hall formal bridge remain separate tasks.
+This validates a separate C++ certificate checker. Lean replay and the
+physical-to-Hall bridge are checked by their own reproduction commands.
 """
 import argparse
 import hashlib
@@ -77,7 +77,7 @@ def main():
                  compressed_bytes=ARCHIVE.stat().st_size,
                  commands=sum(r['commands'] for r in records),
                  leaves=sum(r['leaves'] for r in records),
-                 proof_status='All C++ certificates replayed; full Lean replay not yet established',
+                 proof_status='C++ certificate replay only; Lean verification is performed separately',
                  sha256={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources})
     (REPORT/'q5-certificate-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(json.dumps(summary,indent=2))

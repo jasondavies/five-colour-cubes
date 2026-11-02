@@ -54,7 +54,7 @@ def main():
     payload['REVIEW.json'] = (json.dumps(dict(base_git_revision=base, source_snapshot_sha256=source_id,
         identification='Exact source snapshot is identified by checksums; it may differ from the base Git revision.',
         source_files=hashes, project_dependencies=dependencies,
-        formal_status='Full Lean archive replay and unconditional threshold comparator pending.'), indent=2)+'\n').encode()
+        formal_status='Complete physical Lean proof; full external comparator check in progress.'), indent=2)+'\n').encode()
     payload['REVIEW.txt'] = b"""Five-colour cube threshold: fixed review snapshot
 
 REVIEW.json identifies the base Git revision, exact source snapshot and pinned
@@ -75,9 +75,10 @@ MacMahon project dependencies are bundled at their exact pinned Git revisions.
 Checked conditional upper-bound theorem:
   FiveColour.Physical.threshold_of_integer_root_exclusions
   lake build FiveColour.CaseProblem
-Preferred projected conditional sharp-threshold theorem:
-  FiveColour.Packed.Projected.sharp_threshold_of_exclusions
-  lake build FiveColour.ProjectedBridge
+Unconditional physical threshold and sharpness (after generating replay):
+  FiveColour.Packed.ProjectedChunks.threshold15
+  FiveColour.Packed.ProjectedChunks.sharpThreshold15
+  lake build FiveColour.ProjectedChunks.Threshold
 Physical lower-bound theorem:
   FiveColour.Physical.lower_bound
   lake build FiveColour.LowerBound
@@ -86,13 +87,13 @@ Complete list of audited declarations: Audit.lean
 
 The 105-case input selection is data/lean-small-replay-cases.json. The small
 replay also checks its aggregate's agreement with the integer root models.
-Full replay is separate and remains pending:
+The complete physical proof has passed. Reproduce its full replay with:
   make projected-replay-data WORKERS=2
   make projected-replay WORKERS=2
   make comparator
 
 No publication or Palomar submission is asserted. See README.md and the paper
-for the distinction between the C++ certificate proof and partial formalisation.
+for the physical theorem statements and the scope of comparator checking.
 """
     payload['SHA256SUMS'] = ''.join(f'{hashlib.sha256(data).hexdigest()}  {name}\n'
         for name, data in sorted(payload.items())).encode()

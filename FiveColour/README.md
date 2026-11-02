@@ -1,11 +1,13 @@
 # Formalisation scope and reproduction
 
-This is a partial formalisation of the sharp threshold 15. A successful default
-build establishes the physical catalogue, fourteen-cube obstruction, Hall and
-multiplicity bridges, symmetry transport, anchor normalisation, two-variety
-capacities, anchor selection, the shared-corner exclusion, complete physical
-coverage by the integer root problems, the packed-archive bridge, checker theorems
-and selected exclusions below. It does not establish the physical threshold.
+The physical sharp threshold 15 is fully formalised. All 279 projected
+certificates, final theorem assembly and the axiom audit have passed.
+`Packed.ProjectedChunks.threshold15` and `sharpThreshold15` are unconditional
+proofs of `Physical.Threshold15` and `Physical.SharpThreshold15`.
+
+The default build checks the geometry, reductions, checking infrastructure and
+selected certificates. Reproduce the full proof with `make projected-replay-data`
+and `make projected-replay`; the complete generated replay is an opt-in target.
 
 | Component | Scope |
 | --- | --- |
@@ -41,7 +43,8 @@ and selected exclusions below. It does not establish the physical threshold.
 | `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and supplies the reduced archive-to-threshold interface. Original case IDs and certificates are unchanged. |
 | `ArchiveExamples.lean` | Connects three existing direct certificate proofs to the integer case-cover interface. |
 | `Chunked/Link.lean`, generated `ReplayChunks/Link.lean` | Checks the concrete replay declarations against the verified archive model, preserving case numbers for selected or reordered lists. |
-| generated `ReplayChunks/Threshold.lean` | Final physical threshold and sharpness assembly. It is outside the default build and remains unchecked until full replay succeeds. |
+| `BudgetProjection.lean`, `RootProjection.lean`, `ProjectedChecks*.lean`, `ProjectedBridge.lean` | Proves deletion with fixed anchor, checks all 279 projected headers, and identifies their complete integer and packed models. |
+| generated `ProjectedChunks/Threshold.lean` | Checked unconditional physical threshold and sharpness theorems, composing all 279 certificate proofs. Outside the default build; reproduced by full projected replay. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
 | `BoxCertificates.lean` | Sound interval refinement and certificate checking for finite integer vectors. |
 | `FastCertificates.lean` | Sound intersection/union summaries of feasible cuts. |
@@ -65,14 +68,14 @@ The geometric challenge and the proof's physical model express the same puzzle:
 | Exterior faces are monochromatic; internal faces are unrestricted. | At each of the eight positions only its three `exposedFaces` must match the single target face assignment. The compared `MacMahon.exposed_face_rule` fixes their geometric meaning. |
 | The target may depend on the collection. | `HasSolution` existentially quantifies the target inside the universal quantification over source families. |
 | Fourteen can fail: four copies of A, five of B and five of C. | `lowerFamily` uses indices 0–3, 4–8 and 9–13, with the paper's three face tuples. `Puzzle.lower_bound` proves palette validity and failure. |
-| Fifteen is the least guaranteed size. | `solution_of_threshold` selects fifteen from any larger collection; `least_of_threshold` combines that implication with the fourteen-cube obstruction. Both still assume `Physical.Threshold15`. |
+| Fifteen is the least guaranteed size. | `solution_of_threshold` selects fifteen from any larger collection; `least_of_threshold` combines that implication with the fourteen-cube obstruction. `Solution.lean` applies these transfers to the completed threshold theorem. |
 
 The colour relabellings and global reflections in the case reduction transport
 whole hypothetical counterexamples and preserve solvability. They add no moves
 to `HasSolution`. All anchor-selection and cover premises are discharged in
 `counterexample_integer_root`; only the concrete archive exclusions remain in
-`Archive.threshold_of_exclusions`. The full solution module must supply these
-through the completed replay before its upper-bound claims can be checked.
+`Archive.threshold_of_exclusions`. The projected replay supplies these exclusions through the checked deletion
+lemma and retained-root coverage.
 Alternatively, `Physical.root_exclusions_of_reduced` recovers that same
 357-root interface from the 279 members of `Physical.replayRoots`.
 `Physical.counterexample_reduced_root` proves the corresponding physical
@@ -120,10 +123,9 @@ or added axiom in the proof sources. The audited dependencies are confined to
 The preferred full replay uses `make projected-replay-data` followed by
 `make projected-replay`; see the root README for concurrency and stop/resume
 instructions. `Packed.Projected.sharp_threshold_of_exclusions` consumes exactly
-the 279 projected exclusions, totalling 499,829 instructions. Full replay and
-verification of the final assembly remain unfinished. Neither
-`Physical.Threshold15` nor `Physical.SharpThreshold15` has an unconditional
-proof yet.
+the 279 projected exclusions, totalling 499,829 instructions. The generated
+`ProjectedChunks.Threshold` module supplies them and proves the unconditional
+physical threshold and sharpness; its four-declaration audit uses only standard axioms.
 
 The three checked interfaces describe successive stages of the same reduction:
 
@@ -180,6 +182,6 @@ pinned four-to-three project; it does not use that project's threshold theorem.
 
 The root `Challenge.lean` imports only Mathlib and has five intentional theorem
 holes. It is excluded from the proof library. `Solution.lean` supplies those
-statements from the generated full-replay theorem, and remains unchecked until
-that replay completes. `make check-comparator-lower` compares only the exposed-face
+statements from the completed projected replay and builds successfully in Lean.
+The full external comparator check is running. `make check-comparator-lower` compares only the exposed-face
 rule and explicit obstruction; `make comparator` checks the full interface.
