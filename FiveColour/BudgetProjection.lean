@@ -34,14 +34,9 @@ lemma exists_submass {n : Nat} (x : Vector n) (hx : ∀ i, 0 ≤ x i)
       have hia : i ≠ a := by intro he; subst i; exact hi (Finset.mem_insert_self _ _)
       have his : i ∉ S := fun h => hi (Finset.mem_insert_of_mem h)
       simpa [Function.update_of_ne hia] using hsupport i his
-    · have hsame : mass (Function.update z a v) S = mass z S := by
-        apply Finset.sum_congr rfl
-        intro i hi
-        exact Function.update_of_ne (by intro he; subst i; exact ha hi) _ _
-      rw [mass, Finset.sum_insert ha]
-      simp only [Function.update_self]
-      change v + mass (Function.update z a v) S = k
-      rw [hsame, hmass]
+    · simp only [mass, Finset.sum_insert ha, Function.update_self,
+        Finset.sum_update_of_notMem ha]
+      change v + mass z S = k
       omega
 
 /-- Reduce the total while preserving one fixed coordinate. -/
@@ -58,17 +53,10 @@ lemma exists_trim_preserving {n : Nat} (x : Vector n) (hx : ∀ i, 0 ≤ x i)
     by_cases hi : i = a
     · subst i; simpa using (show 0 ≤ x a ∧ x a ≤ x a from ⟨hx a, le_rfl⟩)
     · simpa [Function.update_of_ne hi] using hz i
-  · have hsame : mass (Function.update z a (x a)) (Finset.univ.erase a) =
-        mass z (Finset.univ.erase a) := by
-      apply Finset.sum_congr rfl
-      intro i hi
-      exact Function.update_of_ne (Finset.ne_of_mem_erase hi) _ _
-    have hs := Finset.sum_erase_add (Finset.univ : Finset (Fin n))
-      (Function.update z a (x a)) (Finset.mem_univ a)
-    simp only [Function.update_self] at hs
-    change mass (Function.update z a (x a)) (Finset.univ.erase a) + x a =
-      mass (Function.update z a (x a)) Finset.univ at hs
-    rw [hsame, hmass] at hs
+  · unfold mass
+    rw [Finset.sum_update_of_mem (Finset.mem_univ a), Finset.sdiff_singleton_eq_erase]
+    change x a + mass z (Finset.univ.erase a) = G
+    rw [hmass]
     omega
 
 /-- Delete Hall-budget copies first, then trim the remainder. The fixed anchor

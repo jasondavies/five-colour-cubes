@@ -43,30 +43,7 @@ lemma root_admissible_iff (r : Fin 357) (x : Certificate.Vector 75) :
       Certificate.mass x Finset.univ = 15 ∧
       Certificate.mass x (rootBad (rootCapacity r)) ≤ ((rootCapacity r).budget : Int) ∧
       ∀ t, ∃ c ∈ Replay.hallCuts t, c.Holds x := by
-  constructor
-  · rintro ⟨ht, hc⟩
-    refine ⟨ht, ?_, ?_⟩
-    · have h := hc 2
-      change ∃ c : Certificate.Cut 75,
-        c ∈ [⟨rootBad (rootCapacity r), (rootCapacity r).budget⟩] ∧ c.Holds x at h
-      simpa only [List.mem_singleton, exists_eq_left, Certificate.Cut.Holds] using h
-    · intro t
-      have h := hc ⟨t.val + 3, by omega⟩
-      have h0 : t.val + 3 ≠ 0 := by omega
-      have h1 : t.val + 3 ≠ 1 := by omega
-      have h2 : t.val + 3 ≠ 2 := by omega
-      simpa only [rootProblem, h0, h1, h2, ↓reduceDIte, Nat.add_sub_cancel, Fin.eta] using h
-  · rintro ⟨ht, hb, hh⟩
-    refine ⟨ht, fun t => ?_⟩
-    dsimp only [rootProblem]
-    split
-    · refine ⟨_, List.mem_singleton_self _, ?_⟩
-      simp [Certificate.Cut.Holds, Certificate.mass]
-    · split
-      · exact ⟨_, List.mem_singleton_self _, ht.le⟩
-      · split
-        · exact ⟨_, List.mem_singleton_self _, hb⟩
-        · exact hh ⟨t.val - 3, by omega⟩
+  exact caseProblem_admissible_iff r (rootCapacity r).budget 15 x
 
 /-- Transport the entire integer problem, including the box and Hall families. -/
 theorem RootContains.transport {parent child : Fin 357} (h : RootContains parent child)

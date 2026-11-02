@@ -106,6 +106,8 @@ python3 -S scripts/generate_five_colour_symmetry.py
 python3 -S scripts/generate_five_colour_capacities.py
 python3 -S scripts/generate_five_colour_coverage.py
 python3 -S scripts/generate_five_colour_archive.py
+python3 -S scripts/generate_five_colour_reduction.py
+python3 -S scripts/generate_five_colour_projection.py
 python3 -S scripts/generate_five_colour_packed.py
 python3 -S scripts/generate_five_colour_chunks.py
 ```
@@ -115,17 +117,36 @@ valid initial bounds and composition. There is no `native_decide`, proof hole
 or added axiom in the proof sources. The audited dependencies are confined to
 `propext`, `Classical.choice` and `Quot.sound`.
 
-The full archive is generated and replayed with `make replay-data` and
-`make replay`; see the root README for bounded concurrency and stop/resume
-instructions. The mathematical reduction to the 357 roots is now proved,
-including anchor selection and the shared-corner exclusion. All packed archive
-boxes and constraint families are identified with the integer root problems.
-`Packed.Archive.sharp_threshold_of_exclusions` states the precise remaining
-finite obligation: the 357 concrete archive exclusions. The generated final
-assembly matches the replay declarations to this interface and supplies their
-proofs. Full replay and verification of that assembly remain unfinished.
-Neither `Physical.Threshold15` nor `Physical.SharpThreshold15` has an
-unconditional proof yet.
+The preferred full replay uses `make projected-replay-data` followed by
+`make projected-replay`; see the root README for concurrency and stop/resume
+instructions. `Packed.Projected.sharp_threshold_of_exclusions` consumes exactly
+the 279 projected exclusions, totalling 499,829 instructions. Full replay and
+verification of the final assembly remain unfinished. Neither
+`Physical.Threshold15` nor `Physical.SharpThreshold15` has an unconditional
+proof yet.
+
+The three checked interfaces describe successive stages of the same reduction:
+
+| Stage | Conditional theorem | Module |
+| --- | --- | --- |
+| Original 357 integer roots | `Physical.threshold_of_integer_root_exclusions` | `CaseProblem.lean` |
+| 279 retained roots, with their original total and budget | `Physical.threshold_of_reduced_root_exclusions` | `RootReduction.lean` |
+| 279 projected packed problems | `Packed.Projected.sharp_threshold_of_exclusions` | `ProjectedBridge.lean` |
+
+`ArchiveBridge.lean` identifies the original packed archive with the integer
+roots through `Packed.Archive.root_model` and `problem_model`.
+`RootReduction.lean` also supplies
+`Packed.Archive.sharp_threshold_of_reduced_exclusions`, reusing original
+case IDs and certificates. The original 357-case route remains available with
+`make replay-data` and `make replay`.
+
+Original and projected integer problems specialise `Physical.caseProblem`,
+whose `caseProblem_admissible_iff` characterises the prescribed total, anchor
+budget and 75 target-failure families. `BudgetProjection.lean` proves trimming
+while preserving the anchor; `RootProjection.lean` applies it after original
+root selection. `ProjectedChecks*.lean` check all new headers and their
+coverage. `ProjectedBridge.lean` identifies the complete projected box and
+admissibility predicate, including totals from 9 to 15, with the packed archive.
 
 `Physical.counterexample_packed_vector` proves that any physical counterexample
 has an exact base-1024 encoding with digits at most seven, the correct total
@@ -162,12 +183,3 @@ holes. It is excluded from the proof library. `Solution.lean` supplies those
 statements from the generated full-replay theorem, and remains unchecked until
 that replay completes. `make check-comparator-lower` compares only the exposed-face
 rule and explicit obstruction; `make comparator` checks the full interface.
-
-The preferred full replay now uses `make projected-replay-data` followed by
-`make projected-replay`. `BudgetProjection.lean` proves integer trimming;
-`RootProjection.lean` applies it to the already selected roots. Generated
-`ProjectedChecks*.lean` verify all 279 headers and their coverage.
-`ProjectedBridge.lean` checks the complete decoded problems and proves
-`Packed.Projected.sharp_threshold_of_exclusions`. Its remaining hypotheses are
-exactly the 279 projected certificate exclusions, totalling 499,829 instructions.
-The projected totals vary from 9 to 15. The original route remains available.

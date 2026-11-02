@@ -23,8 +23,9 @@ suffice: a counterexample uses just three varieties, with multiplicities
 $4,5,5$. This determines the five-colour corner value listed as unknown by
 Berkove, Eickemeyer and Schulman (2018). The lower bound has an elementary
 proof. For the upper bound, anchored Hall deficiencies and a shared-corner
-argument give 357 finite cases. Containment and a deletion lemma reduce these
-to 279 smaller problems, each with a separately checked interval certificate. Lean proves the interval and packed
+argument give 357 finite cases. Containment, budget bounds and a deletion
+lemma give 279 smaller problems, each with a separately checked interval
+certificate. Lean proves the interval and packed
 checkers sound, verifies selected certificates and the fourteen-cube
 obstruction, and reduces physical counterexamples to the packed root problems.
 Complete formal verification of the upper bound remains unfinished.
@@ -62,8 +63,10 @@ not assert the ability to construct every target.
 The proof has two distinct parts. A short corner argument excludes every
 target for an explicit fourteen-cube collection. For the upper bound,
 Hall's theorem gives linear alternatives for failure of a target.
-We reduce a hypothetical fifteen-cube counterexample to one of 357 cases,
-then verify finite interval certificates excluding those cases. The
+We cover hypothetical fifteen-cube counterexamples by 357 cases. Containment
+reduces these to 308, and initial budget bounds exclude another 29. A deletion
+lemma reduces the totals and budgets in the remaining 279 problems, which
+are excluded by finite interval certificates. The
 certificates, C++ programs, geometric audits, manuscript and Lean sources
 are included in the accompanying review archive.\footnote{Intended repository:
 \url{https://github.com/jasondavies/macmahon-five-colour-threshold}.
@@ -173,7 +176,7 @@ at least five, six and six copies of the corresponding variety, exceeding
 the available four, five and five copies. None is solvable.
 \end{proof}
 
-\section{A complete cover by 357 cases}\label{sec:cases}
+\section{Reduction to finite problems}\label{sec:cases}
 Eight copies of any variety solve that variety, so a solution-free collection
 has every multiplicity at most seven. Suppose such a collection has size 15.
 
@@ -302,9 +305,15 @@ deficiency inequalities are preserved. Nonnegativity and $y(S)\le s$ give
 $y_i\le s$ for $i\in S$.
 \end{proof}
 
-Apply this lemma after selecting and normalising the original root; no new
-anchor selection is required for the smaller collection. Of the 279 remaining
-roots, 277 admit an exclusion certificate with $s=0$. The other two, original
+For our anchored covers, $b=7-m-|K|$, so
+\[
+ G=m+8+|K|+s.
+\]
+Thus the reduced collection consists of the $m$ fixed anchor copies and
+$8+|K|+s$ other copies; in particular, $G\ge m$ is automatic. Apply the lemma
+after selecting and normalising the original root, retaining its bounds.
+No new anchor selection is required for the smaller collection.
+Of the 279 remaining roots, 277 admit an exclusion certificate with $s=0$. The other two, original
 cases 68 and 69, use $s=1$ and $G=12$. Their $s=0$, $G=11$ problems actually
 have solution-free collections, supplied and checked by physical matching in
 the projected manifest. The projected totals range from 9 to 15. All 101 roots
@@ -421,11 +430,12 @@ neighbourhood masks by the Lean kernel.
 Chunk composition requires exact agreement of both boundary vectors and a
 proof excluding each referenced box; the exporter is untrusted. A limit of
 128 instructions gives 4,786 chunks for the projected archive, compared with
-109,449 for the original archive. All 105 certificates with
-at most 500 instructions have passed kernel replay. Their exact case IDs and
+109,449 for the original archive. All 105 certificates in the original archive
+with at most 500 instructions have passed kernel replay. Their exact case IDs and
 instruction counts are in \path{data/lean-small-replay-cases.json}, tied to
 the certificate archive by its SHA-256 hash; \texttt{make small-replay WORKERS=2}
-reproduces this check. Full replay of the projected archive is in progress.
+reproduces this check. The projected archive has 156 certificates of at most
+500 instructions; its full replay is in progress.
 The dependencies of the 78 declarations listed explicitly in
 \path{Audit.lean} lie in
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
@@ -433,42 +443,30 @@ The dependencies of the 78 declarations listed explicitly in
 
 Lean proves completeness and uniqueness of the 75 cube varieties and checks
 all 45,000 compatibility bits using the pinned corner--rotation theorem.
-The lower bound uses 75 deficient corner sets: 72 singletons and three sets
-of sizes 5, 6 and 6. In the formal proof, this finite check replaces the
+The physical lower-bound theorem, \path{FiveColour.Physical.lower_bound} in
+\path{FiveColour/LowerBound.lean}, uses 75 deficient corner sets: 72 singletons
+and three sets of sizes 5, 6 and 6. In the formal proof, this finite check replaces the
 elementary target classification in Lemma~\ref{lem:lower}; catalogue completeness and rotation
 transport extend it to every physical target.
 
 Lean proves the physical Hall reduction, symmetry transport, anchor
 normalisation, two-variety bounds, anchor selection and the shared-corner
-argument. Finite checks certify all root capacities and cover representatives.
-These results place every fifteen-cube counterexample in one of the 357
-integer root problems, which are proved equivalent to the packed archive
-cases, including all coordinate bounds, total $G=15$, root budget and Hall-cut
-families. In namespace \path{FiveColour.Packed.Archive}, the exact
-identifications are \path{root_model} and \path{problem_model}, in
-\path{FiveColour/ArchiveBridge.lean}.
-
-The checked conditional theorem is
-\path{FiveColour.Physical.threshold_of_integer_root_exclusions}, in
-\path{FiveColour/CaseProblem.lean}: exclusion of every admissible vector in
-all 357 root boxes implies the physical fifteen-cube threshold. The physical
-lower bound is \path{FiveColour.Physical.lower_bound}, in
-\path{FiveColour/LowerBound.lean}. Both appear in the axiom audit.
-The reduced interface is
-\path{FiveColour.Physical.threshold_of_reduced_root_exclusions}, in
-\path{FiveColour/RootReduction.lean}: only the 279 retained non-arithmetic
-roots remain as hypotheses. It implies the original 357-root interface.
-The same module transfers exclusions of the corresponding packed archive cases.
+argument. Finite checks certify the root capacities and cover representatives.
+Containment and initial budget tests reduce the 357 roots to 279.
 Lemma~\ref{lem:projection} is formalised by
 \path{FiveColour.Physical.root_projection} in
-\path{FiveColour/RootProjection.lean}. All 279 projected headers, their
-projection hypotheses and coverage of the retained roots are kernel-checked.
-The namespace \path{FiveColour.Packed.Projected} in
-\path{FiveColour/ProjectedBridge.lean} supplies the identifications
-\path{root_model} and \path{problem_model} for all bounds and constraint families,
-including each changed total. Its checked
-\path{sharp_threshold_of_exclusions} derives the physical sharp threshold
-from precisely the 279 projected exclusions.
+\path{FiveColour/RootProjection.lean}; all concrete projection hypotheses
+and coverage of the retained roots are kernel-checked.
+
+The final conditional theorem is
+\path{FiveColour.Packed.Projected.sharp_threshold_of_exclusions}, in
+\path{FiveColour/ProjectedBridge.lean}: exclusions of precisely the 279
+projected packed problems imply the physical sharp threshold.
+The same namespace's \path{root_model} and \path{problem_model} identify
+all coordinate bounds, the prescribed total, budget and Hall-cut families
+with their integer meanings. This checks the entire admissibility predicate,
+not just the packed boundary vectors. The original and intermediate
+interfaces are documented in \path{FiveColour/README.md}.
 Check these modules and the audit with:
 \begin{verbatim}
 lake build FiveColour.ProjectedBridge FiveColour.LowerBound

@@ -43,14 +43,10 @@ lemma budgetCut_model (i : Fin 279) : (budgetCut i).model =
 /-- All 78 constraint families have their stated integer meaning. -/
 theorem families_models (i : Fin 279) (t : Fin 78) :
     (families i t).map Cut.model = (projectedProblem (caseNumbers i) (budgets i) (goals i)).alternatives t := by
-  dsimp only [families, projectedProblem]
+  dsimp only [families, projectedProblem, caseProblem]
   split_ifs
   · simp only [List.map_cons, List.map_nil, Archive.emptyCut_model]
-  · have hn := congrArg Certificate.Cut.neighbours Archive.totalCut_model
-    have hc : (⟨2^75-1, allWeight, goals i⟩ : Cut).model =
-        (⟨Finset.univ, goals i⟩ : Certificate.Cut 75) :=
-      congrArg (fun S => (⟨S, (goals i : Int)⟩ : Certificate.Cut 75)) hn
-    simp only [List.map_cons, List.map_nil, hc]
+  · simp only [List.map_cons, List.map_nil, Archive.totalCut_model]
   · simp only [List.map_cons, List.map_nil, budgetCut_model]
   · exact hallCuts_models ⟨t.val-3, by omega⟩
 

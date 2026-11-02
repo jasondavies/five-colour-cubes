@@ -16,13 +16,8 @@ def projectedBox (r : Fin 357) (s : Nat) : Certificate.Box 75 where
   upper i := projectedUpper r s i
 
 /-- The same 75 target-failure families, with a reduced total and anchor budget. -/
-def projectedProblem (r : Fin 357) (s G : Nat) : Certificate.Problem 75 78 where
-  goal := G
-  alternatives t :=
-    if h0 : t.val = 0 then [⟨∅, 0⟩]
-    else if h1 : t.val = 1 then [⟨Finset.univ, G⟩]
-    else if h2 : t.val = 2 then [⟨rootBad (rootCapacity r), s⟩]
-    else Replay.hallCuts ⟨t.val-3, by omega⟩
+def projectedProblem (r : Fin 357) (s G : Nat) : Certificate.Problem 75 78 :=
+  caseProblem r s G
 
 /-- Conditions checked separately for each concrete projected header. -/
 def ProjectionValid (r : Fin 357) (s G : Nat) : Prop :=
@@ -57,7 +52,8 @@ theorem root_projection (r : Fin 357) (s G : Nat) (hv : ProjectionValid r s G)
     15 (rootCapacity r).budget s ht hb (Int.natCast_nonneg _) (Int.ofNat_le.mpr hs)
     (by rw [← hG, hanchor]; exact Int.ofNat_le.mpr hm)
   have htotal : Certificate.mass y Finset.univ = G := hyt.trans hG.symm
-  refine ⟨y, ?_, htotal, ?_⟩
+  refine ⟨y, ?_, (caseProblem_admissible_iff r s G y).mpr
+    ⟨htotal, hys, Certificate.hall_families_mono Replay.hallCuts (fun i => (hy i).2) hh⟩⟩
   · intro i
     constructor
     · change (if i = canonicalAnchor (rootCapacity r).kind then _ else 0) ≤ y i
@@ -73,15 +69,5 @@ theorem root_projection (r : Fin 357) (s G : Nat) (hv : ProjectionValid r s G)
         rw [Nat.cast_min]
         exact le_min ((hy i).2.trans (hx i).2) (hc.trans hys)
       · exact (hy i).2.trans (hx i).2
-  · intro t
-    dsimp only [projectedProblem]
-    split
-    · refine ⟨_, List.mem_singleton_self _, ?_⟩
-      simp [Certificate.Cut.Holds, Certificate.mass]
-    · split
-      · exact ⟨_, List.mem_singleton_self _, htotal.le⟩
-      · split
-        · exact ⟨_, List.mem_singleton_self _, hys⟩
-        · exact Certificate.hall_families_mono Replay.hallCuts (fun i => (hy i).2) hh _
 
 end FiveColour.Physical

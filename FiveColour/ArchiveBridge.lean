@@ -31,9 +31,11 @@ theorem root_model (r : Fin 357) : (root r).model = rootBox (rootCapacity r) := 
 lemma emptyCut_model : (⟨0, 0, 0⟩ : Cut).model = (⟨∅, 0⟩ : Certificate.Cut 75) := by
   simp [Cut.model, Cut.member]
 
-lemma totalCut_model : (⟨2^75-1, allWeight, 15⟩ : Cut).model =
-    (⟨Finset.univ, 15⟩ : Certificate.Cut 75) := by
-  rfl
+lemma totalCut_model (total : Nat) : (⟨2^75-1, allWeight, total⟩ : Cut).model =
+    (⟨Finset.univ, total⟩ : Certificate.Cut 75) := by
+  have h : (Finset.univ.filter fun i : Fin 75 => (2^75-1).testBit i.val = true) =
+      Finset.univ := by decide +kernel
+  exact congrArg (fun S => (⟨S, (total : Int)⟩ : Certificate.Cut 75)) h
 
 lemma budgetCut_model (r : Fin 357) : (budgetCut r).model =
     (⟨rootBad (rootCapacity r), (rootCapacity r).budget⟩ : Certificate.Cut 75) := by
@@ -45,7 +47,7 @@ lemma budgetCut_model (r : Fin 357) : (budgetCut r).model =
 integer meaning used by the complete physical case-reduction theorem. -/
 theorem families_models (r : Fin 357) (t : Fin 78) :
     (families r t).map Cut.model = (rootProblem r).alternatives t := by
-  dsimp only [families, rootProblem]
+  dsimp only [families, rootProblem, caseProblem]
   split_ifs
   · simp only [List.map_cons, List.map_nil, emptyCut_model]
   · simp only [List.map_cons, List.map_nil, totalCut_model]
