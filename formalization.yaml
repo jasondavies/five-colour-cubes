@@ -8,7 +8,9 @@ project:
     elementary fourteen-cube counterexample. The Lean development is partial:
     it proves interval and packed checker soundness, chunk composition,
     calibration, selected case exclusions, physical catalogue and incidence
-    correctness, and the fourteen-cube lower bound, not the full threshold.
+    correctness, the fourteen-cube lower bound, the physical Hall/multiplicity
+    bridge to packed target constraints, and the anchor budget. The full
+    threshold is not yet formalised.
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
   license: "Apache-2.0"
@@ -49,9 +51,12 @@ status:
     soundness, all 19,125 cut-weight calibrations, bounded chunk composition,
     selected case exclusions, completeness and uniqueness of the 75 physical
     varieties, all 45,000 incidence bits, rotation transport, and the physical
-    fourteen-cube lower-bound theorem. Not yet proved: the full physical
-    threshold, matching/Hall and multiplicity transport for arbitrary
-    collections, 357-root coverage, and complete archive replay.
+    fourteen-cube lower-bound theorem. Also proved: physical matching/Hall
+    equivalence, exact multiplicity transport, the bound of seven copies per
+    variety, agreement of all 19,125 packed masks and deficiency bounds with
+    physical Hall cuts, and the anchor Hall budget. Not yet proved: the full
+    physical threshold, symmetry/capacity/shared-corner coverage by the 357
+    roots, and complete archive replay.
     Physical.Threshold15 and Physical.SharpThreshold15 are target propositions,
     not proved theorems. No completed comparator or Palomar submission exists.
   sorry_count: 0
@@ -85,7 +90,9 @@ fidelity:
     The paper proves the sharp threshold by an elementary lower bound and
     a computer-assisted upper bound with complete C++ certificate replay.
     Lean proves the checking machinery, selected finite exclusions, physical
-    catalogue/incidence correctness, and the fourteen-cube obstruction. The
+    catalogue/incidence correctness, the fourteen-cube obstruction, physical
+    Hall and multiplicity equivalence to the packed target constraints, and
+    the anchor Hall lemma. The
     lower bound uses 75 kernel-checked deficient corner sets, rather than the
     paper's elementary classification of the three possible targets. Lean
     does not yet prove the paper's complete physical threshold theorem.

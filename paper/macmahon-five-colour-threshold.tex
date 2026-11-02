@@ -26,8 +26,8 @@ proof. For the upper bound, anchored Hall deficiencies and a shared-corner
 argument reduce the problem to 357 finite cases. A separate checker accepts
 an interval certificate for every case. Lean proves the interval and packed
 checkers sound, verifies selected certificates and the fourteen-cube
-obstruction, and certifies the physical incidence data. Complete formal
-verification of the upper bound remains unfinished.
+obstruction, and connects physical solutions to the packed Hall constraints.
+Complete formal verification of the upper bound remains unfinished.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -354,29 +354,30 @@ All audited theorem dependencies lie in
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
 
-Lean also proves completeness and uniqueness of the 75 cube varieties and
-checks all $75\cdot75\cdot8=45{,}000$ compatibility bits against physical
-corner matching. The pinned generic corner--rotation theorem connects these
-checks to proper rotations. Source rotations preserve compatibility; target
-rotations permute the eight requirements and preserve distinct-copy solutions.
-The physical fourteen-cube obstruction is proved by a different route from
-Lemma~\ref{lem:lower}: 72 catalogue targets have an unavailable corner, and
-the remaining three have deficient corner sets of sizes 5, 6 and 6. Catalogue
-completeness and rotation transport extend this check to all physical targets.
+Lean proves completeness and uniqueness of the 75 cube varieties and checks
+all 45,000 compatibility bits using the pinned corner--rotation theorem.
+The lower bound uses 75 deficient corner sets: 72 singletons and three sets
+of sizes 5, 6 and 6. This finite check replaces the elementary target
+classification in Lemma~\ref{lem:lower}; catalogue completeness and rotation
+transport extend it to every physical target.
 
-These statements do \emph{not} yet constitute a Lean proof of
-Theorem~\ref{thm:main}. Besides full replay, the formalisation still needs
-the matching/Hall and multiplicity-vector bridges and the symmetry and capacity
-arguments covering arbitrary collections by the exported cases.
-The physical propositions \texttt{Threshold15} and \texttt{SharpThreshold15}
-are defined in the package without asserting their proofs.
+Using mathlib's finite Hall theorem, Lean identifies physical failure with
+the Hall constraints on a multiplicity vector, proves mass conservation and
+$x_i\le7$, and formalises the anchor budget in Lemma~\ref{lem:anchor}.
+It also checks every packed neighbourhood mask and deficiency bound against
+the reference cuts. Together with weight calibration, this transports
+physical counterexamples to valid packed vectors.
 
-The repository separates the compressed archive and mathematical input data
-from generated replay sources and logs. Its commands reproduce the physical
-audits, C++ certificate replay, small Lean checks and the full chunked replay.
-No claim of a completed Palomar comparator or registry submission is made.
-A complete classification of fourteen-cube obstructions and the five-colour
-frame numbers for larger cubes remain further questions.
+A Lean proof of Theorem~\ref{thm:main} still requires full archive replay and
+the symmetry, capacity and shared-corner arguments covering arbitrary
+collections by the 357 cases. The package defines \texttt{Threshold15} and
+\texttt{SharpThreshold15} without asserting their proofs.
+
+The repository supplies compressed certificates, mathematical data and
+reproduction commands; generated replay sources and logs are excluded.
+A Palomar comparator and registry submission remain future work, as do a
+complete classification of fourteen-cube obstructions and the five-colour
+frame numbers for larger cubes.
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and

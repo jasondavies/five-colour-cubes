@@ -1,8 +1,8 @@
 # Formalisation scope and reproduction
 
 This is a partial formalisation of the sharp threshold 15. A successful default
-build establishes the physical catalogue, fourteen-cube obstruction, checker
-theorems and selected exclusions below. It
+build establishes the physical catalogue, fourteen-cube obstruction, Hall and
+multiplicity bridges, anchor budget, checker theorems and selected exclusions below. It
 does not establish the physical threshold.
 
 | Component | Scope |
@@ -12,6 +12,11 @@ does not establish the physical threshold.
 | `Geometry.lean` | Source rotation invariance and transport of solutions between rotated targets. |
 | `CornerKeys.lean`, `CornerKeyData.lean` | Compact cyclic corner keys; equality is proved equivalent to cyclic equality of triples. |
 | `PhysicalIncidence.lean` | Calibrates the keys against all 600 physical corners and proves all 45,000 compatibility bits correct. |
+| `Matching.lean` | Physical copy assignments are equivalent to Hall's cardinality inequalities, using mathlib's finite Hall theorem. |
+| `Multiplicity.lean` | Exact counting by variety, conservation of total mass, physical neighbourhood sums and the bound of seven copies per variety in a counterexample. |
+| `HallCuts.lean` | All nonempty corner sets occur among the 255 masks; physical failure is equivalent to reference-checker admissibility. |
+| `PackedHall*.lean` | Checks every packed neighbourhood mask and deficiency bound against the reference cuts, and transports physical counterexamples into valid packed vectors. |
+| `Anchor.lean` | The anchor Hall lemma, giving the budget `7 - m - |K|` for every chosen anchor. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
 | `BoxCertificates.lean` | Sound interval refinement and certificate checking for finite integer vectors. |
 | `FastCertificates.lean` | Sound intersection/union summaries of feasible cuts. |
@@ -39,6 +44,7 @@ Regenerate the catalogue witnesses, lower-bound cuts, packed data and examples w
 
 ```sh
 python3 -S scripts/generate_five_colour_catalogue.py
+python3 -S scripts/generate_five_colour_hall.py
 python3 -S scripts/generate_five_colour_packed.py
 python3 -S scripts/generate_five_colour_chunks.py
 ```
@@ -51,10 +57,17 @@ or added axiom in the proof sources. The audited dependencies are confined to
 The full archive is generated and replayed with `make replay-data` and
 `make replay`; see the root README for bounded concurrency and stop/resume
 instructions. Completing that run still leaves the reduction of arbitrary
-size-15 physical collections to the 357 roots: the matching/Hall equivalence,
-transport to multiplicity vectors, and the symmetry and capacity arguments
-behind case coverage. No theorem proves `Physical.Threshold15` or
+size-15 physical collections to the 357 roots: colour/reflection symmetry,
+two-variety capacity bounds, and the shared-corner reduction for distinct
+all-adjacent collections. No theorem proves `Physical.Threshold15` or
 `Physical.SharpThreshold15` yet.
+
+`Physical.counterexample_packed_vector` proves that any physical counterexample
+has an exact base-1024 encoding with digits at most seven, the correct total
+mass, and one satisfied packed Hall deficiency for each target. It introduces
+no case-cover assumption. `Physical.anchor_cover` separately proves the root
+budget before symmetry reduction. Neither theorem asserts that the 357 roots
+cover every such vector.
 
 The lower-bound proof uses Hall's necessary inequality, proved directly from
 the injectivity of the copy assignment. Of the 75 targets, 72 have an unavailable

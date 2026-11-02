@@ -1,0 +1,90 @@
+module
+public import FiveColour.PackedHallChecks0
+public import FiveColour.PackedHallChecks1
+public import FiveColour.PackedHallChecks2
+public import FiveColour.PackedHallChecks3
+public import FiveColour.PackedHallChecks4
+public import FiveColour.PackedHallChecks5
+public import FiveColour.PackedHallChecks6
+public import FiveColour.PackedHallChecks7
+@[expose] public section
+namespace FiveColour.Packed
+
+theorem hall_signatures (t : Fin 75) : actualSignatures t = expectedSignatures t := by
+  fin_cases t
+  · exact hall_signatures_0
+  · exact hall_signatures_1
+  · exact hall_signatures_2
+  · exact hall_signatures_3
+  · exact hall_signatures_4
+  · exact hall_signatures_5
+  · exact hall_signatures_6
+  · exact hall_signatures_7
+  · exact hall_signatures_8
+  · exact hall_signatures_9
+  · exact hall_signatures_10
+  · exact hall_signatures_11
+  · exact hall_signatures_12
+  · exact hall_signatures_13
+  · exact hall_signatures_14
+  · exact hall_signatures_15
+  · exact hall_signatures_16
+  · exact hall_signatures_17
+  · exact hall_signatures_18
+  · exact hall_signatures_19
+  · exact hall_signatures_20
+  · exact hall_signatures_21
+  · exact hall_signatures_22
+  · exact hall_signatures_23
+  · exact hall_signatures_24
+  · exact hall_signatures_25
+  · exact hall_signatures_26
+  · exact hall_signatures_27
+  · exact hall_signatures_28
+  · exact hall_signatures_29
+  · exact hall_signatures_30
+  · exact hall_signatures_31
+  · exact hall_signatures_32
+  · exact hall_signatures_33
+  · exact hall_signatures_34
+  · exact hall_signatures_35
+  · exact hall_signatures_36
+  · exact hall_signatures_37
+  · exact hall_signatures_38
+  · exact hall_signatures_39
+  · exact hall_signatures_40
+  · exact hall_signatures_41
+  · exact hall_signatures_42
+  · exact hall_signatures_43
+  · exact hall_signatures_44
+  · exact hall_signatures_45
+  · exact hall_signatures_46
+  · exact hall_signatures_47
+  · exact hall_signatures_48
+  · exact hall_signatures_49
+  · exact hall_signatures_50
+  · exact hall_signatures_51
+  · exact hall_signatures_52
+  · exact hall_signatures_53
+  · exact hall_signatures_54
+  · exact hall_signatures_55
+  · exact hall_signatures_56
+  · exact hall_signatures_57
+  · exact hall_signatures_58
+  · exact hall_signatures_59
+  · exact hall_signatures_60
+  · exact hall_signatures_61
+  · exact hall_signatures_62
+  · exact hall_signatures_63
+  · exact hall_signatures_64
+  · exact hall_signatures_65
+  · exact hall_signatures_66
+  · exact hall_signatures_67
+  · exact hall_signatures_68
+  · exact hall_signatures_69
+  · exact hall_signatures_70
+  · exact hall_signatures_71
+  · exact hall_signatures_72
+  · exact hall_signatures_73
+  · exact hall_signatures_74
+end FiveColour.Packed

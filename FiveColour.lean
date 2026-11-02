@@ -1,5 +1,6 @@
 module
-public import FiveColour.PhysicalIncidence
+public import FiveColour.PackedHall
+public import FiveColour.Anchor
 public import FiveColour.LowerBound
 public import FiveColour.PackedChunks
 public import FiveColour.PackedCase79
