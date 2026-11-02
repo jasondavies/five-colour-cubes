@@ -24,7 +24,7 @@ LEAN = ROOT
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--group', choices=['Chunked', 'ReplayChunks'], default='ReplayChunks')
+    parser.add_argument('--group', choices=['Chunked', 'SmallChunks', 'ReplayChunks'], default='ReplayChunks')
     parser.add_argument('--workers', type=int, default=8)
     parser.add_argument('--cases', nargs='+', type=int, help='only these cases; omit to build and audit the aggregate')
     args = parser.parse_args()
@@ -40,7 +40,7 @@ def main():
         parser.error('full threshold replay requires exactly cases 0 through 356')
     endpoint = 'Threshold' if full else 'Link'
     if args.cases is None and not (LEAN / f'FiveColour/{args.group}/{endpoint}.lean').is_file():
-        scope = ' --all' if full else ' --cases ' + ' '.join(map(str, selected))
+        scope = ' --all' if full else ' --small' if args.group == 'SmallChunks' else ' --cases ' + ' '.join(map(str, selected))
         parser.error('aggregate link is missing; run generate_five_colour_chunks.py --links-only' + scope)
     logs = ROOT / 'build/five-colour-chunks' / args.group
     logs.mkdir(parents=True, exist_ok=True)

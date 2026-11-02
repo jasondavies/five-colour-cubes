@@ -187,6 +187,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     scope = parser.add_mutually_exclusive_group()
     scope.add_argument('--cases', nargs='+', type=int)
+    scope.add_argument('--small', action='store_true', help='generate the fixed 105-case selection into ignored SmallChunks/')
     scope.add_argument('--all', action='store_true', help='generate all cases into ignored ReplayChunks/')
     parser.add_argument('--links-only', action='store_true',
                         help='regenerate aggregate links for existing case sources without exporting proofs')
@@ -197,10 +198,12 @@ def main():
         parser.error('--limit must be 1..1024 and --workers must be positive')
     rows = [list(map(int, line.split())) for line in
             (RESULTS / 'q5-threshold-cases-size15.txt').read_text().splitlines()[1:]]
-    cases = list(range(len(rows))) if args.all else (args.cases or [78, 326, 7])
+    small = json.loads((RESULTS / 'lean-small-replay-cases.json').read_text()) if args.small else None
+    cases = ([row['case'] for row in small['cases']] if small else
+             list(range(len(rows))) if args.all else (args.cases or [78, 326, 7]))
     if len(set(cases)) != len(cases) or any(c < 0 or c >= len(rows) for c in cases):
         parser.error('case indices must be distinct and in range')
-    group = 'ReplayChunks' if args.all else 'Chunked'
+    group = 'SmallChunks' if args.small else 'ReplayChunks' if args.all else 'Chunked'
     dest = ROOT / 'FiveColour' / group
     if args.links_only:
         manifest = json.loads((dest / 'manifest.json').read_text())
@@ -230,6 +233,8 @@ def main():
             return result
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
             stats = list(pool.map(export, cases))
+    if small:
+        assert [(r['case'], r['commands']) for r in stats] == [(r['case'], r['commands']) for r in small['cases']]
     aggregate(dest, group, cases)
     # This manifest describes generation only, never successful Lean replay.
     manifest = {'status': 'generated, not a verification record', 'module_group': group, 'cases': stats}

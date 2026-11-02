@@ -134,6 +134,41 @@ Lake reuses valid cached case proofs. The research checkout's ongoing run is
 separate and retains its original runner; this package's updated final assembly
 has not yet been checked against the complete archive.
 
+## Fixed review archive
+
+```sh
+python3 -S scripts/package_review.py
+```
+
+This freezes the current source snapshot under ignored `build/review/`, with
+per-file checksums, the base Git revision and the exact pinned MacMahon project
+Git bundles. `REVIEW.json` identifies the snapshot separately from the base
+revision, so uncommitted revisions are not misrepresented as that commit.
+The archive contains neither local build caches nor validation logs.
+
+After extracting the archive, run `sha256sum -c SHA256SUMS`, then
+`python3 -S scripts/bootstrap_review.py` before the usual build commands.
+This installs the bundled project dependencies without private GitHub access;
+the Lean toolchain and public mathlib dependencies still require normal access.
+`REVIEW.txt` lists the exact theorem names and reproduction commands.
+
+## Bounded Lean replay
+
+The fixed input manifest [lean-small-replay-cases.json](data/lean-small-replay-cases.json)
+selects exactly the 105 archived certificates with at most 500 instructions.
+It records case IDs, instruction counts and the archive hash, and is regenerated
+and checked by `scripts/small_replay_cases.py`. It is an input specification,
+not a mutable verification log.
+
+```sh
+make small-replay WORKERS=2
+```
+
+This builds the separate ignored `SmallChunks` group, checks all 105 exclusions
+and their agreement with the integer root models, and audits the aggregate.
+It does not regenerate or interfere with `ReplayChunks` or the tracked examples.
+The full upper-bound theorem still requires all 357 cases.
+
 ## Replay performance experiments
 
 ```sh

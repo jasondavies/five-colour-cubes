@@ -26,7 +26,7 @@ proof. For the upper bound, anchored Hall deficiencies and a shared-corner
 argument reduce the problem to 357 finite cases. A separate checker accepts
 an interval certificate for every case. Lean proves the interval and packed
 checkers sound, verifies selected certificates and the fourteen-cube
-obstruction, and connects physical solutions to the packed Hall constraints.
+obstruction, and reduces physical counterexamples to the packed root problems.
 Complete formal verification of the upper bound remains unfinished.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
@@ -65,9 +65,10 @@ Hall's theorem gives linear alternatives for failure of a target.
 We reduce a hypothetical fifteen-cube counterexample to one of 357 cases,
 then verify finite interval certificates excluding those cases. The
 certificates, C++ programs, geometric audits, manuscript and Lean sources
-are supplied in the accompanying repository.\footnote{Intended repository:
+are included in the accompanying review archive.\footnote{Intended repository:
 \url{https://github.com/jasondavies/macmahon-five-colour-threshold}.
-This working package has not yet been released.}
+Public release is pending; the review archive includes source checksums,
+the base Git revision and bundled pinned project dependencies.}
 
 A limited literature search has found no later value for this entry.
 This is not a comprehensive priority claim. In particular, Rosenfeld's
@@ -155,7 +156,7 @@ mirror. The mirror of $B$ requires $043$, and the mirror of $C$ requires
 $012$; both types are absent. Only $B,C$ remain.
 
 For an opposite-repeat target, both orientations of each occurring
-unordered triple must be present. The available unordered triples are
+unordered triple must be present. The unordered triples for which both cyclic orientations are available are
 \[
   013,014,023,024,123,134.
 \]
@@ -198,8 +199,11 @@ opposite-repeat anchor attaining $m$. In the latter case all adjacent-repeat
 multiplicities are at most $m-1$. Relabel the colours to send the anchor to
 a fixed representative of its orbit.
 
-For each cover $K$ in Lemma~\ref{lem:anchor}, let $S$ be the constrained
-varieties other than the anchor and put $b=7-m-|K|$. The case has
+For each cover $K$ in Lemma~\ref{lem:anchor}, put
+\[
+ S(K)=N_A(K^c)\setminus\{A\},\qquad b(K)=7-m-|K|.
+\]
+Write $S=S(K)$ and $b=b(K)$. The case has
 $x_A=m$, $x(S)\le b$, and the multiplicity bounds just described.
 Additional upper bounds use two-variety solutions. If $a$ copies of $A$
 and $8-a$ copies of $V$ build a target, with $a\le m$, then
@@ -212,13 +216,26 @@ assignment to $a$ positions that $A$ fits, and assign the remaining
 $8-a$ positions to $V$.
 
 Colour permutations and simultaneous reflection of the entire collection
-preserve solvability. Those fixing the anchor act on its cover constraints;
-we retain one representative of each orbit. Transporting a cover also
+preserve solvability. First identify equal pairs $(S(K),b(K))$, even when
+they arise from inequivalent position subsets $K$; then retain one
+representative per orbit of these pairs under the anchor stabiliser.
+The reported counts are constraint-orbit counts, not position-subset counts. Transporting a cover also
 transports its constrained varieties, budget and multiplicities, so no
 counterexample is lost. Global reflection is used only
 to transport a whole hypothetical counterexample, not as an allowed move
-on an individual cube. For $m=2,3,4,5,6,7$, the resulting case counts are
-respectively $98,76,42,20,6,2$, totalling 244.
+on an individual cube. The repeated-variety cases have the following counts,
+totalling 244.
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\toprule
+Anchor / maximum multiplicity & 2 & 3 & 4 & 5 & 6 & 7\\
+\midrule
+Adjacent-repeat & 72 & 55 & 31 & 14 & 4 & 1\\
+Opposite-repeat & 26 & 21 & 11 & 6 & 2 & 1\\
+Total & 98 & 76 & 42 & 20 & 6 & 2\\
+\bottomrule
+\end{tabular}
+\end{center}
 
 For distinct collections a different choice of anchor reduces the count.
 \begin{lemma}[Shared two-colour corner]\label{lem:shared}
@@ -234,11 +251,12 @@ of the chosen anchor, the anchor itself and the other cube are two distinct
 neighbours. Their neighbourhood therefore has size at least two.
 \end{proof}
 If an opposite-repeat variety is present, choose it as anchor; this gives
-31 cases with every multiplicity at most one. Otherwise use
+31 constraint orbits with every multiplicity at most one. Otherwise use
 Lemma~\ref{lem:shared} to choose an adjacent-repeat anchor. Omit the cover
 complementary to its two characteristic positions and set all opposite-repeat
 capacities to zero. Its stabiliser preserves these positions, so the omission
-is compatible with the orbit reduction. This gives 82 further cases.
+is compatible with the orbit reduction. It removes one of the 83
+adjacent-repeat constraint orbits, leaving 82 further cases.
 
 \begin{proposition}\label{prop:cover}
 Every solution-free fifteen-cube collection is carried by colour relabelling
@@ -290,8 +308,17 @@ target remain in the refined box
 \end{equation}
 Indeed, a failing vector satisfies one of the retained cuts, and its bounds
 in~\eqref{eq:refine} imply~\eqref{eq:summary}. The root budget is treated as
-a family containing a single cut. Total-sum bounds also permit refinement
-and immediate exclusion.
+a family containing a single cut. The total $\sum_i x_i=G$ gives
+\[
+ \ell'_i=\max\!\left(\ell_i,G-\sum_{j\ne i}u_j\right),\qquad
+ u'_i=\min\!\left(u_i,G-\sum_{j\ne i}\ell_j\right).
+\]
+A total-bound leaf closes exactly when $\sum_i\ell_i>G$ or
+$\sum_i u_i<G$. A budget leaf closes when
+$\ell(S)>b$ or $b+u(S^c)<G$; a target leaf closes when none of its
+255 cuts satisfies~\eqref{eq:possible}. These are the checker's 77 possible
+closing reasons. Refinements must tighten at least one bound and leave
+nonempty coordinate intervals; a split must satisfy $\ell_i\le v<u_i$.
 
 A certificate is a finite tree of refinements and integer splits
 $x_i\le v$ or $x_i\ge v+1$. Each leaf is excluded by total bounds or by a
@@ -319,8 +346,11 @@ Compressed archive bytes & 3,516,042\\
 \end{center}
 Every archived header is checked against its exported root case. Eighty
 negative controls are rejected, including all 77 possible direct closing
-claims against a root known to contain a solution-free eleven-cube collection.
-That collection is checked by physical matching against every target.
+claims against a separate $G=11$ fixture, not a $G=15$ root problem.
+The witness satisfies its total, fixed anchor count, coordinate bounds and
+zero root budget, and fails all 75 targets by physical matching. The fixture
+is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
+checks are in \path{scripts/check_five_colour_distinct.py}.
 An earlier matching-based exhaustive search also excluded all 357 cases,
 with 772,590,466 prefix nodes; its rejecting matchings were checked as explicit
 assignments of eight distinct copies. The interval archive supplies the
@@ -353,17 +383,21 @@ neighbourhood masks by the Lean kernel.
 
 Chunk composition requires exact agreement of both boundary vectors and a
 proof excluding each referenced box; the exporter is untrusted. A limit of
-128 original instructions gives 109,449 chunks. Selected certificates have
-passed kernel replay; the full 357-case replay remains in progress.
-All audited theorem dependencies lie in
+128 original instructions gives 109,449 chunks. All 105 certificates with
+at most 500 instructions have passed kernel replay. Their exact case IDs and
+instruction counts are in \path{data/lean-small-replay-cases.json}, tied to
+the certificate archive by its SHA-256 hash; \texttt{make small-replay WORKERS=2}
+reproduces this check. The full 357-case replay remains in progress.
+The dependencies of the 59 declarations listed explicitly in
+\path{Audit.lean} lie in
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
 
 Lean proves completeness and uniqueness of the 75 cube varieties and checks
 all 45,000 compatibility bits using the pinned corner--rotation theorem.
 The lower bound uses 75 deficient corner sets: 72 singletons and three sets
-of sizes 5, 6 and 6. This finite check replaces the elementary target
-classification in Lemma~\ref{lem:lower}; catalogue completeness and rotation
+of sizes 5, 6 and 6. In the formal proof, this finite check replaces the
+elementary target classification in Lemma~\ref{lem:lower}; catalogue completeness and rotation
 transport extend it to every physical target.
 
 Lean proves the physical Hall reduction, symmetry transport, anchor
@@ -371,13 +405,32 @@ normalisation, two-variety bounds, anchor selection and the shared-corner
 argument. Finite checks certify all root capacities and cover representatives.
 These results place every fifteen-cube counterexample in one of the 357
 integer root problems, which are proved equivalent to the packed archive
-cases. Complete replay and checking the final aggregate remain before
+cases, including all coordinate bounds, total $G=15$, root budget and Hall-cut
+families. In namespace \path{FiveColour.Packed.Archive}, the exact
+identifications are \path{root_model} and \path{problem_model}, in
+\path{FiveColour/ArchiveBridge.lean}.
+
+The checked conditional theorem is
+\path{FiveColour.Physical.threshold_of_integer_root_exclusions}, in
+\path{FiveColour/CaseProblem.lean}: exclusion of every admissible vector in
+all 357 root boxes implies the physical fifteen-cube threshold. The physical
+lower bound is \path{FiveColour.Physical.lower_bound}, in
+\path{FiveColour/LowerBound.lean}. Both appear in the axiom audit.
+Check these modules and the audit with:
+\begin{verbatim}
+lake build FiveColour.CaseProblem FiveColour.LowerBound
+lake build FiveColour
+python3 -S scripts/audit_lean.py
+\end{verbatim}
+Complete replay and checking the final aggregate remain before
 Theorem~\ref{thm:main} is proved in Lean.
 
-The repository supplies certificates, code and reproduction commands.
-A Mathlib-only comparator challenge states the puzzle geometrically;
-Lean proves equivalence to the development's physical model. Full comparison
-and Palomar registry submission await replay. Mathematical questions left
+The review archive supplies certificates, code and reproduction commands.
+A Mathlib-only comparator challenge states the puzzle geometrically.
+Model equivalence is already proved by \path{FiveColour.Puzzle.hasSolution_iff}
+in \path{FiveColour/ComparatorBridge.lean}; only applying the completed
+threshold theorem and checking the full comparator solution await replay.
+Mathematical questions left
 open here include classifying all fourteen-cube obstructions and determining
 the five-colour frame numbers for larger cubes.
 

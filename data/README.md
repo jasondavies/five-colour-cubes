@@ -55,3 +55,13 @@ all cases to finish UNSAT. An alternative valid archive can have different
 bytes, so changing the checked archive requires reviewing its hash in
 `scripts/check_package.py` and this document. Raw certificates are an ignored
 cache. The archived certificate hash matches the research checkout exactly.
+
+The fixed `lean-small-replay-cases.json` selects all 105 certificates with at most
+500 instructions directly from the archive bytecode. It is checked by
+`python3 -S scripts/small_replay_cases.py --check`; `make small-replay` verifies
+the corresponding Lean proofs and their linked integer exclusions.
+
+The rejection fixture `q5-distinct-known-control.txt` has total G=11, one fixed
+opposite-repeat anchor, 0–1 coordinate bounds and budget zero. The physical audit
+normalises the saved eleven-cube witness and checks these bounds, the budget and
+failure of every target. It is a separate problem from the G=15 exclusion cases.

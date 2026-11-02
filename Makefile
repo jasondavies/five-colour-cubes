@@ -19,6 +19,7 @@ certificates: build/five_colour_boxes build/check_five_colour_certificate build/
 
 check-code: certificates
 	$(PYTHON) -S scripts/check_package.py
+	$(PYTHON) -S scripts/small_replay_cases.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
 	$(PYTHON) -S scripts/generate_five_colour_hall.py --check
 	$(PYTHON) -S scripts/generate_five_colour_symmetry.py --check
@@ -37,6 +38,10 @@ examples:
 	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group Chunked --workers $(WORKERS)
 	lake env lean FiveColour/Chunked/Controls.lean
 
+small-replay: build/five_colour_chunks
+	$(PYTHON) -S scripts/generate_five_colour_chunks.py --small --workers $(WORKERS)
+	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group SmallChunks --workers $(WORKERS)
+
 replay-data: build/five_colour_chunks
 	$(PYTHON) -S scripts/generate_five_colour_chunks.py --all --workers $(WORKERS)
 
@@ -52,4 +57,4 @@ comparator:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error macmahon-five-colour-threshold.tex
 
-.PHONY: all certificates check-code check-lean check examples replay-data replay check-comparator-lower comparator paper
+.PHONY: all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
