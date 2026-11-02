@@ -24,7 +24,7 @@ LEAN = ROOT
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--group', choices=['Chunked', 'SmallChunks', 'ReplayChunks'], default='ReplayChunks')
+    parser.add_argument('--group', choices=['Chunked', 'SmallChunks', 'ReplayChunks', 'ProjectedChunks'], default='ReplayChunks')
     parser.add_argument('--workers', type=int, default=8)
     parser.add_argument('--cases', nargs='+', type=int, help='only these cases; omit to build and audit the aggregate')
     args = parser.parse_args()
@@ -35,12 +35,13 @@ def main():
     selected = list(available) if args.cases is None else args.cases
     if len(set(selected)) != len(selected) or any(c not in available for c in selected):
         parser.error('case selection is absent from the generated manifest or contains duplicates')
-    full = args.group == 'ReplayChunks'
-    if args.cases is None and full and sorted(available) != list(range(357)):
-        parser.error('full threshold replay requires exactly cases 0 through 356')
+    full = args.group in ('ReplayChunks', 'ProjectedChunks')
+    count = 279 if args.group == 'ProjectedChunks' else 357
+    if args.cases is None and full and sorted(available) != list(range(count)):
+        parser.error(f'full threshold replay requires exactly cases 0 through {count-1}')
     endpoint = 'Threshold' if full else 'Link'
     if args.cases is None and not (LEAN / f'FiveColour/{args.group}/{endpoint}.lean').is_file():
-        scope = ' --all' if full else ' --small' if args.group == 'SmallChunks' else ' --cases ' + ' '.join(map(str, selected))
+        scope = ' --projected' if args.group == 'ProjectedChunks' else ' --all' if full else ' --small' if args.group == 'SmallChunks' else ' --cases ' + ' '.join(map(str, selected))
         parser.error('aggregate link is missing; run generate_five_colour_chunks.py --links-only' + scope)
     logs = ROOT / 'build/five-colour-chunks' / args.group
     logs.mkdir(parents=True, exist_ok=True)
@@ -53,7 +54,8 @@ def main():
     if stop.exists():
         parser.error(f'remove {stop} to resume; it requests that workers stop')
     # Build shared dependencies once before starting concurrent Lake processes.
-    subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedChunks', 'FiveColour.ArchiveBridge'], cwd=LEAN, check=True)
+    bridge = 'FiveColour.ProjectedBridge' if args.group == 'ProjectedChunks' else 'FiveColour.ArchiveBridge'
+    subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedChunks', bridge], cwd=LEAN, check=True)
     started = time.monotonic()
     records = {}
 

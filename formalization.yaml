@@ -70,6 +70,16 @@ status:
     packed bounds and decoded constraint families are identified with those
     integer models. The threshold and sharp threshold are derived conditionally
     on the concrete archive exclusions, and a final assembly is generated.
+    A further kernel-checked reduction proves 49 root containments and 29
+    direct budget-capacity exclusions, leaving 279 roots. The reduced physical
+    coverage theorem and archive-to-sharp-threshold implication are proved;
+    they reuse unchanged case IDs and certificates. The original 357-case
+    replay remains available. A general Hall-budget projection lemma and its
+    concrete root transport are proved. All 279 projected headers, projection
+    hypotheses, retained-root coverage and exact packed/integer semantics are
+    kernel-checked. Projected.sharp_threshold_of_exclusions derives sharpness
+    conditionally on the 279 smaller exclusions (499,829 instructions).
+    Their separate C++ replay is complete; their full Lean replay is in progress.
     Complete archive replay and verification of that assembly remain unfinished;
     the full physical threshold remains unproved.
     Physical.Threshold15 and Physical.SharpThreshold15 are target propositions,

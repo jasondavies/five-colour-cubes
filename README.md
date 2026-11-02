@@ -44,6 +44,28 @@ vector in one of the 357 root boxes. All 357 packed archive headers and their
 constraint families are proved equal to the integer models. The final assembly
 is wired to consume the replay exclusions; complete archive replay and checking
 that full assembly remain outstanding.
+
+A further [kernel-checked reduction](FiveColour/RootReduction.lean) removes 49
+roots contained in other roots and excludes 29 more by their initial budget
+capacity bounds. Only **279 roots** require further exclusion proofs. The
+[case manifest](data/q5-root-reduction.json) preserves the original case IDs;
+`Physical.counterexample_reduced_root` proves coverage, and
+`Archive.sharp_threshold_of_reduced_exclusions` consumes just these 279
+unchanged archive cases. A [Hall-budget projection](FiveColour/RootProjection.lean)
+then deletes copies while preserving the anchor and all target failures. It
+reduces 277 roots to budget zero and two to budget one, with totals from 9 to 15.
+The [projected manifest](data/q5-projected-root-manifest.json) maps local IDs
+0–278 to original root IDs and records the fixed proof hashes. Its archive has
+**499,829 instructions, 95.69% fewer** than the original 11,599,651.
+
+All projected headers and their full semantic bridge are kernel-checked.
+`Packed.Projected.sharp_threshold_of_exclusions`, in
+[ProjectedBridge.lean](FiveColour/ProjectedBridge.lean), derives the physical
+sharp threshold from exactly these 279 exclusions. The separate C++ checker
+accepts them all. Full Lean replay of their proof bodies is in progress; the
+instruction reduction is not a measured replay speedup. The original archive
+and replay route remain available.
+
 `Threshold15` and `SharpThreshold15` are propositions in `FiveColour/Problem.lean`,
 not proved theorems. The generic corner–rotation equivalence is already available from the pinned dependency.
 
@@ -66,10 +88,11 @@ make paper                 # additionally requires latexmk and LaTeX
 ```
 
 `make check` checks dependency pins and source hygiene, verifies physical
-geometry and case coverage, replays all 357 C++ certificates, rejects 80
+geometry and case coverage, replays the original 357 and projected 279 C++ certificates, rejects 80
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
 cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
-witnesses, builds the default Lean target and audits fifty-nine theorems.
+witnesses, root-reduction and projection manifests, builds the default Lean target
+and audits 78 theorems.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
@@ -104,35 +127,30 @@ contains portable Git URLs and fixed revisions.
 
 ## Complete Lean replay
 
-```sh
-make replay-data WORKERS=8
-make replay WORKERS=8
-```
-
-Generation produces 109,449 chunks covering all 11,599,651 archive instructions
-at the default limit of 128 instructions per chunk. Generated sources under
-`FiveColour/ReplayChunks/` and logs under `build/` are ignored. The runner limits
-concurrent case builds and resumes through Lake's dependency cache. Progress
-is in `build/five-colour-chunks/ReplayChunks/progress.json`, updated when a case
-finishes; individual large cases can take hours. On completion, the runner
-checks every replay root and constraint family against the verified archive
-headers, builds `FiveColour.ReplayChunks.Threshold`, and audits the physical
-threshold and sharp-threshold theorems. Success is reported only after those
-final checks pass.
-
-To stop this package's runner, create
-`build/five-colour-chunks/ReplayChunks/STOP`. Remove it before resuming.
-Do not regenerate case sources during replay. After an older run, aggregate
-links can be updated without regenerating the certificate bodies:
+The preferred route uses the projected archive:
 
 ```sh
-python3 -S scripts/generate_five_colour_chunks.py --all --links-only
-make replay WORKERS=2
+make projected-replay-data WORKERS=8
+make projected-replay WORKERS=8
 ```
 
-Lake reuses valid cached case proofs. The research checkout's ongoing run is
-separate and retains its original runner; this package's updated final assembly
-has not yet been checked against the complete archive.
+Generation produces 4,786 chunks covering 499,829 instructions at the default
+limit of 128. Sources under `FiveColour/ProjectedChunks/` and logs under `build/`
+are ignored. The runner builds cases with bounded concurrency and resumes through
+Lake's dependency cache. Progress is in
+`build/five-colour-chunks/ProjectedChunks/progress.json`. On completion it checks
+all replay roots, families and totals against the verified headers, builds
+`FiveColour.ProjectedChunks.Threshold`, and audits both physical threshold
+theorems. Success is reported only after those final checks pass.
+
+Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the runner;
+remove it before resuming. Completed modules remain cached, but interrupted
+cases restart. Do not regenerate case sources during replay.
+
+The original 357-case route remains available with `make replay-data` and
+`make replay`. It generates 109,449 chunks under `FiveColour/ReplayChunks/` and
+has a separate log directory and stop file. Stopping one route leaves the
+other route and all completed cached modules intact.
 
 ## Fixed review archive
 
@@ -167,7 +185,10 @@ make small-replay WORKERS=2
 This builds the separate ignored `SmallChunks` group, checks all 105 exclusions
 and their agreement with the integer root models, and audits the aggregate.
 It does not regenerate or interfere with `ReplayChunks` or the tracked examples.
-The full upper-bound theorem still requires all 357 cases.
+The existing full replay checks all 357 cases. Alternatively, the reduced
+interface requires only the 279 cases in `data/q5-root-reduction.json`; the
+remaining exclusions follow from checked containment and arithmetic lemmas.
+This does not change or restart an already running full replay.
 
 ## Replay performance experiments
 

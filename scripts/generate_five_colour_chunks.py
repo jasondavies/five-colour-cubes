@@ -111,7 +111,61 @@ end {prefix}
             'largest_chunk': max(sizes), 'smallest_chunk': min(sizes), 'limit': limit}
 
 
-def aggregate(dest, group, cases):
+def projected_aggregate(dest, cases, rows):
+    namespace = 'FiveColour.Packed.ProjectedChunks'
+    text = 'module\n' + ''.join(f'public import FiveColour.ProjectedChunks.Case{c}\n' for c in cases)
+    text += f'@[expose] public section\nnamespace {namespace}\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\n'
+    text += 'def roots : Fin 279 → Box := ![' + ', '.join(f'Case{c}.root' for c in cases) + ']\n'
+    text += 'def families : Fin 279 → Fin 78 → List Cut := ![' + ', '.join(f'Case{c}.families' for c in cases) + ']\n'
+    text += 'def goals : Fin 279 → Nat := ![' + ', '.join(str(rows[c][3]) for c in cases) + ']\n'
+    text += 'theorem all_excluded : ∀ i, Chunks.Excludes (goals i) (families i) (roots i) := by\n  intro i\n  fin_cases i\n'
+    text += ''.join(f'  · exact Case{c}.excludes\n' for c in cases)
+    text += f'end {namespace}\n'
+    (dest/'All.lean').write_text(text)
+    (dest/'Link.lean').write_text(f'''module
+public import FiveColour.ProjectedChunks.All
+public import FiveColour.ProjectedBridge
+@[expose] public section
+namespace {namespace}
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+
+theorem roots_match (i : Fin 279) : roots i = Projected.root i := by
+  fin_cases i <;> rfl
+theorem families_match (i : Fin 279) : families i = Projected.families i := by
+  fin_cases i <;> funext t <;> rfl
+theorem goals_match (i : Fin 279) : goals i = Projected.goals i := by
+  fin_cases i <;> rfl
+
+theorem archive_exclusions (i : Fin 279) :
+    Chunks.Excludes (Projected.goals i) (Projected.families i) (Projected.root i) := by
+  rw [← roots_match, ← families_match, ← goals_match]
+  exact all_excluded i
+end {namespace}
+''')
+    (dest/'Threshold.lean').write_text(f'''module
+public import FiveColour.ProjectedChunks.Link
+@[expose] public section
+namespace {namespace}
+
+/-- All projected certificates, their header identities, and physical coverage. -/
+theorem threshold15 : Physical.Threshold15 :=
+  Projected.threshold_of_exclusions archive_exclusions
+
+theorem sharpThreshold15 : Physical.SharpThreshold15 :=
+  Projected.sharp_threshold_of_exclusions archive_exclusions
+end {namespace}
+''')
+    (dest/'Audit.lean').write_text('module\nimport FiveColour.ProjectedChunks.Threshold\n' +
+        '#print axioms FiveColour.Packed.Chunks.check_sound\n' +
+        ''.join(f'#print axioms {namespace}.{name}\n' for name in ['all_excluded', 'threshold15', 'sharpThreshold15']))
+
+
+def aggregate(dest, group, cases, rows=None):
+    if group == 'ProjectedChunks':
+        assert cases == list(range(279)) and rows is not None
+        projected_aggregate(dest, cases, rows)
+        return
     namespace = f'FiveColour.Packed.{group}'
     text = 'module\n' + ''.join(f'public import FiveColour.{group}.Case{c}\n' for c in cases)
     text += f"@[expose] public section\nnamespace {namespace}\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\n"
@@ -188,6 +242,7 @@ def main():
     scope = parser.add_mutually_exclusive_group()
     scope.add_argument('--cases', nargs='+', type=int)
     scope.add_argument('--small', action='store_true', help='generate the fixed 105-case selection into ignored SmallChunks/')
+    scope.add_argument('--projected', action='store_true', help='generate the 279 smaller problems into ignored ProjectedChunks/')
     scope.add_argument('--all', action='store_true', help='generate all cases into ignored ReplayChunks/')
     parser.add_argument('--links-only', action='store_true',
                         help='regenerate aggregate links for existing case sources without exporting proofs')
@@ -196,14 +251,15 @@ def main():
     args = parser.parse_args()
     if not 1 <= args.limit <= 1024 or args.workers < 1:
         parser.error('--limit must be 1..1024 and --workers must be positive')
-    rows = [list(map(int, line.split())) for line in
-            (RESULTS / 'q5-threshold-cases-size15.txt').read_text().splitlines()[1:]]
+    case_file = RESULTS / ('q5-projected-root-cases.txt' if args.projected else 'q5-threshold-cases-size15.txt')
+    archive_file = RESULTS / ('q5-projected-certificates.tar.gz' if args.projected else 'q5-certificates.tar.gz')
+    rows = [list(map(int, line.split())) for line in case_file.read_text().splitlines()[1:]]
     small = json.loads((RESULTS / 'lean-small-replay-cases.json').read_text()) if args.small else None
     cases = ([row['case'] for row in small['cases']] if small else
-             list(range(len(rows))) if args.all else (args.cases or [78, 326, 7]))
+             list(range(len(rows))) if args.all or args.projected else (args.cases or [78, 326, 7]))
     if len(set(cases)) != len(cases) or any(c < 0 or c >= len(rows) for c in cases):
         parser.error('case indices must be distinct and in range')
-    group = 'SmallChunks' if args.small else 'ReplayChunks' if args.all else 'Chunked'
+    group = 'ProjectedChunks' if args.projected else 'SmallChunks' if args.small else 'ReplayChunks' if args.all else 'Chunked'
     dest = ROOT / 'FiveColour' / group
     if args.links_only:
         manifest = json.loads((dest / 'manifest.json').read_text())
@@ -211,12 +267,12 @@ def main():
             parser.error('existing manifest does not match the requested case list')
         if any(not (dest / f'Case{c}.lean').is_file() for c in cases):
             parser.error('an existing case source is missing')
-        aggregate(dest, group, cases)
+        aggregate(dest, group, cases, rows)
         print(f'Generated links for {len(cases)} existing case sources; no proofs were replayed.')
         return
     subprocess.run(['make', 'build/five_colour_chunks'], cwd=ROOT, check=True)
     dest.mkdir(exist_ok=True)
-    with tarfile.open(RESULTS / 'q5-certificates.tar.gz', 'r:gz') as archive:
+    with tarfile.open(archive_file, 'r:gz') as archive:
         members = {Path(m.name).name: m for m in archive.getmembers() if m.isfile()}
         payloads = {case: archive.extractfile(members[f'case-{case}.q5p']).read() for case in cases}
     with tempfile.TemporaryDirectory(prefix='q5-chunks-') as temp:
@@ -226,7 +282,7 @@ def main():
             tsv = Path(temp) / f'chunks-{case}.tsv'
             subprocess.run([str(ROOT / 'build/five_colour_chunks'),
                             str(RESULTS / 'five-colour-geometry.txt'),
-                            str(RESULTS / 'q5-threshold-cases-size15.txt'),
+                            str(case_file),
                             str(raw), str(case), str(args.limit), str(tsv)], check=True, capture_output=True)
             result = generate(case, rows[case], tsv, args.limit, dest, group)
             print(f"case {case}: {result['commands']} instructions, {result['chunks']} chunks", flush=True)
@@ -235,7 +291,7 @@ def main():
             stats = list(pool.map(export, cases))
     if small:
         assert [(r['case'], r['commands']) for r in stats] == [(r['case'], r['commands']) for r in small['cases']]
-    aggregate(dest, group, cases)
+    aggregate(dest, group, cases, rows)
     # This manifest describes generation only, never successful Lean replay.
     manifest = {'status': 'generated, not a verification record', 'module_group': group, 'cases': stats}
     (dest / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')

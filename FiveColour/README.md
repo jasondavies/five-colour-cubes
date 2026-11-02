@@ -37,6 +37,8 @@ and selected exclusions below. It does not establish the physical threshold.
 | `CaseProblem.lean` | Defines the 78 integer constraint families in archive order, proves their admissibility for a fifteen-cube counterexample, and derives the threshold conditionally on all integer root exclusions. |
 | `ArchiveCore.lean`, `ArchiveData.lean`, `ArchiveChecks*.lean` | Verifies the encodings and semantic fields of all 357 actual Q5P2 headers against the integer root model. |
 | `ArchiveBridge.lean` | Proves exact box and 78-family problem equivalence; supplies the threshold and sharp-threshold implications from all concrete archive exclusions. |
+| `RootContainment.lean` | Cut and box monotonicity, transport of complete integer root problems, and direct exclusion by an impossible initial budget. |
+| `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and supplies the reduced archive-to-threshold interface. Original case IDs and certificates are unchanged. |
 | `ArchiveExamples.lean` | Connects three existing direct certificate proofs to the integer case-cover interface. |
 | `Chunked/Link.lean`, generated `ReplayChunks/Link.lean` | Checks the concrete replay declarations against the verified archive model, preserving case numbers for selected or reordered lists. |
 | generated `ReplayChunks/Threshold.lean` | Final physical threshold and sharpness assembly. It is outside the default build and remains unchecked until full replay succeeds. |
@@ -71,6 +73,16 @@ to `HasSolution`. All anchor-selection and cover premises are discharged in
 `counterexample_integer_root`; only the concrete archive exclusions remain in
 `Archive.threshold_of_exclusions`. The full solution module must supply these
 through the completed replay before its upper-bound claims can be checked.
+Alternatively, `Physical.root_exclusions_of_reduced` recovers that same
+357-root interface from the 279 members of `Physical.replayRoots`.
+`Physical.counterexample_reduced_root` proves the corresponding physical
+coverage theorem, and `Archive.sharp_threshold_of_reduced_exclusions` uses
+only those archive exclusions. The membership and cardinality checks are
+kernel proofs; the generator merely proposes the finite witnesses.
+
+Regenerate or check the reduction with
+`python3 -S scripts/generate_five_colour_reduction.py [--check]`.
+Build its proofs with `lake build FiveColour.RootReduction`.
 
 Run from the repository root:
 
@@ -150,3 +162,12 @@ holes. It is excluded from the proof library. `Solution.lean` supplies those
 statements from the generated full-replay theorem, and remains unchecked until
 that replay completes. `make check-comparator-lower` compares only the exposed-face
 rule and explicit obstruction; `make comparator` checks the full interface.
+
+The preferred full replay now uses `make projected-replay-data` followed by
+`make projected-replay`. `BudgetProjection.lean` proves integer trimming;
+`RootProjection.lean` applies it to the already selected roots. Generated
+`ProjectedChecks*.lean` verify all 279 headers and their coverage.
+`ProjectedBridge.lean` checks the complete decoded problems and proves
+`Packed.Projected.sharp_threshold_of_exclusions`. Its remaining hypotheses are
+exactly the 279 projected certificate exclusions, totalling 499,829 instructions.
+The projected totals vary from 9 to 15. The original route remains available.

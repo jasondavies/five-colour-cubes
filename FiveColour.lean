@@ -8,3 +8,5 @@ public import FiveColour.PackedCase79
 public import FiveColour.PackedCase165
 public import FiveColour.PackedCase207
 public import FiveColour.ComparatorBridge
+public import FiveColour.RootReduction
+public import FiveColour.ProjectedBridge

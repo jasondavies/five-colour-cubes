@@ -26,6 +26,9 @@ check-code: certificates
 	$(PYTHON) -S scripts/generate_five_colour_capacities.py --check
 	$(PYTHON) -S scripts/generate_five_colour_coverage.py --check
 	$(PYTHON) -S scripts/generate_five_colour_archive.py --check
+	$(PYTHON) -S scripts/generate_five_colour_reduction.py --check
+	$(PYTHON) -S scripts/generate_five_colour_projection.py --check
+	$(PYTHON) -S scripts/check_five_colour_root_projection.py --workers $(WORKERS)
 	$(PYTHON) -S scripts/check_five_colour_certificates.py --workers $(WORKERS)
 
 check-lean:
@@ -48,6 +51,12 @@ replay-data: build/five_colour_chunks
 replay:
 	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --workers $(WORKERS)
 
+projected-replay-data: build/five_colour_chunks
+	$(PYTHON) -S scripts/generate_five_colour_chunks.py --projected --workers $(WORKERS)
+
+projected-replay:
+	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group ProjectedChunks --workers $(WORKERS)
+
 check-comparator-lower:
 	./scripts/verify-comparator.sh --lower-bound
 
@@ -57,4 +66,4 @@ comparator:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error macmahon-five-colour-threshold.tex
 
-.PHONY: all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
+.PHONY: projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper

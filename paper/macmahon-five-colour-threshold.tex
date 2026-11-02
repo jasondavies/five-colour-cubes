@@ -23,8 +23,8 @@ suffice: a counterexample uses just three varieties, with multiplicities
 $4,5,5$. This determines the five-colour corner value listed as unknown by
 Berkove, Eickemeyer and Schulman (2018). The lower bound has an elementary
 proof. For the upper bound, anchored Hall deficiencies and a shared-corner
-argument reduce the problem to 357 finite cases. A separate checker accepts
-an interval certificate for every case. Lean proves the interval and packed
+argument give 357 finite cases. Containment and a deletion lemma reduce these
+to 279 smaller problems, each with a separately checked interval certificate. Lean proves the interval and packed
 checkers sound, verifies selected certificates and the fourteen-cube
 obstruction, and reduces physical counterexamples to the packed root problems.
 Complete formal verification of the upper bound remains unfinished.
@@ -275,9 +275,44 @@ orbit. The resulting counts are
 The cases need not be disjoint; completeness of the cover is what is required.
 \end{proof}
 
+The cover can be reduced without further search. If $S'\subseteq S$ and
+$b'\ge b$, then $x(S)\le b$ implies $x(S')\le b'$ for nonnegative $x$.
+Together with coordinatewise inclusion of the root boxes, this identifies
+49 cases contained in other cases, leaving 308. Write $u$ for the root upper
+bounds. In 29 retained cases, $b+u(S^c)<15$ already contradicts the prescribed
+total, so only 279 cases
+need further exclusion proofs. The exact map and retained case numbers are
+in \path{data/q5-root-reduction.json}; Lean checks all containments and
+arithmetic exclusions. The archive retains all 357 original cases.
+
+\begin{lemma}[Hall-budget projection]\label{lem:projection}
+Suppose a root has anchor multiplicity $m$, budget $x(S)\le b$, and total
+$15$, with the anchor outside $S$. For $0\le s\le b$, put $G=15-b+s$
+and suppose $G\ge m$. Every admissible vector $x$ has a vector $y\le x$
+with the same anchor multiplicity, total $G$, budget $y(S)\le s$, and a
+Hall deficiency for every target. It obeys the original upper bounds,
+tightened to $\min(u_i,s)$ on $S$.
+\end{lemma}
+\begin{proof}
+First retain only $\min(x(S),s)$ copies in $S$. This removes at most $b-s$
+copies and leaves the anchor untouched, so the remaining total is at least
+$G$. Delete further non-anchor copies until the total is $G$; this is possible
+because $G\ge m$. Every coordinate decreases, so all upper bounds and Hall
+deficiency inequalities are preserved. Nonnegativity and $y(S)\le s$ give
+$y_i\le s$ for $i\in S$.
+\end{proof}
+
+Apply this lemma after selecting and normalising the original root; no new
+anchor selection is required for the smaller collection. Of the 279 remaining
+roots, 277 admit an exclusion certificate with $s=0$. The other two, original
+cases 68 and 69, use $s=1$ and $G=12$. Their $s=0$, $G=11$ problems actually
+have solution-free collections, supplied and checked by physical matching in
+the projected manifest. The projected totals range from 9 to 15. All 101 roots
+whose original budget was zero retain their original certificates.
+
 \section{Interval certificates}\label{sec:certificates}
 Each case asks whether a vector of nonnegative integers $x$ can satisfy its
-root bounds, total $G=15$, root budget and at least one Hall cut for each of
+root bounds, prescribed total $G$, root budget and at least one Hall cut for each of
 the 75 targets. We certify that no such vector exists.
 
 Write a box as $\ell\le x\le u$. For a cut $x(S)\le r$, two necessary
@@ -329,18 +364,18 @@ not use the search program's matching implementation.
 
 \begin{proposition}[Certificate replay]\label{prop:replay}
 The separate checker accepts an exclusion certificate for each of the
-357 root cases.
+357 original root cases and each of the 279 projected problems.
 \end{proposition}
-The archived computation has the following reproducible totals.
+The two fixed archives have the following reproducible sizes.
 \begin{center}
-\begin{tabular}{lr}
+\begin{tabular}{lrr}
 \toprule
-Root cases & 357\\
-Search tree nodes (splits and leaves) & 5,895,461\\
-Certificate instructions (including refinements) & 11,599,651\\
-Leaves & 2,947,909\\
-Uncompressed certificate bytes & 26,203,974\\
-Compressed archive bytes & 3,516,042\\
+ & Original & Projected\\
+\midrule
+Root cases & 357 & 279\\
+Certificate instructions & 11,599,651 & 499,829\\
+Uncompressed certificate bytes & 26,203,974 & 1,134,573\\
+Compressed archive bytes & 3,516,042 & 313,094\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -353,14 +388,16 @@ is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
 checks are in \path{scripts/check_five_colour_distinct.py}.
 An earlier matching-based exhaustive search also excluded all 357 cases,
 with 772,590,466 prefix nodes; its rejecting matchings were checked as explicit
-assignments of eight distinct copies. The interval archive supplies the
-smaller proof object used here.
+assignments of eight distinct copies. The projected archive reduces the interval instruction count by 95.69\%.
+Both archives use the same checker and inference rules.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Lemma~\ref{lem:lower} gives $N_5\ge15$. A solution-free collection of fifteen
 cubes would satisfy an exported root case by Proposition~\ref{prop:cover},
-and would supply a Hall deficiency for every target. Proposition~\ref{prop:replay}
-and the sound interval deductions exclude such a vector. Hence $N_5\le15$.
+and would supply a Hall deficiency for every target. Containment and the initial
+budget tests leave one of 279 roots. Lemma~\ref{lem:projection} supplies an
+admissible vector in its projected problem, which Proposition~\ref{prop:replay}
+and the sound interval deductions exclude. Hence $N_5\le15$.
 \end{proof}
 
 \section{Formalisation and reproducibility}\label{sec:formal}
@@ -383,12 +420,13 @@ neighbourhood masks by the Lean kernel.
 
 Chunk composition requires exact agreement of both boundary vectors and a
 proof excluding each referenced box; the exporter is untrusted. A limit of
-128 original instructions gives 109,449 chunks. All 105 certificates with
+128 instructions gives 4,786 chunks for the projected archive, compared with
+109,449 for the original archive. All 105 certificates with
 at most 500 instructions have passed kernel replay. Their exact case IDs and
 instruction counts are in \path{data/lean-small-replay-cases.json}, tied to
 the certificate archive by its SHA-256 hash; \texttt{make small-replay WORKERS=2}
-reproduces this check. The full 357-case replay remains in progress.
-The dependencies of the 59 declarations listed explicitly in
+reproduces this check. Full replay of the projected archive is in progress.
+The dependencies of the 78 declarations listed explicitly in
 \path{Audit.lean} lie in
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
@@ -416,9 +454,24 @@ The checked conditional theorem is
 all 357 root boxes implies the physical fifteen-cube threshold. The physical
 lower bound is \path{FiveColour.Physical.lower_bound}, in
 \path{FiveColour/LowerBound.lean}. Both appear in the axiom audit.
+The reduced interface is
+\path{FiveColour.Physical.threshold_of_reduced_root_exclusions}, in
+\path{FiveColour/RootReduction.lean}: only the 279 retained non-arithmetic
+roots remain as hypotheses. It implies the original 357-root interface.
+The same module transfers exclusions of the corresponding packed archive cases.
+Lemma~\ref{lem:projection} is formalised by
+\path{FiveColour.Physical.root_projection} in
+\path{FiveColour/RootProjection.lean}. All 279 projected headers, their
+projection hypotheses and coverage of the retained roots are kernel-checked.
+The namespace \path{FiveColour.Packed.Projected} in
+\path{FiveColour/ProjectedBridge.lean} supplies the identifications
+\path{root_model} and \path{problem_model} for all bounds and constraint families,
+including each changed total. Its checked
+\path{sharp_threshold_of_exclusions} derives the physical sharp threshold
+from precisely the 279 projected exclusions.
 Check these modules and the audit with:
 \begin{verbatim}
-lake build FiveColour.CaseProblem FiveColour.LowerBound
+lake build FiveColour.ProjectedBridge FiveColour.LowerBound
 lake build FiveColour
 python3 -S scripts/audit_lean.py
 \end{verbatim}

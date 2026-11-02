@@ -75,17 +75,20 @@ MacMahon project dependencies are bundled at their exact pinned Git revisions.
 Checked conditional upper-bound theorem:
   FiveColour.Physical.threshold_of_integer_root_exclusions
   lake build FiveColour.CaseProblem
+Preferred projected conditional sharp-threshold theorem:
+  FiveColour.Packed.Projected.sharp_threshold_of_exclusions
+  lake build FiveColour.ProjectedBridge
 Physical lower-bound theorem:
   FiveColour.Physical.lower_bound
   lake build FiveColour.LowerBound
-Complete list of 59 audited declarations: Audit.lean
+Complete list of audited declarations: Audit.lean
   python3 -S scripts/audit_lean.py
 
 The 105-case input selection is data/lean-small-replay-cases.json. The small
 replay also checks its aggregate's agreement with the integer root models.
 Full replay is separate and remains pending:
-  make replay-data WORKERS=2
-  make replay WORKERS=2
+  make projected-replay-data WORKERS=2
+  make projected-replay WORKERS=2
   make comparator
 
 No publication or Palomar submission is asserted. See README.md and the paper
