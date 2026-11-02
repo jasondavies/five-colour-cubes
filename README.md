@@ -32,10 +32,20 @@ It also proves completeness and uniqueness of the 75 physical varieties,
 correctness of every compatibility bit, and that the fourteen-cube example has
 no solution. Physical Hall deficiencies are proved equivalent to the packed
 checker's target constraints, with exact multiplicity counts, bounds 0–7 and
-the anchor Hall budget. Full kernel replay and the symmetry and capacity
-reduction to the 357 root cases remain outstanding. `Threshold15` and `SharpThreshold15`
-are propositions in `FiveColour/Problem.lean`, not proved theorems. The generic
-corner–rotation equivalence is already available from the pinned dependency.
+the anchor Hall budget. Colour permutations and global reflection preserve
+solvability, multiplicities and Hall budgets; the two colour orbits and their
+anchor representatives are certified. Lean also proves the two-variety capacity
+bound and checks all 26,775 upper bounds in the 357 exported roots, conditional
+on each root's anchor, class bounds and Hall budget. Verified physical symmetry
+witnesses map every eligible anchor cover to an exported root, preserving those
+premises. Anchor selection and the shared-corner exclusion are also proved:
+every hypothetical fifteen-cube counterexample yields an admissible integer
+vector in one of the 357 root boxes. All 357 packed archive headers and their
+constraint families are proved equal to the integer models. The final assembly
+is wired to consume the replay exclusions; complete archive replay and checking
+that full assembly remain outstanding.
+`Threshold15` and `SharpThreshold15` are propositions in `FiveColour/Problem.lean`,
+not proved theorems. The generic corner–rotation equivalence is already available from the pinned dependency.
 
 The research and manuscript were developed by GPT-6-Astra (OpenAI), used through
 Codex, under Jason Davies's direction. Author review and submission approval of
@@ -58,8 +68,8 @@ make paper                 # additionally requires latexmk and LaTeX
 `make check` checks dependency pins and source hygiene, verifies physical
 geometry and case coverage, replays all 357 C++ certificates, rejects 80
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
-cuts and Hall transpose, builds the default Lean target and audits twenty-five
-theorems.
+cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
+witnesses, builds the default Lean target and audits fifty-nine theorems.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
@@ -105,12 +115,72 @@ at the default limit of 128 instructions per chunk. Generated sources under
 concurrent case builds and resumes through Lake's dependency cache. Progress
 is in `build/five-colour-chunks/ReplayChunks/progress.json`, updated when a case
 finishes; individual large cases can take hours. On completion, the runner
-builds the aggregate theorem and audits its axioms.
+checks every replay root and constraint family against the verified archive
+headers, builds `FiveColour.ReplayChunks.Threshold`, and audits the physical
+threshold and sharp-threshold theorems. Success is reported only after those
+final checks pass.
 
 To stop this package's runner, create
 `build/five-colour-chunks/ReplayChunks/STOP`. Remove it before resuming.
-Do not regenerate sources during replay. The research checkout's ongoing run
-is separate; creating this package does not move, restart or duplicate it.
+Do not regenerate case sources during replay. After an older run, aggregate
+links can be updated without regenerating the certificate bodies:
+
+```sh
+python3 -S scripts/generate_five_colour_chunks.py --all --links-only
+make replay WORKERS=2
+```
+
+Lake reuses valid cached case proofs. The research checkout's ongoing run is
+separate and retains its original runner; this package's updated final assembly
+has not yet been checked against the complete archive.
+
+## Replay performance experiments
+
+```sh
+python3 -S scripts/benchmark_five_colour_replay.py --case 78 --limits 128 256 512 --repeats 3
+```
+
+This generates fresh proofs of the same certificate at different chunk limits,
+checks each exclusion theorem and its axioms, and records wall time, CPU time,
+peak memory and Lean profiler output under ignored `build/replay-benchmark/`.
+Runs are sequential with one Lean thread and asynchronous elaboration disabled
+so profiler timings do not overlap. Variant order alternates between repeats.
+The benchmark does not modify production replay sources or use cached case proofs.
+Results include import/setup costs and reflect background machine load; a small
+case does not predict the performance of the largest cases. The production
+chunk limit remains 128.
+
+## Comparator challenge
+
+[Challenge.lean](Challenge.lean) imports only Mathlib. It defines the puzzle
+using face colourings, signed coordinate permutations of determinant +1,
+and eight distinct source indices. It assumes no cube catalogue, compatibility
+matrix or certificate data. The five targets are the exposed-face rule, the
+explicit fourteen-cube obstruction, the fifteen-cube upper bound, sharpness,
+and the least guaranteed size.
+
+[ComparatorBridge.lean](FiveColour/ComparatorBridge.lean) proves equivalence
+with the physical model and the geometric lower bound. Its upper-bound
+transfers explicitly assume `Physical.Threshold15`. These proofs are included
+in the default build and axiom audit. `Challenge.lean` has five intentional
+statement holes; neither the proof library nor `Solution.lean` imports it.
+
+```sh
+python3 -S scripts/bootstrap_local.py --materialize # if using sibling caches
+make check-comparator-lower # only the face rule and fourteen-cube obstruction
+# After complete archive replay and final theorem assembly:
+make comparator            # all five targets
+```
+
+The local runner uses the toolchain's Lean kernel, NanoDa and con-ron, with
+`CON_RON_JOBS=2` by default. The sandbox hides sibling repositories, so the
+local bootstrap's `--materialize` option copies cached dependencies inside this
+checkout without changing their sources or the portable manifest. The two-target lower-bound check has passed Lean, NanoDa and con-ron;
+it does not certify the upper bound.
+[Solution.lean](Solution.lean) connects the geometric statements to the generated
+full-replay theorem, and is excluded from default build targets until that
+replay is complete. The full comparator has not passed; no Palomar submission
+has been made.
 
 ## Files and release status
 
@@ -124,5 +194,6 @@ See [data provenance and regeneration](data/README.md). No transient verificatio
 logs are committed. The GitHub remote is the intended location
 `https://github.com/jasondavies/macmahon-five-colour-threshold`.
 Before submission, complete the physical Lean theorem, settle dependency
-access, review the manuscript and then prepare the independent comparator
-challenge and Palomar metadata. There is no completed comparator interface yet.
+access, review the manuscript, run the full comparator and finalise Palomar
+metadata. The comparator statement and bridge are prepared; verification of
+the complete solution remains pending.

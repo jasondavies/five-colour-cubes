@@ -14,3 +14,12 @@ rev = "6f5f04b28ac8d2156af66bbe060f2060b19b30a4"
 
 [[lean_lib]]
 name = "FiveColour"
+
+# Comparator targets are opt-in: Solution requires the complete archive replay.
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

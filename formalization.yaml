@@ -9,8 +9,11 @@ project:
     it proves interval and packed checker soundness, chunk composition,
     calibration, selected case exclusions, physical catalogue and incidence
     correctness, the fourteen-cube lower bound, the physical Hall/multiplicity
-    bridge to packed target constraints, and the anchor budget. The full
-    threshold is not yet formalised.
+    bridge to packed target constraints, the anchor budget, global symmetry
+    transport, the two anchor orbits, two-variety capacities, anchor selection,
+    the shared-corner exclusion and complete physical coverage by the integer
+    root problems, and their equivalence to the packed archive cases.
+    The full replay and final physical threshold assembly remain unchecked.
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
   license: "Apache-2.0"
@@ -54,11 +57,27 @@ status:
     fourteen-cube lower-bound theorem. Also proved: physical matching/Hall
     equivalence, exact multiplicity transport, the bound of seven copies per
     variety, agreement of all 19,125 packed masks and deficiency bounds with
-    physical Hall cuts, and the anchor Hall budget. Not yet proved: the full
-    physical threshold, symmetry/capacity/shared-corner coverage by the 357
-    roots, and complete archive replay.
+    physical Hall cuts, and the anchor Hall budget. Global colour permutations
+    and reflection preserve solvability, multiplicities and anchor budgets;
+    the two colour orbits (60 adjacent, 15 opposite varieties) and their chosen
+    representatives are certified. Two-variety capacity bounds and all 26,775
+    exported upper bounds are checked, giving root-box membership under the
+    anchor, class and Hall-budget premises. Explicit physical symmetry witnesses
+    reduce all 1,537 eligible cover/multiplicity combinations to exported roots.
+    Anchor selection and the shared-corner exclusion are proved, completing
+    the reduction of every fifteen-cube physical counterexample to an admissible
+    vector in one of the 357 integer root problems. All 357 archived headers,
+    packed bounds and decoded constraint families are identified with those
+    integer models. The threshold and sharp threshold are derived conditionally
+    on the concrete archive exclusions, and a final assembly is generated.
+    Complete archive replay and verification of that assembly remain unfinished;
+    the full physical threshold remains unproved.
     Physical.Threshold15 and Physical.SharpThreshold15 are target propositions,
-    not proved theorems. No completed comparator or Palomar submission exists.
+    not proved theorems. A Mathlib-only geometric comparator challenge and its
+    proved bridge are supplied; the upper-bound transfers are conditional on
+    Physical.Threshold15. The full comparator solution has not been checked,
+    and no Palomar submission exists. The five intentional theorem holes in
+    Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: []
@@ -92,7 +111,10 @@ fidelity:
     Lean proves the checking machinery, selected finite exclusions, physical
     catalogue/incidence correctness, the fourteen-cube obstruction, physical
     Hall and multiplicity equivalence to the packed target constraints, and
-    the anchor Hall lemma. The
+    the anchor Hall lemma, global symmetry transport, anchor normalisation,
+    two-variety capacities, anchor selection, the shared-corner exclusion,
+    complete physical coverage by the integer root problems, and exact
+    equivalence of all packed archive cases to those models. The
     lower bound uses 75 kernel-checked deficient corner sets, rather than the
     paper's elementary classification of the three possible targets. Lean
     does not yet prove the paper's complete physical threshold theorem.

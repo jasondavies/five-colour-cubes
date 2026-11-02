@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "MacMahon.exposed_face_rule",
+    "FiveColour.Puzzle.lower_bound",
+    "FiveColour.Puzzle.threshold15",
+    "FiveColour.Puzzle.sharp_threshold15",
+    "FiveColour.Puzzle.least_guaranteed_size"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

@@ -2,7 +2,8 @@
 """Replay generated Lean cases with bounded concurrency and Lake's cache.
 
 Logs and progress go under ignored build/, not into committed validation data.
-A successful run builds the aggregate exclusion theorem and audits its axioms.
+A full run builds the physical sharp-threshold theorem and audits its axioms.
+Selected example groups instead build and audit their linked integer exclusions.
 Interrupted runs can be resumed with the same command: Lake verifies its own
 source/dependency traces before reusing a completed module.
 """
@@ -34,6 +35,13 @@ def main():
     selected = list(available) if args.cases is None else args.cases
     if len(set(selected)) != len(selected) or any(c not in available for c in selected):
         parser.error('case selection is absent from the generated manifest or contains duplicates')
+    full = args.group == 'ReplayChunks'
+    if args.cases is None and full and sorted(available) != list(range(357)):
+        parser.error('full threshold replay requires exactly cases 0 through 356')
+    endpoint = 'Threshold' if full else 'Link'
+    if args.cases is None and not (LEAN / f'FiveColour/{args.group}/{endpoint}.lean').is_file():
+        scope = ' --all' if full else ' --cases ' + ' '.join(map(str, selected))
+        parser.error('aggregate link is missing; run generate_five_colour_chunks.py --links-only' + scope)
     logs = ROOT / 'build/five-colour-chunks' / args.group
     logs.mkdir(parents=True, exist_ok=True)
     lock = (logs / 'run.lock').open('w')
@@ -45,7 +53,7 @@ def main():
     if stop.exists():
         parser.error(f'remove {stop} to resume; it requests that workers stop')
     # Build shared dependencies once before starting concurrent Lake processes.
-    subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedChunks'], cwd=LEAN, check=True)
+    subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedChunks', 'FiveColour.ArchiveBridge'], cwd=LEAN, check=True)
     started = time.monotonic()
     records = {}
 
@@ -106,23 +114,28 @@ def main():
     if args.cases is not None:
         progress('selected cases passed; aggregate not requested')
         return
-    progress('building aggregate')
+    progress('building physical threshold' if full else 'building linked aggregate')
     with (logs / 'aggregate.log').open('w') as stream:
-        result = subprocess.run(['lake', 'build', f'FiveColour.{args.group}.All'],
+        result = subprocess.run(['lake', 'build', f'FiveColour.{args.group}.{endpoint}'],
                                 cwd=LEAN, stdout=stream, stderr=subprocess.STDOUT)
     if result.returncode:
-        progress('aggregate failed')
+        progress('threshold assembly failed' if full else 'aggregate link failed')
         raise SystemExit(1)
     audit = subprocess.run(['lake', 'env', 'lean', f'FiveColour/{args.group}/Audit.lean'],
                            cwd=LEAN, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     (logs / 'audit.log').write_text(audit.stdout)
-    reports = re.findall(r'depends on axioms:\s*\[([^]]*)\]', audit.stdout)
+    reports = re.findall(r"'([^']+)' depends on axioms:\s*\[([^]]*)\]", audit.stdout)
+    namespace = f'FiveColour.Packed.{args.group}'
+    expected = ['FiveColour.Packed.Chunks.check_sound', f'{namespace}.all_excluded']
+    expected += ([f'{namespace}.threshold15', f'{namespace}.sharpThreshold15'] if full
+                 else [f'{namespace}.integer_exclusions'])
     allowed = {'propext', 'Classical.choice', 'Quot.sound'}
-    if audit.returncode or len(reports) != 2 or any(
-            {name.strip() for name in report.split(',') if name.strip()} - allowed for report in reports):
+    if audit.returncode or [name for name, _ in reports] != expected or any(
+            {name.strip() for name in report.split(',') if name.strip()} - allowed for _, report in reports):
         progress('axiom audit failed')
         raise SystemExit(1)
-    progress('aggregate proved and axiom audit passed')
+    progress('physical sharp threshold proved and axiom audit passed' if full
+             else 'linked aggregate proved and axiom audit passed')
     print(audit.stdout, end='')
 
 

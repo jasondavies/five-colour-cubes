@@ -2,11 +2,14 @@
 
 This is a partial formalisation of the sharp threshold 15. A successful default
 build establishes the physical catalogue, fourteen-cube obstruction, Hall and
-multiplicity bridges, anchor budget, checker theorems and selected exclusions below. It
-does not establish the physical threshold.
+multiplicity bridges, symmetry transport, anchor normalisation, two-variety
+capacities, anchor selection, the shared-corner exclusion, complete physical
+coverage by the integer root problems, the packed-archive bridge, checker theorems
+and selected exclusions below. It does not establish the physical threshold.
 
 | Component | Scope |
 | --- | --- |
+| `Puzzle.lean`, `ComparatorBridge.lean` | Geometric comparator definitions without a catalogue, equivalence to the enumerated-rotation model, and the unconditional fourteen-cube obstruction. Sharpness and least-size transfers retain the upper bound as a hypothesis. |
 | `Problem.lean` | Physical cubes, distinct copies, solutions and intended threshold propositions. Proves corner–rotation equivalence using the pinned generic theorem and that the lower family uses all five colours. |
 | `CatalogueData.lean`, `CatalogueChecks/`, `Catalogue.lean` | Kernel-checked coverage of all 15,625 face assignments, all-five-colour validity, and uniqueness of the 75 proper-rotation varieties. |
 | `Geometry.lean` | Source rotation invariance and transport of solutions between rotated targets. |
@@ -16,7 +19,27 @@ does not establish the physical threshold.
 | `Multiplicity.lean` | Exact counting by variety, conservation of total mass, physical neighbourhood sums and the bound of seven copies per variety in a counterexample. |
 | `HallCuts.lean` | All nonempty corner sets occur among the 255 masks; physical failure is equivalent to reference-checker admissibility. |
 | `PackedHall*.lean` | Checks every packed neighbourhood mask and deficiency bound against the reference cuts, and transports physical counterexamples into valid packed vectors. |
+| `Symmetry.lean`, `SymmetryAction.lean` | Global colour permutations and reflection preserve solvability and induce bijections of varieties with exact multiplicity transport. |
+| `SymmetryConstraints.lean` | Transports corner sets, Hall neighbourhoods and anchor budgets under those symmetries. |
+| `AnchorKinds.lean` | The adjacent/opposite distinction, counts 60 and 15, and transport of class-specific capacity bounds. |
+| `NormalisationData.lean`, `AnchorNormalisation.lean` | Face-level colour-permutation witnesses for all 75 varieties, the exact two-orbit theorem, and normalised physical counterexamples with the generator's anchors 3 and 0. |
 | `Anchor.lean` | The anchor Hall lemma, giving the budget `7 - m - |K|` for every chosen anchor. |
+| `TwoVarieties.lean` | Hall-based construction from two varieties, and the resulting multiplicity cap in any physical counterexample. |
+| `PairCapacityDefs.lean`, `PairCapacityData.lean`, `PairCapacities.lean` | Checks 1,200 witness-table entries against physical incidence and proves the capacity table sound. Zero entries use the general seven-copy bound. |
+| `RootCapacity*.lean`, `RootCapacities.lean` | Checks all 26,775 exported upper bounds and proves root-box membership under the chosen anchor, class and Hall-budget premises. The anchor sentinel is interpreted as its fixed multiplicity. |
+| `CoverMasks.lean` | Mask decoding agrees with physical anchor neighbourhoods; bitwise transport agrees with image of a set of varieties. Defines the eligible covers, retaining the distinct/all-adjacent exception explicitly. |
+| `StabiliserData.lean` | Certifies 16 global symmetry actions on all 75 varieties by face-level proper-rotation witnesses. No completeness claim about the list of symmetries is needed. |
+| `CoverData.lean`, `CoverChecks*.lean` | Verifies all 512 cover transports and all 1,537 eligible cover/multiplicity lookups against the exported root metadata and neighbourhood masks. |
+| `CoverReduction.lean` | `Physical.reduce_anchor_cover` preserves physical failure and the root premises under a chosen symmetry, then places the transformed multiplicity vector in an exported root box. |
+| `SharedCorners.lean` | Twenty repeated-colour corner types, two per adjacent variety, the eleven-variety pigeonhole theorem, and a positive non-anchor mass excluding cover 252 after normalisation. |
+| `AnchorSelection.lean` | Chooses a used anchor satisfying the generator's class caps and supplies the shared-corner exclusion when all varieties are distinct and adjacent. |
+| `CaseCoverage.lean` | `Physical.physical_root_cover` places every counterexample with at least eleven copies in a transformed exported root box, with all root premises proved. |
+| `CaseProblem.lean` | Defines the 78 integer constraint families in archive order, proves their admissibility for a fifteen-cube counterexample, and derives the threshold conditionally on all integer root exclusions. |
+| `ArchiveCore.lean`, `ArchiveData.lean`, `ArchiveChecks*.lean` | Verifies the encodings and semantic fields of all 357 actual Q5P2 headers against the integer root model. |
+| `ArchiveBridge.lean` | Proves exact box and 78-family problem equivalence; supplies the threshold and sharp-threshold implications from all concrete archive exclusions. |
+| `ArchiveExamples.lean` | Connects three existing direct certificate proofs to the integer case-cover interface. |
+| `Chunked/Link.lean`, generated `ReplayChunks/Link.lean` | Checks the concrete replay declarations against the verified archive model, preserving case numbers for selected or reordered lists. |
+| generated `ReplayChunks/Threshold.lean` | Final physical threshold and sharpness assembly. It is outside the default build and remains unchecked until full replay succeeds. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
 | `BoxCertificates.lean` | Sound interval refinement and certificate checking for finite integer vectors. |
 | `FastCertificates.lean` | Sound intersection/union summaries of feasible cuts. |
@@ -26,6 +49,28 @@ does not establish the physical threshold.
 | `PackedCalibration*.lean` | Kernel calibration of all 19,125 Hall-cut weights against their masks. |
 | `PackedChunks.lean` | Composition of checked chunks with exact boundary comparisons and supplied exclusion proofs. |
 | `PackedCase*.lean`, `Chunked/` | Selected actual certificates and their exclusion theorems. |
+
+## Correspondence with the paper
+
+The geometric challenge and the proof's physical model express the same puzzle:
+
+| Paper condition | Lean statement |
+| --- | --- |
+| Each face has one of five fixed colours, and every colour occurs on each source and on the target. | `Cube := Fin 6 → Fin 5`; `UsesAllColours` is surjectivity. Source validity is a theorem hypothesis; target validity is part of `HasSolution`. |
+| Collections may repeat varieties. | `Fin n → Cube` indexes physical copies; the family need not be injective. |
+| Choose eight distinct copies. | The placement is an embedding `Fin 8 ↪ Fin n`. |
+| Rotate each selected copy; reflections are not moves. | `Puzzle.HasSolution` uses determinant-positive signed coordinate permutations. `hasSolution_iff` identifies these with the proof's table of 24 proper rotations. |
+| Exterior faces are monochromatic; internal faces are unrestricted. | At each of the eight positions only its three `exposedFaces` must match the single target face assignment. The compared `MacMahon.exposed_face_rule` fixes their geometric meaning. |
+| The target may depend on the collection. | `HasSolution` existentially quantifies the target inside the universal quantification over source families. |
+| Fourteen can fail: four copies of A, five of B and five of C. | `lowerFamily` uses indices 0–3, 4–8 and 9–13, with the paper's three face tuples. `Puzzle.lower_bound` proves palette validity and failure. |
+| Fifteen is the least guaranteed size. | `solution_of_threshold` selects fifteen from any larger collection; `least_of_threshold` combines that implication with the fourteen-cube obstruction. Both still assume `Physical.Threshold15`. |
+
+The colour relabellings and global reflections in the case reduction transport
+whole hypothetical counterexamples and preserve solvability. They add no moves
+to `HasSolution`. All anchor-selection and cover premises are discharged in
+`counterexample_integer_root`; only the concrete archive exclusions remain in
+`Archive.threshold_of_exclusions`. The full solution module must supply these
+through the completed replay before its upper-bound claims can be checked.
 
 Run from the repository root:
 
@@ -45,6 +90,10 @@ Regenerate the catalogue witnesses, lower-bound cuts, packed data and examples w
 ```sh
 python3 -S scripts/generate_five_colour_catalogue.py
 python3 -S scripts/generate_five_colour_hall.py
+python3 -S scripts/generate_five_colour_symmetry.py
+python3 -S scripts/generate_five_colour_capacities.py
+python3 -S scripts/generate_five_colour_coverage.py
+python3 -S scripts/generate_five_colour_archive.py
 python3 -S scripts/generate_five_colour_packed.py
 python3 -S scripts/generate_five_colour_chunks.py
 ```
@@ -56,18 +105,35 @@ or added axiom in the proof sources. The audited dependencies are confined to
 
 The full archive is generated and replayed with `make replay-data` and
 `make replay`; see the root README for bounded concurrency and stop/resume
-instructions. Completing that run still leaves the reduction of arbitrary
-size-15 physical collections to the 357 roots: colour/reflection symmetry,
-two-variety capacity bounds, and the shared-corner reduction for distinct
-all-adjacent collections. No theorem proves `Physical.Threshold15` or
-`Physical.SharpThreshold15` yet.
+instructions. The mathematical reduction to the 357 roots is now proved,
+including anchor selection and the shared-corner exclusion. All packed archive
+boxes and constraint families are identified with the integer root problems.
+`Packed.Archive.sharp_threshold_of_exclusions` states the precise remaining
+finite obligation: the 357 concrete archive exclusions. The generated final
+assembly matches the replay declarations to this interface and supplies their
+proofs. Full replay and verification of that assembly remain unfinished.
+Neither `Physical.Threshold15` nor `Physical.SharpThreshold15` has an
+unconditional proof yet.
 
 `Physical.counterexample_packed_vector` proves that any physical counterexample
 has an exact base-1024 encoding with digits at most seven, the correct total
 mass, and one satisfied packed Hall deficiency for each target. It introduces
 no case-cover assumption. `Physical.anchor_cover` separately proves the root
-budget before symmetry reduction. Neither theorem asserts that the 357 roots
-cover every such vector.
+budget before symmetry reduction. `Physical.normalised_anchor_cover` transports
+a chosen anchor to the generator's representative, and
+`Physical.anchor_budget_transport` justifies transforming its cover constraints
+by stabilisers. `Physical.exported_cover` verifies that every eligible cover's
+neighbourhood and budget map to an actual ledger row. `Physical.reduce_anchor_cover`
+then transports the counterexample and all root premises, using
+`Physical.exported_root_contains` for box membership. Eligibility excludes cover
+252 only when the anchor is adjacent and the maximum multiplicity is one.
+`Physical.select_anchor` now supplies the anchor and class bounds; the shared
+repeated-colour corner forces positive mass in the exceptional neighbourhood,
+contradicting its zero budget. `Physical.physical_root_cover` consequently has
+no anchor-selection or eligibility hypothesis. For fifteen copies,
+`Physical.counterexample_integer_root` produces an integer vector satisfying
+all 78 constraint families inside one of the exported root boxes. The capacity and coverage generators copy the actual ledger data,
+with reproducibility checked by `--check`.
 
 The lower-bound proof uses Hall's necessary inequality, proved directly from
 the injectivity of the copy assignment. Of the 75 targets, 72 have an unavailable
@@ -78,3 +144,9 @@ extend the obstruction to every physical target, in any orientation.
 
 The default package imports generic corner and rotated-slot lemmas from the
 pinned four-to-three project; it does not use that project's threshold theorem.
+
+The root `Challenge.lean` imports only Mathlib and has five intentional theorem
+holes. It is excluded from the proof library. `Solution.lean` supplies those
+statements from the generated full-replay theorem, and remains unchecked until
+that replay completes. `make check-comparator-lower` compares only the exposed-face
+rule and explicit obstruction; `make comparator` checks the full interface.

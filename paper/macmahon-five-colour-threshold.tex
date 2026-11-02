@@ -46,7 +46,10 @@ touching interior faces need not have equal colours.
 
 Berkove, Eickemeyer and Schulman~\cite[Section 8, Table 7]{BES} tabulate the
 corresponding frame numbers for palettes of two to six colours and leave
-the five-colour column unknown. We determine its $2\times2\times2$ entry.
+the five-colour column unknown. Their corner values for two, three, four
+and six colours are respectively $11,23,11,24$. We determine the missing
+five-colour value; these thresholds need not increase with the palette size.
+For a $2\times2\times2$ cube the frame consists of its eight corners.
 Let $N_5$ denote the least integer such that every collection of $N_5$
 five-colour cubes contains a solution using all five colours on the target.
 \begin{theorem}\label{thm:main}
@@ -202,12 +205,17 @@ Additional upper bounds use two-variety solutions. If $a$ copies of $A$
 and $8-a$ copies of $V$ build a target, with $a\le m$, then
 $x_V\le 7-a$ in a solution-free collection. These tests are finite:
 the two varieties must cover all eight target positions, $A$ must fit at
-least $a$, and $V$ at least $8-a$. These three conditions are also sufficient
-by Hall's theorem for a graph with only two neighbourhood classes.
+least $a$, and $V$ at least $8-a$. They are also sufficient: at most $a$
+positions are unavailable to $V$,
+and all of them are available to $A$. Assign these to $A$, extend the
+assignment to $a$ positions that $A$ fits, and assign the remaining
+$8-a$ positions to $V$.
 
 Colour permutations and simultaneous reflection of the entire collection
 preserve solvability. Those fixing the anchor act on its cover constraints;
-we retain one representative of each orbit. Global reflection is used only
+we retain one representative of each orbit. Transporting a cover also
+transports its constrained varieties, budget and multiplicities, so no
+counterexample is lost. Global reflection is used only
 to transport a whole hypothetical counterexample, not as an allowed move
 on an individual cube. For $m=2,3,4,5,6,7$, the resulting case counts are
 respectively $98,76,42,20,6,2$, totalling 244.
@@ -343,13 +351,10 @@ coordinate updates and equivalence of the packed feasibility test to the
 integer inequalities. All 19,125 supplied weights are checked against their
 neighbourhood masks by the Lean kernel.
 
-A chunk may refer to an already proved exclusion only after an exact
-comparison of both boundary vectors. The composition theorem requires the
-referenced exclusion proofs. Thus the C++ chunk exporter is not trusted by
-this theorem. At a limit of 128 original instructions, the archive gives
-109,449 chunks. Selected larger examples and the 105 cases with at most
-500 instructions have been checked in the research development. The full
-357-case kernel replay remains in progress at the time of this draft.
+Chunk composition requires exact agreement of both boundary vectors and a
+proof excluding each referenced box; the exporter is untrusted. A limit of
+128 original instructions gives 109,449 chunks. Selected certificates have
+passed kernel replay; the full 357-case replay remains in progress.
 All audited theorem dependencies lie in
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
@@ -361,23 +366,20 @@ of sizes 5, 6 and 6. This finite check replaces the elementary target
 classification in Lemma~\ref{lem:lower}; catalogue completeness and rotation
 transport extend it to every physical target.
 
-Using mathlib's finite Hall theorem, Lean identifies physical failure with
-the Hall constraints on a multiplicity vector, proves mass conservation and
-$x_i\le7$, and formalises the anchor budget in Lemma~\ref{lem:anchor}.
-It also checks every packed neighbourhood mask and deficiency bound against
-the reference cuts. Together with weight calibration, this transports
-physical counterexamples to valid packed vectors.
+Lean proves the physical Hall reduction, symmetry transport, anchor
+normalisation, two-variety bounds, anchor selection and the shared-corner
+argument. Finite checks certify all root capacities and cover representatives.
+These results place every fifteen-cube counterexample in one of the 357
+integer root problems, which are proved equivalent to the packed archive
+cases. Complete replay and checking the final aggregate remain before
+Theorem~\ref{thm:main} is proved in Lean.
 
-A Lean proof of Theorem~\ref{thm:main} still requires full archive replay and
-the symmetry, capacity and shared-corner arguments covering arbitrary
-collections by the 357 cases. The package defines \texttt{Threshold15} and
-\texttt{SharpThreshold15} without asserting their proofs.
-
-The repository supplies compressed certificates, mathematical data and
-reproduction commands; generated replay sources and logs are excluded.
-A Palomar comparator and registry submission remain future work, as do a
-complete classification of fourteen-cube obstructions and the five-colour
-frame numbers for larger cubes.
+The repository supplies certificates, code and reproduction commands.
+A Mathlib-only comparator challenge states the puzzle geometrically;
+Lean proves equivalence to the development's physical model. Full comparison
+and Palomar registry submission await replay. Mathematical questions left
+open here include classifying all fourteen-cube obstructions and determining
+the five-colour frame numbers for larger cubes.
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and

@@ -21,6 +21,10 @@ check-code: certificates
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
 	$(PYTHON) -S scripts/generate_five_colour_hall.py --check
+	$(PYTHON) -S scripts/generate_five_colour_symmetry.py --check
+	$(PYTHON) -S scripts/generate_five_colour_capacities.py --check
+	$(PYTHON) -S scripts/generate_five_colour_coverage.py --check
+	$(PYTHON) -S scripts/generate_five_colour_archive.py --check
 	$(PYTHON) -S scripts/check_five_colour_certificates.py --workers $(WORKERS)
 
 check-lean:
@@ -30,8 +34,7 @@ check-lean:
 check: check-code check-lean
 
 examples:
-	lake build FiveColour.Chunked.All
-	lake env lean FiveColour/Chunked/Audit.lean
+	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group Chunked --workers $(WORKERS)
 	lake env lean FiveColour/Chunked/Controls.lean
 
 replay-data: build/five_colour_chunks
@@ -40,7 +43,13 @@ replay-data: build/five_colour_chunks
 replay:
 	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --workers $(WORKERS)
 
+check-comparator-lower:
+	./scripts/verify-comparator.sh --lower-bound
+
+comparator:
+	./scripts/verify-comparator.sh
+
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error macmahon-five-colour-threshold.tex
 
-.PHONY: all certificates check-code check-lean check examples replay-data replay paper
+.PHONY: all certificates check-code check-lean check examples replay-data replay check-comparator-lower comparator paper

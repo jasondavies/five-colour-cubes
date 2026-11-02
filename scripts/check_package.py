@@ -10,9 +10,16 @@ for dep in config['require']:
  assert packages[dep['name']]['inputRev']==dep['rev']
  assert packages[dep['name']]['url']==dep['git']
 assert (root/'lean-toolchain').read_text().strip()=='leanprover/lean4:v4.35.0'
-for path in (root/'FiveColour').rglob('*.lean'):
+for path in [*(root/'FiveColour').rglob('*.lean'), root/'Solution.lean']:
  if 'ReplayChunks' in path.parts:continue
  assert not re.search(r'\bsorry\b|\bnative_decide\b|^\s*axiom\s',path.read_text(),re.M),path
+# Statement holes are confined to the standalone challenge, never imported by proofs.
+challenge=(root/'Challenge.lean').read_text()
+assert re.findall(r'^(?:public )?import (.+)$',challenge,re.M)==['Mathlib']
+comparison=json.loads((root/'comparator.json').read_text())
+assert len(re.findall(r':= by sorry',challenge))==len(comparison['theorem_names'])==5
+for path in [*(root/'FiveColour').rglob('*.lean'),root/'FiveColour.lean',root/'Solution.lean']:
+ assert not re.search(r'^(?:public )?import Challenge\b',path.read_text(),re.M),path
 rows=(root/'data/q5-threshold-cases-size15.txt').read_text().splitlines()
 assert int(rows[0])==len(rows)-1==357
 with tarfile.open(root/'data/q5-certificates.tar.gz') as archive:

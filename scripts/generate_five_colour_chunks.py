@@ -121,7 +121,66 @@ def aggregate(dest, group, cases):
     text += ''.join(f'  · exact Case{c}.excludes\n' for c in cases)
     text += f'end {namespace}\n'
     (dest / 'All.lean').write_text(text)
-    (dest / 'Audit.lean').write_text(f'module\nimport FiveColour.{group}.All\n#print axioms FiveColour.Packed.Chunks.check_sound\n#print axioms {namespace}.all_excluded\n')
+    full = group == 'ReplayChunks' and cases == list(range(357))
+    numbers = 'fun i => i' if full else '![' + ','.join(map(str, cases)) + ']'
+    link = f'''module
+public import FiveColour.{group}.All
+public import FiveColour.ArchiveBridge
+@[expose] public section
+namespace {namespace}
+open Physical
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+
+/-- Case identities are retained even for selected, reordered replay lists. -/
+def caseNumbers : Fin {len(cases)} → Fin 357 := {numbers}
+
+/-- Exact matching of the concrete replay roots with the verified archive headers. -/
+theorem roots_match (i : Fin {len(cases)}) : roots i = Archive.root (caseNumbers i) := by
+  fin_cases i <;> rfl
+
+theorem families_match (i : Fin {len(cases)}) : families i = Archive.families (caseNumbers i) := by
+  fin_cases i <;> funext t <;> rfl
+
+theorem archive_exclusions (i : Fin {len(cases)}) :
+    Chunks.Excludes 15 (Archive.families (caseNumbers i)) (Archive.root (caseNumbers i)) := by
+  rw [← roots_match, ← families_match]
+  exact all_excluded i
+
+theorem integer_exclusions (i : Fin {len(cases)}) :
+    ∀ x, (rootBox (rootCapacity (caseNumbers i))).Contains x →
+      ¬ (rootProblem (caseNumbers i)).Admissible x :=
+  Archive.integer_exclusion _ (archive_exclusions i)
+
+end {namespace}
+'''
+    (dest / 'Link.lean').write_text(link)
+    if full:
+        (dest / 'Threshold.lean').write_text(f'''module
+public import FiveColour.{group}.Link
+@[expose] public section
+namespace {namespace}
+
+/-- This declaration is checked only after all 357 concrete exclusions and
+all root/family identities have been checked by the kernel. -/
+theorem threshold15 : Physical.Threshold15 :=
+  Archive.threshold_of_exclusions archive_exclusions
+
+theorem sharpThreshold15 : Physical.SharpThreshold15 :=
+  Archive.sharp_threshold_of_exclusions archive_exclusions
+
+end {namespace}
+''')
+    endpoint = 'Threshold' if full else 'Link'
+    audit = f'module\nimport FiveColour.{group}.{endpoint}\n'
+    audit += '#print axioms FiveColour.Packed.Chunks.check_sound\n'
+    audit += f'#print axioms {namespace}.all_excluded\n'
+    if full:
+        audit += f'#print axioms {namespace}.threshold15\n#print axioms {namespace}.sharpThreshold15\n'
+    else:
+        audit += f'#print axioms {namespace}.integer_exclusions\n'
+    (dest / 'Audit.lean').write_text(audit)
+
 
 
 def main():
@@ -129,6 +188,8 @@ def main():
     scope = parser.add_mutually_exclusive_group()
     scope.add_argument('--cases', nargs='+', type=int)
     scope.add_argument('--all', action='store_true', help='generate all cases into ignored ReplayChunks/')
+    parser.add_argument('--links-only', action='store_true',
+                        help='regenerate aggregate links for existing case sources without exporting proofs')
     parser.add_argument('--limit', type=int, default=128)
     parser.add_argument('--workers', type=int, default=8, help='concurrent C++ exporters')
     args = parser.parse_args()
@@ -141,6 +202,15 @@ def main():
         parser.error('case indices must be distinct and in range')
     group = 'ReplayChunks' if args.all else 'Chunked'
     dest = ROOT / 'FiveColour' / group
+    if args.links_only:
+        manifest = json.loads((dest / 'manifest.json').read_text())
+        if manifest['module_group'] != group or [r['case'] for r in manifest['cases']] != cases:
+            parser.error('existing manifest does not match the requested case list')
+        if any(not (dest / f'Case{c}.lean').is_file() for c in cases):
+            parser.error('an existing case source is missing')
+        aggregate(dest, group, cases)
+        print(f'Generated links for {len(cases)} existing case sources; no proofs were replayed.')
+        return
     subprocess.run(['make', 'build/five_colour_chunks'], cwd=ROOT, check=True)
     dest.mkdir(exist_ok=True)
     with tarfile.open(RESULTS / 'q5-certificates.tar.gz', 'r:gz') as archive:
