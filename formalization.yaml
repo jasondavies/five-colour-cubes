@@ -1,0 +1,90 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+project:
+  name: "The sharp corner threshold for five-colour cubes"
+  description: >-
+    A computer-assisted proof that every collection of fifteen five-colour
+    cubes contains eight forming a five-colour corner solution, with an
+    elementary fourteen-cube counterexample. The Lean development is partial:
+    it proves interval and packed checker soundness, chunk composition,
+    calibration and selected case exclusions, not the physical threshold.
+  authors: ["Jason Davies"]
+  responsible_maintainers: ["Jason Davies"]
+  license: "Apache-2.0"
+repository:
+  role: substantive-development
+classification:
+  arxiv: ["math.CO", "cs.LO"]
+  msc2020: ["05C70", "68V15", "00A08"]
+sources:
+  - title: "The sharp corner threshold for five-colour cubes"
+    authors: ["Jason Davies"]
+    type: original-proof
+    relationship: other
+    id: "https://github.com/jasondavies/macmahon-five-colour-threshold"
+    location: "paper/macmahon-five-colour-threshold.tex"
+    note: "Working manuscript; not released or submitted."
+  - title: "The 4-Color Cubes Puzzle"
+    authors: ["Ethan Berkove", "Andrew Eickemeyer", "Michael Schulman"]
+    type: article
+    relationship: background
+    id: "https://doi.org/10.5281/zenodo.10680216"
+    location: "Integers 18 (2018), A68; Section 8, Table 7"
+    note: "Lists the five-colour corner value as unknown."
+    author_endorsement: not-contacted
+related_formalizations:
+  - id: "https://github.com/jasondavies/macmahon-four-to-three/tree/6f5f04b28ac8d2156af66bbe060f2060b19b30a4"
+    relationship: builds-on
+    note: >-
+      Pins the palette-independent corner-rotation theorem, which imports
+      the proper cube rotations from macmahon-min-universal-sets. Anonymous
+      access to this dependency was not established during packaging; a
+      local bootstrap is supplied. No earlier threshold or classification
+      theorem is imported.
+status:
+  scope: >-
+    INCOMPLETE physical formalisation. Proved: reference interval checker
+    soundness, base-1024 arithmetic and semantic bridge, packed checker
+    soundness, all 19,125 cut-weight calibrations, bounded chunk composition,
+    selected case exclusions, generic physical corner matching and palette
+    validity of the proposed lower family. Not yet proved: the full physical
+    threshold, catalogue-to-incidence bridge, 357-root coverage for arbitrary
+    collections, physical lower-bound theorem, and complete archive replay.
+    Physical.Threshold15 and Physical.SharpThreshold15 are target propositions,
+    not proved theorems. No completed comparator or Palomar submission exists.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+automation:
+  methods:
+    - method: agent
+      models: ["GPT-6-Astra (OpenAI)"]
+      framework: "Codex"
+      tool_setup: >-
+        Under the author's direction, investigated the five-colour threshold,
+        developed multicore C++ searches and separate geometric checks,
+        derived the lower-bound and case-cover arguments, generated interval
+        certificates, proved the Lean checking infrastructure, and prepared
+        the manuscript and package. No GPU was used.
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "not tracked"
+        hardware: "local CPU"
+      prompting_notes: "Publishable research, efficient compiled solvers, Lean formalisation and a standalone paper repository."
+  spend_usd: "not tracked"
+  notes: >-
+    GPT-6-Astra (OpenAI), used through Codex, developed the research and
+    manuscript under Jason Davies's direction. Author review and submission
+    approval of this draft are pending. Upstream geometry has the separate
+    attribution recorded in its pinned repository. No other model is claimed
+    as a contributor to this manuscript. No native_decide is used.
+fidelity:
+  divergences: >-
+    The paper proves the sharp threshold by an elementary lower bound and
+    a computer-assisted upper bound with complete C++ certificate replay.
+    Lean currently proves the checking machinery and selected finite
+    exclusions, not the paper's complete physical theorem. Full generated
+    replay sources are ignored and reproducible; logs are transient build
+    outputs. No human peer review or publication-priority claim is made.
+review:
+  status: "Automated checks and AI review only; author and independent human review pending"

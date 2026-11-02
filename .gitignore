@@ -1,0 +1,15 @@
+.lake/
+build/
+__pycache__/
+*.olean
+*.ilean
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.DS_Store
+.venv/
+data/q5-certificates/
+FiveColour/ReplayChunks/

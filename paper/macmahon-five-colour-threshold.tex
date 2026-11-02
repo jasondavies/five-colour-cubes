@@ -1,0 +1,410 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={The sharp corner threshold for five-colour cubes},pdfauthor={Jason Davies}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\col}{\{0,1,2,3,4\}}
+\newcommand{\mass}[2]{#1(#2)}
+\title{The sharp corner threshold for five-colour cubes}
+\author{Jason Davies}
+\date{November 2, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Every collection of fifteen cubes, each displaying all five colours of a
+fixed palette, contains eight that form a $2\times2\times2$ cube with
+monochromatic exterior faces using those five colours. Fourteen need not
+suffice: a counterexample uses just three varieties, with multiplicities
+$4,5,5$. This determines the five-colour corner value listed as unknown by
+Berkove, Eickemeyer and Schulman (2018). The lower bound has an elementary
+proof. For the upper bound, anchored Hall deficiencies and a shared-corner
+argument reduce the problem to 357 finite cases. A separate checker accepts
+an interval certificate for every case. Lean proves the interval and packed
+checkers sound and verifies selected certificates; complete formal
+verification of the physical threshold remains unfinished.
+\end{abstract}
+\noindent\small\textit{AI transparency.} The research, code and manuscript were
+developed using GPT-6-Astra (OpenAI), through Codex, under the author's
+direction. This working manuscript has not received independent human peer
+review; Section~\ref{sec:formal} states the formal verification scope.
+\normalsize
+
+\section{Introduction}
+MacMahon's coloured-cube puzzles~\cite{MacMahon} lead to a family of extremal
+questions: how many face-coloured cubes guarantee that eight can be chosen
+to make a larger cube with monochromatic faces? Each small cube here uses
+all colours of the specified palette. Colours remain fixed, proper rotations
+identify varieties, and reflections are not allowed as moves. Collections
+may contain repeated varieties. Only exterior faces are constrained;
+touching interior faces need not have equal colours.
+
+Berkove, Eickemeyer and Schulman~\cite[Section 8, Table 7]{BES} tabulate the
+corresponding frame numbers for palettes of two to six colours and leave
+the five-colour column unknown. We determine its $2\times2\times2$ entry.
+Let $N_5$ denote the least integer such that every collection of $N_5$
+five-colour cubes contains a solution using all five colours on the target.
+\begin{theorem}\label{thm:main}
+The sharp five-colour corner threshold is $N_5=15$.
+\end{theorem}
+The conclusion for larger collections follows by choosing any fifteen cubes.
+The theorem concerns a target that may depend on the collection; it does
+not assert the ability to construct every target.
+
+The proof has two distinct parts. A short corner argument excludes every
+target for an explicit fourteen-cube collection. For the upper bound,
+Hall's theorem gives linear alternatives for failure of a target.
+We reduce a hypothetical fifteen-cube counterexample to one of 357 cases,
+then verify finite interval certificates excluding those cases. The
+certificates, C++ programs, geometric audits, manuscript and Lean sources
+are supplied in the accompanying repository.\footnote{Intended repository:
+\url{https://github.com/jasondavies/macmahon-five-colour-threshold}.
+This working package has not yet been released.}
+
+A limited literature search has found no later value for this entry.
+This is not a comprehensive priority claim. In particular, Rosenfeld's
+October 2026 article~\cite{Rosenfeld} has not been examined in full.
+
+\section{Geometry and Hall deficiencies}\label{sec:model}
+Represent a cube by its colours on the faces
+$(+x,-x,+y,-y,+z,-z)$ in a right-handed coordinate frame. A five-colour cube
+has one repeated colour. There are 75 varieties: for each repeated colour,
+three have its two faces opposite and twelve have them adjacent. In the
+opposite case, the other four colours form two opposite pairs, giving three
+possibilities. In the adjacent case, fix the two equal faces; the 24 orders
+of the other colours are identified in pairs by the rotation exchanging
+those equal faces. Thus there are 15 opposite-repeat varieties and 60
+adjacent-repeat varieties. Each class is one orbit under colour permutations.
+
+A corner type is the ordered triple of its incident face colours, modulo
+cyclic permutation. Order the outward face normals positively, equivalently
+read the triple counterclockwise from outside along the body diagonal.
+This reverses the clockwise convention in~\cite{BES}, consistently on every
+cube, and therefore preserves all matching and containment relations.
+Repeated occurrences of a corner type are retained as distinct target
+positions.
+
+\begin{lemma}[Corner--rotation correspondence]\label{lem:corner}
+A source cube fits a target corner by a proper rotation if and only if it
+has the same cyclic corner type at some corner.
+\end{lemma}
+\begin{proof}
+A proper rotation preserves the orientation of a corner frame, so it induces
+a cyclic permutation of its three outward faces. Conversely, any two
+positively oriented corner frames, with a prescribed cyclic alignment,
+are related by a determinant-positive signed permutation of the coordinate
+axes. This is a proper rotation of the cube.
+\end{proof}
+The palette-independent Lean version of this lemma is reused from the
+pinned four-to-three-colour project~\cite{FourToThree}.
+
+Fix a target $T$. Form a bipartite graph whose left vertices are its eight
+corner positions and whose right vertices are the individual source copies.
+A copy is adjacent to a position when it fits there. A matching covering
+the eight positions is exactly a solution: each chosen copy can be rotated
+independently, since interior faces are unrestricted. By Hall's
+theorem~\cite{Hall}, failure is equivalent to a nonempty set $D$ of target
+positions having fewer than $|D|$ neighbouring copies.
+
+Index the varieties by $i=1,\ldots,75$, and let $x_i$ be their multiplicities.
+For a set $S$ of varieties, write $x(S)=\sum_{i\in S}x_i$.
+Let $N_T(D)$ be the varieties fitting at least one position of $D$. Then
+failure of $T$ is equivalent to the existence of a cut
+\begin{equation}\label{eq:hall}
+  x(N_T(D))\le |D|-1,\qquad \varnothing\ne D\subseteq\{1,\ldots,8\}.
+\end{equation}
+There are 255 cuts per target, hence 19,125 cuts altogether.
+
+\section{An elementary fourteen-cube obstruction}\label{sec:lower}
+Consider four copies of $A$, five of $B$, and five of $C$, where
+\[
+ A=(0,0,1,2,3,4),\quad B=(0,1,2,3,2,4),\quad C=(0,3,1,2,4,1).
+\]
+Their corner types are shown below. Triples denote cyclic classes; the last
+column counts positions whose type occurs in neither of the other varieties.
+\begin{center}
+\begin{tabular}{clc}
+\toprule
+Variety & Corner types & Private positions\\
+\midrule
+$A$ & $013,014,023,024,031,032,041,042$ & 5\\
+$B$ & $022,023,034,042,122,124,132,143$ & 6\\
+$C$ & $011,014,021,042,113,123,134,243$ & 6\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{lemma}\label{lem:lower}
+The collection $4A+5B+5C$ has no five-colour solution.
+\end{lemma}
+\begin{proof}
+A solvable target must have every corner type in the displayed union.
+Its only two-colour types are $022,122,011,113$. An adjacent-repeat target
+therefore repeats either colour 2, with types $022,122$, or colour 1,
+with types $011,113$. In either case these two corners determine the colours
+on the faces at the ends of the repeated-colour edge. The two orders of the
+remaining colours give a mirror pair: $B$ and its mirror, or $C$ and its
+mirror. The mirror of $B$ requires $043$, and the mirror of $C$ requires
+$012$; both types are absent. Only $B,C$ remain.
+
+For an opposite-repeat target, both orientations of each occurring
+unordered triple must be present. The available unordered triples are
+\[
+  013,014,023,024,123,134.
+\]
+If its repeated colour is $r$, delete $r$ from the four triples containing
+it. The remaining pairs must form a $K_{2,2}$ on the other four colours:
+choose one face from each of their two opposite pairs. Colours 2 and 4
+occur in fewer than four listed triples. For $r=1$ or $r=3$, the four pairs
+have degree sequence $(3,2,2,1)$, so do not form $K_{2,2}$. For $r=0$, the
+pairs are $13,14,23,24$, forcing opposite pairs $\{1,2\}$ and $\{3,4\}$.
+This is $A$.
+
+Thus only $A,B,C$ can be targets. Their private positions require respectively
+at least five, six and six copies of the corresponding variety, exceeding
+the available four, five and five copies. None is solvable.
+\end{proof}
+
+\section{A complete cover by 357 cases}\label{sec:cases}
+Eight copies of any variety solve that variety, so a solution-free collection
+has every multiplicity at most seven. Suppose such a collection has size 15.
+
+\begin{lemma}[Anchored Hall cover]\label{lem:anchor}
+Suppose a collection contains $m$ copies of a variety $A$ and does not solve
+$A$. There is a set $K$ of its target positions such that
+\begin{equation}\label{eq:anchor}
+ |K|\le 7-m,\qquad
+ \#\{\text{other copies fitting some position outside }K\}
+       \le 7-m-|K|.
+\end{equation}
+Conversely, such a set certifies failure of target $A$.
+\end{lemma}
+\begin{proof}
+Apply~\eqref{eq:hall} to $A$ and put $K=D^c$. Every copy of $A$ is a
+neighbour of the nonempty set $D$. Subtract these $m$ copies from the bound
+$|D|-1=7-|K|$. The converse is the same Hall inequality read backwards.
+\end{proof}
+
+First suppose the maximum multiplicity $m$ is at least two. Choose an
+adjacent-repeat anchor attaining $m$ if possible; otherwise choose an
+opposite-repeat anchor attaining $m$. In the latter case all adjacent-repeat
+multiplicities are at most $m-1$. Relabel the colours to send the anchor to
+a fixed representative of its orbit.
+
+For each cover $K$ in Lemma~\ref{lem:anchor}, let $S$ be the constrained
+varieties other than the anchor and put $b=7-m-|K|$. The case has
+$x_A=m$, $x(S)\le b$, and the multiplicity bounds just described.
+Additional upper bounds use two-variety solutions. If $a$ copies of $A$
+and $8-a$ copies of $V$ build a target, with $a\le m$, then
+$x_V\le 7-a$ in a solution-free collection. These tests are finite:
+the two varieties must cover all eight target positions, $A$ must fit at
+least $a$, and $V$ at least $8-a$. These three conditions are also sufficient
+by Hall's theorem for a graph with only two neighbourhood classes.
+
+Colour permutations and simultaneous reflection of the entire collection
+preserve solvability. Those fixing the anchor act on its cover constraints;
+we retain one representative of each orbit. Global reflection is used only
+to transport a whole hypothetical counterexample, not as an allowed move
+on an individual cube. For $m=2,3,4,5,6,7$, the resulting case counts are
+respectively $98,76,42,20,6,2$, totalling 244.
+
+For distinct collections a different choice of anchor reduces the count.
+\begin{lemma}[Shared two-colour corner]\label{lem:shared}
+Among eleven adjacent-repeat cubes, two share a two-colour corner type.
+If a distinct collection contains such a pair and one member is chosen as
+anchor, the anchor's two two-colour positions cannot be Hall-deficient.
+\end{lemma}
+\begin{proof}
+Each adjacent-repeat cube has exactly two such types, $aab$ and $aac$, with
+$b\ne c$. There are only $5\cdot4=20$ types $aab$. Eleven cubes contribute
+22 incidences, so two cubes share a type. For the two characteristic positions
+of the chosen anchor, the anchor itself and the other cube are two distinct
+neighbours. Their neighbourhood therefore has size at least two.
+\end{proof}
+If an opposite-repeat variety is present, choose it as anchor; this gives
+31 cases with every multiplicity at most one. Otherwise use
+Lemma~\ref{lem:shared} to choose an adjacent-repeat anchor. Omit the cover
+complementary to its two characteristic positions and set all opposite-repeat
+capacities to zero. Its stabiliser preserves these positions, so the omission
+is compatible with the orbit reduction. This gives 82 further cases.
+
+\begin{proposition}\label{prop:cover}
+Every solution-free fifteen-cube collection is carried by colour relabelling
+and, if needed, global reflection into one of the 357 exported root cases.
+\end{proposition}
+\begin{proof}
+The preceding arguments cover repeated and distinct collections. The finite
+catalogue, two-variety bounds and coverage of all anchor-cover orbits are
+checked from physical rotations by the accompanying audit. It regenerates
+rotations from quarter turns, separately from the signed-axis permutations
+used by the case generator, and checks every exported bound and every cover
+orbit. The resulting counts are
+\[
+  244+31+82=357.
+\]
+The cases need not be disjoint; completeness of the cover is what is required.
+\end{proof}
+
+\section{Interval certificates}\label{sec:certificates}
+Each case asks whether a vector of nonnegative integers $x$ can satisfy its
+root bounds, total $G=15$, root budget and at least one Hall cut for each of
+the 75 targets. We certify that no such vector exists.
+
+Write a box as $\ell\le x\le u$. For a cut $x(S)\le r$, two necessary
+conditions for feasibility in the box are
+\begin{equation}\label{eq:possible}
+  \ell(S)\le r,\qquad G\le r+u(S^c).
+\end{equation}
+The first follows from the lower bounds; the second follows from
+$G=x(S)+x(S^c)$. When they hold, put
+$s=r-\ell(S)$ and $g=r+u(S^c)-G$. Every satisfying vector obeys
+\begin{equation}\label{eq:refine}
+ x_i\le\min(u_i,\ell_i+s)\quad(i\in S),\qquad
+ x_i\ge\max(\ell_i,u_i-g)\quad(i\notin S).
+\end{equation}
+For example, the upper bound follows by giving all other coordinates of $S$
+their lower bounds; the lower bound follows by giving all other coordinates
+of $S^c$ their upper bounds.
+
+For a target, retain its cuts satisfying~\eqref{eq:possible}. If none remain,
+no vector in the box can fail that target. Otherwise let $I$ and $U$ be the
+intersection and union of their neighbourhoods, and let $s_*,g_*$ be the
+largest corresponding $s,g$. Then all vectors in the box that fail this
+target remain in the refined box
+\begin{equation}\label{eq:summary}
+ u'_i=\begin{cases}\min(u_i,\ell_i+s_*)&i\in I,\\u_i&i\notin I,\end{cases}
+ \qquad
+ \ell'_i=\begin{cases}\max(\ell_i,u_i-g_*)&i\notin U,\\\ell_i&i\in U.\end{cases}
+\end{equation}
+Indeed, a failing vector satisfies one of the retained cuts, and its bounds
+in~\eqref{eq:refine} imply~\eqref{eq:summary}. The root budget is treated as
+a family containing a single cut. Total-sum bounds also permit refinement
+and immediate exclusion.
+
+A certificate is a finite tree of refinements and integer splits
+$x_i\le v$ or $x_i\ge v+1$. Each leaf is excluded by total bounds or by a
+cut family with no surviving cut. Induction on this tree proves that its
+root contains no admissible vector. The separate C++ checker reads these
+instructions and verifies the deductions; it performs no search and does
+not use the search program's matching implementation.
+
+\begin{proposition}[Certificate replay]\label{prop:replay}
+The separate checker accepts an exclusion certificate for each of the
+357 root cases.
+\end{proposition}
+The archived computation has the following reproducible totals.
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Root cases & 357\\
+Search tree nodes (splits and leaves) & 5,895,461\\
+Certificate instructions (including refinements) & 11,599,651\\
+Leaves & 2,947,909\\
+Uncompressed certificate bytes & 26,203,974\\
+Compressed archive bytes & 3,516,042\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every archived header is checked against its exported root case. Eighty
+negative controls are rejected, including all 77 possible direct closing
+claims against a root known to contain a solution-free eleven-cube collection.
+That collection is checked by physical matching against every target.
+An earlier matching-based exhaustive search also excluded all 357 cases,
+with 772,590,466 prefix nodes; its rejecting matchings were checked as explicit
+assignments of eight distinct copies. The interval archive supplies the
+smaller proof object used here.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemma~\ref{lem:lower} gives $N_5\ge15$. A solution-free collection of fifteen
+cubes would satisfy an exported root case by Proposition~\ref{prop:cover},
+and would supply a Hall deficiency for every target. Proposition~\ref{prop:replay}
+and the sound interval deductions exclude such a vector. Hence $N_5\le15$.
+\end{proof}
+
+\section{Formalisation and reproducibility}\label{sec:formal}
+The package uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at version
+\texttt{v4.35.0}. Lean proves soundness of the reference interval checker,
+of a faster arithmetic implementation, and of composition of bounded proof
+chunks. The faster implementation encodes a multiplicity vector as
+\[
+ P(x)=\sum_{i=0}^{74}x_i B^i,\qquad B=1024.
+\]
+For a neighbourhood $S$, the weight $W(S)=\sum_{i\in S}B^{74-i}$ satisfies
+\[
+ x(S)=\left\lfloor\frac{P(x)W(S)}{B^{74}}\right\rfloor\bmod B.
+\]
+Lean proves this identity under $0\le x_i\le7$, including the absence of
+carries; the coefficient bound is $75\cdot7<1024$. It also proves decoding,
+coordinate updates and equivalence of the packed feasibility test to the
+integer inequalities. All 19,125 supplied weights are checked against their
+neighbourhood masks by the Lean kernel.
+
+A chunk may refer to an already proved exclusion only after an exact
+comparison of both boundary vectors. The composition theorem requires the
+referenced exclusion proofs. Thus the C++ chunk exporter is not trusted by
+this theorem. At a limit of 128 original instructions, the archive gives
+109,449 chunks. Selected larger examples and the 105 cases with at most
+500 instructions have been checked in the research development. The full
+357-case kernel replay remains in progress at the time of this draft.
+All audited theorem dependencies lie in
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
+\texttt{native\_decide} is used.
+
+These statements do \emph{not} yet constitute a Lean proof of
+Theorem~\ref{thm:main}. Besides full replay, the formalisation still needs
+the link from the concrete incidence data to physical cubes, coverage of
+arbitrary collections by the exported cases, and the physical lower-bound
+theorem. The generic corner--rotation lemma is available from the pinned
+prior project, but it does not by itself discharge these obligations.
+The physical propositions \texttt{Threshold15} and \texttt{SharpThreshold15}
+are defined in the package without asserting their proofs.
+
+The repository separates the compressed archive and mathematical input data
+from generated replay sources and logs. Its commands reproduce the physical
+audits, C++ certificate replay, small Lean checks and the full chunked replay.
+No claim of a completed Palomar comparator or registry submission is made.
+A complete classification of fourteen-cube obstructions and the five-colour
+frame numbers for larger cubes remain further questions.
+
+\section*{AI disclosure and review status}
+GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and
+verification programs, Lean formalisation and manuscript under the human
+author's direction. The author initiated and directed the research. Author
+review and submission approval of this working manuscript are pending.
+The inherited geometry has its own provenance in the pinned dependency.
+Automated checks and AI review are not independent human peer review.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{MacMahon} P.~A.~MacMahon,
+\emph{New Mathematical Pastimes}, Cambridge University Press (1921).
+\href{https://archive.org/details/newmathematicalp00macmuoft}{Digitised edition}.
+\bibitem{BES} E.~Berkove, A.~Eickemeyer and M.~Schulman,
+\emph{The 4-Color Cubes Puzzle}, Integers \textbf{18} (2018), A68.
+\href{https://doi.org/10.5281/zenodo.10680216}{doi:\nolinkurl{10.5281/zenodo.10680216}}.
+\href{https://math.colgate.edu/~integers/s68/s68.pdf}{Journal PDF}.
+\bibitem{Hall} P.~Hall, \emph{On Representatives of Subsets},
+Journal of the London Mathematical Society \textbf{s1-10}(1) (1935), 26--30.
+\href{https://doi.org/10.1112/jlms/s1-10.37.26}{doi:\nolinkurl{10.1112/jlms/s1-10.37.26}}.
+\bibitem{FourToThree} J.~Davies,
+\emph{A sharp threshold for three-colour targets from four-colour cubes},
+manuscript and Lean project (2026).
+\href{https://github.com/jasondavies/macmahon-four-to-three/tree/6f5f04b28ac8d2156af66bbe060f2060b19b30a4}{Pinned repository revision}.
+\bibitem{Rosenfeld} M.~Rosenfeld,
+\emph{MacMahon Cubes and Moshe's Insanity, Puzzle 1},
+Geombinatorics Quarterly \textbf{36}(2) (October 2026), starts at p.~78.
+\href{https://geombina.uccs.edu/past-issues/volume-xxxvi}{Journal listing};
+full text not examined.
+\bibitem{Lean4} L.~de Moura and S.~Ullrich,
+\emph{The Lean 4 Theorem Prover and Programming Language},
+in Automated Deduction---CADE~28, LNCS \textbf{12699}, Springer (2021), 625--635.
+\href{https://doi.org/10.1007/978-3-030-79876-5_37}{doi:\nolinkurl{10.1007/978-3-030-79876-5_37}}.
+\bibitem{mathlib} The mathlib Community, \emph{The Lean Mathematical Library},
+in Proceedings of CPP~2020, ACM (2020), 367--381.
+\href{https://doi.org/10.1145/3372885.3373824}{doi:\nolinkurl{10.1145/3372885.3373824}}.
+\href{https://arxiv.org/abs/1910.09336}{arXiv:1910.09336}.
+\end{thebibliography}
+\end{document}
