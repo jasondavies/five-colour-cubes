@@ -1,7 +1,7 @@
 # The sharp corner threshold for five-colour cubes
 
 - [Paper (PDF)](paper/macmahon-five-colour-threshold.pdf) and [LaTeX](paper/macmahon-five-colour-threshold.tex).
-- [Physical target statements](FiveColour/Problem.lean) and [formalisation guide](FiveColour/README.md).
+- [Physical target statements](FiveColour/Problem.lean), [fourteen-cube lower bound](FiveColour/LowerBound.lean), and [formalisation guide](FiveColour/README.md).
 - [Interval checker](FiveColour/BoxCertificates.lean), [packed checker](FiveColour/PackedVerified.lean), and [chunk composition](FiveColour/PackedChunks.lean).
 - [Provenance and verification scope](formalization.yaml).
 
@@ -28,8 +28,10 @@ the five-colour corner value listed as unknown in Table 7 of
 
 **The physical threshold is not yet proved in Lean.** Lean proves checker
 soundness, packed arithmetic, chunk composition and selected case exclusions.
-Full kernel replay, incidence geometry, root-case coverage and the physical
-lower-bound proof remain outstanding. `Threshold15` and `SharpThreshold15`
+It also proves completeness and uniqueness of the 75 physical varieties,
+correctness of every compatibility bit, and that the fourteen-cube example has
+no solution. Full kernel replay and the reduction of arbitrary collections to
+the 357 root cases remain outstanding. `Threshold15` and `SharpThreshold15`
 are propositions in `FiveColour/Problem.lean`, not proved theorems. The generic
 corner–rotation equivalence is already available from the pinned dependency.
 
@@ -53,7 +55,8 @@ make paper                 # additionally requires latexmk and LaTeX
 
 `make check` checks dependency pins and source hygiene, verifies physical
 geometry and case coverage, replays all 357 C++ certificates, rejects 80
-negative controls, builds the default Lean target and audits ten theorems.
+negative controls, checks regeneration of the catalogue witnesses and lower-bound
+cuts, builds the default Lean target and audits seventeen theorems.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut calibrations and three small real
 certificates. They do not claim full archive replay.
@@ -66,8 +69,8 @@ audit their aggregate theorem and check corrupted-checkpoint controls.
 
 The package pins `macmahon-four-to-three` to
 `6f5f04b28ac8d2156af66bbe060f2060b19b30a4`. It imports only
-`ThreeColour.CornerGeometry`, which in turn imports the proper rotations from
-`macmahon-min-universal-sets` at its pinned revision. It does not import either
+`ThreeColour.CornerGeometry` and `ThreeColour.FamilyGeometry`, which import
+the proper rotations from `macmahon-min-universal-sets` at its pinned revision. It does not import either
 project's classification theorem.
 
 Anonymous GitHub access to the four-to-three dependency could not be verified

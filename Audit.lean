@@ -2,6 +2,13 @@ module
 import FiveColour
 #print axioms FiveColour.Physical.fits_iff_corner
 #print axioms FiveColour.Physical.lower_uses_all_colours
+#print axioms FiveColour.Physical.catalogue_complete
+#print axioms FiveColour.Physical.catalogue_uses_all_colours
+#print axioms FiveColour.Physical.catalogue_unique
+#print axioms FiveColour.Physical.fits_rotate_source
+#print axioms FiveColour.Physical.fits_rotate_target
+#print axioms FiveColour.Physical.incidence_fits
+#print axioms FiveColour.Physical.lower_bound
 #print axioms FiveColour.Certificate.check_sound
 #print axioms FiveColour.Packed.packed_subset_sum
 #print axioms FiveColour.Packed.Verified.check_sound

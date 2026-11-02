@@ -7,7 +7,8 @@ project:
     cubes contains eight forming a five-colour corner solution, with an
     elementary fourteen-cube counterexample. The Lean development is partial:
     it proves interval and packed checker soundness, chunk composition,
-    calibration and selected case exclusions, not the physical threshold.
+    calibration, selected case exclusions, physical catalogue and incidence
+    correctness, and the fourteen-cube lower bound, not the full threshold.
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
   license: "Apache-2.0"
@@ -46,10 +47,11 @@ status:
     INCOMPLETE physical formalisation. Proved: reference interval checker
     soundness, base-1024 arithmetic and semantic bridge, packed checker
     soundness, all 19,125 cut-weight calibrations, bounded chunk composition,
-    selected case exclusions, generic physical corner matching and palette
-    validity of the proposed lower family. Not yet proved: the full physical
-    threshold, catalogue-to-incidence bridge, 357-root coverage for arbitrary
-    collections, physical lower-bound theorem, and complete archive replay.
+    selected case exclusions, completeness and uniqueness of the 75 physical
+    varieties, all 45,000 incidence bits, rotation transport, and the physical
+    fourteen-cube lower-bound theorem. Not yet proved: the full physical
+    threshold, matching/Hall and multiplicity transport for arbitrary
+    collections, 357-root coverage, and complete archive replay.
     Physical.Threshold15 and Physical.SharpThreshold15 are target propositions,
     not proved theorems. No completed comparator or Palomar submission exists.
   sorry_count: 0
@@ -82,9 +84,12 @@ fidelity:
   divergences: >-
     The paper proves the sharp threshold by an elementary lower bound and
     a computer-assisted upper bound with complete C++ certificate replay.
-    Lean currently proves the checking machinery and selected finite
-    exclusions, not the paper's complete physical theorem. Full generated
-    replay sources are ignored and reproducible; logs are transient build
+    Lean proves the checking machinery, selected finite exclusions, physical
+    catalogue/incidence correctness, and the fourteen-cube obstruction. The
+    lower bound uses 75 kernel-checked deficient corner sets, rather than the
+    paper's elementary classification of the three possible targets. Lean
+    does not yet prove the paper's complete physical threshold theorem.
+    Full generated replay sources are ignored and reproducible; logs are transient build
     outputs. No human peer review or publication-priority claim is made.
 review:
   status: "Automated checks and AI review only; author and independent human review pending"

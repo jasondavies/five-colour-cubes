@@ -3,7 +3,7 @@ public import FiveColour.BoxCertificates
 @[expose] public section
 namespace FiveColour.Replay
 open Certificate
-/-- Search incidence data; the physical bridge is not yet formalised here. -/
+/-- Search incidence data; physical correctness is proved in PhysicalIncidence.lean. -/
 def incidence : Array (Array Nat) := #[
   #[255,102,153,15,240,66,36,24,129,15,240,66,36,24,129,204,192,192,12,12,136,68,192,12,129,24,36,66,51,15,240,3,66,3,48,36,48,34,24,129,17,3,48,240,15,34,10,10,15,160,160,240,170,66,36,136,24,10,129,160,17,80,80,5,5,85,15,240,68,80,66,5,36,24,129],
   #[102,255,153,66,36,15,240,129,24,66,36,15,240,129,24,68,12,12,192,192,136,204,12,192,24,129,240,15,34,66,36,10,15,10,160,240,160,170,129,24,136,10,160,36,66,51,3,3,66,48,48,36,34,15,240,17,129,3,24,48,17,5,5,80,80,68,66,36,85,5,15,80,240,129,24],

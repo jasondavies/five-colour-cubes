@@ -18,7 +18,7 @@ public import FiveColour.BoxCertificates
 @[expose] public section
 namespace FiveColour.Replay
 open Certificate
-/-- Search incidence data; the physical bridge is not yet formalised here. -/
+/-- Search incidence data; physical correctness is proved in PhysicalIncidence.lean. -/
 def incidence : Array (Array Nat) := #[
   '''+matrix+''']
 def fits (t i : Fin 75) : Nat := (incidence[t.val]!)[i.val]!

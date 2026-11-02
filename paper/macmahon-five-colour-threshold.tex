@@ -25,8 +25,9 @@ Berkove, Eickemeyer and Schulman (2018). The lower bound has an elementary
 proof. For the upper bound, anchored Hall deficiencies and a shared-corner
 argument reduce the problem to 357 finite cases. A separate checker accepts
 an interval certificate for every case. Lean proves the interval and packed
-checkers sound and verifies selected certificates; complete formal
-verification of the physical threshold remains unfinished.
+checkers sound, verifies selected certificates and the fourteen-cube
+obstruction, and certifies the physical incidence data. Complete formal
+verification of the upper bound remains unfinished.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -353,12 +354,20 @@ All audited theorem dependencies lie in
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
 
+Lean also proves completeness and uniqueness of the 75 cube varieties and
+checks all $75\cdot75\cdot8=45{,}000$ compatibility bits against physical
+corner matching. The pinned generic corner--rotation theorem connects these
+checks to proper rotations. Source rotations preserve compatibility; target
+rotations permute the eight requirements and preserve distinct-copy solutions.
+The physical fourteen-cube obstruction is proved by a different route from
+Lemma~\ref{lem:lower}: 72 catalogue targets have an unavailable corner, and
+the remaining three have deficient corner sets of sizes 5, 6 and 6. Catalogue
+completeness and rotation transport extend this check to all physical targets.
+
 These statements do \emph{not} yet constitute a Lean proof of
 Theorem~\ref{thm:main}. Besides full replay, the formalisation still needs
-the link from the concrete incidence data to physical cubes, coverage of
-arbitrary collections by the exported cases, and the physical lower-bound
-theorem. The generic corner--rotation lemma is available from the pinned
-prior project, but it does not by itself discharge these obligations.
+the matching/Hall and multiplicity-vector bridges and the symmetry and capacity
+arguments covering arbitrary collections by the exported cases.
 The physical propositions \texttt{Threshold15} and \texttt{SharpThreshold15}
 are defined in the package without asserting their proofs.
 

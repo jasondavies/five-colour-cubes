@@ -19,6 +19,7 @@ certificates: build/five_colour_boxes build/check_five_colour_certificate build/
 
 check-code: certificates
 	$(PYTHON) -S scripts/check_package.py
+	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
 	$(PYTHON) -S scripts/check_five_colour_certificates.py --workers $(WORKERS)
 
 check-lean:
