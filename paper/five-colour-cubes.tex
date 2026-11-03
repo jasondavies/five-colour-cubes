@@ -17,22 +17,17 @@
 \maketitle
 \begin{abstract}
 Every collection of fifteen cubes, each displaying all five colours of a
-fixed palette, contains eight that form a $2\times2\times2$ cube with
-monochromatic exterior faces using those five colours. Fourteen need not
-suffice: a counterexample uses just three varieties, with multiplicities
-$4,5,5$. This determines the five-colour corner value listed as unknown by
-Berkove, Eickemeyer and Schulman (2018). The lower bound has an elementary
-proof. For the upper bound, anchored Hall deficiencies and a shared-corner
-argument give 357 finite cases. Containment, budget bounds and a deletion
-lemma give 279 smaller problems, each with a separately checked interval
-certificate. Lean proves the interval and packed checkers sound, verifies all
-279 certificates and the fourteen-cube obstruction, and connects the finite
-problems to physical cube arrangements, yielding a complete formal proof of
-the sharp threshold. A Hall argument then shows that any $n^3$ five-colour cubes can all form
-a complete $n$-cube for every $n\ge3$, and gives the sharp frame value
-$12n-16$ for $n\ge10$.
-The sharp corner thresholds with at most one, two, or at least three
-varieties are respectively $8,13,15$. These extensions are also formalised.
+fixed palette, contains eight that form a $2\times2\times2$ cube with monochromatic
+exterior faces using all five colours. Fourteen need not suffice. This
+settles the five-colour corner value listed as unknown by Berkove,
+Eickemeyer and Schulman (2018). An elementary Hall argument then shows that
+any $n^3$ such cubes can all form a complete $n\times n\times n$ cube for
+$n\ge3$, and that $12n-16$ cubes suffice for its frame when $n\ge10$.
+With at most $k$ source varieties, the sharp corner threshold is $8$ for
+$k=1$, $13$ for $k=2$, and $15$ for $k\ge3$. The corner lower bound is
+elementary; the upper bound uses 279 finite interval certificates. Lean
+verifies these certificates, their connection to physical arrangements,
+and the deductions for larger cubes and bounded numbers of varieties.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -41,44 +36,51 @@ review; Section~\ref{sec:formal} states the formal verification scope.
 \normalsize
 
 \section{Introduction}
-MacMahon's coloured-cube puzzles~\cite{MacMahon} lead to a family of extremal
-questions: how many face-coloured cubes guarantee that eight can be chosen
-to make a larger cube with monochromatic faces? Each small cube here uses
-all colours of the specified palette. Colours remain fixed, proper rotations
-identify varieties, and reflections are not allowed as moves. Collections
-may contain repeated varieties. Only exterior faces are constrained;
-touching interior faces need not have equal colours.
+MacMahon's coloured-cube puzzles~\cite{MacMahon} ask when a collection of
+face-coloured cubes can form a larger cube with monochromatic exterior
+faces. Here every source and target uses all five colours of a fixed
+palette. Proper rotations identify varieties; reflections are not allowed
+as moves. Collections may contain repeated varieties, and touching interior
+faces need not have equal colours. The target may depend on the collection.
 
-Berkove, Eickemeyer and Schulman~\cite[Section 8, Table 7]{BES} tabulate the
-corresponding frame numbers for palettes of two to six colours and leave
-the five-colour column unknown. Their corner values for two, three, four
-and six colours are respectively $11,23,11,24$. We determine the missing
-five-colour value; these thresholds need not increase with the palette size.
-For a $2\times2\times2$ cube the frame consists of its eight corners.
-Let $N_5$ denote the least integer such that every collection of $N_5$
-five-colour cubes contains a solution using all five colours on the target.
+For $n\ge2$, an \emph{$n$-frame} consists of the corners and edges of an
+$n\times n\times n$ cube, using $12n-16$ pieces. Write $F_5(n)$ for the
+least available pool size guaranteeing an $n$-frame, and $G_5(n)$ for the
+least pool size guaranteeing a complete $n$-cube. An assembly may use a
+subset of the pool. At $n=2$, the frame and complete cube both consist of
+eight corners; we write $N_5=F_5(2)=G_5(2)$.
+
+Berkove, Eickemeyer and Schulman~\cite[Section 8, Table 7]{BES} tabulate
+frame numbers for palettes of two to six colours, leaving the five-colour
+column unknown. Their corner values for two, three, four and six colours
+are respectively $11,23,11,24$. We determine the missing value.
 \begin{theorem}\label{thm:main}
 The sharp five-colour corner threshold is $N_5=15$.
 \end{theorem}
-Theorem~\ref{thm:frames} bounds the frame numbers for every side length
-and determines them for $n\ge10$, using an elementary Hall argument.
-Theorem~\ref{thm:complete} gives complete assemblies from any $n^3$ cubes
-for all $n\ge3$. Theorem~\ref{thm:support} determines the corner threshold
-when the number of source varieties is bounded, and shows that the
-fourteen-cube obstruction has minimum support.
-The corner conclusion for larger collections follows by choosing any fifteen cubes.
-The theorem concerns a target that may depend on the collection; it does
-not assert the ability to construct every target.
+The conclusion for larger collections follows by choosing any fifteen cubes.
+A short corner argument gives an explicit fourteen-cube obstruction.
+For the upper bound, Hall deficiencies and symmetry reduce hypothetical
+counterexamples to 357 finite cases. Containment, budget bounds and a
+deletion lemma leave 279 smaller problems, each excluded by an interval
+certificate (Sections~\ref{sec:cases}--\ref{sec:certificates}).
 
-The proof has two distinct parts. A short corner argument excludes every
-target for an explicit fourteen-cube collection. For the upper bound,
-Hall's theorem gives linear alternatives for failure of a target.
-We cover hypothetical fifteen-cube counterexamples by 357 cases. Containment
-reduces these to 308, and initial budget bounds exclude another 29. A deletion
-lemma reduces the totals and budgets in the remaining 279 problems, which
-are excluded by finite interval certificates. The
-certificates, C++ programs, geometric audits, manuscript and Lean sources
-are included in the accompanying review archive.\footnote{Intended repository:
+The corner theorem also yields
+\[
+ G_5(n)=\max\{n^3,15\}\qquad(n\ge2),
+\]
+and the frame bounds
+\[
+ 12n-16\le F_5(n)\le\max\{12n-16,11n-6\}\qquad(n\ge3).
+\]
+Thus every 27 cubes form a complete $3$-cube without spares, and
+$F_5(n)=12n-16$ for $n\ge10$. The argument in Section~\ref{sec:frames}
+uses only the corner theorem, elementary geometry and Hall's theorem;
+it requires no further interval certificates. Section~\ref{sec:support}
+determines the thresholds with a bounded number of source varieties,
+showing in particular that a fourteen-cube obstruction needs at least
+three varieties. All these results are formalised in Lean.
+The accompanying review archive contains the certificates, programs,
+geometric audits and Lean sources.\footnote{Intended repository:
 \url{https://github.com/jasondavies/five-colour-cubes}.
 Public release is pending; the review archive includes source checksums,
 the base Git revision and bundled pinned project dependencies.}
@@ -86,9 +88,8 @@ the base Git revision and bundled pinned project dependencies.}
 The companion paper~\cite{FourToThree} considers four-colour sources and
 targets using exactly three colours. It gives the sharp frame threshold
 $16n-3$ for every side length $n\ge2$, with a classification of the largest
-failing collections. Here both sources and targets use five colours, and the
-sharp corner result also gives the larger-cube conclusions above. The developments share the
-palette-independent geometry in \texttt{ColourCubes}~\cite{ColourCubes};
+failing collections. The two developments share the palette-independent
+geometry in \texttt{ColourCubes}~\cite{ColourCubes};
 neither threshold theorem is used to prove the other.
 
 A limited literature search has found no later value for the five-colour entry.
@@ -176,8 +177,8 @@ remaining colours give a mirror pair: $B$ and its mirror, or $C$ and its
 mirror. The mirror of $B$ requires $043$, and the mirror of $C$ requires
 $012$; both types are absent. Only $B,C$ remain.
 
-For an opposite-repeat target, both orientations of each occurring
-unordered triple must be present. The unordered triples for which both cyclic orientations are available are
+An opposite-repeat target requires both cyclic orientations of each corner
+triple. The unordered triples with both orientations in the union are
 \[
   013,014,023,024,123,134.
 \]
@@ -251,11 +252,11 @@ Colour permutations and simultaneous reflection of the entire collection
 preserve solvability. First identify equal pairs $(S(K),b(K))$, even when
 they arise from inequivalent position subsets $K$; then retain one
 representative per orbit of these pairs under the anchor stabiliser.
-The reported counts are constraint-orbit counts, not position-subset counts. Transporting a cover also
-transports its constrained varieties, budget and multiplicities, so no
-counterexample is lost. Global reflection is used only
-to transport a whole hypothetical counterexample, not as an allowed move
-on an individual cube. The repeated-variety cases have the following counts,
+The counts below refer to these constraint pairs. Transporting a cover
+also transports its constrained varieties, budget and multiplicities, so
+no counterexample is lost. Global reflection transports the whole
+collection; individual cubes still move only by proper rotations.
+The repeated-variety cases have the following counts,
 totalling 244.
 \begin{center}
 \begin{tabular}{lrrrrrr}
@@ -364,8 +365,8 @@ whose original budget was zero retain their original certificates.
 
 \section{Interval certificates}\label{sec:certificates}
 For a projected problem, admissibility is defined by~\eqref{eq:admissible}
-with the tightened upper bounds, total $G$ and budget $s$.
-We certify that no admissible vector exists.
+with tightened upper bounds and total $G$. In this section denote its
+projected budget by $b$. We certify that no admissible vector exists.
 
 Write a box as $\ell\le x\le u$. For a cut $x(S)\le r$, two necessary
 conditions for feasibility in the box are
@@ -374,10 +375,10 @@ conditions for feasibility in the box are
 \end{equation}
 The first follows from the lower bounds; the second follows from
 $G=x(S)+x(S^c)$. When they hold, put
-$s=r-\ell(S)$ and $g=r+u(S^c)-G$. Every satisfying vector obeys
+$\sigma=r-\ell(S)$ and $\gamma=r+u(S^c)-G$. Every satisfying vector obeys
 \begin{equation}\label{eq:refine}
- x_i\le\min(u_i,\ell_i+s)\quad(i\in S),\qquad
- x_i\ge\max(\ell_i,u_i-g)\quad(i\notin S).
+ x_i\le\min(u_i,\ell_i+\sigma)\quad(i\in S),\qquad
+ x_i\ge\max(\ell_i,u_i-\gamma)\quad(i\notin S).
 \end{equation}
 For example, the upper bound follows by giving all other coordinates of $S$
 their lower bounds; the lower bound follows by giving all other coordinates
@@ -385,13 +386,13 @@ of $S^c$ their upper bounds.
 
 For a target, retain its cuts satisfying~\eqref{eq:possible}. If none remain,
 no vector in the box can fail that target. Otherwise let $I$ and $U$ be the
-intersection and union of their neighbourhoods, and let $s_*,g_*$ be the
-largest corresponding $s,g$. Then all vectors in the box that fail this
+intersection and union of their neighbourhoods, and let $\sigma_*,\gamma_*$ be the
+largest corresponding $\sigma,\gamma$. Then all vectors in the box that fail this
 target remain in the refined box
 \begin{equation}\label{eq:summary}
- u'_i=\begin{cases}\min(u_i,\ell_i+s_*)&i\in I,\\u_i&i\notin I,\end{cases}
+ u'_i=\begin{cases}\min(u_i,\ell_i+\sigma_*)&i\in I,\\u_i&i\notin I,\end{cases}
  \qquad
- \ell'_i=\begin{cases}\max(\ell_i,u_i-g_*)&i\notin U,\\\ell_i&i\in U.\end{cases}
+ \ell'_i=\begin{cases}\max(\ell_i,u_i-\gamma_*)&i\notin U,\\\ell_i&i\in U.\end{cases}
 \end{equation}
 Indeed, a failing vector satisfies one of the retained cuts, and its bounds
 in~\eqref{eq:refine} imply~\eqref{eq:summary}. The root budget is treated as
@@ -403,8 +404,9 @@ a family containing a single cut. The total $\sum_i x_i=G$ gives
 A total-bound leaf closes exactly when $\sum_i\ell_i>G$ or
 $\sum_i u_i<G$. A budget leaf closes when
 $\ell(S)>b$ or $b+u(S^c)<G$; a target leaf closes when none of its
-255 cuts satisfies~\eqref{eq:possible}. These are the checker's 77 possible
-closing reasons. Refinements must tighten at least one bound and leave
+255 cuts satisfies~\eqref{eq:possible}. The checker thus has 77 closing
+reasons: one total test, one budget test and 75 target tests. Refinements
+must tighten at least one bound and leave
 nonempty coordinate intervals; a split must satisfy $\ell_i\le v<u_i$.
 
 A certificate is a finite tree of refinements and integer splits
@@ -418,9 +420,9 @@ not use the search program's matching implementation.
 The separate checker accepts an exclusion certificate for each of the
 279 projected problems.
 \end{proposition}
-The projected archive contains 499,829 instructions in 313,094 compressed
-bytes, reducing the instruction count by 95.69\% from the original archive.
-The repository documents both archives and the earlier search computations.
+The projected archive contains 499,829 instructions, 95.69\% fewer than the
+original archive. Both archives and the search computations are documented
+in the repository.
 Every archived header is checked against its exported root case. Eighty
 negative controls are rejected, including all 77 possible direct closing
 claims against a separate $G=11$ fixture, not a $G=15$ root problem.
@@ -439,11 +441,22 @@ and the sound interval deductions exclude. Hence $N_5\le15$.
 \end{proof}
 
 \section{Frames and complete cubes}\label{sec:frames}
-An $n$-frame consists of the corners and edges of an $n\times n\times n$
-cube, and uses $12n-16$ pieces. Let $F_5(n)$ be the least available pool size
-guaranteeing such a frame, and $G_5(n)$ the least pool size guaranteeing a
-complete $n$-cube, in each case with monochromatic exterior faces displaying
-all five colours. An assembly may use a subset of the pool.
+The larger-cube argument depends on how many positions a source can miss.
+The following form of Hall's theorem isolates the matching step.
+
+\begin{lemma}[Hall criterion with a matched subset]\label{lem:partial-matching}
+Consider $L$ target positions and $N\ge L$ source copies. Suppose every
+source misses at most $d$ positions. If a set $P_0$ of positions can be
+matched to distinct copies, and every position outside $P_0$ has at least
+$d$ neighbours, then all $L$ positions can be matched.
+\end{lemma}
+\begin{proof}
+For a position set $D\subseteq P_0$, the given matching supplies $|D|$
+neighbours. If $D\nsubseteq P_0$ and $|D|\le d$, a position in
+$D\setminus P_0$ alone has at least $d$ neighbours. If $|D|>d$, every
+source neighbours $D$, since none can miss all its positions. In each case
+Hall's inequality holds.
+\end{proof}
 
 \begin{lemma}[Frame compatibility]\label{lem:frame-geometry}
 Put $q=n-2\ge1$. Every source variety fits at least $8q+2$ positions of
@@ -463,8 +476,8 @@ faces, which determines a unique variety.
 Write $c,e$ for the numbers of target corners and geometric edges fitted by
 the source. Whenever either variety is opposite-repeat, $c\ge2$. To see
 this, let that variety repeat $r$, with singleton opposite pairs
-$\{a,b\}$ and $\{c,d\}$. It contains both cyclic orientations of each
-$rxy$ with $x\in\{a,b\}$ and $y\in\{c,d\}$. In the other variety, if an
+$\{a,b\}$ and $\{u,v\}$. It contains both cyclic orientations of each
+$rxy$ with $x\in\{a,b\}$ and $y\in\{u,v\}$. In the other variety, if an
 $r$-face has no adjacent $r$-face, its four surrounding faces contain at
 least three distinct colours. Their cyclic order crosses between the two
 pairs at least twice, giving two shared corner types. If the $r$-faces are
@@ -528,11 +541,11 @@ If two distinct pairs are rare, at least
  N-2(4q+5)\ge3q+6=h
 \]
 copies lack both. The lemma implies that these pairs are disjoint and all
-these copies belong to one opposite-repeat variety $V$. Apply Hall's theorem
-to the $L$ positions of target $V$ and all $N$ sources. Any nonempty position
-set of size at most $h$ has these $h$ copies as neighbours. Every set of
-size greater than $h$ has every source as a neighbour, since no source
-misses more than $h$ positions. As $N\ge L$, all Hall inequalities hold.
+these copies belong to one opposite-repeat variety $V$. Each of these copies
+fits every position of $V$, so every position has at least $h$ neighbours.
+Every source misses at most $h$ positions of this target.
+Lemma~\ref{lem:partial-matching}, with $d=h$ and $P_0=\varnothing$,
+therefore supplies a frame.
 
 It remains to treat at most one rare pair. If there is none, reserve up to
 $q$ cubes with an $aa$ edge for each of the five colours $a$, taking all if
@@ -559,13 +572,11 @@ otherwise all such sources would have been removed. This reserve fills
 the monochromatic edge. Hence the corners and the possible monochromatic
 edge have a matching by distinct copies.
 
-Return to all $N$ sources and apply Hall to this target's full frame. A
-position set $D$ containing no bichromatic edge position is covered by the
-preliminary matching. If $D$ contains such a position and $|D|\le d$, the
-corresponding nonrare type has at least $d$ neighbouring copies. If
-$|D|>d$, every source neighbours $D$ by the missing-position bound.
-Again $N\ge L$ completes Hall's inequalities. The final matching may
-rearrange the preliminary corner placements.
+Return to all $N$ sources. Apply Lemma~\ref{lem:partial-matching} with
+$P_0$ consisting of the corners and any monochromatic edge positions.
+Each remaining position has at least $d$ neighbours because its type is
+nonrare, and every source misses at most $d$ positions. This gives the
+full frame. The final matching may rearrange the preliminary placements.
 
 Substituting $q=n-2$ gives the stated bound. For $n\ge10$, its maximum is
 $12n-16$, proving equality.
@@ -625,9 +636,8 @@ $030412$ & $001234$\\
 \bottomrule
 \end{tabular}
 \end{center}
-The accompanying geometric checker regenerates all varieties and verifies
-the orbit coverage and each witness. Lean checks a suitable target directly
-for every pair, without using the orbit reduction.
+The accompanying program \path{src/five_colour_extensions.cpp} regenerates
+the varieties and checks the orbit coverage and all five witnesses.
 \end{proof}
 
 \begin{theorem}\label{thm:support}
@@ -653,9 +663,9 @@ For the lower bound take six copies each of
 \]
 Their corner sets share just $041$. Inspection of the 75 varieties shows
 that only $P,Q$ have all corner types in their union. Each has seven private
-positions, so neither can be built with six copies. The geometric checker verifies these assertions; Lean certifies failure
-using deficient corner sets for all 75 targets. Thus $M(2)=13$. For $k\ge3$, Theorem~\ref{thm:main} supplies
-the upper bound, and the three-variety collection in
+positions, so neither can be built with six copies. The same geometric
+checker verifies these assertions. Thus $M(2)=13$. For $k\ge3$,
+Theorem~\ref{thm:main} supplies the upper bound, and the collection in
 Lemma~\ref{lem:lower} supplies the lower bound.
 \end{proof}
 
@@ -674,106 +684,100 @@ $023,034,042,124,132,143$. The combined corner union allows only
 $A,C,B_1,B_2,B_3$ as targets, as a check of the catalogue confirms.
 Target $A$ needs five $A$-copies, $C$ needs six $C$-copies, and any $B_i$
 needs six copies from the $B$-group. The respective supplies are four,
-five and five. Lean verifies these shortages simultaneously for every
-distribution. The original example is $x_1=5,x_2=x_3=0$.
+five and five, regardless of their distribution within the $B$-group.
+The original example is $x_1=5,x_2=x_3=0$.
 \end{remark}
 
 \section{Formalisation and reproducibility}\label{sec:formal}
-The package uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at version
-\texttt{v4.35.0}. Lean proves soundness of the reference interval checker,
-of a faster arithmetic implementation, and of composition of bounded proof
-chunks. The faster implementation encodes a multiplicity vector as
+The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
+\texttt{v4.35.0}. It proves the physical theorems, including the connection
+between cube arrangements and the finite certificate problems.
+
+Lean proves completeness and uniqueness of the 75 varieties and checks all
+45,000 corner-compatibility bits using the shared corner--rotation theorem.
+The lower bound uses 75 deficient corner sets: 72 singletons and three
+sets of sizes 5, 6 and 6. Its theorem is
+\path{FiveColour.Physical.lower_bound} in \path{FiveColour/LowerBound.lean}. This replaces the elementary
+target classification in Lemma~\ref{lem:lower}; catalogue completeness and
+rotation transport extend the result to every physical target.
+
+The upper-bound formalisation follows the Hall reduction, symmetry
+transport, anchor selection and shared-corner argument. Finite checks
+verify capacities, cover representatives and the reduction from 357 roots
+to 279. The deletion step is \path{FiveColour.Physical.root_projection}
+in \path{FiveColour/RootProjection.lean}. The bridge to the archive, in
+\path{FiveColour/ProjectedBridge.lean}, identifies the full admissibility
+predicate: coordinate bounds, total, budget and all Hall-cut families.
+
+For efficient replay, Lean proves soundness of a packed implementation of
+the interval checker. For multiplicities $0\le x_i\le7$, index the varieties
+by $0,\ldots,74$ and put
 \[
- P(x)=\sum_{i=0}^{74}x_i B^i,\qquad B=1024.
+ P(x)=\sum_{i=0}^{74}x_i B^i,\qquad
+ W(S)=\sum_{i\in S}B^{74-i},\qquad B=1024.
 \]
-For a neighbourhood $S$, the weight $W(S)=\sum_{i\in S}B^{74-i}$ satisfies
+Then
 \[
  x(S)=\left\lfloor\frac{P(x)W(S)}{B^{74}}\right\rfloor\bmod B.
 \]
-Lean proves this identity under $0\le x_i\le7$, including the absence of
-carries; the coefficient bound is $75\cdot7<1024$. It also proves decoding,
-coordinate updates and equivalence of the packed feasibility test to the
-integer inequalities. All 19,125 supplied weights are checked against their
-neighbourhood masks by the Lean kernel.
+Every coefficient in the product is at most $75\cdot7<1024$, so no carry
+can affect this coefficient extraction. Lean proves the identity, decoding,
+coordinate updates and equivalence with the integer inequalities, and
+checks all 19,125 neighbourhood weights.
 
-Chunk composition requires exact agreement of both boundary vectors and a
-proof excluding each referenced box; the exporter is untrusted. A limit of
-128 instructions gives 4,786 chunks for the projected archive. All 279
-projected certificates have passed kernel replay, together with their final assembly into the physical threshold
-and sharpness theorems. The exact case mapping and certificate hashes are in
-\path{data/q5-projected-root-manifest.json}.
-The 100 declarations listed in \path{Audit.lean} and the final replay and extension theorems
-have audited dependencies confined to \texttt{propext},
-\texttt{Classical.choice} and \texttt{Quot.sound}; no
-\texttt{native\_decide} is used.
+The 279 certificates are split into 4,786 chunks of at most 128
+instructions. Composition requires exact boundary-vector agreement and a
+proof for every referenced box; the exporter is untrusted. All chunks and
+their final assembly have passed kernel checking. The case mapping and
+certificate hashes are in \path{data/q5-projected-root-manifest.json}.
+The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
+proves the unconditional theorems \path{threshold15} and
+\path{sharpThreshold15}. Both lie in namespace
+\path{FiveColour.Packed.ProjectedChunks}.
 
-Lean proves completeness and uniqueness of the 75 cube varieties and checks
-all 45,000 compatibility bits using the shared library's palette-independent corner--rotation theorem.
-The physical lower-bound theorem, \path{FiveColour.Physical.lower_bound} in
-\path{FiveColour/LowerBound.lean}, uses 75 deficient corner sets: 72 singletons
-and three sets of sizes 5, 6 and 6. In the formal proof, this finite check replaces the
-elementary target classification in Lemma~\ref{lem:lower}; catalogue completeness and rotation
-transport extend it to every physical target.
+The larger-cube argument uses the general Hall lemmas of
+\path{FiveColour/FiniteHall.lean}, including
+Lemma~\ref{lem:partial-matching}, and their application in
+\path{FiveColour/RareFrames.lean}. Lean checks the geometric bounds for all
+5,625 source--target pairs and the variety determined by two missing pairs.
+Edge bits are checked against face adjacency; corner counts reuse the
+verified incidence table. The remaining argument applies to every
+$q=n-2\ge1$. Frame completion in \path{FiveColour/FullCube.lean} adapts the
+general construction from~\cite{FourToThree} without using its threshold.
+The small-support proofs check pair witnesses directly, without reducing
+them to five colour orbits, and use deficient corner sets for the two
+obstruction constructions. They are in \path{FiveColour/SmallSupport.lean}
+and \path{FiveColour/MixedObstructions.lean}.
 
-Lean proves the physical Hall reduction, symmetry transport, anchor
-normalisation, two-variety bounds, anchor selection and the shared-corner
-argument. Finite checks certify the root capacities and cover representatives.
-Containment and initial budget tests reduce the 357 roots to 279.
-Lemma~\ref{lem:projection} is formalised by
-\path{FiveColour.Physical.root_projection} in
-\path{FiveColour/RootProjection.lean}; all concrete projection hypotheses
-and coverage of the retained roots are kernel-checked.
-
-The projected archive's integer semantics are established in
-\path{FiveColour/ProjectedBridge.lean}. The identifications include all
-coordinate bounds, prescribed totals, budgets and Hall-cut families.
-This checks the entire admissibility predicate, not just the packed boundary
-vectors. The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
-assembles all 279 exclusions into the unconditional theorems
-\path{FiveColour.Packed.ProjectedChunks.threshold15} and
-\path{FiveColour.Packed.ProjectedChunks.sharpThreshold15}.
-
-The frame extension uses general matching lemmas. These are formalised in
-\path{FiveColour/FiniteHall.lean}, and applied in
-\path{FiveColour/RareFrames.lean}.
-Lean checks the geometric compatibility bounds for all 5,625 source--target
-pairs and the unique-variety conclusion for two missing bichromatic pairs.
-The physical edge table is checked directly against face adjacency; corner
-counts reuse the verified incidence table. The Hall proof then applies to
-arbitrary $q=n-2\ge1$. Completion of a frame is proved in
-\path{FiveColour/FullCube.lean}, adapting the general construction
-from~\cite{FourToThree} without using its threshold theorem.
-\path{FiveColour/SmallSupport.lean} proves the two-variety bound and its
-sharpness, and \path{FiveColour/MixedObstructions.lean} proves the obstruction
-family by common Hall deficiencies. These additions need no new interval
-certificates.
-
-The unconditional conclusions in \path{Solution.lean}, in namespace
+The final statements in \path{Solution.lean}, in namespace
 \path{FiveColour.Puzzle}, include \path{frame_bound}, \path{frame_threshold},
-\path{full_cube}, \path{complete_cube_threshold} and
-\path{support_threshold}. Their axiom checks, including the 27-cube and
-64-cube instances, are listed in \path{ExtensionsAudit.lean}.
-
-The original and intermediate interfaces are documented in
-\path{FiveColour/README.md}. Reproduce the full proof and its axiom audit with:
+\path{full_cube}, \path{complete_cube_threshold} and \path{support_threshold}.
+The 100 declarations in \path{Audit.lean}, the final replay theorems and the
+seven statements in \path{ExtensionsAudit.lean} have audited dependencies
+confined to \texttt{propext}, \texttt{Classical.choice} and
+\texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
+and audits with:
 \begin{verbatim}
 make check WORKERS=2
 make projected-replay-data WORKERS=8
 make projected-replay WORKERS=8
 make check-extensions
 \end{verbatim}
+The module guide is \path{FiveColour/README.md}.
 
-The review archive supplies certificates, code and reproduction commands.
-A Mathlib-only comparator challenge states the puzzle geometrically.
-Model equivalence is proved by \path{FiveColour.Puzzle.hasSolution_iff}
-in \path{FiveColour/ComparatorBridge.lean}. The solution module applies the
-completed threshold theorem and builds in Lean. A successful full external
-comparator check has not yet been confirmed.
-Mathematical questions left
-open here include classifying all fourteen-cube obstructions and determining
-the sharp five-colour frame numbers for $3\le n\le9$. In particular,
-do twenty cubes always suffice for a $3$-frame? The complete-cube numbers
-are determined by Theorem~\ref{thm:complete}.
+A Mathlib-only comparator challenge states the corner problem geometrically.
+Its equivalence with the development's model is proved by
+\path{FiveColour.Puzzle.hasSolution_iff} in
+\path{FiveColour/ComparatorBridge.lean}. The solution module applies the
+completed threshold theorem. A full external comparator pass remains
+unconfirmed; it is separate from the completed Lean proof.
+
+\section{Remaining questions}
+The frame values for $3\le n\le9$ remain undetermined here. In particular,
+does $F_5(3)=20$, so that a $3$-frame never needs spare cubes? A second
+question is to classify all fourteen-cube corner obstructions. The support
+bound and the family in Section~\ref{sec:support} give initial constraints
+and examples.
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and
