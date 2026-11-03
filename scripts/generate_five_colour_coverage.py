@@ -131,7 +131,7 @@ def stabiliserSymmetry (g : Fin {count}) : PuzzleSymmetry where
 /-- Every proposed action is witnessed face by face by proper cube rotations. -/
 lemma stabiliser_faces (g : Fin {count}) : ∀ (i : Fin 75) (f : Fin 6),
     (stabiliserSymmetry g).apply (catalogue i) f =
-      catalogue (stabiliserAction g i) (MacMahon.rotations (stabiliserRotation g i) f) := by
+      catalogue (stabiliserAction g i) (ColourCubes.rotations (stabiliserRotation g i) f) := by
   fin_cases g <;> decide +kernel
 
 lemma stabiliser_variety (g : Fin {count}) (i : Fin 75) :

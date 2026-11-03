@@ -1,23 +1,18 @@
 module
-public import MacMahon.Rotations
+public import ColourCubes.Physical
 @[expose] public section
 
 /-! Geometric statement definitions. No five-colour catalogue or certificates. -/
 namespace FiveColour.Puzzle
 
-abbrev Cube := Fin 6 → Fin 5
+abbrev Cube := ColourCubes.Cube (Fin 5)
 
-def UsesAllColours (c : Cube) : Prop := ∀ a, ∃ f, c f = a
+def UsesAllColours (c : Cube) : Prop := ColourCubes.UsesAllColours c
 
 /-- Eight distinct copies, each properly rotated to match its three exterior faces.
 The target uses all five fixed colours; interior faces impose no conditions. -/
 def HasSolution {n : Nat} (cubes : Fin n → Cube) : Prop :=
-  ∃ target : Cube, UsesAllColours target ∧
-    ∃ copies : Fin 8 ↪ Fin n, ∀ k,
-      ∃ r : Fin 6 → Fin 6, MacMahon.ProperRotation r ∧
-        ∀ axis : Fin 3,
-          cubes (copies k) (r (MacMahon.exposedFaces k axis)) =
-            target (MacMahon.exposedFaces k axis)
+  ColourCubes.HasSolution UsesAllColours cubes
 
 def cubeA : Cube := ![0,0,1,2,3,4]
 def cubeB : Cube := ![0,1,2,3,2,4]

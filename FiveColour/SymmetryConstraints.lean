@@ -11,13 +11,13 @@ theorem fits_variety_transport (s : PuzzleSymmetry) (t : Fin 75) :
         Fits (catalogue i) (catalogue t) k := by
   obtain ⟨r, hr⟩ := catalogueIndex_spec (s.apply (catalogue t))
     ((s.usesAllColours_apply _).mpr (catalogue_uses_all_colours t))
-  refine ⟨s.slots.symm.trans (ThreeColour.Geometry.slotEquiv r), fun i k => ?_⟩
+  refine ⟨s.slots.symm.trans (ColourCubes.Geometry.slotEquiv r), fun i k => ?_⟩
   have h := s.fits_apply (catalogue i) (catalogue t) (s.slots.symm k)
   rw [fits_catalogueIndex _ ((s.usesAllColours_apply _).mpr (catalogue_uses_all_colours i))] at h
   rw [hr, fits_rotate_target] at h
   change Fits (catalogue (catalogueIndex (s.apply (catalogue i))))
     (catalogue (catalogueIndex (s.apply (catalogue t))))
-    (ThreeColour.Geometry.slotEquiv r (s.slots.symm k)) ↔ Fits (catalogue i) (catalogue t) k
+    (ColourCubes.Geometry.slotEquiv r (s.slots.symm k)) ↔ Fits (catalogue i) (catalogue t) k
   simpa only [Equiv.apply_symm_apply] using h
 
 /-- Hall neighbourhoods transform by the induced permutation of varieties. -/

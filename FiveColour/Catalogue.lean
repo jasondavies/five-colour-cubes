@@ -15,7 +15,7 @@ lemma rawCube_complete (c : Cube) : ∃ b k, rawCube b k = c := by
 
 /-- Every cube using all five fixed colours is a proper rotation of a catalogue entry. -/
 theorem catalogue_complete (c : Cube) (hc : UsesAllColours c) :
-    ∃ i : Fin 75, ∃ r : Fin 24, ∀ f, c f = catalogue i (MacMahon.rotations r f) := by
+    ∃ i : Fin 75, ∃ r : Fin 24, ∀ f, c f = catalogue i (ColourCubes.rotations r f) := by
   obtain ⟨b, k, rfl⟩ := rawCube_complete c
   exact ⟨(rawWitness b k).1, (rawWitness b k).2, raw_checks b k hc⟩
 
@@ -32,7 +32,7 @@ def catalogueIndex (c : Cube) : Fin 75 :=
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 lemma catalogue_index_rotations (i : Fin 75) : ∀ r : Fin 24,
-    catalogueIndex (fun f => catalogue i (MacMahon.rotations r f)) = i := by
+    catalogueIndex (fun f => catalogue i (ColourCubes.rotations r f)) = i := by
   fin_cases i <;> decide +kernel
 
 set_option maxRecDepth 100000 in
@@ -42,7 +42,7 @@ lemma catalogue_index_faces : ∀ i, catalogueIndex (catalogue i) = i := by
 
 /-- No two catalogue entries are related by a proper rotation. -/
 theorem catalogue_unique (i j : Fin 75) (r : Fin 24)
-    (h : ∀ f, catalogue i (MacMahon.rotations r f) = catalogue j f) : i = j := by
+    (h : ∀ f, catalogue i (ColourCubes.rotations r f) = catalogue j f) : i = j := by
   have hi := catalogue_index_rotations i r
   rw [funext h, catalogue_index_faces] at hi
   exact hi.symm

@@ -67,12 +67,12 @@ lemma catalogueIndex_spec (c : Cube) (hc : UsesAllColours c) :
 lemma catalogueIndex_rotate (c : Cube) (hc : UsesAllColours c) (r : Fin 24) :
     catalogueIndex (rotate c r) = catalogueIndex c := by
   obtain ⟨s, hs⟩ := catalogueIndex_spec c hc
-  obtain ⟨q, hq⟩ := MacMahon.rotation_composition s r
+  obtain ⟨q, hq⟩ := ColourCubes.rotation_composition s r
   have he : rotate c r = rotate (catalogue (catalogueIndex c)) q := by
     funext f
-    change c (MacMahon.rotations r f) = catalogue (catalogueIndex c) (MacMahon.rotations q f)
+    change c (ColourCubes.rotations r f) = catalogue (catalogueIndex c) (ColourCubes.rotations q f)
     rw [hq]
-    exact congrFun hs (MacMahon.rotations r f)
+    exact congrFun hs (ColourCubes.rotations r f)
   rw [he]
   exact catalogue_index_rotations _ _
 

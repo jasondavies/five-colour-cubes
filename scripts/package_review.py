@@ -23,7 +23,9 @@ def git(*args):
 
 
 def main():
-    names = sorted(set(git('ls-files', '-z', '--cached', '--others', '--exclude-standard').decode().rstrip('\0').split('\0')))
+    listed = set(git('ls-files', '-z', '--cached', '--others', '--exclude-standard').decode().rstrip('\0').split('\0'))
+    deleted = set(git('ls-files', '-z', '--deleted').decode().rstrip('\0').split('\0'))
+    names = sorted(listed - deleted - {''})
     payload, modes = {}, {}
     for name in names:
         path = ROOT / name
@@ -39,7 +41,7 @@ def main():
     dependencies = {}
     with tempfile.TemporaryDirectory(prefix='q5-review-') as temp:
         for entry in manifest['packages']:
-            if entry['name'] not in ('macmahon_four_to_three', 'macmahon_min_universal_sets'):
+            if entry['name'] not in ('colour_cubes_core',):
                 continue
             source = ROOT / '.lake/packages' / entry['name']
             actual = subprocess.check_output(['git', '-C', str(source), 'rev-parse', 'HEAD'], text=True).strip()
@@ -69,8 +71,8 @@ From the extracted directory:
   make small-replay WORKERS=2
 
 Lean 4.35.0, Git, Python 3.12+, Make and a C++20/OpenMP compiler are required.
-Only the toolchain and public mathlib dependencies need network access. The two
-MacMahon project dependencies are bundled at their exact pinned Git revisions.
+Only the toolchain and public mathlib dependencies need network access. The shared
+colour-cubes-core dependency is bundled at its exact pinned Git revision.
 
 Checked conditional upper-bound theorem:
   FiveColour.Physical.threshold_of_integer_root_exclusions
@@ -99,7 +101,7 @@ for the physical theorem statements and the scope of comparator checking.
         for name, data in sorted(payload.items())).encode()
     destination = ROOT / 'build/review'
     destination.mkdir(parents=True, exist_ok=True)
-    prefix = f'macmahon-five-colour-threshold-review-{source_id[:12]}'
+    prefix = f'five-colour-cubes-review-{source_id[:12]}'
     output = destination / f'{prefix}.tar.gz'
     with output.open('wb') as raw:
         with gzip.GzipFile(filename='', fileobj=raw, mode='wb', mtime=0) as zipped:

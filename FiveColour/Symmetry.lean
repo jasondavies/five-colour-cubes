@@ -28,7 +28,7 @@ theorem usesAllColours_recolour (p : Equiv.Perm (Fin 5)) (c : Cube) :
 
 theorem fits_recolour (p : Equiv.Perm (Fin 5)) (c t : Cube) (k : Fin 8) :
     Fits (recolour p c) (recolour p t) k ↔ Fits c t k := by
-  simp only [Fits, recolour, p.injective.eq_iff]
+  simp only [Fits, ColourCubes.TableFits, recolour, p.injective.eq_iff]
 
 theorem solvesTarget_recolour {n : Nat} (p : Equiv.Perm (Fin 5))
     (cubes : Fin n → Cube) (t : Cube) :
@@ -68,12 +68,12 @@ def reflectionSlots : Equiv.Perm (Fin 8) where
   exact congrArg c (reflectFace_involutive f)
 
 lemma reflect_exposed : ∀ (k : Fin 8) (f : Fin 3),
-    reflectFace (MacMahon.exposedFaces k f) = MacMahon.exposedFaces (reflectSlot k) f := by
+    reflectFace (ColourCubes.exposedFaces k f) = ColourCubes.exposedFaces (reflectSlot k) f := by
   decide +kernel
 
 /-- Conjugation by reflection preserves the group of proper rotations. -/
 lemma reflect_conjugation : ∀ r : Fin 24, ∃ s : Fin 24, ∀ f : Fin 6,
-    reflectFace (MacMahon.rotations r f) = MacMahon.rotations s (reflectFace f) := by
+    reflectFace (ColourCubes.rotations r f) = ColourCubes.rotations s (reflectFace f) := by
   decide +kernel
 
 theorem usesAllColours_reflect (c : Cube) : UsesAllColours (reflectCube c) ↔ UsesAllColours c := by
@@ -134,7 +134,7 @@ lemma reflect_rotate (c : Cube) (r : Fin 24) :
     ∃ s : Fin 24, reflectCube (rotate c r) = rotate (reflectCube c) s := by
   obtain ⟨s, hs⟩ := reflect_conjugation r
   refine ⟨s, funext fun f => ?_⟩
-  change c (MacMahon.rotations r (reflectFace f)) = c (reflectFace (MacMahon.rotations s f))
+  change c (ColourCubes.rotations r (reflectFace f)) = c (reflectFace (ColourCubes.rotations s f))
   have he := congrArg reflectFace (hs (reflectFace f))
   simpa only [reflectFace_involutive] using congrArg c he
 

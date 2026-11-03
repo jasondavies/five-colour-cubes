@@ -64,6 +64,6 @@ comparator:
 	./scripts/verify-comparator.sh
 
 paper:
-	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error macmahon-five-colour-threshold.tex
+	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
 .PHONY: projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper

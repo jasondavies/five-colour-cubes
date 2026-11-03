@@ -1,6 +1,6 @@
 # The sharp corner threshold for five-colour cubes
 
-- [Paper (PDF)](paper/macmahon-five-colour-threshold.pdf) and [LaTeX](paper/macmahon-five-colour-threshold.tex).
+- [Paper (PDF)](paper/five-colour-cubes.pdf) and [LaTeX](paper/five-colour-cubes.tex).
 - [Physical target statements](FiveColour/Problem.lean), [fourteen-cube lower bound](FiveColour/LowerBound.lean), and [formalisation guide](FiveColour/README.md).
 - [Interval checker](FiveColour/BoxCertificates.lean), [packed checker](FiveColour/PackedVerified.lean), and [chunk composition](FiveColour/PackedChunks.lean).
 - [Provenance and verification scope](formalization.yaml).
@@ -86,29 +86,24 @@ The [larger examples](FiveColour/Chunked/) compose 499, 3,763 and 9,811 original
 instructions into 5, 36 and 89 bounded chunks. Run `make examples` to build and
 audit their aggregate theorem and check corrupted-checkpoint controls.
 
-## Pinned geometry dependency
+## Shared geometry dependency
 
-The package pins `macmahon-four-to-three` to
-`6f5f04b28ac8d2156af66bbe060f2060b19b30a4`. It imports only
-`ThreeColour.CornerGeometry` and `ThreeColour.FamilyGeometry`, which import
-the proper rotations from `macmahon-min-universal-sets` at its pinned revision. It does not import either
-project's classification theorem.
+The package pins [colour-cubes-core](https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0) for its physical model,
+proper rotations, corner matching and rotation transport. Each paper supplies
+its own target condition: here every target uses all five colours.
+The comparator challenge imports only mathlib and restates the required core
+definitions locally.
 
-Anonymous GitHub access to the four-to-three dependency could not be verified
-when this package was assembled: Git requested credentials. A build from a
-fresh clone therefore requires access to that dependency. Before public
-release, make the pinned revision accessible or supply appropriate CI access.
-With the existing sibling checkout and its cached dependencies, use:
+To prepare pinned dependencies from an existing sibling core checkout and its
+cached mathlib dependencies, use:
 
 ```sh
 python3 -S scripts/bootstrap_local.py
 make check WORKERS=2
 ```
 
-The bootstrap checks dependency revisions, checks out the four-to-three
-package at its pinned commit, and reuses matching local dependency caches.
-These local paths are build conveniences under ignored `.lake/`; the manifest
-contains portable Git URLs and fixed revisions.
+The bootstrap verifies revisions; the manifest contains portable Git URLs and
+immutable commit pins. These local caches are optional build conveniences.
 
 ## Complete Lean replay
 
@@ -145,8 +140,8 @@ python3 -S scripts/package_review.py
 ```
 
 This freezes the current source snapshot under ignored `build/review/`, with
-per-file checksums, the base Git revision and the exact pinned MacMahon project
-Git bundles. `REVIEW.json` identifies the snapshot separately from the base
+per-file checksums, the base Git revision and the exact pinned core
+Git bundle. `REVIEW.json` identifies the snapshot separately from the base
 revision, so uncommitted revisions are not misrepresented as that commit.
 The archive contains neither local build caches nor validation logs.
 
@@ -234,7 +229,7 @@ has been made.
 
 See [data provenance and regeneration](data/README.md). No transient verification
 logs are committed. The GitHub remote is the intended location
-`https://github.com/jasondavies/macmahon-five-colour-threshold`.
+`https://github.com/jasondavies/five-colour-cubes`.
 Before submission, settle dependency access, review the manuscript, finish
 the full comparator check and finalise Palomar metadata. The physical Lean
 threshold proof is complete; public release and Palomar submission remain pending.

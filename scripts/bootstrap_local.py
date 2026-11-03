@@ -2,7 +2,7 @@
 """Prepare ignored dependencies from a sibling checkout, checking fixed revisions.
 
 The remote Lake manifest is unchanged. This is a local development convenience
-until the pinned four-to-three revision is available to an ordinary fresh clone.
+until the pinned core revision is available to an ordinary fresh clone.
 """
 import argparse,json,subprocess,tempfile
 from pathlib import Path
@@ -22,7 +22,7 @@ def materialize(dest):
 def main():
  p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--materialize',action='store_true',help='copy cached dependencies inside this checkout for comparator sandboxing')
- p.add_argument('--from-checkout',type=Path,default=ROOT.parent/'macmahon-four-to-three')
+ p.add_argument('--from-checkout',type=Path,default=ROOT.parent/'colour-cubes-core')
  a=p.parse_args();source=a.from_checkout.resolve()
  packages=ROOT/'.lake/packages';packages.mkdir(parents=True,exist_ok=True)
  for dep in json.loads((ROOT/'lake-manifest.json').read_text())['packages']:
@@ -31,9 +31,9 @@ def main():
    if git(dest,'rev-parse','HEAD')!=dep['rev']:raise SystemExit(f'Wrong existing revision: {dest}')
    if a.materialize and dest.is_symlink():materialize(dest)
    continue
-  origin=source if name=='macmahon_four_to_three' else source/'.lake/packages'/name
+  origin=source if name=='colour_cubes_core' else source/'.lake/packages'/name
   if not origin.exists():raise SystemExit(f'Missing cached dependency: {origin}')
-  if name=='macmahon_four_to_three':
+  if name=='colour_cubes_core':
    subprocess.run(['git','clone','--quiet','--no-hardlinks',str(origin),str(dest)],check=True)
    subprocess.run(['git','-C',str(dest),'checkout','--quiet','--detach',dep['rev']],check=True)
    subprocess.run(['git','-C',str(dest),'remote','set-url','origin',dep['url']],check=True)

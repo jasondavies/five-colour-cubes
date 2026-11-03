@@ -32,7 +32,7 @@ out, prefix, mode = sys.argv[1:]
 config = json.loads(pathlib.Path('comparator.json').read_text())
 if mode == 'lower-bound':
     config['solution_module'] = 'FiveColour.ComparatorBridge'
-    config['theorem_names'] = ['MacMahon.exposed_face_rule', 'FiveColour.Puzzle.lower_bound']
+    config['theorem_names'] = ['ColourCubes.exposed_face_rule', 'FiveColour.Puzzle.lower_bound']
 # Keep machine-specific kernel paths out of the submitted configuration.
 jobs = os.environ.get('CON_RON_JOBS', '2')
 config['external_kernels'] = {

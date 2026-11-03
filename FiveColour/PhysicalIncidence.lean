@@ -4,7 +4,7 @@ public import FiveColour.CornerKeyData
 public import FiveColour.Incidence
 @[expose] public section
 namespace FiveColour.Physical
-open ThreeColour.Geometry
+open ColourCubes.Geometry
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in

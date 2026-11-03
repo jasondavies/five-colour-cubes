@@ -4,27 +4,27 @@ public import FiveColour.SymmetryAction
 namespace FiveColour.Physical
 
 /-- The repeated colour occurs on opposite faces. -/
-def OppositeRepeat (c : Cube) : Prop := ∃ f : Fin 6, c f = c (MacMahon.opposite f)
+def OppositeRepeat (c : Cube) : Prop := ∃ f : Fin 6, c f = c (ColourCubes.opposite f)
 
 instance (c : Cube) : Decidable (OppositeRepeat c) := by
   unfold OppositeRepeat
   infer_instance
 
 lemma rotation_opposite : ∀ (r : Fin 24) (f : Fin 6),
-    MacMahon.rotations r (MacMahon.opposite f) = MacMahon.opposite (MacMahon.rotations r f) := by
+    ColourCubes.rotations r (ColourCubes.opposite f) = ColourCubes.opposite (ColourCubes.rotations r f) := by
   decide +kernel
 
 lemma reflection_opposite : ∀ f : Fin 6,
-    reflectFace (MacMahon.opposite f) = MacMahon.opposite (reflectFace f) := by
+    reflectFace (ColourCubes.opposite f) = ColourCubes.opposite (reflectFace f) := by
   decide +kernel
 
 theorem oppositeRepeat_rotate (c : Cube) (r : Fin 24) :
     OppositeRepeat (rotate c r) ↔ OppositeRepeat c := by
   constructor
   · rintro ⟨f, hf⟩
-    exact ⟨MacMahon.rotations r f, by simpa only [rotate, rotation_opposite] using hf⟩
+    exact ⟨ColourCubes.rotations r f, by simpa only [rotate, rotation_opposite] using hf⟩
   · rintro ⟨g, hg⟩
-    obtain ⟨f, rfl⟩ := (MacMahon.rotations_bijective r).surjective g
+    obtain ⟨f, rfl⟩ := (ColourCubes.rotations_bijective r).surjective g
     exact ⟨f, by simpa only [rotate, rotation_opposite] using hg⟩
 
 theorem oppositeRepeat_recolour (p : Equiv.Perm (Fin 5)) (c : Cube) :

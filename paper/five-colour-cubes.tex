@@ -69,7 +69,7 @@ lemma reduces the totals and budgets in the remaining 279 problems, which
 are excluded by finite interval certificates. The
 certificates, C++ programs, geometric audits, manuscript and Lean sources
 are included in the accompanying review archive.\footnote{Intended repository:
-\url{https://github.com/jasondavies/macmahon-five-colour-threshold}.
+\url{https://github.com/jasondavies/five-colour-cubes}.
 Public release is pending; the review archive includes source checksums,
 the base Git revision and bundled pinned project dependencies.}
 
@@ -108,7 +108,7 @@ are related by a determinant-positive signed permutation of the coordinate
 axes. This is a proper rotation of the cube.
 \end{proof}
 The palette-independent Lean version of this lemma is reused from the
-pinned four-to-three-colour project~\cite{FourToThree}.
+shared \texttt{ColourCubes} library~\cite{ColourCubes}.
 
 Fix a target $T$. Form a bipartite graph whose left vertices are its eight
 corner positions and whose right vertices are the individual source copies.
@@ -440,7 +440,7 @@ have audited dependencies confined to \texttt{propext},
 \texttt{native\_decide} is used.
 
 Lean proves completeness and uniqueness of the 75 cube varieties and checks
-all 45,000 compatibility bits using the pinned corner--rotation theorem.
+all 45,000 compatibility bits using the shared library's palette-independent corner--rotation theorem.
 The physical lower-bound theorem, \path{FiveColour.Physical.lower_bound} in
 \path{FiveColour/LowerBound.lean}, uses 75 deficient corner sets: 72 singletons
 and three sets of sizes 5, 6 and 6. In the formal proof, this finite check replaces the
@@ -502,10 +502,9 @@ Automated checks and AI review are not independent human peer review.
 \bibitem{Hall} P.~Hall, \emph{On Representatives of Subsets},
 Journal of the London Mathematical Society \textbf{s1-10}(1) (1935), 26--30.
 \href{https://doi.org/10.1112/jlms/s1-10.37.26}{doi:\nolinkurl{10.1112/jlms/s1-10.37.26}}.
-\bibitem{FourToThree} J.~Davies,
-\emph{A sharp threshold for three-colour targets from four-colour cubes},
-manuscript and Lean project (2026).
-\href{https://github.com/jasondavies/macmahon-four-to-three/tree/6f5f04b28ac8d2156af66bbe060f2060b19b30a4}{Pinned repository revision}.
+\bibitem{ColourCubes} J.~Davies,
+\emph{Colour cubes core}, Lean library (2026).
+\href{https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0}{Pinned repository revision}.
 \bibitem{Rosenfeld} M.~Rosenfeld,
 \emph{MacMahon Cubes and Moshe's Insanity, Puzzle 1},
 Geombinatorics Quarterly \textbf{36}(2) (October 2026), starts at p.~78.

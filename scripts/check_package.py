@@ -6,6 +6,9 @@ root=Path(__file__).resolve().parents[1]
 config=tomllib.loads((root/'lakefile.toml').read_text())
 manifest=json.loads((root/'lake-manifest.json').read_text())
 packages={p['name']:p for p in manifest['packages']}
+assert {d['name'] for d in config['require']} == {'mathlib', 'colour_cubes_core'}
+assert not {'macmahon_min_universal_sets', 'macmahon_four_to_three'} & packages.keys()
+assert re.fullmatch('[0-9a-f]{40}', packages['colour_cubes_core']['rev'])
 for dep in config['require']:
  assert packages[dep['name']]['inputRev']==dep['rev']
  assert packages[dep['name']]['url']==dep['git']

@@ -11,12 +11,12 @@ theorem hasSolution_iff {n : Nat} (cubes : Fin n → Cube) :
   · rintro ⟨target, ht, copies, h⟩
     refine ⟨target, ht, copies, fun k => ?_⟩
     obtain ⟨r, hr, hfaces⟩ := h k
-    obtain ⟨s, rfl⟩ := (MacMahon.proper_rotation_iff r).mp hr
+    obtain ⟨s, rfl⟩ := (ColourCubes.proper_rotation_iff r).mp hr
     exact ⟨s, hfaces⟩
   · rintro ⟨target, ht, copies, h⟩
     refine ⟨target, ht, copies, fun k => ?_⟩
     obtain ⟨r, hfaces⟩ := h k
-    exact ⟨MacMahon.rotations r, (MacMahon.proper_rotation_iff _).mpr ⟨r, rfl⟩,
+    exact ⟨ColourCubes.rotations r, (ColourCubes.proper_rotation_iff _).mpr ⟨r, rfl⟩,
       hfaces⟩
 
 /-- The geometric lower bound is unconditional and already kernel checked. -/

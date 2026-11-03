@@ -56,7 +56,7 @@ def normalisingColour (i : Fin 75) : Equiv.Perm (Fin 5) where
 /-- Face-by-face witnesses, checked against proper rotations rather than corner incidence. -/
 lemma normalisation_faces : ∀ (i : Fin 75) (f : Fin 6),
     recolour (normalisingColour i) (catalogue i) f =
-      catalogue (anchorFor i) (MacMahon.rotations (normalisationRotation i) f) := by
+      catalogue (anchorFor i) (ColourCubes.rotations (normalisationRotation i) f) := by
   decide +kernel
 
 end FiveColour.Physical

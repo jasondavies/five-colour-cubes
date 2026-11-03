@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-NAMES = ('macmahon_min_universal_sets', 'macmahon_four_to_three')
+NAMES = ('colour_cubes_core',)
 
 
 def main():

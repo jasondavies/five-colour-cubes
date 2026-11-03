@@ -65,7 +65,7 @@ The geometric challenge and the proof's physical model express the same puzzle:
 | Collections may repeat varieties. | `Fin n → Cube` indexes physical copies; the family need not be injective. |
 | Choose eight distinct copies. | The placement is an embedding `Fin 8 ↪ Fin n`. |
 | Rotate each selected copy; reflections are not moves. | `Puzzle.HasSolution` uses determinant-positive signed coordinate permutations. `hasSolution_iff` identifies these with the proof's table of 24 proper rotations. |
-| Exterior faces are monochromatic; internal faces are unrestricted. | At each of the eight positions only its three `exposedFaces` must match the single target face assignment. The compared `MacMahon.exposed_face_rule` fixes their geometric meaning. |
+| Exterior faces are monochromatic; internal faces are unrestricted. | At each of the eight positions only its three `exposedFaces` must match the single target face assignment. The compared `ColourCubes.exposed_face_rule` fixes their geometric meaning. |
 | The target may depend on the collection. | `HasSolution` existentially quantifies the target inside the universal quantification over source families. |
 | Fourteen can fail: four copies of A, five of B and five of C. | `lowerFamily` uses indices 0–3, 4–8 and 9–13, with the paper's three face tuples. `Puzzle.lower_bound` proves palette validity and failure. |
 | Fifteen is the least guaranteed size. | `solution_of_threshold` selects fifteen from any larger collection; `least_of_threshold` combines that implication with the fourteen-cube obstruction. `Solution.lean` applies these transfers to the completed threshold theorem. |
@@ -177,8 +177,10 @@ check is a different route from the paper's elementary classification of the
 three possible targets. Catalogue completeness and target-rotation transport
 extend the obstruction to every physical target, in any orientation.
 
-The default package imports generic corner and rotated-slot lemmas from the
-pinned four-to-three project; it does not use that project's threshold theorem.
+The package imports its physical model, corner matching and rotation transport
+from the pinned `colour-cubes-core` library. `Puzzle.HasSolution` specialises the
+shared geometric model to targets using all five colours; `Physical.HasSolution`
+is its equivalent enumerated-rotation form.
 
 The root `Challenge.lean` imports only Mathlib and has five intentional theorem
 holes. It is excluded from the proof library. `Solution.lean` supplies those

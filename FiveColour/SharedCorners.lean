@@ -26,7 +26,7 @@ set_option maxHeartbeats 0 in
 into the two positions omitted by cover 252. -/
 lemma normalised_double_slot : ∀ (i : Fin 75) (k : Fin 8),
     ¬ OppositeRepeat (catalogue i) → catalogueCornerKey i k ∈ doubleKeys →
-      ThreeColour.Geometry.rotatedSlot (normalisationRotation i) k ∈
+      ColourCubes.Geometry.rotatedSlot (normalisationRotation i) k ∈
         (cornerSet omittedCover.val)ᶜ := by decide +kernel
 
 lemma omittedCover_card : (cornerSet omittedCover.val).card = 6 := by decide +kernel
@@ -83,7 +83,7 @@ theorem normalised_shared_neighbour (i j : Fin 75) (hij : i ≠ j)
     exact hij ((varietyEquiv (anchorSymmetry i)).injective (hn.trans hji.symm))
   apply Finset.mem_erase.mpr
   refine ⟨hn, Finset.mem_filter.mpr ⟨Finset.mem_univ _,
-    ThreeColour.Geometry.rotatedSlot (normalisationRotation i) k, ?_, hf'⟩⟩
+    ColourCubes.Geometry.rotatedSlot (normalisationRotation i) k, ?_, hf'⟩⟩
   exact normalised_double_slot i k hi (hk.symm ▸ (Finset.mem_inter.mp hki).2)
 
 /-- The exceptional cover has positive non-anchor mass whenever the chosen

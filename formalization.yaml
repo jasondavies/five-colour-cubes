@@ -21,8 +21,8 @@ sources:
     authors: ["Jason Davies"]
     type: original-proof
     relationship: other
-    id: "https://github.com/jasondavies/macmahon-five-colour-threshold"
-    location: "paper/macmahon-five-colour-threshold.tex"
+    id: "https://github.com/jasondavies/five-colour-cubes"
+    location: "paper/five-colour-cubes.tex"
     note: "Working manuscript; not released or submitted."
   - title: "The 4-Color Cubes Puzzle"
     authors: ["Ethan Berkove", "Andrew Eickemeyer", "Michael Schulman"]
@@ -33,14 +33,13 @@ sources:
     note: "Lists the five-colour corner value as unknown."
     author_endorsement: not-contacted
 related_formalizations:
-  - id: "https://github.com/jasondavies/macmahon-four-to-three/tree/6f5f04b28ac8d2156af66bbe060f2060b19b30a4"
+  - id: "https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0"
     relationship: builds-on
     note: >-
-      Pins the palette-independent corner-rotation theorem, which imports
-      the proper cube rotations from macmahon-min-universal-sets. Anonymous
-      access to this dependency was not established during packaging; a
-      local bootstrap is supplied. No earlier threshold or classification
-      theorem is imported.
+      Shared palette-independent physical model, proper rotations, corner matching
+      and rotation transport. The challenge imports only mathlib and locally
+      restates the core definitions. No other paper's catalogue, threshold or
+      classification theorem is imported.
 status:
   scope: >-
     COMPLETE physical sharp-threshold formalisation. Lean proves completeness

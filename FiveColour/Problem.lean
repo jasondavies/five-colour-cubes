@@ -1,23 +1,21 @@
 module
-public import ThreeColour.CornerGeometry
+public import ColourCubes.Physical
 @[expose] public section
 namespace FiveColour.Physical
 
-abbrev Cube := Fin 6 → Fin 5
+abbrev Cube := ColourCubes.Cube (Fin 5)
 
-def UsesAllColours (c : Cube) : Prop := ∀ a, ∃ f, c f = a
+def UsesAllColours (c : Cube) : Prop := ColourCubes.UsesAllColours c
 
 /-- A physical copy can be rotated to match the three exposed target faces. -/
-def Fits (c t : Cube) (k : Fin 8) : Prop :=
-  ∃ r : Fin 24, ∀ f : Fin 3,
-    c (MacMahon.rotations r (MacMahon.exposedFaces k f)) = t (MacMahon.exposedFaces k f)
+abbrev Fits (c t : Cube) (k : Fin 8) : Prop := ColourCubes.TableFits c t k
 
 /-- The pinned geometric theorem applies to repeated colours as well. -/
 theorem fits_iff_corner (c t : Cube) (k : Fin 8) :
     Fits c t k ↔ ∃ l : Fin 8,
-      ThreeColour.Geometry.CyclicEq (ThreeColour.Geometry.corner c l)
-        (ThreeColour.Geometry.corner t k) :=
-  ThreeColour.Geometry.corner_rotation_iff c t k
+      ColourCubes.Geometry.CyclicEq (ColourCubes.Geometry.corner c l)
+        (ColourCubes.Geometry.corner t k) :=
+  ColourCubes.Geometry.corner_rotation_iff c t k
 
 /-- Distinct indices are distinct physical copies, even when colours agree. -/
 def HasSolution {n : Nat} (cubes : Fin n → Cube) : Prop :=

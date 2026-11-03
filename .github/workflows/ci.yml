@@ -1,5 +1,5 @@
-# Requires access to the pinned four-to-three dependency.
-# This workflow checks the partial package, not the full threshold or comparator.
+# Uses the pinned colour-cubes-core dependency.
+# This workflow checks the default library and certificates; full replay is opt-in.
 name: CI
 
 on:
@@ -38,5 +38,5 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Fetch Mathlib cache
         run: lake exe cache get
-      - name: Check computational certificates and partial Lean development
+      - name: Check computational certificates and Lean library
         run: make check WORKERS=2

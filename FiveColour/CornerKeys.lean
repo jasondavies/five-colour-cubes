@@ -2,7 +2,7 @@ module
 public import FiveColour.CatalogueData
 @[expose] public section
 namespace FiveColour.Physical
-open ThreeColour.Geometry
+open ColourCubes.Geometry
 
 /-- A cyclic triple encoded by the least of its three base-five readings. -/
 def cornerKey (a : Fin 3 → Fin 5) : Nat :=

@@ -4,7 +4,7 @@ public import FiveColour.Geometry
 public import Mathlib.Combinatorics.Hall.Finite
 @[expose] public section
 namespace FiveColour.Physical
-open ThreeColour.Geometry
+open ColourCubes.Geometry
 
 /-- Compute compatibility through the verified corner criterion. -/
 instance (c t : Cube) (k : Fin 8) : Decidable (Fits c t k) :=

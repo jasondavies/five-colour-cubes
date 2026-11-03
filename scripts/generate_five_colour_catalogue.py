@@ -73,7 +73,7 @@ def rawWitness : Fin 125 → Fin 125 → Fin 75 × Fin 24 :=
 
 /-- This proposition checks the witness against all six physical faces. -/
 def RawCheck (b : Fin 125) : Prop := ∀ k, UsesAllColours (rawCube b k) →
-  ∀ f, rawCube b k f = catalogue (rawWitness b k).1 (MacMahon.rotations (rawWitness b k).2 f)
+  ∀ f, rawCube b k f = catalogue (rawWitness b k).1 (ColourCubes.rotations (rawWitness b k).2 f)
 
 instance (b : Fin 125) : Decidable (RawCheck b) := by
   unfold RawCheck UsesAllColours
