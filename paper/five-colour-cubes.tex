@@ -12,7 +12,7 @@
 \newcommand{\mass}[2]{#1(#2)}
 \title{The sharp corner threshold for five-colour cubes}
 \author{Jason Davies}
-\date{November 2, 2026}
+\date{November 3, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -28,7 +28,10 @@ lemma give 279 smaller problems, each with a separately checked interval
 certificate. Lean proves the interval and packed checkers sound, verifies all
 279 certificates and the fourteen-cube obstruction, and connects the finite
 problems to physical cube arrangements, yielding a complete formal proof of
-the sharp threshold.
+the sharp threshold. A reserve construction then shows that any $n^3$
+five-colour cubes can all form a complete $n$-cube for every $n\ge4$.
+The sharp corner thresholds with at most one, two, or at least three
+varieties are respectively $8,13,15$. These extensions are also formalised.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -56,7 +59,12 @@ five-colour cubes contains a solution using all five colours on the target.
 \begin{theorem}\label{thm:main}
 The sharp five-colour corner threshold is $N_5=15$.
 \end{theorem}
-The conclusion for larger collections follows by choosing any fifteen cubes.
+Theorem~\ref{thm:frames} extends this result to frames of every side length
+and complete cubes of side length at least four, by an elementary reserve
+construction. Theorem~\ref{thm:support} determines the corner threshold
+when the number of source varieties is bounded, and shows that the
+fourteen-cube obstruction has minimum support.
+The corner conclusion for larger collections follows by choosing any fifteen cubes.
 The theorem concerns a target that may depend on the collection; it does
 not assert the ability to construct every target.
 
@@ -77,7 +85,7 @@ The companion paper~\cite{FourToThree} considers four-colour sources and
 targets using exactly three colours. It gives the sharp frame threshold
 $16n-3$ for every side length $n\ge2$, with a classification of the largest
 failing collections. Here both sources and targets use five colours, and the
-result concerns the corner case $n=2$. The developments share the
+sharp corner result also gives the larger-cube conclusions above. The developments share the
 palette-independent geometry in \texttt{ColourCubes}~\cite{ColourCubes};
 neither threshold theorem is used to prove the other.
 
@@ -417,6 +425,166 @@ admissible vector in its projected problem, which Proposition~\ref{prop:replay}
 and the sound interval deductions exclude. Hence $N_5\le15$.
 \end{proof}
 
+\section{From corner solutions to larger cubes}\label{sec:frames}
+An $n$-frame consists of the corners and edges of an $n\times n\times n$
+cube, and uses $8+12(n-2)=12n-16$ pieces. Let $F_5(n)$ be the least pool
+size guaranteeing an $n$-frame with monochromatic exterior faces displaying
+all five colours. The frame may use a subset of the pool.
+
+\begin{lemma}[Reserve extension]\label{lem:reserve}
+For every integer $q\ge1$, any collection of five-colour cubes has a
+subcollection of at most $25q-4$ cubes such that every five-colour corner
+solution formed from the remaining cubes extends, using the reserved cubes,
+to a $(q+2)$-frame.
+\end{lemma}
+\begin{proof}
+An edge type is an unordered pair of face colours, with repetition allowed.
+A five-colour target with repeated colour $r$ has at most one monochromatic
+edge, necessarily $rr$. Each bichromatic edge type occurs at most twice;
+if it occurs twice, it contains $r$, since every other colour occupies just
+one face. A source whose repeated colour is $b$ has an $ab$ edge for every
+$a\ne b$: its $a$-face cannot be opposite both $b$-faces.
+
+For each colour $a$, reserve up to $q$ cubes having an $aa$ edge, taking all
+such cubes if fewer exist. Write $R_a$ for this reserve, and call $a$
+\emph{full} if $|R_a|=q$. These reserves are disjoint, since a source has
+only one repeated colour. If $k$ colours are full, their total size is at
+most $5q-5+k$.
+
+Next process the ten bichromatic pairs $ab$ in any order. From the
+still-unreserved cubes having an $ab$ edge, reserve $q$ if both $a,b$ are
+full, and $2q$ otherwise; if fewer remain, reserve all of them.
+Denote this reserve by $E_{ab}$. All reserves are disjoint, and together
+have size at most
+\[
+ 5q-5+k+20q-q\binom{k}{2}\le25q-4,
+\]
+since $q\ge1$ and $k-\binom{k}{2}\le1$ for $0\le k\le5$.
+
+Take a corner solution using only unreserved cubes. Every edge type of its
+target occurs on a chosen corner cube. Hence each reserve for an occurring
+edge type reached its requested size: otherwise its reservation step would
+have removed every remaining cube with that edge type. In particular, if
+the target has an $rr$ edge, $R_r$ is full; use it for that edge's $q$
+non-corner positions.
+
+Fill each bichromatic edge from its dedicated reserve. A type occurring
+once needs $q$ cubes, and a type occurring twice needs $2q$. The only
+shortfall is a doubled type $rb$ for which both colours are full, so
+$|E_{rb}|=q$. Use $E_{rb}$ for one edge and $R_b$ for the other. Every cube
+in $R_b$ has an $rb$ edge by the first paragraph. Different doubled pairs
+use different $R_b$, and none uses $R_r$. Thus the allocations are disjoint.
+Any matching pair of adjacent faces can be rotated to a prescribed edge,
+so these assignments extend the corner solution to the frame.
+\end{proof}
+
+\begin{theorem}\label{thm:frames}
+For every integer $n\ge3$,
+\[
+ 12n-16\le F_5(n)\le25n-39.
+\]
+For every integer $n\ge4$, any collection of $n^3$ five-colour cubes can all
+be assembled into an $n\times n\times n$ cube with monochromatic exterior
+faces displaying all five colours.
+\end{theorem}
+\begin{proof}
+The frame's piece count gives the lower bound. Put $q=n-2$. A pool of
+$25q+11$ leaves at least fifteen cubes outside the reserve of
+Lemma~\ref{lem:reserve}. Theorem~\ref{thm:main} supplies corners from these,
+and the reserve supplies the edges. This proves the upper bound.
+
+For $n\ge4$, $n^3\ge25n-39$: at $n=4$ this is $64\ge61$, and for $n\ge5$
+it follows from $n^2\ge25$. Construct a frame from the $n^3$ cubes. Each
+remaining face-interior position prescribes just one colour, which every
+unused cube has, and interior positions prescribe none. Fill these positions
+with all remaining cubes.
+\end{proof}
+In particular, $F_5(3)\le36$ and $F_5(4)\le61$, while any 64 cubes form a
+complete $4\times4\times4$ cube without spares. The least pool size for a
+complete $n$-cube is therefore exactly $n^3$ for $n\ge4$. This argument does
+not decide whether every collection of 27 cubes forms a complete $3$-cube.
+
+\section{Collections with few varieties}\label{sec:support}
+Let $M(k)$ be the least number of cubes guaranteeing a corner solution when
+the collection contains at most $k$ varieties.
+
+\begin{lemma}\label{lem:disjoint-pair}
+Two five-colour varieties with disjoint corner sets can build an
+opposite-repeat target from four copies of each.
+\end{lemma}
+\begin{proof}
+This is a small finite geometric check. Of the $\binom{75}{2}$ unordered
+pairs, 330 have disjoint corner sets. Up to colour permutation and exchange
+of the sources, they have the following five representatives. The first
+source is $010234$ throughout; tuples use the face order of
+Section~\ref{sec:model}. Each listed target has four corners supplied by
+each source.
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Second source & Target\\
+\midrule
+$011243$ & $001234$\\
+$012324$ & $012234$\\
+$012334$ & $012234$\\
+$012434$ & $012234$\\
+$030412$ & $001234$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The accompanying geometric checker regenerates all varieties and verifies
+the orbit coverage and each witness. Lean checks a suitable target directly
+for every pair, without using the orbit reduction.
+\end{proof}
+
+\begin{theorem}\label{thm:support}
+For every integer $k\ge1$,
+\[
+ M(k)=\begin{cases}8&k=1,\\13&k=2,\\15&k\ge3.\end{cases}
+\]
+Consequently, three is the minimum number of varieties in a fourteen-cube
+collection without a solution.
+\end{theorem}
+\begin{proof}
+Eight identical copies build their own variety, and fewer than eight pieces
+cannot form a corner solution. For two varieties, consider thirteen copies.
+If either variety occurs at least eight times, it builds itself. Otherwise
+the multiplicities are seven and six. If the varieties share a corner type,
+use a minority copy at that corner of the majority target and seven majority
+copies elsewhere. If their corner sets are disjoint, apply
+Lemma~\ref{lem:disjoint-pair}.
+
+For the lower bound take six copies each of
+\[
+ P=(0,1,0,2,3,4),\qquad Q=(0,1,1,3,2,4).
+\]
+Their corner sets share just $041$. Inspection of the 75 varieties shows
+that only $P,Q$ have all corner types in their union. Each has seven private
+positions, so neither can be built with six copies. The geometric checker verifies these assertions; Lean certifies failure
+using deficient corner sets for all 75 targets. Thus $M(2)=13$. For $k\ge3$, Theorem~\ref{thm:main} supplies
+the upper bound, and the three-variety collection in
+Lemma~\ref{lem:lower} supplies the lower bound.
+\end{proof}
+
+\begin{remark}[A family of fourteen-cube obstructions]
+Keep $A,C$ from Section~\ref{sec:lower}, and put
+\[
+ B_1=(0,1,2,3,2,4),\quad B_2=(0,1,2,3,3,4),\quad B_3=(0,1,2,4,3,4).
+\]
+All 21 collections
+\[
+ 4A+5C+x_1B_1+x_2B_2+x_3B_3,\qquad
+ x_1+x_2+x_3=5,\quad x_i\in\mathbb Z_{\ge0},
+\]
+are unsolvable. The $B_i$ share the six trichromatic corner types
+$023,034,042,124,132,143$. The combined corner union allows only
+$A,C,B_1,B_2,B_3$ as targets, as a check of the catalogue confirms.
+Target $A$ needs five $A$-copies, $C$ needs six $C$-copies, and any $B_i$
+needs six copies from the $B$-group. The respective supplies are four,
+five and five. Lean verifies these shortages simultaneously for every
+distribution. The original example is $x_1=5,x_2=x_3=0$.
+\end{remark}
+
 \section{Formalisation and reproducibility}\label{sec:formal}
 The package uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at version
 \texttt{v4.35.0}. Lean proves soundness of the reference interval checker,
@@ -441,7 +609,7 @@ proof excluding each referenced box; the exporter is untrusted. A limit of
 projected certificates have passed kernel replay, together with their final assembly into the physical threshold
 and sharpness theorems. The exact case mapping and certificate hashes are in
 \path{data/q5-projected-root-manifest.json}.
-The 78 declarations listed in \path{Audit.lean} and the final replay theorems
+The 93 declarations listed in \path{Audit.lean} and the final replay and extension theorems
 have audited dependencies confined to \texttt{propext},
 \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
@@ -471,12 +639,31 @@ vectors. The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
 assembles all 279 exclusions into the unconditional theorems
 \path{FiveColour.Packed.ProjectedChunks.threshold15} and
 \path{FiveColour.Packed.ProjectedChunks.sharpThreshold15}.
+
+The reserve argument is formalised in \path{FrameReserve.lean}, using generic
+lemmas from \path{Reserve.lean}; both files are in \path{FiveColour/}.
+A finite check of 75 targets and 32 full-colour patterns supplies the edge
+allocation rule; the reservation and allocation proofs apply to arbitrary
+$q$. Completion of a frame is proved in \path{FiveColour/FullCube.lean},
+adapting the general construction from~\cite{FourToThree} without using its
+threshold theorem. \path{FiveColour/SmallSupport.lean} proves the two-variety
+bound and its sharpness; \path{FiveColour/MixedObstructions.lean} proves the
+whole obstruction family by common Hall deficiencies. These additions need
+no new interval certificates.
+
+The unconditional conclusions in \path{Solution.lean}, in namespace
+\path{FiveColour.Puzzle}, are \path{frame_bound}, \path{full_cube},
+\path{complete_cube_threshold} and \path{support_threshold}.
+Their axiom checks, including the 64-cube instance, are listed in
+\path{ExtensionsAudit.lean}.
+
 The original and intermediate interfaces are documented in
 \path{FiveColour/README.md}. Reproduce the full proof and its axiom audit with:
 \begin{verbatim}
 make check WORKERS=2
 make projected-replay-data WORKERS=8
 make projected-replay WORKERS=8
+make check-extensions
 \end{verbatim}
 
 The review archive supplies certificates, code and reproduction commands.
@@ -487,7 +674,9 @@ completed threshold theorem and builds in Lean. A successful full external
 comparator check has not yet been confirmed.
 Mathematical questions left
 open here include classifying all fourteen-cube obstructions and determining
-the five-colour frame numbers for larger cubes.
+the sharp five-colour frame numbers for $n\ge3$. In particular, do twenty
+cubes always suffice for a $3$-frame, and can every collection of 27 cubes
+form a complete $3$-cube?
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and

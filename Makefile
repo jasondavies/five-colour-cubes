@@ -17,7 +17,9 @@ build/five_colour_exact_checked: src/five_colour_exact.cpp src/five_colour_match
 
 certificates: build/five_colour_boxes build/check_five_colour_certificate build/five_colour_chunks
 
-check-code: certificates
+check-code: certificates build/five_colour_extensions
+	build/five_colour_extensions
+	$(PYTHON) -S scripts/generate_five_colour_support.py --check
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/small_replay_cases.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
@@ -36,6 +38,11 @@ check-lean:
 	$(PYTHON) -S scripts/audit_lean.py
 
 check: check-code check-lean
+
+# Requires the completed projected replay (generated modules).
+check-extensions:
+	lake build Solution
+	$(PYTHON) -S scripts/audit_lean.py --file ExtensionsAudit.lean
 
 examples:
 	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group Chunked --workers $(WORKERS)
@@ -66,4 +73,4 @@ comparator:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
+.PHONY: check-extensions projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper

@@ -41,5 +41,5 @@ jobs:
         run: make projected-replay-data WORKERS=2
       - name: Replay all certificates and audit the physical threshold
         run: make projected-replay WORKERS=2
-      - name: Build the geometric solution statements
-        run: lake build Solution
+      - name: Build and audit the geometric solution and extensions
+        run: make check-extensions

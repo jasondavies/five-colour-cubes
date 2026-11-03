@@ -11,6 +11,21 @@ is a 2×2×2 cube with monochromatic exterior faces using all five colours.
 Collections may repeat varieties; proper rotations are allowed and interior
 faces are unrestricted.
 
+Two further conclusions are proved in the paper and Lean:
+
+- Any **n³ five-colour cubes can all form a complete n×n×n cube for n ≥ 4**.
+  A reserve construction gives the frame bound **F₅(n) ≤ 25n − 39** for n ≥ 3;
+  in particular, 61 cubes suffice for a 4-frame and all 64 form a complete 4-cube.
+- With at most k source varieties, the exact corner threshold is **8 for k=1,
+  13 for k=2, and 15 for k≥3**. Thus three varieties are necessary for a
+  fourteen-cube obstruction. A common Hall shortage also gives a family of
+  21 fourteen-cube obstructions.
+
+The complete 3×3×3 case remains open here. The new results require no further
+large certificate search; see [frame results](FiveColour/FrameResults.lean),
+[small support](FiveColour/SmallSupport.lean) and
+[the obstruction family](FiveColour/MixedObstructions.lean).
+
 The lower example is four copies of A, five of B and five of C, with faces
 listed as `+x,-x,+y,-y,+z,-z`:
 
@@ -77,7 +92,8 @@ geometry and case coverage, replays the original 357 and projected 279 C++ certi
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
 cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
 witnesses, root-reduction and projection manifests, builds the default Lean target
-and audits 78 theorems.
+and audits 93 theorems. The extension checks regenerate the small pair and
+obstruction witnesses, and separately verify their geometry in C++.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
@@ -91,6 +107,9 @@ audit their aggregate theorem and check corrupted-checkpoint controls.
 The package pins [colour-cubes-core](https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0) for its physical model,
 proper rotations, corner matching and rotation transport. Each paper supplies
 its own target condition: here every target uses all five colours.
+The general frame-completion proof in `FiveColour/FullCube.lean` is adapted
+from the companion [four-to-three development](https://github.com/jasondavies/four-to-three-colour-cubes).
+No companion catalogue, threshold or classification theorem is imported.
 The comparator challenge imports only mathlib and restates the required core
 definitions locally. The pinned core revision is public; a fresh clone can
 fetch it without credentials using the normal Lake build commands.
@@ -114,6 +133,7 @@ completed proof using the projected archive:
 ```sh
 make projected-replay-data WORKERS=8
 make projected-replay WORKERS=8
+make check-extensions
 ```
 
 Generation produces 4,786 chunks covering 499,829 instructions at the default
@@ -124,6 +144,14 @@ Lake's dependency cache. Progress is in
 all replay roots, families and totals against the verified headers, builds
 `FiveColour.ProjectedChunks.Threshold`, and audits both physical threshold
 theorems. Success is reported only after those final checks pass.
+
+`make check-extensions` builds `Solution.lean` and audits the five unconditional
+extension statements in [ExtensionsAudit.lean](ExtensionsAudit.lean):
+`FiveColour.Puzzle.frame_bound`, `full_cube`, `full_cube64`,
+`complete_cube_threshold` and `support_threshold`. The default library proves
+the deductions from `Physical.Threshold15`; these final wrappers apply the
+completed certificate proof. The two-variety and obstruction-family proofs
+are unconditional in the default build.
 
 Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the runner;
 remove it before resuming. Completed modules remain cached, but interrupted
@@ -141,7 +169,7 @@ workflow checks a selected revision from a fresh checkout. In GitHub Actions,
 select **Full Lean replay**, choose **Run workflow** and select the branch
 to verify. It runs the standard package checks, generates and checks all
 279 projected certificates, audits the final threshold theorems, and builds
-`Solution.lean`. It uses two workers and allows up to six hours.
+`Solution.lean` with its extension axiom audit. It uses two workers and allows up to six hours.
 
 This workflow does not run the external comparator. The ordinary push and
 pull-request CI continues to run `make check` without full Lean replay.

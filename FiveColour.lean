@@ -10,3 +10,5 @@ public import FiveColour.PackedCase207
 public import FiveColour.ComparatorBridge
 public import FiveColour.RootReduction
 public import FiveColour.ProjectedBridge
+public import FiveColour.FrameResults
+public import FiveColour.MixedObstructions

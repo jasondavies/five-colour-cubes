@@ -102,3 +102,11 @@ The rejection fixture `q5-distinct-known-control.txt` has total G=11, one fixed
 opposite-repeat anchor, 0–1 coordinate bounds and budget zero. The physical audit
 normalises the saved eleven-cube witness and checks these bounds, the budget and
 failure of every target. It is a separate problem from the G=15 exclusion cases.
+
+The small-support witnesses in `FiveColour/SupportData.lean` are regenerated
+from the verified geometry table by `scripts/generate_five_colour_support.py`.
+They contain a target for each ordered pair of varieties and deficient corner
+sets for the two new lower-bound families. Lean checks their mathematical
+content; `--check` checks reproducibility. `src/five_colour_extensions.cpp`
+separately regenerates the physical varieties, verifies the five disjoint-pair
+orbits and their targets, and checks both obstruction constructions.

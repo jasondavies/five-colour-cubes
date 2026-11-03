@@ -8,6 +8,9 @@ project:
     solution, with an elementary fourteen-cube counterexample. The proof
     includes physical geometry, Hall reduction, root coverage, budget
     projection, complete replay of 279 certificates, and final sharpness assembly.
+    A reserve construction gives F_5(n) <= 25n-39 for n >= 3 and complete
+    assemblies from any n^3 cubes for n >= 4. Exact corner thresholds by support
+    size and a 21-member obstruction family are also formalised.
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
   license: "Apache-2.0"
@@ -59,6 +62,13 @@ status:
     contains only propext, Classical.choice and Quot.sound.
     The default target builds the infrastructure and selected cases; full
     generated replay is opt-in and reproducible from the committed archive.
+    The extension library proves the generic reserve construction, the physical
+    frame and complete-cube deductions, the sharp two-variety bound of thirteen,
+    and a family of fourteen-cube obstructions. Finite kernel checks cover the
+    edge allocation and small-support witnesses; no new interval certificates
+    are needed. Solution.lean applies the unconditional threshold to prove
+    frame_bound, full_cube, full_cube64, complete_cube_threshold and
+    support_threshold, audited by ExtensionsAudit.lean.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended
     without a recorded outcome; a full pass remains unconfirmed.
@@ -88,7 +98,9 @@ automation:
     GPT-6-Astra (OpenAI), used through Codex, developed the research and
     manuscript under Jason Davies's direction. Author review and submission
     approval of this draft are pending. Upstream geometry has the separate
-    attribution recorded in its pinned repository. No other model is claimed
+    attribution recorded in its pinned repository. The generic frame-completion
+    argument is adapted from the companion four-to-three development, without
+    importing its catalogue or threshold theorem. No other model is claimed
     as a contributor to this manuscript. No native_decide is used.
 fidelity:
   divergences: >-
@@ -98,7 +110,10 @@ fidelity:
     targets. The upper bound formalises the physical reduction and budget
     projection, then checks all 279 projected interval certificates and their
     final composition. Generated replay sources are ignored and reproducible;
-    logs are transient build outputs. No human peer review or publication-priority
+    logs are transient build outputs. For the extensions, Lean uses generic
+    reservation lemmas and finite edge allocations, and checks pair witnesses
+    directly rather than reducing them to five colour-permutation orbits.
+    No human peer review or publication-priority
     claim is made.
 review:
   status: "Automated checks and AI review only; author and independent human review pending"

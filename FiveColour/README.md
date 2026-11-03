@@ -188,3 +188,30 @@ statements from the completed projected replay and builds successfully in Lean.
 A successful full external comparator check has not yet been confirmed.
 `make check-comparator-lower` compares only the exposed-face rule and explicit
 obstruction; `make comparator` checks the full interface.
+
+## Larger cubes and small supports
+
+`Reserve.lean` proves generic saturated disjoint reservation and allocation
+lemmas. `FrameGeometry.lean` defines physical frames with proper rotations,
+and `FramePools.lean` checks the edge allocation for 75 targets and 32 patterns
+of full monochromatic reserves. `FrameReserve.lean` proves the reserve bound
+25q−4 and extends a fifteen-cube corner solution to a (q+2)-frame.
+`FullCube.lean` fills face interiors and internal positions; its generic
+completion argument is adapted from the companion four-to-three development.
+`FrameResults.lean` derives F₅(n) ≤ 25n−39 for n≥3 and the exact complete-cube
+threshold n³ for n≥4, conditional on the existing `Physical.Threshold15`.
+
+`SmallSupport.lean` proves thirteen cubes suffice with at most two varieties,
+checks the twelve-cube counterexample, and derives the exact support thresholds
+8, 13, 15. `MixedObstructions.lean` uses common deficient corner sets to rule
+out all 21 distributions in the fourteen-cube family. The untrusted witness
+generator is `scripts/generate_five_colour_support.py`; all witnesses are
+checked by the Lean kernel. The C++ program `src/five_colour_extensions.cpp`
+regenerates geometry separately and checks the five pair-orbit witnesses.
+
+The unconditional frame and complete-cube conclusions, and the combined
+support threshold, are in `Solution.lean`. After projected replay, run
+`make check-extensions` to build and audit them. `Audit.lean` includes the
+conditional deductions and unconditional small-support lemmas;
+`ExtensionsAudit.lean` audits the final wrappers. The geometric challenge and
+its five comparator targets are unchanged.

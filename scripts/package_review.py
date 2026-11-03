@@ -93,7 +93,13 @@ Unconditional physical threshold and sharpness (after generating replay):
 Physical lower-bound theorem:
   FiveColour.Physical.lower_bound
   lake build FiveColour.LowerBound
-Complete list of audited declarations: Audit.lean
+Larger-cube and support conclusions (after replay):
+  FiveColour.Puzzle.frame_bound
+  FiveColour.Puzzle.full_cube
+  FiveColour.Puzzle.complete_cube_threshold
+  FiveColour.Puzzle.support_threshold
+  make check-extensions
+Complete lists of audited declarations: Audit.lean and ExtensionsAudit.lean
   python3 -S scripts/audit_lean.py
 
 The 105-case input selection is data/lean-small-replay-cases.json. The small
@@ -101,6 +107,7 @@ replay also checks its aggregate's agreement with the integer root models.
 The complete physical proof has passed. Reproduce its full replay with:
   make projected-replay-data WORKERS=2
   make projected-replay WORKERS=2
+  make check-extensions
   make comparator
 
 No publication or Palomar submission is asserted. See README.md and the paper
