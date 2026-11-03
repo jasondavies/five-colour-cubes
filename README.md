@@ -11,18 +11,20 @@ is a 2×2×2 cube with monochromatic exterior faces using all five colours.
 Collections may repeat varieties; proper rotations are allowed and interior
 faces are unrestricted.
 
-Two further conclusions are proved in the paper and Lean:
+Further conclusions are proved in the paper and Lean:
 
-- Any **n³ five-colour cubes can all form a complete n×n×n cube for n ≥ 4**.
-  A reserve construction gives the frame bound **F₅(n) ≤ 25n − 39** for n ≥ 3;
-  in particular, 61 cubes suffice for a 4-frame and all 64 form a complete 4-cube.
+- Any **n³ five-colour cubes can all form a complete n×n×n cube for n ≥ 3**,
+  including every collection of 27 cubes. The exact guaranteed pool size is
+  **G₅(n) = max(n³, 15)** for n ≥ 2.
+- A rare-pair Hall argument gives **F₅(n) ≤ max(12n − 16, 11n − 6)** for n ≥ 3,
+  and hence **F₅(n) = 12n − 16 for n ≥ 10**. The remaining frame values are
+  those for 3 ≤ n ≤ 9; in particular, **20 ≤ F₅(3) ≤ 27**.
 - With at most k source varieties, the exact corner threshold is **8 for k=1,
   13 for k=2, and 15 for k≥3**. Thus three varieties are necessary for a
   fourteen-cube obstruction. A common Hall shortage also gives a family of
   21 fourteen-cube obstructions.
 
-The complete 3×3×3 case remains open here. The new results require no further
-large certificate search; see [frame results](FiveColour/FrameResults.lean),
+These extensions require no further large certificate search; see [frame results](FiveColour/FrameResults.lean),
 [small support](FiveColour/SmallSupport.lean) and
 [the obstruction family](FiveColour/MixedObstructions.lean).
 
@@ -92,8 +94,9 @@ geometry and case coverage, replays the original 357 and projected 279 C++ certi
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
 cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
 witnesses, root-reduction and projection manifests, builds the default Lean target
-and audits 93 theorems. The extension checks regenerate the small pair and
-obstruction witnesses, and separately verify their geometry in C++.
+and audits 100 theorems. The extension checks regenerate the small pair and
+obstruction witnesses, and separately verify their geometry in C++. The rare-pair
+audit checks all 5,625 source–target pairs using direct proper rotations.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
@@ -145,9 +148,9 @@ all replay roots, families and totals against the verified headers, builds
 `FiveColour.ProjectedChunks.Threshold`, and audits both physical threshold
 theorems. Success is reported only after those final checks pass.
 
-`make check-extensions` builds `Solution.lean` and audits the five unconditional
+`make check-extensions` builds `Solution.lean` and audits the seven unconditional
 extension statements in [ExtensionsAudit.lean](ExtensionsAudit.lean):
-`FiveColour.Puzzle.frame_bound`, `full_cube`, `full_cube64`,
+`FiveColour.Puzzle.frame_bound`, `frame_threshold`, `full_cube`, `full_cube27`, `full_cube64`,
 `complete_cube_threshold` and `support_threshold`. The default library proves
 the deductions from `Physical.Threshold15`; these final wrappers apply the
 completed certificate proof. The two-variety and obstruction-family proofs

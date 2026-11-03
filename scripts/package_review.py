@@ -95,7 +95,9 @@ Physical lower-bound theorem:
   lake build FiveColour.LowerBound
 Larger-cube and support conclusions (after replay):
   FiveColour.Puzzle.frame_bound
+  FiveColour.Puzzle.frame_threshold
   FiveColour.Puzzle.full_cube
+  FiveColour.Puzzle.full_cube27
   FiveColour.Puzzle.complete_cube_threshold
   FiveColour.Puzzle.support_threshold
   make check-extensions

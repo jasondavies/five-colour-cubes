@@ -191,15 +191,22 @@ obstruction; `make comparator` checks the full interface.
 
 ## Larger cubes and small supports
 
-`Reserve.lean` proves generic saturated disjoint reservation and allocation
-lemmas. `FrameGeometry.lean` defines physical frames with proper rotations,
-and `FramePools.lean` checks the edge allocation for 75 targets and 32 patterns
-of full monochromatic reserves. `FrameReserve.lean` proves the reserve bound
-25q−4 and extends a fifteen-cube corner solution to a (q+2)-frame.
+`FiniteHall.lean` proves two general matching lemmas: sufficiently many copies
+that fit every position, and a partial matching on exceptional positions with
+large neighbourhoods elsewhere. `RareGeometry.lean` verifies the frame
+compatibility bounds and the unique opposite-repeat variety determined by two
+missing bichromatic pairs. Its compact edge bits are checked against physical
+face adjacency; corner counts reuse the already verified incidence table.
+
+`RareFrames.lean` proves the rare-pair argument for arbitrary edge length q≥1.
+`Reserve.lean` supplies disjoint monochromatic reserves for the preliminary
+corner solution. The final Hall matching may rearrange these placements.
 `FullCube.lean` fills face interiors and internal positions; its generic
 completion argument is adapted from the companion four-to-three development.
-`FrameResults.lean` derives F₅(n) ≤ 25n−39 for n≥3 and the exact complete-cube
-threshold n³ for n≥4, conditional on the existing `Physical.Threshold15`.
+`FrameResults.lean` derives the frame bound max(12n−16, 11n−6), its sharpness
+for n≥10, and the complete-cube threshold max(n³,15) for every n≥2, conditional
+on `Physical.Threshold15`. The older 25n−39 construction remains available in
+`FrameReserve.lean`, but is no longer used by the final frame results.
 
 `SmallSupport.lean` proves thirteen cubes suffice with at most two varieties,
 checks the twelve-cube counterexample, and derives the exact support thresholds

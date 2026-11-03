@@ -28,8 +28,9 @@ lemma give 279 smaller problems, each with a separately checked interval
 certificate. Lean proves the interval and packed checkers sound, verifies all
 279 certificates and the fourteen-cube obstruction, and connects the finite
 problems to physical cube arrangements, yielding a complete formal proof of
-the sharp threshold. A reserve construction then shows that any $n^3$
-five-colour cubes can all form a complete $n$-cube for every $n\ge4$.
+the sharp threshold. A Hall argument then shows that any $n^3$ five-colour cubes can all form
+a complete $n$-cube for every $n\ge3$, and gives the sharp frame value
+$12n-16$ for $n\ge10$.
 The sharp corner thresholds with at most one, two, or at least three
 varieties are respectively $8,13,15$. These extensions are also formalised.
 \end{abstract}
@@ -59,9 +60,10 @@ five-colour cubes contains a solution using all five colours on the target.
 \begin{theorem}\label{thm:main}
 The sharp five-colour corner threshold is $N_5=15$.
 \end{theorem}
-Theorem~\ref{thm:frames} extends this result to frames of every side length
-and complete cubes of side length at least four, by an elementary reserve
-construction. Theorem~\ref{thm:support} determines the corner threshold
+Theorem~\ref{thm:frames} bounds the frame numbers for every side length
+and determines them for $n\ge10$, using an elementary Hall argument.
+Theorem~\ref{thm:complete} gives complete assemblies from any $n^3$ cubes
+for all $n\ge3$. Theorem~\ref{thm:support} determines the corner threshold
 when the number of source varieties is bounded, and shows that the
 fourteen-cube obstruction has minimum support.
 The corner conclusion for larger collections follows by choosing any fifteen cubes.
@@ -425,84 +427,164 @@ admissible vector in its projected problem, which Proposition~\ref{prop:replay}
 and the sound interval deductions exclude. Hence $N_5\le15$.
 \end{proof}
 
-\section{From corner solutions to larger cubes}\label{sec:frames}
+\section{Frames and complete cubes}\label{sec:frames}
 An $n$-frame consists of the corners and edges of an $n\times n\times n$
-cube, and uses $8+12(n-2)=12n-16$ pieces. Let $F_5(n)$ be the least pool
-size guaranteeing an $n$-frame with monochromatic exterior faces displaying
-all five colours. The frame may use a subset of the pool.
+cube, and uses $12n-16$ pieces. Let $F_5(n)$ be the least available pool size
+guaranteeing such a frame, and $G_5(n)$ the least pool size guaranteeing a
+complete $n$-cube, in each case with monochromatic exterior faces displaying
+all five colours. An assembly may use a subset of the pool.
 
-\begin{lemma}[Reserve extension]\label{lem:reserve}
-For every integer $q\ge1$, any collection of five-colour cubes has a
-subcollection of at most $25q-4$ cubes such that every five-colour corner
-solution formed from the remaining cubes extends, using the reserved cubes,
-to a $(q+2)$-frame.
+\begin{lemma}[Frame compatibility]\label{lem:frame-geometry}
+Put $q=n-2\ge1$. Every source variety fits at least $8q+2$ positions of
+every five-colour $n$-frame target, and at least $9q+2$ if the target is
+opposite-repeat. An adjacent-repeat source lacks exactly one bichromatic
+edge type. An opposite-repeat source lacks exactly two, which are disjoint;
+these two missing pairs determine its variety uniquely.
 \end{lemma}
 \begin{proof}
-An edge type is an unordered pair of face colours, with repetition allowed.
-A five-colour target with repeated colour $r$ has at most one monochromatic
-edge, necessarily $rr$. Each bichromatic edge type occurs at most twice;
-if it occurs twice, it contains $r$, since every other colour occupies just
-one face. A source whose repeated colour is $b$ has an $ab$ edge for every
-$a\ne b$: its $a$-face cannot be opposite both $b$-faces.
+A missing bichromatic pair must occupy opposite singleton faces: if a colour
+is repeated, a face of the other colour cannot be opposite both copies.
+An adjacent-repeat variety has one opposite pair of singleton faces, and an
+opposite-repeat variety has two. Two disjoint missing pairs specify two
+opposite face pairs, leaving the fifth colour on the remaining opposite
+faces, which determines a unique variety.
 
-For each colour $a$, reserve up to $q$ cubes having an $aa$ edge, taking all
-such cubes if fewer exist. Write $R_a$ for this reserve, and call $a$
-\emph{full} if $|R_a|=q$. These reserves are disjoint, since a source has
-only one repeated colour. If $k$ colours are full, their total size is at
-most $5q-5+k$.
+Write $c,e$ for the numbers of target corners and geometric edges fitted by
+the source. Whenever either variety is opposite-repeat, $c\ge2$. To see
+this, let that variety repeat $r$, with singleton opposite pairs
+$\{a,b\}$ and $\{c,d\}$. It contains both cyclic orientations of each
+$rxy$ with $x\in\{a,b\}$ and $y\in\{c,d\}$. In the other variety, if an
+$r$-face has no adjacent $r$-face, its four surrounding faces contain at
+least three distinct colours. Their cyclic order crosses between the two
+pairs at least twice, giving two shared corner types. If the $r$-faces are
+adjacent, the other neighbours of each form a path of three distinct
+colours. Each path crosses between the pairs and gives a shared corner;
+these corners have different types.
 
-Next process the ten bichromatic pairs $ab$ in any order. From the
-still-unreserved cubes having an $ab$ edge, reserve $q$ if both $a,b$ are
-full, and $2q$ otherwise; if fewer remain, reserve all of them.
-Denote this reserve by $E_{ab}$. All reserves are disjoint, and together
-have size at most
+A bichromatic target edge type occurs at most twice, and a doubled type
+contains the target's repeated colour. Two disjoint types therefore account
+for at most three target edges. There is at most one monochromatic target
+edge. These observations give the following bounds; A and O denote
+adjacent-repeat and opposite-repeat varieties.
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+Target & Source & $c$ & $e$ & $c+e$\\
+\midrule
+O & O & $\ge2$ & $\ge9$ & $\ge11$\\
+O & A & $\ge2$ & $\ge10$ & $\ge12$\\
+A & O & $\ge2$ & $\ge8$ & $\ge10$\\
+A & A & $\ge0$ & $\ge9$ & $\ge10$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Only the final entry needs an orientation argument. If an adjacent-repeat
+source fits exactly nine edges of an adjacent-repeat target, it misses the
+monochromatic edge and a doubled bichromatic type. Relabel colours and
+rotate to put the target at $(0,1,0,2,3,4)$ and the missing type at $03$.
+The source's $0$- and $3$-faces are opposite; its surrounding colours are
+$1,2,4$, one repeated on adjacent faces. Suppress this adjacent repetition.
+One of the two cyclic orders gives the shared target corner $123$; the
+other gives $024$ and $041$. Thus $c\ge1$ when $e=9$.
+
+Each geometric edge contributes $q$ positions. Since $e\ge8$ and $c+e\ge10$,
 \[
- 5q-5+k+20q-q\binom{k}{2}\le25q-4,
+ c+qe=(c+e)+(q-1)e\ge8q+2.
 \]
-since $q\ge1$ and $k-\binom{k}{2}\le1$ for $0\le k\le5$.
-
-Take a corner solution using only unreserved cubes. Every edge type of its
-target occurs on a chosen corner cube. Hence each reserve for an occurring
-edge type reached its requested size: otherwise its reservation step would
-have removed every remaining cube with that edge type. In particular, if
-the target has an $rr$ edge, $R_r$ is full; use it for that edge's $q$
-non-corner positions.
-
-Fill each bichromatic edge from its dedicated reserve. A type occurring
-once needs $q$ cubes, and a type occurring twice needs $2q$. The only
-shortfall is a doubled type $rb$ for which both colours are full, so
-$|E_{rb}|=q$. Use $E_{rb}$ for one edge and $R_b$ for the other. Every cube
-in $R_b$ has an $rb$ edge by the first paragraph. Different doubled pairs
-use different $R_b$, and none uses $R_r$. Thus the allocations are disjoint.
-Any matching pair of adjacent faces can be rotated to a prescribed edge,
-so these assignments extend the corner solution to the frame.
+For an opposite-repeat target, $e\ge9$ and $c+e\ge11$ instead give $9q+2$.
 \end{proof}
 
 \begin{theorem}\label{thm:frames}
 For every integer $n\ge3$,
 \[
- 12n-16\le F_5(n)\le25n-39.
+ 12n-16\le F_5(n)\le\max\{12n-16,\;11n-6\}.
 \]
-For every integer $n\ge4$, any collection of $n^3$ five-colour cubes can all
-be assembled into an $n\times n\times n$ cube with monochromatic exterior
-faces displaying all five colours.
+Consequently $F_5(n)=12n-16$ for $n\ge10$.
 \end{theorem}
 \begin{proof}
-The frame's piece count gives the lower bound. Put $q=n-2$. A pool of
-$25q+11$ leaves at least fifteen cubes outside the reserve of
-Lemma~\ref{lem:reserve}. Theorem~\ref{thm:main} supplies corners from these,
-and the reserve supplies the edges. This proves the upper bound.
+The lower bound is the frame's piece count. Put
+\[
+ q=n-2,\quad L=12q+8,\quad d=4q+6,\quad h=3q+6,
+ \quad N=\max\{L,11q+16\}.
+\]
+By Lemma~\ref{lem:frame-geometry}, a source misses at most $d$ target
+positions, or at most $h$ for an opposite-repeat target. Consider $N$ source
+copies. Call a bichromatic pair \emph{rare} if at most $d-1=4q+5$ copies
+possess that edge type.
 
-For $n\ge4$, $n^3\ge25n-39$: at $n=4$ this is $64\ge61$, and for $n\ge5$
-it follows from $n^2\ge25$. Construct a frame from the $n^3$ cubes. Each
-remaining face-interior position prescribes just one colour, which every
-unused cube has, and interior positions prescribe none. Fill these positions
-with all remaining cubes.
+If two distinct pairs are rare, at least
+\[
+ N-2(4q+5)\ge3q+6=h
+\]
+copies lack both. The lemma implies that these pairs are disjoint and all
+these copies belong to one opposite-repeat variety $V$. Apply Hall's theorem
+to the $L$ positions of target $V$ and all $N$ sources. Any nonempty position
+set of size at most $h$ has these $h$ copies as neighbours. Every set of
+size greater than $h$ has every source as a neighbour, since no source
+misses more than $h$ positions. As $N\ge L$, all Hall inequalities hold.
+
+It remains to treat at most one rare pair. If there is none, reserve up to
+$q$ cubes with an $aa$ edge for each of the five colours $a$, taking all if
+fewer exist. These reserves are disjoint: a five-colour cube has only one
+repeated colour. At least $N-5q\ge6q+16\ge15$ cubes remain, so
+Theorem~\ref{thm:main} supplies a corner solution from them.
+
+If exactly one pair $ab$ is rare, first remove every source possessing it.
+At most $4q+5$ copies are removed. Every remaining source has $a,b$ on
+opposite singleton faces, so only the other three colours can be repeated.
+Reserve up to $q$ monochromatic-edge cubes for each of those colours.
+At least
+\[
+ N-(4q+5)-3q\ge4q+11\ge15
+\]
+cubes remain, and again choose a corner solution. Its target cannot have
+an $ab$ edge, since either endpoint corner would require a source
+possessing that pair.
+
+In both cases the chosen target uses no rare bichromatic type. If it has
+a monochromatic edge $rr$, its corner solution contains an $rr$-capable
+source outside the reserves. Thus the $rr$ reserve reached size $q$;
+otherwise all such sources would have been removed. This reserve fills
+the monochromatic edge. Hence the corners and the possible monochromatic
+edge have a matching by distinct copies.
+
+Return to all $N$ sources and apply Hall to this target's full frame. A
+position set $D$ containing no bichromatic edge position is covered by the
+preliminary matching. If $D$ contains such a position and $|D|\le d$, the
+corresponding nonrare type has at least $d$ neighbouring copies. If
+$|D|>d$, every source neighbours $D$ by the missing-position bound.
+Again $N\ge L$ completes Hall's inequalities. The final matching may
+rearrange the preliminary corner placements.
+
+Substituting $q=n-2$ gives the stated bound. For $n\ge10$, its maximum is
+$12n-16$, proving equality.
 \end{proof}
-In particular, $F_5(3)\le36$ and $F_5(4)\le61$, while any 64 cubes form a
-complete $4\times4\times4$ cube without spares. The least pool size for a
-complete $n$-cube is therefore exactly $n^3$ for $n\ge4$. This argument does
-not decide whether every collection of 27 cubes forms a complete $3$-cube.
+
+\begin{theorem}\label{thm:complete}
+For every integer $n\ge2$,
+\[
+ G_5(n)=\max\{n^3,15\}.
+\]
+In particular, every collection of $n^3$ five-colour cubes can all be
+assembled into a complete $n$-cube for every $n\ge3$.
+\end{theorem}
+\begin{proof}
+For $n=2$, a complete cube is its corner frame, so
+Theorem~\ref{thm:main} gives $G_5(2)=15$. For $n\ge3$, the piece count
+requires $G_5(n)\ge n^3$. Conversely, $n^3\ge12n-16$, since the difference
+counts face-interior and interior positions, and
+\[
+ n^3-(11n-6)=(n-3)(n^2+3n-2)\ge0.
+\]
+Theorem~\ref{thm:frames} therefore supplies a frame from any $n^3$ sources.
+Each remaining face-interior position prescribes just one colour, which
+every unused cube has, and interior positions prescribe none. All remaining
+cubes can fill these positions.
+\end{proof}
+Thus any 27 cubes suffice for a $3\times3\times3$ assembly without spares.
+This does not determine the sharp frame value: it gives
+$20\le F_5(3)\le27$. The sharp frame values for $3\le n\le9$ remain
+undetermined here.
 
 \section{Collections with few varieties}\label{sec:support}
 Let $M(k)$ be the least number of cubes guaranteeing a corner solution when
@@ -609,7 +691,7 @@ proof excluding each referenced box; the exporter is untrusted. A limit of
 projected certificates have passed kernel replay, together with their final assembly into the physical threshold
 and sharpness theorems. The exact case mapping and certificate hashes are in
 \path{data/q5-projected-root-manifest.json}.
-The 93 declarations listed in \path{Audit.lean} and the final replay and extension theorems
+The 100 declarations listed in \path{Audit.lean} and the final replay and extension theorems
 have audited dependencies confined to \texttt{propext},
 \texttt{Classical.choice} and \texttt{Quot.sound}; no
 \texttt{native\_decide} is used.
@@ -640,22 +722,26 @@ assembles all 279 exclusions into the unconditional theorems
 \path{FiveColour.Packed.ProjectedChunks.threshold15} and
 \path{FiveColour.Packed.ProjectedChunks.sharpThreshold15}.
 
-The reserve argument is formalised in \path{FrameReserve.lean}, using generic
-lemmas from \path{Reserve.lean}; both files are in \path{FiveColour/}.
-A finite check of 75 targets and 32 full-colour patterns supplies the edge
-allocation rule; the reservation and allocation proofs apply to arbitrary
-$q$. Completion of a frame is proved in \path{FiveColour/FullCube.lean},
-adapting the general construction from~\cite{FourToThree} without using its
-threshold theorem. \path{FiveColour/SmallSupport.lean} proves the two-variety
-bound and its sharpness; \path{FiveColour/MixedObstructions.lean} proves the
-whole obstruction family by common Hall deficiencies. These additions need
-no new interval certificates.
+The frame extension uses general matching lemmas. These are formalised in
+\path{FiveColour/FiniteHall.lean}, and applied in
+\path{FiveColour/RareFrames.lean}.
+Lean checks the geometric compatibility bounds for all 5,625 source--target
+pairs and the unique-variety conclusion for two missing bichromatic pairs.
+The physical edge table is checked directly against face adjacency; corner
+counts reuse the verified incidence table. The Hall proof then applies to
+arbitrary $q=n-2\ge1$. Completion of a frame is proved in
+\path{FiveColour/FullCube.lean}, adapting the general construction
+from~\cite{FourToThree} without using its threshold theorem.
+\path{FiveColour/SmallSupport.lean} proves the two-variety bound and its
+sharpness, and \path{FiveColour/MixedObstructions.lean} proves the obstruction
+family by common Hall deficiencies. These additions need no new interval
+certificates.
 
 The unconditional conclusions in \path{Solution.lean}, in namespace
-\path{FiveColour.Puzzle}, are \path{frame_bound}, \path{full_cube},
-\path{complete_cube_threshold} and \path{support_threshold}.
-Their axiom checks, including the 64-cube instance, are listed in
-\path{ExtensionsAudit.lean}.
+\path{FiveColour.Puzzle}, include \path{frame_bound}, \path{frame_threshold},
+\path{full_cube}, \path{complete_cube_threshold} and
+\path{support_threshold}. Their axiom checks, including the 27-cube and
+64-cube instances, are listed in \path{ExtensionsAudit.lean}.
 
 The original and intermediate interfaces are documented in
 \path{FiveColour/README.md}. Reproduce the full proof and its axiom audit with:
@@ -674,9 +760,9 @@ completed threshold theorem and builds in Lean. A successful full external
 comparator check has not yet been confirmed.
 Mathematical questions left
 open here include classifying all fourteen-cube obstructions and determining
-the sharp five-colour frame numbers for $n\ge3$. In particular, do twenty
-cubes always suffice for a $3$-frame, and can every collection of 27 cubes
-form a complete $3$-cube?
+the sharp five-colour frame numbers for $3\le n\le9$. In particular,
+do twenty cubes always suffice for a $3$-frame? The complete-cube numbers
+are determined by Theorem~\ref{thm:complete}.
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and

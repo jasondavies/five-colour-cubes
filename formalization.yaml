@@ -8,8 +8,9 @@ project:
     solution, with an elementary fourteen-cube counterexample. The proof
     includes physical geometry, Hall reduction, root coverage, budget
     projection, complete replay of 279 certificates, and final sharpness assembly.
-    A reserve construction gives F_5(n) <= 25n-39 for n >= 3 and complete
-    assemblies from any n^3 cubes for n >= 4. Exact corner thresholds by support
+    A rare-pair Hall argument gives F_5(n) <= max(12n-16, 11n-6) for n >= 3,
+    sharp frame values 12n-16 for n >= 10, and the exact complete-cube threshold
+    max(n^3,15) for n >= 2. Exact corner thresholds by support
     size and a 21-member obstruction family are also formalised.
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
@@ -62,12 +63,13 @@ status:
     contains only propext, Classical.choice and Quot.sound.
     The default target builds the infrastructure and selected cases; full
     generated replay is opt-in and reproducible from the committed archive.
-    The extension library proves the generic reserve construction, the physical
+    The extension library proves the rare-pair Hall argument, the physical
     frame and complete-cube deductions, the sharp two-variety bound of thirteen,
     and a family of fourteen-cube obstructions. Finite kernel checks cover the
-    edge allocation and small-support witnesses; no new interval certificates
-    are needed. Solution.lean applies the unconditional threshold to prove
-    frame_bound, full_cube, full_cube64, complete_cube_threshold and
+    source-target compatibility bounds, missing-pair classification and
+    small-support witnesses; no new interval certificates are needed.
+    Solution.lean applies the unconditional threshold to prove frame_bound,
+    frame_threshold, full_cube, full_cube27, full_cube64, complete_cube_threshold and
     support_threshold, audited by ExtensionsAudit.lean.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended
@@ -111,8 +113,9 @@ fidelity:
     projection, then checks all 279 projected interval certificates and their
     final composition. Generated replay sources are ignored and reproducible;
     logs are transient build outputs. For the extensions, Lean uses generic
-    reservation lemmas and finite edge allocations, and checks pair witnesses
-    directly rather than reducing them to five colour-permutation orbits.
+    Hall and reservation lemmas with kernel-checked finite geometry bounds.
+    It checks support-pair witnesses directly rather than reducing them to
+    five colour-permutation orbits.
     No human peer review or publication-priority
     claim is made.
 review:

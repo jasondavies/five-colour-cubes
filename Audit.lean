@@ -80,8 +80,6 @@ import FiveColour
 #print axioms FiveColour.Packed.Projected.sharp_threshold_of_exclusions
 #print axioms FiveColour.Reserve.exists_saturated
 #print axioms FiveColour.Reserve.allocate
-#print axioms FiveColour.Physical.edge_pool_checks
-#print axioms FiveColour.Physical.exists_frame_reserve
 #print axioms FiveColour.Physical.frame_bound_of_threshold
 #print axioms FiveColour.Physical.full_iff_frame_and_size
 #print axioms FiveColour.Physical.full_cube_of_threshold
@@ -93,3 +91,12 @@ import FiveColour
 #print axioms FiveColour.Physical.mixed_no_solution
 #print axioms FiveColour.Physical.mixed_representatives_faces
 #print axioms FiveColour.Physical.mixed_distribution_count
+#print axioms FiveColour.FrameHall.match_of_small_sets
+#print axioms FiveColour.FrameHall.match_of_universal_copies
+#print axioms FiveColour.FrameHall.match_of_partial
+#print axioms FiveColour.Physical.frame_geometry_bounds
+#print axioms FiveColour.Physical.two_missing_pairs
+#print axioms FiveColour.Physical.reserve_core
+#print axioms FiveColour.Physical.rare_frame_of_threshold
+#print axioms FiveColour.Physical.frame_threshold_of_threshold
+#print axioms FiveColour.Physical.full_zero_iff
