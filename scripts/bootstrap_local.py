@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Prepare ignored dependencies from a sibling checkout, checking fixed revisions.
 
-The remote Lake manifest is unchanged. This is a local development convenience
-until the pinned core revision is available to an ordinary fresh clone.
+The remote Lake manifest is unchanged. The pinned core is public and a fresh
+clone can fetch it normally; this optional helper reuses local dependency caches.
 """
 import argparse,json,subprocess,tempfile
 from pathlib import Path

@@ -12,6 +12,7 @@ import io
 import json
 from pathlib import Path
 import subprocess
+import sys
 import tarfile
 import tempfile
 
@@ -24,8 +25,15 @@ def git(*args):
 
 def main():
     listed = set(git('ls-files', '-z', '--cached', '--others', '--exclude-standard').decode().rstrip('\0').split('\0'))
-    deleted = set(git('ls-files', '-z', '--deleted').decode().rstrip('\0').split('\0'))
+    deleted = set(git('ls-files', '-z', '--deleted').decode().rstrip('\0').split('\0')) - {''}
     names = sorted(listed - deleted - {''})
+    base = git('rev-parse', 'HEAD').decode().strip()
+    base_files = set(git('ls-tree', '-rz', '--name-only', base).decode().rstrip('\0').split('\0')) - {''}
+    omitted = sorted((base_files - set(names)) | deleted)
+    if omitted:
+        print('Omitting tracked source files from the review snapshot:', file=sys.stderr)
+        for name in omitted:
+            print(f'  {name!r}', file=sys.stderr)
     payload, modes = {}, {}
     for name in names:
         path = ROOT / name
@@ -36,7 +44,6 @@ def main():
     hashes = {name: hashlib.sha256(data).hexdigest() for name, data in payload.items()}
     source_id = hashlib.sha256(json.dumps({name: [hashes[name], modes[name]] for name in names},
                                         sort_keys=True).encode()).hexdigest()
-    base = git('rev-parse', 'HEAD').decode().strip()
     manifest = json.loads(payload['lake-manifest.json'])
     dependencies = {}
     with tempfile.TemporaryDirectory(prefix='q5-review-') as temp:
@@ -55,13 +62,15 @@ def main():
             dependencies[entry['name']] = entry['rev']
     payload['REVIEW.json'] = (json.dumps(dict(base_git_revision=base, source_snapshot_sha256=source_id,
         identification='Exact source snapshot is identified by checksums; it may differ from the base Git revision.',
-        source_files=hashes, project_dependencies=dependencies,
+        source_files=hashes, omitted_tracked_files=omitted, project_dependencies=dependencies,
         formal_status='Complete physical Lean proof; full external comparator pass unconfirmed.'), indent=2)+'\n').encode()
     payload['REVIEW.txt'] = b"""Five-colour cube threshold: fixed review snapshot
 
 REVIEW.json identifies the base Git revision, exact source snapshot and pinned
 project dependencies. SHA256SUMS authenticates file integrity, not mathematical
 correctness. This snapshot may include changes after the base revision.
+REVIEW.json records omitted tracked files, including staged and unstaged deletions;
+the packager also reports their paths on standard error.
 
 From the extracted directory:
   sha256sum -c SHA256SUMS

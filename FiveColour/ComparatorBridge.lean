@@ -7,17 +7,9 @@ namespace FiveColour.Puzzle
 /-- The enumerated rotations in the proof describe exactly the geometric moves. -/
 theorem hasSolution_iff {n : Nat} (cubes : Fin n → Cube) :
     HasSolution cubes ↔ Physical.HasSolution cubes := by
-  constructor
-  · rintro ⟨target, ht, copies, h⟩
-    refine ⟨target, ht, copies, fun k => ?_⟩
-    obtain ⟨r, hr, hfaces⟩ := h k
-    obtain ⟨s, rfl⟩ := (ColourCubes.proper_rotation_iff r).mp hr
-    exact ⟨s, hfaces⟩
-  · rintro ⟨target, ht, copies, h⟩
-    refine ⟨target, ht, copies, fun k => ?_⟩
-    obtain ⟨r, hfaces⟩ := h k
-    exact ⟨ColourCubes.rotations r, (ColourCubes.proper_rotation_iff _).mpr ⟨r, rfl⟩,
-      hfaces⟩
+  simp only [HasSolution, ColourCubes.HasSolution, Physical.HasSolution,
+    ColourCubes.builds_iff_tableFits, UsesAllColours, Physical.UsesAllColours,
+    Physical.Fits]
 
 /-- The geometric lower bound is unconditional and already kernel checked. -/
 theorem lower_bound :

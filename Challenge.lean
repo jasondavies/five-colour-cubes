@@ -17,8 +17,6 @@ abbrev Face := Fin 6
 abbrev Slot := Fin 8
 def exposedFaces : Slot → Fin 3 → Fin 6 := ![![0, 2, 4], ![0, 2, 5], ![0, 3, 4], ![0, 3, 5], ![1, 2, 4], ![1, 2, 5], ![1, 3, 4], ![1, 3, 5]]
 
-def rotations : Fin 24 → Fin 6 → Fin 6 := ![![0, 1, 2, 3, 4, 5], ![0, 1, 3, 2, 5, 4], ![0, 1, 4, 5, 3, 2], ![0, 1, 5, 4, 2, 3], ![1, 0, 2, 3, 5, 4], ![1, 0, 3, 2, 4, 5], ![1, 0, 4, 5, 2, 3], ![1, 0, 5, 4, 3, 2], ![2, 3, 0, 1, 5, 4], ![2, 3, 1, 0, 4, 5], ![2, 3, 4, 5, 0, 1], ![2, 3, 5, 4, 1, 0], ![3, 2, 0, 1, 4, 5], ![3, 2, 1, 0, 5, 4], ![3, 2, 4, 5, 1, 0], ![3, 2, 5, 4, 0, 1], ![4, 5, 0, 1, 2, 3], ![4, 5, 1, 0, 3, 2], ![4, 5, 2, 3, 1, 0], ![4, 5, 3, 2, 0, 1], ![5, 4, 0, 1, 3, 2], ![5, 4, 1, 0, 2, 3], ![5, 4, 2, 3, 0, 1], ![5, 4, 3, 2, 1, 0]]
-
 theorem faceOne_bound : 1 < 6 := by decide
 
 def opposite (f : Fin 6) : Fin 6 :=
@@ -42,14 +40,6 @@ def ProperRotation (r : Fin 6 → Fin 6) : Prop :=
 /-- Face colours from an arbitrary palette; colours may repeat. -/
 abbrev Cube (α : Type*) := Fin 6 → α
 
-/-- Exactly `n` distinct colours occur on the six faces. -/
-def Uses {α : Type*} [DecidableEq α] (n : ℕ) (c : Cube α) : Prop :=
-  (Finset.univ.image c).card = n
-
-instance {α : Type*} [DecidableEq α] (n : ℕ) (c : Cube α) : Decidable (Uses n c) := by
-  unfold Uses
-  infer_instance
-
 /-- Every colour in the palette occurs. -/
 def UsesAllColours {α : Type*} (c : Cube α) : Prop := ∀ a, ∃ f, c f = a
 
@@ -57,11 +47,6 @@ instance {α : Type*} [Fintype α] [DecidableEq α] (c : Cube α) :
     Decidable (UsesAllColours c) := by
   unfold UsesAllColours
   infer_instance
-
-/-- Matching by an index in the verified rotation table. -/
-def TableFits {α : Type*} (c t : Cube α) (k : Fin 8) : Prop :=
-  ∃ r : Fin 24, ∀ f : Fin 3,
-    c (rotations r (exposedFaces k f)) = t (exposedFaces k f)
 
 /-- Matching the three exterior faces by a geometric proper rotation. -/
 def Fits {α : Type*} (c t : Cube α) (k : Fin 8) : Prop :=

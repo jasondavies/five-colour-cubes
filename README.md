@@ -92,7 +92,8 @@ The package pins [colour-cubes-core](https://github.com/jasondavies/colour-cubes
 proper rotations, corner matching and rotation transport. Each paper supplies
 its own target condition: here every target uses all five colours.
 The comparator challenge imports only mathlib and restates the required core
-definitions locally.
+definitions locally. The pinned core revision is public; a fresh clone can
+fetch it without credentials using the normal Lake build commands.
 
 To prepare pinned dependencies from an existing sibling core checkout and its
 cached mathlib dependencies, use:
@@ -155,6 +156,8 @@ This freezes the current source snapshot under ignored `build/review/`, with
 per-file checksums, the base Git revision and the exact pinned core
 Git bundle. `REVIEW.json` identifies the snapshot separately from the base
 revision, so uncommitted revisions are not misrepresented as that commit.
+Tracked files omitted from the snapshot, including staged and unstaged deletions,
+are reported on standard error and listed in `REVIEW.json`.
 The archive contains neither local build caches nor validation logs.
 
 After extracting the archive, run `sha256sum -c SHA256SUMS`, then
@@ -243,6 +246,6 @@ unconfirmed. No Palomar submission has been made.
 See [data provenance and regeneration](data/README.md). No transient verification
 logs are committed. The GitHub remote is the intended location
 `https://github.com/jasondavies/five-colour-cubes`.
-Before submission, settle dependency access, review the manuscript, finish
-the full comparator check and finalise Palomar metadata. The physical Lean
+Before submission, review the manuscript, finish the full comparator check
+and finalise Palomar metadata. The physical Lean
 threshold proof is complete; public release and Palomar submission remain pending.
