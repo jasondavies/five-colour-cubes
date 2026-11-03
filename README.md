@@ -103,11 +103,12 @@ contained roots and excludes 29 by their initial budget bounds. A
 9 to 15. All bounds, totals and constraint families are identified with the
 packed archive in [ProjectedBridge.lean](FiveColour/ProjectedBridge.lean).
 
-The [projected manifest](data/q5-projected-root-manifest.json) maps local IDs
-0–278 to original root IDs and records fixed proof hashes. Its archive has
-**499,829 instructions, 95.69% fewer** than the original 11,599,651. Both
-archives pass the separate C++ checker; the completed Lean proof uses the
-projected archive. The original replay route remains available.
+The [projected manifest](data/q5-projected-root-manifest.json) numbers the 279
+projected problems 0–278, records the root each comes from, and fixes their proof
+hashes. The projected archive has **499,829 instructions**, against 11,599,651
+in the unprojected archive over all 357 roots. Both archives pass the separate
+C++ checker; the completed Lean proof uses the projected archive, and the
+357-root replay route remains available.
 
 `make check` builds and audits the proof infrastructure and selected cases.
 Reproducing the complete threshold proof additionally requires the
@@ -132,7 +133,7 @@ make paper                 # additionally requires latexmk and LaTeX
 ```
 
 `make check` checks dependency pins and source hygiene, verifies physical
-geometry and case coverage, replays the original 357 and projected 279 C++ certificates, rejects 80
+geometry and case coverage, replays the 357 unprojected and 279 projected C++ certificates, rejects 80
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
 cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
 witnesses, root-reduction and projection manifests, builds the default Lean target
@@ -159,8 +160,8 @@ Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
 
-The [larger examples](FiveColour/Chunked/) compose 499, 3,763 and 9,811 original
-instructions into 5, 36 and 89 bounded chunks. Run `make examples` to build and
+The [larger examples](FiveColour/Chunked/) compose 499, 3,763 and 9,811 instructions
+from the unprojected archive into 5, 36 and 89 bounded chunks. Run `make examples` to build and
 audit their aggregate theorem and check corrupted-checkpoint controls.
 
 ## Shared geometry dependency
@@ -239,7 +240,7 @@ Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the runner;
 remove it before resuming. Completed modules remain cached, but interrupted
 cases restart. Do not regenerate case sources during replay.
 
-The original 357-case route remains available with `make replay-data` and
+The unprojected 357-case route remains available with `make replay-data` and
 `make replay`. It generates 109,449 chunks under `FiveColour/ReplayChunks/` and
 has a separate log directory and stop file. Stopping one route leaves the
 other route and all completed cached modules intact.
@@ -296,10 +297,9 @@ make small-replay WORKERS=2
 This builds the separate ignored `SmallChunks` group, checks all 105 exclusions
 and their agreement with the integer root models, and audits the aggregate.
 It does not regenerate or interfere with `ReplayChunks` or the tracked examples.
-The existing full replay checks all 357 cases. Alternatively, the reduced
+The unprojected full replay checks all 357 cases. Alternatively, the reduced
 interface requires only the 279 cases in `data/q5-root-reduction.json`; the
 remaining exclusions follow from checked containment and arithmetic lemmas.
-This does not change or restart an already running full replay.
 
 ## Replay performance experiments
 
