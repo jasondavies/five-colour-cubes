@@ -1,46 +1,26 @@
 module
 public import FiveColour.ProjectionData
 @[expose] public section
-set_option maxRecDepth 100000
-set_option maxHeartbeats 0
 namespace FiveColour.Physical.Projection
 
 def maskFits (m : Fin 64) (j : Fin 6) : Prop := m.val.testBit j.val = true
 instance (m : Fin 64) : DecidablePred (maskFits m) := by intro j; unfold maskFits; infer_instance
 def maskCount (m : Fin 64) := (Finset.univ.filter (maskFits m)).card
-def first (p : Fin 6 → Bool) : Fin 6 := ((List.finRange 6).find? p).getD 0
-def firstHalf (p : Fin 3 → Bool) : Fin 3 := ((List.finRange 3).find? p).getD 0
 
-def pickThree (a b c : Fin 64) : Fin 3 × (Fin 3 → Fin 6) :=
-  let r := firstHalf fun r => decide (3 ≤ (Finset.univ.filter fun j : Fin 6 => j.val/2 ≠ r.val ∧ maskFits a j).card)
-  let x := first fun j => decide (j.val/2 ≠ r.val ∧ maskFits b j)
-  let y := first fun j => decide (j.val/2 ≠ r.val ∧ maskFits c j ∧ j ≠ x)
-  let z := first fun j => decide (j.val/2 ≠ r.val ∧ maskFits a j ∧ j ≠ x ∧ j ≠ y)
-  (r,![z,x,y])
-def pickTwo (a b : Fin 64) : Fin 3 × (Fin 2 → Fin 6) :=
-  let x := first fun j => decide (maskFits a j)
-  let y := first fun j => decide (maskFits b j ∧ j ≠ x)
-  (firstHalf (fun r => decide (x.val/2 ≠ r.val ∧ y.val/2 ≠ r.val)),![x,y])
-def pickOne (a : Fin 64) : Fin 3 × (Fin 1 → Fin 6) :=
-  let x := first fun j => decide (maskFits a j)
-  (firstHalf (fun r => decide (x.val/2 ≠ r.val)),fun _ => x)
+def halfMask (m : Fin 64) (r : Fin 3) : Finset (Fin 6) :=
+  Finset.univ.filter fun j => j.val / 2 ≠ r.val ∧ maskFits m j
 
-lemma pickThree_valid (a : Fin 64) : 4 ≤ maskCount a → ∀ b, 4 ≤ maskCount b → ∀ c, 4 ≤ maskCount c →
-    Function.Injective (pickThree a b c).2 ∧ ∀ i,
-      ((pickThree a b c).2 i).val / 2 ≠ (pickThree a b c).1.val ∧
-      maskFits (![a,b,c] i) ((pickThree a b c).2 i) := by
-  fin_cases a <;> decide +kernel
-lemma pickTwo_valid : ∀ a, 2 ≤ maskCount a → ∀ b, 2 ≤ maskCount b →
-    Function.Injective (pickTwo a b).2 ∧ ∀ i,
-      ((pickTwo a b).2 i).val / 2 ≠ (pickTwo a b).1.val ∧
-      maskFits (![a,b] i) ((pickTwo a b).2 i) := by decide +kernel
-lemma pickOne_valid : ∀ a, 1 ≤ maskCount a →
-    Function.Injective (pickOne a).2 ∧ ∀ i,
-      ((pickOne a).2 i).val / 2 ≠ (pickOne a).1.val ∧
-      maskFits a ((pickOne a).2 i) := by decide +kernel
+/-- Four of the six corners meet every half at least twice, and some half
+at least three times. This check considers single masks, not triples. -/
+lemma half_counts : ∀ m, 4 ≤ maskCount m →
+    (∀ r, 2 ≤ (halfMask m r).card) ∧ ∃ r, 3 ≤ (halfMask m r).card := by
+  decide +kernel
 
-/-- At most three corner projections can be placed in a suitable four-position
-half. These small six-bit checks are independent of cube collections. -/
+lemma pair_in_half : ∀ x y : Fin 6, ∃ r : Fin 3,
+    x.val / 2 ≠ r.val ∧ y.val / 2 ≠ r.val := by decide +kernel
+
+/-- At most three projections can be placed in a suitable four-position
+half. Choose the positions greedily; no triples of masks are enumerated. -/
 lemma place_masks (j : Fin 3) (masks : Fin (3-j.val) → Fin 64)
     (hm : ∀ i, ![4,2,1] j ≤ maskCount (masks i)) :
     ∃ r : Fin 3, ∃ f : Fin (3-j.val) ↪ Half r, ∀ i, maskFits (masks i) (f i).val := by
@@ -48,30 +28,54 @@ lemma place_masks (j : Fin 3) (masks : Fin (3-j.val) → Fin 64)
   · change Fin 3 → Fin 64 at masks
     change (∀ i : Fin 3, 4 ≤ maskCount (masks i)) at hm
     change ∃ r : Fin 3, ∃ f : Fin 3 ↪ Half r, ∀ i, maskFits (masks i) (f i).val
-    obtain ⟨hi,hf⟩ := pickThree_valid (masks 0) (hm 0) (masks 1) (hm 1) (masks 2) (hm 2)
-    let f := (pickThree (masks 0) (masks 1) (masks 2)).2
-    refine ⟨(pickThree (masks 0) (masks 1) (masks 2)).1,
-      ⟨fun i => ⟨f i,(hf i).1⟩,fun a b he => hi (congrArg Subtype.val he)⟩,?_⟩
-    intro i
-    have h := (hf i).2
-    fin_cases i <;> exact h
+    obtain ⟨r,ha⟩ := (half_counts (masks 0) (hm 0)).2
+    have hb := (half_counts (masks 1) (hm 1)).1 r
+    have hc := (half_counts (masks 2) (hm 2)).1 r
+    obtain ⟨x,hx⟩ := Finset.card_pos.mp (by omega : 0 < (halfMask (masks 1) r).card)
+    obtain ⟨y,hy,hyx⟩ := Finset.exists_mem_notMem_of_card_lt_card
+      (s := {x}) (t := halfMask (masks 2) r) (by simp only [Finset.card_singleton]; omega)
+    have hxy : ({x,y} : Finset (Fin 6)).card ≤ 2 := Finset.card_insert_le _ _ |>.trans (by simp)
+    obtain ⟨z,hz,hzxy⟩ := Finset.exists_mem_notMem_of_card_lt_card
+      (s := {x,y}) (t := halfMask (masks 0) r) (by omega)
+    simp only [halfMask,Finset.mem_filter,Finset.mem_univ,true_and] at hx hy hz
+    simp only [Finset.mem_singleton,Finset.mem_insert,not_or] at hyx hzxy
+    let f : Fin 3 → Half r := ![⟨z,hz.1⟩,⟨x,hx.1⟩,⟨y,hy.1⟩]
+    refine ⟨r,⟨f,?_⟩,?_⟩
+    · intro i k he
+      have he' := congrArg Subtype.val he
+      fin_cases i <;> fin_cases k <;> simp_all [f]
+    · intro i; fin_cases i
+      · exact hz.2
+      · exact hx.2
+      · exact hy.2
   · change Fin 2 → Fin 64 at masks
     change (∀ i : Fin 2, 2 ≤ maskCount (masks i)) at hm
     change ∃ r : Fin 3, ∃ f : Fin 2 ↪ Half r, ∀ i, maskFits (masks i) (f i).val
-    obtain ⟨hi,hf⟩ := pickTwo_valid (masks 0) (hm 0) (masks 1) (hm 1)
-    let f := (pickTwo (masks 0) (masks 1)).2
-    refine ⟨(pickTwo (masks 0) (masks 1)).1,
-      ⟨fun i => ⟨f i,(hf i).1⟩,fun a b he => hi (congrArg Subtype.val he)⟩,?_⟩
-    intro i
-    have h := (hf i).2
-    fin_cases i <;> exact h
+    have h0 := hm 0
+    have h1 := hm 1
+    change 2 ≤ (Finset.univ.filter (maskFits (masks 0))).card at h0
+    change 2 ≤ (Finset.univ.filter (maskFits (masks 1))).card at h1
+    obtain ⟨x,hx⟩ := Finset.card_pos.mp (by omega : 0 < (Finset.univ.filter (maskFits (masks 0))).card)
+    obtain ⟨y,hy,hyx⟩ := Finset.exists_mem_notMem_of_card_lt_card
+      (s := {x}) (t := Finset.univ.filter (maskFits (masks 1)))
+      (by simp only [Finset.card_singleton]; omega)
+    obtain ⟨r,hrx,hry⟩ := pair_in_half x y
+    simp only [Finset.mem_filter,Finset.mem_univ,true_and] at hx hy
+    simp only [Finset.mem_singleton] at hyx
+    let f : Fin 2 → Half r := ![⟨x,hrx⟩,⟨y,hry⟩]
+    refine ⟨r,⟨f,?_⟩,?_⟩
+    · intro i k he
+      have he' := congrArg Subtype.val he
+      fin_cases i <;> fin_cases k <;> simp_all [f]
+    · intro i; fin_cases i
+      · exact hx
+      · exact hy
   · change Fin 1 → Fin 64 at masks
     change (∀ i : Fin 1, 1 ≤ maskCount (masks i)) at hm
     change ∃ r : Fin 3, ∃ f : Fin 1 ↪ Half r, ∀ i, maskFits (masks i) (f i).val
-    obtain ⟨hi,hf⟩ := pickOne_valid (masks 0) (hm 0)
-    refine ⟨(pickOne (masks 0)).1,
-      ⟨fun i => ⟨(pickOne (masks 0)).2 i,(hf i).1⟩,fun a b he => hi (congrArg Subtype.val he)⟩,?_⟩
-    intro i
-    have h := (hf i).2
-    fin_cases i; exact h
+    have hc : 0 < (Finset.univ.filter (maskFits (masks 0))).card := hm 0
+    obtain ⟨x,hx⟩ := Finset.card_pos.mp hc
+    obtain ⟨r,hr,_⟩ := pair_in_half x x
+    refine ⟨r,⟨fun _ => ⟨x,hr⟩,fun _ _ _ => Subsingleton.elim _ _⟩,?_⟩
+    intro i; fin_cases i; exact (Finset.mem_filter.mp hx).2
 end FiveColour.Physical.Projection

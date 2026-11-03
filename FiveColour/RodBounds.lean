@@ -11,7 +11,6 @@ lemma rod_count_bits (s t : Fin 75) (a : Fin 3) (M : ℕ) :
     (Finset.univ.filter fun p : RectSlot (RodLengths a M) => ¬ RectFits (catalogue s) (catalogue t) p).card =
       cornerMissBits s t + rodAlongBits s t a*M := by
   rw [rod_missing_card,missingCorners_bits,missingAlong_bits]
-  rfl
 lemma rod_along_le (s t : Fin 75) (a : Fin 3) : rodAlongBits s t a ≤ 2 :=
   (directional_bits s t).2.2.1 a
 lemma rod_adjacent_bound (s t : Fin 75) (a : Fin 3) (M : ℕ) (hM : 1 ≤ M)

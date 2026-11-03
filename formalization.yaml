@@ -136,7 +136,10 @@ fidelity:
     It checks support-pair witnesses directly rather than reducing them to
     five colour-permutation orbits. For cuboids, the eight-plus-three proof
     obtains a small cover directly from a failed Hall inequality. Finite
-    projection and directional profile checks replace geometric case tables;
+    projection and directional profile checks replace geometric case tables.
+    The directional, rod and strip checks use two canonical targets, with
+    proved colour and rotation transport for sources, corners, edges and axes.
+    Half-mask placement is greedy after checked single-mask intersection bounds;
     arbitrary multiplicities and side lengths are handled by matching and
     arithmetic lemmas. The uniform obstruction uses kernel-checked private
     corner and directional edge counts. No new interval certificates are used.

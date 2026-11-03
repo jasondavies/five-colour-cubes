@@ -1,21 +1,10 @@
 module
 public import FiveColour.RectCounting
+public import FiveColour.BoxSymmetry
 @[expose] public section
 namespace FiveColour.Physical
 set_option maxRecDepth 100000
 set_option maxHeartbeats 0
-
-lemma missingCorners_rotate_target (c t : Cube) (r : Fin 24) :
-    missingCorners c (rotate t r) = missingCorners c t := by
-  classical
-  apply Finset.card_bij (fun k _ => ColourCubes.Geometry.slotEquiv r k)
-  · intro k hk
-    simpa only [Finset.mem_filter,Finset.mem_univ,true_and,fits_rotate_target] using hk
-  · intro a _ b _ he
-    exact (ColourCubes.Geometry.slotEquiv r).injective he
-  · intro k hk
-    refine ⟨(ColourCubes.Geometry.slotEquiv r).symm k,?_,by simp⟩
-    simpa only [Finset.mem_filter,Finset.mem_univ,true_and,fits_rotate_target,Equiv.apply_symm_apply] using hk
 
 lemma box_supported_bits : ∀ t : Fin 75,
     (∀ k : Fin 8, (Replay.fits t 3).testBit k.val = true ∨

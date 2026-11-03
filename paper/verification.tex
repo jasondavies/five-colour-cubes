@@ -1,4 +1,5 @@
 \section{Verification and reproduction details}\label{app:verification}
+\subsection{Finite certificates}
 The repeated-variety cases have the following counts,
 totalling 244.
 \begin{center}
@@ -30,6 +31,7 @@ its total, fixed anchor count, coordinate bounds and zero root budget, and
 fails all 75 targets by physical matching. It is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
 checks are in \path{scripts/check_five_colour_distinct.py}.
 
+\subsection{Lean implementation}
 The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
 \texttt{v4.35.0}. It proves the physical theorems, including the connection
 between cube arrangements and the finite certificate problems.
@@ -113,13 +115,18 @@ patterns are checked in the kernel. The weighted bounds and upper deductions
 are in \path{FiveColour/WideFrames.lean}, \path{FiveColour/RodFrames.lean}
 and \path{FiveColour/StripFrames.lean}. The thin-box proofs formalise both
 concentration and switching targets, including the equality cases of the
-affine geometric bounds. \path{FiveColour/BoxLowerBound.lean} proves the
+affine geometric bounds. Directional profiles are checked for the two
+canonical target varieties; proved colour and rotation transport covers
+all targets, including their corner, edge and axis labels. The small
+half-mask matching step uses greedy selection after single-mask checks.
+\path{FiveColour/BoxLowerBound.lean} proves the
 uniform three-variety obstruction for every shape and orientation.
 A separate C++ audit reconstructs the geometry and checks these profiles.
 No new interval certificates are used. The flow algorithm and its
 complexity bound in Section~\ref{sec:construction} are mathematical
 deductions, not additional Lean claims.
 
+\subsection{Reproduction}
 The dependency audits cover 133 declarations listed in \path{Audit.lean},
 fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to

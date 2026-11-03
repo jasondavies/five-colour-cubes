@@ -149,7 +149,12 @@ rotations and checks signed corner projections, directional bounds, their
 affine equality cases, and the uniform three-variety obstruction. Generated
 projection tables are also checked for reproducibility. Lean checks these
 finite geometric facts in the kernel and proves the deductions for arbitrary
-side lengths and multiplicities.
+side lengths and multiplicities. The directional, rod and strip checks
+normalise targets to the two repeated-face types; [BoxSymmetry](FiveColour/BoxSymmetry.lean)
+and [RodSymmetry](FiveColour/RodSymmetry.lean) prove transport of sources,
+corners, edges and axes under colour relabelling and proper rotations.
+[HalfMasks](FiveColour/HalfMasks.lean) uses greedy placement after checking
+single-mask intersection bounds, rather than enumerating triples of masks.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
