@@ -277,6 +277,15 @@ matrix or certificate data. The five targets are the exposed-face rule, the
 explicit fourteen-cube obstruction, the fifteen-cube upper bound, sharpness,
 and the least guaranteed size.
 
+The cuboid classification and the earlier larger-cube extensions are not
+statements in this Mathlib-only challenge. Their fidelity rests on the
+project's physical definitions in [BoxModel.lean](FiveColour/BoxModel.lean),
+including exposed faces, proper rotations, distinct source copies and all
+axis assignments. The unconditional cuboid theorems and their dependency
+audits are complete, but the external comparator targets only the corner
+problem. The `box223`, `box224` and `box233` exports each state both failure
+one below the threshold and sufficiency at the threshold.
+
 [ComparatorBridge.lean](FiveColour/ComparatorBridge.lean) proves equivalence
 with the physical model and the geometric lower bound. Its upper-bound
 transfers explicitly assume `Physical.Threshold15`. These proofs are included

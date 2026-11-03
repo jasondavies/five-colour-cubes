@@ -22,7 +22,12 @@ Cube canonical(Cube c) {
   return out;
 }
 bool opp(const Cube& c){return c[0]==c[1]||c[2]==c[3]||c[4]==c[5];}
-bool hasEdge(const Cube& c,int a,int b){for(auto e:edges)if((c[e[0]]==a&&c[e[1]]==b)||(c[e[0]]==b&&c[e[1]]==a))return true;return false;}
+bool hasEdge(const Cube& c,int a,int b) {
+ for(auto e:edges) {
+  if((c[e[0]]==a&&c[e[1]]==b)||(c[e[0]]==b&&c[e[1]]==a)) return true;
+ }
+ return false;
+}
 unsigned cornerMask(const Cube& s,const Cube& t){
  unsigned m=0;for(unsigned k=0;k<corners.size();++k)for(auto r:rotations){bool ok=true;for(int f:corners[k])ok&=s[r[f]]==t[f];if(ok)m|=1u<<k;}return m;
 }
@@ -33,7 +38,8 @@ bool cyclicCorner(const Cube& c,Corner desired){
  for(int a=0;a<2;++a)for(int b=0;b<2;++b)for(int d=0;d<2;++d){
   Corner x={c[a],c[2+b],c[4+d]};if((a+b+d)%2)std::swap(x[1],x[2]);
   for(int k=0;k<3;++k)if(x[k]==desired[0]&&x[(k+1)%3]==desired[1]&&x[(k+2)%3]==desired[2])return true;
- }return false;
+ }
+ return false;
 }
 
 std::array<std::array<unsigned,75>,75> cm;
@@ -49,7 +55,8 @@ bool augment(int pos,const std::array<unsigned,12>& masks,int count,
  for(int j=0;j<count;++j)if(!(visited&(1u<<j))&&(masks[j]&(1u<<pos))) {
   visited|=1u<<j;
   if(owner[j]<0||augment(owner[j],masks,count,owner,visited)){owner[j]=pos;return true;}
- }return false;
+ }
+ return false;
 }
 bool matches(int t,const std::array<int,9>& ids,const std::array<int,9>& x,bool core,int extra=-1){
  std::array<unsigned,12> masks{};int count=0;
@@ -138,7 +145,8 @@ int main(){
   for(int a=0;a<2;++a)for(int b=0;b<2;++b)for(int d=0;d<2;++d){
    Corner x={c[a],c[2+b],c[4+d]};if((a+b+d)%2)std::swap(x[1],x[2]);
    out.insert(std::min({x,Corner{x[1],x[2],x[0]},Corner{x[2],x[0],x[1]}}));
-  }return out;
+  }
+  return out;
  };
  std::array<std::set<Corner>,75> keys;
  for(int i=0;i<75;++i)keys[i]=cornerTypes(varieties[i]);

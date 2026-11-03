@@ -80,15 +80,30 @@ theorem complete_box_threshold (a b c n : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) (hc
   Physical.box_threshold_iff Packed.ProjectedChunks.threshold15 a b c n ha hb hc
 
 /-- The first thin box needs fifteen available sources. -/
-theorem box223 : Physical.BoxFrameThreshold 2 2 3 15 :=
-  (box_frame_threshold 2 2 3 15 (by decide) (by decide) (by decide)).2 (by decide)
+theorem box223 :
+    ¬ Physical.BoxFrameThreshold 2 2 3 14 ∧ Physical.BoxFrameThreshold 2 2 3 15 := by
+  constructor
+  · intro h
+    have hsize := (box_frame_threshold 2 2 3 14 (by decide) (by decide) (by decide)).1 h
+    norm_num [Physical.boxFrameNumber] at hsize
+  · exact (box_frame_threshold 2 2 3 15 (by decide) (by decide) (by decide)).2 (by decide)
 
 /-- Sixteen positions need seventeen available sources. -/
-theorem box224 : Physical.BoxFrameThreshold 2 2 4 17 :=
-  (box_frame_threshold 2 2 4 17 (by decide) (by decide) (by decide)).2 (by decide)
+theorem box224 :
+    ¬ Physical.BoxFrameThreshold 2 2 4 16 ∧ Physical.BoxFrameThreshold 2 2 4 17 := by
+  constructor
+  · intro h
+    have hsize := (box_frame_threshold 2 2 4 16 (by decide) (by decide) (by decide)).1 h
+    norm_num [Physical.boxFrameNumber] at hsize
+  · exact (box_frame_threshold 2 2 4 17 (by decide) (by decide) (by decide)).2 (by decide)
 
 /-- The other sixteen-position frame also needs seventeen sources. -/
-theorem box233 : Physical.BoxFrameThreshold 2 3 3 17 :=
-  (box_frame_threshold 2 3 3 17 (by decide) (by decide) (by decide)).2 (by decide)
+theorem box233 :
+    ¬ Physical.BoxFrameThreshold 2 3 3 16 ∧ Physical.BoxFrameThreshold 2 3 3 17 := by
+  constructor
+  · intro h
+    have hsize := (box_frame_threshold 2 3 3 16 (by decide) (by decide) (by decide)).1 h
+    norm_num [Physical.boxFrameNumber] at hsize
+  · exact (box_frame_threshold 2 3 3 17 (by decide) (by decide) (by decide)).2 (by decide)
 
 end FiveColour.Puzzle

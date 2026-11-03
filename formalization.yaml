@@ -84,6 +84,11 @@ status:
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended
     without a recorded outcome; a full pass remains unconfirmed.
+    The Mathlib-only Challenge.lean covers only the corner theorem. Cuboid
+    fidelity is relative to the physical definitions in BoxModel.lean and
+    their checked bridges to proper rotations and exposed-face matching;
+    it is not an external comparator claim for cuboids. The three box223,
+    box224 and box233 exports include both the lower and upper statements.
     No Palomar submission exists. The five intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0

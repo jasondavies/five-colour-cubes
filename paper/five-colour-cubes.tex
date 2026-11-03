@@ -492,6 +492,8 @@ and the sound interval deductions exclude. Hence $N_5\le15$.
 
 \section{Compatibility and missing-pair families}\label{sec:frames}
 The frame arguments depend on how many positions a source can miss.
+Lemmas~\ref{lem:cube-incidence}--\ref{lem:frame-geometry} state the
+shape-independent facts used in the directional bounds below.
 The following form of Hall's theorem isolates the matching step.
 
 \begin{lemma}[Hall criterion with a matched subset]\label{lem:partial-matching}
@@ -508,45 +510,85 @@ source neighbours $D$, since none can miss all its positions. In each case
 Hall's inequality holds.
 \end{proof}
 
-\begin{lemma}[Frame compatibility]\label{lem:frame-geometry}
-Put $q=n-2\ge1$. Every source variety fits at least $8q+2$ positions of
-every five-colour $n$-frame target, and at least $9q+2$ if the target is
-opposite-repeat. An adjacent-repeat source lacks exactly one bichromatic
-edge type. An opposite-repeat source lacks exactly two, which are disjoint;
-these two missing pairs determine its variety uniquely.
+\begin{lemma}[Missing pairs and shared corners]\label{lem:cube-incidence}
+Every five-colour variety has eight distinct cyclic corner types.
+An adjacent-repeat variety lacks exactly one bichromatic edge type;
+an opposite-repeat variety lacks exactly two, which are disjoint.
+Two disjoint missing pairs determine a unique opposite-repeat variety.
+If either of two varieties is opposite-repeat, they share at least two
+corner types. A target has at most one monochromatic edge; each bichromatic
+type occurs on at most two edges, and a doubled type contains the repeated
+colour. Thus two disjoint bichromatic types account for at most three
+geometric target edges.
 \end{lemma}
 \begin{proof}
-A missing bichromatic pair must occupy opposite singleton faces: if a colour
+A missing bichromatic pair occupies opposite singleton faces: if a colour
 is repeated, a face of the other colour cannot be opposite both copies.
 An adjacent-repeat variety has one opposite pair of singleton faces, and an
 opposite-repeat variety has two. Two disjoint missing pairs specify two
-opposite face pairs, leaving the fifth colour on the remaining opposite
-faces, which determines a unique variety.
+opposite face pairs, leaving the fifth colour on the remaining pair,
+which determines a unique variety.
 
-Write $c,e$ for the numbers of target corners and geometric edges fitted by
-the source. Whenever either variety is opposite-repeat, $c\ge2$. To see
-this, let that variety repeat $r$, with singleton opposite pairs
-$\{a,b\}$ and $\{u,v\}$. It contains both cyclic orientations of each
-$rxy$ with $x\in\{a,b\}$ and $y\in\{u,v\}$. In the other variety, if an
-$r$-face has no adjacent $r$-face, its four surrounding faces contain at
-least three distinct colours. Their cyclic order crosses between the two
-pairs at least twice, giving two shared corner types. If the $r$-faces are
-adjacent, the other neighbours of each form a path of three distinct
-colours. Each path crosses between the pairs and gives a shared corner;
-these corners have different types. Every five-colour variety has eight
-distinct cyclic corner types: the only repeated colour multisets occur at
-the two ends of an edge, with opposite cyclic orientations. Shared corner
-counts are therefore symmetric in the source and target.
+For the shared-corner assertion, let the opposite-repeat variety repeat
+$r$, with singleton opposite pairs $\{\alpha,\beta\}$ and
+$\{\gamma,\delta\}$. It contains both cyclic orientations of each
+$rxy$ with $x\in\{\alpha,\beta\}$ and $y\in\{\gamma,\delta\}$.
+In the other variety, an $r$-face with no adjacent $r$-face has at least
+three distinct colours around it. Their cyclic order crosses between the
+two pairs at least twice, giving two shared corners. If its $r$-faces
+are adjacent, the other neighbours of each form a path of three distinct
+colours. Each path crosses between the pairs and gives a shared corner,
+and these have different types. Corner counts are symmetric: a five-colour
+variety has eight distinct cyclic corner types, since the only repeated
+colour multisets occur at the two ends of an edge, in opposite cyclic orders.
 
-A bichromatic target edge type occurs at most twice, and a doubled type
-contains the target's repeated colour. Two disjoint types therefore account
-for at most three target edges. There is at most one monochromatic target
-edge. These observations give the following bounds; A and O denote
-adjacent-repeat and opposite-repeat varieties.
+Only the repeated colour can form a monochromatic edge. Two singleton
+faces meet along at most one edge; hence a doubled bichromatic type
+contains the repeated colour and occurs at most twice. Two disjoint types
+cannot both contain that colour, proving the final bound.
+\end{proof}
+
+\begin{lemma}[A transverse edge forces a common corner]\label{lem:transverse-corner}
+Let source and target both be adjacent-repeat varieties. If the source
+lacks the type of a target edge not parallel to the target's monochromatic
+edge, then it shares a corner type with the target.
+\end{lemma}
+\begin{proof}
+Relabel the colours and rotate the target to $T=(0,1,0,2,3,4)$.
+Its monochromatic edge is parallel to $z$.
+The types occurring on edges transverse to the monochromatic edge are
+$03,04,13,14,23,24$.  The proper half-turn interchanging the $x$- and
+$y$-directions and reversing $z$, followed by the colour relabelling
+$1\leftrightarrow2$, $3\leftrightarrow4$, fixes $T$ and pairs these types
+as $(03,04)$, $(13,24)$, and $(14,23)$.  Thus three cases suffice.
+For each missing type the source has its two colours on opposite faces.
+The other three colours occur around that axis in one of two cyclic
+orientations.  The three adjacent-repeat choices in each orientation
+share six tricoloured corners.  Reading those common corners gives:
+\[
+\begin{array}{c|c|c}
+\text{Missing type}&\text{Shared corners in one orientation}
+ &\text{Shared corners in the other orientation}\\\hline
+03&024,041&123\\
+13&032&041,142\\
+14&013,123&024
+\end{array}
+\]
+Every entry is nonempty, so the source and target share a corner.
+\end{proof}
+
+\begin{lemma}[Geometric compatibility bounds]\label{lem:frame-geometry}
+Let $\kappa$ and $e$ count the target corners and geometric edges fitted
+by a source. Then $e\ge8$ and $\kappa+e\ge10$.
+For an opposite-repeat target, $e\ge9$ and $\kappa+e\ge11$.
+\end{lemma}
+\begin{proof}
+Lemma~\ref{lem:cube-incidence} gives the following bounds, where A and O
+denote adjacent-repeat and opposite-repeat varieties:
 \begin{center}
 \begin{tabular}{ccccc}
 \toprule
-Target & Source & $c$ & $e$ & $c+e$\\
+Target & Source & $\kappa$ & $e$ & $\kappa+e$\\
 \midrule
 O & O & $\ge2$ & $\ge9$ & $\ge11$\\
 O & A & $\ge2$ & $\ge10$ & $\ge12$\\
@@ -555,27 +597,18 @@ A & A & $\ge0$ & $\ge9$ & $\ge10$\\
 \bottomrule
 \end{tabular}
 \end{center}
-Only the final entry needs an orientation argument. If an adjacent-repeat
-source fits exactly nine edges of an adjacent-repeat target, it misses the
-monochromatic edge and a doubled bichromatic type. Relabel colours and
-rotate to put the target at $(0,1,0,2,3,4)$ and the missing type at $03$.
-The source's $0$- and $3$-faces are opposite; its surrounding colours are
-$1,2,4$, one repeated on adjacent faces. Suppress this adjacent repetition.
-One of the two cyclic orders gives the shared target corner $123$; the
-other gives $024$ and $041$. Thus $c\ge1$ when $e=9$.
-
-Each geometric edge contributes $q$ positions. Since $e\ge8$ and $c+e\ge10$,
-\[
- c+qe=(c+e)+(q-1)e\ge8q+2.
-\]
-For an opposite-repeat target, $e\ge9$ and $c+e\ge11$ instead give $9q+2$.
+Only the final sum needs another observation. If an adjacent-repeat source
+fits exactly nine edges of an adjacent-repeat target, it misses the
+monochromatic edge and a doubled bichromatic type. The doubled edges are
+transverse to the monochromatic edge, so Lemma~\ref{lem:transverse-corner}
+gives $\kappa\ge1$. If it fits at least ten edges, the sum bound is immediate.
 \end{proof}
 
-For a bichromatic pair $ab$, let $\mathcal H_{ab}$ be the family of
-varieties lacking that edge type.  In every such cube, $a$ and $b$ are
+For a bichromatic pair $\alpha\beta$, let $\mathcal H_{\alpha\beta}$ be the family of
+varieties lacking that edge type.  In every such cube, $\alpha$ and $\beta$ are
 opposite singleton faces.  The four faces around this axis use the other
 three colours, one of them twice.  There are nine varieties in
-$\mathcal H_{ab}$: three opposite-repeat varieties $O_r$, and six
+$\mathcal H_{\alpha\beta}$: three opposite-repeat varieties $O_r$, and six
 adjacent-repeat varieties $A_r^+$ and $A_r^-$, where $r$ is the repeated
 colour.  The signs distinguish the two cyclic orientations of the three
 distinct ring colours.  All three $A_r^+$ varieties share the same six
@@ -583,17 +616,17 @@ tricoloured corner types; all three $A_r^-$ varieties share the reverse
 six types.
 
 \begin{lemma}[The missing-pair corner array]\label{lem:fixed-missing-pair}
-The eight corners of an opposite-repeat target $O_r\in\mathcal H_{ab}$
+The eight corners of an opposite-repeat target $O_r\in\mathcal H_{\alpha\beta}$
 form a $2\times2$ array with two positions per cell. Rows correspond to
 the two unordered ring-colour pairs involving $r$, and columns to their
 cyclic orientations. A source $O_r$ fits every cell; the other two
 opposite-repeat varieties each fit one row; and the positive and negative
 adjacent-repeat varieties fit the corresponding columns.
-Consequently, every variety in $\mathcal H_{ab}$ shares at least four
+Consequently, every variety in $\mathcal H_{\alpha\beta}$ shares at least four
 corner types with every opposite-repeat variety in that family.
 \end{lemma}
 \begin{proof}
-Each cell contains one corner at each end of the $ab$ axis.
+Each cell contains one corner at each end of the $\alpha\beta$ axis.
 Reading the ring colours gives the stated incidences. Figure~\ref{fig:ring-array}
 shows the example $O_2=(0,1,2,2,3,4)$ in $\mathcal H_{01}$, with $+$
 chosen to include $023$. Relabelling the three ring colours gives the

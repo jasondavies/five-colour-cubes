@@ -23,8 +23,12 @@ Test each target variety with each distinct assignment of the three side
 lengths to its coordinate axes. There are at most six assignments, hence
 at most 450 configurations. When exactly two side lengths agree, three
 assignments suffice, giving 225 configurations; when all three agree,
-only 75 are needed. Every permutation of axes is realised by a proper
-rotation after choosing its signs, so no other configuration is necessary.
+only 75 are needed. Every physical target is a proper rotation of one
+of the 75 representatives, and every proper rotation permutes the three
+coordinate axes. Bringing the target to its representative therefore
+permutes the side-length assignment. Sign changes only reverse positions
+along an edge; they introduce no additional demand pattern. This proves
+that the listed configurations cover every assembly.
 
 For each configuration, use a flow network with 75 source-variety nodes
 and at most twenty requirement nodes: eight corners of demand one and
