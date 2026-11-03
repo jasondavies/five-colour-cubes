@@ -1,4 +1,4 @@
-# The sharp corner threshold for five-colour cubes
+# Sharp thresholds for five-colour cubes
 
 - [Paper (PDF)](paper/five-colour-cubes.pdf) and [LaTeX](paper/five-colour-cubes.tex).
 - [Physical target statements](FiveColour/Problem.lean), [fourteen-cube lower bound](FiveColour/LowerBound.lean), and [formalisation guide](FiveColour/README.md).
@@ -19,9 +19,10 @@ Further conclusions are proved in the paper and Lean:
 
 - The exact guaranteed pool size for a complete n×n×n cube is
   **G₅(n) = max(n³, 15)** for n ≥ 2.
-- A rare-pair Hall argument gives **F₅(n) ≤ max(12n − 16, 11n − 6)** for n ≥ 3,
-  and hence **F₅(n) = 12n − 16 for n ≥ 10**. The remaining frame values are
-  those for 3 ≤ n ≤ 9; in particular, **20 ≤ F₅(3) ≤ 27**.
+- The exact frame threshold is **F₅(n) = max(15, 12n − 16)** for every n ≥ 2.
+  In particular, **any twenty cubes form a 3-frame**, using every supplied cube.
+  The eleven-cube fixed-missing-pair lemma and a rare-pair Hall argument prove
+  this from the corner threshold, without new interval certificates.
 - With at most k source varieties, the exact corner threshold is **8 for k=1,
   13 for k=2, and 15 for k≥3**. Thus three varieties are necessary for a
   fourteen-cube obstruction. A common Hall shortage also gives a family of
@@ -103,9 +104,14 @@ geometry and case coverage, replays the original 357 and projected 279 C++ certi
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
 cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
 witnesses, root-reduction and projection manifests, builds the default Lean target
-and audits 100 theorems. The extension checks regenerate the small pair and
+and audits 114 theorems. The extension checks regenerate the small pair and
 obstruction witnesses, and separately verify their geometry in C++. The rare-pair
 audit checks all 5,625 source–target pairs using direct proper rotations.
+The separate fixed-pair audit regenerates all ten nine-variety families,
+checks all 75,582 eleven-copy multiplicity vectors in one family, and checks
+all 1,800 arbitrary-cube extensions of its 24 core-matching failures.
+The Lean proof instead uses the ring compatibility pattern and arithmetic
+on multiplicities; it does not enumerate these collections.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
@@ -157,10 +163,10 @@ all replay roots, families and totals against the verified headers, builds
 `FiveColour.ProjectedChunks.Threshold`, and audits both physical threshold
 theorems. Success is reported only after those final checks pass.
 
-`make check-extensions` builds `Solution.lean` and audits the seven unconditional
+`make check-extensions` builds `Solution.lean` and audits the nine unconditional
 extension statements in [ExtensionsAudit.lean](ExtensionsAudit.lean):
 `FiveColour.Puzzle.frame_bound`, `frame_threshold`, `full_cube`, `full_cube27`, `full_cube64`,
-`complete_cube_threshold` and `support_threshold`. The default library proves
+`complete_cube_threshold`, `support_threshold`, `frame20` and `frame_threshold_all`. The default library proves
 the deductions from `Physical.Threshold15`; these final wrappers apply the
 completed certificate proof. The two-variety and obstruction-family proofs
 are unconditional in the default build.

@@ -17,9 +17,10 @@ build/five_colour_exact_checked: src/five_colour_exact.cpp src/five_colour_match
 
 certificates: build/five_colour_boxes build/check_five_colour_certificate build/five_colour_chunks
 
-check-code: certificates build/five_colour_extensions build/five_colour_rare_geometry
+check-code: certificates build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair
 	build/five_colour_extensions
 	build/five_colour_rare_geometry
+	build/five_colour_fixed_pair
 	$(PYTHON) -S scripts/generate_five_colour_support.py --check
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py

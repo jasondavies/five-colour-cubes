@@ -23,17 +23,28 @@ theorem least_guaranteed_size :
       (∀ i, UsesAllColours (cubes i)) → m ≤ n → HasSolution cubes} 15 :=
   least_of_threshold Packed.ProjectedChunks.threshold15
 
-/-- The rare-pair Hall bound for every side length at least three. -/
+/-- The sharp frame bound for every side length at least three. -/
 theorem frame_bound {m : ℕ} (n : ℕ) (hn : 3 ≤ n) (cubes : Fin m → Cube)
-    (hc : ∀ i, UsesAllColours (cubes i)) (hm : max (12*n-16) (11*n-6) ≤ m) :
+    (hc : ∀ i, UsesAllColours (cubes i)) (hm : 12*n-16 ≤ m) :
     Physical.FrameSolvable (n-2) cubes :=
   Physical.frame_bound_of_threshold Packed.ProjectedChunks.threshold15 n hn cubes hc hm
 
-/-- For n ≥ 10, a frame needs no spare cubes. -/
-theorem frame_threshold (n : ℕ) (hn : 10 ≤ n) :
+/-- For n ≥ 3, a frame needs no spare cubes. -/
+theorem frame_threshold (n : ℕ) (hn : 3 ≤ n) :
     IsLeast {v : ℕ | ∀ m, ∀ cubes : Fin m → Cube,
       (∀ i, UsesAllColours (cubes i)) → v ≤ m → Physical.FrameSolvable (n-2) cubes} (12*n-16) :=
   Physical.frame_threshold_of_threshold Packed.ProjectedChunks.threshold15 n hn
+
+/-- All twenty supplied cubes form a 3-frame. -/
+theorem frame20 (cubes : Fin 20 → Cube) (hc : ∀ i, UsesAllColours (cubes i)) :
+    Physical.FrameSolvable 1 cubes := frame_bound 3 le_rfl cubes hc le_rfl
+
+/-- The complete frame function, including n = 2. -/
+theorem frame_threshold_all (n : ℕ) (hn : 2 ≤ n) :
+    IsLeast {v : ℕ | ∀ m, ∀ cubes : Fin m → Cube,
+      (∀ i, UsesAllColours (cubes i)) → v ≤ m → Physical.FrameSolvable (n-2) cubes}
+      (max (12*n-16) 15) :=
+  Physical.frame_threshold_all_of_threshold Packed.ProjectedChunks.threshold15 n hn
 
 /-- Every n³ cubes can all be assembled, for n ≥ 3. -/
 theorem full_cube (n : ℕ) (hn : 3 ≤ n) (cubes : Fin (n^3) → Cube)

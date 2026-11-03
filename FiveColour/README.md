@@ -198,15 +198,37 @@ compatibility bounds and the unique opposite-repeat variety determined by two
 missing bichromatic pairs. Its compact edge bits are checked against physical
 face adjacency; corner counts reuse the already verified incidence table.
 
-`RareFrames.lean` proves the rare-pair argument for arbitrary edge length q≥1.
+The sharp frame argument is organised as follows:
+
+- `RingData.lean` records the nine varieties lacking each bichromatic pair,
+  their corner permutations and the common compatibility pattern.
+  `RingGeometry.lean` checks every entry against the physical catalogue.
+- `WeightedHall.lean` turns finite lists of Hall inequalities into matchings.
+  `RingWeights.lean` verifies the ten inequalities needed per ring target and
+  proves the target-selection arithmetic for arbitrary multiplicities.
+- `ExtraHall.lean` handles an extra cube at a prescribed position.
+  `RingEleven.lean` proves all three eleven-copy lemmas; `FixedPair.lean`
+  translates them to physical cubes and distinct-copy placements.
+- `FixedPairReserve.lean` supplies the reserves and selections needed by the
+  general frame proof. `SharpGeometry.lean` checks the shared-corner and
+  missing-pair facts. `DeficitHall.lean` isolates the final two-rare-pair case.
+- `SharpFrames.lean` proves `sharp_frame_of_threshold`: every collection of
+  at least 12q+8 cubes forms a frame for every q≥1, assuming `Threshold15`.
+  `FrameResults.lean` includes the corner exception and proves the entire
+  frame function max(15,12n−16) for n≥2.
+
 `Reserve.lean` supplies disjoint monochromatic reserves for the preliminary
 corner solution. The final Hall matching may rearrange these placements.
 `FullCube.lean` fills face interiors and internal positions; its generic
 completion argument is adapted from the companion four-to-three development.
-`FrameResults.lean` derives the frame bound max(12n−16, 11n−6), its sharpness
-for n≥10, and the complete-cube threshold max(n³,15) for every n≥2, conditional
-on `Physical.Threshold15`. The older 25n−39 construction remains available in
-`FrameReserve.lean`, but is no longer used by the final frame results.
+The complete-cube threshold remains max(n³,15) for every n≥2.
+The older bounds remain in `FrameReserve.lean` and `RareFrames.lean`; only
+reusable definitions and reserve lemmas from the latter enter the sharp proof.
+
+`src/five_colour_fixed_pair.cpp` is a supplementary direct-rotation audit of
+the geometry and all 75,582 eleven-copy collections in one missing-pair family.
+It also checks all 1,800 extra-cube extensions of the 24 failing core collections.
+The Lean argument uses multiplicity inequalities rather than that enumeration.
 
 `SmallSupport.lean` proves thirteen cubes suffice with at most two varieties,
 checks the twelve-cube counterexample, and derives the exact support thresholds

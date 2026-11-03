@@ -1,15 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 project:
-  name: "The sharp corner threshold for five-colour cubes"
+  name: "Sharp thresholds for five-colour cubes"
   description: >-
     A computer-assisted proof, fully formalised in Lean, that every collection
     of fifteen five-colour cubes contains eight forming a five-colour corner
     solution, with an elementary fourteen-cube counterexample. The proof
     includes physical geometry, Hall reduction, root coverage, budget
     projection, complete replay of 279 certificates, and final sharpness assembly.
-    A rare-pair Hall argument gives F_5(n) <= max(12n-16, 11n-6) for n >= 3,
-    sharp frame values 12n-16 for n >= 10, and the exact complete-cube threshold
+    An eleven-cube fixed-missing-pair lemma and a rare-pair Hall argument give
+    the exact frame function max(15,12n-16) for n >= 2, including twenty cubes
+    for a 3-frame, and the exact complete-cube threshold
     max(n^3,15) for n >= 2. Exact corner thresholds by support
     size and a 21-member obstruction family are also formalised.
   authors: ["Jason Davies"]
@@ -21,7 +22,7 @@ classification:
   arxiv: ["math.CO", "cs.LO"]
   msc2020: ["05C70", "68V15", "00A08"]
 sources:
-  - title: "The sharp corner threshold for five-colour cubes"
+  - title: "Sharp thresholds for five-colour cubes"
     authors: ["Jason Davies"]
     type: original-proof
     relationship: other
@@ -69,7 +70,7 @@ status:
     source-target compatibility bounds, missing-pair classification and
     small-support witnesses; no new interval certificates are needed.
     Solution.lean applies the unconditional threshold to prove frame_bound,
-    frame_threshold, full_cube, full_cube27, full_cube64, complete_cube_threshold and
+    frame_threshold, frame_threshold_all, frame20, full_cube, full_cube27, full_cube64, complete_cube_threshold and
     support_threshold, audited by ExtensionsAudit.lean.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended
@@ -114,6 +115,10 @@ fidelity:
     final composition. Generated replay sources are ignored and reproducible;
     logs are transient build outputs. For the extensions, Lean uses generic
     Hall and reservation lemmas with kernel-checked finite geometry bounds.
+    The fixed-missing-pair lemma uses a checked nine-variety compatibility
+    pattern and ten Hall inequalities per target, then arithmetic on arbitrary
+    multiplicities. It does not enumerate eleven-copy collections; the separate
+    C++ enumeration is a supplementary audit.
     It checks support-pair witnesses directly rather than reducing them to
     five colour-permutation orbits.
     No human peer review or publication-priority

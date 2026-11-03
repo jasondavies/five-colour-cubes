@@ -100,3 +100,17 @@ import FiveColour
 #print axioms FiveColour.Physical.rare_frame_of_threshold
 #print axioms FiveColour.Physical.frame_threshold_of_threshold
 #print axioms FiveColour.Physical.full_zero_iff
+#print axioms FiveColour.Physical.Ring.cut_cover
+#print axioms FiveColour.Physical.Ring.choose_target
+#print axioms FiveColour.Physical.Ring.eleven_corners
+#print axioms FiveColour.Physical.Ring.eleven_core
+#print axioms FiveColour.Physical.Ring.eleven_extra
+#print axioms FiveColour.Physical.fixed_pair_corners
+#print axioms FiveColour.Physical.fixed_pair_core
+#print axioms FiveColour.Physical.fixed_pair_extra
+#print axioms FiveColour.Physical.reserve_fixed_pair
+#print axioms FiveColour.Physical.common_pair_geometry
+#print axioms FiveColour.Physical.at_most_two_rare
+#print axioms FiveColour.Physical.sharp_frame_of_threshold
+#print axioms FiveColour.Physical.frame_threshold_all_of_threshold
+#print axioms FiveColour.FrameHall.match_of_one_deficit
