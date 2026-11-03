@@ -12,3 +12,4 @@ public import FiveColour.RootReduction
 public import FiveColour.ProjectedBridge
 public import FiveColour.FrameResults
 public import FiveColour.MixedObstructions
+public import FiveColour.BoxThresholds

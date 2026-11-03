@@ -23,11 +23,15 @@ settles the five-colour corner value listed as unknown by Berkove,
 Eickemeyer and Schulman (2018). An elementary Hall argument then shows that
 any $n^3$ such cubes can all form a complete $n\times n\times n$ cube for
 $n\ge3$, and that $12n-16$ cubes suffice for its frame for every $n\ge3$.
-With at most $k$ source varieties, the sharp corner threshold is $8$ for
+For an $a\times b\times c$ box with $a,b,c\ge2$, the frame threshold is
+$\max\{15,4(a+b+c)-16,2(a+b+c)+1\}$, and the complete-box threshold is
+$\max\{abc,15,2(a+b+c)+1\}$. A three-variety obstruction gives the new
+lower bound; the upper bounds use Hall's theorem, changing the target
+when a failed matching forces many identical sources. With at most $k$ source varieties, the sharp corner threshold is $8$ for
 $k=1$, $13$ for $k=2$, and $15$ for $k\ge3$. The corner lower bound is
 elementary; the upper bound uses 279 finite interval certificates. Lean
 verifies these certificates, their connection to physical arrangements,
-the sharp frame and complete-cube thresholds, and the bounded-variety thresholds.
+the sharp cuboid frame and complete-box thresholds, and the bounded-variety thresholds.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -76,8 +80,21 @@ certificates. The key auxiliary lemma treats eleven cubes sharing a missing
 bichromatic edge type. Section~\ref{sec:support} determines the thresholds
 with a bounded number of source varieties, showing in particular that a
 fourteen-cube obstruction needs at least three varieties.
-All these results are formalised in Lean; Section~\ref{sec:formal}
+The cube, cuboid and bounded-variety results are formalised in Lean; Section~\ref{sec:formal}
 describes the proof and its computational components.
+Section~\ref{sec:boxes} determines all rectangular-box thresholds:
+\[
+ \begin{aligned}
+ F_5(a,b,c)&=\max\{15,4(a+b+c)-16,2(a+b+c)+1\},\\
+ G_5(a,b,c)&=\max\{abc,15,2(a+b+c)+1\}.
+ \end{aligned}
+\]
+The frame threshold depends only on the sum of the side lengths.
+Both sixteen-position shapes, $2\times2\times4$ and $2\times3\times3$,
+need seventeen available sources. For sums at least nine, the frame's
+own position count suffices. The only complete boxes needing spare
+sources are $2\times2\times2$, $2\times2\times3$, and $2\times2\times4$.
+These extensions require no further interval certificates.
 The accompanying review archive contains the certificates, programs,
 geometric audits and Lean sources.\footnote{Intended repository:
 \url{https://github.com/jasondavies/five-colour-cubes}.
@@ -753,6 +770,8 @@ cubes can fill these positions.
 Thus any twenty cubes form a $3$-frame, and any 27 cubes form a complete
 $3\times3\times3$ cube, without spares in either case.
 
+\input{boxes}
+
 \section{Collections with few varieties}\label{sec:support}
 Let $M(k)$ be the least number of cubes guaranteeing a corner solution when
 the collection contains at most $k$ varieties.
@@ -913,8 +932,32 @@ and \path{FiveColour/MixedObstructions.lean}.
 \path{frame_threshold_all}, \path{full_cube},
 \path{complete_cube_threshold} and \path{support_threshold}.
 
-The dependency audits cover 114 declarations listed in \path{Audit.lean},
-nine extension statements listed in \path{ExtensionsAudit.lean}, and the
+The full cuboid classification is formalised in
+\path{FiveColour/BoxThresholds.lean}. In namespace
+\path{FiveColour.Physical}, \path{box_frame_threshold_iff} and
+\path{box_threshold_iff} give necessary and sufficient pool sizes for
+arbitrary side lengths at least two, assuming \path{Threshold15}.
+\path{Solution.lean} applies the completed corner theorem to export
+\path{FiveColour.Puzzle.box_frame_threshold} and
+\path{FiveColour.Puzzle.complete_box_threshold}.
+
+The rectangular model and completion are in
+\path{FiveColour/BoxModel.lean}; compatibility is connected to proper
+rotations, and axis assignments are realised by proper rotations.
+\path{FiveColour/EightPlusThree.lean} proves the physical prescribed-family
+lemma. Its proof uses a failed Hall set to obtain the small cover directly,
+as in Lemma~\ref{lem:eight-common-missing}; signed projection and small matching
+patterns are checked in the kernel. The weighted bounds and upper deductions
+are in \path{FiveColour/WideFrames.lean}, \path{FiveColour/RodFrames.lean}
+and \path{FiveColour/StripFrames.lean}. The thin-box proofs formalise both
+concentration and switching targets, including the equality cases of the
+affine geometric bounds. \path{FiveColour/BoxLowerBound.lean} proves the
+uniform three-variety obstruction for every shape and orientation.
+A separate C++ audit reconstructs the geometry and checks these profiles.
+No new interval certificates are used.
+
+The dependency audits cover 133 declarations listed in \path{Audit.lean},
+fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
 and audits with:
@@ -934,7 +977,7 @@ completed threshold theorem. A full external comparator pass remains
 unconfirmed; it is separate from the completed Lean proof.
 
 \section{Remaining questions}
-The sharp frame and complete-cube thresholds leave the structure of
+The sharp frame and complete-box thresholds leave the structure of
 extremal corner obstructions to be determined. Can all fourteen-cube
 obstructions be classified? The support bound and the family in
 Section~\ref{sec:support} give initial constraints and examples.

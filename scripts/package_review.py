@@ -93,7 +93,13 @@ Unconditional physical threshold and sharpness (after generating replay):
 Physical lower-bound theorem:
   FiveColour.Physical.lower_bound
   lake build FiveColour.LowerBound
-Larger-cube and support conclusions (after replay):
+Cuboid classification (conditional on the corner threshold):
+  FiveColour.Physical.box_frame_threshold_iff
+  FiveColour.Physical.box_threshold_iff
+  lake build FiveColour.BoxThresholds
+Unconditional cuboid, larger-cube and support conclusions (after replay):
+  FiveColour.Puzzle.box_frame_threshold
+  FiveColour.Puzzle.complete_box_threshold
   FiveColour.Puzzle.frame_bound
   FiveColour.Puzzle.frame_threshold
   FiveColour.Puzzle.full_cube

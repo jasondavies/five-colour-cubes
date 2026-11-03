@@ -1,5 +1,6 @@
 module
 public import FiveColour.ComparatorBridge
+public import FiveColour.BoxThresholds
 public import FiveColour.FrameResults
 public import FiveColour.SmallSupport
 public import FiveColour.ProjectedChunks.Threshold
@@ -67,5 +68,27 @@ theorem complete_cube_threshold (n : ℕ) (hn : 2 ≤ n) :
 theorem support_threshold (k : ℕ) (hk : 1 ≤ k) :
     IsLeast {v | Physical.SupportGuarantee k v} (if k = 1 then 8 else if k = 2 then 13 else 15) :=
   Physical.support_threshold_of_threshold Packed.ProjectedChunks.threshold15 k hk
+
+/-- Necessary and sufficient pool sizes for every cuboid frame. -/
+theorem box_frame_threshold (a b c n : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) (hc : 2 ≤ c) :
+    Physical.BoxFrameThreshold a b c n ↔ Physical.boxFrameNumber a b c ≤ n :=
+  Physical.box_frame_threshold_iff Packed.ProjectedChunks.threshold15 a b c n ha hb hc
+
+/-- Necessary and sufficient pool sizes for every complete cuboid. -/
+theorem complete_box_threshold (a b c n : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) (hc : 2 ≤ c) :
+    Physical.BoxThreshold a b c n ↔ Physical.boxNumber a b c ≤ n :=
+  Physical.box_threshold_iff Packed.ProjectedChunks.threshold15 a b c n ha hb hc
+
+/-- The first thin box needs fifteen available sources. -/
+theorem box223 : Physical.BoxFrameThreshold 2 2 3 15 :=
+  (box_frame_threshold 2 2 3 15 (by decide) (by decide) (by decide)).2 (by decide)
+
+/-- Sixteen positions need seventeen available sources. -/
+theorem box224 : Physical.BoxFrameThreshold 2 2 4 17 :=
+  (box_frame_threshold 2 2 4 17 (by decide) (by decide) (by decide)).2 (by decide)
+
+/-- The other sixteen-position frame also needs seventeen sources. -/
+theorem box233 : Physical.BoxFrameThreshold 2 3 3 17 :=
+  (box_frame_threshold 2 3 3 17 (by decide) (by decide) (by decide)).2 (by decide)
 
 end FiveColour.Puzzle

@@ -11,26 +11,33 @@ is a 2×2×2 cube with monochromatic exterior faces using all five colours.
 Collections may repeat varieties; proper rotations are allowed and interior
 faces are unrestricted.
 
-In particular, **any 27 five-colour cubes can all form a complete 3×3×3
-cube with monochromatic faces using all five colours. No spare cubes are
-needed.** The same holds for n³ cubes and every n ≥ 3.
+**Every cuboid threshold is now determined**, for side lengths a, b, c ≥ 2:
 
-Further conclusions are proved in the paper and Lean:
+- **F₅(a,b,c) = max(15, 4(a+b+c) − 16, 2(a+b+c) + 1)** for frames.
+- **G₅(a,b,c) = max(abc, 15, 2(a+b+c) + 1)** for complete boxes.
 
-- The exact guaranteed pool size for a complete n×n×n cube is
-  **G₅(n) = max(n³, 15)** for n ≥ 2.
-- The exact frame threshold is **F₅(n) = max(15, 12n − 16)** for every n ≥ 2.
-  In particular, **any twenty cubes form a 3-frame**, using every supplied cube.
-  The eleven-cube fixed-missing-pair lemma and a rare-pair Hall argument prove
-  this from the corner threshold, without new interval certificates.
-- With at most k source varieties, the exact corner threshold is **8 for k=1,
-  13 for k=2, and 15 for k≥3**. Thus three varieties are necessary for a
-  fourteen-cube obstruction. A common Hall shortage also gives a family of
-  21 fourteen-cube obstructions.
+The frame threshold depends only on the sum of the side lengths. It is 15
+for sums 6 and 7, 17 for sum 8, and the frame's own position count for sums
+at least 9. In particular, both sixteen-position frames, 2×2×4 and 2×3×3,
+need one spare source. A single three-variety obstruction proves this extra
+lower bound for both shapes.
 
-These extensions require no further large certificate search; see [frame results](FiveColour/FrameResults.lean),
-[small support](FiveColour/SmallSupport.lean) and
-[the obstruction family](FiveColour/MixedObstructions.lean).
+Every complete box can use exactly its volume of sources except 2×2×2,
+2×2×3 and 2×2×4, whose thresholds are 15, 15 and 17. Thus **any twenty cubes
+form a 3-frame, and any 27 cubes form a complete 3×3×3 cube**.
+
+These results are proved in the paper and Lean. The extensions use Hall's
+theorem, reservations and concentration of repeated varieties; no new
+interval certificates are needed. The [aggregate classification](FiveColour/BoxThresholds.lean)
+proves necessary and sufficient pool sizes in the physical model, including
+all orientations and arbitrary repetitions. [Solution.lean](Solution.lean)
+exports the unconditional `FiveColour.Puzzle.box_frame_threshold` and
+`complete_box_threshold` by applying the completed corner theorem.
+
+With at most k source varieties, the exact corner threshold is **8 for k=1,
+13 for k=2, and 15 for k≥3**. Three varieties are therefore necessary for a
+fourteen-cube obstruction. See [small support](FiveColour/SmallSupport.lean)
+and [the 21-member obstruction family](FiveColour/MixedObstructions.lean).
 
 The lower example is four copies of A, five of B and five of C, with faces
 listed as `+x,-x,+y,-y,+z,-z`:
@@ -104,7 +111,7 @@ geometry and case coverage, replays the original 357 and projected 279 C++ certi
 negative controls, checks regeneration of the catalogue witnesses and lower-bound
 cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
 witnesses, root-reduction and projection manifests, builds the default Lean target
-and audits 114 theorems. The extension checks regenerate the small pair and
+and audits 133 theorems. The extension checks regenerate the small pair and
 obstruction witnesses, and separately verify their geometry in C++. The rare-pair
 audit checks all 5,625 source–target pairs using direct proper rotations.
 The separate fixed-pair audit regenerates all ten nine-variety families,
@@ -112,6 +119,12 @@ checks all 75,582 eleven-copy multiplicity vectors in one family, and checks
 all 1,800 arbitrary-cube extensions of its 24 core-matching failures.
 The Lean proof instead uses the ring compatibility pattern and arithmetic
 on multiplicities; it does not enumerate these collections.
+The [cuboid audit](src/five_colour_box_geometry.cpp) reconstructs physical
+rotations and checks signed corner projections, directional bounds, their
+affine equality cases, and the uniform three-variety obstruction. Generated
+projection tables are also checked for reproducibility. Lean checks these
+finite geometric facts in the kernel and proves the deductions for arbitrary
+side lengths and multiplicities.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
 checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
 certificates. They do not claim full archive replay.
@@ -163,10 +176,11 @@ all replay roots, families and totals against the verified headers, builds
 `FiveColour.ProjectedChunks.Threshold`, and audits both physical threshold
 theorems. Success is reported only after those final checks pass.
 
-`make check-extensions` builds `Solution.lean` and audits the nine unconditional
+`make check-extensions` builds `Solution.lean` and audits the fourteen unconditional
 extension statements in [ExtensionsAudit.lean](ExtensionsAudit.lean):
 `FiveColour.Puzzle.frame_bound`, `frame_threshold`, `full_cube`, `full_cube27`, `full_cube64`,
-`complete_cube_threshold`, `support_threshold`, `frame20` and `frame_threshold_all`. The default library proves
+`complete_cube_threshold`, `support_threshold`, `frame20`, `frame_threshold_all`,
+`box_frame_threshold`, `complete_box_threshold`, `box223`, `box224` and `box233`. The default library proves
 the deductions from `Physical.Threshold15`; these final wrappers apply the
 completed certificate proof. The two-variety and obstruction-family proofs
 are unconditional in the default build.

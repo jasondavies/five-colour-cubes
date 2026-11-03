@@ -244,3 +244,49 @@ support threshold, are in `Solution.lean`. After projected replay, run
 conditional deductions and unconditional small-support lemmas;
 `ExtensionsAudit.lean` audits the final wrappers. The geometric challenge and
 its five comparator targets are unchanged.
+
+## Cuboid classification
+
+`BoxThresholds.lean` proves the complete classification for a, b, c ≥ 2:
+
+- `box_frame_threshold_iff`: `BoxFrameThreshold a b c n` holds exactly when
+  `max 15 (max (4*(a+b+c)-16) (2*(a+b+c)+1)) ≤ n`.
+- `box_threshold_iff`: `BoxThreshold a b c n` holds exactly when
+  `max (a*b*c) (max 15 (2*(a+b+c)+1)) ≤ n`.
+
+These deductions take `Physical.Threshold15` as input. The unconditional
+wrappers `FiveColour.Puzzle.box_frame_threshold` and `complete_box_threshold`
+in `Solution.lean` apply the fully replayed corner theorem. Run
+`make check-extensions` after reproducing that replay; no new interval
+certificates or generated replay modules are needed for the cuboid results.
+
+The proof is organised as follows:
+
+- `BoxModel`, `BoxCounts`, `BoxAxes` and `BoxTransport` define corner, edge,
+  face-interior and interior slots, prove their counts and physical rotation
+  semantics, and handle permutations of side lengths and frame completion.
+- `HallCover`, `MatchingCompletion`, `HalfMasks`, `ProjectionGeometry`,
+  `ProjectionPool`, `ProjectionExtension`, `RingEight` and `EightPlusThree`
+  prove that eight sources in a fixed missing-pair family plus any three
+  sources have a corner target in that family. A failed Hall set supplies
+  the small cover directly; no separate use of Kőnig's theorem is needed.
+- `EightPairReserve` reserves monochromatic-edge sources in the whole
+  collection, then retains enough of the prescribed missing-pair family.
+  `BoxDirectional`, `BoxGeometry`, `RectCore`, `RectSmallHall` and
+  `FamilyAlignment` give the weighted bounds used by `WideFrames`.
+- `ThinChoice`, `ThinGeometry` and `ThinFrames` handle 2×2×3 and 2×3×3.
+  `RodProfiles`, `RodBounds` and `RodFrames` handle 2×2×c; `StripProfiles`,
+  `StripBounds` and `StripFrames` handle 2×3×c. `ConcentrationHall` turns a
+  deficient Hall set into enough identical opposite-repeat sources to
+  switch targets. The profile checks cover affine bounds and equality cases,
+  so the resulting theorems apply to unbounded side lengths.
+- `BoxLowerGeometry` and `BoxLowerBound` prove the uniform obstruction
+  A + (S+5)B + (S+6)C for S=a+b+c−6. Combined with the corner obstruction
+  and frame cardinality, it gives all three lower bounds.
+
+`src/five_colour_box_geometry.cpp` separately reconstructs rotations and
+checks the geometric claims. `scripts/generate_five_colour_corner_projections.py --check` verifies the generated signed projection tables. These checks
+supplement the kernel proofs; no enumeration of source collections is used
+in the cuboid deductions. `Audit.lean` lists the main conditional results
+and physical bridges; `ExtensionsAudit.lean` includes the unconditional
+classification and the three small thin-box examples.

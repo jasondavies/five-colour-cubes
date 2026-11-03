@@ -12,7 +12,9 @@ project:
     the exact frame function max(15,12n-16) for n >= 2, including twenty cubes
     for a 3-frame, and the exact complete-cube threshold
     max(n^3,15) for n >= 2. Exact corner thresholds by support
-    size and a 21-member obstruction family are also formalised.
+    size and a 21-member obstruction family are also formalised. For all
+    a,b,c >= 2, the exact cuboid frame and complete-box thresholds are
+    max(15,4(a+b+c)-16,2(a+b+c)+1) and max(abc,15,2(a+b+c)+1).
   authors: ["Jason Davies"]
   responsible_maintainers: ["Jason Davies"]
   license: "Apache-2.0"
@@ -71,7 +73,14 @@ status:
     small-support witnesses; no new interval certificates are needed.
     Solution.lean applies the unconditional threshold to prove frame_bound,
     frame_threshold, frame_threshold_all, frame20, full_cube, full_cube27, full_cube64, complete_cube_threshold and
-    support_threshold, audited by ExtensionsAudit.lean.
+    support_threshold, audited by ExtensionsAudit.lean. BoxThresholds.lean
+    proves necessary and sufficient pool sizes for every cuboid. The physical
+    eight-plus-three lemma, weighted directional bounds, concentration and
+    retargeting arguments, uniform three-variety obstruction and completion
+    are kernel-checked. Solution.lean exports box_frame_threshold and
+    complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
+    133 declarations; ExtensionsAudit.lean covers fourteen unconditional
+    extension statements.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended
     without a recorded outcome; a full pass remains unconfirmed.
@@ -120,7 +129,12 @@ fidelity:
     multiplicities. It does not enumerate eleven-copy collections; the separate
     C++ enumeration is a supplementary audit.
     It checks support-pair witnesses directly rather than reducing them to
-    five colour-permutation orbits.
+    five colour-permutation orbits. For cuboids, the eight-plus-three proof
+    obtains a small cover directly from a failed Hall inequality. Finite
+    projection and directional profile checks replace geometric case tables;
+    arbitrary multiplicities and side lengths are handled by matching and
+    arithmetic lemmas. The uniform obstruction uses kernel-checked private
+    corner and directional edge counts. No new interval certificates are used.
     No human peer review or publication-priority
     claim is made.
 review:
