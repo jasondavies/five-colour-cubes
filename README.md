@@ -118,8 +118,8 @@ The research and manuscript were developed by GPT-6-Astra (OpenAI), used through
 Codex, under Jason Davies's direction. Author review and submission approval of
 the manuscript are pending. Automated checks are not independent human peer
 review. The limited literature search does not establish priority; the October
-2026 Rosenfeld article remains unread. This repository has not been published
-or submitted to Palomar.
+2026 Rosenfeld article remains unread. The repository is public; no tagged
+release has been made and nothing has been submitted to Palomar.
 
 ## Build and check
 
@@ -339,8 +339,8 @@ unconfirmed. No Palomar submission has been made.
 - `paper/`: manuscript source and PDF.
 
 See [data provenance and regeneration](data/README.md). No transient verification
-logs are committed. The GitHub remote is the intended location
+logs are committed. The repository is public at
 `https://github.com/jasondavies/five-colour-cubes`.
 Before submission, review the manuscript, finish the full comparator check
-and finalise Palomar metadata. The physical Lean
-threshold proof is complete; public release and Palomar submission remain pending.
+and finalise Palomar metadata. The physical Lean threshold proof is complete;
+a tagged release and Palomar submission remain pending.
