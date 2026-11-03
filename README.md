@@ -1,4 +1,4 @@
-# Sharp thresholds for five-colour cubes
+# Sharp thresholds for five-colour cube assemblies
 
 - [Paper (PDF)](paper/five-colour-cubes.pdf) and [LaTeX](paper/five-colour-cubes.tex).
 - [Physical target statements](FiveColour/Problem.lean), [fourteen-cube lower bound](FiveColour/LowerBound.lean), and [formalisation guide](FiveColour/README.md).
@@ -33,6 +33,12 @@ proves necessary and sufficient pool sizes in the physical model, including
 all orientations and arbitrary repetitions. [Solution.lean](Solution.lean)
 exports the unconditional `FiveColour.Puzzle.box_frame_threshold` and
 `complete_box_threshold` by applying the completed corner theorem.
+
+The paper also gives a constructive algorithm: at most 450 fixed-size flow
+problems find a frame, with 225 configurations when two side lengths agree
+and 75 for a cube. Explicit construction is linear in the input and output
+sizes in the word-RAM model. This complexity result is a manuscript proof,
+not part of the Lean formalisation.
 
 With at most k source varieties, the exact corner threshold is **8 for k=1,
 13 for k=2, and 15 for k≥3**. Three varieties are therefore necessary for a

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 project:
-  name: "Sharp thresholds for five-colour cubes"
+  name: "Sharp thresholds for five-colour cube assemblies"
   description: >-
     A computer-assisted proof, fully formalised in Lean, that every collection
     of fifteen five-colour cubes contains eight forming a five-colour corner
@@ -24,7 +24,7 @@ classification:
   arxiv: ["math.CO", "cs.LO"]
   msc2020: ["05C70", "68V15", "00A08"]
 sources:
-  - title: "Sharp thresholds for five-colour cubes"
+  - title: "Sharp thresholds for five-colour cube assemblies"
     authors: ["Jason Davies"]
     type: original-proof
     relationship: other
@@ -135,6 +135,8 @@ fidelity:
     arbitrary multiplicities and side lengths are handled by matching and
     arithmetic lemmas. The uniform obstruction uses kernel-checked private
     corner and directional edge counts. No new interval certificates are used.
+    The compressed flow construction and its complexity bound are proved
+    in the manuscript, not formalised in Lean.
     No human peer review or publication-priority
     claim is made.
 review:

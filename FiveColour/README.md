@@ -281,7 +281,7 @@ The proof is organised as follows:
   switch targets. The profile checks cover affine bounds and equality cases,
   so the resulting theorems apply to unbounded side lengths.
 - `BoxLowerGeometry` and `BoxLowerBound` prove the uniform obstruction
-  A + (S+5)B + (S+6)C for S=a+b+c−6. Combined with the corner obstruction
+  U + (S+5)V + (S+6)W for S=a+b+c−6. Combined with the corner obstruction
   and frame cardinality, it gives all three lower bounds.
 
 `src/five_colour_box_geometry.cpp` separately reconstructs rotations and

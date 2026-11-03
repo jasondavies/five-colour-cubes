@@ -1,50 +1,8 @@
 \section{Rectangular boxes}\label{sec:boxes}
-Every source is a unit cube whose faces use all five colours of one fixed
-palette. Cubes may be rotated properly; reflections are not assembly moves.
-Only exterior faces are constrained. All target boxes have monochromatic
-exterior faces using all five colours, with no condition on internal faces.
-
-For integers $a,b,c\ge2$, let $F_5(a,b,c)$ be the least number of source
-cubes guaranteeing a subset forming the frame of an $a\times b\times c$
-box. A frame consists of the eight corners and the noncorner positions
-on its twelve edges, so its cardinality is
-\[
- L(a,b,c)=8+4\bigl((a-2)+(b-2)+(c-2)\bigr)
-         =4(a+b+c)-16.
-\]
-Let $G_5(a,b,c)$ be the corresponding threshold for a complete box.
-The only input beyond the matching and geometric lemmas is
-Theorem~\ref{thm:main}, the sharp corner threshold $N_5=15$.
-
-\begin{theorem}[All cuboid thresholds]\label{thm:all-boxes}
-For every integer $a,b,c\ge2$,
-\[
- \boxed{F_5(a,b,c)=\max\{15,\;4(a+b+c)-16,\;2(a+b+c)+1\}.}
-\]
-Equivalently, writing $s=a+b+c$,
-\[
- F_5(a,b,c)=
- \begin{cases}
- 15,&s=6,7,\\
- 17,&s=8,\\
- 4s-16,&s\ge9.
- \end{cases}
-\]
-For complete boxes,
-\[
- \boxed{G_5(a,b,c)=\max\{abc,\;15,\;2(a+b+c)+1\}.}
-\]
-Up to permuting the side lengths, the only boxes for which arbitrary
-$abc$ sources need not suffice are $2\times2\times2$,
-$2\times2\times3$, and $2\times2\times4$, whose thresholds are
-$15,15,17$, respectively.
-\end{theorem}
-
-The proof is given below. The lower bound beyond cardinality comes from
-one three-variety obstruction. The upper bounds use a prescribed-family
-corner lemma and Hall's theorem. For the thin families, a failing Hall
-inequality forces many copies of one opposite-repeat variety; that
-variety then supplies a different, solvable target.
+We prove Theorem~\ref{thm:all-boxes}. A prescribed-family corner lemma
+and a uniform lower obstruction come first, followed by the thin-box
+upper bounds and the remaining shapes. The only certified input is
+Theorem~\ref{thm:main}; the prescribed-family lemma is independent of it.
 
 \subsection{Signed corner projections}
 Retain the family $\mathcal H_{ab}$ from Lemma~\ref{lem:fixed-missing-pair}.
@@ -256,16 +214,16 @@ positive half. The positive copies used here are disjoint from the surviving poo
 Let $a,b,c\ge2$ and put $S=a+b+c-6$. In face order
 $(+x,-x,+y,-y,+z,-z)$, define
 \[
- A=(0,1,0,2,3,4),\qquad
- B=(0,1,1,2,3,4),\qquad
- C=(0,3,1,4,2,3).
+ U=(0,1,0,2,3,4),\qquad
+ V=(0,1,1,2,3,4),\qquad
+ W=(0,3,1,4,2,3).
 \]
 The collection
 \[
- A+(S+5)B+(S+6)C
+ U+(S+5)V+(S+6)W
 \]
 of $2S+12$ cubes has no $a\times b\times c$ frame using all five
-colours. In particular, $A+7B+8C$ fails for both a $2\times3\times3$
+colours. In particular, $U+7V+8W$ fails for both a $2\times3\times3$
 frame and a $2\times2\times4$ box.
 \end{lemma}
 
@@ -273,9 +231,9 @@ frame and a $2\times2\times4$ box.
 The corner types are
 \[
 \begin{array}{c|l}
- A&003,004,013,024,032,041,123,142\\
- B&113,114,013,024,032,041,123,142\\
- C&133,334,012,024,031,043,132,234.
+ U&003,004,013,024,032,041,123,142\\
+ V&113,114,013,024,032,041,123,142\\
+ W&133,334,012,024,031,043,132,234.
 \end{array}
 \]
 Triples denote cyclic classes. The only two-colour types in their union
@@ -283,28 +241,28 @@ are $003,004$, $113,114$, and $133,334$. An adjacent-repeat target must
 therefore repeat colour $0$, $1$, or $3$. Its two repeated-colour corners
 force the colours on the opposite faces at the ends of its monochromatic
 edge to be, respectively, $\{3,4\}$, $\{3,4\}$, or $\{1,4\}$.
-The two orders of the remaining colours give $A,B,C$, respectively, and
-their mirrors. The mirrors of $A$ and $B$ require $023$, which is absent
-from the union; the mirror of $C$ requires $021$, also absent.
+The two orders of the remaining colours give $U,V,W$, respectively, and
+their mirrors. The mirrors of $U$ and $V$ require $023$, which is absent
+from the union; the mirror of $W$ requires $021$, also absent.
 
 An opposite-repeat target requires both cyclic orientations of four
 distinct unordered tricoloured triples. The union above contains both
 orientations only for $013$ and $123$. Thus no opposite-repeat target
-is possible. The only corner-supported targets are $A,B,C$.
+is possible. The only corner-supported targets are $U,V,W$.
 
-Target $A$ needs two copies possessing a $00$ corner, but the collection
+Target $U$ needs two copies possessing a $00$ corner, but the collection
 has only one such copy.
 
-For target $B$, seven of its corner types are absent from $C$; the only
+For target $V$, seven of its corner types are absent from $W$; the only
 shared type is $024$. In addition, exactly one geometric edge in each
-coordinate direction has a type absent from $C$: these are $14,14,11$.
+coordinate direction has a type absent from $W$: these are $14,14,11$.
 Consequently, in any orientation of an $a\times b\times c$ frame,
-$7+S$ positions require an $A$ or $B$ source. There are only $S+6$
+$7+S$ positions require a $U$ or $V$ source. There are only $S+6$
 such copies.
 
-For target $C$, seven corner types are absent from both $A$ and $B$.
+For target $W$, seven corner types are absent from both $U$ and $V$.
 Again, one geometric edge in each direction has a private type, now
-$34,33,34$. Hence $7+S$ positions require a $C$ source, whereas only
+$34,33,34$. Hence $7+S$ positions require a $W$ source, whereas only
 $S+6$ are available.
 
 Every possible target therefore fails.
@@ -467,7 +425,7 @@ The chosen target has a corner matching, and every edge requirement has
 at least nine neighbours. A Hall set of at most nine positions is therefore
 covered by the corner matching or by one of its edge requirements. A larger
 set neighbours every source. This proves $F_5(2,3,3)\le17$; the
-collection $A+7B+8C$ in Lemma~\ref{lem:thin-three-variety-obstruction}
+collection $U+7V+8W$ in Lemma~\ref{lem:thin-three-variety-obstruction}
 gives equality.
 
 Now let $c\ge4$, put $M=c-2\ge2$, and set
