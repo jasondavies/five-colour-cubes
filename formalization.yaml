@@ -60,7 +60,8 @@ status:
     The default target builds the infrastructure and selected cases; full
     generated replay is opt-in and reproducible from the committed archive.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
-    and builds successfully. Its full external comparator check is running.
+    and builds successfully. The latest full external comparator run ended
+    without a recorded outcome; a full pass remains unconfirmed.
     No Palomar submission exists. The five intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0

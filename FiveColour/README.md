@@ -185,5 +185,6 @@ is its equivalent enumerated-rotation form.
 The root `Challenge.lean` imports only Mathlib and has five intentional theorem
 holes. It is excluded from the proof library. `Solution.lean` supplies those
 statements from the completed projected replay and builds successfully in Lean.
-The full external comparator check is running. `make check-comparator-lower` compares only the exposed-face
-rule and explicit obstruction; `make comparator` checks the full interface.
+A successful full external comparator check has not yet been confirmed.
+`make check-comparator-lower` compares only the exposed-face rule and explicit
+obstruction; `make comparator` checks the full interface.

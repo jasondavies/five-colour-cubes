@@ -73,7 +73,15 @@ are included in the accompanying review archive.\footnote{Intended repository:
 Public release is pending; the review archive includes source checksums,
 the base Git revision and bundled pinned project dependencies.}
 
-A limited literature search has found no later value for this entry.
+The companion paper~\cite{FourToThree} considers four-colour sources and
+targets using exactly three colours. It gives the sharp frame threshold
+$16n-3$ for every side length $n\ge2$, with a classification of the largest
+failing collections. Here both sources and targets use five colours, and the
+result concerns the corner case $n=2$. The developments share the
+palette-independent geometry in \texttt{ColourCubes}~\cite{ColourCubes};
+neither threshold theorem is used to prove the other.
+
+A limited literature search has found no later value for the five-colour entry.
 This is not a comprehensive priority claim. In particular, Rosenfeld's
 October 2026 article~\cite{Rosenfeld} has not been examined in full.
 
@@ -278,6 +286,20 @@ orbit. The resulting counts are
 The cases need not be disjoint; completeness of the cover is what is required.
 \end{proof}
 
+Each root specifies an anchor $A$ of multiplicity $m$, coordinate bounds
+$\ell,u$, a set $S$ of non-anchor varieties and a budget $b$.
+The bounds fix $\ell_A=u_A=m$, with $\ell_i=0$ for $i\ne A$.
+A vector $x\in\mathbb Z_{\ge0}^{75}$ is \emph{admissible} for this root if
+\begin{equation}\label{eq:admissible}
+\begin{gathered}
+ \ell\le x\le u,\qquad \sum_{i=1}^{75}x_i=15,\qquad x(S)\le b,\\
+ \text{for every target }T\text{, there is }\varnothing\ne D\subseteq\{1,\ldots,8\}
+ \text{ with }x(N_T(D))\le |D|-1.
+\end{gathered}
+\end{equation}
+Thus admissibility includes failure of every target, in addition to the
+anchor constraints.
+
 The cover can be reduced without further search. If $S'\subseteq S$ and
 $b'\ge b$, then $x(S)\le b$ implies $x(S')\le b'$ for nonnegative $x$.
 Together with coordinatewise inclusion of the root boxes, this identifies
@@ -320,9 +342,9 @@ the projected manifest. The projected totals range from 9 to 15. All 101 roots
 whose original budget was zero retain their original certificates.
 
 \section{Interval certificates}\label{sec:certificates}
-Each case asks whether a vector of nonnegative integers $x$ can satisfy its
-root bounds, prescribed total $G$, root budget and at least one Hall cut for each of
-the 75 targets. We certify that no such vector exists.
+For a projected problem, admissibility is defined by~\eqref{eq:admissible}
+with the tightened upper bounds, total $G$ and budget $s$.
+We certify that no admissible vector exists.
 
 Write a box as $\ell\le x\le u$. For a cut $x(S)\le r$, two necessary
 conditions for feasibility in the box are
@@ -373,21 +395,11 @@ not use the search program's matching implementation.
 
 \begin{proposition}[Certificate replay]\label{prop:replay}
 The separate checker accepts an exclusion certificate for each of the
-357 original root cases and each of the 279 projected problems.
+279 projected problems.
 \end{proposition}
-The two fixed archives have the following reproducible sizes.
-\begin{center}
-\begin{tabular}{lrr}
-\toprule
- & Original & Projected\\
-\midrule
-Root cases & 357 & 279\\
-Certificate instructions & 11,599,651 & 499,829\\
-Uncompressed certificate bytes & 26,203,974 & 1,134,573\\
-Compressed archive bytes & 3,516,042 & 313,094\\
-\bottomrule
-\end{tabular}
-\end{center}
+The projected archive contains 499,829 instructions in 313,094 compressed
+bytes, reducing the instruction count by 95.69\% from the original archive.
+The repository documents both archives and the earlier search computations.
 Every archived header is checked against its exported root case. Eighty
 negative controls are rejected, including all 77 possible direct closing
 claims against a separate $G=11$ fixture, not a $G=15$ root problem.
@@ -395,10 +407,6 @@ The witness satisfies its total, fixed anchor count, coordinate bounds and
 zero root budget, and fails all 75 targets by physical matching. The fixture
 is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
 checks are in \path{scripts/check_five_colour_distinct.py}.
-An earlier matching-based exhaustive search also excluded all 357 cases,
-with 772,590,466 prefix nodes; its rejecting matchings were checked as explicit
-assignments of eight distinct copies. The projected archive reduces the interval instruction count by 95.69\%.
-Both archives use the same checker and inference rules.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Lemma~\ref{lem:lower} gives $N_5\ge15$. A solution-free collection of fifteen
@@ -429,9 +437,8 @@ neighbourhood masks by the Lean kernel.
 
 Chunk composition requires exact agreement of both boundary vectors and a
 proof excluding each referenced box; the exporter is untrusted. A limit of
-128 instructions gives 4,786 chunks for the projected archive, compared with
-109,449 for the original archive. All 279 projected certificates have passed
-kernel replay, together with their final assembly into the physical threshold
+128 instructions gives 4,786 chunks for the projected archive. All 279
+projected certificates have passed kernel replay, together with their final assembly into the physical threshold
 and sharpness theorems. The exact case mapping and certificate hashes are in
 \path{data/q5-projected-root-manifest.json}.
 The 78 declarations listed in \path{Audit.lean} and the final replay theorems
@@ -476,8 +483,8 @@ The review archive supplies certificates, code and reproduction commands.
 A Mathlib-only comparator challenge states the puzzle geometrically.
 Model equivalence is proved by \path{FiveColour.Puzzle.hasSolution_iff}
 in \path{FiveColour/ComparatorBridge.lean}. The solution module applies the
-completed threshold theorem and builds in Lean; external comparator checking
-is in progress.
+completed threshold theorem and builds in Lean. A successful full external
+comparator check has not yet been confirmed.
 Mathematical questions left
 open here include classifying all fourteen-cube obstructions and determining
 the five-colour frame numbers for larger cubes.
@@ -502,6 +509,9 @@ Automated checks and AI review are not independent human peer review.
 \bibitem{Hall} P.~Hall, \emph{On Representatives of Subsets},
 Journal of the London Mathematical Society \textbf{s1-10}(1) (1935), 26--30.
 \href{https://doi.org/10.1112/jlms/s1-10.37.26}{doi:\nolinkurl{10.1112/jlms/s1-10.37.26}}.
+\bibitem{FourToThree} J.~Davies,
+\emph{Three-colour solutions from four-colour cubes}, manuscript (2026).
+\href{https://github.com/jasondavies/four-to-three-colour-cubes}{Accompanying repository}.
 \bibitem{ColourCubes} J.~Davies,
 \emph{Colour cubes core}, Lean library (2026).
 \href{https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0}{Pinned repository revision}.

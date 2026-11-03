@@ -8,7 +8,8 @@ with determinant +1; no rotation or variety catalogue is assumed. The eight
 positions have their usual binary coordinates, as exposed_face_rule states.
 Repeated copies are allowed, colours remain fixed, and interior faces are
 unrestricted. Each deliberate theorem hole is a comparator target; this file
-is never imported by the proof library. The full solution awaits archive replay.
+is never imported by the proof library. Solution.lean supplies the completed
+proof after the generated archive replay modules have been built.
 -/
 namespace ColourCubes
 

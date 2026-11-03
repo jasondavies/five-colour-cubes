@@ -133,6 +133,18 @@ The original 357-case route remains available with `make replay-data` and
 has a separate log directory and stop file. Stopping one route leaves the
 other route and all completed cached modules intact.
 
+## Full replay in CI
+
+The manually triggered [Full Lean replay](.github/workflows/full-replay.yml)
+workflow checks a selected revision from a fresh checkout. In GitHub Actions,
+select **Full Lean replay**, choose **Run workflow** and select the branch
+to verify. It runs the standard package checks, generates and checks all
+279 projected certificates, audits the final threshold theorems, and builds
+`Solution.lean`. It uses two workers and allows up to six hours.
+
+This workflow does not run the external comparator. The ordinary push and
+pull-request CI continues to run `make check` without full Lean replay.
+
 ## Fixed review archive
 
 ```sh
@@ -216,8 +228,9 @@ checkout without changing their sources or the portable manifest. The two-target
 it does not certify the upper bound.
 [Solution.lean](Solution.lean) connects the geometric statements to the generated
 full-replay theorem and builds successfully. It remains opt-in because its
-generated dependencies must first be reproduced. The full comparator check is running; no Palomar submission
-has been made.
+generated dependencies must first be reproduced. The latest full comparator run
+ended without a recorded success or failure result; a full pass remains
+unconfirmed. No Palomar submission has been made.
 
 ## Files and release status
 

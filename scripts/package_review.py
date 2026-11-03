@@ -56,7 +56,7 @@ def main():
     payload['REVIEW.json'] = (json.dumps(dict(base_git_revision=base, source_snapshot_sha256=source_id,
         identification='Exact source snapshot is identified by checksums; it may differ from the base Git revision.',
         source_files=hashes, project_dependencies=dependencies,
-        formal_status='Complete physical Lean proof; full external comparator check in progress.'), indent=2)+'\n').encode()
+        formal_status='Complete physical Lean proof; full external comparator pass unconfirmed.'), indent=2)+'\n').encode()
     payload['REVIEW.txt'] = b"""Five-colour cube threshold: fixed review snapshot
 
 REVIEW.json identifies the base Git revision, exact source snapshot and pinned

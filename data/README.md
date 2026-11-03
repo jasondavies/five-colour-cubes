@@ -44,6 +44,26 @@ The exact-search and interval-search records support reproducibility of the
 original computations. Current verification summaries are generated under
 ignored `build/checks/`, not stored as supposedly current validation logs.
 
+## Original and projected computations
+
+The projected archive is used by the completed Lean threshold proof. The
+original archive is retained as a separate check with the same interval rules.
+Both pass the C++ checker in `make check`.
+
+| Quantity | Original | Projected |
+| --- | ---: | ---: |
+| Root cases | 357 | 279 |
+| Certificate instructions | 11,599,651 | 499,829 |
+| Uncompressed certificate bytes | 26,203,974 | 1,134,573 |
+| Compressed archive bytes | 3,516,042 | 313,094 |
+| Lean chunks at the 128-instruction limit | 109,449 | 4,786 |
+
+An earlier matching-based exhaustive search excluded all 357 original cases,
+visiting 772,590,466 prefix nodes. Its rejecting matchings were checked as
+explicit assignments of eight distinct copies. The projected archive reduces
+the interval instruction count by 95.69%; reproducing the final proof does
+not require rerunning that search.
+
 ## Regenerate
 
 The finite geometry and case generation use Python's standard library:

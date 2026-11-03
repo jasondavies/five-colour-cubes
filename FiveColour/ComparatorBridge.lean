@@ -31,7 +31,7 @@ theorem hasSolution_of_subfamily {m n : Nat} (cubes : Fin n → Cube)
   obtain ⟨target, ht, copies, hfaces⟩ := h
   exact ⟨target, ht, copies.trans selection, hfaces⟩
 
-/-- All upper-bound transfers retain the unchecked threshold as a hypothesis. -/
+/-- Transfer a physical threshold proof to arbitrary larger geometric collections. -/
 theorem solution_of_threshold (h : Physical.Threshold15) {n : Nat}
     (cubes : Fin n → Cube) (hc : ∀ i, UsesAllColours (cubes i)) (hn : 15 ≤ n) :
     HasSolution cubes := by
