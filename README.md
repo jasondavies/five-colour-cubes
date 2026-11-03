@@ -161,7 +161,7 @@ audit their aggregate theorem and check corrupted-checkpoint controls.
 
 ## Shared geometry dependency
 
-The package pins [colour-cubes-core](https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0) for its physical model,
+The package pins release [v1.0.0 of colour-cubes-core](https://github.com/jasondavies/colour-cubes-core/tree/v1.0.0) for its physical model,
 proper rotations, corner matching and rotation transport. Each paper supplies
 its own target condition: here every target uses all five colours.
 The general frame-completion proof in `FiveColour/FullCube.lean` is adapted

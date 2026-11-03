@@ -13,14 +13,10 @@ proof after the generated archive replay modules have been built.
 -/
 namespace ColourCubes
 
-abbrev Face := Fin 6
-abbrev Slot := Fin 8
-def exposedFaces : Slot → Fin 3 → Fin 6 := ![![0, 2, 4], ![0, 2, 5], ![0, 3, 4], ![0, 3, 5], ![1, 2, 4], ![1, 2, 5], ![1, 3, 4], ![1, 3, 5]]
-
-theorem faceOne_bound : 1 < 6 := by decide
+def exposedFaces : Fin 8 → Fin 3 → Fin 6 := ![![0, 2, 4], ![0, 2, 5], ![0, 3, 4], ![0, 3, 5], ![1, 2, 4], ![1, 2, 5], ![1, 3, 4], ![1, 3, 5]]
 
 def opposite (f : Fin 6) : Fin 6 :=
-  if f.val % 2 = 0 then f + ⟨1, faceOne_bound⟩ else f - ⟨1, faceOne_bound⟩
+  if f.val % 2 = 0 then f + 1 else f - 1
 def fromAxes (a b c : Fin 6) : Fin 6 → Fin 6 :=
   ![a, opposite a, b, opposite b, c, opposite c]
 
@@ -61,7 +57,7 @@ def Builds {α ι : Type*} (cubes : ι → Cube α) (target : Cube α) : Prop :=
 def HasSolution {α ι : Type*} (allowed : Cube α → Prop) (cubes : ι → Cube α) : Prop :=
   ∃ target, allowed target ∧ Builds cubes target
 
-theorem exposed_face_rule : ∀ k : Slot, ∀ d : Fin 3,
+theorem exposed_face_rule : ∀ k : Fin 8, ∀ d : Fin 3,
     (exposedFaces k d).val = 2*d.val + (k.val / 2^(2-d.val)) % 2 := by sorry
 
 end ColourCubes

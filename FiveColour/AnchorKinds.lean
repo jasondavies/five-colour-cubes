@@ -22,10 +22,10 @@ theorem oppositeRepeat_rotate (c : Cube) (r : Fin 24) :
     OppositeRepeat (rotate c r) ↔ OppositeRepeat c := by
   constructor
   · rintro ⟨f, hf⟩
-    exact ⟨ColourCubes.rotations r f, by simpa only [rotate, ColourCubes.Geometry.rotate, rotation_opposite] using hf⟩
+    exact ⟨ColourCubes.rotations r f, by simpa only [rotate, ColourCubes.rotate, rotation_opposite] using hf⟩
   · rintro ⟨g, hg⟩
     obtain ⟨f, rfl⟩ := (ColourCubes.rotations_bijective r).surjective g
-    exact ⟨f, by simpa only [rotate, ColourCubes.Geometry.rotate, rotation_opposite] using hg⟩
+    exact ⟨f, by simpa only [rotate, ColourCubes.rotate, rotation_opposite] using hg⟩
 
 theorem oppositeRepeat_recolour (p : Equiv.Perm (Fin 5)) (c : Cube) :
     OppositeRepeat (recolour p c) ↔ OppositeRepeat c := by

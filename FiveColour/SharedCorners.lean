@@ -68,7 +68,7 @@ theorem normalised_shared_neighbour (i j : Fin 75) (hij : i ≠ j)
   have ha : anchorFor i = 3 := by simp [anchorFor, hi]
   have hr : recolour (normalisingColour i) (catalogue i) =
       rotate (catalogue 3) (normalisationRotation i) := by
-    unfold rotate ColourCubes.Geometry.rotate
+    unfold rotate ColourCubes.rotate
     funext f
     simpa only [ha] using normalisation_faces i f
   have hf := (fits_recolour (normalisingColour i) (catalogue j) (catalogue i) k).mpr hfit

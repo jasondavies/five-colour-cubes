@@ -161,7 +161,7 @@ The companion paper~\cite{FourToThree} considers four-colour sources and
 targets using exactly three colours. It gives the sharp frame threshold
 $16n-3$ for every side length $n\ge2$, with a classification of the largest
 failing collections. The two developments share the palette-independent
-geometry in \texttt{ColourCubes}~\cite{ColourCubes};
+geometry in the \texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes};
 neither threshold theorem is used to prove the other.
 
 A limited literature search has found no later value for the five-colour entry.
@@ -199,7 +199,7 @@ are related by a determinant-positive signed permutation of the coordinate
 axes. This is a proper rotation of the cube.
 \end{proof}
 The palette-independent Lean version of this lemma is reused from the
-shared \texttt{ColourCubes} library~\cite{ColourCubes}.
+shared \texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}.
 
 Fix a target $T$. Form a bipartite graph whose left vertices are its eight
 corner positions and whose right vertices are the individual source copies.
@@ -767,6 +767,9 @@ The original example is $x_1=5,x_2=x_3=0$.
 The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
 \texttt{v4.35.0}. It proves the physical theorems, including the connection
 between cube arrangements and the finite certificate problems.
+The physical model and palette-independent geometry come from the shared
+\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}. The challenge
+restates its definitions locally.
 
 Lean proves completeness and uniqueness of the 75 varieties and checks all
 45,000 corner-compatibility bits using the shared corner--rotation theorem.
@@ -910,8 +913,10 @@ Journal of the ACM \textbf{19}(2) (1972), 248--264.
 \emph{Three-colour solutions from four-colour cubes}, manuscript (2026).
 \href{https://github.com/jasondavies/four-to-three-colour-cubes}{Accompanying repository}.
 \bibitem{ColourCubes} J.~Davies,
-\emph{Colour cubes core}, Lean library (2026).
-\href{https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0}{Pinned repository revision}.
+\texttt{colour-\allowbreak cubes-\allowbreak core}: palette-independent Lean definitions and proofs
+for face-coloured cubes, Lean library (2026).
+Release \href{https://github.com/jasondavies/colour-cubes-core/tree/v1.0.0}{\texttt{v1.0.0}},
+\url{https://github.com/jasondavies/colour-cubes-core}.
 \bibitem{Rosenfeld} M.~Rosenfeld,
 \emph{MacMahon Cubes and Moshe's Insanity, Puzzle 1},
 Geombinatorics Quarterly \textbf{36}(2) (October 2026), starts at p.~78.

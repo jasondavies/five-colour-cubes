@@ -40,7 +40,7 @@ sources:
     note: "Lists the five-colour corner value as unknown."
     author_endorsement: not-contacted
 related_formalizations:
-  - id: "https://github.com/jasondavies/colour-cubes-core/tree/3164adbd2ee16d2721caadc1db67c1498e5d67e0"
+  - id: "https://github.com/jasondavies/colour-cubes-core/tree/994ec9af4f44881819aea63e96b25e54afba5dec"
     relationship: builds-on
     note: >-
       Shared palette-independent physical model, proper rotations, corner matching

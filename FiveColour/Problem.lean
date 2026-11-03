@@ -1,4 +1,5 @@
 module
+public import Mathlib
 public import ColourCubes.Physical
 @[expose] public section
 namespace FiveColour.Physical
