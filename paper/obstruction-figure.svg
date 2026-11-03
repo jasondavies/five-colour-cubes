@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="512" viewBox="0 0 800 512" role="img" aria-labelledby="title description">
+<title id="title">Why four A, five B and five C cubes cannot build a five-colour target</title>
+<desc id="description">The only possible targets are A, B and C themselves. Target A has five corner types that occur on no other variety, so it needs five A cubes, but only four are available. Targets B and C each have six private corner types but only five copies.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="Helvetica,Arial,sans-serif" stroke-linejoin="round">
+<text x="72" y="22" font-size="17" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">Collection</text>
+<text x="372" y="22" font-size="17" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">Corner types of each variety</text>
+<text x="604" y="22" font-size="17" font-weight="bold" text-anchor="start" fill="#111" dy="0.35em">Why it fails</text>
+<polyline points="16,40 784,40" fill="none" stroke="#ccc" stroke-width="1.2"/>
+<polygon points="48,54 72,54 72,78 48,78" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="66" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="24,78 48,78 48,102 24,102" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="36" y="90" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="48,78 72,78 72,102 48,102" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="90" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="72,78 96,78 96,102 72,102" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="84" y="90" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="96,78 120,78 120,102 96,102" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="108" y="90" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="48,102 72,102 72,126 48,126" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="114" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<text x="72" y="148" font-size="18" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">4 × A</text>
+<text x="72" y="170" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">001234</text>
+<polygon points="180,96 162.679,86 162.679,106 180,116" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="171.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="180,96 180,116 197.321,106 197.321,86" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="188.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="180,96 197.321,86 180,76 162.679,86" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="180" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<text x="180" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">013</text>
+<polygon points="234,96 216.679,86 216.679,106 234,116" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="225.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="234,96 234,116 251.321,106 251.321,86" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="242.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="234,96 251.321,86 234,76 216.679,86" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="234" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<text x="234" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">024</text>
+<polygon points="288,96 270.679,86 270.679,106 288,116" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="279.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="288,96 288,116 305.321,106 305.321,86" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="296.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="288,96 305.321,86 288,76 270.679,86" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="288" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<text x="288" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">031</text>
+<polygon points="342,96 324.679,86 324.679,106 342,116" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="333.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="342,96 342,116 359.321,106 359.321,86" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="350.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="342,96 359.321,86 342,76 324.679,86" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="342" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<text x="342" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">032</text>
+<polygon points="396,96 378.679,86 378.679,106 396,116" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="387.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="396,96 396,116 413.321,106 413.321,86" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="404.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<polygon points="396,96 413.321,86 396,76 378.679,86" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="396" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<text x="396" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">041</text>
+<polygon points="450,96 432.679,86 432.679,106 450,116" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="441.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="450,96 450,116 467.321,106 467.321,86" fill="#56B4E9" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="458.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">1</text>
+<polygon points="450,96 467.321,86 450,76 432.679,86" fill="#CC79A7" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="450" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">4</text>
+<text x="450" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">014</text>
+<polygon points="504,96 486.679,86 486.679,106 504,116" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="495.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="504,96 504,116 521.321,106 521.321,86" fill="#009E73" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="512.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">2</text>
+<polygon points="504,96 521.321,86 504,76 486.679,86" fill="#F0E442" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="504" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">3</text>
+<text x="504" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">023</text>
+<polygon points="558,96 540.679,86 540.679,106 558,116" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="549.34" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="558,96 558,116 575.321,106 575.321,86" fill="#CC79A7" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="566.66" y="101" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">4</text>
+<polygon points="558,96 575.321,86 558,76 540.679,86" fill="#009E73" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="558" y="86" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">2</text>
+<text x="558" y="131" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">042</text>
+<polyline points="158,144 158,150 418,150 418,144" fill="none" stroke="#222" stroke-width="1.4"/>
+<text x="288" y="168" font-size="16" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">5 private</text>
+<text x="604" y="86" font-size="17" font-weight="normal" text-anchor="start" fill="#111" dy="0.35em">5 corners need A;</text>
+<text x="604" y="112" font-size="17" font-weight="bold" text-anchor="start" fill="#111" dy="0.35em">only 4 copies.</text>
+<polyline points="16,180 784,180" fill="none" stroke="#ccc" stroke-width="1.2"/>
+<polygon points="48,194 72,194 72,218 48,218" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="206" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="24,218 48,218 48,242 24,242" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="36" y="230" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="48,218 72,218 72,242 48,242" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="230" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="72,218 96,218 96,242 72,242" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="84" y="230" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="96,218 120,218 120,242 96,242" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="108" y="230" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="48,242 72,242 72,266 48,266" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="254" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<text x="72" y="288" font-size="18" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">5 × B</text>
+<text x="72" y="310" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">012324</text>
+<polygon points="180,236 162.679,226 162.679,246 180,256" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="171.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="180,236 180,256 197.321,246 197.321,226" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="188.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="180,236 197.321,226 180,216 162.679,226" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="180" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<text x="180" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">022</text>
+<polygon points="234,236 216.679,226 216.679,246 234,256" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="225.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="234,236 234,256 251.321,246 251.321,226" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="242.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="234,236 251.321,226 234,216 216.679,226" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="234" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<text x="234" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">034</text>
+<polygon points="288,236 270.679,226 270.679,246 288,256" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="279.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="288,236 288,256 305.321,246 305.321,226" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="296.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="288,236 305.321,226 288,216 270.679,226" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="288" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<text x="288" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">122</text>
+<polygon points="342,236 324.679,226 324.679,246 342,256" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="333.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="342,236 342,256 359.321,246 359.321,226" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="350.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="342,236 359.321,226 342,216 324.679,226" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="342" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<text x="342" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">124</text>
+<polygon points="396,236 378.679,226 378.679,246 396,256" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="387.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="396,236 396,256 413.321,246 413.321,226" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="404.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="396,236 413.321,226 396,216 378.679,226" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="396" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<text x="396" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">132</text>
+<polygon points="450,236 432.679,226 432.679,246 450,256" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="441.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="450,236 450,256 467.321,246 467.321,226" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="458.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<polygon points="450,236 467.321,226 450,216 432.679,226" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="450" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<text x="450" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">143</text>
+<polygon points="504,236 486.679,226 486.679,246 504,256" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="495.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="504,236 504,256 521.321,246 521.321,226" fill="#009E73" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="512.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">2</text>
+<polygon points="504,236 521.321,226 504,216 486.679,226" fill="#F0E442" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="504" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">3</text>
+<text x="504" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">023</text>
+<polygon points="558,236 540.679,226 540.679,246 558,256" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="549.34" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="558,236 558,256 575.321,246 575.321,226" fill="#CC79A7" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="566.66" y="241" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">4</text>
+<polygon points="558,236 575.321,226 558,216 540.679,226" fill="#009E73" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="558" y="226" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">2</text>
+<text x="558" y="271" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">042</text>
+<polyline points="158,284 158,290 472,290 472,284" fill="none" stroke="#222" stroke-width="1.4"/>
+<text x="315" y="308" font-size="16" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">6 private</text>
+<text x="604" y="226" font-size="17" font-weight="normal" text-anchor="start" fill="#111" dy="0.35em">6 corners need B;</text>
+<text x="604" y="252" font-size="17" font-weight="bold" text-anchor="start" fill="#111" dy="0.35em">only 5 copies.</text>
+<polyline points="16,320 784,320" fill="none" stroke="#ccc" stroke-width="1.2"/>
+<polygon points="48,334 72,334 72,358 48,358" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="346" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<polygon points="24,358 48,358 48,382 24,382" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="36" y="370" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="48,358 72,358 72,382 48,382" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="370" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="72,358 96,358 96,382 72,382" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="84" y="370" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="96,358 120,358 120,382 96,382" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="108" y="370" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="48,382 72,382 72,406 48,406" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="60" y="394" font-size="17" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<text x="72" y="428" font-size="18" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">5 × C</text>
+<text x="72" y="450" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">031241</text>
+<polygon points="180,376 162.679,366 162.679,386 180,396" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="171.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="180,376 180,396 197.321,386 197.321,366" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="188.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="180,376 197.321,366 180,356 162.679,366" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="180" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<text x="180" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">011</text>
+<polygon points="234,376 216.679,366 216.679,386 234,396" fill="#E69F00" stroke="#222" stroke-width="1.2"/>
+<text x="225.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">0</text>
+<polygon points="234,376 234,396 251.321,386 251.321,366" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="242.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="234,376 251.321,366 234,356 216.679,366" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="234" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<text x="234" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">021</text>
+<polygon points="288,376 270.679,366 270.679,386 288,396" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="279.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="288,376 288,396 305.321,386 305.321,366" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="296.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="288,376 305.321,366 288,356 270.679,366" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="288" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<text x="288" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">113</text>
+<polygon points="342,376 324.679,366 324.679,386 342,396" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="333.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="342,376 342,396 359.321,386 359.321,366" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="350.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="342,376 359.321,366 342,356 324.679,366" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="342" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<text x="342" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">123</text>
+<polygon points="396,376 378.679,366 378.679,386 396,396" fill="#56B4E9" stroke="#222" stroke-width="1.2"/>
+<text x="387.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">1</text>
+<polygon points="396,376 396,396 413.321,386 413.321,366" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="404.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<polygon points="396,376 413.321,366 396,356 378.679,366" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="396" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<text x="396" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">134</text>
+<polygon points="450,376 432.679,366 432.679,386 450,396" fill="#009E73" stroke="#222" stroke-width="1.2"/>
+<text x="441.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">2</text>
+<polygon points="450,376 450,396 467.321,386 467.321,366" fill="#CC79A7" stroke="#222" stroke-width="1.2"/>
+<text x="458.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">4</text>
+<polygon points="450,376 467.321,366 450,356 432.679,366" fill="#F0E442" stroke="#222" stroke-width="1.2"/>
+<text x="450" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">3</text>
+<text x="450" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#111" dy="0.35em">243</text>
+<polygon points="504,376 486.679,366 486.679,386 504,396" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="495.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="504,376 504,396 521.321,386 521.321,366" fill="#56B4E9" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="512.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">1</text>
+<polygon points="504,376 521.321,366 504,356 486.679,366" fill="#CC79A7" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="504" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">4</text>
+<text x="504" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">014</text>
+<polygon points="558,376 540.679,366 540.679,386 558,396" fill="#E69F00" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="549.34" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">0</text>
+<polygon points="558,376 558,396 575.321,386 575.321,366" fill="#CC79A7" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="566.66" y="381" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">4</text>
+<polygon points="558,376 575.321,366 558,356 540.679,366" fill="#009E73" fill-opacity="0.3" stroke="#999" stroke-width="1.2"/>
+<text x="558" y="366" font-size="15" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">2</text>
+<text x="558" y="411" font-size="16" font-weight="normal" text-anchor="middle" fill="#666" dy="0.35em">042</text>
+<polyline points="158,424 158,430 472,430 472,424" fill="none" stroke="#222" stroke-width="1.4"/>
+<text x="315" y="448" font-size="16" font-weight="bold" text-anchor="middle" fill="#111" dy="0.35em">6 private</text>
+<text x="604" y="366" font-size="17" font-weight="normal" text-anchor="start" fill="#111" dy="0.35em">6 corners need C;</text>
+<text x="604" y="392" font-size="17" font-weight="bold" text-anchor="start" fill="#111" dy="0.35em">only 5 copies.</text>
+<polyline points="16,466 784,466" fill="none" stroke="#ccc" stroke-width="1.2"/>
+<text x="16" y="482" font-size="14" font-weight="normal" text-anchor="start" fill="#666" dy="0.35em">Corners are read counterclockwise from outside. Faded types also occur on another variety.</text>
+<text x="16" y="500" font-size="14" font-weight="normal" text-anchor="start" fill="#666" dy="0.35em">Each net folds away from you; its centre face is +x. The paper shows that only A, B and C can be targets.</text>
+</g>
+</svg>

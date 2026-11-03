@@ -11,10 +11,13 @@ is a 2×2×2 cube with monochromatic exterior faces using all five colours.
 Collections may repeat varieties; proper rotations are allowed and interior
 faces are unrestricted.
 
+In particular, **any 27 five-colour cubes can all form a complete 3×3×3
+cube with monochromatic faces using all five colours. No spare cubes are
+needed.** The same holds for n³ cubes and every n ≥ 3.
+
 Further conclusions are proved in the paper and Lean:
 
-- Any **n³ five-colour cubes can all form a complete n×n×n cube for n ≥ 3**,
-  including every collection of 27 cubes. The exact guaranteed pool size is
+- The exact guaranteed pool size for a complete n×n×n cube is
   **G₅(n) = max(n³, 15)** for n ≥ 2.
 - A rare-pair Hall argument gives **F₅(n) ≤ max(12n − 16, 11n − 6)** for n ≥ 3,
   and hence **F₅(n) = 12n − 16 for n ≥ 10**. The remaining frame values are
@@ -37,9 +40,15 @@ B = (0,1,2,3,2,4)
 C = (0,3,1,2,4,1)
 ```
 
-The paper gives an elementary proof that this collection fails. Its upper
-bound is computer-assisted: a complete reduction gives 357 root cases and a
-separate C++ checker accepts every archived interval certificate. This supplies
+![Why 4A + 5B + 5C fails: each possible target has more corners that only its own variety fits than there are copies of that variety](paper/obstruction-figure.svg)
+
+The paper's elementary proof first shows that only A, B and C themselves can
+be targets. Each such target has more corners that only its own variety fits
+than there are copies of that variety: five corners need A, with four copies,
+and six need B or C, with five copies each.
+
+The upper bound is computer-assisted: a complete reduction gives 357 root
+cases and a separate C++ checker accepts every archived interval certificate. This supplies
 the five-colour corner value listed as unknown in Table 7 of
 [Berkove, Eickemeyer and Schulman (2018)](https://doi.org/10.5281/zenodo.10680216).
 

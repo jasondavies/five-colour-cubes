@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper,margin=25mm]{geometry}
-\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tikz}
 \usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
 \hypersetup{pdftitle={The sharp corner threshold for five-colour cubes},pdfauthor={Jason Davies}}
 \newtheorem{theorem}{Theorem}
@@ -191,8 +191,19 @@ This is $A$.
 
 Thus only $A,B,C$ can be targets. Their private positions require respectively
 at least five, six and six copies of the corresponding variety, exceeding
-the available four, five and five copies. None is solvable.
+the available four, five and five copies (Figure~\ref{fig:obstruction}).
+None is solvable.
 \end{proof}
+
+\begin{figure}[ht]
+\centering
+\input{obstruction-figure}
+\caption{The fourteen-cube obstruction $4A+5B+5C$. Each net has $+x$ at its
+centre. Corner types are read counterclockwise from outside; the
+full-colour types occur on no other variety. A target of variety $X$ has
+these private positions, and only copies of $X$ fit them.}
+\label{fig:obstruction}
+\end{figure}
 
 \section{Reduction to finite problems}\label{sec:cases}
 Eight copies of any variety solve that variety, so a solution-free collection

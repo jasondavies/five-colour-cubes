@@ -21,6 +21,7 @@ check-code: certificates build/five_colour_extensions build/five_colour_rare_geo
 	build/five_colour_extensions
 	build/five_colour_rare_geometry
 	$(PYTHON) -S scripts/generate_five_colour_support.py --check
+	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/small_replay_cases.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
@@ -71,7 +72,10 @@ check-comparator-lower:
 comparator:
 	./scripts/verify-comparator.sh
 
+figure:
+	$(PYTHON) -S scripts/generate_five_colour_figure.py
+
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: check-extensions projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
+.PHONY: figure check-extensions projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
