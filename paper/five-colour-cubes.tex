@@ -100,7 +100,7 @@ $G_5(n)=G_5(n,n,n)$. The classification immediately gives the following.
  F_5(n)=\begin{cases}15,&n=2,\\12n-16,&n\ge3,\end{cases}
  \qquad G_5(n)=\max\{n^3,15\}\quad(n\ge2).
 \]
-In particular, any twenty sources form a $3$-frame, and any 27 form a
+In particular, any twenty sources form the frame of a $3\times3\times3$ cube, and any 27 form a
 complete $3\times3\times3$ cube.
 \end{corollary}
 
@@ -309,15 +309,15 @@ For each cover $K$ in Lemma~\ref{lem:anchor}, put
 \]
 Write $S=S(K)$ and $b=b(K)$. The case has
 $x_A=m$, $x(S)\le b$, and the multiplicity bounds just described.
-Additional upper bounds use two-variety solutions. If $a$ copies of $A$
-and $8-a$ copies of $V$ build a target, with $a\le m$, then
-$x_V\le 7-a$ in a solution-free collection. These tests are finite:
+Additional upper bounds use two-variety solutions. If $j$ copies of $A$
+and $8-j$ copies of $V$ build a target, with $j\le m$, then
+$x_V\le 7-j$ in a solution-free collection. These tests are finite:
 the two varieties must cover all eight target positions, $A$ must fit at
-least $a$, and $V$ at least $8-a$. They are also sufficient: at most $a$
+least $j$, and $V$ at least $8-j$. They are also sufficient: at most $j$
 positions are unavailable to $V$,
 and all of them are available to $A$. Assign these to $A$, extend the
-assignment to $a$ positions that $A$ fits, and assign the remaining
-$8-a$ positions to $V$.
+assignment to $j$ positions that $A$ fits, and assign the remaining
+$8-j$ positions to $V$.
 
 Colour permutations and simultaneous reflection of the entire collection
 preserve solvability. First identify equal pairs $(S(K),b(K))$, even when
@@ -345,11 +345,11 @@ For distinct collections a different choice of anchor reduces the count.
 \begin{lemma}[Shared two-colour corner]\label{lem:shared}
 Among eleven adjacent-repeat cubes, two share a two-colour corner type.
 If a distinct collection contains such a pair and one member is chosen as
-anchor, the anchor's two two-colour positions cannot be Hall-deficient.
+anchor, neither two-colour position of the anchor can be Hall-deficient.
 \end{lemma}
 \begin{proof}
-Each adjacent-repeat cube has exactly two such types, $aab$ and $aac$, with
-$b\ne c$. There are only $5\cdot4=20$ types $aab$. Eleven cubes contribute
+Each adjacent-repeat cube with repeated colour $r$ has exactly two such
+types, $rrx$ and $rry$, with $x\ne y$. There are only $5\cdot4=20$ types $rrx$. Eleven cubes contribute
 22 incidences, so two cubes share a type. For the two characteristic positions
 of the chosen anchor, the anchor itself and the other cube are two distinct
 neighbours. Their neighbourhood therefore has size at least two.
@@ -405,31 +405,31 @@ arithmetic exclusions. The archive retains all 357 original cases.
 
 \begin{lemma}[Hall-budget projection]\label{lem:projection}
 Suppose a root has anchor multiplicity $m$, budget $x(S)\le b$, and total
-$15$, with the anchor outside $S$. For $0\le s\le b$, put $G=15-b+s$
+$15$, with the anchor outside $S$. For $0\le \lambda\le b$, put $G=15-b+\lambda$
 and suppose $G\ge m$. Every admissible vector $x$ has a vector $y\le x$
-with the same anchor multiplicity, total $G$, budget $y(S)\le s$, and a
+with the same anchor multiplicity, total $G$, budget $y(S)\le \lambda$, and a
 Hall deficiency for every target. It obeys the original upper bounds,
-tightened to $\min(u_i,s)$ on $S$.
+tightened to $\min(u_i,\lambda)$ on $S$.
 \end{lemma}
 \begin{proof}
-First retain only $\min(x(S),s)$ copies in $S$. This removes at most $b-s$
+First retain only $\min(x(S),\lambda)$ copies in $S$. This removes at most $b-\lambda$
 copies and leaves the anchor untouched, so the remaining total is at least
 $G$. Delete further non-anchor copies until the total is $G$; this is possible
 because $G\ge m$. Every coordinate decreases, so all upper bounds and Hall
-deficiency inequalities are preserved. Nonnegativity and $y(S)\le s$ give
-$y_i\le s$ for $i\in S$.
+deficiency inequalities are preserved. Nonnegativity and $y(S)\le \lambda$ give
+$y_i\le \lambda$ for $i\in S$.
 \end{proof}
 
 For our anchored covers, $b=7-m-|K|$, so
 \[
- G=m+8+|K|+s.
+ G=m+8+|K|+\lambda.
 \]
 Thus the reduced collection consists of the $m$ fixed anchor copies and
-$8+|K|+s$ other copies; in particular, $G\ge m$ is automatic. Apply the lemma
+$8+|K|+\lambda$ other copies; in particular, $G\ge m$ is automatic. Apply the lemma
 after selecting and normalising the original root, retaining its bounds.
 No new anchor selection is required for the smaller collection.
-Of the 279 remaining roots, 277 admit an exclusion certificate with $s=0$. The other two, original
-cases 68 and 69, use $s=1$ and $G=12$. Their $s=0$, $G=11$ problems actually
+Of the 279 remaining roots, 277 admit an exclusion certificate with $\lambda=0$. The other two, original
+cases 68 and 69, use $\lambda=1$ and $G=12$. Their $\lambda=0$, $G=11$ problems actually
 have solution-free collections, supplied and checked by physical matching in
 the projected manifest. The projected totals range from 9 to 15. All 101 roots
 whose original budget was zero retain their original certificates.
@@ -497,9 +497,9 @@ in the repository.
 Every archived header is checked against its exported root case. Eighty
 negative controls are rejected, including all 77 possible direct closing
 claims against a separate $G=11$ fixture, not a $G=15$ root problem.
-The witness satisfies its total, fixed anchor count, coordinate bounds and
-zero root budget, and fails all 75 targets by physical matching. The fixture
-is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
+This fixture is a known solution-free eleven-cube collection: it satisfies
+its total, fixed anchor count, coordinate bounds and zero root budget, and
+fails all 75 targets by physical matching. It is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
 checks are in \path{scripts/check_five_colour_distinct.py}.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
@@ -513,8 +513,9 @@ and the sound interval deductions exclude. Hence $N_5\le15$.
 
 \section{Compatibility and missing-pair families}\label{sec:frames}
 The frame arguments depend on how many positions a source can miss.
-Lemmas~\ref{lem:cube-incidence}--\ref{lem:frame-geometry} state the
-shape-independent facts used in the directional bounds below.
+Lemmas~\ref{lem:cube-incidence} and~\ref{lem:transverse-corner} state the
+shape-independent facts used in the directional bounds of
+Section~\ref{sec:boxes}.
 The following form of Hall's theorem isolates the matching step.
 
 \begin{lemma}[Hall criterion with a matched subset]\label{lem:partial-matching}
@@ -598,33 +599,6 @@ share six tricoloured corners.  Reading those common corners gives:
 Every entry is nonempty, so the source and target share a corner.
 \end{proof}
 
-\begin{lemma}[Geometric compatibility bounds]\label{lem:frame-geometry}
-Let $\kappa$ and $e$ count the target corners and geometric edges fitted
-by a source. Then $e\ge8$ and $\kappa+e\ge10$.
-For an opposite-repeat target, $e\ge9$ and $\kappa+e\ge11$.
-\end{lemma}
-\begin{proof}
-Lemma~\ref{lem:cube-incidence} gives the following bounds, where A and O
-denote adjacent-repeat and opposite-repeat varieties:
-\begin{center}
-\begin{tabular}{ccccc}
-\toprule
-Target & Source & $\kappa$ & $e$ & $\kappa+e$\\
-\midrule
-O & O & $\ge2$ & $\ge9$ & $\ge11$\\
-O & A & $\ge2$ & $\ge10$ & $\ge12$\\
-A & O & $\ge2$ & $\ge8$ & $\ge10$\\
-A & A & $\ge0$ & $\ge9$ & $\ge10$\\
-\bottomrule
-\end{tabular}
-\end{center}
-Only the final sum needs another observation. If an adjacent-repeat source
-fits exactly nine edges of an adjacent-repeat target, it misses the
-monochromatic edge and a doubled bichromatic type. The doubled edges are
-transverse to the monochromatic edge, so Lemma~\ref{lem:transverse-corner}
-gives $\kappa\ge1$. If it fits at least ten edges, the sum bound is immediate.
-\end{proof}
-
 For a bichromatic pair $\alpha\beta$, let $\mathcal H_{\alpha\beta}$ be the family of
 varieties lacking that edge type.  In every such cube, $\alpha$ and $\beta$ are
 opposite singleton faces.  The four faces around this axis use the other
@@ -667,14 +641,14 @@ two positions in each cell have identical source neighbourhoods.
 \node at (1.5,1.5) {$032,123$};
 \node at (.5,.5) {$042,124$};
 \node at (1.5,.5) {$024,142$};
-\node[align=center] at (.5,2.45) {$A_s^+$ sources\\positive column};
-\node[align=center] at (1.5,2.45) {$A_s^-$ sources\\negative column};
+\node[align=center] at (.5,2.45) {$A_r^+$ sources\\positive column};
+\node[align=center] at (1.5,2.45) {$A_r^-$ sources\\negative column};
 \node[anchor=east,align=right] at (-.1,1.5) {pair $23$\\$O_3$ fits this row};
 \node[anchor=east,align=right] at (-.1,.5) {pair $24$\\$O_4$ fits this row};
 \node at (1,-.45) {$O_2$ fits all four cells};
 \end{tikzpicture}
 \caption{Corner array of $O_2$ in the family lacking $01$.
-Each cell contains two target positions. Here $s\in\{2,3,4\}$;
+Each cell contains two target positions. Here $r\in\{2,3,4\}$;
 all three adjacent-repeat sources of a given sign fit the same column.}
 \label{fig:ring-array}
 \end{figure}
@@ -694,7 +668,7 @@ opposite-repeat target from four copies of each.
 This is a small finite geometric check. Of the $\binom{75}{2}$ unordered
 pairs, 330 have disjoint corner sets. Up to colour permutation and exchange
 of the sources, they have the following five representatives. The first
-source is $010234$ throughout; tuples use the face order of
+source is $(0,1,0,2,3,4)$ throughout; tuples use the face order of
 Section~\ref{sec:model}. Each listed target has four corners supplied by
 each source.
 \begin{center}
@@ -702,11 +676,11 @@ each source.
 \toprule
 Second source & Target\\
 \midrule
-$011243$ & $001234$\\
-$012324$ & $012234$\\
-$012334$ & $012234$\\
-$012434$ & $012234$\\
-$030412$ & $001234$\\
+$(0,1,1,2,4,3)$ & $(0,0,1,2,3,4)$\\
+$(0,1,2,3,2,4)$ & $(0,1,2,2,3,4)$\\
+$(0,1,2,3,3,4)$ & $(0,1,2,2,3,4)$\\
+$(0,1,2,4,3,4)$ & $(0,1,2,2,3,4)$\\
+$(0,3,0,4,1,2)$ & $(0,0,1,2,3,4)$\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -733,10 +707,11 @@ Lemma~\ref{lem:disjoint-pair}.
 
 For the lower bound take six copies each of
 \[
- P=(0,1,0,2,3,4),\qquad Q=(0,1,1,3,2,4).
+ U=(0,1,0,2,3,4),\qquad Q=(0,1,1,3,2,4),
 \]
+where $U$ is the variety of Lemma~\ref{lem:thin-three-variety-obstruction}.
 Their corner sets share just $041$. Inspection of the 75 varieties shows
-that only $P,Q$ have all corner types in their union. Each has seven private
+that only $U,Q$ have all corner types in their union. Each has seven private
 positions, so neither can be built with six copies. The same geometric
 checker verifies these assertions. Thus $M(2)=13$. For $k\ge3$,
 Theorem~\ref{thm:main} supplies the upper bound, and the collection in
@@ -753,7 +728,7 @@ All 21 collections
  4A+5C+x_1B_1+x_2B_2+x_3B_3,\qquad
  x_1+x_2+x_3=5,\quad x_i\in\mathbb Z_{\ge0},
 \]
-are unsolvable. The $B_i$ share the six trichromatic corner types
+are unsolvable. The $B_i$ share the six tricoloured corner types
 $023,034,042,124,132,143$. The combined corner union allows only
 $A,C,B_1,B_2,B_3$ as targets, as a check of the catalogue confirms.
 Target $A$ needs five $A$-copies, $C$ needs six $C$-copies, and any $B_i$
@@ -767,8 +742,7 @@ The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
 \texttt{v4.35.0}. It proves the physical theorems, including the connection
 between cube arrangements and the finite certificate problems.
 The physical model and palette-independent geometry come from the shared
-\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}. The challenge
-restates its definitions locally.
+\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}.
 
 Lean proves completeness and uniqueness of the 75 varieties and checks all
 45,000 corner-compatibility bits using the shared corner--rotation theorem.
@@ -812,32 +786,30 @@ proves the unconditional theorems \path{threshold15} and
 \path{sharpThreshold15}. Both lie in namespace
 \path{FiveColour.Packed.ProjectedChunks}.
 
-The cube-specific modules retain a separate proof through an eleven-cube
-missing-pair lemma. Its physical nine-variety pattern and ten Hall cuts
-per target are kernel-checked; \path{FiveColour/RingEleven.lean} then
-proves the multiplicity argument without enumerating collections.
-The manuscript uses the eight-plus-three lemma for the unified cuboid
-proof. Frame completion adapts the general construction
-from~\cite{FourToThree} without using its threshold.
+The cuboid proof in Lean follows Lemma~\ref{lem:eight-common-missing}.
+The cube-only exports, such as \path{frame20}, retain an older proof through
+an eleven-cube missing-pair lemma in \path{FiveColour/RingEleven.lean}: its
+nine-variety pattern and ten Hall cuts per target are kernel-checked, and the
+multiplicity argument is proved without enumerating collections. Lean's
+frame-completion step adapts the general construction of~\cite{FourToThree};
+no theorem of that paper is used.
 
 The small-support proofs check pair witnesses directly, without reducing
 them to five colour orbits, and use deficient corner sets for the two
 obstruction constructions. The modules are \path{SmallSupport.lean} and
 \path{MixedObstructions.lean} in the \path{FiveColour} directory.
 
-\path{Solution.lean} exports the unconditional theorems. In namespace
-\path{FiveColour.Puzzle}, these include \path{frame20},
-\path{frame_threshold_all}, \path{full_cube},
-\path{complete_cube_threshold} and \path{support_threshold}.
-
 The full cuboid classification is formalised in
 \path{FiveColour/BoxThresholds.lean}. In namespace
 \path{FiveColour.Physical}, \path{box_frame_threshold_iff} and
 \path{box_threshold_iff} give necessary and sufficient pool sizes for
-arbitrary side lengths at least two, assuming \path{Threshold15}.
-\path{Solution.lean} applies the completed corner theorem to export
-\path{FiveColour.Puzzle.box_frame_threshold} and
-\path{FiveColour.Puzzle.complete_box_threshold}.
+arbitrary side lengths at least two, assuming
+\path{FiveColour.Physical.Threshold15}. \path{Solution.lean} applies the
+completed corner theorem to discharge this assumption. In namespace
+\path{FiveColour.Puzzle}, it exports the unconditional theorems
+\path{box_frame_threshold} and \path{complete_box_threshold}, together with
+\path{frame20}, \path{frame_threshold_all}, \path{full_cube},
+\path{complete_cube_threshold} and \path{support_threshold}.
 
 The rectangular model and completion are in
 \path{FiveColour/BoxModel.lean}; compatibility is connected to proper
@@ -869,8 +841,11 @@ make check-extensions
 \end{verbatim}
 The module guide is \path{FiveColour/README.md}.
 
-A Mathlib-only comparator challenge states the corner problem geometrically.
-Its equivalence with the development's model is proved by
+A Mathlib-only comparator challenge states the corner problem geometrically,
+restating the library's definitions locally. It covers only the corner
+problem: the cuboid statements rest on the definitions in
+\path{FiveColour/BoxModel.lean}. Its equivalence with the development's
+model is proved by
 \path{FiveColour.Puzzle.hasSolution_iff} in
 \path{FiveColour/ComparatorBridge.lean}. The solution module applies the
 completed threshold theorem. A full external comparator pass remains
@@ -882,7 +857,9 @@ extremal corner obstructions to be determined. Can all fourteen-cube
 obstructions be classified? The support bound and the family in
 Section~\ref{sec:support} give initial constraints and examples.
 A second question is whether $N_5=15$ admits a short elementary proof,
-replacing the finite certificates used here.
+replacing the finite certificates used here. Finally, boxes with a side of
+length one fall outside the model, since a source there exposes opposite
+faces; their thresholds remain open.
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and

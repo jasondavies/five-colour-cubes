@@ -5,11 +5,9 @@ upper bounds and the remaining shapes. The only certified input is
 Theorem~\ref{thm:main}; the prescribed-family lemma is independent of it.
 
 \subsection{Signed corner projections}
-Retain the family $\mathcal H_{\alpha\beta}$ from Lemma~\ref{lem:fixed-missing-pair}.
-Write $C(W)$ for the cyclic corner types of $W$. The three positive
-adjacent-repeat varieties share six tricoloured types $C^+$; the negative
-varieties share their reverses $C^-$. The opposite-repeat varieties and
-their $2\times2$ corner array are as described in that lemma.
+Retain the family $\mathcal H_{\alpha\beta}$ from Lemma~\ref{lem:fixed-missing-pair},
+with its opposite-repeat varieties and their $2\times2$ corner array.
+Write $C(W)$ for the cyclic corner types of $W$.
 
 \begin{lemma}[Corner projections onto a missing-pair family]\label{lem:thin-projections}
 Fix a bichromatic pair $\alpha\beta$.  Let $C^+$ and $C^-$ be the two sets of six
@@ -96,20 +94,19 @@ $\mathcal H_{\alpha\beta}$.
 \end{lemma}
 
 \begin{proof}
-Let $O,P,M$ count the opposite-repeat, positive
+Let $O,P,Q$ count the opposite-repeat, positive
 adjacent-repeat, and negative adjacent-repeat copies among the chosen eight.
-Thus $O+P+M=8$. Write $C^+$ and $C^-$ for the two common six-element sets
-of tricoloured corner types of the positive and negative families.
+Thus $O+P+Q=8$; $C^+$ and $C^-$ are as in Lemma~\ref{lem:thin-projections}.
 
-If $O+\min(P,M)\ge4$, the $2\times2$ Hall argument gives an
+If $O+\min(P,Q)\ge4$, the $2\times2$ Hall argument gives an
 opposite-repeat corner solution from these eight copies alone. Explicitly,
 choose $O_r$ whose opposite-repeat multiplicity is maximal. Each cell has
-at least $O/2+\min(P,M)\ge2$ neighbours, each row has at least
-$8-O/2\ge4$, and each column has at least $O+\min(P,M)\ge4$.
+at least $O/2+\min(P,Q)\ge2$ neighbours, each row has at least
+$8-O/2\ge4$, and each column has at least $O+\min(P,Q)\ge4$.
 Every other nonempty union of cells has all eight copies as neighbours.
 
-Otherwise exchange the signs so that $O+M\le3$. Put
-$c=O+M=8-P$, so $P\ge5$ and $0\le c\le3$.
+Otherwise exchange the signs so that $O+Q\le3$. Put
+$\kappa=O+Q=8-P$, so $P\ge5$ and $0\le \kappa\le3$.
 Some positive variety $A_r^+$ occurs at least twice. If its eight
 corners have a matching among all eleven copies, we are done. Otherwise,
 choose a deficient Hall set $D$ of its corners. The two copies of
@@ -118,7 +115,7 @@ corner. All $P$ positive copies are therefore neighbours of $D$.
 Let $R$ be its other neighbours and put $U=C^+\setminus D$, $u=|U|$.
 Since $|D|+u\le8$,
 \[
- P+|R|<|D|\le8-u,\qquad |R|+u\le c-1.
+ P+|R|<|D|\le8-u,\qquad |R|+u\le \kappa-1.
 \]
 Remove the $P$ positive copies and the copies in $R$. Every surviving
 copy has all its positive corners in $U$, and $u\le2$.
@@ -126,13 +123,13 @@ copy has all its positive corners in $U$, and $u\le2$.
 Every family opposite-repeat variety has four corners in $C^+$, so no
 such chosen copy remains. At least
 \[
- c-|R|\ge u+1
+ \kappa-|R|\ge u+1
 \]
 of the chosen nonpositive copies remain, and all of them are negative
 adjacent-repeat copies. Each fits every corner in $C^-$. The remaining
 pool has at least
 \[
- c+3-|R|\ge4+u
+ \kappa+3-|R|\ge4+u
 \]
 copies.
 
@@ -426,7 +423,7 @@ rare pairs are disjoint, and there are at most two.
 If no pair is rare, use the corner theorem and orient the target's
 possible monochromatic edge along the side of length two. Otherwise,
 choose a rare pair $\alpha\beta$. At least $d+1\ge11$ sources belong to
-$\mathcal H_{\alpha\beta}$. The eight-plus-three lemma supplies a corner solution
+$\mathcal H_{\alpha\beta}$. Lemma~\ref{lem:eight-common-missing} supplies a corner solution
 whose target belongs to that family. Orient its $\alpha\beta$ axis along the side
 of length two. All actual edge types join a pole colour to a ring colour,
 and hence avoid both rare pairs; the monochromatic edge, if present,
@@ -552,8 +549,8 @@ previous case, with at least $d$ universal copies, and completes the box.
 
 \begin{lemma}[A target avoiding scarce long-edge types]\label{lem:rod-target}
 Suppose a collection has $N\ge15$ cubes. Call a bichromatic pair rare
-when at most $r$ sources possess it, where $N-r\ge8$ and
-$2(N-r)>N$. Then there is a corner-solvable target, transverse if
+when at most $\rho$ sources possess it, where $N-\rho\ge8$ and
+$2(N-\rho)>N$. Then there is a corner-solvable target, transverse if
 adjacent-repeat and axial if opposite-repeat, whose four long-edge
 types are all non-rare.
 \end{lemma}
@@ -564,7 +561,7 @@ two rare pairs are disjoint by Lemma~\ref{lem:cube-incidence}, and there are at 
 rare pair, use the corner theorem and choose either specified orientation.
 
 Otherwise let $\alpha\beta$ be rare. At least eight sources belong to
-$\mathcal H_{\alpha\beta}$. The eight-plus-three lemma supplies a corner target
+$\mathcal H_{\alpha\beta}$. Lemma~\ref{lem:eight-common-missing} supplies a corner target
 in this family. Its $\alpha\beta$ axis is a singleton opposite pair and can be
 put along a short direction. If the target is opposite-repeat, choose
 its repeated-colour axis as the long direction; otherwise choose either
@@ -584,7 +581,7 @@ axial or transverse as required.
 
 \begin{proof}
 First let $c=4$, so $M=2$ and $L=16$, and take seventeen source
-copies. In Lemma~\ref{lem:rod-target} use $r=8$. The chosen target has
+copies. In Lemma~\ref{lem:rod-target} use $\rho=8$. The chosen target has
 a corner matching, and every long-edge type has at least nine sources.
 If the target is opposite-repeat, its defect is at most eight by
 Lemma~\ref{lem:rod-compatibility}, and Hall's theorem completes it.
@@ -607,7 +604,7 @@ sets neighbour all seventeen sources, since each misses at most eight
 positions. This proves the seventeen-cube upper bound.
 
 Now let $M=c-2\ge3$, put $d=2M+4$, and take exactly $N=2d=L$
-cubes. Use $r=d-1$ in Lemma~\ref{lem:rod-target}. Every long-edge type
+cubes. Use $\rho=d-1$ in Lemma~\ref{lem:rod-target}. Every long-edge type
 of the chosen target has at least $d$ sources. An opposite-repeat
 target is completed directly by Hall, since every source misses at
 most $d$ positions.
@@ -630,9 +627,9 @@ bound.
 \end{proof}
 
 \begin{proposition}[Complete rod threshold]\label{cor:sharp-rods}
-Together with the corner theorem, the $2\times2\times3$ theorem, and
-the sixteen-cube obstruction in Lemma~\ref{lem:thin-three-variety-obstruction}, the preceding
-bounds give
+Together with Theorem~\ref{thm:main}, Theorem~\ref{thm:223} and
+the sixteen-cube obstruction of Lemma~\ref{lem:thin-three-variety-obstruction},
+Theorem~\ref{thm:sharp-rods-upper} gives
 \[
  F_5(2,2,c)=\max\{15,\,4c,\,2c+9\}\qquad(c\ge2).
 \]
@@ -654,6 +651,7 @@ Order the side lengths as $2\le a\le b\le c$ and put
 The frame has $L=8+4\tau$ positions. In this section assume $m+t\ge2$.
 
 \begin{lemma}[Weighted compatibility]\label{lem:box-weighted}
+Let $2\le a\le b\le c$ with $a+b\ge6$, so that $m+t\ge2$ and $M\ge1$.
 Every source misses at most $d=\tau+M+6$ positions of every target frame.
 \end{lemma}
 \begin{proof}
@@ -751,17 +749,17 @@ by the ring array. Place four such copies at distinct corners and fill
 the other four with $V$. In either case, $V$ has no monochromatic edge
 and avoids both rare pairs; the Hall observation applies.
 
-It remains that $v=2$ or $3$, forcing $m+t=2$ and $N=2d$. If $s_e,s_f$
+It remains that $v=2$ or $3$, forcing $m+t=2$ and $N=2d$. If $n_e,n_f$
 count the sources possessing the rare pairs, then
 \[
- s_e,s_f\le d-1,\qquad
- v\ge N-s_e-s_f.
+ n_e,n_f\le d-1,\qquad
+ v\ge N-n_e-n_f.
 \]
 Consequently,
 \[
- s_e,s_f\ge d-2,\qquad s_f+v\ge d+1.
+ n_e,n_f\ge d-2,\qquad n_f+v\ge d+1.
 \]
-Use exactly the reservation and eight-plus-three construction from the
+Use exactly the reservation and the construction of Lemma~\ref{lem:eight-common-missing} from the
 one-rare-pair case to obtain a corner-and-monochromatic-edge matching
 for a target $T\in\mathcal H_e$, with its $e$ axis shortest.
 
@@ -773,11 +771,11 @@ Thus $V$ misses at most $2m+4\le6$ actual positions.
 
 The only Hall sets not covered as before contain bichromatic edge
 positions of type $f$ and no non-rare bichromatic edge. Such a set $D$
-has at least $s_f$ neighbours. If $|D|>s_f\ge d-2\ge8$, every copy
+has at least $n_f$ neighbours. If $|D|>n_f\ge d-2\ge8$, every copy
 of $V$ is also a neighbour, since it misses at most six positions.
-These are distinct from the $s_f$ copies possessing $f$, so
+These are distinct from the $n_f$ copies possessing $f$, so
 \[
- |\Gamma(D)|\ge s_f+v\ge d+1.
+ |\Gamma(D)|\ge n_f+v\ge d+1.
 \]
 This handles $|D|\le d$; larger sets neighbour every source. Hall's
 theorem completes the frame in the final case.
@@ -820,6 +818,6 @@ then $abc\ge18\ge15$ and
  abc-2(a+b+c)-1\ge 2bc-2b-2c-5\ge1.
 \]
 The first inequality follows by increasing $a$ from two, and the second
-is minimized at $b=c=3$. There are no further exceptions.
+is minimised at $b=c=3$. There are no further exceptions.
 \end{proof}
 
