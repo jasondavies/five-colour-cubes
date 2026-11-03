@@ -26,6 +26,26 @@ Every complete box can use exactly its volume of sources except 2×2×2,
 2×2×3 and 2×2×4, whose thresholds are 15, 15 and 17. Thus **any twenty cubes
 form a 3-frame, and any 27 cubes form a complete 3×3×3 cube**.
 
+| Box | Frame positions | F₅ | Volume | G₅ |
+|---|---:|---:|---:|---:|
+| 2×2×2 | 8 | **15** | 8 | **15** |
+| 2×2×3 | 12 | **15** | 12 | **15** |
+| 2×2×4 | 16 | **17** | 16 | **17** |
+| 2×3×3 | 16 | **17** | 18 | 18 |
+| 2×2×5 | 20 | 20 | 20 | 20 |
+| 2×3×4 | 20 | 20 | 24 | 24 |
+| 3×3×3 | 20 | 20 | 27 | 27 |
+
+Bold entries need spare sources. From side sum 9 on, both thresholds equal
+the number of positions.
+
+The extra term 2(a+b+c) + 1 comes from one collection for every shape:
+one U, τ+5 copies of V and τ+6 copies of W, where τ = a+b+c − 6. Only U,
+V and W can be targets, and each has more positions that only its own pool
+can fill than the pool has cubes.
+
+![Why U + (τ+5)V + (τ+6)W fails: each possible target has more corner and edge positions that only its pool fits than the pool has cubes](paper/uniform-obstruction.svg)
+
 These results are proved in the paper and Lean. The extensions use Hall's
 theorem, reservations and concentration of repeated varieties; no new
 interval certificates are needed. The [aggregate classification](FiveColour/BoxThresholds.lean)

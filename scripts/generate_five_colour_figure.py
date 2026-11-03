@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Draw the fourteen-cube obstruction as TikZ (paper) and SVG (README).
+"""Draw both lower-bound obstructions as TikZ (paper) and SVG (README).
 
-Varieties and multiplicities are read from `FiveColour/Problem.lean` and
-checked against the obstruction fixture. Corner types come from the
-determinant-positive rotation model in `cube_geometry.py`, and the private-corner
-counts shown in the figure are checked to exceed the available copies. With
---check, the committed outputs must equal freshly generated ones.
+The fourteen-cube corner obstruction is read from `FiveColour/Problem.lean`
+and checked against its fixture. The uniform cuboid obstruction U+(τ+5)V+(τ+6)W
+is read from `FiveColour/BoxLowerBound.lean` and the catalogue, and checked
+against the faces stated in `paper/boxes.tex`. Corner types come from the
+determinant-positive rotation model in `cube_geometry.py`. The private corner
+and edge counts drawn are recomputed and checked to exceed the available
+copies. With --check, the committed outputs must equal freshly generated ones.
 """
 from html import escape
 import json
@@ -17,7 +19,8 @@ import sys
 from cube_geometry import corners, require
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS = ('obstruction-figure.tex', 'obstruction-figure.svg')
+OUTPUTS = ('obstruction-figure.tex', 'obstruction-figure.svg',
+           'uniform-obstruction.tex', 'uniform-obstruction.svg')
 # Okabe-Ito colours: distinguishable with colour-blindness, and dark digits stay
 # legible on each. Digits carry the colour identity in greyscale.
 COLOURS = ('E69F00', '56B4E9', '009E73', 'F0E442', 'CC79A7')
@@ -115,7 +118,7 @@ class Drawing:
         # 158 mm fits the paper's 160 mm text block. Font sizes scale with geometry.
         scale = 158 / self.width
         point_scale = scale * 72.27 / 25.4
-        colours = {'#111': 'black!93', '#222': 'black!87', '#666': 'black!60',
+        colours = {'#111': 'black!93', '#222': 'black!87', '#666': 'black!60', '#eee': 'black!7',
                    '#999': 'black!40', '#ccc': 'black!20',
                    **{f'#{c}': f'cube{i}' for i, c in enumerate(COLOURS)}}
         def point(p):
@@ -127,7 +130,8 @@ class Drawing:
         for kind, *args in self.items:
             if kind == 'text':
                 x, y, value, size, bold, anchor, colour = args
-                value = value.replace('×', r'\(\times\)').replace('≥', r'\(\ge\)')
+                value = (value.replace('×', r'\(\times\)').replace('≥', r'\(\ge\)')
+                         .replace('τ', r'\(\tau\)'))
                 anchor = {'middle': 'center', 'start': 'west', 'end': 'east'}[anchor]
                 # Standard Computer Modern sizes avoid font substitution warnings.
                 size = min((8, 9, 10, 10.95, 12), key=lambda s: abs(s - size * point_scale))
@@ -205,6 +209,125 @@ def illustration(rows, notes):
     return d
 
 
+def uniform_obstruction():
+    """Return [(name, faces, copies label, pool)] for U+(τ+5)V+(τ+6)W."""
+    data = (ROOT / 'FiveColour/CatalogueData.lean').read_text(encoding='utf-8')
+    body = re.search(r'def catalogue : Fin 75 → Cube :=\s*!\[(.*?)\]\n', data, re.S).group(1)
+    catalogue = [tuple(map(int, c.split(','))) for c in re.findall(r'!\[([0-9,]+)\]', body)]
+    require(len(catalogue) == 75, 'Catalogue not found')
+    lean = (ROOT / 'FiveColour/BoxLowerBound.lean').read_text(encoding='utf-8')
+    source = re.search(r'def boxLowerSource .*?\n\n', lean, re.S).group(0)
+    pools = re.search(r'lowerPool_card .*?= !\[1,S\+6,S\+6\] j', lean, re.S)
+    indices = list(map(int, re.findall(r'catalogue (\d+)', source)))
+    require(len(indices) == 3 and pools and 'Fin 1 ⊕ (Fin (S+5) ⊕ Fin (S+6))' in lean,
+            'boxLowerSource not found')
+    paper = (ROOT / 'paper/boxes.tex').read_text(encoding='utf-8')
+    stated = dict(re.findall(r'([UVW])=\(([0-9,]+)\)', paper))
+    names = 'UVW'
+    require([tuple(map(int, stated[n].split(','))) for n in names]
+            == [catalogue[i] for i in indices], 'Paper U,V,W differ from boxLowerSource')
+    copies = ('1', '(τ+5)', '(τ+6)')
+    # The cubes each target may use (U alone, U or V, W alone) and their numbers,
+    # as in lowerPool_card.
+    pools = (('U', '1'), ('UV', 'τ+6'), ('W', 'τ+6'))
+    return [(n, catalogue[i], c, p) for n, i, c, p in zip(names, indices, copies, pools)]
+
+
+def edge_types(cube):
+    """Unordered colours on each geometric edge, keyed by the edge's axis."""
+    return [(3 - f // 2 - g // 2, tuple(sorted((cube[f], cube[g]))))
+            for f in range(0, 6) for g in range(f + 1, 6) if f // 2 != g // 2]
+
+
+def uniform_split(varieties):
+    """Corner and edge types of each target that only its pool supplies."""
+    rows = []
+    for name, faces, copies, pool in varieties:
+        outside = [f for other, f, _, _ in varieties if other not in pool[0]]
+        corner_types = {t for f in outside for t in corners(f)}
+        edge_pairs = {t for f in outside for _, t in edge_types(f)}
+        types = corners(faces)
+        require(len(set(types)) == 8, f'{name} has repeated corner types')
+        private = sorted(t for t in types if t not in corner_types)
+        shared = sorted(t for t in types if t in corner_types)
+        edges = sorted((axis, t) for axis, t in edge_types(faces) if t not in edge_pairs)
+        if name == 'U':
+            edges = []  # Two private corners already exceed the single copy.
+        else:
+            # One edge per axis gives τ = a+b+c-6 positions in every orientation.
+            require([axis for axis, _ in edges] == [0, 1, 2], f'{name} edge pattern changed')
+        rows.append((name, faces, copies, pool, private, shared, [t for _, t in edges]))
+    require([(len(r[4]), r[6]) for r in rows]
+            == [(2, []), (7, [(1, 4), (1, 4), (1, 1)]), (7, [(3, 4), (3, 3), (3, 4)])],
+            'Unexpected private corner or edge counts')
+    edges_in_paper = re.findall(r'these are \$(\d\d),(\d\d),(\d\d)\$',
+                                (ROOT / 'paper/boxes.tex').read_text(encoding='utf-8'))
+    edges_in_paper += re.findall(r'now\s+\$(\d\d),(\d\d),(\d\d)\$',
+                                 (ROOT / 'paper/boxes.tex').read_text(encoding='utf-8'))
+    require([[tuple(map(int, e)) for e in group] for group in edges_in_paper]
+            == [rows[1][6], rows[2][6]], 'Paper private edge types differ')
+    return rows
+
+
+def edge(d, pair, x, y, unit):
+    """Two faces meeting along a vertical edge, under a neutral top face."""
+    side = math.sqrt(3) * unit / 2
+    label, y = y + unit + 15, y + unit / 2  # Centre the glyph on the corner row.
+    d.polygon([(x, y - unit / 2), (x + side, y - unit), (x, y - 3 * unit / 2),
+               (x - side, y - unit)], '#eee', stroke='#999')
+    polygons = ([(0, -unit / 2), (-side, -unit), (-side, 0), (0, unit / 2)],
+                [(0, -unit / 2), (0, unit / 2), (side, 0), (side, -unit)])
+    for colour, points in zip(pair, polygons):
+        d.polygon([(x + px, y + py) for px, py in points], f'#{COLOURS[colour]}')
+        d.text(x + sum(px for px, _ in points) / 4, y + sum(py for _, py in points) / 4,
+               colour, size=15)
+    d.text(x, label, word(pair), size=16)
+
+
+def bracket(d, left, right, y, label):
+    d.line([(left, y - 6), (left, y), (right, y), (right, y - 6)], stroke='#222', width=1.4)
+    d.text((left + right) / 2, y + 18, label, size=16, bold=True)
+
+
+def uniform_illustration(rows, notes):
+    d = Drawing(900, 512 if notes else 470)
+    step, first, edge_x, why = 48, 180, 576, 716
+    d.text(72, 22, 'Collection', size=17, bold=True)
+    d.text(first + 3.5 * step, 22, 'Corner types of each target', size=17, bold=True)
+    d.text(edge_x + step, 22, 'Edge types', size=17, bold=True)
+    d.text(why, 22, 'Why it fails', size=17, bold=True, anchor='start')
+    for i, (name, faces, copies, pool, private, shared, edges) in enumerate(rows):
+        top = 46 + 140 * i
+        d.line([(16, top - 6), (884, top - 6)])
+        net(d, faces, 24, top + 8, 24)
+        d.text(72, top + 102, f'{copies} × {name}', size=18, bold=True)
+        d.text(72, top + 124, word(faces), size=16)
+        for j, triple in enumerate(private + shared):
+            corner(d, triple, first + step * j, top + 50, 20, fade=j >= len(private))
+        bracket(d, first - 22, first + step * (len(private) - 1) + 22, top + 104,
+                f'{len(private)} private')
+        for j, pair in enumerate(edges):
+            edge(d, pair, edge_x + step * j, top + 50, 20)
+        if edges:
+            bracket(d, edge_x - 22, edge_x + step * (len(edges) - 1) + 22, top + 104,
+                    'one per axis')
+        users, available = pool
+        users = ' or '.join(users)
+        lines = (f'{len(private)} + τ positions' if edges else f'{len(private)} corners',
+                 f'need {users};',
+                 f"only {available} {'copy' if available == '1' else 'copies'}.")
+        for k, line in enumerate(lines):
+            d.text(why, top + 30 + 24 * k, line, size=17, bold=k == 2, anchor='start')
+    d.line([(16, 466), (884, 466)])
+    for y, note in ((482, 'τ = a+b+c−6 counts the noncorner positions on one edge in each direction. '
+                          'Faded corners also occur outside the pool.'),
+                    (500, 'Only U, V and W can be targets. For a+b+c = 8 there are sixteen cubes, '
+                          'so 2×2×4 and 2×3×3 frames need seventeen.')):
+        if notes:
+            d.text(16, y, note, size=14, anchor='start', colour='#666')
+    return d
+
+
 TITLE = 'Why four A, five B and five C cubes cannot build a five-colour target'
 DESCRIPTION = ('The only possible targets are A, B and C themselves. Target A has five corner '
                'types that occur on no other variety, so it needs five A cubes, but only four '
@@ -212,17 +335,28 @@ DESCRIPTION = ('The only possible targets are A, B and C themselves. Target A ha
                'five copies.')
 
 
+UNIFORM_TITLE = 'Why U, τ+5 copies of V and τ+6 copies of W cannot build an a×b×c frame'
+UNIFORM_DESCRIPTION = ('Here τ = a+b+c-6. Only U, V and W can be targets. Target U has two '
+                       'corner types that only U supplies, but there is one U. Targets V and W '
+                       'each have seven private corner types and one private edge type per '
+                       'axis, so τ+7 positions need a cube from a pool of only τ+6.')
+
+
 def render(directory):
     rows = private_split(obstruction())
+    uniform = uniform_split(uniform_obstruction())
     return {directory / OUTPUTS[0]: illustration(rows, notes=False).tikz(),
-            directory / OUTPUTS[1]: illustration(rows, notes=True).svg(TITLE, DESCRIPTION)}
+            directory / OUTPUTS[1]: illustration(rows, notes=True).svg(TITLE, DESCRIPTION),
+            directory / OUTPUTS[2]: uniform_illustration(uniform, notes=False).tikz(),
+            directory / OUTPUTS[3]: uniform_illustration(uniform, notes=True).svg(
+                UNIFORM_TITLE, UNIFORM_DESCRIPTION)}
 
 
 def main():
     if sys.argv[1:] == ['--check']:
         for path, text in render(ROOT / 'paper').items():
             require(path.read_text(encoding='utf-8') == text, f'{path.name} is stale; run make figure')
-        print('Obstruction figure matches Lean, fixture and corner geometry.')
+        print('Obstruction figures match Lean, the paper, fixtures and corner geometry.')
         return
     require(len(sys.argv) <= 2, 'usage: generate_five_colour_figure.py [--check | DIRECTORY]')
     directory = Path(sys.argv[1]) if len(sys.argv) == 2 else ROOT / 'paper'

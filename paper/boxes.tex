@@ -237,8 +237,22 @@ Again, one geometric edge in each direction has a private type, now
 $34,33,34$. Hence $7+\tau$ positions require a $W$ source, whereas only
 $\tau+6$ are available.
 
-Every possible target therefore fails.
+Every possible target therefore fails
+(Figure~\ref{fig:uniform-obstruction}).
 \end{proof}
+
+\begin{figure}[ht]
+\centering
+\input{uniform-obstruction}
+\caption{The uniform obstruction $U+(\tau+5)V+(\tau+6)W$, where $\tau=a+b+c-6$.
+Each net has $+x$ at its centre, and corner types are read
+counterclockwise from outside. Only $U$, $V$ and $W$ can be targets.
+Their pools are $U$ alone, $U$ or $V$, and $W$ alone; faded corner types
+also occur on a cube outside the pool. For $V$ and $W$, one edge in each
+direction has a private type, and these edges have $\tau$ noncorner positions
+in total.}
+\label{fig:uniform-obstruction}
+\end{figure}
 
 \begin{proposition}\label{cor:all-lower-bounds}
 For every $a,b,c\ge2$,
