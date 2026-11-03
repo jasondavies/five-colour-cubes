@@ -170,7 +170,8 @@ proper rotations, corner matching and rotation transport. Each paper supplies
 its own target condition: here every target uses all five colours.
 The general frame-completion construction in `FiveColour/BoxModel.lean`,
 with shared helpers in `FiveColour/FrameCompletion.lean`, is adapted
-from the companion [four-to-three development](https://github.com/jasondavies/four-to-three-colour-cubes).
+from the companion [four-to-three development](https://github.com/jasondavies/four-to-three-colour-cubes)
+([hexagon:2611.00070v1](https://hexagonmath.org/2611.00070v1)).
 No companion catalogue, threshold or classification theorem is imported.
 The cube results specialise the cuboid classification through
 [CubeBoxBridge](FiveColour/CubeBoxBridge.lean), which preserves exposed faces
