@@ -81,12 +81,14 @@ proves the unconditional theorems \path{threshold15} and
 \path{FiveColour.Packed.ProjectedChunks}.
 
 The cuboid proof in Lean follows Lemma~\ref{lem:eight-common-missing}.
-The cube-only exports, such as \path{frame20}, retain an older proof through
-an eleven-cube missing-pair lemma in \path{FiveColour/RingEleven.lean}: its
-nine-variety pattern and ten Hall cuts per target are kernel-checked, and the
-multiplicity argument is proved without enumerating collections. Lean's
-frame-completion step adapts the general construction of~\cite{FourToThree};
-no theorem of that paper is used.
+The cube exports, such as \path{frame20}, specialise the cuboid theorems.
+The equivalences in \path{FiveColour/CubeBoxBridge.lean} identify the cube
+and equal-side cuboid position models, preserving exposed faces and physical
+placements. Cube completion likewise reuses rectangular completion, whose
+generic construction is adapted from~\cite{FourToThree}; no theorem of that
+paper is used. The auxiliary eleven-cube missing-pair lemma remains in
+\path{FiveColour/RingEleven.lean}, with its multiplicity argument proved
+without enumerating collections.
 
 The small-support proofs check pair witnesses directly, without reducing
 them to five colour orbits, and use deficient corner sets for the two

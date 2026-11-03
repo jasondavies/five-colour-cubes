@@ -212,18 +212,26 @@ The sharp frame argument is organised as follows:
 - `FixedPairReserve.lean` supplies the reserves and selections needed by the
   general frame proof. `SharpGeometry.lean` checks the shared-corner and
   missing-pair facts. `DeficitHall.lean` isolates the final two-rare-pair case.
-- `SharpFrames.lean` proves `sharp_frame_of_threshold`: every collection of
-  at least 12q+8 cubes forms a frame for every q≥1, assuming `Threshold15`.
-  `FrameResults.lean` includes the corner exception and proves the entire
-  frame function max(15,12n−16) for n≥2.
+- `BoxThresholds.lean` proves the general cuboid classification. The
+  `CubeBoxBridge.lean` equivalences identify cube and equal-side cuboid
+  positions, preserving exposed faces, compatibility and physical placements.
+  `SharpFrames.lean` and `FrameResults.lean` specialise the cuboid results to
+  the cube formulas, including the corner exception; there is no separate
+  sharp cube-frame case analysis.
 
 `Reserve.lean` supplies disjoint monochromatic reserves for the preliminary
 corner solution. The final Hall matching may rearrange these placements.
-`FullCube.lean` fills face interiors and internal positions; its generic
-completion argument is adapted from the companion four-to-three development.
-The complete-cube threshold remains max(n³,15) for every n≥2.
-The older bounds remain in `FrameReserve.lean` and `RareFrames.lean`; only
-reusable definitions and reserve lemmas from the latter enter the sharp proof.
+`FrameCompletion.lean` supplies the generic embedding extension and single-face
+placement lemmas, adapted from the companion four-to-three development.
+`BoxModel.lean` constructs complete boxes from frames; `FullCube.lean`
+transports that construction through the equal-length equivalence.
+`CubeModel.lean` retains the existing cube position definitions and cardinality
+lemmas. The complete-cube threshold remains max(n³,15) for every n≥2.
+The older reserve bound and its specialised pool checks are isolated in
+`FrameReserve.lean`, outside the sharp proof's imports; check them explicitly
+with `lake build FiveColour.FrameReserve`. `FramePools.lean` now contains only
+the shared colour-pair helpers. The older bound in `RareFrames.lean` also
+remains; its reusable definitions and reserve lemmas enter the sharp proof.
 
 `src/five_colour_fixed_pair.cpp` is a supplementary direct-rotation audit of
 the geometry and all 75,582 eleven-copy collections in one missing-pair family.

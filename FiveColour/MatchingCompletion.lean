@@ -1,5 +1,5 @@
 module
-public import FiveColour.FullCube
+public import FiveColour.FrameCompletion
 @[expose] public section
 namespace FiveColour.FrameHall
 

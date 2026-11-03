@@ -7,10 +7,6 @@ set_option maxHeartbeats 2000000
 
 def cornerMissing (s t : Fin 75) (k : Fin 8) : Prop := (Replay.fits t s).testBit k.val = false
 instance (s t : Fin 75) : DecidablePred (cornerMissing s t) := by intro k; unfold cornerMissing; infer_instance
-def edgeMissing (s t : Fin 75) (e : Fin 12) : Prop :=
-  (edgeBits s).testBit (5*(catalogue t (edgeFaces e 0)).val+(catalogue t (edgeFaces e 1)).val) = false
-instance (s t : Fin 75) : DecidablePred (edgeMissing s t) := by intro e; unfold edgeMissing; infer_instance
-
 def Maximal (s t : Fin 75) (a b : Fin 3) : Prop :=
   OppositeRepeat (catalogue s) ∧ cornerMissBits s t = 6 ∧ alongBits s t a = 1 ∧ alongBits s t b = 2
 instance (s t : Fin 75) (a b : Fin 3) : Decidable (Maximal s t a b) := by unfold Maximal; infer_instance
@@ -26,7 +22,7 @@ lemma maximal_witness_canonical (t : Fin 75) : t = 0 ∨ t = 3 → ∀ a b, a �
     BichromaticAxis (catalogue t) a → BichromaticAxis (catalogue t) b →
     ∀ s, Maximal s t a b → ∀ u, Maximal u t a b → s ≠ u →
       (∃ k, cornerMissing s t k ∧ ¬ cornerMissing u t k) ∨
-      (∃ e, (edgeAxis e = a ∨ edgeAxis e = b) ∧ edgeMissing s t e ∧ ¬ edgeMissing u t e) := by
+      (∃ e, (edgeAxis e = a ∨ edgeAxis e = b) ∧ edgeMissingBit s t e ∧ ¬ edgeMissingBit u t e) := by
   fin_cases t <;> decide +kernel
 
 /-- Put the repeated axis of an opposite-repeat target along the length-two
@@ -41,12 +37,6 @@ lemma normalised_cornerMissing (s t : Fin 75) (k : Fin 8) :
       (ColourCubes.Geometry.slotEquiv (normalisationRotation t) k) := by
   simpa only [cornerMissing,Bool.eq_false_iff,ne_eq,incidence_fits] using
     not_congr (normalised_corner_fits s t k)
-
-lemma normalised_edgeMissing (s t : Fin 75) (e : Fin 12) :
-    edgeMissing s t e ↔ edgeMissing (normalisedSource s t) (anchorFor t)
-      (edgeEquiv (normalisationRotation t) e) := by
-  simpa only [edgeMissing,Bool.eq_false_iff,ne_eq,edgeBits_correct] using
-    not_congr (normalised_edge_fits s t e)
 
 lemma normalised_maximal (s t : Fin 75) (a b : Fin 3) :
     Maximal s t a b ↔ Maximal (normalisedSource s t) (anchorFor t)
@@ -78,7 +68,7 @@ lemma maximal_witness_bits (t : Fin 75) : ∀ a b, a ≠ b →
     BichromaticAxis (catalogue t) a → BichromaticAxis (catalogue t) b →
     ∀ s, Maximal s t a b → ∀ u, Maximal u t a b → s ≠ u →
       (∃ k, cornerMissing s t k ∧ ¬ cornerMissing u t k) ∨
-      (∃ e, (edgeAxis e = a ∨ edgeAxis e = b) ∧ edgeMissing s t e ∧ ¬ edgeMissing u t e) := by
+      (∃ e, (edgeAxis e = a ∨ edgeAxis e = b) ∧ edgeMissingBit s t e ∧ ¬ edgeMissingBit u t e) := by
   intro a b hab ha hb s hs u hu hsu
   have h := maximal_witness_canonical (anchorFor t) (anchorFor_cases t) _ _
     ((axisEquiv (normalisationRotation t)).injective.ne hab)
@@ -98,7 +88,7 @@ lemma maximal_witness_bits (t : Fin 75) : ∀ a b, a ≠ b →
       rcases he with he | he
       · exact Or.inl ((axisEquiv (normalisationRotation t)).injective (he'.symm.trans he))
       · exact Or.inr ((axisEquiv (normalisationRotation t)).injective (he'.symm.trans he))
-    · simpa only [normalised_edgeMissing s t,Equiv.apply_symm_apply] using hse
-    · simpa only [normalised_edgeMissing u t,Equiv.apply_symm_apply] using hue
+    · simpa only [normalised_edgeMissingBit s t,Equiv.apply_symm_apply] using hse
+    · simpa only [normalised_edgeMissingBit u t,Equiv.apply_symm_apply] using hue
 
 end FiveColour.Physical.Strip

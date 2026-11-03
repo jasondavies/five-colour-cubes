@@ -1,6 +1,9 @@
 module
 public import FiveColour.BoxAxes
-public import FiveColour.SharpFrames
+public import FiveColour.FixedPairReserve
+public import FiveColour.MissingPairCopies
+public import FiveColour.SharpGeometry
+public import FiveColour.DeficitHall
 @[expose] public section
 namespace FiveColour.Physical
 

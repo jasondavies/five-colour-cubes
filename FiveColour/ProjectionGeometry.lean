@@ -5,7 +5,6 @@ set_option maxRecDepth 100000
 set_option maxHeartbeats 0
 namespace FiveColour.Physical.Projection
 
-lemma other_other (s : Fin 2) : other (other s) = s := by fin_cases s <;> decide +kernel
 lemma half_card (r : Fin 3) : Fintype.card (Half r) = 4 := by fin_cases r <;> decide +kernel
 lemma slot_injective : ∀ p sign t, side sign t → Function.Injective (cornerSlot p sign t) := by decide +kernel
 noncomputable def adjacentEmbedding (p : Fin 10) (sign : Fin 2) (t : Fin 9) (h : side sign t) : Fin 6 ↪ Fin 8 :=
@@ -36,7 +35,4 @@ def halfSlot (p : Fin 10) (sign : Fin 2) (r : Fin 3) : Half r ⊕ Half r → Fin
   Sum.elim (fun j => cornerSlot p sign (target r) j.val)
     (fun j => cornerSlot p (other sign) (target r) j.val)
 lemma halfSlot_bijective : ∀ p sign r, Function.Bijective (halfSlot p sign r) := by decide +kernel
-noncomputable def halvesEquiv (p : Fin 10) (sign : Fin 2) (r : Fin 3) :=
-  Equiv.ofBijective (halfSlot p sign r) (halfSlot_bijective p sign r)
-
 end FiveColour.Physical.Projection

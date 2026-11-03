@@ -178,4 +178,15 @@ lemma normalised_edge_fits (s t : Fin 75) (e : Fin 12) :
       ((usesAllColours_recolour _ _).mpr (catalogue_uses_all_colours s))]
   rfl
 
+/-- Missing edge incidence, shared by the rod and strip profiles. -/
+def edgeMissingBit (s t : Fin 75) (e : Fin 12) : Prop :=
+  (edgeBits s).testBit (5*(catalogue t (edgeFaces e 0)).val+(catalogue t (edgeFaces e 1)).val) = false
+instance (s t : Fin 75) : DecidablePred (edgeMissingBit s t) := by intro e; unfold edgeMissingBit; infer_instance
+
+lemma normalised_edgeMissingBit (s t : Fin 75) (e : Fin 12) :
+    edgeMissingBit s t e ↔ edgeMissingBit (normalisedSource s t) (anchorFor t)
+      (edgeEquiv (normalisationRotation t) e) := by
+  simpa only [edgeMissingBit,Bool.eq_false_iff,ne_eq,edgeBits_correct] using
+    not_congr (normalised_edge_fits s t e)
+
 end FiveColour.Physical

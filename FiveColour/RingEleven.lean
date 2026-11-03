@@ -21,8 +21,6 @@ lemma positions_card : ∀ t, 3 ≤ t.val → Fintype.card (Positions true t) = 
 lemma self_fits : ∀ t k, active true t k → fits t t k := by decide +kernel
 lemma side_fits : ∀ t s, 3 ≤ t.val → sameSide t s →
     ∀ k : Positions true t, k ∉ special t → fits t s k.val := by decide +kernel
-lemma opposite_lt (t : Fin 9) : (oppositeOf t).val < 3 := by exact Nat.mod_lt _ (by decide)
-
 def counts {I : Type*} [Fintype I] (typeOf : I → Fin 9) (s : Fin 9) : ℕ :=
   (Finset.univ.filter fun i => typeOf i = s).card
 lemma counts_total {I : Type*} [Fintype I] [DecidableEq I] (typeOf : I → Fin 9) :

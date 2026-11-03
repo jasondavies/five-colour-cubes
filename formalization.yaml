@@ -74,7 +74,11 @@ status:
     Solution.lean applies the unconditional threshold to prove frame_bound,
     frame_threshold, frame_threshold_all, frame20, full_cube, full_cube27, full_cube64, complete_cube_threshold and
     support_threshold, audited by ExtensionsAudit.lean. BoxThresholds.lean
-    proves necessary and sufficient pool sizes for every cuboid. The physical
+    proves necessary and sufficient pool sizes for every cuboid. The cube
+    results specialise these theorems through CubeBoxBridge.lean, whose
+    position equivalences preserve compatibility and physical placements.
+    FullCube.lean also reuses the rectangular completion construction.
+    The physical
     eight-plus-three lemma, weighted directional bounds, concentration and
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and

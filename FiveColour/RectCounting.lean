@@ -4,41 +4,6 @@ public import FiveColour.BoxCounts
 namespace FiveColour.Physical
 open scoped BigOperators
 
-def slotPredicate (C : Fin 8 → Prop) (E : Fin 12 → Prop) {l : Fin 3 → ℕ} : RectSlot l → Prop
-  | .inl k => C k
-  | .inr p => E p.1
-instance (C : Fin 8 → Prop) (E : Fin 12 → Prop) [DecidablePred C] [DecidablePred E]
-    (l : Fin 3 → ℕ) : DecidablePred (@slotPredicate C E l) := by
-  intro p; cases p <;> unfold slotPredicate <;> infer_instance
-lemma count_slots (C : Fin 8 → Prop) (E : Fin 12 → Prop) [DecidablePred C] [DecidablePred E]
-    (l : Fin 3 → ℕ) :
-    (Finset.univ.filter fun p : RectSlot l => slotPredicate C E p).card =
-      (Finset.univ.filter C).card + ∑ a, (Finset.univ.filter fun e => edgeAxis e = a ∧ E e).card*l a := by
-  classical
-  rw [← Fintype.card_subtype,Fintype.card_congr (Equiv.subtypeSum),Fintype.card_sum]
-  have hc : Fintype.card {k : Fin 8 // slotPredicate C E (Sum.inl k : RectSlot l)} =
-      (Finset.univ.filter C).card := Fintype.card_subtype _
-  rw [hc]; congr 1
-  let equiv : {p : (Σ e : Fin 12, Fin (l (edgeAxis e))) // E p.1} ≃
-      (Σ e : {e : Fin 12 // E e}, Fin (l (edgeAxis e.val))) :=
-    { toFun := fun p => ⟨⟨p.val.1,p.property⟩,p.val.2⟩
-      invFun := fun p => ⟨⟨p.1.val,p.2⟩,p.1.property⟩
-      left_inv := fun _ => rfl
-      right_inv := fun _ => rfl }
-  change Fintype.card {p : (Σ e : Fin 12, Fin (l (edgeAxis e))) // E p.1} = _
-  rw [Fintype.card_congr equiv,Fintype.card_sigma]
-  simp only [Fintype.card_fin]
-  rw [← Finset.sum_subtype (Finset.univ.filter E) (by simp) (fun e => l (edgeAxis e))]
-  have hf := Finset.sum_fiberwise_of_maps_to (s := Finset.univ.filter E)
-    (t := Finset.univ) (g := edgeAxis) (f := fun e => l (edgeAxis e)) (by simp)
-  rw [← hf]
-  apply Finset.sum_congr rfl
-  intro a _
-  have hs : {e ∈ Finset.univ.filter E | edgeAxis e = a} =
-      Finset.univ.filter fun e => edgeAxis e = a ∧ E e := by ext e; simp [and_comm]
-  rw [hs]
-  exact Finset.sum_const_nat (fun e he => congrArg l (Finset.mem_filter.mp he).2.1)
-
 lemma rectFits_iff_physical (c t : Cube) {l : Fin 3 → ℕ} (p : RectSlot l) :
     RectFits c t p ↔ FacesFit c t (rectExposed l p) := by
   refine ⟨rectFits_physical c t p,?_⟩

@@ -1,6 +1,7 @@
 module
 public import FiveColour.EightPlusThree
-public import FiveColour.SharpFrames
+public import FiveColour.FixedPairReserve
+public import FiveColour.MissingPairCopies
 @[expose] public section
 namespace FiveColour.Physical
 open scoped BigOperators

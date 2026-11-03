@@ -28,9 +28,6 @@ lemma corner_fits (p : Fin 10) (t s : Fin 9) (k : Fin 8) :
   rw [← incidence_fits,corner_bits]
   rfl
 
-lemma mono_only : ∀ p t e,
-    catalogue (variety p t) (edgeFaces e 0) = catalogue (variety p t) (edgeFaces e 1) ↔
-      3 ≤ t.val ∧ e = monoEdge p t := by decide +kernel
 lemma mono_bits : ∀ p t s, 3 ≤ t.val →
     (edgeBits (variety p s)).testBit
       (5*(catalogue (variety p t) (edgeFaces (monoEdge p t) 0)).val +

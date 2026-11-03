@@ -168,9 +168,14 @@ audit their aggregate theorem and check corrupted-checkpoint controls.
 The package pins release [v1.0.0 of colour-cubes-core](https://github.com/jasondavies/colour-cubes-core/tree/v1.0.0) for its physical model,
 proper rotations, corner matching and rotation transport. Each paper supplies
 its own target condition: here every target uses all five colours.
-The general frame-completion proof in `FiveColour/FullCube.lean` is adapted
+The general frame-completion construction in `FiveColour/BoxModel.lean`,
+with shared helpers in `FiveColour/FrameCompletion.lean`, is adapted
 from the companion [four-to-three development](https://github.com/jasondavies/four-to-three-colour-cubes).
 No companion catalogue, threshold or classification theorem is imported.
+The cube results specialise the cuboid classification through
+[CubeBoxBridge](FiveColour/CubeBoxBridge.lean), which preserves exposed faces
+and placements between the two position models; `FullCube.lean` similarly
+reuses rectangular completion.
 The comparator challenge imports only mathlib and restates the required core
 definitions locally. The pinned core revision is public; a fresh clone can
 fetch it without credentials using the normal Lake build commands.

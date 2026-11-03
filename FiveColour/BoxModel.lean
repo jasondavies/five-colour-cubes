@@ -1,5 +1,5 @@
 module
-public import FiveColour.FullCube
+public import FiveColour.FrameCompletion
 public import FiveColour.RareGeometry
 @[expose] public section
 namespace FiveColour.Physical

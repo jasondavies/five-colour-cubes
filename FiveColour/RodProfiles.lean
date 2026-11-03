@@ -8,9 +8,6 @@ set_option maxHeartbeats 2000000
 def RodTarget (t : Fin 75) (a : Fin 3) : Prop :=
   BichromaticAxis (catalogue t) a ∧ (OppositeRepeat (catalogue t) → Axial (catalogue t) a)
 instance (t : Fin 75) (a : Fin 3) : Decidable (RodTarget t a) := by unfold RodTarget; infer_instance
-def edgeMissingBit (s t : Fin 75) (e : Fin 12) : Prop :=
-  (edgeBits s).testBit (5*(catalogue t (edgeFaces e 0)).val+(catalogue t (edgeFaces e 1)).val) = false
-instance (s t : Fin 75) : DecidablePred (edgeMissingBit s t) := by intro e; unfold edgeMissingBit; infer_instance
 abbrev rodAlongBits := alongBits
 
 lemma adjacent_rod_canonical (s : Fin 75) : ¬ OppositeRepeat (catalogue s) → ∀ t, t = 0 ∨ t = 3 → ∀ a,
@@ -31,12 +28,6 @@ lemma rod_bad_disjoint_canonical (t : Fin 75) : t = 0 ∨ t = 3 → ∀ a, RodTa
 lemma normalised_rod_target (t : Fin 75) (a : Fin 3) :
     RodTarget t a ↔ RodTarget (anchorFor t) (axisEquiv (normalisationRotation t) a) := by
   simp only [RodTarget,normalised_bichromatic t a,normalised_target_kind t,normalised_axial t a]
-
-lemma normalised_edgeMissingBit (s t : Fin 75) (e : Fin 12) :
-    edgeMissingBit s t e ↔ edgeMissingBit (normalisedSource s t) (anchorFor t)
-      (edgeEquiv (normalisationRotation t) e) := by
-  simpa only [edgeMissingBit,Bool.eq_false_iff,ne_eq,edgeBits_correct] using
-    not_congr (normalised_edge_fits s t e)
 
 lemma adjacent_rod_bits (s : Fin 75) : ¬ OppositeRepeat (catalogue s) → ∀ t a,
     RodTarget t a → rodAlongBits s t a ≤ 1 ∧ cornerMissBits s t + rodAlongBits s t a ≤ 8 := by

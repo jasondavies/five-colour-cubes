@@ -87,8 +87,8 @@ lemma separation (s u t : Fin 75) (axes : Equiv.Perm (Fin 3)) (M : ℕ) (hM : 2 
         · simp [Lengths,he,a]
         · simp [Lengths,he,b]; omega
       refine ⟨.inr ⟨e,⟨0,hlen⟩⟩,?_,?_⟩
-      · simpa [RectFits,edgeMissing,← edgeBits_correct] using hs
-      · simpa [RectFits,edgeMissing,← edgeBits_correct] using hu
+      · simpa [RectFits,edgeMissingBit,← edgeBits_correct] using hs
+      · simpa [RectFits,edgeMissingBit,← edgeBits_correct] using hu
   obtain ⟨p,hsp,hup⟩ := witness
   have := joint_missing_lt_of_witness (Lengths axes M) (catalogue s) (catalogue u) (catalogue t) p hsp hup
   omega
