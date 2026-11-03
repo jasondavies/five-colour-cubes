@@ -28,7 +28,7 @@ and only three complete-box shapes can require spare sources.
 The proof combines a certified fifteen-cube corner theorem with elementary
 Hall arguments and a uniform three-variety obstruction. It completes the
 five-colour frame column left open by Berkove, Eickemeyer and Schulman
-(2018). Lean verifies the entire classification. A fixed-size flow
+(2018). All threshold statements are formalised in Lean. A fixed-size flow
 formulation constructs assemblies in time linear in the explicit input
 and output sizes. We also determine the corner thresholds when the
 number of source varieties is bounded.
@@ -162,10 +162,6 @@ $16n-3$ for every side length $n\ge2$, with a classification of the largest
 failing collections. The two developments share the palette-independent
 geometry in the \texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes};
 neither threshold theorem is used to prove the other.
-
-A limited literature search has found no later value for the five-colour entry.
-This is not a comprehensive priority claim. In particular, Rosenfeld's
-October 2026 article~\cite{Rosenfeld} has not been examined in full.
 
 \section{Geometry and Hall deficiencies}\label{sec:model}
 Represent a cube by its colours on the faces
@@ -327,25 +323,15 @@ The counts below refer to these constraint pairs. Transporting a cover
 also transports its constrained varieties, budget and multiplicities, so
 no counterexample is lost. Global reflection transports the whole
 collection; individual cubes still move only by proper rotations.
-The repeated-variety cases have the following counts,
-totalling 244.
-\begin{center}
-\begin{tabular}{lrrrrrr}
-\toprule
-Anchor / maximum multiplicity & 2 & 3 & 4 & 5 & 6 & 7\\
-\midrule
-Adjacent-repeat & 72 & 55 & 31 & 14 & 4 & 1\\
-Opposite-repeat & 26 & 21 & 11 & 6 & 2 & 1\\
-Total & 98 & 76 & 42 & 20 & 6 & 2\\
-\bottomrule
-\end{tabular}
-\end{center}
+The repeated-variety cases give 244 constraint orbits; the breakdown is in
+Appendix~\ref{app:verification}.
 
 For distinct collections a different choice of anchor reduces the count.
 \begin{lemma}[Shared two-colour corner]\label{lem:shared}
 Among eleven adjacent-repeat cubes, two share a two-colour corner type.
 If a distinct collection contains such a pair and one member is chosen as
-anchor, neither two-colour position of the anchor can be Hall-deficient.
+anchor, the set consisting of its two two-colour positions is not
+Hall-deficient.
 \end{lemma}
 \begin{proof}
 Each adjacent-repeat cube with repeated colour $r$ has exactly two such
@@ -428,11 +414,9 @@ Thus the reduced collection consists of the $m$ fixed anchor copies and
 $8+|K|+\lambda$ other copies; in particular, $G\ge m$ is automatic. Apply the lemma
 after selecting and normalising the original root, retaining its bounds.
 No new anchor selection is required for the smaller collection.
-Of the 279 remaining roots, 277 admit an exclusion certificate with $\lambda=0$. The other two, original
-cases 68 and 69, use $\lambda=1$ and $G=12$. Their $\lambda=0$, $G=11$ problems actually
-have solution-free collections, supplied and checked by physical matching in
-the projected manifest. The projected totals range from 9 to 15. All 101 roots
-whose original budget was zero retain their original certificates.
+The resulting 279 projected problems have totals between 9 and 15.
+Their parameters and exceptional cases are recorded in
+Appendix~\ref{app:verification}.
 
 \section{Interval certificates}\label{sec:certificates}
 For a projected problem, admissibility is defined by~\eqref{eq:admissible}
@@ -491,16 +475,8 @@ not use the search program's matching implementation.
 The separate checker accepts an exclusion certificate for each of the
 279 projected problems.
 \end{proposition}
-The projected archive contains 499,829 instructions, 95.69\% fewer than the
-original archive. Both archives and the search computations are documented
-in the repository.
-Every archived header is checked against its exported root case. Eighty
-negative controls are rejected, including all 77 possible direct closing
-claims against a separate $G=11$ fixture, not a $G=15$ root problem.
-This fixture is a known solution-free eleven-cube collection: it satisfies
-its total, fixed anchor count, coordinate bounds and zero root budget, and
-fails all 75 targets by physical matching. It is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
-checks are in \path{scripts/check_five_colour_distinct.py}.
+Archive sizes and rejection controls are recorded in
+Appendix~\ref{app:verification}.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Lemma~\ref{lem:lower} gives $N_5\ge15$. A solution-free collection of fifteen
@@ -737,119 +713,29 @@ five and five, regardless of their distribution within the $B$-group.
 The original example is $x_1=5,x_2=x_3=0$.
 \end{remark}
 
-\section{Formalisation and reproducibility}\label{sec:formal}
-The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
-\texttt{v4.35.0}. It proves the physical theorems, including the connection
-between cube arrangements and the finite certificate problems.
-The physical model and palette-independent geometry come from the shared
-\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}.
+\section{Formal verification}\label{sec:formal}
+All threshold statements are formalised in Lean~4 and mathlib~\cite{Lean4,mathlib},
+both at \texttt{v4.35.0}, using the physical model and palette-independent
+geometry of \texttt{colour-cubes-core}~\cite{ColourCubes}. The proof connects
+arbitrary physical cubes to the catalogue, Hall deficiencies, the complete
+root cover and the certified exclusions. The cuboid deductions then apply
+the verified corner theorem; they require no further exclusion certificates.
 
-Lean proves completeness and uniqueness of the 75 varieties and checks all
-45,000 corner-compatibility bits using the shared corner--rotation theorem.
-The lower bound uses 75 deficient corner sets: 72 singletons and three
-sets of sizes 5, 6 and 6. Its theorem is
-\path{FiveColour.Physical.lower_bound} in \path{FiveColour/LowerBound.lean}. This replaces the elementary
-target classification in Lemma~\ref{lem:lower}; catalogue completeness and
-rotation transport extend the result to every physical target.
+In namespace \path{FiveColour.Puzzle}, the unconditional endpoints are
+\path{box_frame_threshold} and \path{complete_box_threshold}, exported
+by \path{Solution.lean}.
+They use the project's physical box definitions and proper-rotation bridges.
+The separate Mathlib-only comparator challenge covers the corner problem;
+a full external comparator pass remains unconfirmed. The construction
+algorithm's complexity bound is a mathematical consequence, not an additional
+Lean claim.
 
-The upper-bound formalisation follows the Hall reduction, symmetry
-transport, anchor selection and shared-corner argument. Finite checks
-verify capacities, cover representatives and the reduction from 357 roots
-to 279. The deletion step is \path{FiveColour.Physical.root_projection}
-in \path{FiveColour/RootProjection.lean}. The bridge to the archive, in
-\path{FiveColour/ProjectedBridge.lean}, identifies the full admissibility
-predicate: coordinate bounds, total, budget and all Hall-cut families.
-
-For efficient replay, Lean proves soundness of a packed implementation of
-the interval checker. For multiplicities $0\le x_i\le7$, index the varieties
-by $0,\ldots,74$ and put
-\[
- P(x)=\sum_{i=0}^{74}x_i B^i,\qquad
- W(S)=\sum_{i\in S}B^{74-i},\qquad B=1024.
-\]
-Then
-\[
- x(S)=\left\lfloor\frac{P(x)W(S)}{B^{74}}\right\rfloor\bmod B.
-\]
-Every coefficient in the product is at most $75\cdot7<1024$, so no carry
-can affect this coefficient extraction. Lean proves the identity, decoding,
-coordinate updates and equivalence with the integer inequalities, and
-checks all 19,125 neighbourhood weights.
-
-The 279 certificates are split into 4,786 chunks of at most 128
-instructions. Composition requires exact boundary-vector agreement and a
-proof for every referenced box; the exporter is untrusted. All chunks and
-their final assembly have passed kernel checking. The case mapping and
-certificate hashes are in \path{data/q5-projected-root-manifest.json}.
-The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
-proves the unconditional theorems \path{threshold15} and
-\path{sharpThreshold15}. Both lie in namespace
-\path{FiveColour.Packed.ProjectedChunks}.
-
-The cuboid proof in Lean follows Lemma~\ref{lem:eight-common-missing}.
-The cube-only exports, such as \path{frame20}, retain an older proof through
-an eleven-cube missing-pair lemma in \path{FiveColour/RingEleven.lean}: its
-nine-variety pattern and ten Hall cuts per target are kernel-checked, and the
-multiplicity argument is proved without enumerating collections. Lean's
-frame-completion step adapts the general construction of~\cite{FourToThree};
-no theorem of that paper is used.
-
-The small-support proofs check pair witnesses directly, without reducing
-them to five colour orbits, and use deficient corner sets for the two
-obstruction constructions. The modules are \path{SmallSupport.lean} and
-\path{MixedObstructions.lean} in the \path{FiveColour} directory.
-
-The full cuboid classification is formalised in
-\path{FiveColour/BoxThresholds.lean}. In namespace
-\path{FiveColour.Physical}, \path{box_frame_threshold_iff} and
-\path{box_threshold_iff} give necessary and sufficient pool sizes for
-arbitrary side lengths at least two, assuming
-\path{FiveColour.Physical.Threshold15}. \path{Solution.lean} applies the
-completed corner theorem to discharge this assumption. In namespace
-\path{FiveColour.Puzzle}, it exports the unconditional theorems
-\path{box_frame_threshold} and \path{complete_box_threshold}, together with
-\path{frame20}, \path{frame_threshold_all}, \path{full_cube},
-\path{complete_cube_threshold} and \path{support_threshold}.
-
-The rectangular model and completion are in
-\path{FiveColour/BoxModel.lean}; compatibility is connected to proper
-rotations, and axis assignments are realised by proper rotations.
-\path{FiveColour/EightPlusThree.lean} proves the physical prescribed-family
-lemma. Its proof uses a failed Hall set to obtain the small cover directly,
-as in Lemma~\ref{lem:eight-common-missing}; signed projection and small matching
-patterns are checked in the kernel. The weighted bounds and upper deductions
-are in \path{FiveColour/WideFrames.lean}, \path{FiveColour/RodFrames.lean}
-and \path{FiveColour/StripFrames.lean}. The thin-box proofs formalise both
-concentration and switching targets, including the equality cases of the
-affine geometric bounds. \path{FiveColour/BoxLowerBound.lean} proves the
-uniform three-variety obstruction for every shape and orientation.
-A separate C++ audit reconstructs the geometry and checks these profiles.
-No new interval certificates are used. The flow algorithm and its
-complexity bound in Section~\ref{sec:construction} are mathematical
-deductions, not additional Lean claims.
-
-The dependency audits cover 133 declarations listed in \path{Audit.lean},
-fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
-final replay theorems. Their dependencies are confined to
-\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
-and audits with:
-\begin{verbatim}
-make check WORKERS=2
-make projected-replay-data WORKERS=8
-make projected-replay WORKERS=8
-make check-extensions
-\end{verbatim}
-The module guide is \path{FiveColour/README.md}.
-
-A Mathlib-only comparator challenge states the corner problem geometrically,
-restating the library's definitions locally. It covers only the corner
-problem: the cuboid statements rest on the definitions in
-\path{FiveColour/BoxModel.lean}. Its equivalence with the development's
-model is proved by
-\path{FiveColour.Puzzle.hasSolution_iff} in
-\path{FiveColour/ComparatorBridge.lean}. The solution module applies the
-completed threshold theorem. A full external comparator pass remains
-unconfirmed; it is separate from the completed Lean proof.
+The command \texttt{make verify-full} checks the computational audits,
+replays all projected certificates, builds the unconditional cuboid results
+and audits their axioms. The shorter \texttt{make check} does not reproduce
+the full theorem. Appendix~\ref{app:verification} gives the implementation
+and audit details; generated verification records belong to the release
+artifacts, rather than the versioned source.
 
 \section{Remaining questions}
 The sharp frame and complete-box thresholds leave the structure of
@@ -868,6 +754,9 @@ author's direction. The author initiated and directed the research. Author
 review and submission approval of this working manuscript are pending.
 The inherited geometry has its own provenance in the pinned dependency.
 Automated checks and AI review are not independent human peer review.
+
+\appendix
+\input{verification}
 
 \begin{thebibliography}{9}
 \raggedright
@@ -893,11 +782,6 @@ Journal of the ACM \textbf{19}(2) (1972), 248--264.
 for face-coloured cubes, Lean library (2026).
 Release \href{https://github.com/jasondavies/colour-cubes-core/tree/v1.0.0}{\texttt{v1.0.0}},
 \url{https://github.com/jasondavies/colour-cubes-core}.
-\bibitem{Rosenfeld} M.~Rosenfeld,
-\emph{MacMahon Cubes and Moshe's Insanity, Puzzle 1},
-Geombinatorics Quarterly \textbf{36}(2) (October 2026), starts at p.~78.
-\href{https://geombina.uccs.edu/past-issues/volume-xxxvi}{Journal listing};
-full text not examined.
 \bibitem{Lean4} L.~de Moura and S.~Ullrich,
 \emph{The Lean 4 Theorem Prover and Programming Language},
 in Automated Deduction---CADE~28, LNCS \textbf{12699}, Springer (2021), 625--635.

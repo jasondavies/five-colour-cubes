@@ -142,7 +142,10 @@ fidelity:
     corner and directional edge counts. No new interval certificates are used.
     The compressed flow construction and its complexity bound are proved
     in the manuscript, not formalised in Lean.
-    No human peer review or publication-priority
-    claim is made.
+    The full source and generated-proof verification route is make verify-full;
+    its revision, hashes, logs and axiom reports are ignored release artifacts.
+    Rosenfeld (2026), pp. 78-82, has been read: it presents a six-colour
+    eight-cube puzzle and does not state the five-colour thresholds.
+    No human peer review or publication-priority claim is made.
 review:
   status: "Automated checks and AI review only; author and independent human review pending"

@@ -4,6 +4,34 @@ and a uniform lower obstruction come first, followed by the thin-box
 upper bounds and the remaining shapes. The only certified input is
 Theorem~\ref{thm:main}; the prescribed-family lemma is independent of it.
 
+After ordering the sides as $a\le b\le c$, the upper bound has three
+exhaustive regimes:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Shape & Main mechanism\\
+\midrule
+$a+b\ge6$ & Weighted compatibility and reservations\\
+$a=b=2$ & Concentration and retargeting along a rod\\
+$a=2,\ b=3$ & Exceptional-defect control and retargeting\\
+\bottomrule
+\end{tabular}
+\end{center}
+We establish the thin regimes first, then the general weighted bound.
+In each case an initial corner matching verifies part of Hall's inequalities;
+the final matching may rearrange those placements.
+
+\begin{lemma}[Rare pairs]\label{lem:rare-pairs}
+In a collection of five-colour cubes, any family of bichromatic pairs each
+missing from more than half the source copies consists of at most two
+pairwise disjoint pairs.
+\end{lemma}
+\begin{proof}
+The missing families of two such pairs intersect. A source missing both
+pairs forces them to be disjoint, by Lemma~\ref{lem:cube-incidence}.
+There are at most two disjoint pairs in a five-colour palette.
+\end{proof}
+
 \subsection{Signed corner projections}
 Retain the family $\mathcal H_{\alpha\beta}$ from Lemma~\ref{lem:fixed-missing-pair},
 with its opposite-repeat varieties and their $2\times2$ corner array.
@@ -282,8 +310,8 @@ corner cubes of any box would themselves give a corner solution.
 For the upper bound, take fifteen arbitrary source copies. Call a
 bichromatic pair rare if at most seven sources possess it. Each rare
 pair is missing from at least eight sources. The missing sets for any
-two rare pairs intersect, since $8+8>15$; hence the two pairs must be
-disjoint. There are therefore at most two rare pairs.
+two rare pairs intersect, since $8+8>15$. Lemma~\ref{lem:rare-pairs}
+therefore gives at most two disjoint rare pairs.
 
 Suppose first that there is no rare pair. The corner theorem supplies
 a target $T$ and a corner matching. If $T$ is adjacent-repeat, choose
@@ -389,8 +417,8 @@ so at most six further positions are missed.
 \begin{proof}
 First let $c=3$ and take seventeen sources. Call a bichromatic pair
 rare if at most eight sources possess it. Each rare pair is absent from
-at least nine sources, so any two rare pairs are disjoint by Lemma~\ref{lem:cube-incidence} and there are
-at most two. If no pair is rare, choose a corner target using $N_5=15$
+at least nine sources. By Lemma~\ref{lem:rare-pairs} there are
+at most two, and they are disjoint. If no pair is rare, choose a corner target using $N_5=15$
 and put its possible monochromatic edge along the side of length two.
 Otherwise choose a rare pair $\alpha\beta$ and apply
 Lemma~\ref{lem:eight-common-missing} to eight sources in $\mathcal H_{\alpha\beta}$
@@ -417,8 +445,8 @@ Now let $c\ge4$, put $M=c-2\ge2$, and set
 \]
 There are $N=4c+4$ frame positions. Take any $N$ source copies, and call
 a bichromatic pair rare if at most $d-1$ copies possess it. Each rare
-pair is absent from at least $d+1>N/2$ sources. Consequently any two
-rare pairs are disjoint, and there are at most two.
+pair is absent from at least $d+1>N/2$ sources. Lemma~\ref{lem:rare-pairs}
+gives at most two disjoint rare pairs.
 
 If no pair is rare, use the corner theorem and orient the target's
 possible monochromatic edge along the side of length two. Otherwise,
@@ -557,7 +585,8 @@ types are all non-rare.
 
 \begin{proof}
 Each rare pair is missing from more than half the collection. Thus any
-two rare pairs are disjoint by Lemma~\ref{lem:cube-incidence}, and there are at most two. If there is no
+two rare pairs are disjoint and there are at most two, by
+Lemma~\ref{lem:rare-pairs}. If there is no
 rare pair, use the corner theorem and choose either specified orientation.
 
 Otherwise let $\alpha\beta$ be rare. At least eight sources belong to
@@ -701,8 +730,8 @@ at least
 \[
  N-d+1=3\tau-M+3
 \]
-copies, exceeding $N/2$ by $m+t-1\ge1$. Thus any two rare pairs are
-disjoint by Lemma~\ref{lem:cube-incidence}, and there are at most two.
+copies, exceeding $N/2$ by $m+t-1\ge1$. Lemma~\ref{lem:rare-pairs}
+again gives at most two disjoint rare pairs.
 
 By Lemma~\ref{lem:partial-matching}, a target avoiding all rare pairs
 has a full frame matching whenever its corners and monochromatic edge

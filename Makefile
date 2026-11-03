@@ -44,6 +44,10 @@ check-lean:
 
 check: check-code check-lean
 
+# Complete proof, including all projected certificates and unconditional extensions.
+verify-full:
+	$(PYTHON) -u -S scripts/verify_full.py --workers $(WORKERS)
+
 # Requires the completed projected replay (generated modules).
 check-extensions:
 	lake build Solution
@@ -81,4 +85,4 @@ figure:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: figure check-extensions projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
+.PHONY: verify-full figure check-extensions projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper

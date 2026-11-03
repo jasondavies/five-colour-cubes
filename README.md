@@ -117,8 +117,7 @@ ignored and regenerated from the committed archive.
 The research and manuscript were developed by GPT-6-Astra (OpenAI), used through
 Codex, under Jason Davies's direction. Author review and submission approval of
 the manuscript are pending. Automated checks are not independent human peer
-review. The limited literature search does not establish priority; the October
-2026 Rosenfeld article remains unread. The repository is public; no tagged
+review. The literature comparison is recorded in `formalization.yaml`. The repository is public; no tagged
 release has been made and nothing has been submitted to Palomar.
 
 ## Build and check
@@ -188,10 +187,24 @@ All 279 cases, final assembly and the axiom audit have passed. Reproduce the
 completed proof using the projected archive:
 
 ```sh
-make projected-replay-data WORKERS=8
-make projected-replay WORKERS=8
-make check-extensions
+make verify-full WORKERS=2
 ```
+
+`verify-full` runs the code audits, default Lean checks, complete projected
+replay and unconditional extension build in that order. It retains logs,
+source and generated-module SHA-256 hashes, the exact checkout commit and
+working-tree status, and the final replay axiom report under ignored
+`build/verification/`. A successful record requires unchanged sources during
+the run. Lake checks dependency traces for cached artifacts; this is not a
+clean-build benchmark or an external comparator pass. For a release, run it
+on the frozen commit and archive that record with the source package. Do not
+commit these machine-local records. Individual stages remain available as
+`make projected-replay-data`, `make projected-replay`, and `make check-extensions`.
+The common and extension builds default to one Lean thread to limit memory.
+On a larger machine, set `LEAN_NUM_THREADS` explicitly, for example
+`LEAN_NUM_THREADS=8 make verify-full WORKERS=8`. Certificate replay uses
+`WORKERS` concurrent cases, each with one Lean thread.
+
 
 Generation produces 4,786 chunks covering 499,829 instructions at the default
 limit of 128. Sources under `FiveColour/ProjectedChunks/` and logs under `build/`
