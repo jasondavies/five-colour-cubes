@@ -21,7 +21,7 @@ env:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
@@ -36,7 +36,27 @@ jobs:
           tar -xzf "$installer_dir/elan.tar.gz" -C "$installer_dir"
           "$installer_dir/elan-init" -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore project build
+        id: restore
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
+        with:
+          path: .lake/build
+          key: lake-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: lake-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
       - name: Fetch Mathlib cache
         run: lake exe cache get
-      - name: Check computational certificates and Lean library
-        run: make check WORKERS=2
+      - name: Check computational certificates
+        run: make check-code WORKERS=2
+      # Several kernel-heavy check modules become ready together; in parallel
+      # they exceed the runner's 16 GB. One Lean thread builds them one at a time.
+      - name: Build and audit the Lean library
+        env:
+          LEAN_NUM_THREADS: "1"
+        run: /usr/bin/time -v make check-lean
+      # Save the build even when the checks fail, so the next run starts from it.
+      - name: Save project build
+        if: always() && steps.restore.outcome == 'success' && steps.restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
+        with:
+          path: .lake/build
+          key: lake-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}

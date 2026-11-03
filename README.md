@@ -230,7 +230,12 @@ to verify. It runs the standard package checks, generates and checks all
 `Solution.lean` with its extension axiom audit. It uses two workers and allows up to six hours.
 
 This workflow does not run the external comparator. The ordinary push and
-pull-request CI continues to run `make check` without full Lean replay.
+pull-request CI runs the steps of `make check` without full Lean replay, and
+caches the Lean build between runs. Both workflows set `LEAN_NUM_THREADS=1`
+for Lean steps: several kernel-heavy check modules become ready together, and
+building them in parallel exceeds a 16 GB runner. These steps report peak
+memory with `/usr/bin/time -v`. Local builds keep their usual parallelism;
+on a memory-limited machine, use `LEAN_NUM_THREADS=1 make check`.
 
 ## Fixed review archive
 
