@@ -22,12 +22,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--case', type=int, default=78)
+    parser.add_argument('--case', type=int, default=120)
     parser.add_argument('--limits', nargs='+', type=int, default=[128, 256, 512])
     parser.add_argument('--repeats', type=int, default=3)
     args = parser.parse_args()
-    if not 0 <= args.case < 357 or args.repeats < 1:
-        parser.error('case must be 0..356 and repeats must be positive')
+    if not 0 <= args.case < 279 or args.repeats < 1:
+        parser.error('case must be 0..278 and repeats must be positive')
     if len(set(args.limits)) != len(args.limits) or any(not 1 <= x <= 1024 for x in args.limits):
         parser.error('limits must be distinct integers in 1..1024')
     destination = ROOT / 'build/replay-benchmark' / f'case-{args.case}'
@@ -37,8 +37,8 @@ def main():
     subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedChunks'],
                    cwd=ROOT, check=True)
     rows = [list(map(int, line.split())) for line in
-            (ROOT / 'data/q5-threshold-cases-size15.txt').read_text().splitlines()[1:]]
-    with tarfile.open(ROOT / 'data/q5-certificates.tar.gz') as archive:
+            (ROOT / 'data/q5-projected-root-cases.txt').read_text().splitlines()[1:]]
+    with tarfile.open(ROOT / 'data/q5-projected-certificates.tar.gz') as archive:
         raw = archive.extractfile(f'case-{args.case}.q5p').read()
     certificate = destination / 'input.q5p'
     certificate.write_bytes(raw)
@@ -49,7 +49,7 @@ def main():
         chunks = folder / 'chunks.tsv'
         subprocess.run([str(ROOT / 'build/five_colour_chunks'),
                         str(ROOT / 'data/five-colour-geometry.txt'),
-                        str(ROOT / 'data/q5-threshold-cases-size15.txt'),
+                        str(ROOT / 'data/q5-projected-root-cases.txt'),
                         str(certificate), str(args.case), str(limit), str(chunks)],
                        check=True, capture_output=True)
         group = f'Benchmark{limit}'

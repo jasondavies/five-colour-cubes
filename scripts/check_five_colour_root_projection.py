@@ -6,23 +6,19 @@ anchor and the projection's size condition, and replays all proof objects.
 """
 import argparse
 import hashlib
-import itertools
 import json
 from pathlib import Path
 import subprocess
 import tarfile
 import tempfile
-from physical_geometry import canonical, fits, match, require
+from physical_geometry import match, require
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT/'data'
 
 
-def main():
-    parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--workers',type=int,default=2)
-    args=parser.parse_args()
-    require(args.workers>0,'Worker count')
+def audit(workers, geometry):
+    require(workers>0,'Worker count')
     manifest=json.loads((DATA/'q5-projected-root-manifest.json').read_text())
     def read_rows(name):
         lines=(DATA/name).read_text().splitlines()
@@ -52,12 +48,7 @@ def main():
         require(hashlib.sha256((DATA/name).read_bytes()).hexdigest()==manifest[key],'Input hash')
 
     # Independently rebuild the physical incidence matrix used by the checker.
-    cubes=sorted({canonical(c) for c in itertools.product(range(5),repeat=6) if len(set(c))==5})
-    incidence=fits(cubes,cubes)
-    masks=[[sum(1<<k for k,ns in enumerate(row) if i in ns) for i in range(75)] for row in incidence]
-    geometry=(DATA/'five-colour-geometry.txt').read_text().splitlines()
-    require([tuple(map(int,l.split())) for l in geometry[1:76]]==cubes,'Catalogue')
-    require([list(map(int,l.split())) for l in geometry[76:]]==masks,'Physical incidence')
+    cubes, incidence, masks = geometry
     witnesses=[]
     for attempt in manifest['zero_budget_counterexamples']:
         r=original[attempt['original_case']];s=attempt['retained_budget'];x=attempt['counts']
@@ -84,7 +75,7 @@ def main():
                 (temp/member.name).write_bytes(raw)
         output=temp/'replay.json'
         subprocess.run([str(ROOT/'build/check_five_colour_certificate'),str(DATA/'five-colour-geometry.txt'),
-                        str(DATA/'q5-projected-root-cases.txt'),str(temp/'case-'),str(output),str(args.workers)],
+                        str(DATA/'q5-projected-root-cases.txt'),str(temp/'case-'),str(output),str(workers)],
                        check=True,stdout=subprocess.DEVNULL)
         records=json.loads(output.read_text())
         require(len(records)==279 and {r['case'] for r in records}==set(range(279))
@@ -104,4 +95,9 @@ def main():
     print(json.dumps({k:v for k,v in result.items() if k!='exception_witnesses'},indent=2))
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    from check_five_colour import main as audit_geometry
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--workers',type=int,default=2)
+    args=parser.parse_args()
+    audit(args.workers, audit_geometry())

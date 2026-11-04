@@ -64,7 +64,7 @@ status:
     Physical.Threshold15 and Physical.SharpThreshold15 via
     Packed.ProjectedChunks.threshold15 and sharpThreshold15. Their axiom audit
     contains only propext, Classical.choice and Quot.sound.
-    The default target builds the infrastructure and selected cases; full
+    The default target builds the infrastructure and checkpoint controls; full
     generated replay is opt-in and reproducible from the committed archive.
     The extension library proves the rare-pair Hall argument, the physical
     frame and complete-cube deductions, the sharp two-variety bound of thirteen,
@@ -83,7 +83,7 @@ status:
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and
     complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
-    133 declarations; ExtensionsAudit.lean covers fourteen unconditional
+    129 declarations; ExtensionsAudit.lean covers fourteen unconditional
     extension statements.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended

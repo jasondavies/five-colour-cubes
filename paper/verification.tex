@@ -21,9 +21,10 @@ the projected manifest. The projected totals range from 9 to 15. All 101 roots
 whose original budget was zero retain their original certificates.
 
 The projected archive contains 499,829 instructions, against 11,599,651 in the
-unprojected archive over all 357 roots. Both archives and the search computations are documented
-in the repository.
-Every archived header is checked against its exported root case. Eighty
+unprojected archive over all 357 roots. The projected archive is the publication
+proof input; the unprojected archive and search reports are retained in
+repository history. Every projected certificate header is checked against its
+exported root case. Eighty
 negative controls are rejected, including all 77 possible direct closing
 claims against a separate $G=11$ fixture, not a $G=15$ root problem.
 This fixture is a known solution-free eleven-cube collection: it satisfies
@@ -129,7 +130,7 @@ complexity bound in Section~\ref{sec:construction} are mathematical
 deductions, not additional Lean claims.
 
 \subsection{Reproduction}
-The dependency audits cover 133 declarations listed in \path{Audit.lean},
+The dependency audits cover 129 declarations listed in \path{Audit.lean},
 fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof

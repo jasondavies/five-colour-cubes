@@ -1,8 +1,5 @@
 """Audit geometry generated from quarter turns, separate from the search model."""
-from collections import Counter
 import itertools
-import json
-from pathlib import Path
 
 
 def require(condition, message):

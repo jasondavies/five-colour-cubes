@@ -14,7 +14,6 @@ for dep in config['require']:
  assert packages[dep['name']]['url']==dep['git']
 assert (root/'lean-toolchain').read_text().strip()=='leanprover/lean4:v4.35.0'
 for path in [*(root/'FiveColour').rglob('*.lean'), root/'Solution.lean']:
- if 'ReplayChunks' in path.parts:continue
  assert not re.search(r'\bsorry\b|\bnative_decide\b|^\s*axiom\s',path.read_text(),re.M),path
 # Statement holes are confined to the standalone challenge, never imported by proofs.
 challenge=(root/'Challenge.lean').read_text()
@@ -23,14 +22,16 @@ comparison=json.loads((root/'comparator.json').read_text())
 assert len(re.findall(r':= by sorry',challenge))==len(comparison['theorem_names'])==5
 for path in [*(root/'FiveColour').rglob('*.lean'),root/'FiveColour.lean',root/'Solution.lean']:
  assert not re.search(r'^(?:public )?import Challenge\b',path.read_text(),re.M),path
-rows=(root/'data/q5-threshold-cases-size15.txt').read_text().splitlines()
-assert int(rows[0])==len(rows)-1==357
-with tarfile.open(root/'data/q5-certificates.tar.gz') as archive:
+rows=(root/'data/q5-projected-root-cases.txt').read_text().splitlines()
+assert int(rows[0])==len(rows)-1==279
+projection=json.loads((root/'data/q5-projected-root-manifest.json').read_text())
+with tarfile.open(root/'data/q5-projected-certificates.tar.gz') as archive:
  members=archive.getmembers()
- assert len(members)==357 and {m.name for m in members}=={f'case-{i}.q5p' for i in range(357)}
+ assert len(members)==279 and {m.name for m in members}=={f'case-{i}.q5p' for i in range(279)}
  for m in members:
   assert m.isfile()
   i=int(m.name[5:-4]);raw=archive.extractfile(m).read()
   assert raw[:160]==b'Q5P2'+bytes(map(int,rows[i+1].split()))
-assert hashlib.sha256((root/'data/q5-certificates.tar.gz').read_bytes()).hexdigest()=='2792f86f9b87bc231aafe94679b9abd90b28163748ba7821e00371cd7699d1a3'
-print('Package sources, pins, 357 headers and archived certificate hash checked.')
+  assert hashlib.sha256(raw).hexdigest()==projection['cases'][i]['certificate_sha256']
+assert hashlib.sha256((root/'data/q5-projected-certificates.tar.gz').read_bytes()).hexdigest()==projection['projected_archive_sha256']
+print('Package sources, pins, 279 headers and certificate hashes checked.')

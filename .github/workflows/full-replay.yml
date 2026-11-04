@@ -35,20 +35,7 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Fetch Mathlib cache
         run: lake exe cache get
-      - name: Check computational certificates
-        run: make check-code WORKERS=2
-      # Kernel-heavy modules exceed the runner's 16 GB when built in parallel.
-      - name: Build and audit the Lean library
+      - name: Verify the complete proof and record its inputs
         env:
           LEAN_NUM_THREADS: "1"
-        run: /usr/bin/time -v make check-lean
-      - name: Generate projected replay sources
-        run: make projected-replay-data WORKERS=2
-      - name: Replay all certificates and audit the physical threshold
-        env:
-          LEAN_NUM_THREADS: "1"
-        run: /usr/bin/time -v make projected-replay WORKERS=2
-      - name: Build and audit the geometric solution and extensions
-        env:
-          LEAN_NUM_THREADS: "1"
-        run: /usr/bin/time -v make check-extensions
+        run: /usr/bin/time -v make verify-full WORKERS=2

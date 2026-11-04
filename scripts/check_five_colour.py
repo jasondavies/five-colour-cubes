@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Independent physical audit of the five-colour research results.
+"""Independent physical audit of the publication geometry and root coverage.
 
 Rotations are generated from quarter turns. The search and its geometry helpers
-are not imported. This verifies witnesses and the finite bridge lemma for the
-three-variety upper bound; it does not certify any CP-SAT UNSAT report.
+are not imported. This verifies the lower-bound witness and coverage without importing the search
+model or treating historical solver status reports as evidence.
 """
-from collections import Counter
 import hashlib
 import itertools
 import json
@@ -29,70 +28,18 @@ def main():
     rows=(OUT/'five-colour-geometry.txt').read_text().splitlines()
     require([tuple(map(int,s.split())) for s in rows[1:76]]==cubes,'Catalogue ordering')
     require([list(map(int,s.split())) for s in rows[76:]]==masks,'Physical incidence mismatch')
+    corner_keys = [corner_types(cube) for cube in cubes]
+    corner_sets = list(map(set, corner_keys))
     for t,target in enumerate(cubes):
         for i,cube in enumerate(cubes):
-            cs=set(corner_types(cube))
-            require(masks[t][i]==sum(1<<k for k,c in enumerate(corner_types(target)) if c in cs),
+            require(masks[t][i]==sum(1<<k for k,c in enumerate(corner_keys[t]) if c in corner_sets[i]),
                     'Cyclic and physical corners disagree')
-    verified=[]
-    for name in ['q5-initial.json','q5-local-initial.json','q5-local-diverse.json',
-                 'q5-local-distinct.json','q5-local-cap2.json','q5-three-variety-obstruction.json',
-                 'q5-one-repeat-colour.json']:
-        data=json.loads((OUT/name).read_text());counts=[0]*75
-        for e in data['collection']: counts[index[canonical(tuple(e['faces']))]]+=e['count']
-        require(sum(counts)==data['size'],f'Wrong size in {name}')
-        require(not any(match(s,counts) for s in slots),f'Solvable witness {name}')
-        verified.append(dict(file=name,size=sum(counts)))
-    # Every cube in this witness repeats the same colour; this establishes
-    # sharpness of the separately enumerated twelve-cube family threshold.
-    family=json.loads((OUT/'q5-one-repeat-colour.json').read_text())
-    require(all(e['faces'].count(0)==2 for e in family['collection']),'Wrong repeat family')
-    family_check=json.loads((OUT/'q5-one-repeat-colour-size12-exhaustive.json').read_text())
-    require(family_check['status']=='EXHAUSTIVE_UNSAT' and family_check['size']==12,
-            'Family enumeration did not complete')
-    # For three types, N>=15 and each multiplicity<=7 imply that every pair
-    # of types together has >=8 copies. Hall therefore reduces to the number
-    # of target corners private to each individual source type.
-    cases=Counter()
-    for ids in itertools.combinations(range(75),3):
-        private=[8-(masks[ids[i]][ids[(i+1)%3]]|masks[ids[i]][ids[(i+2)%3]]).bit_count()
-                 for i in range(3)]
-        if sum(private)<=17:
-            cases['private_sum_bound']+=1
-            continue
-        lower=[max(1,17-private[(i+1)%3]-private[(i+2)%3]) for i in range(3)]
-        for row in masks:
-            a,b,c=[row[i] for i in ids]
-            if a|b|c !=255:continue
-            required=[8-(b|c).bit_count(),8-(a|c).bit_count(),8-(a|b).bit_count()]
-            if all(r<=l for r,l in zip(required,lower)):
-                cases['bridge_target']+=1
-                break
-        else:raise ValueError(f'Missing bridge for {ids}')
-    data=json.loads((OUT/'q5-three-variety-exhaustive.json').read_text())
-    require(data['maximum']==14,'Unexpected maximum')
-    vectors=set()
-    for w in data['maximisers']:
-        require(tuple(sorted(w[3:]))==(4,5,5),'Unexpected multiplicities')
-        counts=[0]*75
-        for i,n in zip(w[:3],w[3:]):counts[i]=n
-        require(not any(match(s,counts) for s in slots),'Solvable extremal triple')
-        vectors.add(tuple(counts))
-    require(len(vectors)==len(data['maximisers'])==840,'Duplicate or missing records')
-    # Reproduce the completeness of the 14-cube triple list using the dual
-    # Hall criterion, separately from the C++ enumerator.
-    # Only triples with >=17 private corners can fail all their own targets
-    # at (4,5,5): every pair of multiplicities is >=8, so the same lemma applies.
-    expected=set()
-    for ids in itertools.combinations(range(75),3):
-        private=[8-(masks[ids[i]][ids[(i+1)%3]]|masks[ids[i]][ids[(i+2)%3]]).bit_count()
-                 for i in range(3)]
-        for counts3 in [(4,5,5),(5,4,5),(5,5,4)]:
-            if any(n>=p for n,p in zip(counts3,private)):continue
-            counts=[0]*75
-            for i,n in zip(ids,counts3):counts[i]=n
-            if not any(match(s,counts) for s in slots):expected.add(tuple(counts))
-    require(expected==vectors,'Incomplete (4,5,5) list')
+    witness=json.loads((OUT/'q5-three-variety-obstruction.json').read_text())
+    counts=[0]*75
+    for e in witness['collection']:
+        counts[index[canonical(tuple(e['faces']))]]+=e['count']
+    require(sum(counts)==witness['size']==14,'Wrong lower-bound size')
+    require(not any(match(s,counts) for s in slots),'Solvable lower-bound witness')
     # Check exported case bounds against independently generated physical data,
     # and verify that the symmetry representatives cover EVERY anchored Hall cut.
     case_rows=[list(map(int,row.split())) for row in
@@ -135,20 +82,13 @@ def main():
                 budget=7-m-k.bit_count()
                 require(any((sum(1<<p[i] for i in bad),budget) in represented for p in group),
                         'Missing Hall-cover orbit')
-    for case in json.loads((OUT/'q5-control-cpp-size14.json').read_text()):
-        if case['status']=='SAT':
-            counts=[0]*75
-            for i in case['copies']:counts[i]+=1
-            require(sum(counts)==14 and not any(match(s,counts) for s in slots),
-                    'False positive in exact-search control')
     result=dict(source_varieties=75,targets=75,physical_incidence_check=True,
-                verified_witnesses=verified,three_variety_upper_bound_cases=cases,
-                verified_extremal_triples=len(vectors),
+                lower_bound_witness_checked=True,
                 anchored_cover_cases_checked=len(case_rows),cover_orbits_complete=True,
-                limitation='Exclusion of other size-14 multiplicity patterns uses the C++ enumeration.',
                 source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     (REPORT/'q5-independent-check.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))
+    return cubes, slots, masks
 
 
 if __name__=='__main__':main()

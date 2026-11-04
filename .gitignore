@@ -11,7 +11,4 @@ __pycache__/
 *.synctex.gz
 .DS_Store
 .venv/
-data/q5-certificates/
-FiveColour/ReplayChunks/
-FiveColour/SmallChunks/
 FiveColour/ProjectedChunks/

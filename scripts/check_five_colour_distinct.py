@@ -15,13 +15,12 @@ REPORT = Path(__file__).resolve().parents[1] / 'build/checks'
 REPORT.mkdir(parents=True, exist_ok=True)
 
 
-def main():
-    cubes = sorted({canonical(c) for c in itertools.product(range(5), repeat=6)
-                    if len(set(c)) == 5})
+def main(geometry=None):
+    if geometry is None:
+        from check_five_colour import main as audit_geometry
+        geometry = audit_geometry()
+    cubes, slots, masks = geometry
     index = {c: i for i, c in enumerate(cubes)}
-    slots = fits(cubes, cubes)
-    masks = [[sum(1 << k for k, neighbours in enumerate(row) if i in neighbours)
-              for i in range(75)] for row in slots]
     opposite = [any(c[2*j] == c[2*j+1] for j in range(3)) for c in cubes]
     anchors = [opposite.index(False), opposite.index(True)]
     doubles = [{q for q in corner_types(c) if len(set(q)) == 2} for c in cubes]
@@ -104,25 +103,11 @@ def main():
         if control is not None:
             break
     require(control is not None, 'Known obstruction excluded by partition')
-    (OUT / 'q5-distinct-known-control.txt').write_text(
-        '1\n' + ' '.join(map(str, control)) + '\n')
-    checked_controls = 0
-    for name in ['q5-distinct-shared-control-size11.json', 'q5-distinct-known-control.json']:
-        path = OUT / name
-        if not path.exists():
-            continue
-        for case in json.loads(path.read_text()):
-            if case['status'] == 'SAT':
-                counts = [0] * 75
-                for i in case['copies']:
-                    counts[i] += 1
-                require(sum(counts) == 11 and max(counts) == 1 and
-                        not any(match(s, counts) for s in slots), 'False SAT control')
-                checked_controls += 1
+    require((OUT / 'q5-distinct-known-control.txt').read_text() ==
+            '1\n' + ' '.join(map(str, control)) + '\n', 'Control fixture differs')
     result = dict(case_count=len(rows), case_counts=dict(Counter(r[0] for r in rows)),
                   physical_cover_audit=True, double_corner_types=20,
-                  known_obstruction_covered=True, known_obstruction_cover=control[2],
-                  verified_solver_controls=checked_controls)
+                  known_obstruction_covered=True, known_obstruction_cover=control[2])
     (REPORT / 'q5-distinct-independent-check.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result, indent=2))
 

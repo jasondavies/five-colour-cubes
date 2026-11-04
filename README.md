@@ -81,295 +81,176 @@ be targets. Each such target has more corners that only its own variety fits
 than there are copies of that variety: five corners need A, with four copies,
 and six need B or C, with five copies each.
 
-The upper bound is computer-assisted: a complete reduction gives 357 root
-cases and a separate C++ checker accepts every archived interval certificate. This supplies
-the five-colour corner value listed as unknown in Table 7 of
-[Berkove, Eickemeyer and Schulman (2018)](https://doi.org/10.5281/zenodo.10680216).
+## Verification
 
-**The physical sharp threshold is proved in Lean.** All 279 projected
-certificates have passed kernel replay, their final assembly has checked, and
-the final axiom audit permits only `propext`, `Classical.choice` and `Quot.sound`.
-The unconditional theorems are
-`FiveColour.Packed.ProjectedChunks.threshold15` and `sharpThreshold15`, in the
-generated `FiveColour/ProjectedChunks/Threshold.lean` module.
-
-The proof includes completeness and uniqueness of the 75 physical varieties,
-all 45,000 compatibility bits, the fourteen-cube obstruction, physical Hall
-and multiplicity transport, symmetry, anchor selection and coverage by 357
-integer roots. A [checked reduction](FiveColour/RootReduction.lean) removes 49
-contained roots and excludes 29 by their initial budget bounds. A
-[Hall-budget projection](FiveColour/RootProjection.lean) reduces the remaining
-279 problems: 277 have budget zero and two have budget one, with totals from
-9 to 15. All bounds, totals and constraint families are identified with the
-packed archive in [ProjectedBridge.lean](FiveColour/ProjectedBridge.lean).
-
-The [projected manifest](data/q5-projected-root-manifest.json) numbers the 279
-projected problems 0–278, records the root each comes from, and fixes their proof
-hashes. The projected archive has **499,829 instructions**, against 11,599,651
-in the unprojected archive over all 357 roots. Both archives pass the separate
-C++ checker; the completed Lean proof uses the projected archive, and the
-357-root replay route remains available.
-
-`make check` builds and audits the proof infrastructure and selected cases.
-Reproducing the complete threshold proof additionally requires the
-[full projected replay](#complete-lean-replay), whose generated sources are
-ignored and regenerated from the committed archive.
-
-The research and manuscript were developed by GPT-6-Astra (OpenAI), used through
-Codex, under Jason Davies's direction. Author review and submission approval of
-the manuscript are pending. Automated checks are not independent human peer
-review. The literature comparison is recorded in `formalization.yaml`. The repository is public; no tagged
-release has been made and nothing has been submitted to Palomar.
-
-## Build and check
-
-Requirements: Lean/mathlib v4.35.0, Python 3.12 or later, Make, and a C++20
-compiler with OpenMP. The checks do not require OR-Tools, a SAT solver or a GPU.
+The complete physical corner theorem and cuboid classification have been checked
+in Lean. To reproduce the whole proof from the committed inputs:
 
 ```sh
 lake exe cache get
-make check WORKERS=2
-make paper                 # additionally requires latexmk and LaTeX
-```
-
-`make check` checks dependency pins and source hygiene, verifies physical
-geometry and case coverage, replays the 357 unprojected and 279 projected C++ certificates, rejects 80
-negative controls, checks regeneration of the catalogue witnesses and lower-bound
-cuts, Hall transpose, anchor-normalisation, capacity, cover and archive-header
-witnesses, root-reduction and projection manifests, builds the default Lean target
-and audits 133 theorems. The extension checks regenerate the small pair and
-obstruction witnesses, and separately verify their geometry in C++. The rare-pair
-audit checks all 5,625 source–target pairs using direct proper rotations.
-The separate fixed-pair audit regenerates all ten nine-variety families,
-checks all 75,582 eleven-copy multiplicity vectors in one family, and checks
-all 1,800 arbitrary-cube extensions of its 24 core-matching failures.
-The Lean proof instead uses the ring compatibility pattern and arithmetic
-on multiplicities; it does not enumerate these collections.
-The [cuboid audit](src/five_colour_box_geometry.cpp) reconstructs physical
-rotations and checks signed corner projections, directional bounds, their
-affine equality cases, and the uniform three-variety obstruction. Generated
-projection tables are also checked for reproducibility. Lean checks these
-finite geometric facts in the kernel and proves the deductions for arbitrary
-side lengths and multiplicities. The directional, rod and strip checks
-normalise targets to the two repeated-face types; [BoxSymmetry](FiveColour/BoxSymmetry.lean)
-and [RodSymmetry](FiveColour/RodSymmetry.lean) prove transport of sources,
-corners, edges and axes under colour relabelling and proper rotations.
-[HalfMasks](FiveColour/HalfMasks.lean) uses greedy placement after checking
-single-mask intersection bounds, rather than enumerating triples of masks.
-Only `propext`, `Classical.choice` and `Quot.sound` are permitted. Default Lean
-checks include all 19,125 packed-cut weight and semantic calibrations, plus three small real
-certificates. They do not claim full archive replay.
-
-The [larger examples](FiveColour/Chunked/) compose 499, 3,763 and 9,811 instructions
-from the unprojected archive into 5, 36 and 89 bounded chunks. Run `make examples` to build and
-audit their aggregate theorem and check corrupted-checkpoint controls.
-
-## Shared geometry dependency
-
-The package pins release [v1.0.0 of colour-cubes-core](https://github.com/jasondavies/colour-cubes-core/tree/v1.0.0) for its physical model,
-proper rotations, corner matching and rotation transport. Each paper supplies
-its own target condition: here every target uses all five colours.
-The general frame-completion construction in `FiveColour/BoxModel.lean`,
-with shared helpers in `FiveColour/FrameCompletion.lean`, is adapted
-from the companion [four-to-three development](https://github.com/jasondavies/four-to-three-colour-cubes)
-([hexagon:2611.00070v1](https://hexagonmath.org/2611.00070v1)).
-No companion catalogue, threshold or classification theorem is imported.
-The cube results specialise the cuboid classification through
-[CubeBoxBridge](FiveColour/CubeBoxBridge.lean), which preserves exposed faces
-and placements between the two position models; `FullCube.lean` similarly
-reuses rectangular completion.
-The comparator challenge imports only mathlib and restates the required core
-definitions locally. The pinned core revision is public; a fresh clone can
-fetch it without credentials using the normal Lake build commands.
-
-To prepare pinned dependencies from an existing sibling core checkout and its
-cached mathlib dependencies, use:
-
-```sh
-python3 -S scripts/bootstrap_local.py
-make check WORKERS=2
-```
-
-The bootstrap verifies revisions; the manifest contains portable Git URLs and
-immutable commit pins. These local caches are optional build conveniences.
-
-## Complete Lean replay
-
-All 279 cases, final assembly and the axiom audit have passed. Reproduce the
-completed proof using the projected archive:
-
-```sh
 make verify-full WORKERS=2
 ```
 
-`verify-full` runs the code audits, default Lean checks, complete projected
-replay and unconditional extension build in that order. It retains logs,
-source and generated-module SHA-256 hashes, the exact checkout commit and
-working-tree status, and the final replay axiom report under ignored
-`build/verification/`. A successful record requires unchanged sources during
-the run. Lake checks dependency traces for cached artifacts; this is not a
-clean-build benchmark or an external comparator pass. For a release, run it
-on the frozen commit and archive that record with the source package. Do not
-commit these machine-local records. Individual stages remain available as
-`make projected-replay-data`, `make projected-replay`, and `make check-extensions`.
-The common and extension builds default to one Lean thread to limit memory.
-On a larger machine, set `LEAN_NUM_THREADS` explicitly, for example
-`LEAN_NUM_THREADS=8 make verify-full WORKERS=8`. Certificate replay uses
-`WORKERS` concurrent cases, each with one Lean thread.
+Requirements: Lean/mathlib v4.35.0, Git, Python 3.12+, Make and a C++20 compiler
+with OpenMP. No SAT solver, OR-Tools or GPU is required. The toolchain and project
+dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 
+| Command | What it establishes |
+| --- | --- |
+| `make verify-full` | All code audits, Lean infrastructure, all 279 certificates, the final corner theorem, unconditional cuboid results and axiom audits. |
+| `make check` | Code audits and Lean infrastructure. **Partial verification:** it does not check the complete corner proof. |
+| `make replay-data` | Generates Lean proof sources from the saved certificates. Generation alone proves nothing. |
+| `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. Run `replay-data` first. |
+| `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
+| `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 
-Generation produces 4,786 chunks covering 499,829 instructions at the default
-limit of 128. Sources under `FiveColour/ProjectedChunks/` and logs under `build/`
-are ignored. The runner builds cases with bounded concurrency and resumes through
-Lake's dependency cache. Progress is in
-`build/five-colour-chunks/ProjectedChunks/progress.json`. On completion it checks
-all replay roots, families and totals against the verified headers, builds
-`FiveColour.ProjectedChunks.Threshold`, and audits both physical threshold
-theorems. Success is reported only after those final checks pass.
+Plain `make` runs the complete `verify-full` route. `make help` lists the main commands.
+The earlier `projected-replay-data` and `projected-replay` names are compatibility
+aliases for `replay-data` and `replay`; there is only one supported replay route.
 
-`make check-extensions` builds `Solution.lean` and audits the fourteen unconditional
-extension statements in [ExtensionsAudit.lean](ExtensionsAudit.lean):
-`FiveColour.Puzzle.frame_bound`, `frame_threshold`, `full_cube`, `full_cube27`, `full_cube64`,
-`complete_cube_threshold`, `support_threshold`, `frame20`, `frame_threshold_all`,
-`box_frame_threshold`, `complete_box_threshold`, `box223`, `box224` and `box233`. The default library proves
-the deductions from `Physical.Threshold15`; these final wrappers apply the
-completed certificate proof. The two-variety and obstruction-family proofs
-are unconditional in the default build.
+`verify-full` records the source revision, working-tree changes (including
+removed files), source and generated-proof hashes, per-stage elapsed times, logs
+and final axiom reports under ignored `build/verification/`. Success requires
+unchanged sources throughout the run. It also works from an extracted review
+archive, checking its source manifest. Archive a successful record with the
+exact submission source; do not commit machine-local verification logs.
 
-Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the runner;
-remove it before resuming. Completed modules remain cached, but interrupted
-cases restart. Do not regenerate case sources during replay.
+The unconditional publication endpoints are in [Solution.lean](Solution.lean):
+`FiveColour.Puzzle.box_frame_threshold` and `complete_box_threshold`.
+The corner proof is `FiveColour.Packed.ProjectedChunks.threshold15`, with
+`sharpThreshold15` proving sharpness. Its generated sources are intentionally
+ignored and reproducible. Audits permit only the standard axioms `propext`,
+`Classical.choice` and `Quot.sound`; the proof uses no `sorry` or `native_decide`.
 
-The unprojected 357-case route remains available with `make replay-data` and
-`make replay`. It generates 109,449 chunks under `FiveColour/ReplayChunks/` and
-has a separate log directory and stop file. Stopping one route leaves the
-other route and all completed cached modules intact.
+## What the computer-assisted proof does
 
-## Full replay in CI
+1. **Reduce the physical puzzle to finite constraints.** Lean verifies the
+   75 cube varieties, physical corner compatibility, Hall's theorem, symmetry
+   reductions and coverage by 357 integer root problems.
+2. **Shrink the problems.** Proved containments and arithmetic discard 78 roots.
+   A proved deletion argument reduces the budgets and sizes of the remaining
+   279 problems. These are the “projected” problems.
+3. **Check saved certificates.** Each certificate is a tree of interval
+   refinements, exhaustive splits and contradictions. For example, a split
+   checks both `x_i ≤ 2` and `x_i ≥ 3`. The checker verifies every step and that
+   every branch closes. Search found the trees; verification does not rerun it.
+4. **Connect the results.** Lean proves that the checker is sound, checks all
+   279 certificates, and combines their exclusions with coverage. Hence a
+   fifteen-cube counterexample cannot exist. The explicit fourteen-cube
+   obstruction proves sharpness. Elementary cuboid deductions then apply.
 
-The manually triggered [Full Lean replay](.github/workflows/full-replay.yml)
-workflow checks a selected revision from a fresh checkout. In GitHub Actions,
-select **Full Lean replay**, choose **Run workflow** and select the branch
-to verify. It runs the standard package checks, generates and checks all
-279 projected certificates, audits the final threshold theorems, and builds
-`Solution.lean` with its extension axiom audit. It uses two workers and allows up to six hours.
+“Replay” means step 3: following a saved certificate and verifying its steps.
+The C++ implementation supplies a fast, independent audit. The Lean route
+computes the check inside the kernel and connects it to the physical theorem;
+the search and certificate exporters are not trusted.
 
-This workflow does not run the external comparator. The ordinary push and
-pull-request CI runs the steps of `make check` without full Lean replay, and
-caches the Lean build between runs. Both workflows set `LEAN_NUM_THREADS=1`
-for Lean steps: several kernel-heavy check modules become ready together, and
-building them in parallel exceeds a 16 GB runner. These steps report peak
-memory with `/usr/bin/time -v`. Local builds keep their usual parallelism;
-on a memory-limited machine, use `LEAN_NUM_THREADS=1 make check`.
+The retained archive contains **499,829 instructions in 279 certificates**,
+compressed to about 306 KiB. Lean checks them in 4,786 pieces of at most 128
+instructions, with proved composition and exact boundary checks. The unprojected
+11,599,651-instruction archive over all 357 roots, partial replay routes, duplicate
+implementations and historical solver reports have been retired to Git history. The **357 root
+definitions remain necessary**: the current proof derives its smaller cover
+from them. See [data provenance](data/README.md) and the
+[formalisation guide](FiveColour/README.md).
 
-## Fixed review archive
+## Replay time and memory
+
+A certificate instruction can require many large-integer operations and checks
+of Hall alternatives. Kernel evaluation is substantially more expensive than
+running the compiled C++ checker. Chunking bounds each computation; it does not
+turn every instruction into a constant-cost primitive.
+
+There are three different timing questions:
+
+- **Fresh build:** checks the geometry, reductions and certificates. This is the
+  meaningful cost for a new verifier, after downloading the pinned Mathlib cache.
+- **Incremental build:** rechecks only changed modules and their dependants.
+- **Cached rerun:** Lake validates the complete theorem's dependency traces in
+  one invocation, then the axiom audit runs again. This is not a fresh kernel replay.
+
+The replay driver tries Lake's `--no-build` validation of the complete theorem
+first. If anything is stale or missing, it falls back to bounded parallel case
+builds. Artifact existence alone never counts as verification. The record says
+whether the aggregate was already cached.
+
+Defaults are two certificate workers and one Lean thread per process. On a
+machine with more memory, raise `WORKERS`; do not assume more workers are faster.
+`LEAN_NUM_THREADS` separately controls shared-library and extension builds.
+The replay driver always gives each case one Lean thread. Small-case benchmarks
+have used several GiB per Lean process. Larger chunks can save a little time
+while increasing peak memory, so the production limit remains 128.
+
+For measurements on the retained archive, without reusing a cached case proof:
+
+```sh
+python3 -S scripts/benchmark_five_colour_replay.py --case 120 --limits 128 256 512 --repeats 3
+```
+
+Results include wall/CPU time and peak memory under `build/replay-benchmark/`.
+These experiments reuse the shared checker dependencies and do not time a fresh
+build of the whole project. Do not delete `.lake` to tidy a publication package:
+it is already ignored, and deleting it removes useful dependency/build caches.
+
+Replay progress is in `build/five-colour-chunks/ProjectedChunks/progress.json`.
+Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the case workers;
+remove it and rerun the same command to resume. Completed modules stay cached;
+interrupted cases restart. Do not regenerate sources during replay.
+
+## Review archives and CI
 
 ```sh
 python3 -S scripts/package_review.py
 ```
 
-This freezes the current source snapshot under ignored `build/review/`, with
-per-file checksums, the base Git revision and the exact pinned core
-Git bundle. `REVIEW.json` identifies the snapshot separately from the base
-revision, so uncommitted revisions are not misrepresented as that commit.
-Tracked files omitted from the snapshot, including staged and unstaged deletions,
-are reported on standard error and listed in `REVIEW.json`.
-The archive contains neither local build caches nor validation logs.
-
-After extracting the archive, run `sha256sum -c SHA256SUMS`, then
-`python3 -S scripts/bootstrap_review.py` before the usual build commands.
-This installs the bundled project dependencies without private GitHub access;
-the Lean toolchain and public mathlib dependencies still require normal access.
-`REVIEW.txt` lists the exact theorem names and reproduction commands.
-
-## Bounded Lean replay
-
-The fixed input manifest [lean-small-replay-cases.json](data/lean-small-replay-cases.json)
-selects exactly the 105 archived certificates with at most 500 instructions.
-It records case IDs, instruction counts and the archive hash, and is regenerated
-and checked by `scripts/small_replay_cases.py`. It is an input specification,
-not a mutable verification log.
+This makes a source snapshot with checksums and the pinned project dependency
+under ignored `build/review/`. It records the base commit and any differences;
+a dirty snapshot is not described as that commit. From the extracted archive:
 
 ```sh
-make small-replay WORKERS=2
+sha256sum -c SHA256SUMS
+python3 -S scripts/bootstrap_review.py
+lake exe cache get
+make verify-full WORKERS=2
 ```
 
-This builds the separate ignored `SmallChunks` group, checks all 105 exclusions
-and their agreement with the integer root models, and audits the aggregate.
-It does not regenerate or interfere with `ReplayChunks` or the tracked examples.
-The unprojected full replay checks all 357 cases. Alternatively, the reduced
-interface requires only the 279 cases in `data/q5-root-reduction.json`; the
-remaining exclusions follow from checked containment and arithmetic lemmas.
+The shared [colour-cubes-core](https://github.com/jasondavies/colour-cubes-core)
+library supplies the physical model, proper rotations and generic geometry.
+No companion paper's threshold theorem is imported. The dependency is bundled
+as its pinned commit and complete source tree in a shallow Git bundle; Lean and Mathlib still require
+installation. The generic completion argument has the provenance described
+in the paper and [formalization.yaml](formalization.yaml).
 
-## Replay performance experiments
+Ordinary CI runs `make check` and caches project builds. The manually triggered
+[full verification workflow](.github/workflows/full-replay.yml) runs
+`make verify-full` from a fresh checkout, with two workers and a six-hour limit.
+Its complete run includes the unconditional cuboid results. Neither workflow
+claims an external-kernel comparator pass.
 
-```sh
-python3 -S scripts/benchmark_five_colour_replay.py --case 78 --limits 128 256 512 --repeats 3
-```
+## Optional external comparison
 
-This generates fresh proofs of the same certificate at different chunk limits,
-checks each exclusion theorem and its axioms, and records wall time, CPU time,
-peak memory and Lean profiler output under ignored `build/replay-benchmark/`.
-Runs are sequential with one Lean thread and asynchronous elaboration disabled
-so profiler timings do not overlap. Variant order alternates between repeats.
-The benchmark does not modify production replay sources or use cached case proofs.
-Results include import/setup costs and reflect background machine load; a small
-case does not predict the performance of the largest cases. The production
-chunk limit remains 128.
+[Challenge.lean](Challenge.lean) independently states the corner puzzle using
+only Mathlib. [ComparatorBridge.lean](FiveColour/ComparatorBridge.lean) proves
+agreement with the proof's model. The challenge's five intentional theorem
+holes are statements to compare; the proof library does not import them.
+The challenge covers the corner theorem, not the cuboid classification.
 
-## Comparator challenge
+`make comparator` additionally checks the completed corner solution with the
+external kernels configured by `scripts/verify-comparator.sh`. This requires a
+toolchain containing those tools. A complete external comparator pass remains
+unconfirmed; it is separate from successful Lean verification. The narrower
+`make check-comparator-lower` checks only the face rule and lower bound.
 
-[Challenge.lean](Challenge.lean) imports only Mathlib. It defines the puzzle
-using face colourings, signed coordinate permutations of determinant +1,
-and eight distinct source indices. It assumes no cube catalogue, compatibility
-matrix or certificate data. The five targets are the exposed-face rule, the
-explicit fourteen-cube obstruction, the fifteen-cube upper bound, sharpness,
-and the least guaranteed size.
+## Repository and publication status
 
-The cuboid classification and the earlier larger-cube extensions are not
-statements in this Mathlib-only challenge. Their fidelity rests on the
-project's physical definitions in [BoxModel.lean](FiveColour/BoxModel.lean),
-including exposed faces, proper rotations, distinct source copies and all
-axis assignments. The unconditional cuboid theorems and their dependency
-audits are complete, but the external comparator targets only the corner
-problem. The `box223`, `box224` and `box233` exports each state both failure
-one below the threshold and sufficiency at the threshold.
-
-[ComparatorBridge.lean](FiveColour/ComparatorBridge.lean) proves equivalence
-with the physical model and the geometric lower bound. Its upper-bound
-transfers explicitly assume `Physical.Threshold15`. These proofs are included
-in the default build and axiom audit. `Challenge.lean` has five intentional
-statement holes; neither the proof library nor `Solution.lean` imports it.
-
-```sh
-python3 -S scripts/bootstrap_local.py --materialize # if using sibling caches
-make check-comparator-lower # only the face rule and fourteen-cube obstruction
-# After complete archive replay and final theorem assembly:
-make comparator            # all five targets
-```
-
-The local runner uses the toolchain's Lean kernel, NanoDa and con-ron, with
-`CON_RON_JOBS=2` by default. The sandbox hides sibling repositories, so the
-local bootstrap's `--materialize` option copies cached dependencies inside this
-checkout without changing their sources or the portable manifest. The two-target lower-bound check has passed Lean, NanoDa and con-ron;
-it does not certify the upper bound.
-[Solution.lean](Solution.lean) connects the geometric statements to the generated
-full-replay theorem and builds successfully. It remains opt-in because its
-generated dependencies must first be reproduced. The latest full comparator run
-ended without a recorded success or failure result; a full pass remains
-unconfirmed. No Palomar submission has been made.
-
-## Files and release status
-
-- `FiveColour/`: proof infrastructure, physical definitions and selected replays.
-- `src/`: C++ searches, separate certificate checker and untrusted chunk exporter.
-- `scripts/`: generators, physical audits, package checks and replay driver.
-- `data/`: compressed certificates, root cases, geometry and checkable witnesses.
 - `paper/`: manuscript source and PDF.
+- `FiveColour/`: physical definitions, proof infrastructure and cuboid deductions.
+- `data/`: current certificate archive, root definitions, geometry and witnesses.
+- `scripts/`: reproducible serializers, independent audits and verification driver.
+- `src/`: certificate checker, exporter, interval search and geometric audits.
 
-See [data provenance and regeneration](data/README.md). No transient verification
-logs are committed. The repository is public at
-`https://github.com/jasondavies/five-colour-cubes`.
-Before submission, review the manuscript, finish the full comparator check
-and finalise Palomar metadata. The physical Lean threshold proof is complete;
-a tagged release and Palomar submission remain pending.
+The research and manuscript were developed with AI assistance under Jason
+Davies's direction; see the disclosure in the paper. Author mathematical review
+and submission approval are pending. Automated checks are not independent
+human peer review. Before publication, freeze the source revision, run full
+verification, and archive the source, manuscript and verification record with
+an immutable identifier.

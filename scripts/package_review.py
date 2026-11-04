@@ -3,8 +3,8 @@
 
 The archive is identified by checksums, not a claim that a dirty tree equals HEAD.
 Only tracked and nonignored source files enter; build products/logs are excluded.
-Pinned project dependencies are Git bundles, so their exact revisions remain
-verifiable and no access to their GitHub repositories is needed.
+Pinned project dependencies are shallow Git bundles containing the exact commit
+and its source tree. Bootstrap restores their boundary without fetching history.
 """
 import gzip
 import hashlib
@@ -56,13 +56,25 @@ def main():
                 raise SystemExit(f'Wrong dependency revision: {entry["name"]}')
             subprocess.run(['git', '-C', str(source), 'diff', '--quiet', 'HEAD'], check=True)
             bundle = Path(temp) / f'{entry["name"]}.bundle'
-            subprocess.run(['git', '-C', str(source), 'bundle', 'create', str(bundle), 'HEAD'], check=True)
+            # Bundle only the pinned tree. A partial clone may deliberately lack
+            # historical blobs; none are needed to reproduce this dependency.
+            snapshot = Path(temp) / f'{entry["name"]}.git'
+            subprocess.run(['git', 'init', '--bare', '--quiet', '--template=', str(snapshot)], check=True)
+            objects = subprocess.check_output(
+                ['git', '-C', str(source), 'rev-parse', '--path-format=absolute', '--git-path', 'objects'],
+                text=True).strip()
+            (snapshot / 'objects/info/alternates').write_text(objects + '\n')
+            (snapshot / 'shallow').write_text(actual + '\n')
+            subprocess.run(['git', '-C', str(snapshot), 'update-ref', 'refs/heads/snapshot', actual], check=True)
+            subprocess.run(['git', '-C', str(snapshot), 'bundle', 'create', str(bundle),
+                            'refs/heads/snapshot'], check=True)
             name = f'dependencies/{bundle.name}'
             payload[name] = bundle.read_bytes()
             dependencies[entry['name']] = entry['rev']
     payload['REVIEW.json'] = (json.dumps(dict(base_git_revision=base, source_snapshot_sha256=source_id,
         identification='Exact source snapshot is identified by checksums; it may differ from the base Git revision.',
         source_files=hashes, omitted_tracked_files=omitted, project_dependencies=dependencies,
+        dependency_history='shallow bundles: pinned commit and complete source tree',
         formal_status='Complete physical Lean proof; full external comparator pass unconfirmed.'), indent=2)+'\n').encode()
     payload['REVIEW.txt'] = b"""Five-colour cube threshold: fixed review snapshot
 
@@ -76,8 +88,7 @@ From the extracted directory:
   sha256sum -c SHA256SUMS
   python3 -S scripts/bootstrap_review.py
   lake exe cache get
-  make check WORKERS=2
-  make small-replay WORKERS=2
+  make verify-full WORKERS=2
 
 Lean 4.35.0, Git, Python 3.12+, Make and a C++20/OpenMP compiler are required.
 Only the toolchain and public mathlib dependencies need network access. The shared
@@ -110,12 +121,9 @@ Unconditional cuboid, larger-cube and support conclusions (after replay):
 Complete lists of audited declarations: Audit.lean and ExtensionsAudit.lean
   python3 -S scripts/audit_lean.py
 
-The 105-case input selection is data/lean-small-replay-cases.json. The small
-replay also checks its aggregate's agreement with the integer root models.
-The complete physical proof has passed. Reproduce its full replay with:
-  make projected-replay-data WORKERS=2
-  make projected-replay WORKERS=2
-  make check-extensions
+The complete physical proof is reproduced by make verify-full, including
+all 279 certificates, final theorem assembly and unconditional cuboid results.
+The external comparator is optional and separate:
   make comparator
 
 No publication or Palomar submission is asserted. See README.md and the paper

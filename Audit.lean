@@ -44,15 +44,11 @@ import FiveColour
 #print axioms FiveColour.Packed.Archive.problem_model
 #print axioms FiveColour.Packed.Archive.integer_exclusion
 #print axioms FiveColour.Packed.Archive.sharp_threshold_of_exclusions
-#print axioms FiveColour.Packed.Archive.selected_integer_exclusions
 #print axioms FiveColour.Certificate.check_sound
 #print axioms FiveColour.Packed.packed_subset_sum
 #print axioms FiveColour.Packed.Verified.check_sound
 #print axioms FiveColour.Packed.Chunks.check_sound
 #print axioms FiveColour.Packed.cuts_valid
-#print axioms FiveColour.Packed.Replay79.excludes
-#print axioms FiveColour.Packed.Replay165.excludes
-#print axioms FiveColour.Packed.Replay207.excludes
 #print axioms FiveColour.Puzzle.hasSolution_iff
 #print axioms FiveColour.Puzzle.lower_bound
 #print axioms FiveColour.Puzzle.hasSolution_of_subfamily

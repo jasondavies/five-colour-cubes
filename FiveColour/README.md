@@ -6,8 +6,8 @@ certificates, final theorem assembly and the axiom audit have passed.
 proofs of `Physical.Threshold15` and `Physical.SharpThreshold15`.
 
 The default build checks the geometry, reductions, checking infrastructure and
-selected certificates. Reproduce the full proof with `make projected-replay-data`
-and `make projected-replay`; the complete generated replay is an opt-in target.
+checkpoint rejection controls. Reproduce the complete proof, including the
+unconditional cuboid results, with `make verify-full`.
 
 | Component | Scope |
 | --- | --- |
@@ -40,9 +40,7 @@ and `make projected-replay`; the complete generated replay is an opt-in target.
 | `ArchiveCore.lean`, `ArchiveData.lean`, `ArchiveChecks*.lean` | Verifies the encodings and semantic fields of all 357 actual Q5P2 headers against the integer root model. |
 | `ArchiveBridge.lean` | Proves exact box and 78-family problem equivalence; supplies the threshold and sharp-threshold implications from all concrete archive exclusions. |
 | `RootContainment.lean` | Cut and box monotonicity, transport of complete integer root problems, and direct exclusion by an impossible initial budget. |
-| `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and supplies the reduced archive-to-threshold interface. Original case IDs and certificates are unchanged. |
-| `ArchiveExamples.lean` | Connects three existing direct certificate proofs to the integer case-cover interface. |
-| `Chunked/Link.lean`, generated `ReplayChunks/Link.lean` | Checks the concrete replay declarations against the verified archive model, preserving case numbers for selected or reordered lists. |
+| `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and supplies the reduced archive-to-threshold interface. Original case IDs are preserved. |
 | `BudgetProjection.lean`, `RootProjection.lean`, `ProjectedChecks*.lean`, `ProjectedBridge.lean` | Proves deletion with fixed anchor, checks all 279 projected headers, and identifies their complete integer and packed models. |
 | generated `ProjectedChunks/Threshold.lean` | Checked unconditional physical threshold and sharpness theorems, composing all 279 certificate proofs. Outside the default build; reproduced by full projected replay. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
@@ -52,8 +50,8 @@ and `make projected-replay`; the complete generated replay is an opt-in target.
 | `PackedSemantics.lean` | Connection between packed arithmetic and the integer box model. |
 | `PackedVerified.lean` | Sound fast checking with guarded split values. |
 | `PackedCalibration*.lean` | Kernel calibration of all 19,125 Hall-cut weights against their masks. |
+| `CertificateControls.lean` | Kernel-checked positive and negative controls for checkpoint reuse and split bounds. |
 | `PackedChunks.lean` | Composition of checked chunks with exact boundary comparisons and supplied exclusion proofs. |
-| `PackedCase*.lean`, `Chunked/` | Selected actual certificates and their exclusion theorems. |
 
 ## Correspondence with the paper
 
@@ -92,15 +90,9 @@ Run from the repository root:
 ```sh
 lake build FiveColour
 python3 -S scripts/audit_lean.py
-make examples
 ```
 
-The default target contains cases 79, 165 and 207. `make examples` checks cases
-78, 326 and 7 using bounded chunks, including the 9,811-instruction example.
-The reference implementation and its original examples are retained for
-comparison; they can be built individually as `FiveColour.Case79`, etc.
-
-Regenerate the catalogue witnesses, lower-bound cuts, packed data and examples with:
+Regenerate the catalogue witnesses, lower-bound cuts, packed data and incidence with:
 
 ```sh
 python3 -S scripts/generate_five_colour_catalogue.py
@@ -112,7 +104,8 @@ python3 -S scripts/generate_five_colour_archive.py
 python3 -S scripts/generate_five_colour_reduction.py
 python3 -S scripts/generate_five_colour_projection.py
 python3 -S scripts/generate_five_colour_packed.py
-python3 -S scripts/generate_five_colour_chunks.py
+python3 -S scripts/generate_five_colour_incidence.py
+make replay-data
 ```
 
 These serializers are untrusted. Lean checks numerical acceptance, calibration,
@@ -120,8 +113,8 @@ valid initial bounds and composition. There is no `native_decide`, proof hole
 or added axiom in the proof sources. The audited dependencies are confined to
 `propext`, `Classical.choice` and `Quot.sound`.
 
-The preferred full replay uses `make projected-replay-data` followed by
-`make projected-replay`; see the root README for concurrency and stop/resume
+The preferred full replay uses `make replay-data` followed by
+`make replay`; see the root README for concurrency and stop/resume
 instructions. `Packed.Projected.sharp_threshold_of_exclusions` consumes exactly
 the 279 projected exclusions, totalling 499,829 instructions. The generated
 `ProjectedChunks.Threshold` module supplies them and proves the unconditional
@@ -135,12 +128,12 @@ The three checked interfaces describe successive stages of the same reduction:
 | 279 retained roots, with their original total and budget | `Physical.threshold_of_reduced_root_exclusions` | `RootReduction.lean` |
 | 279 projected packed problems | `Packed.Projected.sharp_threshold_of_exclusions` | `ProjectedBridge.lean` |
 
-`ArchiveBridge.lean` identifies the original packed archive with the integer
+`ArchiveBridge.lean` identifies the original packed root definitions with the integer
 roots through `Packed.Archive.root_model` and `problem_model`.
 `RootReduction.lean` also supplies
 `Packed.Archive.sharp_threshold_of_reduced_exclusions`, reusing original
-case IDs and certificates. The original 357-case route remains available with
-`make replay-data` and `make replay`.
+case IDs. The original 357 root definitions remain part of the coverage proof; their
+older certificate bodies and alternate replay implementations have been retired.
 
 Original and projected integer problems specialise `Physical.caseProblem`,
 whose `caseProblem_admissible_iff` characterises the prescribed total, anchor
@@ -227,11 +220,9 @@ placement lemmas, adapted from the companion four-to-three development.
 transports that construction through the equal-length equivalence.
 `CubeModel.lean` retains the existing cube position definitions and cardinality
 lemmas. The complete-cube threshold remains max(n³,15) for every n≥2.
-The older reserve bound and its specialised pool checks are isolated in
-`FrameReserve.lean`, outside the sharp proof's imports; check them explicitly
-with `lake build FiveColour.FrameReserve`. `FramePools.lean` now contains only
-the shared colour-pair helpers. The older bound in `RareFrames.lean` also
-remains; its reusable definitions and reserve lemmas enter the sharp proof.
+The unused older reserve bound in `FrameReserve.lean` has been retired.
+`FramePools.lean` contains shared colour-pair helpers. `RareFrames.lean` remains
+because its definitions and reserve lemmas enter the current proof.
 
 `src/five_colour_fixed_pair.cpp` is a supplementary direct-rotation audit of
 the geometry and all 75,582 eleven-copy collections in one missing-pair family.

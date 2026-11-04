@@ -19,9 +19,14 @@ def main():
         destination = ROOT / '.lake/packages' / name
         if not destination.exists():
             destination.parent.mkdir(parents=True, exist_ok=True)
-            subprocess.run(['git', 'clone', '--quiet', '--no-checkout', str(bundle), str(destination)], check=True)
+            subprocess.run(['git', 'init', '--quiet', str(destination)], check=True)
+            # Git bundles do not carry a shallow boundary. Install the boundary
+            # explicitly before fetching the pinned commit and all its tree objects.
+            (destination / '.git/shallow').write_text(entry['rev'] + '\n')
+            subprocess.run(['git', '-C', str(destination), 'fetch', '--quiet', str(bundle),
+                            'refs/heads/snapshot'], check=True)
             subprocess.run(['git', '-C', str(destination), 'checkout', '--quiet', '--detach', entry['rev']], check=True)
-            subprocess.run(['git', '-C', str(destination), 'remote', 'set-url', 'origin', entry['url']], check=True)
+            subprocess.run(['git', '-C', str(destination), 'remote', 'add', 'origin', entry['url']], check=True)
         actual = subprocess.check_output(['git', '-C', str(destination), 'rev-parse', 'HEAD'], text=True).strip()
         if actual != entry['rev']:
             raise SystemExit(f'Existing dependency has wrong revision: {name}')

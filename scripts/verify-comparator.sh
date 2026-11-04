@@ -21,7 +21,7 @@ for tool in leanexport leanchecker nanoda_bin con-ron; do
   [[ -x "$prefix/bin/$tool" ]] || { echo "error: toolchain lacks $tool" >&2; exit 2; }
 done
 if [[ "$mode" == full && ! -f FiveColour/ProjectedChunks/Threshold.lean ]]; then
-  echo "error: complete archive replay and final assembly are required first (make projected-replay-data; make projected-replay)" >&2
+  echo "error: complete archive replay and final assembly are required first (make replay-data; make replay)" >&2
   exit 2
 fi
 config=$(mktemp "${TMPDIR:-/tmp}/five-colour-comparator.XXXXXX")

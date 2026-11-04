@@ -13,7 +13,7 @@ import tarfile
 import tempfile
 from generate_five_colour_packed import ROOT, RESULTS, cut
 
-DEST = ROOT / 'FiveColour/Chunked'
+DEST = ROOT / 'FiveColour/ProjectedChunks'
 
 
 def packed(counts):
@@ -54,7 +54,7 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
     return text
 
 
-def generate(case, row, path, limit, dest=DEST, group="Chunked"):
+def generate(case, row, path, limit, dest=DEST, group="ProjectedChunks"):
     dest.mkdir(parents=True, exist_ok=True)
     prefix = f'FiveColour.Packed.{group}.Case{case}'
     text = f'''module
@@ -161,141 +161,39 @@ end {namespace}
         ''.join(f'#print axioms {namespace}.{name}\n' for name in ['all_excluded', 'threshold15', 'sharpThreshold15']))
 
 
-def aggregate(dest, group, cases, rows=None):
-    if group == 'ProjectedChunks':
-        assert cases == list(range(279)) and rows is not None
-        projected_aggregate(dest, cases, rows)
-        return
-    namespace = f'FiveColour.Packed.{group}'
-    text = 'module\n' + ''.join(f'public import FiveColour.{group}.Case{c}\n' for c in cases)
-    text += f"@[expose] public section\nnamespace {namespace}\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\n"
-    text += f"def roots : Fin {len(cases)} → Box := ![" + ', '.join(f'Case{c}.root' for c in cases) + ']\n'
-    text += f"def families : Fin {len(cases)} → Fin 78 → List Cut := ![" + ', '.join(f'Case{c}.families' for c in cases) + ']\n'
-    text += 'theorem all_excluded : ∀ i, Chunks.Excludes 15 (families i) (roots i) := by\n  intro i\n  fin_cases i\n'
-    text += ''.join(f'  · exact Case{c}.excludes\n' for c in cases)
-    text += f'end {namespace}\n'
-    (dest / 'All.lean').write_text(text)
-    full = group == 'ReplayChunks' and cases == list(range(357))
-    numbers = 'fun i => i' if full else '![' + ','.join(map(str, cases)) + ']'
-    link = f'''module
-public import FiveColour.{group}.All
-public import FiveColour.ArchiveBridge
-@[expose] public section
-namespace {namespace}
-open Physical
-set_option maxHeartbeats 0
-set_option maxRecDepth 100000
-
-/-- Case identities are retained even for selected, reordered replay lists. -/
-def caseNumbers : Fin {len(cases)} → Fin 357 := {numbers}
-
-/-- Exact matching of the concrete replay roots with the verified archive headers. -/
-theorem roots_match (i : Fin {len(cases)}) : roots i = Archive.root (caseNumbers i) := by
-  fin_cases i <;> rfl
-
-theorem families_match (i : Fin {len(cases)}) : families i = Archive.families (caseNumbers i) := by
-  fin_cases i <;> funext t <;> rfl
-
-theorem archive_exclusions (i : Fin {len(cases)}) :
-    Chunks.Excludes 15 (Archive.families (caseNumbers i)) (Archive.root (caseNumbers i)) := by
-  rw [← roots_match, ← families_match]
-  exact all_excluded i
-
-theorem integer_exclusions (i : Fin {len(cases)}) :
-    ∀ x, (rootBox (rootCapacity (caseNumbers i))).Contains x →
-      ¬ (rootProblem (caseNumbers i)).Admissible x :=
-  Archive.integer_exclusion _ (archive_exclusions i)
-
-end {namespace}
-'''
-    (dest / 'Link.lean').write_text(link)
-    if full:
-        (dest / 'Threshold.lean').write_text(f'''module
-public import FiveColour.{group}.Link
-@[expose] public section
-namespace {namespace}
-
-/-- This declaration is checked only after all 357 concrete exclusions and
-all root/family identities have been checked by the kernel. -/
-theorem threshold15 : Physical.Threshold15 :=
-  Archive.threshold_of_exclusions archive_exclusions
-
-theorem sharpThreshold15 : Physical.SharpThreshold15 :=
-  Archive.sharp_threshold_of_exclusions archive_exclusions
-
-end {namespace}
-''')
-    endpoint = 'Threshold' if full else 'Link'
-    audit = f'module\nimport FiveColour.{group}.{endpoint}\n'
-    audit += '#print axioms FiveColour.Packed.Chunks.check_sound\n'
-    audit += f'#print axioms {namespace}.all_excluded\n'
-    if full:
-        audit += f'#print axioms {namespace}.threshold15\n#print axioms {namespace}.sharpThreshold15\n'
-    else:
-        audit += f'#print axioms {namespace}.integer_exclusions\n'
-    (dest / 'Audit.lean').write_text(audit)
-
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    scope = parser.add_mutually_exclusive_group()
-    scope.add_argument('--cases', nargs='+', type=int)
-    scope.add_argument('--small', action='store_true', help='generate the fixed 105-case selection into ignored SmallChunks/')
-    scope.add_argument('--projected', action='store_true', help='generate the 279 smaller problems into ignored ProjectedChunks/')
-    scope.add_argument('--all', action='store_true', help='generate all cases into ignored ReplayChunks/')
-    parser.add_argument('--links-only', action='store_true',
-                        help='regenerate aggregate links for existing case sources without exporting proofs')
-    parser.add_argument('--limit', type=int, default=128)
-    parser.add_argument('--workers', type=int, default=8, help='concurrent C++ exporters')
+    parser.add_argument('--workers', type=int, default=2, help='concurrent C++ exporters')
     args = parser.parse_args()
-    if not 1 <= args.limit <= 1024 or args.workers < 1:
-        parser.error('--limit must be 1..1024 and --workers must be positive')
-    case_file = RESULTS / ('q5-projected-root-cases.txt' if args.projected else 'q5-threshold-cases-size15.txt')
-    archive_file = RESULTS / ('q5-projected-certificates.tar.gz' if args.projected else 'q5-certificates.tar.gz')
+    if args.workers < 1:
+        parser.error('--workers must be positive')
+    case_file = RESULTS / 'q5-projected-root-cases.txt'
+    archive_file = RESULTS / 'q5-projected-certificates.tar.gz'
     rows = [list(map(int, line.split())) for line in case_file.read_text().splitlines()[1:]]
-    small = json.loads((RESULTS / 'lean-small-replay-cases.json').read_text()) if args.small else None
-    cases = ([row['case'] for row in small['cases']] if small else
-             list(range(len(rows))) if args.all or args.projected else (args.cases or [78, 326, 7]))
-    if len(set(cases)) != len(cases) or any(c < 0 or c >= len(rows) for c in cases):
-        parser.error('case indices must be distinct and in range')
-    group = 'ProjectedChunks' if args.projected else 'SmallChunks' if args.small else 'ReplayChunks' if args.all else 'Chunked'
-    dest = ROOT / 'FiveColour' / group
-    if args.links_only:
-        manifest = json.loads((dest / 'manifest.json').read_text())
-        if manifest['module_group'] != group or [r['case'] for r in manifest['cases']] != cases:
-            parser.error('existing manifest does not match the requested case list')
-        if any(not (dest / f'Case{c}.lean').is_file() for c in cases):
-            parser.error('an existing case source is missing')
-        aggregate(dest, group, cases, rows)
-        print(f'Generated links for {len(cases)} existing case sources; no proofs were replayed.')
-        return
+    if len(rows) != 279:
+        raise ValueError('Expected exactly 279 projected cases')
+    cases = list(range(279))
     subprocess.run(['make', 'build/five_colour_chunks'], cwd=ROOT, check=True)
-    dest.mkdir(exist_ok=True)
+    DEST.mkdir(exist_ok=True)
     with tarfile.open(archive_file, 'r:gz') as archive:
-        members = {Path(m.name).name: m for m in archive.getmembers() if m.isfile()}
-        payloads = {case: archive.extractfile(members[f'case-{case}.q5p']).read() for case in cases}
+        payloads = {case: archive.extractfile(f'case-{case}.q5p').read() for case in cases}
     with tempfile.TemporaryDirectory(prefix='q5-chunks-') as temp:
         def export(case):
             raw = Path(temp) / f'case-{case}.q5p'
             raw.write_bytes(payloads[case])
             tsv = Path(temp) / f'chunks-{case}.tsv'
             subprocess.run([str(ROOT / 'build/five_colour_chunks'),
-                            str(RESULTS / 'five-colour-geometry.txt'),
-                            str(case_file),
-                            str(raw), str(case), str(args.limit), str(tsv)], check=True, capture_output=True)
-            result = generate(case, rows[case], tsv, args.limit, dest, group)
-            print(f"case {case}: {result['commands']} instructions, {result['chunks']} chunks", flush=True)
-            return result
+                            str(RESULTS / 'five-colour-geometry.txt'), str(case_file),
+                            str(raw), str(case), '128', str(tsv)], check=True, capture_output=True)
+            return generate(case, rows[case], tsv, 128)
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
             stats = list(pool.map(export, cases))
-    if small:
-        assert [(r['case'], r['commands']) for r in stats] == [(r['case'], r['commands']) for r in small['cases']]
-    aggregate(dest, group, cases, rows)
-    # This manifest describes generation only, never successful Lean replay.
-    manifest = {'status': 'generated, not a verification record', 'module_group': group, 'cases': stats}
-    (dest / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
-    print(f"Generated {len(cases)} cases, {sum(s['chunks'] for s in stats)} chunks, {sum(s['commands'] for s in stats):,} instructions.")
+    projected_aggregate(DEST, cases, rows)
+    manifest = {'status': 'generated, not a verification record',
+                'module_group': 'ProjectedChunks', 'cases': stats}
+    (DEST / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    print(f"Generated {len(cases)} cases, {sum(s['chunks'] for s in stats)} chunks, "
+          f"{sum(s['commands'] for s in stats):,} instructions.")
 
 
 if __name__ == '__main__':

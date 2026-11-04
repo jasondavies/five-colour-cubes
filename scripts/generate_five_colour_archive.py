@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-"""Serialize actual Q5P2 headers and kernel checks against the physical root model.
+"""Serialize root headers and kernel checks against the physical root model.
 
-The proof bodies remain in their existing replay modules. This generator checks
-no proof by itself: Lean verifies each encoding and the decoded constraint fields.
+The 357 headers describe the coverage reduction, not an original proof archive.
+This generator checks no proof by itself: Lean verifies each encoding and the decoded constraint fields.
 """
 import argparse
 from pathlib import Path
-import re
-import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,29 +23,20 @@ def generate(root, check=False):
     ledger = [list(map(int, line.split())) for line in lines[1:]]
     assert int(lines[0]) == len(ledger) == 357
     headers = {}
-    with tarfile.open(root / 'data/q5-certificates.tar.gz') as archive:
-        for member in archive:
-            match = re.fullmatch(r'case-(\d+)\.q5p', member.name)
-            if not member.isfile() or match is None:
-                raise ValueError(f'Unexpected archive member: {member.name}')
-            case = int(match[1])
-            if case in headers or not 0 <= case < 357:
-                raise ValueError(f'Duplicate or invalid case: {case}')
-            raw = archive.extractfile(member).read(160)
-            if raw != b'Q5P2' + bytes(ledger[case]):
-                raise ValueError(f'Archive header disagrees with ledger: {case}')
-            kind, m, _, goal, anchor, budget, *rest = list(raw[4:])
-            assert kind in (0, 1) and anchor == (3, 0)[kind] and goal == 15
-            lower, upper = [0]*75, rest[:75]
-            assert upper[anchor] == 0
-            lower[anchor] = upper[anchor] = m
-            assert all(0 <= v <= 7 for v in lower+upper)
-            bad = rest[75:]
-            assert len(bad) == 75 and all(b in (0, 1) for b in bad)
-            encode = lambda xs: sum(v << (10*i) for i, v in enumerate(xs))
-            mask = sum(b << i for i, b in enumerate(bad))
-            weight = sum(b << (10*(74-i)) for i, b in enumerate(bad))
-            headers[case] = (encode(lower), encode(upper), mask, weight, budget)
+    for case, row in enumerate(ledger):
+        raw = b'Q5P2' + bytes(row)
+        kind, m, _, goal, anchor, budget, *rest = list(raw[4:])
+        assert kind in (0, 1) and anchor == (3, 0)[kind] and goal == 15
+        lower, upper = [0]*75, rest[:75]
+        assert upper[anchor] == 0
+        lower[anchor] = upper[anchor] = m
+        assert all(0 <= v <= 7 for v in lower+upper)
+        bad = rest[75:]
+        assert len(bad) == 75 and all(b in (0, 1) for b in bad)
+        encode = lambda xs: sum(v << (10*i) for i, v in enumerate(xs))
+        mask = sum(b << i for i, b in enumerate(bad))
+        weight = sum(b << (10*(74-i)) for i, b in enumerate(bad))
+        headers[case] = (encode(lower), encode(upper), mask, weight, budget)
     assert len(headers) == 357
     data = '#[' + ',\n  '.join('⟨' + ','.join(map(str, headers[r])) + '⟩' for r in range(357)) + ']'
     emit('ArchiveData.lean', '''module

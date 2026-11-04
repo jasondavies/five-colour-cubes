@@ -1,23 +1,25 @@
 CXX ?= g++
 CXXFLAGS ?= -O3 -march=native -std=c++20 -Wall -Wextra -Wpedantic -fopenmp
 PYTHON ?= python3
-WORKERS ?= 8
+WORKERS ?= 2
+LEAN_NUM_THREADS ?= 1
+export LEAN_NUM_THREADS
 
-all: check
+all: verify-full
+
+help:
+	@echo 'make verify-full   Complete proof, audits and source-bound verification record'
+	@echo 'make check         Geometry, certificates and Lean infrastructure (partial proof)'
+	@echo 'make replay-data   Generate the 279 projected certificate proofs'
+	@echo 'make replay        Check those proofs and the final corner theorem; resumable'
+	@echo 'make paper         Compile the manuscript PDF'
+	@echo 'WORKERS=2 defaults to two concurrent certificate cases; each uses one Lean thread'
 
 build/%: src/%.cpp
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $< -o $@
 
-build/five_colour_exact: src/five_colour_exact.cpp src/five_colour_matching.hpp
-
-build/five_colour_exact_checked: src/five_colour_exact.cpp src/five_colour_matching.hpp
-	mkdir -p build
-	$(CXX) $(CXXFLAGS) -DMACMAHON_VERIFY_MATCHES $< -o $@
-
-certificates: build/five_colour_boxes build/check_five_colour_certificate build/five_colour_chunks
-
-check-code: certificates build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair build/five_colour_box_geometry
+check-code: build/check_five_colour_certificate build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair build/five_colour_box_geometry
 	build/five_colour_extensions
 	build/five_colour_rare_geometry
 	build/five_colour_fixed_pair
@@ -26,7 +28,8 @@ check-code: certificates build/five_colour_extensions build/five_colour_rare_geo
 	$(PYTHON) -S scripts/generate_five_colour_support.py --check
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py
-	$(PYTHON) -S scripts/small_replay_cases.py --check
+	$(PYTHON) -S scripts/generate_five_colour_incidence.py --check
+	$(PYTHON) -S scripts/generate_five_colour_packed.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
 	$(PYTHON) -S scripts/generate_five_colour_hall.py --check
 	$(PYTHON) -S scripts/generate_five_colour_symmetry.py --check
@@ -35,7 +38,6 @@ check-code: certificates build/five_colour_extensions build/five_colour_rare_geo
 	$(PYTHON) -S scripts/generate_five_colour_archive.py --check
 	$(PYTHON) -S scripts/generate_five_colour_reduction.py --check
 	$(PYTHON) -S scripts/generate_five_colour_projection.py --check
-	$(PYTHON) -S scripts/check_five_colour_root_projection.py --workers $(WORKERS)
 	$(PYTHON) -S scripts/check_five_colour_certificates.py --workers $(WORKERS)
 
 check-lean:
@@ -53,25 +55,15 @@ check-extensions:
 	lake build Solution
 	$(PYTHON) -S scripts/audit_lean.py --file ExtensionsAudit.lean
 
-examples:
-	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group Chunked --workers $(WORKERS)
-	lake env lean FiveColour/Chunked/Controls.lean
-
-small-replay: build/five_colour_chunks
-	$(PYTHON) -S scripts/generate_five_colour_chunks.py --small --workers $(WORKERS)
-	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group SmallChunks --workers $(WORKERS)
-
 replay-data: build/five_colour_chunks
-	$(PYTHON) -S scripts/generate_five_colour_chunks.py --all --workers $(WORKERS)
+	$(PYTHON) -S scripts/generate_five_colour_chunks.py --workers $(WORKERS)
 
 replay:
 	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --workers $(WORKERS)
 
-projected-replay-data: build/five_colour_chunks
-	$(PYTHON) -S scripts/generate_five_colour_chunks.py --projected --workers $(WORKERS)
-
-projected-replay:
-	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --group ProjectedChunks --workers $(WORKERS)
+# Compatibility aliases for commands in earlier copies of the manuscript.
+projected-replay-data: replay-data
+projected-replay: replay
 
 check-comparator-lower:
 	./scripts/verify-comparator.sh --lower-bound
@@ -85,4 +77,4 @@ figure:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: verify-full figure check-extensions projected-replay-data projected-replay all certificates check-code check-lean check examples small-replay replay-data replay check-comparator-lower comparator paper
+.PHONY: help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower comparator paper
