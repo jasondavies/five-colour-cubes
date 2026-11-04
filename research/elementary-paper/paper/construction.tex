@@ -1,0 +1,58 @@
+\section{Constructing an assembly}\label{sec:construction}
+The threshold theorem guarantees some target colouring, which need not be
+specified in advance. It can be found by a bounded number of capacitated
+matching problems, even when the side lengths are large.
+
+\begin{proposition}[Compressed construction]\label{prop:construction}
+Given an explicit list of $q$ sources and $a,b,c\ge2$, one can find a
+frame, or report that none exists, in $O(q+L)$ time, where
+$L=4(a+b+c)-16$. A complete-box assembly can be found, or ruled out,
+in $O(q+abc)$ time. These bounds use the word-RAM model with the input
+sizes, dimensions and output indices fitting in a word. On collections
+covered by the corresponding threshold, the running time is $O(q)$.
+For sources given as 75 binary multiplicities, feasibility and a compressed
+assembly have polynomial bit complexity; expanding the placements costs
+the output size.
+\end{proposition}
+\begin{proof}
+Classify each source among the 75 varieties by testing its 24 proper
+rotations, recording both its variety and a rotation to the representative.
+This takes $O(q)$ time and gives 75 multiplicities and lists of actual copies.
+
+Test each target variety with each distinct assignment of the three side
+lengths to its coordinate axes. There are at most six assignments, hence
+at most 450 configurations. When exactly two side lengths agree, three
+assignments suffice, giving 225 configurations; when all three agree,
+only 75 are needed. Every physical target is a proper rotation of one
+of the 75 representatives, and every proper rotation permutes the three
+coordinate axes. Bringing the target to its representative therefore
+permutes the side-length assignment. Sign changes only reverse positions
+along an edge; they introduce no additional demand pattern. This proves
+that the listed configurations cover every assembly.
+
+For each configuration, use a flow network with 75 source-variety nodes
+and at most twenty requirement nodes: eight corners of demand one and
+twelve geometric edges whose demands are their assigned side lengths
+minus two. Omit zero demands. Add an arc from the network source to each
+variety with capacity its multiplicity, and an arc from each requirement
+to the sink with capacity its demand. Connect a variety to a requirement
+exactly when it fits, with capacity $q$. There are at most 97 vertices,
+including source and sink. Identical requirements may be merged.
+
+An integral flow of value $L$ saturates every requirement and gives the
+number of copies of each variety to place there. Conversely, any frame
+induces such a flow. A shortest-augmenting-path max-flow algorithm has a
+number of arithmetic operations bounded in terms of the network size,
+independently of the capacities~\cite{EdmondsKarp}. Here the network size
+and the number of configurations are constants. Thus all flow tests take
+$O(1)$ word operations, or polynomial time in the bit lengths for binary
+input. If every test fails, no frame exists.
+
+Expand a successful flow into $L$ distinct source copies and positions.
+A precomputed proper rotation for each compatible corner or edge,
+composed with the recorded source rotation, gives each placement's
+orientation. This takes $O(L)$ time. A complete box exists exactly when a
+frame exists and $q\ge abc$: fill face interiors with unused copies
+rotated to expose the required single colour, and fill the interior
+arbitrarily. Writing these placements takes $O(abc)$ time.
+\end{proof}

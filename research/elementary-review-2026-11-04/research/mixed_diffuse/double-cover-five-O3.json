@@ -1,0 +1,492 @@
+[
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      2,
+      5,
+      7,
+      8,
+      13,
+      14,
+      19
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "total_o": 3,
+    "patterns": [
+      {
+        "o": [
+          0,
+          1
+        ],
+        "tested": 23770,
+        "oppfail": 301,
+        "loopkill": 288,
+        "cliquekill": 13,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0
+        ],
+        "tested": 23770,
+        "oppfail": 301,
+        "loopkill": 288,
+        "cliquekill": 13,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 5.548984490000294
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        3,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      4,
+      5,
+      10,
+      17
+    ],
+    "opps": [
+      64,
+      67,
+      72,
+      73,
+      74
+    ],
+    "total_o": 3,
+    "patterns": [
+      {
+        "o": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "tested": 503,
+        "oppfail": 8,
+        "loopkill": 8,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "tested": 559,
+        "oppfail": 21,
+        "loopkill": 21,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "tested": 559,
+        "oppfail": 8,
+        "loopkill": 8,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "tested": 503,
+        "oppfail": 8,
+        "loopkill": 8,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "tested": 503,
+        "oppfail": 4,
+        "loopkill": 4,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 0.2771710209999583
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5,
+      12,
+      15
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "total_o": 3,
+    "patterns": [
+      {
+        "o": [
+          0,
+          1
+        ],
+        "tested": 82,
+        "oppfail": 4,
+        "loopkill": 4,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0
+        ],
+        "tested": 82,
+        "oppfail": 4,
+        "loopkill": 4,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 0.016786707998107886
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        2
+      ],
+      [
+        "t",
+        4,
+        1
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5,
+      10,
+      11,
+      16,
+      17
+    ],
+    "opps": [
+      61,
+      64,
+      68,
+      69,
+      73
+    ],
+    "total_o": 3,
+    "patterns": [
+      {
+        "o": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "tested": 2230,
+        "oppfail": 8,
+        "loopkill": 8,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "tested": 2240,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "tested": 2230,
+        "oppfail": 8,
+        "loopkill": 8,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "tested": 2240,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "tested": 2110,
+        "oppfail": 8,
+        "loopkill": 8,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 0.5926017029996729
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        2
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      3,
+      5,
+      10,
+      12,
+      15,
+      17
+    ],
+    "opps": [
+      64,
+      73
+    ],
+    "total_o": 3,
+    "patterns": [
+      {
+        "o": [
+          0,
+          1
+        ],
+        "tested": 8170,
+        "oppfail": 12,
+        "loopkill": 12,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0
+        ],
+        "tested": 8170,
+        "oppfail": 116,
+        "loopkill": 112,
+        "cliquekill": 4,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 1.1761098309980298
+  }
+]

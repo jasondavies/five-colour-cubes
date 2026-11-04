@@ -1,0 +1,25 @@
+Opposite orbits 12
+Core 0 sources 73:1 74:2
+Core 0 leaf failures 0
+Core 1 sources 72:1 73:1 74:1
+Core 1 leaf failures 0
+Core 2 sources 71:1 74:2
+Core 2 leaf failures 0
+Core 3 sources 71:1 73:1 74:1
+Core 3 leaf failures 0
+Core 4 sources 71:1 73:2
+Core 4 leaf failures 34
+Core 5 sources 71:1 72:1 73:1
+Core 5 leaf failures 0
+Core 6 sources 68:1 71:1 74:1
+Core 6 leaf failures 0
+Core 7 sources 68:1 71:1 72:1
+Core 7 leaf failures 0
+Core 8 sources 68:1 70:1 74:1
+Core 8 leaf failures 0
+Core 9 sources 68:1 70:1 72:1
+Core 9 leaf failures 0
+Core 10 sources 68:1 69:1 72:1
+Core 10 leaf failures 0
+Core 11 sources 66:1 69:1 72:1
+Core 11 leaf failures 0

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "ordinary_table_cells": 27,
+  "exception_maps": 9,
+  "avoidance_lists": 4,
+  "explicit_eight_source_assignments": 17,
+  "assignments": [
+    "F1",
+    "F2-41",
+    "F2-42",
+    "F2-32-34",
+    "F2-31-34",
+    "I-32",
+    "I-20",
+    "I-40",
+    "I-41",
+    "II-02",
+    "II-12",
+    "II-14",
+    "II-30-31",
+    "III-10",
+    "III-40",
+    "III-43",
+    "III-32"
+  ],
+  "scope": "Displayed geometric certificates only; no inventory enumeration."
+}

@@ -1,0 +1,8838 @@
+[
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 62,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 62,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 63,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 63,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 63,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 63,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 64,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 64,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 64,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 64,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 65,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 65,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 65,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 65,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 66,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 66,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 66,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 66,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 67,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 67,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 67,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 67,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 68,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 69,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 70,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 71,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 71,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 72,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 73,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 74,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 61,
+    "Q": 74,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 63,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 63,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 63,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 63,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 64,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 64,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 64,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 64,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 65,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 65,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 65,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 65,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 66,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 66,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 66,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 66,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 67,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 67,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 67,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 67,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 68,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 69,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 70,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 71,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 71,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 72,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 73,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 74,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 62,
+    "Q": 74,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 64,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 64,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 64,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 64,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 65,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 65,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 65,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 65,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 66,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 66,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 67,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 67,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 67,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 67,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 68,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 69,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 70,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 71,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 71,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 72,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 73,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 74,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 63,
+    "Q": 74,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 65,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 65,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 65,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 65,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 66,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 66,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 66,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 66,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 67,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 67,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 67,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 67,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 68,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 68,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 69,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 70,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 70,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 71,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 71,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 72,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 72,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 73,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 73,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 73,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 74,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 64,
+    "Q": 74,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 66,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 66,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 66,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 66,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 67,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 67,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 67,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 67,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 67,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 68,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 69,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 69,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 70,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 70,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 70,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 71,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 71,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 72,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 73,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 73,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 74,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 65,
+    "Q": 74,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 67,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 67,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 67,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 67,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 68,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 69,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 70,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 71,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 71,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 72,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 73,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 74,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 66,
+    "Q": 74,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 68,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 68,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 68,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 68,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 69,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 69,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 70,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 71,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 71,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 72,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 72,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 72,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 73,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 73,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 74,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 67,
+    "Q": 74,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 69,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 69,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 69,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 69,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 69,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 69,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      61,
+      62,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 70,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7
+    ],
+    "same_side_group": [
+      6
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 70,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 71,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 71,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 72,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3
+    ],
+    "same_side_group": [
+      2
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 72,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1
+    ],
+    "same_side_group": [
+      0
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5
+    ],
+    "same_side_group": [
+      4
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 73,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      61,
+      62
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 74,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 68,
+    "Q": 74,
+    "f": [
+      3,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_side_group": [
+      1,
+      3
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 70,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 70,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 70,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 70,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 71,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 71,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 72,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 73,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 73,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 74,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 69,
+    "Q": 74,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 71,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 71,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 71,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 71,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 72,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 72,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      4,
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 73,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      6,
+      7,
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      6,
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      63,
+      66
+    ],
+    "repeatable_avoid_f": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "same_side_group": [
+      5,
+      7
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 74,
+    "f": [
+      0,
+      4
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      10,
+      11,
+      14,
+      15
+    ],
+    "same_side_group": [
+      11,
+      15
+    ]
+  },
+  {
+    "D": 60,
+    "P": 70,
+    "Q": 74,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 72,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 72,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 72,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 72,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 73,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 71,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 73,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 73,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 73,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 73,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 74,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 72,
+    "Q": 74,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  },
+  {
+    "D": 60,
+    "P": 73,
+    "Q": 74,
+    "f": [
+      0,
+      1
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      0,
+      1,
+      14,
+      15,
+      16,
+      17
+    ],
+    "same_side_group": [
+      0,
+      15,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 73,
+    "Q": 74,
+    "f": [
+      0,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      2,
+      3,
+      10,
+      11,
+      12,
+      13
+    ],
+    "same_side_group": [
+      2,
+      11,
+      13
+    ]
+  },
+  {
+    "D": 60,
+    "P": 73,
+    "Q": 74,
+    "f": [
+      0,
+      3
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [
+      12,
+      13,
+      16,
+      17
+    ],
+    "same_side_group": [
+      13,
+      17
+    ]
+  },
+  {
+    "D": 60,
+    "P": 73,
+    "Q": 74,
+    "f": [
+      1,
+      2
+    ],
+    "good_targets": [
+      60,
+      71,
+      74
+    ],
+    "repeatable_avoid_f": [],
+    "same_side_group": []
+  }
+]

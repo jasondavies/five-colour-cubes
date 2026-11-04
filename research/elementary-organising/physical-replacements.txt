@@ -1,0 +1,10 @@
+physical corner triples 820
+orbits 80 good 0
+GOOD5 (0, 1, 2, 3, 4) options 3 mixed []
+GOOD5 (0, 1, 2, 3, 8) options 6 mixed []
+GOOD5 (0, 1, 2, 4, 8) options 3 mixed []
+GOOD5 (0, 1, 2, 5, 9) options 3 mixed []
+GOOD5 (0, 2, 4, 8, 10) options 3 mixed []
+GOOD5 (0, 2, 5, 9, 10) options 3 mixed []
+GOOD5 (0, 2, 5, 10, 14) options 3 mixed []
+five orbits 273 good 7

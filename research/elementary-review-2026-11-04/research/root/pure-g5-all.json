@@ -1,0 +1,1131 @@
+[
+  {
+    "family": "row",
+    "eligible": [
+      1,
+      5,
+      7,
+      8,
+      14,
+      16,
+      18
+    ],
+    "extra": null,
+    "raw": 2507,
+    "oppfail": 94,
+    "after_loop4": 10,
+    "failure_count": 0,
+    "maxnodes": 3,
+    "seconds": 0.4359432499986724,
+    "patterns": [
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            16,
+            1
+          ]
+        ],
+        "loops": [
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            16
+          ],
+          [
+            8,
+            16
+          ]
+        ],
+        "supportedO": [
+          69
+        ],
+        "clique": {
+          "clique": [
+            0,
+            5,
+            7,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 3
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        "loops": [
+          7,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            14
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            14
+          ],
+          [
+            8,
+            14
+          ]
+        ],
+        "supportedO": [
+          72
+        ],
+        "clique": {
+          "clique": [
+            7,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 1
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            16,
+            1
+          ]
+        ],
+        "loops": [
+          5,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            16
+          ]
+        ],
+        "supportedO": [
+          69
+        ],
+        "clique": {
+          "clique": [
+            5,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 1
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        "loops": [
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            14
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            14
+          ],
+          [
+            8,
+            14
+          ]
+        ],
+        "supportedO": [
+          72
+        ],
+        "clique": {
+          "clique": [
+            0,
+            5,
+            7,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 3
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            16,
+            1
+          ]
+        ],
+        "loops": [
+          5,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            16
+          ],
+          [
+            8,
+            16
+          ]
+        ],
+        "supportedO": [
+          69
+        ],
+        "clique": {
+          "clique": [
+            0,
+            5,
+            7
+          ],
+          "weight": 5,
+          "common_poles": [
+            0
+          ]
+        },
+        "failure": null,
+        "nodes": 2
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            14,
+            1
+          ]
+        ],
+        "loops": [
+          7,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            14
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            14
+          ],
+          [
+            8,
+            14
+          ]
+        ],
+        "supportedO": [
+          72
+        ],
+        "clique": {
+          "clique": [
+            0,
+            5,
+            7
+          ],
+          "weight": 5,
+          "common_poles": [
+            0
+          ]
+        },
+        "failure": null,
+        "nodes": 2
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ]
+        ],
+        "loops": [
+          8
+        ],
+        "edges": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "supportedO": [],
+        "clique": {
+          "clique": [
+            0,
+            5,
+            7,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 3
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ]
+        ],
+        "loops": [
+          7,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "supportedO": [
+          66,
+          69,
+          72
+        ],
+        "clique": {
+          "clique": [
+            7,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 1
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            8,
+            3
+          ]
+        ],
+        "loops": [
+          5,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "supportedO": [
+          66,
+          69,
+          72
+        ],
+        "clique": {
+          "clique": [
+            5,
+            8
+          ],
+          "weight": 6,
+          "common_poles": []
+        },
+        "failure": null,
+        "nodes": 1
+      },
+      {
+        "g": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            2
+          ]
+        ],
+        "loops": [
+          5,
+          7,
+          8
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "supportedO": [
+          66,
+          69,
+          72
+        ],
+        "clique": {
+          "clique": [
+            5,
+            7
+          ],
+          "weight": 6,
+          "common_poles": [
+            0
+          ]
+        },
+        "failure": null,
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "family": "column",
+    "eligible": [
+      1,
+      5,
+      11,
+      14,
+      16,
+      18
+    ],
+    "extra": null,
+    "raw": 747,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.09169018800093909,
+    "patterns": []
+  },
+  {
+    "family": "diagonal",
+    "eligible": [
+      1,
+      7,
+      11,
+      14,
+      16,
+      18
+    ],
+    "extra": null,
+    "raw": 747,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.092316899997968,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 2,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.018583349999971688,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 3,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.0171128520014463,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 4,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.012770133998856181,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 6,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.01674487600030261,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 7,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.0153131859988207,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 8,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.018143345001590205,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 9,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.014434218999667792,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 10,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.013765198000328382,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 11,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.019520568999723764,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 12,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.015498793000006117,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 13,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.015417252001498127,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 15,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.021176235997700132,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 17,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.01443855600155075,
+    "patterns": []
+  },
+  {
+    "family": "one-corner-plus-exception",
+    "eligible": [
+      1,
+      5,
+      14,
+      16,
+      18
+    ],
+    "extra": 19,
+    "raw": 161,
+    "oppfail": 0,
+    "after_loop4": 0,
+    "failure_count": 0,
+    "maxnodes": 0,
+    "seconds": 0.02272697300213622,
+    "patterns": []
+  }
+]

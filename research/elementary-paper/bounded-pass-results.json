@@ -1,0 +1,10 @@
+{
+  "status": "bounded editorial pass complete; not full proof certification",
+  "original_words": 77141,
+  "revised_words": 72321,
+  "original_arguments": 70,
+  "revised_arguments": 66,
+  "original_paper_unchanged": true,
+  "recorded_dependencies_acyclic": true,
+  "unresolved_explicit_file_references": []
+}

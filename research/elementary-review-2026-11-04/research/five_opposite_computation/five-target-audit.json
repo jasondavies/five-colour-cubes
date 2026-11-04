@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "small geometric normal forms and explicit assignments; no inventory exhaustion",
+  "checks": {
+    "unique_grid_patterns": 15,
+    "rescue_sets_with_at_most_two_avoiders_including_A": 46,
+    "four_position_grid_shapes": 2,
+    "line_central_completion_checks": 72,
+    "three_position_grid_shapes": 2,
+    "two_corner_avoider_checks": 180,
+    "nonneighbour_normal_forms": 4,
+    "overlap_helper_checks": 148,
+    "disjoint_helper_checks": 222
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "line_types": [
+    {
+      "line": "K4",
+      "distinct_class_selections": 4845,
+      "111_classes": 8,
+      "max_111_corner_frequency": 2
+    },
+    {
+      "line": "K2,3",
+      "distinct_class_selections": 4845,
+      "111_classes": 12,
+      "max_111_corner_frequency": 3
+    }
+  ],
+  "total_selections": 9690,
+  "proof_dependency": "none; corroboration only"
+}

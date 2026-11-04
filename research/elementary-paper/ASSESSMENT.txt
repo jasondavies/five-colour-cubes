@@ -1,0 +1,76 @@
+Bounded simplification assessment — 4 November 2026
+
+Recommendation: keep the current certificate-based corner proof as the
+publication route. Preserve the elementary proof as a separate draft.
+The pass improved it, but did not produce a practical replacement for this
+paper. This concerns exposition and workload, not the legitimacy of an
+elementary proof or the impossibility of finding a shorter one.
+
+Measured outcome
+----------------
+                               Before this pass       After
+Retained arguments                   70                 66
+Approximate words                 77,141             72,321
+Mathematical appendix pages          163                154
+
+That is 4,820 words (6.2%) and nine pages removed. Counts use whitespace-
+delimited text and mathematics consistently. The draft article remains
+24 pages; its separate certificate supplement is six. The unchanged
+publication manuscript is 25 pages including its verification appendix.
+The elementary presentation still requires roughly 178 pages of article
+and mathematical appendix, before the optional verification supplement.
+
+Changes
+-------
+Folded the conditional private-row and private-diagonal proofs into their
+stronger versions while preserving the borrowed geometric steps. Removed
+duplicate compression and repeated-colour constructions already proved in
+the article, plus an unused completion table. Removed unused refinement
+converses, counts and repeated synthesis in the concentrated-opposite branch.
+
+Weakened the butterfly lemma to class cap three, all the final route needs.
+Pure concentration now explicitly precedes its use in the six-repeated-class
+corollary. The concentration proofs do not use that corollary. Two short
+Hall criteria replace the longer cap-five argument.
+
+Restored an extension lemma accidentally lost in the earlier extraction:
+three O, five sources from each of two prescribed adjacent classes, and
+any extra variety other than O assemble. Its proof was inside a section
+removed with an unnecessary refinement count. This was an extraction defect,
+not a defect found in the original research proof.
+
+Ordered recorded dependencies, added selected implicit uses, and generated
+the article's appendix-location table from the manifest. The recorded graph
+is acyclic. This does not establish every unstated mathematical premise or
+constitute an independent audit of all 154 pages.
+
+Validation
+----------
+All three PDFs compile without unresolved references or duplicate labels.
+The minor 4.32pt overfull article line remains. No full page-by-page layout
+inspection is claimed.
+
+The restored extension passed all 32,634 repeat/extra-variety checks in the
+directed-corner model. The shortened butterfly criteria passed checks for
+all 120 capped fourteen-source profiles: 4,500 low-cut and 6,064 high-cut
+reservations. These corroborate the edited local statements; they are not
+premises of the written proofs or an exhaustive proof of N5=15.
+
+Production manuscript hashes match baseline.json. Original research notes
+and production Lean sources are unchanged. Overrides and their hashes are
+recorded separately. The classification replay was not restarted or altered.
+
+Assessment
+----------
+Most remaining length belongs to distinct concentration, private-corner and
+mixed-source arguments. Replacing that structure with a much shorter proof
+is more than copy-editing. I would not continue an open-ended effort to fit
+it into this article. The current paper already offers the sharp cuboid
+classification, geometric extensions, explicit obstructions, an algorithm
+and separate formal verification.
+
+Preserve the elementary draft and its useful constructions. A compact lemma
+replacing an entire family of cases could justify reopening the publication
+decision; another small percentage reduction alone would not. A separate
+elementary-proof paper is an option to assess after further consolidation,
+not a recommendation to publish the present 154 pages as they stand.

@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "corner_sets_per_target": 255,
+  "targets": {
+    "60": {
+      "automatic": 210,
+      "solved_discard": 26,
+      "implied_by_displayed_row": 19
+    },
+    "64": {
+      "automatic": 211,
+      "solved_discard": 29,
+      "implied_by_displayed_row": 15
+    },
+    "68": {
+      "automatic": 211,
+      "solved_discard": 29,
+      "implied_by_displayed_row": 15
+    }
+  },
+  "displayed_intersection_table_verified": true,
+  "large_zero_bound_intersections": [
+    [
+      "a",
+      "C",
+      "B",
+      [
+        [
+          "t",
+          2,
+          0
+        ]
+      ]
+    ],
+    [
+      "a'",
+      "B",
+      "C",
+      [
+        [
+          "t",
+          0,
+          1
+        ]
+      ]
+    ],
+    [
+      "b",
+      "B",
+      "C",
+      [
+        [
+          "t",
+          0,
+          1
+        ]
+      ]
+    ],
+    [
+      "b",
+      "C",
+      "B",
+      [
+        [
+          "t",
+          2,
+          0
+        ]
+      ]
+    ]
+  ]
+}

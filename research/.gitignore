@@ -1,0 +1,4 @@
+# Build products of the separate review drafts and exploratory programs.
+*.toc
+*.pyc
+__pycache__/

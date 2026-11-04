@@ -1,0 +1,151 @@
+\section{Verification and reproduction details}\label{app:verification}
+\subsection{Finite certificates}
+The repeated-variety cases have the following counts,
+totalling 244.
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\toprule
+Anchor / maximum multiplicity & 2 & 3 & 4 & 5 & 6 & 7\\
+\midrule
+Adjacent-repeat & 72 & 55 & 31 & 14 & 4 & 1\\
+Opposite-repeat & 26 & 21 & 11 & 6 & 2 & 1\\
+Total & 98 & 76 & 42 & 20 & 6 & 2\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Of the 279 remaining roots, 277 admit an exclusion certificate with $\lambda=0$. The other two, original
+cases 68 and 69, use $\lambda=1$ and $G=12$. Their $\lambda=0$, $G=11$ problems actually
+have solution-free collections, supplied and checked by physical matching in
+the projected manifest. The projected totals range from 9 to 15. All 101 roots
+whose original budget was zero retain their original certificates.
+
+The projected archive contains 499,829 instructions, 95.69\% fewer than the
+original archive. Both archives and the search computations are documented
+in the repository.
+Every archived header is checked against its exported root case. Eighty
+negative controls are rejected, including all 77 possible direct closing
+claims against a separate $G=11$ fixture, not a $G=15$ root problem.
+This fixture is a known solution-free eleven-cube collection: it satisfies
+its total, fixed anchor count, coordinate bounds and zero root budget, and
+fails all 75 targets by physical matching. It is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
+checks are in \path{scripts/check_five_colour_distinct.py}.
+
+\subsection{Lean implementation}
+The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
+\texttt{v4.35.0}. It proves the physical theorems, including the connection
+between cube arrangements and the finite certificate problems.
+The physical model and palette-independent geometry come from the shared
+\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}.
+
+Lean proves completeness and uniqueness of the 75 varieties and checks all
+45,000 corner-compatibility bits using the shared corner--rotation theorem.
+The lower bound uses 75 deficient corner sets: 72 singletons and three
+sets of sizes 5, 6 and 6. Its theorem is
+\path{FiveColour.Physical.lower_bound} in \path{FiveColour/LowerBound.lean}. In the formal proof, this replaces the elementary
+target classification in Lemma~\ref{lem:lower}; catalogue completeness and
+rotation transport extend the result to every physical target.
+
+The upper-bound formalisation follows the Hall reduction, symmetry
+transport, anchor selection and shared-corner argument. Finite checks
+verify capacities, cover representatives and the reduction from 357 roots
+to 279. The deletion step is \path{FiveColour.Physical.root_projection}
+in \path{FiveColour/RootProjection.lean}. The bridge to the archive, in
+\path{FiveColour/ProjectedBridge.lean}, identifies the full admissibility
+predicate: coordinate bounds, total, budget and all Hall-cut families.
+
+For efficient replay, Lean proves soundness of a packed implementation of
+the interval checker. For multiplicities $0\le x_i\le7$, index the varieties
+by $0,\ldots,74$ and put
+\[
+ P(x)=\sum_{i=0}^{74}x_i B^i,\qquad
+ W(S)=\sum_{i\in S}B^{74-i},\qquad B=1024.
+\]
+Then
+\[
+ x(S)=\left\lfloor\frac{P(x)W(S)}{B^{74}}\right\rfloor\bmod B.
+\]
+Every coefficient in the product is at most $75\cdot7<1024$, so no carry
+can affect this coefficient extraction. Lean proves the identity, decoding,
+coordinate updates and equivalence with the integer inequalities, and
+checks all 19,125 neighbourhood weights.
+
+The 279 certificates are split into 4,786 chunks of at most 128
+instructions. Composition requires exact boundary-vector agreement and a
+proof for every referenced box; the exporter is untrusted. All chunks and
+their final assembly have passed kernel checking. The case mapping and
+certificate hashes are in \path{data/q5-projected-root-manifest.json}.
+The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
+proves the unconditional theorems \path{threshold15} and
+\path{sharpThreshold15}. Both lie in namespace
+\path{FiveColour.Packed.ProjectedChunks}.
+
+The cuboid proof in Lean follows Lemma~\ref{lem:eight-common-missing}.
+The cube exports, such as \path{frame20}, specialise the cuboid theorems.
+The equivalences in \path{FiveColour/CubeBoxBridge.lean} identify the cube
+and equal-side cuboid position models, preserving exposed faces and physical
+placements. Cube completion likewise reuses rectangular completion, whose
+generic construction is adapted from~\cite{FourToThree}; no theorem of that
+paper is used. The auxiliary eleven-cube missing-pair lemma remains in
+\path{FiveColour/RingEleven.lean}, with its multiplicity argument proved
+without enumerating collections.
+
+The small-support proofs check pair witnesses directly, without reducing
+them to five colour orbits, and use deficient corner sets for the two
+obstruction constructions. The modules are \path{SmallSupport.lean} and
+\path{MixedObstructions.lean} in the \path{FiveColour} directory.
+
+The full cuboid classification is formalised in
+\path{FiveColour/BoxThresholds.lean}. In namespace
+\path{FiveColour.Physical}, \path{box_frame_threshold_iff} and
+\path{box_threshold_iff} give necessary and sufficient pool sizes for
+arbitrary side lengths at least two, assuming
+\path{FiveColour.Physical.Threshold15}. \path{Solution.lean} applies the
+completed corner theorem to discharge this assumption. In namespace
+\path{FiveColour.Puzzle}, it exports the unconditional theorems
+\path{box_frame_threshold} and \path{complete_box_threshold}, together with
+\path{frame20}, \path{frame_threshold_all}, \path{full_cube},
+\path{complete_cube_threshold} and \path{support_threshold}.
+
+The rectangular model and completion are in
+\path{FiveColour/BoxModel.lean}; compatibility is connected to proper
+rotations, and axis assignments are realised by proper rotations.
+\path{FiveColour/EightPlusThree.lean} proves the physical prescribed-family
+lemma. Its proof uses a failed Hall set to obtain the small cover directly,
+as in Lemma~\ref{lem:eight-common-missing}; signed projection and small matching
+patterns are checked in the kernel. The weighted bounds and upper deductions
+are in \path{FiveColour/WideFrames.lean}, \path{FiveColour/RodFrames.lean}
+and \path{FiveColour/StripFrames.lean}. The thin-box proofs formalise both
+concentration and switching targets, including the equality cases of the
+affine geometric bounds. Directional profiles are checked for the two
+canonical target varieties; proved colour and rotation transport covers
+all targets, including their corner, edge and axis labels. The small
+half-mask matching step uses greedy selection after single-mask checks.
+\path{FiveColour/BoxLowerBound.lean} proves the
+uniform three-variety obstruction for every shape and orientation.
+A separate C++ audit reconstructs the geometry and checks these profiles.
+No new interval certificates are used. The flow algorithm and its
+complexity bound in Section~\ref{sec:construction} are mathematical
+deductions, not additional Lean claims.
+
+\subsection{Reproduction}
+The dependency audits cover 133 declarations listed in \path{Audit.lean},
+fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
+final replay theorems. Their dependencies are confined to
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
+and audits with:
+\begin{verbatim}
+make verify-full WORKERS=2
+\end{verbatim}
+The module guide is \path{FiveColour/README.md}.
+
+A Mathlib-only comparator challenge states the corner problem geometrically,
+restating the library's definitions locally. It covers only the corner
+problem: the cuboid statements rest on the definitions in
+\path{FiveColour/BoxModel.lean}. Its equivalence with the development's
+model is proved by
+\path{FiveColour.Puzzle.hasSolution_iff} in
+\path{FiveColour/ComparatorBridge.lean}. The solution module applies the
+completed threshold theorem. A full external comparator pass remains
+unconfirmed; it is separate from the completed Lean proof.
+

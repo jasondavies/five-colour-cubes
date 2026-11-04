@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "checks": {
+    "exact_forbidden_cut_and_marked_single_lists": 3,
+    "three_geometric_path_forms": 1,
+    "alternating_marked_single_exchange": 1,
+    "one_change_Konig_containment_bounds": 1,
+    "one_change_missing_pair_table": 1,
+    "explicit_eight_source_assignments": 9,
+    "one_change_six_position_pattern_table": 1,
+    "alternating_Konig_pattern_and_pair_tables": 1
+  },
+  "inventory_enumeration": false
+}

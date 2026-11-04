@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": {
+    "butterfly_symmetries": 3,
+    "common_corner_families": 4,
+    "exact_avoiding_opposite_lists": 1,
+    "displayed_assignments": 23,
+    "flexible_four_forward_template": 1,
+    "final_cross_class_completion": 1
+  },
+  "inventory_enumeration": false
+}

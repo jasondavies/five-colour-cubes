@@ -1,0 +1,678 @@
+\section{Rectangular boxes}\label{sec:boxes}
+We prove Theorem~\ref{thm:all-boxes}. The shared corner lemmas and Theorem~\ref{thm:main} are now available.
+A uniform lower obstruction is followed by the thin-box upper bounds and
+the remaining shapes. These deductions use no computational premise.
+
+After ordering the sides as $a\le b\le c$, the upper bound has three
+exhaustive regimes:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Shape & Main mechanism\\
+\midrule
+$a+b\ge6$ & Weighted compatibility and reservations\\
+$a=b=2$ & Concentration and retargeting along a rod\\
+$a=2,\ b=3$ & Exceptional-defect control and retargeting\\
+\bottomrule
+\end{tabular}
+\end{center}
+We establish the thin regimes first, then the general weighted bound.
+In each case an initial corner matching verifies part of Hall's inequalities;
+the final matching may rearrange those placements.
+
+\begin{lemma}[Rare pairs]\label{lem:rare-pairs}
+In a collection of five-colour cubes, any family of bichromatic pairs each
+missing from more than half the source copies consists of at most two
+pairwise disjoint pairs.
+\end{lemma}
+\begin{proof}
+The missing families of two such pairs intersect. A source missing both
+pairs forces them to be disjoint, by Lemma~\ref{lem:cube-incidence}.
+There are at most two disjoint pairs in a five-colour palette.
+\end{proof}
+
+\subsection{A uniform lower bound}
+
+\begin{lemma}[A three-variety obstruction]\label{lem:thin-three-variety-obstruction}
+Let $a,b,c\ge2$ and put $\tau=a+b+c-6$. In face order
+$(+x,-x,+y,-y,+z,-z)$, define
+\[
+ U=(0,1,0,2,3,4),\qquad
+ V=(0,1,1,2,3,4),\qquad
+ W=(0,3,1,4,2,3).
+\]
+The collection
+\[
+ U+(\tau+5)V+(\tau+6)W
+\]
+of $2\tau+12$ cubes has no $a\times b\times c$ frame using all five
+colours. In particular, $U+7V+8W$ fails for both a $2\times3\times3$
+frame and a $2\times2\times4$ box.
+\end{lemma}
+
+\begin{proof}
+The corner types are
+\[
+\begin{array}{c|l}
+ U&003,004,013,024,032,041,123,142\\
+ V&113,114,013,024,032,041,123,142\\
+ W&133,334,012,024,031,043,132,234.
+\end{array}
+\]
+Triples denote cyclic classes. The only two-colour types in their union
+are $003,004$, $113,114$, and $133,334$. An adjacent-repeat target must
+therefore repeat colour $0$, $1$, or $3$. Its two repeated-colour corners
+force the colours on the opposite faces at the ends of its monochromatic
+edge to be, respectively, $\{3,4\}$, $\{3,4\}$, or $\{1,4\}$.
+The two orders of the remaining colours give $U,V,W$, respectively, and
+their mirrors. The mirrors of $U$ and $V$ require $023$, which is absent
+from the union; the mirror of $W$ requires $021$, also absent.
+
+An opposite-repeat target requires both cyclic orientations of four
+distinct unordered tricoloured triples. The union above contains both
+orientations only for $013$ and $123$. Thus no opposite-repeat target
+is possible. The only corner-supported targets are $U,V,W$.
+
+Target $U$ needs two copies possessing a $00$ corner, but the collection
+has only one such copy.
+
+For target $V$, seven of its corner types are absent from $W$; the only
+shared type is $024$. In addition, exactly one geometric edge in each
+coordinate direction has a type absent from $W$: these are $14,14,11$.
+Consequently, in any orientation of an $a\times b\times c$ frame,
+$7+\tau$ positions require a $U$ or $V$ source. There are only $\tau+6$
+such copies.
+
+For target $W$, seven corner types are absent from both $U$ and $V$.
+Again, one geometric edge in each direction has a private type, now
+$34,33,34$. Hence $7+\tau$ positions require a $W$ source, whereas only
+$\tau+6$ are available.
+
+Every possible target therefore fails
+(Figure~\ref{fig:uniform-obstruction}).
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\input{uniform-obstruction}
+\caption{The uniform obstruction $U+(\tau+5)V+(\tau+6)W$, where $\tau=a+b+c-6$.
+Each net has $+x$ at its centre, and corner types are read
+counterclockwise from outside. Only $U$, $V$ and $W$ can be targets.
+Their pools are $U$ alone, $U$ or $V$, and $W$ alone; faded corner types
+also occur on a cube outside the pool. For $V$ and $W$, one edge in each
+direction has a private type, and these edges have $\tau$ noncorner positions
+in total.}
+\label{fig:uniform-obstruction}
+\end{figure}
+
+\begin{proposition}\label{cor:all-lower-bounds}
+For every $a,b,c\ge2$,
+\[
+ F_5(a,b,c)\ge\max\{15,\;4(a+b+c)-16,\;2(a+b+c)+1\}.
+\]
+\end{proposition}
+\begin{proof}
+The three terms follow from the fourteen-cube corner obstruction (Lemma~\ref{lem:lower}),
+the number of frame positions, and
+Lemma~\ref{lem:thin-three-variety-obstruction}, respectively.
+\end{proof}
+
+\subsection{The smallest thin box}
+
+\begin{theorem}[The $2\times2\times3$ box]\label{thm:223}
+We have
+\[
+ F_5(2,2,3)=15.
+\]
+In particular, any fifteen five-colour cubes contain twelve that form a
+$2\times2\times3$ box with monochromatic exterior faces using all five
+colours.
+\end{theorem}
+
+\begin{proof}
+The fourteen-cube corner obstruction (Lemma~\ref{lem:lower}) gives the lower bound: the eight
+corner cubes of any box would themselves give a corner solution.
+
+For the upper bound, take fifteen arbitrary source copies. Call a
+bichromatic pair rare if at most seven sources possess it. Each rare
+pair is missing from at least eight sources. The missing sets for any
+two rare pairs intersect, since $8+8>15$. Lemma~\ref{lem:rare-pairs}
+therefore gives at most two disjoint rare pairs.
+
+Suppose first that there is no rare pair. The corner theorem supplies
+a target $T$ and a corner matching. If $T$ is adjacent-repeat, choose
+the long axis perpendicular to its monochromatic edge. If $T$ is
+opposite-repeat, any choice of long axis is suitable. In either case
+all four noncorner frame positions have bichromatic requirements, and
+each requirement has at least eight source neighbours.
+
+If there is a rare pair $e=\alpha\beta$, at least eight sources belong to
+$\mathcal H_{\alpha\beta}$. Choose eight of them and any three additional copies.
+Lemma~\ref{lem:eight-common-missing} gives a corner matching with target
+$T\in\mathcal H_{\alpha\beta}$. Orient its $\alpha\beta$ axis along
+one of the two short directions, and choose a perpendicular direction
+as the long axis. The four noncorner edge requirements then each join
+a pole colour, $\alpha$ or $\beta$, to a ring colour. None is $\alpha\beta$, and none can
+be the other rare pair, if present, since that pair is disjoint from
+$\alpha\beta$ and uses only ring colours. The target's monochromatic edge,
+when present, is parallel to the $\alpha\beta$ axis and contributes no noncorner
+position. Again all four edge requirements are bichromatic and have
+at least eight source neighbours.
+
+For either chosen target and orientation, every source fits at least
+four of the twelve positions, by Lemma~\ref{lem:thin-compatibility}.
+Thus each source misses at most eight positions.
+
+Let $D$ be any subset of the twelve target positions. If $D$ contains
+only corners, its Hall inequality follows from the corner matching.
+Otherwise, if $|D|\le8$, one of its edge positions has at least eight
+neighbours. If $|D|>8$, every source neighbours $D$, because no source
+misses more than eight positions. Hall's theorem supplies a matching
+of all twelve positions to distinct source copies. The final matching
+may rearrange the preliminary corner placements.
+\end{proof}
+
+\subsection[Sharp thresholds for 2 by 3 by c frames]{Sharp thresholds for $2\times3\times c$ frames}
+
+\begin{lemma}[Compatibility for $2\times3\times c$]\label{lem:23c-compatibility}
+Let $M=c-2\ge2$ and put $d=2M+6$. Orient a five-colour target for
+a $2\times3\times c$ frame so that its monochromatic edge, if any,
+is parallel to the side of length two. An adjacent-repeat source misses
+at most $d$ positions, and an opposite-repeat source misses at most
+$d+1$ positions. If a source misses $d+1$ positions, it is the unique
+opposite-repeat variety lacking the two bichromatic types appearing
+among those missed edge positions.
+\end{lemma}
+
+\begin{proof}
+The nonzero edge lengths are $1,M$. By Lemma~\ref{lem:cube-incidence},
+for an opposite-repeat source,
+at most six corners are incompatible. Its two missing bichromatic pairs
+are disjoint, so at most three geometric edges are incompatible, with
+at most two parallel to either nonzero direction. If their counts are
+$k_1,k_M$, the defect is at most
+\[
+ 6+k_1+Mk_M\le6+3+2(M-1)=2M+7=d+1.
+\]
+Equality requires six incompatible corners, two incompatible long
+edges, and one incompatible unit-length edge. These three geometric
+edges display exactly two bichromatic types: there are at least two
+because any target type occurs at most twice, and at most two because
+the source lacks only two types. They are disjoint and determine the
+opposite-repeat source variety uniquely.
+
+An adjacent-repeat source lacks only one bichromatic type. Against an
+opposite-repeat target, at most six corners and edge positions of total
+weight $2M$ are incompatible, giving defect at most $d$.
+Against an adjacent-repeat target, an incompatible edge lies transverse
+to the monochromatic edge, so Lemma~\ref{lem:transverse-corner}
+gives a shared corner.
+The absent type contributes weight at most $M+1$: a doubled type has
+one edge in each nonzero direction. The defect is therefore at most
+\[
+ 7+(M+1)=M+8\le2M+6=d.
+\]
+If no actual edge is incompatible, the defect is at most eight, which
+is also at most $d$.
+\end{proof}
+
+\begin{lemma}[An opposite-repeat target along the short axis]
+\label{lem:23c-opposite-short}
+Let $c\ge3$. For a $2\times3\times c$ frame, orient an opposite-repeat target with
+its repeated-colour axis along the side of length two. Every source
+misses at most $2(c-2)+6$ positions.
+\end{lemma}
+
+\begin{proof}
+Every actual edge type contains the target's repeated colour. By
+Lemma~\ref{lem:cube-incidence}, a source
+can lack at most one such bichromatic type, because its missing pairs
+are disjoint. The absent type accounts for at most two parallel geometric
+edges, of total weight at most $2(c-2)$. At least two corners are shared,
+so at most six further positions are missed.
+\end{proof}
+
+\begin{theorem}[The remaining $2\times3\times c$ frames]
+\label{thm:23c-sharp}
+\[
+ F_5(2,3,3)=17,\qquad
+ F_5(2,3,c)=4c+4\quad(c\ge4).
+\]
+\end{theorem}
+
+\begin{proof}
+First let $c=3$ and take seventeen sources. Call a bichromatic pair
+rare if at most eight sources possess it. Each rare pair is absent from
+at least nine sources. By Lemma~\ref{lem:rare-pairs} there are
+at most two, and they are disjoint. If no pair is rare, choose a corner target using $N_5=15$
+and put its possible monochromatic edge along the side of length two.
+Otherwise choose a rare pair $\alpha\beta$ and apply
+Lemma~\ref{lem:eight-common-missing} to eight sources in $\mathcal H_{\alpha\beta}$
+and any three others. Orient the target's $\alpha\beta$ axis along the side of
+length two. All actual edge types join a pole colour to a ring colour,
+so they avoid both possible rare pairs and are bichromatic.
+
+Every source misses at most nine of the sixteen frame positions. Indeed,
+if source or target is opposite-repeat, at most six corners and three
+actual geometric edges are incompatible. If both are adjacent-repeat,
+at most two actual geometric edges are incompatible; whenever one is
+incompatible, Lemma~\ref{lem:transverse-corner} supplies a shared corner. If no edge
+is incompatible, at most eight positions are missed.
+
+The chosen target has a corner matching, and every edge requirement has
+at least nine neighbours. Lemma~\ref{lem:partial-matching}, with the corners
+as the matched subset, completes the frame. This proves $F_5(2,3,3)\le17$; the
+collection $U+7V+8W$ in Lemma~\ref{lem:thin-three-variety-obstruction}
+gives equality.
+
+Now let $c\ge4$, put $M=c-2\ge2$, and set
+\[
+ d=2M+6,\qquad N=4M+12=2d.
+\]
+There are $N=4c+4$ frame positions. Take any $N$ source copies, and call
+a bichromatic pair rare if at most $d-1$ copies possess it. Each rare
+pair is absent from at least $d+1>N/2$ sources. Lemma~\ref{lem:rare-pairs}
+gives at most two disjoint rare pairs.
+
+If no pair is rare, use the corner theorem and orient the target's
+possible monochromatic edge along the side of length two. Otherwise,
+choose a rare pair $\alpha\beta$. At least $d+1\ge11$ sources belong to
+$\mathcal H_{\alpha\beta}$. Lemma~\ref{lem:eight-common-missing} supplies a corner solution
+whose target belongs to that family. Orient its $\alpha\beta$ axis along the side
+of length two. All actual edge types join a pole colour to a ring colour,
+and hence avoid both rare pairs; the monochromatic edge, if present,
+has no noncorner positions.
+
+In either case the chosen target has a corner matching and every actual
+edge requirement has at least $d$ source neighbours. Hall's inequality
+holds for corner-only sets, and for any set of at most $d$ positions
+containing an edge. By Lemma~\ref{lem:23c-compatibility}, sets of more
+than $d+1$ positions neighbour every source.
+
+Suppose the frame has no matching. A deficient Hall set $D$ must therefore
+have exactly $d+1$ positions. Every nonneighbour misses all of those
+positions, so Lemma~\ref{lem:23c-compatibility} says that all nonneighbours
+have one opposite-repeat variety $V$, determined by the two absent
+bichromatic types. Since $D$ has at most $d$ neighbours among $N=2d$
+copies, the inventory contains at least $d$ copies of $V$.
+
+Retarget the frame to $V$ with its repeated-colour axis along the side
+of length two. By Lemma~\ref{lem:23c-opposite-short}, every source misses
+at most $d$ positions. The $d$ copies of $V$ are compatible with every
+position, so they verify Hall's inequality for every set of size at most
+$d$. Larger sets neighbour every source. This gives a frame after all.
+
+Thus $N$ sources always suffice. The number of frame positions supplies
+the matching lower bound.
+\end{proof}
+% Analytic resolution of the 2 x 2 x c family.
+% Inputs: N_5=15; the eight-family-plus-three corner lemma; basic geometry.
+
+\subsection[Sharp thresholds for 2 by 2 by c boxes]{Sharp thresholds for $2\times2\times c$ boxes}
+
+Put $M=c-2$. The frame of a $2\times2\times c$ box consists of eight
+corners and four parallel geometric edges, each with $M$ positions. Its
+size is $L=4M+8=4c$. We call an orientation of an adjacent-repeat target
+\emph{transverse} if its monochromatic edge is not parallel to the long
+axis. For an opposite-repeat target, its \emph{axial} orientation has
+the repeated faces perpendicular to the long axis.
+
+\begin{lemma}[Directional compatibility]\label{lem:rod-compatibility}
+Let $M\ge2$.
+\begin{enumerate}
+\item For a transverse adjacent-repeat target, every adjacent-repeat
+source misses at most $M+7$ positions. Every opposite-repeat source
+misses at most $2M+6$ positions. An opposite-repeat source missing more
+than $M+6$ positions must be one of two varieties; their missing
+long-edge types are complementary pairs.
+\item For an axial opposite-repeat target $V$, every source misses at
+most $d=2M+4=L/2$ positions. If $M\ge3$, a source different from $V$
+can miss $d$ positions only if it is one of the other two opposite-repeat
+varieties with the same repeated colour. These two varieties have
+complementary missing long-edge types.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For (i), write the target in face order $(+x,-x,+y,-y,+z,-z)$ as
+\[
+ (r,\alpha,r,\beta,\gamma,\delta),
+\]
+and take the long direction to be $x$. Its four long-edge types are
+\[
+ r\gamma,\quad r\delta,\quad \beta\gamma,\quad \beta\delta.
+\]
+An adjacent-repeat source lacks at most one of these. If it lacks one,
+Lemma~\ref{lem:transverse-corner} gives a shared corner, so its defect
+is at most $M+7$. If it lacks none, its defect is at most eight, also
+bounded by $M+7$.
+
+By Lemma~\ref{lem:cube-incidence}, an opposite-repeat source shares at
+least two corners and lacks at most
+two long-edge types, giving defect at most $2M+6$. To lack two of the
+four displayed types, its two missing pairs must be one of the disjoint
+matchings
+\[
+ \{r\gamma,\beta\delta\}\qquad\text{or}\qquad\{r\delta,\beta\gamma\}.
+\]
+Each matching determines exactly one opposite-repeat variety, with
+repeated colour $\alpha$. The two varieties have complementary missing
+long-edge types. Every other opposite-repeat source lacks at most one
+long-edge type, and hence has defect at most $M+6$.
+
+For (ii), let the repeated colour of $V$ be $r$, and put its singleton
+opposite pairs on the two transverse axes. The four long-edge types are
+the four edges of the resulting $K_{2,2}$ on the singleton colours.
+The other two opposite-repeat varieties with repeated colour $r$ each
+share four corners and two long-edge types with $V$. Their compatible
+position count is $4+2M=d$, and their missing long-edge pairs are
+complementary.
+
+Every adjacent-repeat source lacks at most one long-edge type. An
+opposite-repeat source with repeated colour different from $r$ also
+lacks at most one: one of its two missing pairs contains $r$, whereas
+no long-edge type does. By Lemma~\ref{lem:cube-incidence}, these sources share at least two
+corners with $V$, so they fit at least $2+3M\ge d$ positions. If $M\ge3$, this last
+inequality is strict. The target variety $V$ itself fits every position.
+This proves both assertions.
+\end{proof}
+
+\begin{lemma}[Concentrated opposite-repeat copies]\label{lem:rod-concentration}
+Let $M\ge3$ and $d=2M+4$. A collection of $2d=4M+8$ cubes containing
+at least $d-1$ copies of one opposite-repeat variety forms a
+$2\times2\times(M+2)$ box.
+\end{lemma}
+
+\begin{proof}
+Let that variety be $V$ with multiplicity $v$. Use its axial target
+orientation. Every source misses at most $d$ positions. If $v\ge d$,
+Hall's inequality is immediate: sets of at most $d$ positions have the
+$v$ copies of $V$ as neighbours, and larger sets neighbour every source.
+
+Suppose $v=d-1$. The same reasoning handles all position sets except
+sets $D$ of size exactly $d$. If such a set fails Hall, no non-$V$
+copy neighbours it. Those copies must each miss $d$ positions, so
+Lemma~\ref{lem:rod-compatibility}(ii) restricts them to the other two
+opposite-repeat varieties with the same repeated colour. Since $d>8$,
+$D$ contains a long-edge position. The two candidate varieties have
+complementary missing long-edge types, so at most one can be absent
+from the neighbourhood of $D$. All $2d-v=d+1$ non-$V$ copies are
+therefore one variety $W$. Using $W$ as the axial target gives the
+previous case, with at least $d$ universal copies, and completes the box.
+\end{proof}
+
+\begin{lemma}[A target avoiding scarce long-edge types]\label{lem:rod-target}
+Suppose a collection has $N\ge15$ cubes. Call a bichromatic pair rare
+when at most $\rho$ sources possess it, where $N-\rho\ge8$ and
+$2(N-\rho)>N$. Then there is a corner-solvable target, transverse if
+adjacent-repeat and axial if opposite-repeat, whose four long-edge
+types are all non-rare.
+\end{lemma}
+
+\begin{proof}
+Each rare pair is missing from more than half the collection. Thus any
+two rare pairs are disjoint and there are at most two, by
+Lemma~\ref{lem:rare-pairs}. If there is no
+rare pair, use the corner theorem and choose either specified orientation.
+
+Otherwise let $\alpha\beta$ be rare. At least eight sources belong to
+$\mathcal H_{\alpha\beta}$. Lemma~\ref{lem:eight-common-missing} supplies a corner target
+in this family. Its $\alpha\beta$ axis is a singleton opposite pair and can be
+put along a short direction. If the target is opposite-repeat, choose
+its repeated-colour axis as the long direction; otherwise choose either
+axis perpendicular to the $\alpha\beta$ axis. Every long-edge type then joins
+one of $\alpha,\beta$ to a ring colour. It is neither $\alpha\beta$ nor the other possible
+rare pair, whose colours are both ring colours. These orientations are
+axial or transverse as required.
+\end{proof}
+
+\begin{theorem}[Thin rods]\label{thm:sharp-rods-upper}
+\[
+ F_5(2,2,4)\le17,
+ \qquad
+ F_5(2,2,c)=4c\quad(c\ge5).
+\]
+\end{theorem}
+
+\begin{proof}
+First let $c=4$, so $M=2$ and $L=16$, and take seventeen source
+copies. In Lemma~\ref{lem:rod-target} use $\rho=8$. The chosen target has
+a corner matching, and every long-edge type has at least nine sources.
+If the target is opposite-repeat, its defect is at most eight by
+Lemma~\ref{lem:rod-compatibility}, and Hall's theorem completes it.
+
+For an adjacent-repeat target, adjacent-repeat sources miss at most nine
+positions and opposite-repeat sources at most ten. A failing Hall set
+$D$ cannot consist only of corners. Since it contains an edge position,
+it has at least nine neighbours; and if $|D|>10$, it neighbours every
+source. Therefore a failure would have $|D|=10$ and exactly nine
+neighbours. Its eight non-neighbouring source copies must all be
+opposite-repeat. Each must miss two long-edge types, since otherwise
+its defect is at most $M+6=8$. The two candidate varieties in
+Lemma~\ref{lem:rod-compatibility}(i) have complementary missing
+long-edge types. As $D$ contains an edge position, all eight copies
+must be the same opposite-repeat variety $V$.
+
+The axial target $V$ is solved by Hall directly: its eight copies
+neighbour every nonempty set of at most eight positions, and larger
+sets neighbour all seventeen sources, since each misses at most eight
+positions. This proves the seventeen-cube upper bound.
+
+Now let $M=c-2\ge3$, put $d=2M+4$, and take exactly $N=2d=L$
+cubes. Use $\rho=d-1$ in Lemma~\ref{lem:rod-target}. Every long-edge type
+of the chosen target has at least $d$ sources. An opposite-repeat
+target is completed directly by Hall, since every source misses at
+most $d$ positions.
+
+For an adjacent-repeat target, adjacent-repeat sources miss at most
+$M+7\le d$ positions; opposite-repeat sources miss at most
+$2M+6=d+2$. Any failing Hall set $D$ therefore has
+\[
+ d+1\le |D|\le d+2.
+\]
+It has at most $d+1$ neighbours, leaving at least $d-1$ non-neighbouring
+source copies. All are opposite-repeat. An opposite-repeat source
+missing only one long-edge type has defect at most $M+6<d+1$, so
+all these copies are among the two varieties in
+Lemma~\ref{lem:rod-compatibility}(i). Since $D$ contains an edge,
+all must be one variety $V$. Lemma~\ref{lem:rod-concentration} then
+supplies a box from the original collection. Thus every collection of
+$L=4c$ cubes works. The number of positions gives the matching lower
+bound.
+\end{proof}
+
+\begin{proposition}[Complete rod threshold]\label{cor:sharp-rods}
+Together with Theorem~\ref{thm:main}, Theorem~\ref{thm:223} and
+the sixteen-cube obstruction of Lemma~\ref{lem:thin-three-variety-obstruction},
+Theorem~\ref{thm:sharp-rods-upper} gives
+\[
+ F_5(2,2,c)=\max\{15,\,4c,\,2c+9\}\qquad(c\ge2).
+\]
+Equivalently, the values are $15,15,17$ for $c=2,3,4$, respectively,
+and $4c$ for every $c\ge5$.
+\end{proposition}
+\begin{proof}
+The cases $c=2,3$ are the established corner and smallest thin-box
+thresholds. For $c=4$, Lemma~\ref{lem:thin-three-variety-obstruction} and the seventeen-cube
+upper bound give equality. For $c\ge5$, the number of positions gives
+$F_5(2,2,c)=4c$, as proved above.
+\end{proof}
+\subsection{Boxes whose two shortest sides sum to at least six}
+
+Order the side lengths as $2\le a\le b\le c$ and put
+\[
+ m=a-2,\qquad t=b-2,\qquad M=c-2,\qquad \tau=m+t+M.
+\]
+The frame has $L=8+4\tau$ positions. In this section assume $m+t\ge2$.
+
+\begin{lemma}[Weighted compatibility]\label{lem:box-weighted}
+Let $2\le a\le b\le c$ with $a+b\ge6$, so that $m+t\ge2$ and $M\ge1$.
+Every source misses at most $d=\tau+M+6$ positions of every target frame.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:cube-incidence}, if the target is opposite-repeat,
+at most three geometric edges are
+incompatible, with at most two in any direction. Their total weight is
+at most $2M+t\le \tau+M$. At most six corners are incompatible, so the
+claimed bound follows.
+
+For an opposite-repeat source, take the adjacent-repeat target
+\[
+ (r,\alpha,r,\beta,\gamma,\delta),
+\]
+whose monochromatic edge is parallel to $z$.
+A doubled bichromatic type, $r\gamma$ or $r\delta$, occupies one edge in each of
+the $x,y$ directions. If such a type is missing, it and the monochromatic
+edge contribute one edge in each direction; the other disjoint missing
+type contributes at most one further edge. The missed weight is at most
+$\tau+M$. If neither missing type is doubled, two missing single types
+cannot have the same direction: the single types in each direction
+share a colour. Adding the monochromatic edge therefore gives at most
+three edges, with at most two parallel, again of weight at most
+$2M+t\le \tau+M$. There are at most six incompatible corners.
+
+For two adjacent-repeat varieties, at most three geometric edges are
+incompatible. If there are at most two, the total defect is at most
+\[
+ 2M+8\le \tau+M+6,
+\]
+because $m+t\ge2$. If there are three, they are the monochromatic edge
+and a doubled missing bichromatic type, one edge in each direction.
+Lemma~\ref{lem:transverse-corner}
+gives a shared corner. The defect is at most
+$\tau+7\le \tau+M+6$, since $M\ge1$.
+\end{proof}
+
+\begin{theorem}\label{thm:boxes-wide}
+If $2\le a\le b\le c$ and $a+b\ge6$, then
+\[
+ F_5(a,b,c)=4(a+b+c)-16.
+\]
+\end{theorem}
+\begin{proof}
+Take $N=L=8+4\tau$ source copies and put $d=\tau+M+6$. Call a bichromatic
+pair rare if at most $d-1$ copies possess it. Its missing family has
+at least
+\[
+ N-d+1=3\tau-M+3
+\]
+copies, exceeding $N/2$ by $m+t-1\ge1$. Lemma~\ref{lem:rare-pairs}
+again gives at most two disjoint rare pairs.
+
+By Lemma~\ref{lem:partial-matching}, a target avoiding all rare pairs
+has a full frame matching whenever its corners and monochromatic edge
+positions have a matching: every other position has at least $d$
+neighbours, and Lemma~\ref{lem:box-weighted} bounds each source's defect
+by $d$.
+
+\emph{No rare pair.} For each colour reserve up to $m$ sources having
+that colour on adjacent faces, taking all such sources if fewer exist.
+The reservations are disjoint. At least $N-5m\ge7m+8\ge15$ sources
+remain when $m\ge1$; when $m=0$, none are reserved and $N\ge24$.
+The corner theorem supplies a target on the unreserved sources.
+Orient its possible monochromatic edge along the shortest direction.
+If the target repeats colour $r$ adjacently, a compatible source with
+adjacent $r$-faces survived the reservation, so the $r$-reserve has its
+full size $m$. It fills the monochromatic edge. The Hall observation
+completes the frame.
+
+\emph{One rare pair $\alpha\beta$.} For each of the three ring colours,
+reserve up to $m$ sources in the whole collection having that colour
+on adjacent faces, again taking all such sources if fewer exist.
+At most $3m$ family copies are removed, so $\mathcal H_{\alpha\beta}$ retains at least
+\[
+ (3\tau-M+3)-3m=3t+2M+3\ge8
+\]
+copies, and at least eleven total sources remain unreserved. Apply
+Lemma~\ref{lem:eight-common-missing} to eight unreserved family copies
+and any three further unreserved sources. The resulting corner target
+lies in $\mathcal H_{\alpha\beta}$. Orient its $\alpha\beta$ axis along the shortest
+direction. Any monochromatic edge is parallel to this axis and has its
+full reserve of $m$ copies, by the same survivor argument. The target
+avoids the only rare pair, so the Hall observation applies.
+
+\emph{Two rare pairs $e,f$.} Their common missing variety $V$ is the
+unique opposite-repeat variety with $e,f$ as singleton opposite pairs.
+Its multiplicity satisfies
+\[
+ v\ge N-2(d-1)=2(m+t)-2\ge2.
+\]
+If $v\ge8$, use eight copies for the corners of $V$. If $4\le v\le7$,
+the family $\mathcal H_e$ has at least eleven copies and hence at least
+four not of variety $V$. Each shares at least four corners with $V$,
+by the ring array. Place four such copies at distinct corners and fill
+the other four with $V$. In either case, $V$ has no monochromatic edge
+and avoids both rare pairs; the Hall observation applies.
+
+It remains that $v=2$ or $3$, forcing $m+t=2$ and $N=2d$. If $n_e,n_f$
+count the sources possessing the rare pairs, then
+\[
+ n_e,n_f\le d-1,\qquad
+ v\ge N-n_e-n_f.
+\]
+Consequently,
+\[
+ n_e,n_f\ge d-2,\qquad n_f+v\ge d+1.
+\]
+Use exactly the reservation and the construction of Lemma~\ref{lem:eight-common-missing} from the
+one-rare-pair case to obtain a corner-and-monochromatic-edge matching
+for a target $T\in\mathcal H_e$, with its $e$ axis shortest.
+
+Within this family, $V$ shares at least four target corners and can
+miss at most two geometric edges, both parallel to the $e$ axis. For
+a different opposite-repeat target these are its two $f$-edges; for
+an adjacent-repeat target they are its $f$-edge and monochromatic edge.
+Thus $V$ misses at most $2m+4\le6$ actual positions.
+
+The only Hall sets not covered as before contain bichromatic edge
+positions of type $f$ and no non-rare bichromatic edge. Such a set $D$
+has at least $n_f$ neighbours. If $|D|>n_f\ge d-2\ge8$, every copy
+of $V$ is also a neighbour, since it misses at most six positions.
+These are distinct from the $n_f$ copies possessing $f$, so
+\[
+ |\Gamma(D)|\ge n_f+v\ge d+1.
+\]
+This handles $|D|\le d$; larger sets neighbour every source. Hall's
+theorem completes the frame in the final case.
+
+The number of frame positions gives the lower bound, proving equality.
+All preliminary placements certify Hall inequalities; the final
+matching may rearrange them.
+\end{proof}
+
+\subsection{Completion of the classification}
+\begin{proof}[Proof of Theorem~\ref{thm:all-boxes}]
+Order the sides as $2\le a\le b\le c$. When $a+b\ge6$,
+Theorem~\ref{thm:boxes-wide} gives $F_5=L$. The remaining possibilities
+are exactly $(a,b)=(2,2)$ and $(2,3)$, settled by
+Proposition~\ref{cor:sharp-rods} and Theorem~\ref{thm:23c-sharp}.
+Together with the corner theorem at $(2,2,2)$, these give $F_5=15$
+for sums six and seven, $F_5=17$ for sum eight, and $F_5=L$
+for every larger sum. Proposition~\ref{cor:all-lower-bounds} proves
+sharpness and yields the stated maximum formula.
+
+For the complete box, take $\max\{abc,F_5(a,b,c)\}$ sources and first
+choose a frame. Every source has every colour, so any unused source can
+fill any face-interior position after a suitable proper rotation. All
+fully interior positions are unrestricted. There are enough unused
+sources to fill the remaining $abc-L$ positions. Conversely, any complete
+box supplies a frame and uses $abc$ sources. Hence
+\[
+ G_5(a,b,c)=\max\{abc,F_5(a,b,c)\}.
+\]
+Putting $x=a-2$, $y=b-2$, and $z=c-2$ gives
+\[
+ abc-L=xyz+2(xy+xz+yz)\ge0,
+\]
+which simplifies this identity to the claimed formula for $G_5$.
+
+If $(a,b)=(2,2)$, this formula is $\max\{4c,15,2c+9\}$: it exceeds
+the volume only for $c=2,3,4$. In every other sorted case, $b\ge3$;
+then $abc\ge18\ge15$ and
+\[
+ abc-2(a+b+c)-1\ge 2bc-2b-2c-5\ge1.
+\]
+The first inequality follows by increasing $a$ from two, and the second
+is minimised at $b=c=3$. There are no further exceptions.
+\end{proof}
+

@@ -1,0 +1,9 @@
+n 0 visited 38 solved 0 failed 38
+n 1 visited 760 solved 0 failed 760
+n 2 visited 7980 solved 0 failed 7980
+n 3 visited 58520 solved 0 failed 58520
+n 4 visited 335730 solved 332858 failed 2872
+ profile 1 1 1 1: 10
+ profile 2 1 1: 198
+ profile 2 2: 230
+ profile 3 1: 2434

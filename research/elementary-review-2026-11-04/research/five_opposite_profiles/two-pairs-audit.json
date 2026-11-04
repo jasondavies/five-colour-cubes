@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "explicit_exception_witnesses": 4,
+  "rescue_set_claims": 8,
+  "inventories_at_fixed_adjacent_class": {
+    "neighbouring": 11115,
+    "nonneighbouring": 14820
+  },
+  "total_inventories": 25935,
+  "proof_dependency": "none; finite corroboration of written elementary argument"
+}

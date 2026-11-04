@@ -1,0 +1,106 @@
+Review of the updated elementary threshold proof
+4 November 2026
+
+Archive: ../five-colour-elementary-research.zip
+SHA-256: 146aa371dbd612d8678ce48a1a79bdc5078b76ea035eabf831a3829d13aa68de
+The extracted archive is under research/ in this directory. Supplied audit
+programs were rerun there; their report files contain this review's runs.
+
+Assessment
+----------
+No mathematical error was found in the final fifteen-source synthesis or the
+new closing arguments examined. Taken with the previously established branch
+lemmas, they do close the elementary threshold argument. The conclusion does
+not require the complete fourteen-source classification or its invariant.
+This is a written-proof review, not a Lean verification, and not a fresh
+line-by-line audit of every older note in the full dependency chain.
+
+The final split really covers every opposite total, including the boundaries:
+- o=3,4: there are at least eleven adjacent sources; retain three opposites
+  and eleven adjacent sources. The three-opposite lemma includes all three
+  multiplicity patterns, including three identical varieties.
+- o=5,6: retain five opposites and nine adjacent sources. Cap three implies
+  at least three occupied adjacent classes. If not all nine are distinct,
+  select two A and one each of two other classes for the helper lemma.
+- o=7: the seven-opposite-plus-adjacent theorem applies.
+- o>=8: choose eight opposite sources, preserving the cap of two.
+The concentrated opposite cases are excluded before these caps are used.
+The two deletion identities in that reduction are correct.
+
+The two-source compression is valid for both target types. The removed
+sources are unavailable to every other placement; a virtual opposite source
+can only supply a tricoloured corner, and only one removed physical source
+is needed to replace it. Disjoint cuts really contain an opposite variety.
+The triangle/star proof covers small or empty signed families as well as
+maximal supports. No threshold theorem is used in this geometric step.
+
+The one-opposite closure correctly addresses the earlier missing existence
+of a second triple: the thirteen-source 3,2,2,2,2,1,1 lemma rules out the only
+possible unique-triple profile. Promotion is then applied only to a triple
+with its required outsider matching. The avoiding-opposite alternatives cover
+all five possible varieties in three symmetry types.
+
+The three-opposite branches use their local matching and common-corner
+lemmas, not the later two-opposite theorem. The latter uses the former by
+compression, so this joining step is not circular. The common-corner and
+nine-source repeated-colour completions preserve physical-copy counts.
+
+Scope of the written review
+---------------------------
+Read the master synthesis and the new one-, two-, and three-opposite joining
+arguments; the disjoint-cut classification; the two-star, butterfly, and
+star-and-triangle closures; the common-corner eleven-source proof; the doubled
+opposite four- and five-position reductions and both path closures; the
+three-distinct global-zero-edge, rectangle, and unsupported-triad arguments;
+the thirteen-source five-repeated-class argument; the three private-column
+extensions; the local repeated-colour restoration; and supporting private-
+column/promotion and mixed two-loop arguments. Traced the stated earlier
+inputs and their intended scopes. The long older concentration/diversity
+proof chains were not all re-proved from scratch in this review.
+
+Executed checks
+---------------
+New independent cut-model check_closures.py:
+- all 3,600 opposite/repeat-distribution choices in the nine-source core,
+  with the conclusion restricted to one of its two adjacent target classes;
+- the displayed fourteen-source obstruction against all 75 targets;
+- all 110 maximal pairwise-intersecting cut supports against the three forms;
+- all 1,820 three-opposite grid/helper patterns; all 32 exceptional instances
+  have precisely the asserted three-pairs line form.
+Output: independent-closures.txt (renamed from the original .log for this review package).
+
+New independent check_private_hall.py:
+- all 154,518 capped eleven-outsider count profiles;
+- all six exact Hall criteria for the two candidate targets in each of the
+  high, diagonal, and row private-column cases.
+Output: independent-private-hall.txt (renamed from the original .log for this review package).
+This generates and executes a small C++ checker in /tmp. These checks audit
+finite implications; they do not replace the written exhaustion arguments.
+
+Rerun supplied fixed-geometry audit programs, all passed:
+- audit_five_repeated_geometry.py: 27 ordinary table cells, 9 exceptional
+  relabellings, 4 avoidance lists, 17 displayed eight-source assignments.
+- audit_doubled_path_geometry.py: exact marked single/cut lists, all 32
+  oriented missing paths, path symmetry, containment tables, 9 assignments.
+- audit_common_corner_eleven.py: 100 explicit matching checks.
+- audit_unsupported_triad.py: all 255 nonempty corner sets on each of three
+  targets, the displayed obstruction implications and intersection table.
+
+Editorial consequence
+---------------------
+The archive supports a credible complete elementary route, but it is not yet
+a short or consolidated proof. The selected 22 synthesis/new-closing notes
+alone contain 24,769 whitespace-separated words, including repetition and
+excluding the older supporting chain. This is not a proposed final word count.
+
+Prepare one self-contained dependency-ordered document, extracting only the
+lemmas used by the direct fifteen-source proof. Remove historical status and
+audit prose from its mathematical narrative, state the general restoration
+and small Hall-cover principles once, and put fixed tables in an appendix.
+Evaluate the resulting length before replacing the current manuscript proof.
+Do not describe the elementary route as Lean-verified.
+
+The classification replay continues separately. An elementary proof of N5=15
+would not establish the 11,430 classification or invariant. No production
+paper, production Lean proof, or running certificate source was changed by
+this review.

@@ -1,0 +1,37 @@
+Review package validation — 4 November 2026
+==========================================
+Base production revision: 1dce44d24f76e84f0266025ab9ce0ab94a306873
+Branch: research/elementary-proof-review
+
+Executed in the isolated review checkout, using only its included sources:
+
+* assemble_article.py and assemble_appendix.py succeeded.
+  66 retained arguments; 72,321 words; zero unresolved file references.
+* All 66 original-source hashes and applicable editorial-override hashes
+  matched the manifest. Recorded dependencies precede their uses.
+* latexmk rebuilt all three PDFs: article 24 pages, appendix 154 pages,
+  certificate supplement 6 pages. No unresolved or multiply defined
+  references. The article retains its known 4.32pt overfull line.
+* Independent nested-core search exhausted: ten thirteen-source failures,
+  none with both own completions. The twelve-source counterexample fails
+  all 75 targets and has both completions.
+* Independent three-witness audit checked all 1,426,425 four-source
+  multisets; the 81 exceptions are the predicted repeat refinements and
+  all satisfy the explicit opposite assembly.
+* Restored extension: all 32,634 repeat/extra-source choices passed.
+* Shortened butterfly criteria: 120 profiles, 4,500 low-cut reservations,
+  and 6,064 high-cut reservations passed.
+* Tracked production files were unchanged before staging this research
+  addition. The committed changes are confined to the review guide and
+  research directory.
+
+This is a packaging/regeneration check and selected finite verification,
+not a full mathematical audit, a fresh Lean build, an external-kernel
+replay, or inspection of every rendered PDF page. The elementary proof
+remains separate from the certified production route.
+
+Git's whitespace check reports pre-existing trailing spaces and final blank
+lines in imported notes, generated tables, and the consolidation snapshot.
+They were retained to preserve the recorded source/override hashes; this
+package does not claim a whitespace-clean import. No build caches or Lean
+artifacts are staged.

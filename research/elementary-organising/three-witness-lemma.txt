@@ -1,0 +1,118 @@
+Three witnesses for two nested completions
+=========================================
+Status: a written elementary argument. The local incidence audit is
+supplementary; this proof does not assume N5=15, the fourteen-failure
+classification, or the thirteen-source computational result. No Lean proof
+has been added.
+
+Let A=C(01) and B=C(014). A pool contains three specified physical copies
+from each class; their repeated colours can be arbitrary. Call these six
+copies the core and all other copies outsiders. Suppose that each class
+has an own completion: after reserving two of its specified copies, its
+six tricoloured corners can be matched to distinct remaining sources.
+
+Claim. Either the pool assembles an opposite target, or at most three
+outsiders, together with the core, retain both own completions.
+
+Notation
+--------
+Use directed complementary pairs for tricoloured corners. Set
+
+  F = {02,03,12,13},  alpha = {04,14},  gamma = {42,43}.
+
+Then A=F union alpha and B=F union gamma.
+
+First observation: two witnesses suffice for either completion
+------------------------------------------------------------
+The own completion for A exists precisely when two distinct outsiders can
+occupy two distinct A corners, at least one in alpha.
+
+Indeed, after reserving two A copies the core has one A and three B.
+If the outsiders fill both alpha corners, those four core copies fill F.
+If they fill one alpha corner and one F corner, the A fills the other
+alpha corner and the three B fill the remaining F corners.
+
+Conversely, any completion uses an outsider at an alpha corner. If the
+remaining A fills the other alpha corner, at least one of the four F
+positions uses another outsider, since only three B copies remain. If A
+does not fill the other alpha corner, that corner uses a second outsider.
+The same assertion holds for B with gamma in place of alpha.
+
+Second observation: any outsider meeting F can be used in either witness pair
+----------------------------------------------------------------------------
+Let W be such an outsider. If another outsider X meets alpha, W and X
+form an A-witness pair, assigning W to F and X to alpha.
+
+If no other outsider meets alpha, W is the only outsider available at
+alpha. The existence of an A-witness pair from the first observation
+then forces that pair to contain W. Thus in both cases W belongs to an
+A-witness pair. The identical argument places W in a B-witness pair.
+
+The two pairs share the same physical W, so their union has at most three
+physical sources. This proves the claim whenever an outsider meets F.
+
+If every outsider avoids F, there is an explicit assembly
+-------------------------------------------------------
+No opposite source avoids F. Its underlying four-cycle would otherwise
+lie in the graph obtained from K5 by deleting the four edges between
+{0,1} and {2,3}. That graph is the two triangles 014 and 234 sharing only
+vertex 4, and has no four-cycle.
+
+For an adjacent source C(S), avoiding F means that if S contains 0 or 1,
+it must contain both 2 and 3. Since |S| is two or three, the only possible
+outsets are
+
+  23, 234, 123, 023, 24, 34.
+
+Their intersections with alpha and gamma are:
+
+  outset       alpha       gamma
+    23          empty       empty
+   234          empty       empty
+   123          {14}        empty
+   023          {04}        empty
+    24          empty       {43}
+    34          empty       {42}
+
+Since all outsiders avoid F, an A-witness pair must fill both alpha
+corners. Thus both C(123) and C(023) occur. Likewise the B-witness pair
+forces both C(24) and C(34).
+
+Choose one source from each of those four distinct classes and assign
+
+  C(123):20,  C(023):31,  C(24):21,  C(34):30.
+
+They fill the reverse half of opposite target 01|23. Three specified A
+copies and one specified B copy fill its forward half, for example
+
+  A:02,03,12;  B:13.
+
+All eight sources are distinct. This is an opposite-target assembly,
+proving the alternative and completing the argument.
+
+How this fits the general two-completion question
+------------------------------------------------
+In a failure, an own-completed triple uses all three repeat colours.
+The repeat-restoration argument excludes intersecting pole pairs for two
+such triples. Disjoint cuts with disjoint poles give an opposite assembly
+directly. The only remaining arrangement is the nested one above.
+
+Therefore any failing pool with two own-completed triple classes has a
+subpool of at most nine sources retaining both triples and both completions.
+This is a locality statement, not an assembly theorem: small subpools with
+both completions can fail, and extra sources still have to be used to
+prove the thirteen-source bound.
+
+A common pair of witnesses is not always available. For outsiders P,P,Pbar,
+where P=C(04) and Pbar=C(123), an A-witness pair needs Pbar and one P, whereas
+a B-witness pair needs both P copies. All three are needed to retain both
+completions. This explains why identifying the two pairs would be invalid.
+
+Audit
+-----
+check_three_witnesses.py independently constructs the twenty cut classes
+and fifteen opposite types. It tests all 1,426,425 four-source multisets.
+Precisely 81 have the two witness pairs but no three-source witness union:
+one source from each of C(123), C(023), C(24), C(34), with the 3^4 possible
+repeat choices. All 81 satisfy the displayed opposite assembly.
+The proof above explains this exhaustion without relying on that test.

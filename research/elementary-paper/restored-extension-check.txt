@@ -1,0 +1,2 @@
+Restored extension: all 32,634 repeat/extra-source choices assemble an A or B target.
+The 74 nonanchor varieties all meet the union of the two private-corner sets.

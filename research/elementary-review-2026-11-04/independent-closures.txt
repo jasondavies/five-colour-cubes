@@ -1,0 +1,4 @@
+Nine-source lemma: all 3600 repeat/ opposite choices pass
+Fourteen-source lower obstruction: all 75 targets fail
+All 110 maximal intersecting supports covered by the three forms
+Grid lemma: 1820 pattern/helper checks; 32 failures all have the stated line form

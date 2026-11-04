@@ -1,0 +1,2 @@
+120 capped fourteen-source profiles; 4500 low-cut and 6064 high-cut reservation checks passed.
+These checks corroborate the displayed Hall inequalities; they are not a premise of the proof.

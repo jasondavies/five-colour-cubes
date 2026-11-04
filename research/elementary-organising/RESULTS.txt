@@ -1,0 +1,215 @@
+A bounded structural simplification attempt — 4 November 2026
+============================================================
+
+Outcome
+-------
+A useful local organising principle emerged: normalize two completable
+adjacent triples to a six-source core, and describe the remaining matching
+requirements through small sets of outside witnesses. This gives a sharp
+13-source statement, verified by two exhaustive programs, with a short
+reduction to one nested configuration. We do not yet have an elementary
+proof of that configuration. This is partial progress, not a substantially
+shortened elementary proof of N5=15.
+
+The production paper, Lean development and consolidation draft were not
+changed. These are research artifacts, not formal verification. No novelty
+claim relative to the literature is made.
+
+1. Definitions and candidate consolidation theorem
+-------------------------------------------------
+Write C(S) for the directed cut S -> S^c on five colours, with |S|=2 or 3.
+The two-element side is its pole pair. The three varieties in the class
+have the same six tricoloured corners and three possible repeated colours.
+
+A class with three sources has an own completion if, after reserving two
+of those sources, the remaining sources match its six tricoloured corners.
+The reservation concerns physical copies; their repeated colours do not
+affect this six-corner condition.
+
+Computationally verified statement, with the reductions below:
+
+  Any pool of at least thirteen sources with two distinct triple classes,
+  each having an own completion, contains a five-colour corner assembly.
+  Twelve sources need not suffice, even with both own completions.
+
+This strengthens the corresponding fifteen-source tools and treats pure
+and mixed pools together. The remaining finite premise is described
+explicitly below; it has not been replaced by an elementary argument.
+
+2. Short mathematical reductions
+--------------------------------
+In a failure, each completable triple must contain all three possible
+repeated colours: a same-repeat pair would supply the two bicoloured
+positions and the own completion would supply the other six.
+
+Repeat restoration: if another class has a cube with a repeat available
+in A and a pole shared with A, reserve that cube and one A cube for an A
+target's bicoloured corners. Start with A's own completion, restore the
+second reserved A cube, and remove the other reserved source if it was
+used. The restored A cube can replace it at any of A's six tricoloured
+positions. This supplies the required assembly with distinct copies.
+
+Consequently, two completable rainbow triples with intersecting pole pairs
+solve immediately. With disjoint poles, relabelling and global reversal
+leave just two cases: C(01), C(23), or C(01), C(014).
+
+For C(01), C(23), use the opposite target 01|23. The triples supply three
+sources for each directed half. Two outsiders filling one position in each
+half complete it. If such two outsiders do not exist, all outsiders meet
+only the same half: every source meets this target, and an outsider meeting
+both halves together with any other outsider would suffice. Suppose that
+half is 01 -> 23. Then the four reverse corners of C(23) are unavailable
+outside that class, including on C(01). Its own completion after removing
+two copies is impossible. The other half is symmetric.
+
+Only the nested configuration remains.
+
+3. The precise nested configuration
+-----------------------------------
+Let A=C(01), B=C(014), with one cube of each allowed repeat in each class.
+This is a six-source core. Write
+
+  F = {02,03,12,13}, alpha = {04,14}, gamma = {42,43}.
+
+Thus A=F union alpha, B=F union gamma as tricoloured corner sets.
+
+Elementary two-witness lemma:
+  A has an own completion iff two distinct outsiders can fill two distinct
+  A corners, at least one of which belongs to alpha.
+
+For sufficiency, if the outsiders fill both alpha positions, the remaining
+A and three B copies fill F. Otherwise the remaining A fills the second
+alpha position and the three B copies fill the three remaining F positions.
+For necessity, after reserving two A copies, the three B copies cannot
+supply alpha. At least one alpha position therefore uses an outsider. If
+the remaining A supplies the other, at least one F position also uses an
+outsider; if not, both alpha positions use distinct outsiders.
+The analogous statement holds for B and gamma.
+
+In particular, both own completions are witnessed by at most four outsiders.
+There need not be a single pair witnessing both: the core plus sources
+18,18,21 in the indexing below is a counterexample to that stronger claim.
+
+The finite statement verified here is stronger than needed:
+
+  Add any seven sources to the six-source nested rainbow core. If some
+  added source meets alpha and some added source meets gamma, the pool
+  assembles. The two sources are permitted to coincide.
+
+For thirteen sources this implies the two-completion theorem immediately.
+For larger pools retain the core, a witness meeting each pair, and enough
+other copies to reach thirteen. No hypothesis is lost. Thus the extension
+to larger pools does not require a further inventory search.
+
+4. Exhaustive verification and sharpness
+---------------------------------------
+The C++ search enumerates sorted seven-source extensions, pruning a branch
+once its current pool assembles. Solubility is monotone under adding sources,
+so this pruning preserves every failing extension.
+
+An independent Python program reconstructs the 75 corner sets directly;
+it imports neither the supplied research model nor the C++ compatibility
+table. It repeats the search with augmenting-path matching, checks every
+failed terminal pool against all 255 Hall subsets of each target, and checks
+own completions against all 63 subsets of the six requirements.
+
+It visits 706 terminal thirteen-source pools after pruning and finds exactly
+ten failures. Every one lacks an added source meeting alpha, or lacks an
+added source meeting gamma. None has both own completions. The complete
+lists and search counts are in two-loops-independent.json. This is exhaustive
+finite verification in the directed-corner model, not a hand exhaustion or
+a new proof of the physical-model correspondence.
+
+A twelve-source failure is:
+  one each of the three varieties in C(01),
+  one each of the three varieties in C(014),
+  three C(04) sources repeating 1,
+  two C(14) sources repeating 0,
+  one O(1;02|34) source.
+
+It has both own completions. Only thirteen target varieties are even
+corner-supported. Each has a displayed deficient set in
+  twelve-source-witnesses.txt,
+which also gives the two explicit six-corner matchings. This is a directly
+checkable counterexample, not merely a failed search for an assembly.
+
+5. Why the most tempting broader reductions did not work
+--------------------------------------------------------
+We tested a strong direct replacement principle: replace k actual adjacent
+sources by m virtual opposite sources so that every assignment of distinct,
+physically co-occurring target corners to the virtual sources can be lifted
+to distinct actual sources. This is sufficient for transferring arbitrary
+assemblies, but more restrictive than a construction that may retarget.
+
+Results:
+  3 adjacent -> 2 opposite: none, over all 1,540 adjacent class multisets.
+  4 adjacent -> 3 opposite: none, over 80 symmetry orbits.
+  5 adjacent -> 3 opposite: seven of 273 symmetry orbits work; every allowed
+    output consists of three identical opposite varieties.
+
+The final 4->3 and 5->3 tests use only corner triples occurring on an actual
+target (820 distinct triples), avoiding an overly strong arbitrary-triple
+requirement. The negative results therefore concern the stated physical
+assignment-lifting condition. They do NOT exclude all possible compression,
+replacement or retargeting arguments. The successful 5->3 cases do not
+satisfy the multiplicity cap of the existing opposite-source theorem.
+
+A second tempting simplification also fails. After repeat restoration, the
+nested core permits eight adjacent outsider varieties and all fifteen
+opposite varieties. No pair from these 23 types solves the six-source core.
+Thus an immediate pair-conflict graph cannot carry this part of the proof:
+interactions among larger groups are essential.
+
+Finally, separate own completions cannot always be witnessed by the same
+pair. The common-witness probe found 76 unsolvable minimal examples with
+separate witnesses and no common pair. The four-witness bound above remains
+valid; the proposed two-witness bound for BOTH completions does not.
+
+6. Assessment and bounded next target
+------------------------------------
+The thirteen-source theorem could consolidate the pure and mixed
+' two own-looped triples ' arguments, with fewer ambient hypotheses and a
+sharp boundary. The nested two-witness formulation is a useful elementary
+organising lemma in its own right.
+
+However, the exhaustive nested-core check is not yet an elementary proof.
+It does not remove the concentration reductions, the private-column work,
+or the separate three-opposite constructions. No defensible page reduction
+has been measured. We should not replace those proofs by a claim that the
+new computation has made the whole argument elementary and short.
+
+The focused mathematical question is now:
+  Prove directly that seven outsiders meeting both private pairs alpha and
+  gamma complete the nested rainbow core.
+
+A short geometric proof could justify replacing a cluster of existing
+lemmas. A lengthy classification of all seven-source extensions would
+repeat the problem we are trying to avoid. Do not expand this into another
+unbounded case analysis merely to recover the computational result.
+
+For the present paper the recommendation remains unchanged: retain the
+compact certified corner proof and the structural/cuboid mathematics. This
+attempt gives a specific candidate simplification, not evidence that the
+154-page elementary dependency chain has become a practical primary proof.
+
+7. Reproduction (from the review checkout root)
+------------------------------------------
+python research/elementary-organising/check_two_loops_independent.py
+python research/elementary-organising/counterexample_witnesses.py
+python research/elementary-organising/physical_replacements.py
+
+c++ -O3 -Wall -Wextra -std=c++20 \
+  research/elementary-organising/rainbow_core_search.cpp \
+  -o /tmp/rainbow_core_search
+/tmp/rainbow_core_search 0 15 13 45 0 1
+
+The independent checker uses only Python's standard library. Other probes
+use the supplied cut_model.py; loop_core_graph.py also uses networkx.
+The exploratory sample is not exhaustive evidence. C++ reports a timeout
+separately; only exhausted runs support the conclusions recorded here.
+
+Indexing: adjacent classes are the lexicographic two-element pole pairs,
+each followed by its size-two and size-three outsets. Within a class, repeats
+are sorted. These give sources 0..59. Sources 60..74 are the opposite types,
+ordered by repeated colour and the partner of the smallest remaining colour.
+The independent script contains the entire indexing construction.

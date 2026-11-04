@@ -1,0 +1,667 @@
+[
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ]
+    ],
+    "orbit": 2,
+    "classes": [
+      0,
+      2,
+      5,
+      7,
+      8,
+      19
+    ],
+    "opps": [],
+    "size": 4,
+    "O": 4,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.0001413409991073422
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        1
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "size": 4,
+    "O": 4,
+    "tested": 133,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.01717270399967674
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      5,
+      10,
+      17
+    ],
+    "opps": [
+      64,
+      73
+    ],
+    "size": 4,
+    "O": 4,
+    "tested": 9102,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 1.0048758590019133
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5,
+      12,
+      15
+    ],
+    "opps": [],
+    "size": 4,
+    "O": 4,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.0001791869981389027
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        3,
+        2
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      4,
+      10,
+      17
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "size": 4,
+    "O": 4,
+    "tested": 8352,
+    "oppfail": 78,
+    "loopkill": 74,
+    "cliquekill": 4,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [
+      {
+        "gs": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        "os": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "ext": [
+          9
+        ],
+        "clique": {
+          "clique": [
+            0,
+            4
+          ],
+          "weight": 6,
+          "common_poles": [
+            0
+          ]
+        }
+      },
+      {
+        "gs": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0
+        ],
+        "os": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "ext": [
+          9
+        ],
+        "clique": {
+          "clique": [
+            0,
+            4
+          ],
+          "weight": 6,
+          "common_poles": [
+            0
+          ]
+        }
+      },
+      {
+        "gs": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1
+        ],
+        "os": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "ext": [
+          19
+        ],
+        "clique": {
+          "clique": [
+            0,
+            4
+          ],
+          "weight": 6,
+          "common_poles": [
+            0
+          ]
+        }
+      },
+      {
+        "gs": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          1
+        ],
+        "os": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "ext": [
+          19
+        ],
+        "clique": {
+          "clique": [
+            0,
+            4
+          ],
+          "weight": 6,
+          "common_poles": [
+            0
+          ]
+        }
+      }
+    ],
+    "seconds": 1.6696433540018916
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        4,
+        1
+      ]
+    ],
+    "orbit": 4,
+    "classes": [
+      0,
+      1
+    ],
+    "opps": [
+      66,
+      67,
+      68,
+      69,
+      72
+    ],
+    "size": 4,
+    "O": 4,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.03815227100130869
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      12,
+      15
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "size": 4,
+    "O": 4,
+    "tested": 1001,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.16643949699937366
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        3,
+        2
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 4,
+    "classes": [
+      0,
+      3,
+      10,
+      12,
+      15,
+      17
+    ],
+    "opps": [],
+    "size": 4,
+    "O": 4,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 5.08050034113694e-05
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 2,
+    "classes": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "opps": [
+      62,
+      65,
+      67,
+      70,
+      72
+    ],
+    "size": 4,
+    "O": 4,
+    "tested": 21936,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 4.6234583420009585
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ],
+      [
+        "t",
+        3,
+        2
+      ],
+      [
+        "t",
+        4,
+        1
+      ]
+    ],
+    "orbit": 2,
+    "classes": [],
+    "opps": [],
+    "size": 4,
+    "O": 4,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.00017861599917523563
+  }
+]

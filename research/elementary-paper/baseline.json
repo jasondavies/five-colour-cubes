@@ -1,0 +1,24 @@
+{
+  "production_revision": "1dce44d24f76e84f0266025ab9ce0ab94a306873",
+  "source_hashes": {
+    "five-colour-cubes.log": "841425bfc3b3bc53cb7e615b44d98e28af72b451e7fbb78e92f2ca18cd3ed0f1",
+    "construction.tex": "e9cf965f576f6f2649b97b8a2b7d52416b28de68506a2b96bec14bfbe8bc8ec4",
+    "uniform-obstruction.tex": "41cfc0f49cdd39e78eac17431a85974bd217f3ecff58de2936319b07034c6f2f",
+    "five-colour-cubes.pdf": "43c5bc7d705c3f4a96024602647607ce5baab524c274998769a221156b75ac49",
+    "macmahon-five-colour-threshold.log": "a01df81c8ff88c9c6270bd30b48245dd31ed2c8a5ced658876887d8e44a81d7d",
+    "obstruction-figure.tex": "bdf9f62aa284effa8d833d50a876820d5ab5fd942443013c263589aa749238fe",
+    "obstruction-figure.svg": "04eb7b35689e01aee280b32058efa2adcc8560a85dffb21e6cffc330420de36b",
+    "uniform-obstruction.svg": "5649f5a16f87d218ca74a01d64ca72e201f2298439c27c5aa666ee7648c823b2",
+    "five-colour-cubes.fdb_latexmk": "42683db687c0320fcedf7b0192a9964a5b4d184796c152a9430d4fddf6410677",
+    "five-colour-cubes.fls": "ec4fc42d86a652e2cdee87d8471adef811ded34e035e94266635ccc51add0566",
+    "five-colour-cubes.tex": "64bde5a7f91ef0c915180e0cf5f3b41e243336d5edae84448ecb7eaa632042d0",
+    "macmahon-five-colour-threshold.aux": "4b5061d6aaa46a118230f1c91ba549c2aee980744f7bb29551682ce2b6811d0a",
+    "boxes.tex": "21ea36ece507ffdb200eaa087af89b69424b9bd8f8d7d027452cf68a28dd65e5",
+    "five-colour-cubes.aux": "b50cbf1495cb0234bdcfcc4e9edc79b52ca9428847a066bf8d2ce32fb097cafd",
+    "macmahon-five-colour-threshold.fls": "1e195bd9b219df24f9c6bc6b2efd0e76d21793788031952b9251b6c5c545dd23",
+    "five-colour-cubes.out": "ab19ebb3067859a1d1ea5eedb03c40cae016babde863b97164c1a63fbe1c8e74",
+    "macmahon-five-colour-threshold.fdb_latexmk": "984d3d4aeaf1cf760b7a573069ad8ab1f5c3f50470cfe7063f44dd5e263e07a6",
+    "macmahon-five-colour-threshold.out": "0dca41126b310a1e145f7ee6cc64db6627da88349d881ba4a538a920dea7b6e1",
+    "verification.tex": "b16ce4b747f20c01dbd633ce86bdcbd42d03614bf1d3ccf7293c60784d77f87d"
+  }
+}

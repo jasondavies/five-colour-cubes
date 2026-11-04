@@ -1,0 +1,12 @@
+{
+  "four_source_multisets_checked": 1426425,
+  "two_completions_without_three_witnesses": 81,
+  "forced_classes": [
+    "C(123)",
+    "C(023)",
+    "C(24)",
+    "C(34)"
+  ],
+  "explanation": "One of each class; all 3^4 repeat refinements. Each explicitly fills the reverse half of 01|23; four core sources fill the forward half.",
+  "scope": "Local incidence audit. The general arbitrary-pool reduction is the handwritten proof; no Lean formalisation."
+}

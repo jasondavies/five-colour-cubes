@@ -1,0 +1,217 @@
+RECORDED DEPENDENCIES — EDITORIAL REVIEW, NOT FULL PROOF CERTIFICATION
+
+66 arguments; 72321 whitespace-delimited words before reference conversion.
+Includes explicit file references and selected implicit mathematical uses.
+Arguments are ordered so recorded dependencies precede their uses.
+This does not certify every unstated premise or every table in the proof.
+
+arg-1: Cut intersections on an opposite target (226 words)
+  four_opposite_lowrep/four-distinct-opposites.md
+  depends on: 
+arg-2: Five opposite sources with two neighbouring pairs (1089 words)
+  opposite_small_lemma/five-opposites-neighbouring-pairs.md
+  depends on: 
+arg-3: Two four-cycle line normal forms (356 words)
+  opposite_small_lemma/nine-opposite-sources.md
+  depends on: 
+arg-4: Six diffuse opposite cubes and three cubes in one adjacent class (1021 words)
+  opposite_small_lemma/six-opposites-three-adjacent.md
+  depends on: 
+arg-5: Five opposite sources with two nonneighbouring pairs (1282 words)
+  opposite_small_lemma/five-opposites-nonneighbouring-pairs.md
+  depends on: opposite_small_lemma/six-opposites-three-adjacent.md
+arg-6: Five opposite cubes, one doubled variety, and a triple adjacent class (1031 words)
+  opposite_small_lemma/five-opposites-low-repetition.md
+  depends on: opposite_small_lemma/five-opposites-nonneighbouring-pairs.md
+arg-7: Three opposite pairs and two arbitrary sources (1211 words)
+  opposite_small_lemma/three-opposite-pairs.md
+  depends on: 
+arg-8: Two neighbouring opposite pairs and two further opposite sources (1126 words)
+  opposite_small_lemma/two-neighbouring-opposite-pairs.md
+  depends on: 
+arg-9: Avoided edges and common high targets (495 words)
+  four_opposite_root/common-high-targets.md
+  depends on: opposite_small_lemma/two-neighbouring-opposite-pairs.md
+arg-10: Eight opposite-repeat cubes with multiplicity cap two (1857 words)
+  root/eight-opposite-elementary.md
+  depends on: opposite_small_lemma/nine-opposite-sources.md
+arg-11: Three opposite copies and the butterfly support (797 words)
+  root/o3-butterfly.md
+  EDITED: overrides/root/o3-butterfly.md
+  depends on: 
+arg-12: Five copies in one class in an all-adjacent fourteen-pool (1494 words)
+  root/pure-five-class-hand.md
+  depends on: 
+arg-13: Six copies in one adjacent tricolour class (790 words)
+  root/six-adjacent-elementary.md
+  depends on: 
+arg-14: Four identical opposite copies (1092 words)
+  root/o4-elementary.md
+  EDITED: overrides/root/o4-elementary.md
+  depends on: root/six-adjacent-elementary.md
+arg-15: Elementary proofs for the two six-cut support families (1566 words)
+  support_families/elementary-support-family-proofs.md
+  EDITED: overrides/support_families/elementary-support-family-proofs.md
+  depends on: 
+arg-16: Three identical opposite cubes plus the reverse six-cut family (908 words)
+  support_families/o3-reverse-family.md
+  depends on: 
+arg-17: Butterfly repeats and concentrated-opposite tools (1294 words)
+  invariant_structure/elementary_refinements.md
+  EDITED: overrides/invariant_structure/elementary_refinements.md
+  depends on: root/o4-elementary.md
+arg-18: Hand elimination of three-anchor cover orbit27 (854 words)
+  invariant_structure/o3_mask27_hand.md
+  depends on: 
+arg-19: Hand elimination of three-anchor cover orbits 23, 53, and 102 (894 words)
+  invariant_structure/o3_masks23_53_102_hand.md
+  depends on: 
+arg-20: Hand elimination of three-anchor cover orbits 30 and 51 (1467 words)
+  invariant_structure/o3_masks30_51_hand.md
+  depends on: invariant_structure/elementary_refinements.md
+arg-21: The O3 Hall-cover case 54 (741 words)
+  robust_route/o3-mask54-hand-proof.md
+  depends on: 
+arg-22: Three identical opposite copies (285 words)
+  root/o3-covers-guide.md
+  EDITED: overrides/root/o3-covers-guide.md
+  depends on: invariant_structure/elementary_refinements.md, invariant_structure/o3_mask27_hand.md, invariant_structure/o3_masks23_53_102_hand.md, invariant_structure/o3_masks30_51_hand.md, robust_route/o3-mask54-hand-proof.md, root/o3-butterfly.md, root/o4-elementary.md, support_families/o3-reverse-family.md
+arg-23: A common-corner 3,2,2,2,1 core always assembles (1008 words)
+  pure_supported/common-corner-32221-hand.md
+  depends on: 
+arg-24: Nine cubes occupying all six classes through one corner (762 words)
+  pure_supported/common-corner-nine-hand.md
+  depends on: 
+arg-25: Pure fourteen-pools: the four-copy anchor, one-row cover (1233 words)
+  pure_supported/g4-row-hand.md
+  depends on: 
+arg-26: Four copies of an adjacent class: the other two three-corner covers (1171 words)
+  pure_supported/g4-hook-disjoint-hand.md
+  depends on: pure_supported/g4-row-hand.md
+arg-27: Four copies of an adjacent class: covers with source exceptions (1327 words)
+  pure_supported/g4-exception-hand.md
+  depends on: pure_supported/g4-hook-disjoint-hand.md, pure_supported/g4-row-hand.md
+arg-28: Six doubled adjacent classes (1169 words)
+  root/six-doubled-classes-hand.md
+  EDITED: overrides/root/six-doubled-classes-hand.md
+  depends on: pure_supported/g4-exception-hand.md, pure_supported/g4-hook-disjoint-hand.md, pure_supported/g4-row-hand.md, root/pure-five-class-hand.md, root/six-adjacent-elementary.md, support_families/elementary-support-family-proofs.md
+arg-29: Nine distinct adjacent classes: an explicit Hall-table proof (1832 words)
+  root/nine-distinct-hall-proof.md
+  depends on: root/six-doubled-classes-hand.md
+arg-30: Five opposite cubes and nine adjacent cubes (1122 words)
+  root/five-opposites-nine-adjacent.md
+  depends on: opposite_small_lemma/five-opposites-low-repetition.md, opposite_small_lemma/five-opposites-neighbouring-pairs.md, opposite_small_lemma/five-opposites-nonneighbouring-pairs.md, root/nine-distinct-hall-proof.md
+arg-31: A nonlooped three-copy class has two private corners (1456 words)
+  pure_supported/g3-nonprivate-hand.md
+  depends on: pure_supported/g4-exception-hand.md, pure_supported/g4-hook-disjoint-hand.md, pure_supported/g4-row-hand.md
+arg-32: A source meeting a private corner promotes a triple to an own loop (814 words)
+  pure_supported/private-pair-promotion-hand.md
+  depends on: 
+arg-33: Two own-loop triple classes cannot occur in a failure (1464 words)
+  pure_supported/two-own-loop-triples-hand.md
+  depends on: 
+arg-34: Adding an opposite source to a butterfly failure (296 words)
+  mixed_diffuse/butterfly-plus-opposite-hand-proof.md
+  depends on: invariant_structure/elementary_refinements.md
+arg-35: A common-corner 3,3,2,2 core with a looped triple (1040 words)
+  mixed_diffuse/common-corner-3322-own-loop-hand.md
+  depends on: 
+arg-36: No triple in a failing pure fourteen-pool has a private row pair (1436 words)
+  pure_supported/private-row-unconditional-hand.md
+  EDITED: overrides/pure_supported/private-row-unconditional-hand.md
+  depends on: mixed_diffuse/common-corner-3322-own-loop-hand.md, pure_supported/common-corner-32221-hand.md, pure_supported/g3-nonprivate-hand.md, pure_supported/private-pair-promotion-hand.md, pure_supported/two-own-loop-triples-hand.md, root/six-doubled-classes-hand.md
+arg-37: Every non-own-loop triple has a private column (1499 words)
+  pure_supported/private-diagonal-unconditional-hand.md
+  EDITED: overrides/pure_supported/private-diagonal-unconditional-hand.md
+  depends on: pure_supported/g3-nonprivate-hand.md, pure_supported/private-row-unconditional-hand.md, pure_supported/two-own-loop-triples-hand.md
+arg-38: Private columns force a butterfly (1905 words)
+  root/g3-private-column-hand.md
+  EDITED: overrides/root/g3-private-column-hand.md
+  depends on: pure_supported/private-diagonal-unconditional-hand.md, root/six-doubled-classes-hand.md, support_families/elementary-support-family-proofs.md
+arg-39: An elementary sharp threshold for adjacent-repeat cubes (413 words)
+  root/pure-fifteen-elementary.md
+  depends on: pure_supported/g4-exception-hand.md, pure_supported/g4-hook-disjoint-hand.md, pure_supported/g4-row-hand.md, pure_supported/two-own-loop-triples-hand.md, root/g3-private-column-hand.md, root/nine-distinct-hall-proof.md, root/pure-five-class-hand.md, root/six-adjacent-elementary.md, root/six-doubled-classes-hand.md
+arg-40: Five copies in one class, with diffuse opposite sources (2348 words)
+  mixed_diffuse/five-class-mixed-hand-proof.md
+  depends on: 
+arg-41: Four adjacent copies and four diffuse opposite sources (1439 words)
+  mixed_diffuse/four-class-four-opposites-hand-proof.md
+  depends on: mixed_diffuse/five-class-mixed-hand-proof.md
+arg-42: Four adjacent copies and three diffuse opposite sources (1316 words)
+  mixed_diffuse/four-class-three-opposites-hand-proof.md
+  depends on: mixed_diffuse/five-class-mixed-hand-proof.md, mixed_diffuse/four-class-four-opposites-hand-proof.md
+arg-43: Four adjacent copies and two distinct opposite sources (942 words)
+  mixed_diffuse/four-class-two-distinct-opposites-hand-proof.md
+  depends on: 
+arg-44: Four adjacent copies and two identical opposite sources (1691 words)
+  mixed_diffuse/four-class-two-identical-opposites-hand-proof.md
+  depends on: 
+arg-45: One opposite source: the row-triple Hall cover (1313 words)
+  mixed_diffuse/one-opposite-row-cover-hand-proof.md
+  depends on: 
+arg-46: Four adjacent copies and one opposite source (1777 words)
+  mixed_diffuse/four-class-one-opposite-hand-proof.md
+  depends on: mixed_diffuse/five-class-mixed-hand-proof.md, mixed_diffuse/one-opposite-row-cover-hand-proof.md, root/pure-five-class-hand.md
+arg-47: Two own-loop triples with one opposite source (549 words)
+  mixed_diffuse/two-own-loop-triples-one-opposite-hand.md
+  EDITED: overrides/mixed_diffuse/two-own-loop-triples-one-opposite-hand.md
+  depends on: mixed_diffuse/five-class-mixed-hand-proof.md, pure_supported/two-own-loop-triples-hand.md
+arg-48: Five repeated adjacent classes and two further classes (1609 words)
+  elementary_alternative_next/five-repeated-classes-two-helpers.md
+  depends on: pure_supported/common-corner-32221-hand.md, root/six-doubled-classes-hand.md, support_families/elementary-support-family-proofs.md
+arg-49: A private adjacent column and a high opposite source (1053 words)
+  elementary_alternative_next/private-column-high-opposite.md
+  depends on: four_opposite_lowrep/four-distinct-opposites.md
+arg-50: A private adjacent column and a diagonal opposite source (1056 words)
+  elementary_alternative_next/private-column-diagonal-opposite.md
+  depends on: elementary_alternative_next/private-column-high-opposite.md
+arg-51: A private adjacent column and a row opposite source (815 words)
+  elementary_alternative_next/private-column-row-opposite.md
+  EDITED: overrides/elementary_alternative_next/private-column-row-opposite.md
+  depends on: elementary_alternative_next/private-column-diagonal-opposite.md, elementary_alternative_next/private-column-high-opposite.md
+arg-52: One opposite cube and fourteen adjacent cubes (566 words)
+  elementary_alternative_next/one-opposite-fourteen-adjacent.md
+  depends on: elementary_alternative_next/five-repeated-classes-two-helpers.md, elementary_alternative_next/private-column-diagonal-opposite.md, elementary_alternative_next/private-column-high-opposite.md, elementary_alternative_next/private-column-row-opposite.md, mixed_diffuse/butterfly-plus-opposite-hand-proof.md, mixed_diffuse/two-own-loop-triples-one-opposite-hand.md, pure_supported/private-diagonal-unconditional-hand.md, pure_supported/private-pair-promotion-hand.md, pure_supported/private-row-unconditional-hand.md, pure_supported/two-own-loop-triples-hand.md, root/g3-private-column-hand.md, root/pure-fifteen-elementary.md
+arg-53: Eleven adjacent cubes through one directed corner (1048 words)
+  three_opposite_double/common-corner-eleven-hand.md
+  depends on: mixed_diffuse/common-corner-3322-own-loop-hand.md, pure_supported/common-corner-32221-hand.md, pure_supported/common-corner-nine-hand.md
+arg-54: Two opposites and thirteen adjacent cubes in a butterfly (855 words)
+  elementary_alternative_next/butterfly-two-opposites-thirteen-adjacent.md
+  depends on: three_opposite_double/common-corner-eleven-hand.md
+arg-55: The alternating missing path for 2D+P (1096 words)
+  three_opposite_double/alternating-path-hand.md
+  depends on: three_opposite_double/common-corner-eleven-hand.md
+arg-56: Eliminating four-position Hall covers for 2D+P (1457 words)
+  three_opposite_double/hall-four-cover-hand.md
+  depends on: four_opposite_lowrep/four-distinct-opposites.md, four_opposite_root/common-high-targets.md, mixed_diffuse/five-class-mixed-hand-proof.md, three_opposite_double/common-corner-eleven-hand.md
+arg-57: Five-position covers with a missing bidirected edge (776 words)
+  three_opposite_double/five-cover-bidirected-hand.md
+  depends on: three_opposite_double/hall-four-cover-hand.md
+arg-58: The one-change missing path for 2D+P (814 words)
+  three_opposite_double/one-change-path-hand.md
+  depends on: three_opposite_double/common-corner-eleven-hand.md
+arg-59: The star-and-triangle family with two opposite cubes (1322 words)
+  three_opposite_double/star-triangle-thirteen-adjacent-hand.md
+  depends on: three_opposite_double/common-corner-eleven-hand.md
+arg-60: Three opposite cubes with one doubled variety (518 words)
+  three_opposite_double/three-opposites-one-double-hand.md
+  depends on: three_opposite_double/alternating-path-hand.md, three_opposite_double/common-corner-eleven-hand.md, three_opposite_double/five-cover-bidirected-hand.md, three_opposite_double/hall-four-cover-hand.md, three_opposite_double/one-change-path-hand.md
+arg-61: Three distinct opposite sources when an edge is absent from the adjacent pool (1361 words)
+  three_opposite_distinct/global-zero-edge.md
+  depends on: 
+arg-62: Three distinct high opposite sources and a one-sided rectangle family (952 words)
+  three_opposite_distinct/rectangle-family.md
+  depends on: three_opposite_distinct/global-zero-edge.md, three_opposite_double/common-corner-eleven-hand.md
+arg-63: Two opposite cubes and thirteen adjacent cubes in the two-star family (887 words)
+  three_opposite_distinct/two-star-two-opposites.md
+  depends on: 
+arg-64: Three distinct opposite sources with an unsupported common target (1498 words)
+  three_opposite_distinct/unsupported-triad.md
+  depends on: four_opposite_root/common-high-targets.md, three_opposite_distinct/global-zero-edge.md, three_opposite_double/common-corner-eleven-hand.md
+arg-65: Three distinct opposite cubes and eleven adjacent cubes (1176 words)
+  three_opposite_distinct/three-distinct-eleven-adjacent.md
+  depends on: four_opposite_lowrep/four-distinct-opposites.md, four_opposite_root/common-high-targets.md, three_opposite_distinct/global-zero-edge.md, three_opposite_distinct/rectangle-family.md, three_opposite_distinct/unsupported-triad.md, three_opposite_double/common-corner-eleven-hand.md
+arg-66: Three opposite cubes and eleven capped adjacent cubes (264 words)
+  root/three-opposites-eleven-adjacent.md
+  EDITED: overrides/root/three-opposites-eleven-adjacent.md
+  depends on: root/o3-covers-guide.md, three_opposite_distinct/three-distinct-eleven-adjacent.md, three_opposite_double/three-opposites-one-double-hand.md

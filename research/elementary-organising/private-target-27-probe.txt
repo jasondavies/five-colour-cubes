@@ -1,0 +1,1 @@
+classes 0 15 size 13 status exhausted nodes 1 23 276 2300 9174 9803 3356 788 seconds 0.0389318

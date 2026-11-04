@@ -1,0 +1,233 @@
+\section{An elementary upper bound for corners}\label{sec:elementary}
+We prove that every fifteen sources have a corner assembly. The argument
+uses the two kinds of repeated colour differently: opposite-repeat cubes
+supply both orientations of certain corners, whereas adjacent-repeat cubes
+supply one orientation and two corners involving their repeated colour.
+The longer geometric reductions are proved in the separately paginated
+\emph{Mathematical appendix to Sharp thresholds for five-colour cube
+assemblies}. That appendix is part of the mathematical argument, intended
+for refereeing with this article; the checking programs are supplementary.
+
+\subsection{Directed corners and repeated colours}
+Encode an oriented tricoloured corner $(i,j,k)$ by the complementary ordered
+pair $ab$, chosen so that $(a,b,i,j,k)$ is an even permutation of the five
+colours. Cyclic permutation of $(i,j,k)$ does not change $ab$; reversing it
+replaces $ab$ by $ba$. Write $V=\col$.
+The six tricoloured corners of an adjacent-repeat variety form a directed cut
+\[
+ C(S)=\{ab:a\in S,\ b\in V\setminus S\},\qquad |S|\in\{2,3\}.
+\]
+The smaller side $P$ of the cut is its \emph{pole pair}. For each cut there
+are three varieties, indexed by their repeated colour $r\notin P$.
+Their other two corners are $rrp$, for the two $p\in P$.
+Thus there are twenty adjacent classes, each consisting of three varieties.
+Class multiplicity always counts physical copies, allowing different
+repeated colours within a class.
+An opposite-repeat variety is represented by a four-cycle on four vertices
+of $V$: it supplies both directed corners on each edge, and the omitted
+vertex is its repeated colour. Equivalently its edges form a $K_{2,2}$.
+These descriptions follow by reading the corners around the repeated faces.
+
+For a class with at least two copies, call a six-corner matching after
+reserving two of its copies an \emph{own completion}. The reserved copies
+need not have the same repeat, so this alone is not an assembly.
+
+\begin{lemma}[Repeated-colour completion]\label{lem:repeat-completion}
+An adjacent class with an own completion assembles its target if two of
+its copies have the same repeated colour. If two classes each have three
+copies and an own completion, and their pole pairs intersect, the pool
+has an assembly.
+\end{lemma}
+\begin{proof}
+A same-repeat pair fills the two bicoloured corners, leaving precisely the
+six-corner matching. Otherwise each triple must use all three repeats
+allowed by its pole pair. The two repeat sets intersect; choose a common
+colour $r$. Reserve one copy from each class, using the second class at
+the shared pole of the first target. Start with the first class's own
+completion. Restore one of its two reserved copies and remove the chosen
+copy of the second class. If the latter was used, the restored copy,
+which fits every tricoloured corner of this target, replaces it. The
+remaining six positions are still matched to distinct sources.
+\end{proof}
+
+\begin{lemma}[A nine-source construction]\label{lem:nine-core}
+For distinct colours $a,b,c,d,e$, an opposite source containing the edge
+$ab$, together with three sources in each of $C(ac),C(bc)$ and two in
+$C(abc)$, has an assembly. The same holds after reversing all cuts.
+\end{lemma}
+\begin{proof}
+Put $A=C(ac)$, $B=C(bc)$ and $H=C(abc)$. After reserving two $A$ copies,
+match its six tricoloured corners by
+\[
+ A:cb,\qquad B:cd,ce,\qquad H:ad,ae,\qquad O:ab.
+\]
+After reserving two $B$ copies use
+\[
+ B:ca,\qquad A:cd,ce,\qquad H:bd,be,\qquad O:ba.
+\]
+A class assigned two positions supplies two distinct copies. Both triples
+have own completions, and their poles meet at $c$, so
+Lemma~\ref{lem:repeat-completion} applies.
+\end{proof}
+
+\subsection{Structural inputs}
+The appendix proves the following concentration and assembly statements.
+Their proofs use the cut model, Hall's theorem, repeated-colour completion,
+and explicit geometric cases. None assumes the corner threshold.
+The prescribed-family lemma~\ref{lem:eight-common-missing}, proved earlier,
+is used in two concentrated-opposite cases.
+
+\begin{lemma}[Concentration]\label{lem:elementary-concentration}
+A failing fourteen-source pool containing at least three copies of an
+opposite variety has one of these two profiles: four copies of that variety
+and adjacent-class sizes $5,5$, or three copies and adjacent-class sizes
+$5,3,3$. In either case there are no other opposite sources.
+A mixed fourteen-source pool in which every opposite variety has
+multiplicity at most two and some adjacent class has multiplicity at least
+four has an assembly.
+\end{lemma}
+The opposite profiles are proved in the appendix arguments headed
+``Four identical opposite copies'' and ``Three identical opposite copies'';
+the mixed concentration arguments then treat the possible opposite totals.
+The conclusion records class sizes, not repeated-colour refinements.
+
+\begin{lemma}[Assembly inputs]\label{lem:elementary-inputs}
+The following pools have assemblies:
+\begin{enumerate}
+\item fifteen adjacent sources;
+\item one opposite source and fourteen adjacent sources;
+\item three opposite sources and eleven adjacent sources, with at most
+three copies in each adjacent class;
+\item five opposite sources, each variety occurring at most twice,
+and sources $2A+B+C$ in three distinct adjacent classes;
+\item nine adjacent sources in distinct classes;
+\item eight opposite sources, each variety occurring at most twice;
+\item seven opposite sources with that same cap and any adjacent source.
+\end{enumerate}
+\end{lemma}
+The appendix gives complete proofs, including the geometric exhaustions
+behind the finite Hall tables. Item~3 includes all three opposite
+multiplicity patterns, including three identical varieties.
+Items~4--7 produce opposite targets; the other items may produce either
+kind of target. These distinctions will matter when a source is replaced.
+
+For the present consolidation draft, the principal appendix locations are:
+\input{elementary-locations}
+
+These locations include references to the supporting geometric arguments;
+they do not replace those arguments.
+
+For orientation, the proof of item~1 is a deletion argument. A failing
+pure fourteen-pool has class cap three, at most eight occupied classes,
+and at most five repeated classes. If none of its triples has an own
+completion, its class sizes are $3,3,3,3,1,1$. A failing pure fifteen-pool
+with class cap three cannot have two own-completed triples. Deleting a
+copy of any triple leaves a doubled class, hence forces an own-completed
+triple elsewhere. Restore the copy and delete from this new triple:
+a second own-completed triple is forced, a contradiction.
+For item~2, the appendix proves that a pure fourteen-failure has at least
+two triples. A triple without an own completion has a private column in
+its two-by-three corner array. The added opposite source either meets
+that column, creating a second own completion, or belongs to one of five
+avoiding varieties, whose three geometric types have direct completions.
+These explanations are reading guides; the appendix supplies the required
+concentration, private-column and repeated-colour proofs.
+
+\subsection{Compressing two adjacent sources}
+\begin{lemma}[Disjoint-cut compression]\label{lem:compression}
+Two disjoint adjacent cuts have an opposite variety's eight corners in
+their union. Replacing two actual sources from these classes by one
+virtual source of that opposite variety preserves the implication
+``the smaller pool assembles $\Rightarrow$ the original pool assembles''.
+\end{lemma}
+\begin{proof}
+Normalize the first cut to $C(01)$. The disjoint cuts are exactly
+$C(234),C(23),C(24),C(34)$. For $C(ij)$ take the opposite variety
+with bipartition $01\mid ij$; for $C(234)$ choose any two of $2,3,4$.
+The first actual source supplies one directed half and the second the
+other. An assembly assigns only one position to the virtual source.
+Replace it by whichever removed source supplies that corner. Both removed
+copies were unavailable to all other positions, so the eight physical
+sources remain distinct. A virtual opposite source can only have been
+assigned a tricoloured corner, even if the target is adjacent.
+\end{proof}
+
+\begin{lemma}[Intersecting cuts]\label{lem:intersecting-cuts}
+A pairwise-intersecting family of adjacent cuts is contained, up to colour
+permutation and simultaneous reversal, in one of the following families:
+\[
+\begin{array}{c|l}
+\text{Butterfly}&C(01),C(02),C(12),C(123),C(124),C(012)\\
+\text{Two stars}&C(01),C(02),C(03),C(04),C(034),C(024),C(023)\\
+\text{Star and triangle}&C(01),C(02),C(03),C(04),C(034),C(024),C(014).
+\end{array}
+\]
+\end{lemma}
+\begin{proof}
+Represent a size-two outset by its positive pole pair and a size-three
+outset by its negative pole pair. Same-sign cuts are disjoint exactly
+when their pairs are disjoint; opposite-sign cuts are disjoint exactly
+when their pairs agree. The two signed edge families in $K_5$ are therefore
+intersecting and share no edge. Each intersecting edge family lies in a
+star or triangle: after edges $ab,ac$, an edge not containing $a$ must
+be $bc$.
+Two complete triangles without a common edge meet in one vertex, giving
+the butterfly. For a triangle and a star, a centre outside the triangle
+gives the star-and-triangle family. A centre inside permits only its two
+edges to the outside vertices; extend them to a second triangle.
+For two stars with different centres, assign their common edge to the
+sign already using it, if either, then extend both families to obtain
+the two-star form. With the same centre and at least two edges in each
+family, each has exactly two edges; complete each to a triangle. If one
+family has at most one edge, choose its other endpoint as centre, or any
+different centre if it is empty, reducing to the different-centre case.
+\end{proof}
+
+The appendix proves that thirteen adjacent sources of class cap three in
+any one of these families assemble after any two opposite sources are
+adjoined. These are the butterfly, two-star and star-and-triangle assembly
+arguments. The last reduces, by two small matching lemmas, to the
+nine-source construction in Lemma~\ref{lem:nine-core}.
+
+\begin{proposition}\label{prop:two-opposite-elementary}
+Two opposite sources and thirteen adjacent sources of class cap three
+have an assembly.
+\end{proposition}
+\begin{proof}
+If a disjoint pair of adjacent classes occurs, compress one copy of each.
+The resulting pool has three opposite and eleven adjacent sources;
+Lemma~\ref{lem:elementary-inputs}(3) applies, and
+Lemma~\ref{lem:compression} lifts the assembly. Otherwise
+Lemma~\ref{lem:intersecting-cuts} and the three family arguments apply.
+\end{proof}
+
+\subsection{The fifteen-source conclusion}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemma~\ref{lem:lower} proves the lower bound. Suppose that a fifteen-source
+pool fails. Any subpool fails. Five copies of one opposite variety are
+excluded by Lemma~\ref{lem:elementary-concentration}, retaining them in a
+fourteen-subpool. If an opposite variety occurs three or four times, the
+same lemma excludes any other opposite variety.
+
+Put $A=\sum_j\binom{g_j}{2}$, where $g_j$ are adjacent-class counts.
+With four opposite copies, deleting any of the eleven adjacent sources
+leaves class sizes $5,5$ and pair count $20$. Each original same-class
+pair survives nine deletions, giving $9A=11\cdot20=220$, impossible.
+With three opposite copies the twelve deletions instead give
+$10A=12(\binom52+2\binom32)=192$, also impossible.
+Every opposite variety therefore occurs at most twice. In a mixed pool,
+four copies of an adjacent class could be retained with an opposite source
+in a fourteen-subpool, contradicting the concentration lemma. Thus mixed
+pools also have adjacent-class cap three.
+
+Let $o$ be the number of opposite sources. For $o=0,1$, use
+Lemma~\ref{lem:elementary-inputs}(1),(2). For $o=2$, use
+Proposition~\ref{prop:two-opposite-elementary}. For $o=3,4$, retain three
+opposite and eleven adjacent sources and use item~3. For $o=5,6$, retain
+five opposite and nine adjacent sources. If the latter occupy nine
+classes, item~5 applies. Otherwise some class $A$ occurs at least twice;
+the cap of three ensures at least three occupied classes, so select
+$2A+B+C$ and use item~4. For $o=7$, item~7 applies, and for $o\ge8$
+retain eight opposite sources and use item~6. Each possibility yields an
+assembly, contradicting failure. Hence $N_5=15$.
+\end{proof}

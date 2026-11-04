@@ -1,0 +1,91 @@
+Follow-up on the fixed nested core — 4 November 2026
+==================================================
+
+Result
+------
+The thirteen-source lemma still has no short elementary proof from this
+attempt. The new positive result is the three-witness lemma, written in
+three-witness-lemma.txt: in a failure, at most three outsiders preserve both
+own completions of the nested six-source core. This improves the previous
+four-witness reduction and has a short geometric proof.
+
+It does not make the full elementary threshold proof short. No production
+paper, consolidation draft, or Lean source was changed.
+
+Organising principles tested
+---------------------------
+1. A central opposite target reduces to matching its reverse four-corner
+   square using outsiders. Failure has a vertex cover consisting of a set
+   H of square positions and at most 3-|H| outsider copies. Up to square
+   symmetry, H has five types: empty, singleton, adjacent pair, diagonal
+   pair, or triple. The source families admitted by these covers are in
+   nested_cover_probe.py. This is a useful first reduction, but the covers
+   still permit many mixed inventories. Closing them required further
+   target choices; a short uniform inequality was not found.
+
+2. For opposite targets, the fixed six sources can match all target corners
+   available on the core. The remaining requirements therefore form a
+   smaller matching problem on the outsiders. Analogous reductions apply
+   to the four main adjacent target classes, with their repeat variants.
+   This clarifies the role of the core, but does not by itself connect the
+   failures of the different target matchings.
+
+3. The new three-witness lemma reduces an allegedly failing two-completion
+   pool to a small subpool retaining those hypotheses. Computation finds
+   39 minimal witness configurations up to the eight symmetries of the
+   nested core: 21 pairs and 18 triples. They are not 39 counterexamples to
+   the thirteen-source theorem; they are small starting configurations
+   whose arbitrary extensions would still have to be analysed. Enumerating
+   those extensions would create another case proof, not yet a simplification.
+
+4. All fifteen opposite targets plus all twelve repeat variants in the
+   four main adjacent classes suffice computationally for thirteen-source
+   pools with both completions, after repeat restoration restricts the
+   outsiders to 23 types. Restricting further to only the five opposite
+   targets with four private requirements does not suffice: 2,322 surviving
+   inventories need other targets. These are NOT failures of the puzzle.
+   The output labels them RESTRICTED_TARGET_SURVIVOR to make that clear.
+
+Verification
+------------
+The three-witness audit reconstructs geometry independently and checks all
+1,426,425 four-source multisets. It finds exactly the 81 repeat refinements
+of the four forced outer classes, all solved by the explicit matching in
+the written proof. No generated compatibility table is needed.
+
+The restricted-target C++ probes use the existing compatibility table and
+are discovery checks, not independent mathematical proofs. Both searches
+completed without timeout. The 27-target probe has no surviving inventory
+with both completions; the 17-target probe has 2,322.
+
+Reproduce from the review checkout root:
+
+  python research/elementary-organising/check_three_witnesses.py
+  python research/elementary-organising/nested_cover_probe.py
+  python research/elementary-organising/witness_orbits.py
+  c++ -O3 -Wall -Wextra -std=c++20 \
+    research/elementary-organising/private_target_probe.cpp \
+    -o /tmp/private_target_probe
+  /tmp/private_target_probe 0 15 13 45 1 1 0
+  /tmp/private_target_probe 0 15 13 45 1 1 1
+
+The last parameter selects all fifteen opposite targets (0) or the five
+four-private-corner opposite targets (1). Both retain the twelve main
+adjacent targets. Other parameters have the same meanings as in the
+original rainbow-core search.
+
+Assessment
+----------
+This attempt earned a short explanatory lemma, not the requested full
+nested-core proof. The exact missing step remains: with seven outsiders
+meeting the two private pairs, find an assembly without an inventory table.
+The computational result is unchanged, and no new elementary or formal
+proof of that step is claimed.
+
+I would stop this branch of the bounded attempt here. The next useful
+advance would need a theorem connecting the alternative residual matching
+problems, rather than more covers or seed configurations. Nothing found
+in this round justifies reopening the publication decision or replacing
+the compact certified corner proof. Preserve the three-witness lemma as
+research material; integrate it only if a later simplification actually
+uses it to remove dependencies.

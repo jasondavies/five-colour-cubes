@@ -1,0 +1,1821 @@
+[
+  {
+    "opposite": [
+      60,
+      60,
+      61,
+      62
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cases": []
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      61,
+      63
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 12
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      61,
+      64
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      61,
+      65
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cases": []
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      63,
+      64
+    ],
+    "bad": [
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "14",
+          "31"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "14",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      63,
+      66
+    ],
+    "bad": [
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": []
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      63,
+      67
+    ],
+    "bad": [
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "14",
+          "23",
+          "24",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          6,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "24",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          4,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "32",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          5,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "23",
+          "24",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          4,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "32",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          5,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "23",
+          "32",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          7,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      63,
+      69
+    ],
+    "bad": [
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "23",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "23",
+          "24",
+          "31",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          6,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "23",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "13",
+          "23",
+          "32",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          7,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "32",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "32",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      63,
+      70
+    ],
+    "bad": [
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "14",
+          "31"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "23",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          6,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "31",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "23",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "14",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "23",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "14",
+          "31",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "23",
+          "31",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          7,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      63,
+      71
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": []
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      64,
+      65
+    ],
+    "bad": [
+      4,
+      5,
+      6,
+      7,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "14",
+          "31"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "23",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          6,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "31",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "23",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "14",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          3,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "23",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "14",
+          "31",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "23",
+          "31",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          7,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      64,
+      67
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "14",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "24",
+          "32"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          6,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "41"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          4,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "24",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          4,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "31",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          5,
+          12,
+          15
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "23",
+          "32",
+          "41"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          5,
+          11,
+          16
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 12
+      },
+      {
+        "S": [
+          "14",
+          "24",
+          "32",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          5,
+          11,
+          16
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          4,
+          5,
+          13,
+          14
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "13",
+          "14",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          4,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          4,
+          5,
+          10,
+          17
+        ],
+        "avoider_cap": 11
+      },
+      {
+        "S": [
+          "23",
+          "24",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          4,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          10,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "14",
+          "32",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          5,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "23",
+          "32",
+          "41",
+          "42"
+        ],
+        "O_neighbors": 3,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          7,
+          13,
+          14
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      64,
+      68
+    ],
+    "bad": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 14
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 14
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 14
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 14
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 1,
+        "avoiders": [
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 12
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      64,
+      69
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cases": [
+      {
+        "S": [
+          "13",
+          "24",
+          "31"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          3,
+          6,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "24",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          1,
+          4,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "13",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          2,
+          7,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      },
+      {
+        "S": [
+          "24",
+          "31",
+          "42"
+        ],
+        "O_neighbors": 2,
+        "adj_neighbor_bound": 0,
+        "avoiders": [
+          0,
+          5,
+          10,
+          11,
+          16,
+          17
+        ],
+        "avoider_cap": 10
+      }
+    ]
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      64,
+      70
+    ],
+    "bad": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "cases": []
+  },
+  {
+    "opposite": [
+      60,
+      60,
+      64,
+      73
+    ],
+    "bad": [],
+    "cases": []
+  }
+]

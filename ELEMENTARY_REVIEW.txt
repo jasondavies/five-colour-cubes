@@ -1,0 +1,137 @@
+Elementary proof of the five-colour corner threshold: external review package
+============================================================================
+
+Branch: research/elementary-proof-review
+Base: 1dce44d24f76e84f0266025ab9ce0ab94a306873
+Prepared: 4 November 2026
+
+Purpose
+-------
+This branch preserves the proposed elementary proof of N5=15 and our efforts
+to consolidate and shorten it. We would welcome a second opinion on its
+correctness, its dependency structure, and especially whether a better
+organising principle could replace whole families of cases.
+
+The publication paper and Lean sources at the repository root are unchanged.
+The elementary draft is separate under research/. It is NOT the proof
+formalised by the existing Lean development, and this branch is NOT a claim
+that the entire elementary argument has received an independent audit.
+
+Current assessment
+------------------
+The supplied research notes present a complete direct fifteen-source route.
+Review of the synthesis and selected component arguments found no error,
+but the full older dependency chain has not been checked line by line.
+The extraction reduced to 66 retained arguments, approximately 72,321 words,
+and a 154-page mathematical appendix, accompanying a 24-page draft article.
+That is too long for the intended replacement in the current paper.
+
+Our recommendation so far is to keep the compact certified corner proof as
+the publication route. This review branch preserves the elementary work so
+that another reader can assess both the argument and the possibility of a
+substantial structural simplification. The assessments are working judgments,
+not a finding that a short elementary proof is impossible.
+
+Suggested reading order
+-----------------------
+1. research/elementary-paper/ASSESSMENT.txt
+   Measured outcome of the bounded editorial pass and its limitations.
+
+2. research/elementary-paper/paper/five-colour-cubes.pdf
+   Proposed 24-page article. Its elementary corner section gives the final
+   synthesis and locates the supporting appendix arguments.
+
+3. research/elementary-paper/paper/five-colour-elementary-appendix.pdf
+   The current 154-page mathematical appendix. For source-level review use
+   elementary-appendix.md or the TeX alongside it. Necessary proofs belong
+   here; the appendix is not intended as optional computational material.
+
+4. research/elementary-paper/DEPENDENCIES.txt and appendix-manifest.json
+   Recorded dependencies, original-note hashes, editorial override hashes,
+   and retained sections. The recorded graph is ordered and acyclic; that
+   does not certify every implicit mathematical dependency.
+
+5. research/elementary-review-2026-11-04/REVIEW.txt
+   What was actually read and checked during the earlier proof review.
+   The extracted supplied notes and their exploratory programs are in its
+   research/ subdirectory. These contain historical claims and unfinished
+   routes; do not read every historical 'open' or 'complete' as current status.
+
+6. research/elementary-organising/RESULTS.txt and FOLLOWUP.txt
+   Subsequent bounded attempts at a better organising principle. The sharp
+   thirteen-source two-completion lemma has exhaustive computational checks
+   and reductions, but still no short elementary proof of its nested case.
+   three-witness-lemma.txt is a short written elementary reduction obtained
+   in the latest attempt. These results are NOT incorporated into the draft.
+
+The separate six-page certificate-supplement.pdf in the draft paper directory
+preserves the alternative certificate proof. The root paper/ remains the
+publication baseline and can be consulted for comparison.
+
+Questions for a reviewer
+------------------------
+* Does the direct fifteen-source synthesis use the exact hypotheses proved
+  by its components? Are there hidden circular dependencies or omitted cases?
+* Do the geometric tables have adequate completeness arguments, and do all
+  placements preserve distinct physical sources and proper rotations?
+* Can compression, repeated-colour restoration, private-corner geometry,
+  or matching structure replace a substantial branch of the proof?
+* Is the fixed six-source nested configuration a productive simplification
+  target? Could its thirteen-source lemma have a short geometric proof?
+* Given the complete dependency burden, would the elementary route improve
+  this paper, or should selected structural lemmas be retained separately?
+
+A shorter computer-assisted proof would also be a useful outcome. We prefer
+explanatory lemmas and a small auditable calculation to another long hand
+classification. New numerical searches alone are not the main review goal.
+
+Scope and provenance
+--------------------
+* This is a review snapshot, not a submission version or verification release.
+* The raw notes are preserved; editorial changes are separate in
+  research/elementary-paper/overrides/. Regeneration uses those overrides.
+* The original research ZIP's SHA-256 is recorded in ARCHIVE.sha256; its
+  extracted contents are included, without caches or build logs. The ZIP
+  itself is unnecessary for the provided regeneration commands.
+* The fourteen-cube classification, its invariant, and its separate Lean
+  replay are outside this package. Their historical mentions in the draft
+  are not claims about their present verification status.
+* No new elementary-proof Lean formalisation is included.
+* AI-assisted development/review notes are not independent human refereeing.
+* Some exploratory programs in the raw archive assume old absolute paths
+  or optional packages. The documented commands below are the supported
+  local reproduction route; this is not a promise to replay every experiment.
+
+Reproduction from a fresh checkout of this branch
+------------------------------------------------
+Reading the PDFs needs no software setup. To regenerate and build them, use
+Python 3, Pandoc, latexmk, and a TeX installation with the packages used by
+the checked-in TeX (the same article packages, plus Pandoc's standard output).
+
+  python3 research/elementary-paper/tools/assemble_article.py
+  python3 research/elementary-paper/tools/assemble_appendix.py
+  latexmk -cd -pdf -interaction=nonstopmode -halt-on-error \
+    research/elementary-paper/paper/five-colour-cubes.tex \
+    research/elementary-paper/paper/five-colour-elementary-appendix.tex \
+    research/elementary-paper/paper/certificate-supplement.tex
+
+The generators read this checkout, not another repository or a local ZIP.
+The current overrides are already included; rerunning the historical editing
+script simplify_dependencies.py is not required for reproduction.
+
+Selected supplementary checks (Python standard library only):
+
+  python3 research/elementary-organising/check_two_loops_independent.py
+  python3 research/elementary-organising/check_three_witnesses.py
+  python3 research/elementary-paper/tools/check_restored_extension.py
+  python3 research/elementary-paper/tools/check_butterfly_completions.py
+
+These check specific finite statements; they do not certify the entire
+154-page proof. The first two reconstruct their geometry independently of
+the supplied research model. Additional C++ probes and their exact scopes
+are described in research/elementary-organising/FOLLOWUP.txt.
+
+For the separate existing certificate/Lean proof, use the root README.
+No full Lean or external-kernel replay was performed to prepare this branch.
+
+See research/review-validation.txt for the checks run on this package.

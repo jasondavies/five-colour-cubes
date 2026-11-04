@@ -1,0 +1,423 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tikz}
+\usepackage{xr}
+\externaldocument[main-]{five-colour-cubes}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\hypersetup{pdftitle={Sharp thresholds for five-colour cube assemblies},pdfauthor={Jason Davies}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\col}{\{0,1,2,3,4\}}
+\newcommand{\mass}[2]{#1(#2)}
+\title{Certificate proof and verification supplement}
+\author{Jason Davies}
+\date{November 4, 2026}
+\begin{document}
+\maketitle
+This supplement preserves the computer-assisted corner proof used by the
+Lean development. It is independent of the elementary corner argument in
+the revised article and is not a formalisation of that argument.
+
+\section{Reduction to finite problems}\label{sec:cases}
+Eight copies of any variety solve that variety, so a solution-free collection
+has every multiplicity at most seven. Suppose such a collection has size 15.
+
+\begin{lemma}[Anchored Hall cover]\label{lem:anchor}
+Suppose a collection contains $m$ copies of a variety $A$ and does not solve
+$A$. There is a set $K$ of its target positions such that
+\begin{equation}\label{eq:anchor}
+ |K|\le 7-m,\qquad
+ \#\{\text{other copies fitting some position outside }K\}
+       \le 7-m-|K|.
+\end{equation}
+Conversely, such a set certifies failure of target $A$.
+\end{lemma}
+\begin{proof}
+Apply~\eqref{main-eq:hall} to $A$ and put $K=D^c$. Every copy of $A$ is a
+neighbour of the nonempty set $D$. Subtract these $m$ copies from the bound
+$|D|-1=7-|K|$. The converse is the same Hall inequality read backwards.
+\end{proof}
+
+First suppose the maximum multiplicity $m$ is at least two. Choose an
+adjacent-repeat anchor attaining $m$ if possible; otherwise choose an
+opposite-repeat anchor attaining $m$. In the latter case all adjacent-repeat
+multiplicities are at most $m-1$. Relabel the colours to send the anchor to
+a fixed representative of its orbit.
+
+For each cover $K$ in Lemma~\ref{lem:anchor}, put
+\[
+ S(K)=N_A(K^c)\setminus\{A\},\qquad b(K)=7-m-|K|.
+\]
+Write $S=S(K)$ and $b=b(K)$. The case has
+$x_A=m$, $x(S)\le b$, and the multiplicity bounds just described.
+Additional upper bounds use two-variety solutions. If $j$ copies of $A$
+and $8-j$ copies of $V$ build a target, with $j\le m$, then
+$x_V\le 7-j$ in a solution-free collection. These tests are finite:
+the two varieties must cover all eight target positions, $A$ must fit at
+least $j$, and $V$ at least $8-j$. They are also sufficient: at most $j$
+positions are unavailable to $V$,
+and all of them are available to $A$. Assign these to $A$, extend the
+assignment to $j$ positions that $A$ fits, and assign the remaining
+$8-j$ positions to $V$.
+
+Colour permutations and simultaneous reflection of the entire collection
+preserve solvability. First identify equal pairs $(S(K),b(K))$, even when
+they arise from inequivalent position subsets $K$; then retain one
+representative per orbit of these pairs under the anchor stabiliser.
+The counts below refer to these constraint pairs. Transporting a cover
+also transports its constrained varieties, budget and multiplicities, so
+no counterexample is lost. Global reflection transports the whole
+collection; individual cubes still move only by proper rotations.
+The repeated-variety cases give 244 constraint orbits; the breakdown is in
+Appendix~\ref{app:verification}.
+
+For distinct collections a different choice of anchor reduces the count.
+\begin{lemma}[Shared two-colour corner]\label{lem:shared}
+Among eleven adjacent-repeat cubes, two share a two-colour corner type.
+If a distinct collection contains such a pair and one member is chosen as
+anchor, the set consisting of its two two-colour positions is not
+Hall-deficient.
+\end{lemma}
+\begin{proof}
+Each adjacent-repeat cube with repeated colour $r$ has exactly two such
+types, $rrx$ and $rry$, with $x\ne y$. There are only $5\cdot4=20$ types $rrx$. Eleven cubes contribute
+22 incidences, so two cubes share a type. For the two characteristic positions
+of the chosen anchor, the anchor itself and the other cube are two distinct
+neighbours. Their neighbourhood therefore has size at least two.
+\end{proof}
+If an opposite-repeat variety is present, choose it as anchor; this gives
+31 constraint orbits with every multiplicity at most one. Otherwise use
+Lemma~\ref{lem:shared} to choose an adjacent-repeat anchor. Omit the cover
+complementary to its two characteristic positions and set all opposite-repeat
+capacities to zero. Its stabiliser preserves these positions, so the omission
+is compatible with the orbit reduction. It removes one of the 83
+adjacent-repeat constraint orbits, leaving 82 further cases.
+
+\begin{proposition}\label{prop:cover}
+Every solution-free fifteen-cube collection is carried by colour relabelling
+and, if needed, global reflection into one of the 357 exported root cases.
+\end{proposition}
+\begin{proof}
+The preceding arguments cover repeated and distinct collections. The finite
+catalogue, two-variety bounds and coverage of all anchor-cover orbits are
+checked from physical rotations by the accompanying audit. It regenerates
+rotations from quarter turns, separately from the signed-axis permutations
+used by the case generator, and checks every exported bound and every cover
+orbit. The resulting counts are
+\[
+  244+31+82=357.
+\]
+The cases need not be disjoint; completeness of the cover is what is required.
+\end{proof}
+
+Each root specifies an anchor $A$ of multiplicity $m$, coordinate bounds
+$\ell,u$, a set $S$ of non-anchor varieties and a budget $b$.
+The bounds fix $\ell_A=u_A=m$, with $\ell_i=0$ for $i\ne A$.
+A vector $x\in\mathbb Z_{\ge0}^{75}$ is \emph{admissible} for this root if
+\begin{equation}\label{eq:admissible}
+\begin{gathered}
+ \ell\le x\le u,\qquad \sum_{i=1}^{75}x_i=15,\qquad x(S)\le b,\\
+ \text{for every target }T\text{, there is }\varnothing\ne D\subseteq\{1,\ldots,8\}
+ \text{ with }x(N_T(D))\le |D|-1.
+\end{gathered}
+\end{equation}
+Thus admissibility includes failure of every target, in addition to the
+anchor constraints.
+
+The cover can be reduced without further search. If $S'\subseteq S$ and
+$b'\ge b$, then $x(S)\le b$ implies $x(S')\le b'$ for nonnegative $x$.
+Together with coordinatewise inclusion of the root boxes, this identifies
+49 cases contained in other cases, leaving 308. Write $u$ for the root upper
+bounds. In 29 retained cases, $b+u(S^c)<15$ already contradicts the prescribed
+total, so only 279 cases
+need further exclusion proofs. The exact map and retained case numbers are
+in \path{data/q5-root-reduction.json}; Lean checks all containments and
+arithmetic exclusions. The archive retains all 357 original cases.
+
+\begin{lemma}[Hall-budget projection]\label{lem:projection}
+Suppose a root has anchor multiplicity $m$, budget $x(S)\le b$, and total
+$15$, with the anchor outside $S$. For $0\le \lambda\le b$, put $G=15-b+\lambda$
+and suppose $G\ge m$. Every admissible vector $x$ has a vector $y\le x$
+with the same anchor multiplicity, total $G$, budget $y(S)\le \lambda$, and a
+Hall deficiency for every target. It obeys the original upper bounds,
+tightened to $\min(u_i,\lambda)$ on $S$.
+\end{lemma}
+\begin{proof}
+First retain only $\min(x(S),\lambda)$ copies in $S$. This removes at most $b-\lambda$
+copies and leaves the anchor untouched, so the remaining total is at least
+$G$. Delete further non-anchor copies until the total is $G$; this is possible
+because $G\ge m$. Every coordinate decreases, so all upper bounds and Hall
+deficiency inequalities are preserved. Nonnegativity and $y(S)\le \lambda$ give
+$y_i\le \lambda$ for $i\in S$.
+\end{proof}
+
+For our anchored covers, $b=7-m-|K|$, so
+\[
+ G=m+8+|K|+\lambda.
+\]
+Thus the reduced collection consists of the $m$ fixed anchor copies and
+$8+|K|+\lambda$ other copies; in particular, $G\ge m$ is automatic. Apply the lemma
+after selecting and normalising the original root, retaining its bounds.
+No new anchor selection is required for the smaller collection.
+The resulting 279 projected problems have totals between 9 and 15.
+Their parameters and exceptional cases are recorded in
+Appendix~\ref{app:verification}.
+
+\section{Interval certificates}\label{sec:certificates}
+For a projected problem, admissibility is defined by~\eqref{eq:admissible}
+with tightened upper bounds and total $G$. In this section denote its
+projected budget by $b$. We certify that no admissible vector exists.
+
+Write a box as $\ell\le x\le u$. For a cut $x(S)\le r$, two necessary
+conditions for feasibility in the box are
+\begin{equation}\label{eq:possible}
+  \ell(S)\le r,\qquad G\le r+u(S^c).
+\end{equation}
+The first follows from the lower bounds; the second follows from
+$G=x(S)+x(S^c)$. When they hold, put
+$\sigma=r-\ell(S)$ and $\gamma=r+u(S^c)-G$. Every satisfying vector obeys
+\begin{equation}\label{eq:refine}
+ x_i\le\min(u_i,\ell_i+\sigma)\quad(i\in S),\qquad
+ x_i\ge\max(\ell_i,u_i-\gamma)\quad(i\notin S).
+\end{equation}
+For example, the upper bound follows by giving all other coordinates of $S$
+their lower bounds; the lower bound follows by giving all other coordinates
+of $S^c$ their upper bounds.
+
+For a target, retain its cuts satisfying~\eqref{eq:possible}. If none remain,
+no vector in the box can fail that target. Otherwise let $I$ and $U$ be the
+intersection and union of their neighbourhoods, and let $\sigma_*,\gamma_*$ be the
+largest corresponding $\sigma,\gamma$. Then all vectors in the box that fail this
+target remain in the refined box
+\begin{equation}\label{eq:summary}
+ u'_i=\begin{cases}\min(u_i,\ell_i+\sigma_*)&i\in I,\\u_i&i\notin I,\end{cases}
+ \qquad
+ \ell'_i=\begin{cases}\max(\ell_i,u_i-\gamma_*)&i\notin U,\\\ell_i&i\in U.\end{cases}
+\end{equation}
+Indeed, a failing vector satisfies one of the retained cuts, and its bounds
+in~\eqref{eq:refine} imply~\eqref{eq:summary}. The root budget is treated as
+a family containing a single cut. The total $\sum_i x_i=G$ gives
+\[
+ \ell'_i=\max\!\left(\ell_i,G-\sum_{j\ne i}u_j\right),\qquad
+ u'_i=\min\!\left(u_i,G-\sum_{j\ne i}\ell_j\right).
+\]
+A total-bound leaf closes exactly when $\sum_i\ell_i>G$ or
+$\sum_i u_i<G$. A budget leaf closes when
+$\ell(S)>b$ or $b+u(S^c)<G$; a target leaf closes when none of its
+255 cuts satisfies~\eqref{eq:possible}. The checker thus has 77 closing
+reasons: one total test, one budget test and 75 target tests. Refinements
+must tighten at least one bound and leave
+nonempty coordinate intervals; a split must satisfy $\ell_i\le v<u_i$.
+
+A certificate is a finite tree of refinements and integer splits
+$x_i\le v$ or $x_i\ge v+1$. Each leaf is excluded by total bounds or by a
+cut family with no surviving cut. Induction on this tree proves that its
+root contains no admissible vector. The separate C++ checker reads these
+instructions and verifies the deductions; it performs no search and does
+not use the search program's matching implementation.
+
+\begin{proposition}[Certificate replay]\label{prop:replay}
+The separate checker accepts an exclusion certificate for each of the
+279 projected problems.
+\end{proposition}
+Archive sizes and rejection controls are recorded in
+Appendix~\ref{app:verification}.
+
+\begin{proof}[Alternative proof of Theorem~\ref{main-thm:main}]
+Lemma~\ref{main-lem:lower} gives $N_5\ge15$. A solution-free collection of fifteen
+cubes would satisfy an exported root case by Proposition~\ref{prop:cover},
+and would supply a Hall deficiency for every target. Containment and the initial
+budget tests leave one of 279 roots. Lemma~\ref{lem:projection} supplies an
+admissible vector in its projected problem, which Proposition~\ref{prop:replay}
+and the sound interval deductions exclude. Hence $N_5\le15$.
+\end{proof}
+
+\section{Verification and reproduction details}\label{app:verification}
+\subsection{Finite certificates}
+The repeated-variety cases have the following counts,
+totalling 244.
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\toprule
+Anchor / maximum multiplicity & 2 & 3 & 4 & 5 & 6 & 7\\
+\midrule
+Adjacent-repeat & 72 & 55 & 31 & 14 & 4 & 1\\
+Opposite-repeat & 26 & 21 & 11 & 6 & 2 & 1\\
+Total & 98 & 76 & 42 & 20 & 6 & 2\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Of the 279 remaining roots, 277 admit an exclusion certificate with $\lambda=0$. The other two, original
+cases 68 and 69, use $\lambda=1$ and $G=12$. Their $\lambda=0$, $G=11$ problems actually
+have solution-free collections, supplied and checked by physical matching in
+the projected manifest. The projected totals range from 9 to 15. All 101 roots
+whose original budget was zero retain their original certificates.
+
+The projected archive contains 499,829 instructions, 95.69\% fewer than the
+original archive. Both archives and the search computations are documented
+in the repository.
+Every archived header is checked against its exported root case. Eighty
+negative controls are rejected, including all 77 possible direct closing
+claims against a separate $G=11$ fixture, not a $G=15$ root problem.
+This fixture is a known solution-free eleven-cube collection: it satisfies
+its total, fixed anchor count, coordinate bounds and zero root budget, and
+fails all 75 targets by physical matching. It is \path{data/q5-distinct-known-control.txt}; its regeneration and witness
+checks are in \path{scripts/check_five_colour_distinct.py}.
+
+\subsection{Lean implementation}
+The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
+\texttt{v4.35.0}. It proves the physical theorems, including the connection
+between cube arrangements and the finite certificate problems.
+The physical model and palette-independent geometry come from the shared
+\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}.
+
+Lean proves completeness and uniqueness of the 75 varieties and checks all
+45,000 corner-compatibility bits using the shared corner--rotation theorem.
+The lower bound uses 75 deficient corner sets: 72 singletons and three
+sets of sizes 5, 6 and 6. Its theorem is
+\path{FiveColour.Physical.lower_bound} in \path{FiveColour/LowerBound.lean}. In the formal proof, this replaces the elementary
+target classification in Lemma~\ref{main-lem:lower}; catalogue completeness and
+rotation transport extend the result to every physical target.
+
+The upper-bound formalisation follows the Hall reduction, symmetry
+transport, anchor selection and shared-corner argument. Finite checks
+verify capacities, cover representatives and the reduction from 357 roots
+to 279. The deletion step is \path{FiveColour.Physical.root_projection}
+in \path{FiveColour/RootProjection.lean}. The bridge to the archive, in
+\path{FiveColour/ProjectedBridge.lean}, identifies the full admissibility
+predicate: coordinate bounds, total, budget and all Hall-cut families.
+
+For efficient replay, Lean proves soundness of a packed implementation of
+the interval checker. For multiplicities $0\le x_i\le7$, index the varieties
+by $0,\ldots,74$ and put
+\[
+ P(x)=\sum_{i=0}^{74}x_i B^i,\qquad
+ W(S)=\sum_{i\in S}B^{74-i},\qquad B=1024.
+\]
+Then
+\[
+ x(S)=\left\lfloor\frac{P(x)W(S)}{B^{74}}\right\rfloor\bmod B.
+\]
+Every coefficient in the product is at most $75\cdot7<1024$, so no carry
+can affect this coefficient extraction. Lean proves the identity, decoding,
+coordinate updates and equivalence with the integer inequalities, and
+checks all 19,125 neighbourhood weights.
+
+The 279 certificates are split into 4,786 chunks of at most 128
+instructions. Composition requires exact boundary-vector agreement and a
+proof for every referenced box; the exporter is untrusted. All chunks and
+their final assembly have passed kernel checking. The case mapping and
+certificate hashes are in \path{data/q5-projected-root-manifest.json}.
+The generated module \path{FiveColour/ProjectedChunks/Threshold.lean}
+proves the unconditional theorems \path{threshold15} and
+\path{sharpThreshold15}. Both lie in namespace
+\path{FiveColour.Packed.ProjectedChunks}.
+
+The cuboid proof in Lean follows Lemma~\ref{main-lem:eight-common-missing}.
+The cube exports, such as \path{frame20}, specialise the cuboid theorems.
+The equivalences in \path{FiveColour/CubeBoxBridge.lean} identify the cube
+and equal-side cuboid position models, preserving exposed faces and physical
+placements. Cube completion likewise reuses rectangular completion, whose
+generic construction is adapted from~\cite{FourToThree}; no theorem of that
+paper is used. The auxiliary eleven-cube missing-pair lemma remains in
+\path{FiveColour/RingEleven.lean}, with its multiplicity argument proved
+without enumerating collections.
+
+The small-support proofs check pair witnesses directly, without reducing
+them to five colour orbits, and use deficient corner sets for the two
+obstruction constructions. The modules are \path{SmallSupport.lean} and
+\path{MixedObstructions.lean} in the \path{FiveColour} directory.
+
+The full cuboid classification is formalised in
+\path{FiveColour/BoxThresholds.lean}. In namespace
+\path{FiveColour.Physical}, \path{box_frame_threshold_iff} and
+\path{box_threshold_iff} give necessary and sufficient pool sizes for
+arbitrary side lengths at least two, assuming
+\path{FiveColour.Physical.Threshold15}. \path{Solution.lean} applies the
+completed corner theorem to discharge this assumption. In namespace
+\path{FiveColour.Puzzle}, it exports the unconditional theorems
+\path{box_frame_threshold} and \path{complete_box_threshold}, together with
+\path{frame20}, \path{frame_threshold_all}, \path{full_cube},
+\path{complete_cube_threshold} and \path{support_threshold}.
+
+The rectangular model and completion are in
+\path{FiveColour/BoxModel.lean}; compatibility is connected to proper
+rotations, and axis assignments are realised by proper rotations.
+\path{FiveColour/EightPlusThree.lean} proves the physical prescribed-family
+lemma. Its proof uses a failed Hall set to obtain the small cover directly,
+as in Lemma~\ref{main-lem:eight-common-missing}; signed projection and small matching
+patterns are checked in the kernel. The weighted bounds and upper deductions
+are in \path{FiveColour/WideFrames.lean}, \path{FiveColour/RodFrames.lean}
+and \path{FiveColour/StripFrames.lean}. The thin-box proofs formalise both
+concentration and switching targets, including the equality cases of the
+affine geometric bounds. Directional profiles are checked for the two
+canonical target varieties; proved colour and rotation transport covers
+all targets, including their corner, edge and axis labels. The small
+half-mask matching step uses greedy selection after single-mask checks.
+\path{FiveColour/BoxLowerBound.lean} proves the
+uniform three-variety obstruction for every shape and orientation.
+A separate C++ audit reconstructs the geometry and checks these profiles.
+No new interval certificates are used. The flow algorithm and its
+complexity bound in Section~\ref{main-sec:construction} are mathematical
+deductions, not additional Lean claims.
+
+\subsection{Reproduction}
+The dependency audits cover 133 declarations listed in \path{Audit.lean},
+fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
+final replay theorems. Their dependencies are confined to
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
+and audits with:
+\begin{verbatim}
+make verify-full WORKERS=2
+\end{verbatim}
+The module guide is \path{FiveColour/README.md}.
+
+A Mathlib-only comparator challenge states the corner problem geometrically,
+restating the library's definitions locally. It covers only the corner
+problem: the cuboid statements rest on the definitions in
+\path{FiveColour/BoxModel.lean}. Its equivalence with the development's
+model is proved by
+\path{FiveColour.Puzzle.hasSolution_iff} in
+\path{FiveColour/ComparatorBridge.lean}. The solution module applies the
+completed threshold theorem. A full external comparator pass remains
+unconfirmed; it is separate from the completed Lean proof.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{MacMahon} P.~A.~MacMahon,
+\emph{New Mathematical Pastimes}, Cambridge University Press (1921).
+\href{https://archive.org/details/newmathematicalp00macmuoft}{Digitised edition}.
+\bibitem{BES} E.~Berkove, A.~Eickemeyer and M.~Schulman,
+\emph{The 4-Color Cubes Puzzle}, Integers \textbf{18} (2018), A68.
+\href{https://doi.org/10.5281/zenodo.10680216}{doi:\nolinkurl{10.5281/zenodo.10680216}}.
+\href{https://math.colgate.edu/~integers/s68/s68.pdf}{Journal PDF}.
+\bibitem{Hall} P.~Hall, \emph{On Representatives of Subsets},
+Journal of the London Mathematical Society \textbf{s1-10}(1) (1935), 26--30.
+\href{https://doi.org/10.1112/jlms/s1-10.37.26}{doi:\nolinkurl{10.1112/jlms/s1-10.37.26}}.
+\bibitem{EdmondsKarp} J.~Edmonds and R.~M.~Karp,
+\emph{Theoretical Improvements in Algorithmic Efficiency for Network Flow Problems},
+Journal of the ACM \textbf{19}(2) (1972), 248--264.
+\href{https://doi.org/10.1145/321694.321699}{doi:\nolinkurl{10.1145/321694.321699}}.
+\bibitem{FourToThree} J.~Davies,
+\emph{Three-colour solutions from four-colour cubes}, manuscript (2026).
+\href{https://github.com/jasondavies/four-to-three-colour-cubes}{Accompanying repository}.
+\bibitem{ColourCubes} J.~Davies,
+\texttt{colour-\allowbreak cubes-\allowbreak core}: palette-independent Lean definitions and proofs
+for face-coloured cubes, Lean library (2026).
+Release \href{https://github.com/jasondavies/colour-cubes-core/tree/v1.0.0}{\texttt{v1.0.0}},
+\url{https://github.com/jasondavies/colour-cubes-core}.
+\bibitem{Lean4} L.~de Moura and S.~Ullrich,
+\emph{The Lean 4 Theorem Prover and Programming Language},
+in Automated Deduction---CADE~28, LNCS \textbf{12699}, Springer (2021), 625--635.
+\href{https://doi.org/10.1007/978-3-030-79876-5_37}{doi:\nolinkurl{10.1007/978-3-030-79876-5_37}}.
+\bibitem{mathlib} The mathlib Community, \emph{The Lean Mathematical Library},
+in Proceedings of CPP~2020, ACM (2020), 367--381.
+\href{https://doi.org/10.1145/3372885.3373824}{doi:\nolinkurl{10.1145/3372885.3373824}}.
+\href{https://arxiv.org/abs/1910.09336}{arXiv:1910.09336}.
+\end{thebibliography}
+\end{document}

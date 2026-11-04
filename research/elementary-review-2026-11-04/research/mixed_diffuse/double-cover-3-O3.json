@@ -1,0 +1,185 @@
+[
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5
+    ],
+    "opps": [],
+    "size": 3,
+    "O": 3,
+    "tested": 252,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.05231602399726398
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "size": 3,
+    "O": 3,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.011469337005109992
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        3,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      10,
+      17
+    ],
+    "opps": [],
+    "size": 3,
+    "O": 3,
+    "tested": 2198,
+    "oppfail": 104,
+    "loopkill": 104,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.47110338699712884
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      13,
+      14
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "size": 3,
+    "O": 3,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.03342420799890533
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ],
+      [
+        "t",
+        3,
+        2
+      ]
+    ],
+    "orbit": 8,
+    "classes": [],
+    "opps": [],
+    "size": 3,
+    "O": 3,
+    "tested": 0,
+    "oppfail": 0,
+    "loopkill": 0,
+    "cliquekill": 0,
+    "fullkill": 0,
+    "survivors": [],
+    "noclique": [],
+    "examples": [],
+    "seconds": 0.00512444199557649
+  }
+]

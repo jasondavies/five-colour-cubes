@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "explicit_assignments": 13,
+  "normalized_support_types": 3,
+  "normalized_weight_placements": 18,
+  "assumed_own_loop_checks": 36,
+  "proof_dependency": false
+}

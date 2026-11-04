@@ -1,0 +1,154 @@
+{
+  "status": "all checks passed",
+  "three_corner_covers": [
+    {
+      "H": [
+        [
+          "t",
+          0,
+          2
+        ],
+        [
+          "t",
+          0,
+          3
+        ],
+        [
+          "t",
+          0,
+          4
+        ]
+      ],
+      "opposite_sources": [
+        [
+          65,
+          1
+        ]
+      ],
+      "coarse_vectors": 11662,
+      "opposite_failures": 24,
+      "loop_eliminations": 21,
+      "clique_eliminations": 3
+    },
+    {
+      "H": [
+        [
+          "t",
+          0,
+          2
+        ],
+        [
+          "t",
+          0,
+          3
+        ],
+        [
+          "t",
+          1,
+          2
+        ]
+      ],
+      "opposite_sources": [
+        [
+          73,
+          1
+        ]
+      ],
+      "coarse_vectors": 1208,
+      "opposite_failures": 8,
+      "loop_eliminations": 7,
+      "clique_eliminations": 1
+    },
+    {
+      "H": [
+        [
+          "t",
+          0,
+          2
+        ],
+        [
+          "t",
+          0,
+          3
+        ],
+        [
+          "t",
+          1,
+          2
+        ]
+      ],
+      "opposite_sources": [
+        [
+          65,
+          1
+        ]
+      ],
+      "coarse_vectors": 1208,
+      "opposite_failures": 0,
+      "loop_eliminations": 0,
+      "clique_eliminations": 0
+    },
+    {
+      "H": [
+        [
+          "t",
+          0,
+          2
+        ],
+        [
+          "t",
+          0,
+          3
+        ],
+        [
+          "t",
+          1,
+          4
+        ]
+      ],
+      "opposite_sources": [
+        [
+          71,
+          1
+        ]
+      ],
+      "coarse_vectors": 1208,
+      "opposite_failures": 0,
+      "loop_eliminations": 0,
+      "clique_eliminations": 0
+    },
+    {
+      "H": [
+        [
+          "t",
+          0,
+          2
+        ],
+        [
+          "t",
+          0,
+          3
+        ],
+        [
+          "t",
+          1,
+          4
+        ]
+      ],
+      "opposite_sources": [
+        [
+          65,
+          1
+        ]
+      ],
+      "coarse_vectors": 1208,
+      "opposite_failures": 0,
+      "loop_eliminations": 0,
+      "clique_eliminations": 0
+    }
+  ],
+  "path_vectors": 1222,
+  "path_support_family_reductions": 24,
+  "repeated_colour_triangles": 3,
+  "missing_pair_bounds_used": false
+}

@@ -1,0 +1,12 @@
+{
+  "status": "all local hand-proof assertions checked",
+  "checks": {
+    "4A+3Z+O": 300,
+    "3A+3Z+2O": 2400,
+    "3A+4Z+O": 525,
+    "4A+2Z+2distinctO": 1050,
+    "3A+2Z+3diffuseO": 6650,
+    "four-opposite three-corner cores with two helpers": 290,
+    "homogeneous-O2 repeated-colour triangles": 3
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "status": "exhaustive in the independently reconstructed directed-corner model",
+  "core": [
+    0,
+    1,
+    2,
+    45,
+    46,
+    47
+  ],
+  "total": 13,
+  "nodes_by_size": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    75,
+    2850,
+    6595,
+    12190,
+    8861,
+    3058,
+    706
+  ],
+  "soluble_prefixes": 30651,
+  "failing_thirteen_source_extensions": [
+    {
+      "extra_sources": [
+        18,
+        18,
+        18,
+        36,
+        36,
+        36,
+        62
+      ],
+      "own_completions": [
+        false,
+        true
+      ],
+      "private_pair_hits": [
+        false,
+        true
+      ]
+    },
+    {
+      "extra_sources": [
+        18,
+        18,
+        18,
+        36,
+        36,
+        36,
+        65
+      ],
+      "own_completions": [
+        false,
+        true
+      ],
+      "private_pair_hits": [
+        false,
+        true
+      ]
+    },
+    {
+      "extra_sources": [
+        18,
+        18,
+        18,
+        36,
+        36,
+        36,
+        72
+      ],
+      "own_completions": [
+        false,
+        true
+      ],
+      "private_pair_hits": [
+        false,
+        true
+      ]
+    },
+    {
+      "extra_sources": [
+        18,
+        18,
+        18,
+        36,
+        62,
+        62,
+        62
+      ],
+      "own_completions": [
+        false,
+        true
+      ],
+      "private_pair_hits": [
+        false,
+        true
+      ]
+    },
+    {
+      "extra_sources": [
+        18,
+        36,
+        36,
+        36,
+        65,
+        65,
+        65
+      ],
+      "own_completions": [
+        false,
+        true
+      ],
+      "private_pair_hits": [
+        false,
+        true
+      ]
+    },
+    {
+      "extra_sources": [
+        53,
+        53,
+        53,
+        59,
+        59,
+        59,
+        66
+      ],
+      "own_completions": [
+        true,
+        false
+      ],
+      "private_pair_hits": [
+        true,
+        false
+      ]
+    },
+    {
+      "extra_sources": [
+        53,
+        53,
+        53,
+        59,
+        59,
+        59,
+        69
+      ],
+      "own_completions": [
+        true,
+        false
+      ],
+      "private_pair_hits": [
+        true,
+        false
+      ]
+    },
+    {
+      "extra_sources": [
+        53,
+        53,
+        53,
+        59,
+        59,
+        59,
+        72
+      ],
+      "own_completions": [
+        true,
+        false
+      ],
+      "private_pair_hits": [
+        true,
+        false
+      ]
+    },
+    {
+      "extra_sources": [
+        53,
+        53,
+        53,
+        59,
+        66,
+        66,
+        66
+      ],
+      "own_completions": [
+        true,
+        false
+      ],
+      "private_pair_hits": [
+        true,
+        false
+      ]
+    },
+    {
+      "extra_sources": [
+        53,
+        59,
+        59,
+        59,
+        69,
+        69,
+        69
+      ],
+      "own_completions": [
+        true,
+        false
+      ],
+      "private_pair_hits": [
+        true,
+        false
+      ]
+    }
+  ],
+  "two_own_completion_failures": 0,
+  "sharp_twelve_source_counterexample": [
+    0,
+    1,
+    2,
+    45,
+    46,
+    47,
+    18,
+    18,
+    18,
+    36,
+    36,
+    63
+  ],
+  "seconds": 3.0094553898088634,
+  "scope": "Computational verification of the nested core. The general reduction requires the written normalization and repeat-restoration argument. No elementary proof of the nested bound or Lean formalisation is claimed."
+}

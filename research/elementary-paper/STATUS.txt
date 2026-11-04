@@ -1,0 +1,83 @@
+Elementary-proof consolidation draft — 4 November 2026
+
+Disposition
+-----------
+The user chose to keep this separate and shorten it before replacing the
+publication proof. No production manuscript or Lean source has been changed.
+The production baseline is recorded in baseline.json. The research archive
+and each imported argument are identified by hashes in appendix-manifest.json.
+
+Current documents
+-----------------
+paper/five-colour-cubes.pdf: 24-page proposed main article.
+paper/five-colour-elementary-appendix.pdf: 154-page mathematical appendix draft.
+paper/certificate-supplement.pdf: 6-page alternative certificate proof.
+
+All three compile with pdfLaTeX/latexmk. No unresolved references or duplicate
+labels remain. The main article has one minor 4.32pt overfull line. Layout
+inspection of every page and final mathematical dependency review remain.
+
+The main draft retains the cuboid classification and existing three-variety
+lower bound, brings the independent eight-plus-three lemma forward, and gives
+the direct fifteen-source synthesis, compression argument and repeated-colour
+construction. It distinguishes the elementary prose route from the existing
+certificate-based Lean route. The secondary few-varieties result is explicitly
+qualified as using finite checks.
+
+Length and editorial limitations
+-------------------------------
+The first extraction reached 86 research notes and roughly 103,000 words.
+Removing historical material and unused numerical branches left 70 arguments
+and roughly 78,000 words (165 pages). Sharing the pure and mixed two-own-loop
+constructions has removed two further pages. The retained arguments remain
+far too long to call this a polished publication proof.
+
+This is an editorial extraction, not a new proof certification. Explicit file
+references resolve, but that does not establish all implicit dependencies or
+their acyclicity. Statements that say the appendix supplies the full proof
+express the draft's intended structure, not a completed independent audit of
+the entire 163-page document. Do not promote the draft without that audit.
+
+The appendix preserves local numbered divisions and defines the opposite
+variety names used in the tables. References in the main article identify
+the principal appendix argument numbers. The location table is generated automatically when arguments are reordered.
+DEPENDENCIES.txt records the reviewed dependencies.
+
+Bounded simplification pass completed
+------------------------------------
+See ASSESSMENT.txt for the publication recommendation and its limits.
+The pass reduced 70 arguments / 77,141 words / 163 pages to
+66 arguments / 72,321 words / 154 pages. It merged private-corner proofs,
+removed duplicate constructions, weakened the butterfly lemma to its needed
+cap-three version, and restored one necessary lemma lost in extraction.
+The recorded dependency graph is ordered and acyclic, including selected
+implicit uses reviewed during this pass. This is not a complete proof audit.
+
+Recommendation: keep the current publication proof; preserve this separate
+draft. Further large reductions would require mathematical reorganisation,
+not merely another round of editing. No production replacement was made.
+
+Reproduction
+------------
+From the review checkout root:
+  python3 research/elementary-paper/tools/simplify_dependencies.py
+  python3 research/elementary-paper/tools/assemble_article.py
+  python3 research/elementary-paper/tools/assemble_appendix.py
+Then, from research/elementary-paper/paper:
+  latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
+  latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-elementary-appendix.tex
+  latexmk -pdf -interaction=nonstopmode -halt-on-error certificate-supplement.tex
+
+assemble_article.py reads the unchanged production manuscript in paper/.
+assemble_appendix.py reads the extracted research bundle and editorial overrides.
+The handwritten elementary-corners.tex is not overwritten by either generator.
+Original research notes are unchanged. Edited argument text is kept separately
+under overrides/ and hashed alongside the original in appendix-manifest.json.
+
+Separate classification formalisation
+------------------------------------
+The exhaustive Lean classification replay continues independently. At this
+checkpoint, 309/357 roots had passed and no failures were recorded. This is
+not completion of the unconditional classification or final axiom audit.
+This is a historical checkpoint, not a current completion claim. The separate
+classification work and live replay are not included in this review branch. The new elementary route has not been formalised in Lean.

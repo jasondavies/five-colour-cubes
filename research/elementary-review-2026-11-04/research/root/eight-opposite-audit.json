@@ -1,0 +1,14 @@
+{
+  "claim": "Every eight-opposite inventory with variety multiplicities at most two assembles an opposite target",
+  "checker": "research/root/check_eight_opposite.cpp",
+  "inventories_checked": 157950,
+  "failures": 0,
+  "inventories_by_number_of_doubled_varieties": {
+    "0": 6435,
+    "1": 45045,
+    "2": 75075,
+    "3": 30030,
+    "4": 1365
+  },
+  "role": "Independent computational audit, not a premise of the written elementary proof"
+}

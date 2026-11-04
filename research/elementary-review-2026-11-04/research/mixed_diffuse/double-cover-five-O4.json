@@ -1,0 +1,874 @@
+[
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        2,
+        4
+      ],
+      [
+        "t",
+        3,
+        1
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      2,
+      5,
+      7,
+      8,
+      13,
+      14,
+      19
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "total_o": 4,
+    "patterns": [
+      {
+        "o": [
+          0,
+          2
+        ],
+        "tested": 16200,
+        "oppfail": 57,
+        "loopkill": 55,
+        "cliquekill": 2,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          1
+        ],
+        "tested": 16200,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          2,
+          0
+        ],
+        "tested": 16200,
+        "oppfail": 57,
+        "loopkill": 55,
+        "cliquekill": 2,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 4.27850442899944
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        3,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      4,
+      5,
+      10,
+      17
+    ],
+    "opps": [
+      64,
+      67,
+      72,
+      73,
+      74
+    ],
+    "total_o": 4,
+    "patterns": [
+      {
+        "o": [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "tested": 441,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "tested": 512,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        "tested": 551,
+        "oppfail": 9,
+        "loopkill": 9,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "tested": 512,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        "tested": 551,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "tested": 551,
+        "oppfail": 9,
+        "loopkill": 9,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "tested": 441,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "tested": 512,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "tested": 512,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "tested": 441,
+        "oppfail": 9,
+        "loopkill": 9,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "tested": 441,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "tested": 512,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        "tested": 512,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "tested": 441,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "tested": 441,
+        "oppfail": 9,
+        "loopkill": 9,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 0.7280819340012386
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        1
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5,
+      12,
+      15
+    ],
+    "opps": [
+      67,
+      72
+    ],
+    "total_o": 4,
+    "patterns": [
+      {
+        "o": [
+          0,
+          2
+        ],
+        "tested": 104,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          1
+        ],
+        "tested": 104,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          2,
+          0
+        ],
+        "tested": 104,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 0.028712044997519115
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        2
+      ],
+      [
+        "t",
+        4,
+        1
+      ]
+    ],
+    "orbit": 8,
+    "classes": [
+      0,
+      5,
+      10,
+      11,
+      16,
+      17
+    ],
+    "opps": [
+      61,
+      64,
+      68,
+      69,
+      73
+    ],
+    "total_o": 4,
+    "patterns": [
+      {
+        "o": [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "tested": 1770,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "tested": 1859,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        "tested": 1782,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "tested": 1770,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        "tested": 1859,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "tested": 1770,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "tested": 1859,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "tested": 1782,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "tested": 1859,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "tested": 1782,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "tested": 1694,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "tested": 1704,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        "tested": 1694,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "tested": 1704,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "tested": 1539,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 1.9855446859983203
+  },
+  {
+    "corners": [
+      [
+        "t",
+        1,
+        3
+      ],
+      [
+        "t",
+        1,
+        4
+      ],
+      [
+        "t",
+        2,
+        3
+      ],
+      [
+        "t",
+        3,
+        2
+      ],
+      [
+        "t",
+        4,
+        2
+      ]
+    ],
+    "orbit": 16,
+    "classes": [
+      0,
+      3,
+      5,
+      10,
+      12,
+      15,
+      17
+    ],
+    "opps": [
+      64,
+      73
+    ],
+    "total_o": 4,
+    "patterns": [
+      {
+        "o": [
+          0,
+          2
+        ],
+        "tested": 6146,
+        "oppfail": 9,
+        "loopkill": 9,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          1,
+          1
+        ],
+        "tested": 6146,
+        "oppfail": 0,
+        "loopkill": 0,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      },
+      {
+        "o": [
+          2,
+          0
+        ],
+        "tested": 6146,
+        "oppfail": 18,
+        "loopkill": 18,
+        "cliquekill": 0,
+        "fullkill": 0,
+        "maxnodes": 0,
+        "survivors": [],
+        "noclique": []
+      }
+    ],
+    "seconds": 1.5688413260031666
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "opposite_pair": [
+      71,
+      73
+    ],
+    "opposite_fails": 14,
+    "full_fails": [],
+    "clique_closed": 14
+  },
+  {
+    "opposite_pair": [
+      73,
+      74
+    ],
+    "opposite_fails": 0,
+    "full_fails": [],
+    "clique_closed": 0
+  }
+]
