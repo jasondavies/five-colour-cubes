@@ -38,4 +38,18 @@ jobs:
       - name: Verify the complete proof and record its inputs
         env:
           LEAN_NUM_THREADS: "1"
-        run: /usr/bin/time -v make verify-full WORKERS=2
+        run: |
+          mkdir -p build
+          /usr/bin/time -v -o build/verification-resources.txt make verify-full WORKERS=2
+      - name: Retain verification evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: verification-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            build/verification/
+            build/checks/
+            build/five-colour-chunks/ProjectedChunks/
+            build/verification-resources.txt
+          if-no-files-found: warn
+          retention-days: 90

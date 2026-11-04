@@ -148,8 +148,8 @@ The retained archive contains **499,829 instructions in 279 certificates**,
 compressed to about 306 KiB. Lean checks them in 4,786 pieces of at most 128
 instructions, with proved composition and exact boundary checks. The unprojected
 11,599,651-instruction archive over all 357 roots, partial replay routes, duplicate
-implementations and historical solver reports have been retired to Git history. The **357 root
-definitions remain necessary**: the current proof derives its smaller cover
+implementations and historical solver reports have been retired to Git history.
+The **357 root definitions remain necessary**: the current proof derives its smaller cover
 from them. See [data provenance](data/README.md) and the
 [formalisation guide](FiveColour/README.md).
 
@@ -217,14 +217,20 @@ The shared [colour-cubes-core](https://github.com/jasondavies/colour-cubes-core)
 library supplies the physical model, proper rotations and generic geometry.
 No companion paper's threshold theorem is imported. The dependency is bundled
 as its pinned commit and complete source tree in a shallow Git bundle; Lean and Mathlib still require
-installation. The generic completion argument has the provenance described
-in the paper and [formalization.yaml](formalization.yaml).
+installation. The generic completion argument is adapted from the companion
+[four-to-three paper](https://hexagonmath.org/2611.00070v1); its provenance is
+described in the paper and [formalization.yaml](formalization.yaml).
 
 Ordinary CI runs `make check` and caches project builds. The manually triggered
 [full verification workflow](.github/workflows/full-replay.yml) runs
 `make verify-full` from a fresh checkout, with two workers and a six-hour limit.
 Its complete run includes the unconditional cuboid results. Neither workflow
 claims an external-kernel comparator pass.
+The full workflow uploads verification records, stage and case logs, independent
+audit reports and GNU time measurements as a `verification-<commit>-<attempt>`
+artifact, including evidence from failed runs. Artifacts are retained for 90 days;
+download the successful record for the permanent submission archive. GNU time's
+maximum RSS is the largest process peak, not total concurrent build memory.
 
 ## Optional external comparison
 

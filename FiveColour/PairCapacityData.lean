@@ -26,6 +26,8 @@ lemma pair_witnesses_valid : ∀ (kind : Fin 2) (m : Fin 8) (i : Fin 75),
       (pairSplit kind m i).val ≤ m.val ∧ canonicalAnchor kind ≠ i ∧
         PairMaskCriterion (canonicalAnchor kind) i (pairTarget kind m i)
           (pairSplit kind m i).val := by
-  decide +kernel
+  -- Bound kernel-evaluation memory by checking one anchor/multiplicity at a time.
+  intro kind m
+  fin_cases kind <;> fin_cases m <;> decide +kernel
 
 end FiveColour.Physical
