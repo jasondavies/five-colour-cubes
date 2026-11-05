@@ -1,4 +1,8 @@
 module
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.Ring
+public import Mathlib.Data.Fintype.Sigma
 public import FiveColour.FrameCompletion
 public import FiveColour.RareGeometry
 @[expose] public section

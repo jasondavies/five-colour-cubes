@@ -33,6 +33,7 @@ def generate(root, check=False):
     sources = [vector([str(sum(1 << i for i, m in enumerate(row) if m & (1 << k)))
                        for k in range(8)]) for row in rows]
     emit('PackedHallData.lean', '''module
+public import Mathlib.Data.Fin.VecNotation
 public import FiveColour.Incidence
 @[expose] public section
 namespace FiveColour.Packed

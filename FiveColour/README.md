@@ -5,7 +5,7 @@ certificates, final theorem assembly and the axiom audit have passed.
 `Packed.ProjectedChunks.threshold15` and `sharpThreshold15` are unconditional
 proofs of `Physical.Threshold15` and `Physical.SharpThreshold15`.
 
-The default build checks the geometry, reductions, checking infrastructure and
+The default Lake target (`lake build`) checks the geometry, reductions, checking infrastructure and
 checkpoint rejection controls. Reproduce the complete proof, including the
 unconditional cuboid results, with `make verify-full`.
 
@@ -51,6 +51,7 @@ unconditional cuboid results, with `make verify-full`.
 | `PackedVerified.lean` | Sound fast checking with guarded split values. |
 | `PackedCalibration*.lean` | Kernel calibration of all 19,125 Hall-cut weights against their masks. |
 | `CertificateControls.lean` | Kernel-checked positive and negative controls for checkpoint reuse and split bounds. |
+| `PackedPruning.lean` | Root-specific cut coverage, fixed-coordinate reduction and sound transfer to the original families. |
 | `PackedChunks.lean` | Composition of checked chunks with exact boundary comparisons and supplied exclusion proofs. |
 
 ## Correspondence with the paper

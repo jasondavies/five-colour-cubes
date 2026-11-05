@@ -71,6 +71,23 @@ can affect this coefficient extraction. Lean proves the identity, decoding,
 coordinate updates and equivalence with the integer inequalities, and
 checks all 19,125 neighbourhood weights.
 
+For larger certificate cases, the generated checker specialises the cut
+families to the initial root. It discards alternatives that fail
+\eqref{eq:possible}, removes fixed coordinates (subtracting their mass from
+the right-hand side), and merges equal remaining neighbourhoods by keeping
+the largest right-hand side. Each original feasible cut has a checked witness
+pointing to a weaker replacement. Concretely, a cut $x(C)\le b_C$ may
+be replaced by $x(D)\le b_D$ when
+\[
+ D\subseteq C,\qquad b_C+\ell(D)\le b_D+\ell(C).
+\]
+Indeed $x(C\setminus D)\ge\ell(C\setminus D)$ for vectors in the root.
+Replacement weights are calibrated in the kernel. The theorem \path{FiveColour.Packed.excludes_of_covered} in
+\path{FiveColour/PackedPruning.lean} transfers the resulting exclusion back
+to the original families at the root; it does not assume that intermediate
+split boxes are contained in that root. Small cases retain the original
+families to avoid the additional validation cost.
+
 The 279 certificates are split into 4,786 chunks of at most 128
 instructions. Composition requires exact boundary-vector agreement and a
 proof for every referenced box; the exporter is untrusted. All chunks and
@@ -130,7 +147,7 @@ complexity bound in Section~\ref{sec:construction} are mathematical
 deductions, not additional Lean claims.
 
 \subsection{Reproduction}
-The dependency audits cover 129 declarations listed in \path{Audit.lean},
+The dependency audits cover 130 declarations listed in \path{Audit.lean},
 fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
@@ -139,6 +156,32 @@ and audits with:
 make verify-full WORKERS=2
 \end{verbatim}
 The module guide is \path{FiveColour/README.md}.
+
+The verification record checks every installed dependency's revision and
+tracked bytes against its pinned Git tree before and after the run. It also
+records source hashes, tool versions, compiler flags and concurrency settings.
+Ignored build caches are permitted; modified dependency sources are rejected.
+
+A fresh baseline run at revision \texttt{3922ac12d784}, before the cut-list and
+import optimisations described above, used an AMD Ryzen 7 9700X (8 cores,
+16 logical CPUs), 249\,GiB RAM, eight certificate workers and one Lean thread
+per process. Only the pinned public mathlib and transitive dependency caches
+were reused; project and shared cube-library artifacts were rebuilt.
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Stage & Wall time\\
+\midrule
+Shared Lean library and audit & 54.5 min\\
+Certificate replay and final corner theorem & 44.9 min\\
+Complete verification command & 99.6 min\\
+\bottomrule
+\end{tabular}
+\end{center}
+Peak sampled combined process-tree proportional set size (PSS) was
+22.5\,GiB, sampled every two seconds; this accounts for shared pages proportionally. Summed RSS was
+37.4\,GiB and double-counts shared pages. These are baseline measurements,
+not timings for the optimised revision or a cached rerun.
 
 A Mathlib-only comparator challenge states the corner problem geometrically,
 restating the library's definitions locally. It covers only the corner

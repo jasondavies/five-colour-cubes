@@ -1,5 +1,6 @@
 module
-public import Mathlib
+public import Mathlib.Combinatorics.Hall.Finite
+public import Mathlib.Tactic.Push
 @[expose] public section
 namespace FiveColour.FrameHall
 variable {P I : Type*} [Fintype P] [Fintype I] [DecidableEq P] [DecidableEq I]

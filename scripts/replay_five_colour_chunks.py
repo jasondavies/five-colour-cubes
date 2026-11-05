@@ -105,8 +105,10 @@ def main():
                                'validation': 'Lake aggregate dependency traces'} for case in selected})
         print('Lake validated the cached complete threshold and all 279 cases.', flush=True)
     else:
-        subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration',
-                        'FiveColour.PackedChunks', 'FiveColour.ProjectedBridge'], cwd=LEAN, check=True)
+        shared = ['FiveColour.PackedCalibration', 'FiveColour.PackedPruning']
+        if args.cases is None:
+            shared.append('FiveColour.ProjectedBridge')
+        subprocess.run(['lake', 'build', *shared], cwd=LEAN, check=True)
         progress('running')
         # Check cached artifacts first, then schedule large fresh cases to reduce
         # the tail. Lake still verifies dependency traces for every apparent hit.

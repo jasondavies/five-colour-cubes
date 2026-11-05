@@ -1,4 +1,6 @@
 module
+public import Mathlib.Data.Fintype.Sum
+public import Mathlib.Data.Fintype.Prod
 public import FiveColour.Matching
 @[expose] public section
 namespace FiveColour.Physical

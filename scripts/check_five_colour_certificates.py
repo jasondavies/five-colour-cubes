@@ -45,6 +45,20 @@ def main():
     assert int(actual[0])==357 and actual[1:]==expected
     with tempfile.TemporaryDirectory(prefix='q5-replay-') as tmp:
         tmp=Path(tmp)
+        # Malformed geometry must fail before any uninitialised value is used.
+        tokens=GEOMETRY.read_text().split()
+        malformed=['', 'not-a-number', '74', '75\n0',
+                   ' '.join(tokens[:451]),
+                   ' '.join(tokens[:1]+['5']+tokens[2:]),
+                   ' '.join(tokens[:451]+['256']+tokens[452:])]
+        for contents in malformed:
+            badgeometry=tmp/'geometry.txt'
+            badgeometry.write_text(contents)
+            status=subprocess.run([str(CHECK),str(badgeometry),str(CASES),
+                str(tmp/'unused-'),str(tmp/'geometry-result.json'),'1'],
+                stdout=subprocess.DEVNULL).returncode
+            if status!=1 or (tmp/'geometry-result.json').exists():
+                raise RuntimeError('malformed geometry reached certificate processing')
         with tarfile.open(ARCHIVE) as tar:
             members=tar.getmembers()
             assert {m.name for m in members}=={f'case-{i}.q5p' for i in range(279)}
@@ -66,10 +80,13 @@ def main():
         badcases=tmp/'rejection-cases.txt'
         badcases.write_text('80\n'+'\n'.join(badrows)+'\n')
         for i,data in enumerate(variants):(tmp/f'reject-{i}.q5p').write_bytes(data)
-        assert replay(badcases,tmp/'reject-',tmp/'rejections.json',a.workers)!=0
+        rejection_status=replay(badcases,tmp/'reject-',tmp/'rejections.json',a.workers)
+        if rejection_status!=1:
+            raise RuntimeError(f'unexpected checker exit status for rejection controls: {rejection_status}')
         rejected=json.loads((tmp/'rejections.json').read_text())
-        assert len(rejected)==80 and all(not r['accepted'] for r in rejected)
-    summary=dict(certificates_accepted=279,rejection_controls=80,
+        if len(rejected)!=80 or {r['case'] for r in rejected}!=set(range(80)) or any(r['accepted'] for r in rejected):
+            raise RuntimeError('checker failed to reject every negative control')
+    summary=dict(certificates_accepted=279,rejection_controls=80,geometry_rejection_controls=len(malformed),
                  archive_sha256=hashlib.sha256(ARCHIVE.read_bytes()).hexdigest(),
                  proof_status='C++ audit; the full command separately checks the Lean proof')
     (REPORT/'q5-certificate-summary.json').write_text(json.dumps(summary,indent=2)+'\n')

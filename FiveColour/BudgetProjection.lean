@@ -1,4 +1,5 @@
 module
+public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
 public import FiveColour.BoxCertificates
 @[expose] public section
 namespace FiveColour.Certificate

@@ -47,6 +47,7 @@ import FiveColour
 #print axioms FiveColour.Certificate.check_sound
 #print axioms FiveColour.Packed.packed_subset_sum
 #print axioms FiveColour.Packed.Verified.check_sound
+#print axioms FiveColour.Packed.excludes_of_covered
 #print axioms FiveColour.Packed.Chunks.check_sound
 #print axioms FiveColour.Packed.cuts_valid
 #print axioms FiveColour.Puzzle.hasSolution_iff

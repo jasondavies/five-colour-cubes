@@ -1,4 +1,5 @@
 module
+public import Mathlib.Tactic.Linarith
 public import FiveColour.FramePools
 public import FiveColour.AnchorKinds
 public import FiveColour.Multiplicity

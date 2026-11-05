@@ -1,5 +1,8 @@
 module
 public import FiveColour.PackedCore
+public import Mathlib.Tactic.Ring
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Algebra.BigOperators.Ring.Finset
 @[expose] public section
 namespace FiveColour.Packed
 open scoped BigOperators

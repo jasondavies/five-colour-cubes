@@ -12,6 +12,7 @@ import subprocess
 import tarfile
 import tempfile
 from generate_five_colour_packed import ROOT, RESULTS, cut
+from generate_five_colour_reduced import reduction
 
 DEST = ROOT / 'FiveColour/ProjectedChunks'
 
@@ -54,21 +55,36 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
     return text
 
 
-def generate(case, row, path, limit, dest=DEST, group="ProjectedChunks"):
+def generate(case, row, path, limit, dest=DEST, group="ProjectedChunks", cut_mode="auto"):
+    if cut_mode not in ("auto", "original", "reduced"):
+        raise ValueError('invalid cut mode')
+    checkpoints = path.read_text()
+    commands = sum(int(line.split('\t')[3]) for line in checkpoints.splitlines())
+    # The root-coverage and calibration proofs have a fixed upfront cost.
+    # Preserve the original checker for small cases where it is faster.
+    reduced = cut_mode == "reduced" or (cut_mode == "auto" and commands >= 4096)
+    families = 'checkedFamilies' if reduced else 'families'
+    pruning_import = 'public import FiveColour.PackedPruning\n' if reduced else ''
     dest.mkdir(parents=True, exist_ok=True)
     prefix = f'FiveColour.Packed.{group}.Case{case}'
     text = f'''module
 public import FiveColour.PackedCalibration
 public import FiveColour.PackedChunks
-@[expose] public section
+{pruning_import}@[expose] public section
 namespace {prefix}
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 
 '''
     text += problem(row)
+    pruning_stats = {}
+    if reduced:
+        geometry = [list(map(int, line.split())) for line in
+                    (RESULTS / 'five-colour-geometry.txt').read_text().splitlines()[76:]]
+        declarations, pruning_stats = reduction(row, checkpoints, geometry)
+        text += declarations
     sizes = []
-    for line in path.read_text().splitlines():
+    for line in checkpoints.splitlines():
         ident, lo, hi, size, refs, proof = line.split('\t')
         ident, size = int(ident), int(size)
         refs = list(map(int, refs.split(','))) if refs else []
@@ -83,11 +99,11 @@ namespace Part{ident}
 def root : Box := ⟨{packed(lo)}, {packed(hi)}⟩
 def references : Fin {len(refs)} → Box := {reference_value}
 def proof : Chunks.Proof {len(refs)} := {proof}
-theorem accepted : Chunks.check {row[3]} families references root proof = true := by decide +kernel
+theorem accepted : Chunks.check {row[3]} {families} references root proof = true := by decide +kernel
 
 theorem root_valid : root.Valid := by decide +kernel
 
-theorem references_excluded : ∀ i, Chunks.Excludes {row[3]} families (references i) := by
+theorem references_excluded : ∀ i, Chunks.Excludes {row[3]} {families} (references i) := by
 '''
         if refs:
             text += '  intro i\n  fin_cases i\n'
@@ -95,20 +111,25 @@ theorem references_excluded : ∀ i, Chunks.Excludes {row[3]} families (referenc
         else:
             text += '  intro i\n  exact Fin.elim0 i\n'
         text += f'''
-theorem excludes : Chunks.Excludes {row[3]} families root :=
-  Chunks.check_sound {row[3]} families families_valid references references_excluded proof root root_valid accepted
+theorem excludes : Chunks.Excludes {row[3]} {families} root :=
+  Chunks.check_sound {row[3]} {families} {families}_valid references references_excluded proof root root_valid accepted
 end Part{ident}
 '''
     if not sizes:
         raise ValueError('empty chunk export')
+    endpoint = f'Part{len(sizes)-1}.excludes'
+    if reduced:
+        endpoint = (f'excludes_of_covered root (by decide +kernel) {row[3]} families '
+                    f'checkedFamilies families_valid checkedFamilies_valid checkedFamilies_cover {endpoint}')
     text += f'''
 /-- All chunk exclusions compose to the original concrete root. -/
-theorem excludes : Chunks.Excludes {row[3]} families root := Part{len(sizes)-1}.excludes
+theorem excludes : Chunks.Excludes {row[3]} families root := {endpoint}
 end {prefix}
 '''
     (dest / f'Case{case}.lean').write_text(text)
     return {'case': case, 'chunks': len(sizes), 'commands': sum(sizes),
-            'largest_chunk': max(sizes), 'smallest_chunk': min(sizes), 'limit': limit}
+            'largest_chunk': max(sizes), 'smallest_chunk': min(sizes), 'limit': limit,
+            'cut_mode': 'reduced' if reduced else 'original', **pruning_stats}
 
 
 def projected_aggregate(dest, cases, rows):
@@ -163,6 +184,8 @@ end {namespace}
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cut-mode', choices=['auto', 'original', 'reduced'], default='auto',
+                        help='auto reduces only cases with at least 4096 instructions')
     parser.add_argument('--workers', type=int, default=2, help='concurrent C++ exporters')
     args = parser.parse_args()
     if args.workers < 1:
@@ -185,7 +208,7 @@ def main():
             subprocess.run([str(ROOT / 'build/five_colour_chunks'),
                             str(RESULTS / 'five-colour-geometry.txt'), str(case_file),
                             str(raw), str(case), '128', str(tsv)], check=True, capture_output=True)
-            return generate(case, rows[case], tsv, 128)
+            return generate(case, rows[case], tsv, 128, cut_mode=args.cut_mode)
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
             stats = list(pool.map(export, cases))
     projected_aggregate(DEST, cases, rows)

@@ -1,4 +1,5 @@
 module
+public import Mathlib.Algebra.BigOperators.Ring.Finset
 public import FiveColour.Matching
 public import FiveColour.PhysicalIncidence
 @[expose] public section

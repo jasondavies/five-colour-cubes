@@ -7,6 +7,15 @@ export LEAN_NUM_THREADS
 
 all: verify-full
 
+# Export expanded Make settings without interpolating their contents into shell code.
+verification-config build/cxx-config.json: export VERIFY_CXX = $(CXX)
+verification-config build/cxx-config.json: export VERIFY_CXXFLAGS = $(CXXFLAGS)
+verification-config: export VERIFY_PYTHON = $(PYTHON)
+verification-config: export VERIFY_WORKERS = $(WORKERS)
+verification-config: export VERIFY_LEAN_NUM_THREADS = $(LEAN_NUM_THREADS)
+verification-config:
+	@$(PYTHON) -c 'import json,os; print(json.dumps({k:os.environ["VERIFY_"+k] for k in ("CXX","CXXFLAGS","PYTHON","WORKERS","LEAN_NUM_THREADS")}))'
+
 help:
 	@echo 'make verify-full   Complete proof, audits and source-bound verification record'
 	@echo 'make check         Geometry, certificates and Lean infrastructure (partial proof)'
@@ -15,11 +24,18 @@ help:
 	@echo 'make paper         Compile the manuscript PDF'
 	@echo 'WORKERS=2 defaults to two concurrent certificate cases; each uses one Lean thread'
 
-build/%: src/%.cpp
+# Preserve the stamp's mtime when the effective build configuration is unchanged.
+build/cxx-config.json: FORCE scripts/cpp_build_config.py
+	$(PYTHON) -S scripts/cpp_build_config.py $@
+
+FORCE:
+
+build/%: src/%.cpp build/cxx-config.json
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 check-code: build/check_five_colour_certificate build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair build/five_colour_box_geometry
+	@$(PYTHON) -c 'import sys; sys.exit(0 if __debug__ else "Checks require Python assertions; remove -O/PYTHONOPTIMIZE")'
 	build/five_colour_extensions
 	build/five_colour_rare_geometry
 	build/five_colour_fixed_pair
@@ -28,6 +44,7 @@ check-code: build/check_five_colour_certificate build/five_colour_extensions bui
 	$(PYTHON) -S scripts/generate_five_colour_support.py --check
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py
+	$(PYTHON) -S scripts/test_verification_state.py
 	$(PYTHON) -S scripts/generate_five_colour_incidence.py --check
 	$(PYTHON) -S scripts/generate_five_colour_packed.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
@@ -77,4 +94,4 @@ figure:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower comparator paper
+.PHONY: FORCE verification-config help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower comparator paper

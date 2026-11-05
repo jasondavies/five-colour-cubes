@@ -9,16 +9,19 @@ a network of constant size.
 
 \begin{proposition}[Compressed construction]\label{prop:construction}
 Given an explicit list of $q$ sources and $a,b,c\ge2$, one can find a
-frame, or report that none exists, in $O(q+L)$ time, where
-$L=4(a+b+c)-16$. A complete-box assembly can be found, or ruled out,
-in $O(q+abc)$ time. These bounds use the word-RAM model with the input
-sizes, dimensions and output indices fitting in a word. On collections
-covered by the corresponding threshold, the running time is $O(q)$.
+frame or a complete-box assembly, or report that none exists, in $O(q)$ time.
+This bound holds for every explicit input, including unsuccessful ones.
+It uses the word-RAM model with the input sizes, dimensions and output
+indices fitting in a word. Write $L=4(a+b+c)-16$ for the frame size.
 For sources given as 75 binary multiplicities, feasibility and a compressed
 assembly have polynomial bit complexity; expanding the placements costs
 the output size.
 \end{proposition}
 \begin{proof}
+Reject immediately if $q<L$, or if a complete box is requested and $q<abc$.
+Use $L=8+4((a-2)+(b-2)+(c-2))$ and capped nonnegative arithmetic
+for these tests, recording whether a demand exceeds $q$. Oversized demands
+need not be represented in a word.
 Classify each source among the 75 varieties by testing its 24 proper
 rotations, recording both its variety and a rotation to the representative.
 This takes $O(q)$ time and gives 75 multiplicities and lists of actual copies.
@@ -59,4 +62,6 @@ orientation. This takes $O(L)$ time. A complete box exists exactly when a
 frame exists and $q\ge abc$: fill face interiors with unused copies
 rotated to expose the required single colour, and fill the interior
 arbitrarily. Writing these placements takes $O(abc)$ time.
+After the initial rejection test, the number of placements is at most $q$,
+so both unsuccessful and successful inputs take $O(q)$ time.
 \end{proof}

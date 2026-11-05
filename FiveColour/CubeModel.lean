@@ -1,4 +1,5 @@
 module
+public import Mathlib.Tactic.Ring
 public import FiveColour.FrameGeometry
 @[expose] public section
 namespace FiveColour.Physical

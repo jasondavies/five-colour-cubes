@@ -5,11 +5,15 @@
 - [Interval checker](FiveColour/BoxCertificates.lean), [packed checker](FiveColour/PackedVerified.lean), and [chunk composition](FiveColour/PackedChunks.lean).
 - [Provenance and verification scope](formalization.yaml).
 
-**Every collection of fifteen cubes using all five fixed face colours contains
-eight that build a five-colour target. Fourteen need not suffice.** The target
+**Every collection of fifteen cubes, each using all five colours of a fixed
+palette, contains eight that build a five-colour target. Fourteen need not suffice.** The target
 is a 2×2×2 cube with monochromatic exterior faces using all five colours.
-Collections may repeat varieties; proper rotations are allowed and interior
-faces are unrestricted.
+A variety is a face colouring up to proper rotation. Collections may repeat
+varieties; proper rotations are allowed and interior faces are unrestricted.
+
+A frame consists of the eight corners and noncorner edge positions of a box.
+The thresholds F₅ and G₅ count available source cubes guaranteeing a frame or
+a complete box, respectively; an assembly may use fewer cubes than are available.
 
 **Every cuboid threshold is now determined**, for side lengths a, b, c ≥ 2:
 
@@ -22,9 +26,10 @@ at least 9. In particular, both sixteen-position frames, 2×2×4 and 2×3×3,
 need one spare source. A single three-variety obstruction proves this extra
 lower bound for both shapes.
 
-Every complete box can use exactly its volume of sources except 2×2×2,
-2×2×3 and 2×2×4, whose thresholds are 15, 15 and 17. Thus **any twenty cubes
-form a 3-frame, and any 27 cubes form a complete 3×3×3 cube**.
+For every shape except 2×2×2, 2×2×3 and 2×2×4, every collection of exactly
+abc sources can be assembled into the complete box. Those three exceptions
+have thresholds 15, 15 and 17. Thus **any twenty cubes form the frame of a
+3×3×3 cube, and any 27 cubes form a complete 3×3×3 cube**.
 
 | Box | Frame positions | F₅ | Volume | G₅ |
 |---|---:|---:|---:|---:|
@@ -40,9 +45,18 @@ Bold entries need spare sources. From side sum 9 on, both thresholds equal
 the number of positions.
 
 The extra term 2(a+b+c) + 1 comes from one collection for every shape:
-one U, τ+5 copies of V and τ+6 copies of W, where τ = a+b+c − 6. Only U,
-V and W can be targets, and each has more positions that only its own pool
-can fill than the pool has cubes.
+one U, τ+5 copies of V and τ+6 copies of W, where τ = a+b+c − 6. In face
+order `+x,-x,+y,-y,+z,-z`, these varieties are:
+
+```text
+U = (0,1,0,2,3,4)
+V = (0,1,1,2,3,4)
+W = (0,3,1,4,2,3)
+```
+
+Only U, V and W can be targets. Each has too many positions restricted to a
+particular source pool: U alone for target U, U together with V for target V,
+and W alone for target W.
 
 ![Why U + (τ+5)V + (τ+6)W fails: each possible target has more corner and edge positions that only its pool fits than the pool has cubes](paper/uniform-obstruction.svg)
 
@@ -56,8 +70,8 @@ exports the unconditional `FiveColour.Puzzle.box_frame_threshold` and
 
 The paper also gives a constructive algorithm: at most 450 fixed-size flow
 problems find a frame, with 225 configurations when two side lengths agree
-and 75 for a cube. Explicit construction is linear in the input and output
-sizes in the word-RAM model. This complexity result is a manuscript proof,
+and 75 for a cube. Decision and explicit construction take O(q) time for any
+list of q sources in the word-RAM model. This complexity result is a manuscript proof,
 not part of the Lean formalisation.
 
 With at most k source varieties, the exact corner threshold is **8 for k=1,
@@ -110,8 +124,13 @@ aliases for `replay-data` and `replay`; there is only one supported replay route
 
 `verify-full` records the source revision, working-tree changes (including
 removed files), source and generated-proof hashes, per-stage elapsed times, logs
-and final axiom reports under ignored `build/verification/`. Success requires
-unchanged sources throughout the run. It also works from an extracted review
+and final axiom reports under ignored `build/verification/`. Before and after
+verification it checks every installed dependency's HEAD, tracked bytes and file
+modes against its manifest pin, rejects dirty or additional nonignored sources,
+and records a SHA-256 digest of each source tree. Ignored build caches are allowed.
+It also records actual tool versions and effective Make settings, including the
+C++ compiler flags. Success requires unchanged project and dependency sources
+and tool settings. It also works from an extracted review
 archive, checking its source manifest. Archive a successful record with the
 exact submission source; do not commit machine-local verification logs.
 
@@ -160,6 +179,14 @@ of Hall alternatives. Kernel evaluation is substantially more expensive than
 running the compiled C++ checker. Chunking bounds each computation; it does not
 turn every instruction into a constant-cost primitive.
 
+For cases with at least 4,096 instructions, generated replay sources use
+root-specific cut lists: impossible alternatives are removed, fixed coordinates
+are subtracted, and equal residual neighbourhoods are merged. Lean checks the
+replacement weights and a coverage witness for every original alternative.
+The resulting exclusion is transferred back to the original root problem.
+Smaller cases retain the full lists because validating the reduction has an
+upfront cost. The packed base remains 1024.
+
 There are three different timing questions:
 
 - **Fresh build:** checks the geometry, reductions and certificates. This is the
@@ -185,6 +212,29 @@ For measurements on the retained archive, without reusing a cached case proof:
 ```sh
 python3 -S scripts/benchmark_five_colour_replay.py --case 120 --limits 128 256 512 --repeats 3
 ```
+
+To compare the original and reduced lists on the same certificate:
+
+```sh
+python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-modes original reduced --repeats 3
+```
+
+A representative largest-case trial on a Ryzen 7 9700X, with 128-instruction
+chunks and one Lean thread, gave:
+
+| Case 4 (51,652 instructions) | Wall time | Peak process RSS |
+| --- | ---: | ---: |
+| Original cut lists, narrow imports | 34.6 min | 2.86 GiB |
+| Reduced cut lists, narrow imports | 27.0 min | 3.33 GiB |
+
+Both were fresh case checks with shared dependencies cached and passed their
+axiom reports. Other checks ran concurrently; these are representative samples,
+not an isolated whole-project timing. Reduction saved about 22% of both wall
+and CPU time here, at a cost of roughly 0.5 GiB per process. On case 19, two
+runs per mode in alternating order reduced the median from 7.8 to 6.2 minutes
+(about 20%). Separately, narrowing
+the imports reduced case 120's measured peak from 2.58 to 1.71 GiB with similar
+runtime. Keep worker counts within the available memory.
 
 Results include wall/CPU time and peak memory under `build/replay-benchmark/`.
 These experiments reuse the shared checker dependencies and do not time a fresh

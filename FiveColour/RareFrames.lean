@@ -1,4 +1,5 @@
 module
+public import Mathlib.Algebra.BigOperators.Fin
 public import FiveColour.RareGeometry
 public import FiveColour.FiniteHall
 @[expose] public section

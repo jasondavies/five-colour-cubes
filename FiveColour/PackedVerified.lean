@@ -42,7 +42,8 @@ lemma merge_model (s t : Summary) :
     simp [Summary.model, merge, Certificate.Fast.merge]
   · ext i
     simp [Summary.model, merge, Certificate.Fast.merge]
-  · simp [Summary.model, merge, Certificate.Fast.merge]
+  · change ((max s.slack t.slack : Nat) : Int) = max (s.slack : Int) (t.slack : Int)
+    omega
   · change -((max s.gap t.gap : Nat) : Int) = min (-(s.gap : Int)) (-(t.gap : Int))
     omega
 

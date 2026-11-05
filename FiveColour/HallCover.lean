@@ -2,7 +2,6 @@ module
 public import FiveColour.FiniteHall
 @[expose] public section
 namespace FiveColour.FrameHall
-open scoped BigOperators
 
 /-- A failed corner matching produces the small cover used in the
 unbalanced eight-plus-three argument, directly from Hall's theorem. -/

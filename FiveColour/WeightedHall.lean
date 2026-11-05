@@ -1,4 +1,5 @@
 module
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 public import FiveColour.FiniteHall
 @[expose] public section
 namespace FiveColour.FrameHall

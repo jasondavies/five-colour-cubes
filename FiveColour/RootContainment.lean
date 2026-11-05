@@ -1,4 +1,5 @@
 module
+public import Mathlib.Tactic.Positivity
 public import FiveColour.CaseProblem
 @[expose] public section
 

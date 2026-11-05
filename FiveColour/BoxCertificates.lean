@@ -2,7 +2,6 @@ module
 
 public import Mathlib.Data.Finset.Card
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
-public import Mathlib.Tactic
 
 /-! A generic, kernel-checked basis for Hall interval certificates.
 This file does not yet assert the five-colour threshold. -/

@@ -92,7 +92,7 @@ set_option maxRecDepth 100000
 set_option maxHeartbeats 0
 namespace FiveColour.Physical
 ''' + proofs + '\nend FiveColour.Physical\n')
-    emit(root / 'FiveColour/CatalogueChecks.lean', 'module\n' +
+    emit(root / 'FiveColour/CatalogueChecks.lean', 'module\npublic import Mathlib.Tactic.FinCases\n' +
         ''.join(f'public import FiveColour.CatalogueChecks.Block{g}\n' for g in range(5)) +
         '\n@[expose] public section\nnamespace FiveColour.Physical\n' +
         'theorem raw_checks (b : Fin 125) : RawCheck b := by\n  fin_cases b\n' +

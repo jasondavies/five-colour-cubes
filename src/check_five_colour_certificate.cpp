@@ -133,10 +133,11 @@ struct Checker {
 };
 int main(int argc,char**argv) {
     if(argc!=6){std::cerr<<"GEOMETRY CASES PREFIX OUTPUT THREADS\n";return 1;}
-    std::ifstream geometry(argv[1]);int size,x;geometry>>size;if(size!=n)return 1;
-    for(int j=0;j<n*6;++j)geometry>>x;
+    std::ifstream geometry(argv[1]);int size,x;
+    if(!(geometry>>size)||size!=n)return 1;
+    for(int j=0;j<n*6;++j)if(!(geometry>>x)||x<0||x>=5)return 1;
     for(int t=0;t<n;++t)for(int i=0;i<n;++i) {
-        geometry>>x;if(x<0||x>255)return 1;
+        if(!(geometry>>x)||x<0||x>255)return 1;
         for(int d=1;d<256;++d)if(x&d)
             (i<64?neighbours[t][d].a:neighbours[t][d].b)|=uint64_t(1)<<(i%64);
     }

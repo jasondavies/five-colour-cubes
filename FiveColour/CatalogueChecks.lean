@@ -1,4 +1,5 @@
 module
+public import Mathlib.Tactic.FinCases
 public import FiveColour.CatalogueChecks.Block0
 public import FiveColour.CatalogueChecks.Block1
 public import FiveColour.CatalogueChecks.Block2

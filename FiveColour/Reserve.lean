@@ -1,5 +1,9 @@
 module
-public import Mathlib
+public import Mathlib.Data.Fintype.Pi
+public import Mathlib.Data.Fintype.Powerset
+public import Mathlib.Data.Finset.Max
+public import Mathlib.Data.Fintype.EquivFin
+public import Mathlib.Data.Fintype.BigOperators
 @[expose] public section
 namespace FiveColour.Reserve
 open scoped BigOperators
@@ -49,7 +53,7 @@ theorem exists_saturated (available : Finset I) (eligible : A → I → Prop) (c
     · intro b
       by_cases hb : b = a
       · subst b
-        simpa [R', Finset.card_insert_of_notMem (hni a)] using hlt
+        simpa [R', Finset.card_insert_of_notMem (hni a)] using (Nat.succ_le_of_lt hlt)
       · simpa [R', hb] using hv.2.1 b
     · intro b c hbc
       apply Finset.disjoint_left.mpr

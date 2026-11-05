@@ -1,4 +1,5 @@
 module
+public import Mathlib.Data.Fin.VecNotation
 public import FiveColour.Incidence
 @[expose] public section
 namespace FiveColour.Packed

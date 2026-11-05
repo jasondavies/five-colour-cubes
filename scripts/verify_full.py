@@ -14,6 +14,7 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+from verification_state import dependency_state, environment_state
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -63,13 +64,11 @@ def main():
     started = datetime.now(timezone.utc)
     output = ROOT / 'build/verification' / started.strftime('%Y%m%dT%H%M%S.%fZ')
     output.mkdir(parents=True)
-    inputs, deleted = source_state()
     record = {'status': 'running', 'started_utc': started.isoformat(),
               'git_commit': git('rev-parse', 'HEAD').decode().strip() if is_checkout() else None,
               'git_status': git('status', '--porcelain').decode().splitlines() if is_checkout() else [],
-              'deleted_tracked_files': deleted,
               'workers': args.workers, 'cache_policy': 'Lake dependency-trace validation',
-              'external_comparator': 'not run', 'source_sha256': inputs, 'steps': []}
+              'external_comparator': 'not run', 'steps': []}
 
     def save():
         (output / 'record.json').write_text(json.dumps(record, indent=2) + '\n')
@@ -80,6 +79,13 @@ def main():
     record['build_threads'] = env['LEAN_NUM_THREADS']
     targets = ['check-code', 'check-lean', 'replay-data', 'replay', 'check-extensions']
     try:
+        if not __debug__:
+            raise RuntimeError('verification requires Python assertions; remove -O/PYTHONOPTIMIZE')
+        inputs, deleted = source_state()
+        record.update(source_sha256=inputs, deleted_tracked_files=deleted)
+        record['dependencies'] = dependency_state(ROOT)
+        record['environment'] = environment_state(ROOT, env, args.workers)
+        save()
         for target in targets:
             command = ['make', target, f'WORKERS={args.workers}']
             phase_started = time.monotonic()
@@ -101,6 +107,18 @@ def main():
                 raise RuntimeError(f'{target} failed with exit code {code}')
         if source_state() != (inputs, deleted):
             raise RuntimeError('source files changed during verification; rerun on frozen sources')
+        record['dependencies_after'] = dependency_state(ROOT)
+        if record['dependencies_after'] != record['dependencies']:
+            raise RuntimeError('dependency sources changed during verification')
+        record['environment_after'] = environment_state(ROOT, env, args.workers)
+        if record['environment_after'] != record['environment']:
+            raise RuntimeError('verification tools or build settings changed during verification')
+        record['cpp_build_configuration'] = json.loads((ROOT / 'build/cxx-config.json').read_text())
+        record['cpp_executable_sha256'] = {
+            name: digest(ROOT / 'build' / name) for name in [
+                'check_five_colour_certificate', 'five_colour_extensions',
+                'five_colour_rare_geometry', 'five_colour_fixed_pair',
+                'five_colour_box_geometry', 'five_colour_chunks']}
         generated = ROOT / 'FiveColour/ProjectedChunks'
         record['generated_sha256'] = {
             str(p.relative_to(ROOT)): digest(p)
@@ -110,7 +128,7 @@ def main():
             src = ROOT / 'build/five-colour-chunks/ProjectedChunks' / name
             (output / f'projected-{name}').write_bytes(src.read_bytes())
         record['status'] = 'passed'
-    except (OSError, RuntimeError, subprocess.SubprocessError) as error:
+    except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         record['status'] = 'failed'
         record['error'] = str(error)
     finally:

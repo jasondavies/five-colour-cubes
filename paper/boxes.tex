@@ -17,6 +17,28 @@ $a=2,\ b=3$ & Exceptional-defect control and retargeting\\
 \bottomrule
 \end{tabular}
 \end{center}
+For the quantitative arguments, write
+$m=a-2$, $t=b-2$, $M=c-2$, and $\tau=m+t+M$. Thus
+$L=8+4\tau$ is the frame size, and $N$ is the number of available copies.
+The parameter $d$ is the Hall cutoff; a bichromatic pair is called rare
+when at most $d-1$ sources possess it. Its missing family then has at least
+$N-d+1$ copies. The main bounds are:
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+Regime & $N=L$ & $d$ & Exceptional Hall sets\\
+\midrule
+$a+b\ge6$ & $8+4\tau$ & $\tau+M+6$ & Reservations; Lemma~\ref{lem:box-weighted}\\
+$2\times2\times c$, $c\ge5$ & $8+4M$ & $2M+4$ & Sizes $d+1,d+2$; Lemma~\ref{lem:rod-concentration}\\
+$2\times3\times c$, $c\ge4$ & $12+4M$ & $2M+6$ & Size $d+1$; Lemma~\ref{lem:23c-compatibility}\\
+\bottomrule
+\end{tabular}
+\end{center}
+In the wide regime every source's defect is at most $d$. The thin regimes
+allow the exceptional defects shown in the last column, handled by
+concentration and retargeting. The smaller boundary shapes are treated
+separately, with spare sources where necessary.
 We establish the thin regimes first, then the general weighted bound.
 In each case an initial corner matching verifies part of Hall's inequalities;
 the final matching may rearrange those placements.

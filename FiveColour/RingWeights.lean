@@ -1,4 +1,6 @@
 module
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Tactic.NormNum
 public import FiveColour.RingData
 public import FiveColour.WeightedHall
 @[expose] public section

@@ -29,8 +29,8 @@ The proof combines a certified fifteen-cube corner theorem with elementary
 Hall arguments and a uniform three-variety obstruction. It completes the
 five-colour frame column left open by Berkove, Eickemeyer and Schulman
 (2018). All threshold statements are formalised in Lean. A fixed-size flow
-formulation constructs assemblies in time linear in the explicit input
-and output sizes. We also determine the corner thresholds when the
+formulation decides feasibility and constructs assemblies in time linear
+in the explicit source list. We also determine the corner thresholds when the
 number of source varieties is bounded.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
@@ -62,6 +62,15 @@ For every integer $a,b,c\ge2$,
  \end{aligned}
 \]
 \end{theorem}
+The three frame terms have separate explanations: $15$ comes from the
+fourteen-cube corner obstruction, $4(a+b+c)-16$ counts frame positions,
+and $2(a+b+c)+1$ comes from a uniform failing collection of size $2(a+b+c)$.
+Completion gives the conceptual relation
+\[
+ G_5(a,b,c)=\max\{abc,F_5(a,b,c)\}:
+\]
+once a frame is built, arbitrary unused sources fill the remaining positions,
+each of which exposes at most one face.
 The frame threshold depends only on the sum $s=a+b+c$: it is $15$ for
 $s=6,7$, $17$ for $s=8$, and the frame's own cardinality $4s-16$ for
 $s\ge9$. Up to permuting sides, only three complete boxes can require
@@ -134,8 +143,10 @@ An elementary fourteen-cube obstruction proves the lower bound.
 For the upper bound, Hall deficiencies and symmetry reduce hypothetical
 counterexamples to finite problems, excluded by interval certificates
 (Sections~\ref{sec:cases}--\ref{sec:certificates}).
-A prescribed-family corner lemma, proved independently of $N_5=15$,
-and geometric compatibility bounds then extend this input to every
+The eight-family-plus-three lemma (Lemma~\ref{lem:eight-common-missing}),
+proved independently of $N_5=15$, builds corners from eight sources
+sharing a missing pair and three arbitrary additions. Together with
+geometric compatibility bounds it extends the corner threshold to every
 cuboid (Sections~\ref{sec:frames}--\ref{sec:boxes}). A uniform
 three-variety obstruction supplies the additional lower bound responsible
 for the two sixteen-position exceptions. These extensions require no
@@ -268,7 +279,8 @@ None is solvable.
 \input{obstruction-figure}
 \caption{The fourteen-cube obstruction $4A+5B+5C$. Each net has $+x$ at its
 centre. Corner types are read counterclockwise from outside; the
-full-colour types occur on no other variety. A target of variety $X$ has
+full-colour types occur on neither of the other two displayed varieties.
+A target of variety $X$ has
 these private positions, and only copies of $X$ fit them.}
 \label{fig:obstruction}
 \end{figure}
@@ -387,7 +399,7 @@ bounds. In 29 retained cases, $b+u(S^c)<15$ already contradicts the prescribed
 total, so only 279 cases
 need further exclusion proofs. The exact map and retained case numbers are
 in \path{data/q5-root-reduction.json}; Lean checks all containments and
-arithmetic exclusions. The archive retains all 357 original cases.
+arithmetic exclusions. All 357 original root definitions remain available.
 
 \begin{lemma}[Hall-budget projection]\label{lem:projection}
 Suppose a root has anchor multiplicity $m$, budget $x(S)\le b$, and total
@@ -450,7 +462,19 @@ target remain in the refined box
  \ell'_i=\begin{cases}\max(\ell_i,u_i-\gamma_*)&i\notin U,\\\ell_i&i\in U.\end{cases}
 \end{equation}
 Indeed, a failing vector satisfies one of the retained cuts, and its bounds
-in~\eqref{eq:refine} imply~\eqref{eq:summary}. The root budget is treated as
+in~\eqref{eq:refine} imply~\eqref{eq:summary}.
+
+For a concrete example, projected certificate 28 (zero-based archive numbering)
+starts with two copies of adjacent variety 3, total $G=14$ and budget zero.
+All other lower bounds are zero, and the upper bounds sum to 40.
+Its first instruction refines using target 4. Of that target's 255 cuts,
+17 satisfy~\eqref{eq:possible}; their neighbourhood intersection is
+$\{4,10,30\}$ and their maximum slack is $\sigma_*=1$.
+The three corresponding upper bounds therefore decrease from 2 to 1.
+Here varieties 3 and 4 have face tuples $(0,1,0,2,3,4)$ and
+$(0,1,0,2,4,3)$; all indices refer to the accompanying geometry table.
+
+The root budget is treated as
 a family containing a single cut. The total $\sum_i x_i=G$ gives
 \[
  \ell'_i=\max\!\left(\ell_i,G-\sum_{j\ne i}u_j\right),\qquad

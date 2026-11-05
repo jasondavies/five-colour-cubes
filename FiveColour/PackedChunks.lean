@@ -1,5 +1,6 @@
 module
 public import FiveColour.PackedVerified
+public import Mathlib.Tactic.FinCases
 @[expose] public section
 namespace FiveColour.Packed.Chunks
 

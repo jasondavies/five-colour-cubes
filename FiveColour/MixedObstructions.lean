@@ -1,4 +1,5 @@
 module
+public import Mathlib.Data.Fintype.Prod
 public import FiveColour.SmallSupport
 @[expose] public section
 namespace FiveColour.Physical
