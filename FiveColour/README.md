@@ -42,7 +42,7 @@ unconditional cuboid results, with `make verify-full`.
 | `RootContainment.lean` | Cut and box monotonicity, transport of complete integer root problems, and direct exclusion by an impossible initial budget. |
 | `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and supplies the reduced archive-to-threshold interface. Original case IDs are preserved. |
 | `BudgetProjection.lean`, `RootProjection.lean`, `ProjectedChecks*.lean`, `ProjectedBridge.lean` | Proves deletion with fixed anchor, checks all 279 projected headers, and identifies their complete integer and packed models. |
-| generated `ProjectedChunks/Threshold.lean` | Checked unconditional physical threshold and sharpness theorems, composing all 279 certificate proofs. Outside the default build; reproduced by full projected replay. |
+| retained generated `ProjectedChunks/Threshold.lean` | Checked unconditional physical threshold and sharpness theorems, composing all 279 certificate proofs. Outside the default build; reproduced by full projected replay. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
 | `BoxCertificates.lean` | Sound interval refinement and certificate checking for finite integer vectors. |
 | `FastCertificates.lean` | Sound intersection/union summaries of feasible cuts. |
@@ -57,17 +57,22 @@ unconditional cuboid results, with `make verify-full`.
 The extremal results are independent of the interval replay:
 
 - `ExtremalMultiplicity.lean`: the maximum multiplicity in a fourteen-cube
-  obstruction is five. `ExtremalMatching.lean` lifts explicit group allocations
+  obstruction is at most five. `ExtremalMatching.lean` lifts explicit group allocations
   to distinct physical copies; `ExtremalSixChecks*.lean` checks the small local
-  inventories after the anchor reduction.
+  inventories after the anchor reduction and disjoint-source lemma (2,702
+  six-copy cases and 35 four-disjoint cases).
 - `ExtremalClassification.lean`: exactly five symmetry classes with three
   varieties. `ExtremalTripleChecks*.lean` covers all 5,402 normalized candidates
-  with explicit placements or orbit witnesses. `ExtremalSymmetry.lean` proves
+  with target/private-position criteria or orbit witnesses. `ExtremalSymmetry.lean` proves
   completeness of the stabilizer used to establish inequivalence; reflections
   act on entire collections. `ExtremalExamples.lean` proves failure and support
   size for each representative.
-- `ExtremalFamilyTheorems.lean`: the generalized family with disjoint
-  repeated-colour supports in the two adjacent groups.
+- `ExtremalFamilyTheorems.lean`: the exact generalized-family criterion. Four
+  uniform support patterns (300 Hall masks) prove failure precisely when the
+  groups have disjoint repeat supports; two allocations prove the converse.
+  The original mixed family and five representatives reuse this theorem.
+- `Inventory.lean`: shared multiplicity and inventory transport under physical
+  symmetries, independent of the classification tables.
 
 These use kernel-checked finite geometry and allocations alongside the paper's
 elementary arguments; they do not claim a purely symbolic formalization of the
@@ -196,10 +201,12 @@ from the pinned `colour-cubes-core` library. `Puzzle.HasSolution` specialises th
 shared geometric model to targets using all five colours; `Physical.HasSolution`
 is its equivalent enumerated-rotation form.
 
-The root `Challenge.lean` imports only Mathlib and has five intentional theorem
-holes. It is excluded from the proof library. `Solution.lean` supplies those
-statements from the completed projected replay and builds successfully in Lean.
-A successful full external comparator check has not yet been confirmed.
+The root `Challenge.lean` imports only Mathlib and has thirteen intentional
+theorem holes. It is excluded from the proof library. `Solution.lean` supplies
+the corner, cuboid, support and extremal statements. `SubmissionModel.lean`
+restates the physical models without a catalogue; `SubmissionBridge.lean` proves
+that rotation classes, physical copy counts, global symmetries and box slots
+agree with the models used by the proofs. External comparison uses Lean and NanoDa.
 `make check-comparator-lower` compares only the exposed-face rule and explicit
 obstruction; `make comparator` checks the full interface.
 
@@ -262,8 +269,7 @@ The unconditional frame and complete-cube conclusions, and the combined
 support threshold, are in `Solution.lean`. After projected replay, run
 `make check-extensions` to build and audit them. `Audit.lean` includes the
 conditional deductions and unconditional small-support lemmas;
-`ExtensionsAudit.lean` audits the final wrappers. The geometric challenge and
-its five comparator targets are unchanged.
+`ExtensionsAudit.lean` audits the final wrappers. The geometric challenge includes the support and cuboid conclusions.
 
 ## Cuboid classification
 
@@ -310,3 +316,60 @@ supplement the kernel proofs; no enumeration of source collections is used
 in the cuboid deductions. `Audit.lean` lists the main conditional results
 and physical bridges; `ExtensionsAudit.lean` includes the unconditional
 classification and the three small thin-box examples.
+
+## Replay operation and provenance
+
+Run these commands from the repository root.
+
+For cases with at least 4,096 instructions, generated replay sources use
+root-specific cut lists: impossible alternatives are removed, fixed coordinates
+are subtracted, and equal residual neighbourhoods are merged. Lean checks the
+replacement weights and a coverage witness for every original alternative.
+The resulting exclusion is transferred back to the original root problem.
+Smaller cases retain the full lists because validating the reduction has an
+upfront cost. The packed base remains 1024.
+
+The replay driver tries Lake's `--no-build` validation of the complete theorem
+first. If anything is stale or missing, it falls back to bounded parallel case
+builds. Artifact existence alone never counts as verification. The record says
+whether the aggregate was already cached.
+
+Defaults are two certificate workers and one Lean thread per process. On a
+machine with more memory, raise `WORKERS`; do not assume more workers are faster.
+`LEAN_NUM_THREADS` separately controls shared-library and extension builds.
+The replay driver always gives each case one Lean thread. Memory use
+increases with concurrent workers. Larger chunks can save a little time
+while increasing peak memory, so the production limit remains 128.
+
+For measurements on the retained archive, without reusing a cached case proof:
+
+```sh
+python3 -S scripts/benchmark_five_colour_replay.py --case 120 --limits 128 256 512 --repeats 3
+```
+
+To compare the original and reduced lists on the same certificate:
+
+```sh
+python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-modes original reduced --repeats 3
+```
+
+Case benchmark results include wall/CPU time and peak memory under
+`build/replay-benchmark/`. Those experiments reuse the shared checker dependencies.
+Do not delete `.lake` to tidy a publication package: it is already ignored,
+and deleting it removes useful dependency/build caches.
+
+Replay progress is in `build/five-colour-chunks/ProjectedChunks/progress.json`.
+Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the case workers;
+remove it and rerun the same command to resume. Completed modules stay cached;
+interrupted cases restart. Do not regenerate sources during replay.
+
+The [full verification workflow](../.github/workflows/full-replay.yml) uploads
+verification records, stage and case logs, independent
+audit reports and GNU time measurements as a `verification-<commit>-<attempt>`
+artifact, including evidence from failed runs. Artifacts are retained for 90 days;
+download the successful record for the permanent submission archive. GNU time's
+maximum RSS is the largest process peak, not total concurrent build memory.
+
+The unprojected
+11,599,651-instruction archive over all 357 roots, partial replay routes, duplicate
+implementations and historical solver reports have been retired to Git history.

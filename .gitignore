@@ -11,4 +11,3 @@ __pycache__/
 *.synctex.gz
 .DS_Store
 .venv/
-FiveColour/ProjectedChunks/

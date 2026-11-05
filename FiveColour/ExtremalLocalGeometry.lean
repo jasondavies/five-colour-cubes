@@ -43,4 +43,55 @@ lemma localPools_single_total {n : ℕ} (cubes : Fin n → Cube) (k : Fin 8) :
   simp only [six_group_single k] at h
   exact_mod_cast h
 
+lemma six_group_unpopulated : ∀ (k : Fin 8) (g : Fin 7),
+    4 + singletonCount k ≤ g.val → ∀ i : Fin 75, sixGroup k i ≠ some g.succ := by
+  decide +kernel
+
+lemma six_group_disjoint : ∀ (k : Fin 8) (g : Fin 4) (i : Fin 75),
+    sixGroup k i = some ⟨g.val+1, by omega⟩ ↔ sixGroup 0 i = some ⟨g.val+1, by omega⟩ := by
+  decide +kernel
+
+lemma localPools_populated {n : ℕ} (cubes : Fin n → Cube) (k : Fin 8) :
+    populatedCounts k (fun g => (localPools cubes k g.succ).card) := by
+  intro g hg
+  have he : localPools cubes k g.succ = ∅ := by
+    apply Finset.eq_empty_iff_forall_notMem.mpr
+    intro i hi
+    exact six_group_unpopulated k g hg _ (Finset.mem_filter.mp hi).2
+  change (localPools cubes k g.succ).card = 0
+  rw [he, Finset.card_empty]
+
+lemma localPools_disjoint_total {n : ℕ} (cubes : Fin n → Cube) (k : Fin 8) :
+    (∑ g : Fin 7, (localPools cubes 0 g.succ).card) =
+      disjointCount (fun g => (localPools cubes k g.succ).card) := by
+  have he (g : Fin 4) : localPools cubes k ⟨g.val+1, by omega⟩ =
+      localPools cubes 0 ⟨g.val+1, by omega⟩ := by
+    ext i
+    simp only [localPools, sourcePools, Finset.mem_filter, Finset.mem_univ, true_and]
+    exact six_group_disjoint k g _
+  have hz := localPools_populated cubes 0
+  have h4 := hz 4 (by decide)
+  have h5 := hz 5 (by decide)
+  have h6 := hz 6 (by decide)
+  change (localPools cubes 0 5).card = 0 at h4
+  change (localPools cubes 0 6).card = 0 at h5
+  change (localPools cubes 0 7).card = 0 at h6
+  have h0 := he 0
+  have h1 := he 1
+  have h2 := he 2
+  have h3 := he 3
+  change localPools cubes k 1 = localPools cubes 0 1 at h0
+  change localPools cubes k 2 = localPools cubes 0 2 at h1
+  change localPools cubes k 3 = localPools cubes 0 3 at h2
+  change localPools cubes k 4 = localPools cubes 0 4 at h3
+  simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, disjointCount]
+  change (localPools cubes 0 1).card + ((localPools cubes 0 2).card +
+      ((localPools cubes 0 3).card + ((localPools cubes 0 4).card +
+      ((localPools cubes 0 5).card + ((localPools cubes 0 6).card +
+      ((localPools cubes 0 7).card + 0)))))) =
+      (localPools cubes k 1).card + (localPools cubes k 2).card +
+      (localPools cubes k 3).card + (localPools cubes k 4).card
+  rw [h0,h1,h2,h3]
+  omega
+
 end FiveColour.Physical

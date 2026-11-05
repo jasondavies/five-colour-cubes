@@ -138,5 +138,5 @@ import FiveColour
 #print axioms FiveColour.Physical.extremal_no_solution
 #print axioms FiveColour.Physical.extremal_support
 #print axioms FiveColour.Physical.extremal_inequivalent
-#print axioms FiveColour.Physical.generalized_no_solution
+#print axioms FiveColour.Physical.generalized_no_solution_iff
 #print axioms FiveColour.Physical.generalized_uses_all

@@ -27,6 +27,7 @@ Lean verifies the same rules and their soundness; the exporter is untrusted.
 | `q5-threshold-cases-size15.txt` | Combined 357-root cover. These definitions are still required even though the old certificate archive is not. |
 | `q5-root-reduction.json` | Checked containments and arithmetic exclusions leaving 279 roots. |
 | `q5-projected-root-*`, `q5-projected-certificates.tar.gz` | Current projected problems, mappings, witnesses and certificates. |
+| `five-colour-extremal.json` | Face tuples, repeat colours and orbit sizes for all five three-variety obstruction classes. |
 | `q5-three-variety-obstruction.json` | The fourteen-cube lower-bound witness and manuscript figure input. |
 | `q5-local-distinct.json`, `q5-distinct-known-control.txt` | An independently checked failing eleven-cube pool and a root containing it; invalid closing claims must be rejected. |
 
@@ -52,7 +53,7 @@ python3 -S scripts/five_colour_threshold_cases.py --output data/q5-threshold-cas
 ```
 
 All current Lean-table serializers support `--check`, as listed in the Makefile.
-`make replay-data` deterministically exports the saved certificates into ignored
+`make replay-data` deterministically exports the saved certificates into retained
 `FiveColour/ProjectedChunks/`; `make replay` checks their complete assembly.
 Current reports belong under ignored `build/`, not in this input directory.
 

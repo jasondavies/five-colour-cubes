@@ -6,7 +6,15 @@
     "FiveColour.Puzzle.lower_bound",
     "FiveColour.Puzzle.threshold15",
     "FiveColour.Puzzle.sharp_threshold15",
-    "FiveColour.Puzzle.least_guaranteed_size"
+    "FiveColour.Puzzle.least_guaranteed_size",
+    "FiveColour.Submission.frame_threshold",
+    "FiveColour.Submission.box_threshold",
+    "FiveColour.Submission.support_threshold",
+    "FiveColour.Submission.multiplicity_bound",
+    "FiveColour.Submission.three_variety_classification",
+    "FiveColour.Submission.extremal_examples",
+    "FiveColour.Submission.extremal_inequivalent",
+    "FiveColour.Submission.generalized_obstructions"
   ],
   "definition_names": [],
   "permitted_axioms": [

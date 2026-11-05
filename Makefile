@@ -12,9 +12,10 @@ verification-config build/cxx-config.json: export VERIFY_CXX = $(CXX)
 verification-config build/cxx-config.json: export VERIFY_CXXFLAGS = $(CXXFLAGS)
 verification-config: export VERIFY_PYTHON = $(PYTHON)
 verification-config: export VERIFY_WORKERS = $(WORKERS)
+export VERIFICATION_CONFIG_FILE
 verification-config: export VERIFY_LEAN_NUM_THREADS = $(LEAN_NUM_THREADS)
 verification-config:
-	@$(PYTHON) -c 'import json,os; print(json.dumps({k:os.environ["VERIFY_"+k] for k in ("CXX","CXXFLAGS","PYTHON","WORKERS","LEAN_NUM_THREADS")}))'
+	@$(PYTHON) -c 'import json,os,pathlib; data=json.dumps({k:os.environ["VERIFY_"+k] for k in ("CXX","CXXFLAGS","PYTHON","WORKERS","LEAN_NUM_THREADS")}); path=os.environ.get("VERIFICATION_CONFIG_FILE"); pathlib.Path(path).write_text(data+"\n") if path else print(data)'
 
 help:
 	@echo 'make verify-full   Complete proof, audits and source-bound verification record'
@@ -45,6 +46,7 @@ check-code: build/check_five_colour_certificate build/five_colour_extensions bui
 	$(PYTHON) -S scripts/generate_five_colour_extremal.py --check
 	$(PYTHON) -S scripts/generate_five_colour_triples.py --check
 	$(PYTHON) -S scripts/check_five_colour_extremal.py
+	$(PYTHON) -S scripts/test_extremal_dictionary.py
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/test_verification_state.py

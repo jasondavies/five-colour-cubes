@@ -11,6 +11,8 @@ is a 2×2×2 cube with monochromatic exterior faces using all five colours.
 A variety is a face colouring up to proper rotation. Collections may repeat
 varieties; proper rotations are allowed and interior faces are unrestricted.
 
+## Cuboid thresholds
+
 A frame consists of the eight corners and noncorner edge positions of a box.
 The thresholds F₅ and G₅ count available source cubes guaranteeing a frame or
 a complete box, respectively; an assembly may use fewer cubes than are available.
@@ -74,6 +76,8 @@ and 75 for a cube. Decision and explicit construction take O(q) time for any
 list of q sources in the word-RAM model. This complexity result is a manuscript proof,
 not part of the Lean formalisation.
 
+## Extremal corner obstructions
+
 With at most k source varieties, the exact corner threshold is **8 for k=1,
 13 for k=2, and 15 for k≥3**. Three varieties are therefore necessary for a
 fourteen-cube obstruction. Every such obstruction has **maximum multiplicity
@@ -88,10 +92,11 @@ independently of the fifteen-cube certificate replay. The classification include
 exhaustiveness, failure of each representative, and pairwise inequivalence.
 The [face-tuple dictionary](data/five-colour-extremal.json) lists representatives
 and labelled orbit sizes. A [generalized obstruction family](FiveColour/ExtremalFamilyTheorems.lean)
-allows mixtures within both adjacent cuts, including examples whose maximum
-multiplicity is four. An independent audit checks all 202,575 labelled (4,5,5)
-collections, their 840 failures, the five orbits, and all 91 normalized family
-members; its record is `build/checks/extremal.json`.
+allows mixtures within both adjacent cuts. Such a collection fails exactly
+when the two groups have disjoint repeated-colour supports; examples can have
+maximum multiplicity four. An independent audit checks all 202,575 labelled (4,5,5)
+collections, their 840 failures, the five orbits, and all 441 normalized family
+distributions (91 failures and 350 solutions); its record is `build/checks/extremal.json`.
 
 The lower example is four copies of A, five of B and five of C, with faces
 listed as `+x,-x,+y,-y,+z,-z`:
@@ -128,7 +133,7 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 | `make verify-full` | All code audits, Lean infrastructure, all 279 certificates, the final corner theorem, unconditional cuboid results and axiom audits. |
 | `make check` | Code audits and Lean infrastructure. **Partial verification:** it does not check the complete corner proof. |
 | `make replay-data` | Generates Lean proof sources from the saved certificates. Generation alone proves nothing. |
-| `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. Run `replay-data` first. |
+| `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. The generated proof sources are retained. |
 | `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 
@@ -151,8 +156,8 @@ exact submission source; do not commit machine-local verification logs.
 The unconditional publication endpoints are in [Solution.lean](Solution.lean):
 `FiveColour.Puzzle.box_frame_threshold` and `complete_box_threshold`.
 The corner proof is `FiveColour.Packed.ProjectedChunks.threshold15`, with
-`sharpThreshold15` proving sharpness. Its generated sources are intentionally
-ignored and reproducible. Audits permit only the standard axioms `propext`,
+`sharpThreshold15` proving sharpness. Its generated sources are retained for clean Lake/Comparator builds and
+reproducible with `make replay-data`. Audits permit only the standard axioms `propext`,
 `Classical.choice` and `Quot.sound`; the proof uses no `sorry` or `native_decide`.
 
 The multiplicity, classification and generalized-family theorems can be checked
@@ -186,10 +191,8 @@ the search and certificate exporters are not trusted.
 
 The retained archive contains **499,829 instructions in 279 certificates**,
 compressed to about 306 KiB. Lean checks them in 4,786 pieces of at most 128
-instructions, with proved composition and exact boundary checks. The unprojected
-11,599,651-instruction archive over all 357 roots, partial replay routes, duplicate
-implementations and historical solver reports have been retired to Git history.
-The **357 root definitions remain necessary**: the current proof derives its smaller cover
+instructions, with proved composition and exact boundary checks. The **357 root
+definitions remain necessary**: the current proof derives its smaller cover
 from them. See [data provenance](data/README.md) and the
 [formalisation guide](FiveColour/README.md).
 
@@ -200,14 +203,6 @@ of Hall alternatives. Kernel evaluation is substantially more expensive than
 running the compiled C++ checker. Chunking bounds each computation; it does not
 turn every instruction into a constant-cost primitive.
 
-For cases with at least 4,096 instructions, generated replay sources use
-root-specific cut lists: impossible alternatives are removed, fixed coordinates
-are subtracted, and equal residual neighbourhoods are merged. Lean checks the
-replacement weights and a coverage witness for every original alternative.
-The resulting exclusion is transferred back to the original root problem.
-Smaller cases retain the full lists because validating the reduction has an
-upfront cost. The packed base remains 1024.
-
 There are three different timing questions:
 
 - **Fresh build:** checks the geometry, reductions and certificates. This is the
@@ -216,29 +211,10 @@ There are three different timing questions:
 - **Cached rerun:** Lake validates the complete theorem's dependency traces in
   one invocation, then the axiom audit runs again. This is not a fresh kernel replay.
 
-The replay driver tries Lake's `--no-build` validation of the complete theorem
-first. If anything is stale or missing, it falls back to bounded parallel case
-builds. Artifact existence alone never counts as verification. The record says
-whether the aggregate was already cached.
-
-Defaults are two certificate workers and one Lean thread per process. On a
-machine with more memory, raise `WORKERS`; do not assume more workers are faster.
-`LEAN_NUM_THREADS` separately controls shared-library and extension builds.
-The replay driver always gives each case one Lean thread. Memory use
-increases with concurrent workers. Larger chunks can save a little time
-while increasing peak memory, so the production limit remains 128.
-
-For measurements on the retained archive, without reusing a cached case proof:
-
-```sh
-python3 -S scripts/benchmark_five_colour_replay.py --case 120 --limits 128 256 512 --repeats 3
-```
-
-To compare the original and reduced lists on the same certificate:
-
-```sh
-python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-modes original reduced --repeats 3
-```
+Defaults are two certificate workers and one Lean thread per case. Raise
+`WORKERS` only when sufficient memory is available; `LEAN_NUM_THREADS` controls
+shared-library and extension builds. See the [formalisation guide](FiveColour/README.md#replay-operation-and-provenance)
+for cache validation, tuning, case benchmarks and resumable replay.
 
 A fresh full verification on an AMD Ryzen 7 9700X (8 cores, 16 logical CPUs)
 with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=8` for shared builds
@@ -246,29 +222,26 @@ with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=8` for shared builds
 
 | Stage | Wall time |
 | --- | ---: |
-| C++/Python audit | 5.6 s |
-| Shared Lean library and audit | 13.8 min |
-| Certificate proof generation | 3.7 s |
-| Certificate replay and final corner theorem | 37.6 min |
-| Unconditional extensions and audit | 2.5 s |
-| Complete verification command | 51.6 min |
+| C++/Python audit | 10.3 s |
+| Shared Lean library and audit | 17.5 min |
+| Certificate proof generation | 4.0 s |
+| Certificate replay and final corner theorem | 48.5 min |
+| Unconditional extensions and audit | 3.2 s |
+| Complete verification command | 66.4 min |
 
 All 279 certificate proofs and the unconditional publication theorems passed.
 Only the pinned public Mathlib and transitive dependency caches were reused;
 project and shared cube-library artifacts were rebuilt. Peak combined
-process-tree proportional set size (PSS) was **49.0 GiB**, sampled approximately
-every two seconds. Peak summed RSS was 54.2 GiB; it double-counts shared pages,
+process-tree proportional set size (PSS) was **29.2 GiB**, sampled approximately
+every two seconds. Peak summed RSS was 35.0 GiB; it double-counts shared pages,
 whereas PSS apportions them.
 
-Case benchmark results include wall/CPU time and peak memory under
-`build/replay-benchmark/`. Those experiments reuse the shared checker dependencies.
-Do not delete `.lake` to tidy a publication package: it is already ignored,
-and deleting it removes useful dependency/build caches.
-
-Replay progress is in `build/five-colour-chunks/ProjectedChunks/progress.json`.
-Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the case workers;
-remove it and rerun the same command to resume. Completed modules stay cached;
-interrupted cases restart. Do not regenerate sources during replay.
+The [retained measurement and verification record](verification/benchmark.json)
+identifies source snapshot `7be31ee3e064` (based on commit
+`af991ff3b111`), the full source manifest and archive digest,
+actual dependency trees, tool versions and build settings. The measured Lean
+sources are the publication proof sources; the record distinguishes the snapshot
+from its base commit.
 
 ## Review archives and CI
 
@@ -300,25 +273,35 @@ Ordinary CI runs `make check` and caches project builds. The manually triggered
 `make verify-full` from a fresh checkout, with two workers and a six-hour limit.
 Its complete run includes the unconditional cuboid results. Neither workflow
 claims an external-kernel comparator pass.
-The full workflow uploads verification records, stage and case logs, independent
-audit reports and GNU time measurements as a `verification-<commit>-<attempt>`
-artifact, including evidence from failed runs. Artifacts are retained for 90 days;
-download the successful record for the permanent submission archive. GNU time's
-maximum RSS is the largest process peak, not total concurrent build memory.
+The [formalisation guide](FiveColour/README.md#replay-operation-and-provenance)
+describes the workflow artifacts and what to preserve for a permanent release.
 
-## Optional external comparison
+## Palomar interface and external comparison
 
-[Challenge.lean](Challenge.lean) independently states the corner puzzle using
-only Mathlib. [ComparatorBridge.lean](FiveColour/ComparatorBridge.lean) proves
-agreement with the proof's model. The challenge's five intentional theorem
-holes are statements to compare; the proof library does not import them.
-The challenge covers the corner theorem, not the cuboid classification.
+[Challenge.lean](Challenge.lean) states 13 claims using only Mathlib: the corner
+threshold and sharpness, both cuboid thresholds, support thresholds, the
+multiplicity bound, the complete five-class classification and the generalized
+obstruction family. Its 261 lines define varieties through proper rotations,
+not catalogue indices. The cuboid model specifies corners, edge positions,
+face interiors and interior positions by their exposed faces.
 
-`make comparator` additionally checks the completed corner solution with the
-external kernels configured by `scripts/verify-comparator.sh`. This requires a
-toolchain containing those tools. A complete external comparator pass remains
-unconfirmed; it is separate from successful Lean verification. The narrower
-`make check-comparator-lower` checks only the face rule and lower bound.
+[ComparatorBridge.lean](FiveColour/ComparatorBridge.lean) and
+[SubmissionBridge.lean](FiveColour/SubmissionBridge.lean) prove agreement with
+the proof models. The intentional Challenge holes are statements to compare;
+the proof library does not import Challenge. All generated replay source files
+are retained, so `lake build Solution` works without a separate generation step.
+
+`make comparator` runs the complete statement comparison with Lean's kernel and
+NanoDa, the two mandatory Palomar checkers. It exports the complete proof
+dependency closure and checks it again, so cached Lake artifacts do not make
+this comparison a cached verification. All thirteen statements and their shared
+definitions matched, and NanoDa accepted the full solution export. The separate
+serial Lean export replay did not finish within a local 330-minute budget shared
+with the fresh build and NanoDa check. See the [retained comparison record](verification/palomar.json).
+This is incomplete Palomar verification; no submission or registration is claimed.
+The narrower `make check-comparator-lower` checks only the face rule and lower
+bound. Palomar also attempts a separate, bounded con-ron check; a recognized
+support or capacity decline is distinguished from a rejection.
 
 ## Repository and publication status
 

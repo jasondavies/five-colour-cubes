@@ -1,3 +1,4 @@
+module
 import Solution
 #print axioms FiveColour.Puzzle.frame_bound
 #print axioms FiveColour.Puzzle.frame_threshold
@@ -13,3 +14,11 @@ import Solution
 #print axioms FiveColour.Puzzle.box223
 #print axioms FiveColour.Puzzle.box224
 #print axioms FiveColour.Puzzle.box233
+#print axioms FiveColour.Submission.frame_threshold
+#print axioms FiveColour.Submission.box_threshold
+#print axioms FiveColour.Submission.support_threshold
+#print axioms FiveColour.Submission.multiplicity_bound
+#print axioms FiveColour.Submission.three_variety_classification
+#print axioms FiveColour.Submission.extremal_examples
+#print axioms FiveColour.Submission.extremal_inequivalent
+#print axioms FiveColour.Submission.generalized_obstructions

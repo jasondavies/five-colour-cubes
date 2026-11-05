@@ -72,10 +72,6 @@ lemma triple_swap_inventory (a b c : Fin 75) (hab : a ≠ b) (hac : a ≠ c) (hb
     triple_multiplicity a c b hac hab (Ne.symm hbc)]
   by_cases ha : i = a <;> by_cases hb : i = b <;> by_cases hc : i = c <;> simp_all
 
-lemma inventory_equivalent {m n : ℕ} (a : Fin m → Cube) (b : Fin n → Cube)
-    (h : SameInventory a b) : SymmetryEquivalent a b :=
-  ⟨⟨Equiv.refl _,false⟩, h⟩
-
 lemma extremal_orbit_inventory (j : Fin 5) (g : Fin 16) (swap : Bool) :
     SameInventory (fun i => (stabiliserSymmetry g).apply (extremalFamily j i))
       (tripleFamily 0
@@ -104,7 +100,7 @@ lemma normalised_triple_class (kind : Fin 2) (b c : Fin 75)
   cases he : tripleReduction kind b c with
   | solve w =>
     rw [he] at hw
-    exact False.elim (hno (triple_placement_solves _ _ _ w hw))
+    exact False.elim (hno (triple_criterion_solves _ _ _ w hw))
   | orbit j g swap =>
     rw [he] at hw
     obtain ⟨ha,hb,hc⟩ := hw

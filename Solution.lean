@@ -1,5 +1,6 @@
 module
 public import FiveColour.ComparatorBridge
+public import FiveColour.SubmissionBridge
 public import FiveColour.BoxThresholds
 public import FiveColour.FrameResults
 public import FiveColour.SmallSupport
@@ -107,3 +108,23 @@ theorem box233 :
   · exact (box_frame_threshold 2 3 3 17 (by decide) (by decide) (by decide)).2 (by decide)
 
 end FiveColour.Puzzle
+
+namespace FiveColour.Submission
+
+/-- Exact number of available sources guaranteeing a cuboid frame. -/
+theorem frame_threshold (a b c n : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) (hc : 2 ≤ c) :
+    FrameGuarantee a b c n ↔ max 15 (max (4*(a+b+c)-16) (2*(a+b+c)+1)) ≤ n :=
+  Physical.box_frame_threshold_iff Packed.ProjectedChunks.threshold15 a b c n ha hb hc
+
+/-- Exact number of available sources guaranteeing a complete cuboid. -/
+theorem box_threshold (a b c n : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) (hc : 2 ≤ c) :
+    BoxGuarantee a b c n ↔ max (a*b*c) (max 15 (2*(a+b+c)+1)) ≤ n :=
+  Physical.box_threshold_iff Packed.ProjectedChunks.threshold15 a b c n ha hb hc
+
+/-- Exact corner thresholds for a bound on the number of proper-rotation varieties. -/
+theorem support_threshold (k : ℕ) (hk : 1 ≤ k) :
+    IsLeast {v | SupportGuarantee k v} (if k = 1 then 8 else if k = 2 then 13 else 15) := by
+  simpa only [supportGuarantee_iff] using
+    Physical.support_threshold_of_threshold Packed.ProjectedChunks.threshold15 k hk
+
+end FiveColour.Submission

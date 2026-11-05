@@ -21,28 +21,15 @@ def render():
                     if (fits[t][i] | fits[t][j]) == 255
                     and fits[t][i].bit_count() >= 4 and fits[t][j].bit_count() >= 4))
         targets.append(row)
-    P,Q = [faces.index(c) for c in [(0,1,0,2,3,4),(0,1,1,3,2,4)]]
+    P,Q = [faces.index(c) for c in [(0,1,2,3,2,4),(0,3,1,2,4,1)]]
     group = [faces.index(c) for c in [(0,0,1,2,3,4),(0,3,1,2,4,1),
         (0,1,2,3,2,4),(0,1,2,3,3,4),(0,1,2,4,3,4)]]
     def missing(mask):
         return next(1 << k for k in range(8) if not mask & (1 << k))
-    pairCuts=[]; mixedCuts=[]
+    pairCuts=[]
     for t in range(75):
         union=fits[t][P] | fits[t][Q]
         pairCuts.append(255 ^ fits[t][Q] if t==P else 255 ^ fits[t][P] if t==Q else missing(union))
-        union=0
-        for i in group:union |= fits[t][i]
-        if t==group[0]:
-            others=0
-            for i in group[1:]:others |= fits[t][i]
-            mixedCuts.append(255 ^ others)
-        elif t==group[1]:
-            others=fits[t][group[0]]
-            for i in group[2:]:others |= fits[t][i]
-            mixedCuts.append(255 ^ others)
-        elif t in group[2:]:
-            mixedCuts.append(255 ^ (fits[t][group[0]] | fits[t][group[1]]))
-        else:mixedCuts.append(missing(union))
     vec=lambda xs:'!['+','.join(map(str,xs))+']'
     return f'''module
 public import FiveColour.PairCapacityDefs
@@ -64,8 +51,6 @@ def pairLowerCut (t : Fin 75) : Finset (Fin 8) := cornerSet (pairLowerCutMask t)
 
 /-- A, C and the three members of the B-group, in that order. -/
 def mixedRepresentatives : Fin 5 → Fin 75 := {vec(group)}
-def mixedLowerCutMask : Fin 75 → ℕ := {vec(mixedCuts)}
-def mixedLowerCut (t : Fin 75) : Finset (Fin 8) := cornerSet (mixedLowerCutMask t)
 
 end FiveColour.Physical
 '''

@@ -20,6 +20,7 @@ $a=2,\ b=3$ & Exceptional-defect control and retargeting\\
 For the quantitative arguments, write
 $m=a-2$, $t=b-2$, $M=c-2$, and $\tau=m+t+M$. Thus
 $L=8+4\tau$ is the frame size, and $N$ is the number of available copies.
+A source's \emph{defect} is the number of target positions it misses.
 The parameter $d$ is the Hall cutoff; a bichromatic pair is called rare
 when at most $d-1$ sources possess it. Its missing family then has at least
 $N-d+1$ copies. The main bounds are:
@@ -35,8 +36,9 @@ $2\times3\times c$, $c\ge4$ & $12+4M$ & $2M+6$ & Size $d+1$; Lemma~\ref{lem:23c-
 \bottomrule
 \end{tabular}
 \end{center}
-In the wide regime every source's defect is at most $d$. The thin regimes
-allow the exceptional defects shown in the last column, handled by
+In the wide regime every source's defect is at most $d$. The last column
+lists the exceptional Hall-set sizes that require additional arguments in
+the thin regimes; these are distinct from individual source defects and are handled by
 concentration and retargeting. The smaller boundary shapes are treated
 separately, with spare sources where necessary.
 We establish the thin regimes first, then the general weighted bound.
@@ -57,7 +59,7 @@ There are at most two disjoint pairs in a five-colour palette.
 \subsection{Signed corner projections}
 Retain the family $\mathcal H_{\alpha\beta}$ from Lemma~\ref{lem:fixed-missing-pair},
 with its opposite-repeat varieties and their $2\times2$ corner array.
-Write $C(W)$ for the cyclic corner types of $W$.
+Write $K(W)$ for the cyclic corner types of $W$.
 
 \begin{lemma}[Corner projections onto a missing-pair family]\label{lem:thin-projections}
 Fix a bichromatic pair $\alpha\beta$.  Let $C^+$ and $C^-$ be the two sets of six
@@ -66,7 +68,7 @@ the respective cyclic orientations in $\mathcal H_{\alpha\beta}$.  An
 opposite-repeat variety in $\mathcal H_{\alpha\beta}$ has four corners in each set.
 For a source $W\notin\mathcal H_{\alpha\beta}$, put
 \[
- p(W)=|C(W)\cap C^+|,\qquad m(W)=|C(W)\cap C^-|.
+ p(W)=|K(W)\cap C^+|,\qquad m(W)=|K(W)\cap C^-|.
 \]
 Then
 \[
@@ -186,8 +188,8 @@ copies.
 Lemma~\ref{lem:thin-projections} gives the following implications for every source:
 \[
 \begin{array}{c|ccc}
- |C(W)\cap C^+|\le u &u=0&u=1&u=2\\\hline
- |C(W)\cap C^-|\ge&4&2&1.
+ |K(W)\cap C^+|\le u &u=0&u=1&u=2\\\hline
+ |K(W)\cap C^-|\ge&4&2&1.
 \end{array}
 \]
 Indeed, the family varieties have projection sizes $(6,0),(0,6),(4,4)$,
@@ -359,13 +361,10 @@ For either chosen target and orientation, every source fits at least
 four of the twelve positions, by Lemma~\ref{lem:thin-compatibility}.
 Thus each source misses at most eight positions.
 
-Let $D$ be any subset of the twelve target positions. If $D$ contains
-only corners, its Hall inequality follows from the corner matching.
-Otherwise, if $|D|\le8$, one of its edge positions has at least eight
-neighbours. If $|D|>8$, every source neighbours $D$, because no source
-misses more than eight positions. Hall's theorem supplies a matching
-of all twelve positions to distinct source copies. The final matching
-may rearrange the preliminary corner placements.
+Apply Lemma~\ref{lem:partial-matching} with the corners as $P_0$,
+$L=12$, $N=15$ and $d=8$. It supplies a matching of all twelve positions
+to distinct source copies. The final matching may rearrange the preliminary
+corner placements.
 \end{proof}
 
 \subsection[Sharp thresholds for 2 by 3 by c frames]{Sharp thresholds for $2\times3\times c$ frames}

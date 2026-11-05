@@ -18,7 +18,7 @@ def sixInventories : Fin 8 → List LocalInventory :=
     sixInventories4,sixInventories5,sixInventories6,sixInventories7]
 
 theorem six_inventories_cover (k : Fin 8) :
-    (sixInventories k).map LocalInventory.counts = sourceCompositions 7 8 := by
+    (sixInventories k).map LocalInventory.counts = sixCompositionDomain k := by
   fin_cases k
   · exact six_inventories_cover_0
   · exact six_inventories_cover_1
@@ -75,7 +75,10 @@ lemma four_disjoint_normalised {n : ℕ} (cubes : Fin n → Cube)
     (hd : 4 ≤ ∑ g : Fin 7, (localPools cubes 0 g.succ).card) : HasSolution cubes := by
   obtain ⟨v, hv, hle⟩ := exists_subcounts
     (fun g : Fin 7 => (localPools cubes 0 g.succ).card) 4 hd
-  have hmem := mem_sourceCompositions v hv
+  have hp : populatedCounts 0 v := fun g hg =>
+    Nat.eq_zero_of_le_zero ((hle g).trans_eq (localPools_populated cubes 0 g hg))
+  have hmem : v ∈ disjointCompositionDomain :=
+    List.mem_filter.mpr ⟨mem_sourceCompositions v hv, by simpa using hp⟩
   rw [← disjoint_inventories_cover] at hmem
   obtain ⟨w, hw, rfl⟩ := List.mem_map.mp hmem
   exact local_allocation cubes hc 0 4 w (disjoint_inventories_valid w hw) ha hle
@@ -103,7 +106,14 @@ lemma adjacent_six_impossible (cubes : Fin 14 → Cube)
     have hsum : ∑ g : Fin 7, (localPools cubes k g.succ).card = 8 := by
       simp only [Nat.cast_add] at ht
       omega
-    have hmem := mem_sourceCompositions (fun g : Fin 7 => (localPools cubes k g.succ).card) hsum
+    by_cases hd : 4 ≤ ∑ g : Fin 7, (localPools cubes 0 g.succ).card
+    · exact hno (four_disjoint_normalised cubes hc (by omega) hd)
+    have hsmall : disjointCount (fun g => (localPools cubes k g.succ).card) ≤ 3 := by
+      rw [localPools_disjoint_total cubes k] at hd
+      omega
+    have hmem : (fun g : Fin 7 => (localPools cubes k g.succ).card) ∈ sixCompositionDomain k :=
+      List.mem_filter.mpr ⟨mem_sourceCompositions _ hsum,
+        by simpa using And.intro (localPools_populated cubes k) hsmall⟩
     rw [← six_inventories_cover k] at hmem
     obtain ⟨w, hw, he⟩ := List.mem_map.mp hmem
     exact hno (local_allocation cubes hc k 6 w (six_inventories_valid k w hw) hm
@@ -143,7 +153,7 @@ theorem fourteen_multiplicity_le_five (cubes : Fin 14 → Cube)
   · rw [hk] at hm
     exact adjacent_six_impossible _ hc' hno' (by omega)
 
-/-- Six identical varieties suffice in any fourteen physical sources. -/
+/-- Six copies of one variety suffice in any fourteen physical sources. -/
 theorem fourteen_six_suffices (cubes : Fin 14 → Cube)
     (hc : ∀ i, UsesAllColours (cubes i)) (a : Fin 75)
     (ha : 6 ≤ multiplicity cubes a) : HasSolution cubes := by

@@ -101,8 +101,8 @@ theorem pair_lower_support : (varietySupport pairLowerFamily).card = 2 := by
   decide +kernel
 
 set_option maxRecDepth 100000 in
-theorem pair_lower_faces : catalogue pairP = ![0,1,0,2,3,4] ∧
-    catalogue pairQ = ![0,1,1,3,2,4] := by decide +kernel
+theorem pair_lower_faces : catalogue pairP = ![0,1,2,3,2,4] ∧
+    catalogue pairQ = ![0,3,1,2,4,1] := by decide +kernel
 
 lemma solution_requires_eight {n : ℕ} (cubes : Fin n → Cube) (h : HasSolution cubes) : 8 ≤ n := by
   obtain ⟨_,_,p,_⟩ := h

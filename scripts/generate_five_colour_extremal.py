@@ -3,12 +3,14 @@
 
 No interval certificates or fifteen-cube theorem are used. The four disjoint
 cut classes and at most three singleton-intersection varieties compress the
-six-anchor case to weak compositions of eight sources into seven groups.
+six-anchor case to populated weak compositions with at most three disjoint
+sources. Four disjoint sources use the separate lemma first.
 Every emitted allocation, inventory coverage and group mask is kernel checked.
 """
 import argparse
 from pathlib import Path
 from cube_geometry import corners
+from cube_witnesses import match_copies
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -22,19 +24,9 @@ def compositions(g,n):
 def allocation(masks,cap):
     for t,row in enumerate(masks):
         copies=[g for g,n in enumerate(cap) for _ in range(n)]
-        match=[-1]*len(copies)
-        def aug(k,seen):
-            for j,g in enumerate(copies):
-                if j in seen or not row[g] & (1<<k):continue
-                seen.add(j)
-                if match[j]<0 or aug(match[j],seen):
-                    match[j]=k;return True
-            return False
-        if all(aug(k,set()) for k in range(8)):
-            tags=[0]*8
-            for j,k in enumerate(match):
-                if k>=0:tags[k]=copies[j]
-            return t,tags
+        matched=match_copies(row,copies)
+        if matched is not None:
+            return t,[copies[i] for i in matched]
     raise ValueError(('No local allocation',cap))
 
 def render():
@@ -66,6 +58,21 @@ def render():
     text=pre+'\n/-- Anchor, four disjoint cut classes, and up to three singleton varieties. -/\ndef sixGroup : Fin 8 → Fin 75 → Option (Fin 8) :=\n'+vec(vec('some '+str(next(g for g,xs in enumerate(gs) if i in xs)) if any(i in xs for xs in gs) else 'none' for i in range(75)) for gs in groups)+'\n'
     text+='\ndef sixMasks : Fin 8 → Fin 75 → Fin 8 → ℕ :=\n'+vec(vec(vec(row) for row in table) for table in masks)+'\n'
     text+='''
+def singletonCount : Fin 8 → ℕ := ![0,0,2,2,2,2,3,3]
+
+def populatedCounts (k : Fin 8) (v : Fin 7 → ℕ) : Prop :=
+  ∀ g, 4 + singletonCount k ≤ g.val → v g = 0
+instance (k : Fin 8) (v : Fin 7 → ℕ) : Decidable (populatedCounts k v) := by
+  unfold populatedCounts; infer_instance
+
+def disjointCount (v : Fin 7 → ℕ) : ℕ := v 0 + v 1 + v 2 + v 3
+
+def sixCompositionDomain (k : Fin 8) : List (Fin 7 → ℕ) :=
+  (sourceCompositions 7 8).filter fun v => populatedCounts k v ∧ disjointCount v ≤ 3
+
+def disjointCompositionDomain : List (Fin 7 → ℕ) :=
+  (sourceCompositions 7 4).filter fun v => populatedCounts 0 v
+
 structure LocalInventory where
   counts : Fin 7 → ℕ
   placement : CornerAllocation
@@ -83,11 +90,13 @@ end FiveColour.Physical
         pre=f'module\npublic import FiveColour.ExtremalLocalData\n@[expose] public section\nset_option maxRecDepth 100000\nset_option maxHeartbeats 0\nnamespace FiveColour.Physical\n'
         rows=[]
         for counts in compositions(7,8):
+            if sum(counts[:4]) > 3 or any(counts[4+len([g for g in groups[k][5:] if g]):]): continue
             t,tags=allocation(masks[k],(6,)+counts)
             rows.append(f'⟨{vec(counts)},⟨{t},{vec(tags)}⟩⟩')
+        assert len(rows)==[0,0,231,231,231,231,889,889][k]
         text=pre+f'\ndef sixInventories{k} : List LocalInventory := [\n'+',\n'.join(rows)+']\n'
         text+=f'''\ntheorem six_inventories_cover_{k} :
-    sixInventories{k}.map LocalInventory.counts = sourceCompositions 7 8 := by decide +kernel
+    sixInventories{k}.map LocalInventory.counts = sixCompositionDomain {k} := by decide +kernel
 
 theorem six_inventories_valid_{k} :
     ∀ w ∈ sixInventories{k}, w.Valid {k} 6 := by decide +kernel
@@ -101,12 +110,14 @@ end FiveColour.Physical
         output[f'FiveColour/ExtremalSixChecks{k}.lean']=text
     rows=[]
     for counts in compositions(7,4):
+        if any(counts[4:]): continue
         t,tags=allocation(masks[0],(4,)+counts)
         rows.append(f'⟨{vec(counts)},⟨{t},{vec(tags)}⟩⟩')
+    assert len(rows)==35
     text=pre+'\ndef disjointInventories : List LocalInventory := [\n'+',\n'.join(rows)+']\n'
     text+='''
 theorem disjoint_inventories_cover :
-    disjointInventories.map LocalInventory.counts = sourceCompositions 7 4 := by decide +kernel
+    disjointInventories.map LocalInventory.counts = disjointCompositionDomain := by decide +kernel
 
 theorem disjoint_inventories_valid :
     ∀ w ∈ disjointInventories, w.Valid 0 4 := by decide +kernel

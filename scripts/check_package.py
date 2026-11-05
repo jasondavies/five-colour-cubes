@@ -1,8 +1,33 @@
 #!/usr/bin/env python3
 """Check source hygiene, fixed dependency revisions and packaged input counts."""
-import hashlib,json,re,tarfile,tomllib
+import hashlib,json,re,subprocess,tarfile,tomllib
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
+# Check exactly the distributable source set, including unused audit modules.
+checkout = subprocess.run(['git','rev-parse','--show-toplevel'], cwd=root,
+                          capture_output=True,text=True)
+if checkout.returncode == 0 and Path(checkout.stdout.strip()).resolve() == root:
+ source_names = set(subprocess.check_output(
+   ['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=root
+ ).decode().rstrip('\0').split('\0'))
+elif (root/'REVIEW.json').exists():
+ source_names = set(json.loads((root/'REVIEW.json').read_text())['source_files'])
+else:
+ source_names = {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file()
+                 and not {'.git','.lake','build','__pycache__'} & set(p.relative_to(root).parts)}
+for name in sorted(source_names):
+ path=root/name
+ if not path.is_file(): continue
+ assert path.suffix not in {'.olean','.ilean','.a','.bc','.dll','.dylib','.o','.obj','.so','.trace'},name
+ if path.suffix != '.lean': continue
+ text=path.read_text()
+ assert not path.is_symlink() and text.startswith('module\n'),name
+ assert len(text.splitlines())<=10000,name
+ for module in re.findall(r'^(?:public )?import ([A-Za-z0-9_.]+)',text,re.M):
+  if module == 'Solution' or module == 'FiveColour' or module.startswith('FiveColour.'):
+   assert module.replace('.','/')+'.lean' in source_names,(name,module,'missing submitted source')
+assert (root/'Challenge.lean').stat().st_size<=100*1024
+assert len((root/'Challenge.lean').read_text().splitlines())<=1000
 config=tomllib.loads((root/'lakefile.toml').read_text())
 manifest=json.loads((root/'lake-manifest.json').read_text())
 packages={p['name']:p for p in manifest['packages']}
@@ -19,7 +44,7 @@ for path in [*(root/'FiveColour').rglob('*.lean'), root/'Solution.lean']:
 challenge=(root/'Challenge.lean').read_text()
 assert re.findall(r'^(?:public )?import (.+)$',challenge,re.M)==['Mathlib']
 comparison=json.loads((root/'comparator.json').read_text())
-assert len(re.findall(r':= by sorry',challenge))==len(comparison['theorem_names'])==5
+assert len(re.findall(r':= by sorry',challenge))==len(comparison['theorem_names'])==13
 for path in [*(root/'FiveColour').rglob('*.lean'),root/'FiveColour.lean',root/'Solution.lean']:
  assert not re.search(r'^(?:public )?import Challenge\b',path.read_text(),re.M),path
 rows=(root/'data/q5-projected-root-cases.txt').read_text().splitlines()

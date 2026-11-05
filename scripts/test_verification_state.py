@@ -1,5 +1,6 @@
 """Regression checks for dependency provenance; all Git mutations use fixtures."""
 import json
+import os
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
@@ -9,7 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from verification_state import dependency_state
+from verification_state import dependency_state, make_settings
 import verify_full
 
 
@@ -105,6 +106,18 @@ class DependencyStateTests(unittest.TestCase):
         self.assertEqual(len(record['steps']), 5)
         self.assertIn('dirty source tree', record['error'])
         self.assertIn('fixture', record['dependencies'])
+
+
+class MakeSettingsTests(unittest.TestCase):
+    def test_diagnostics_and_command_line_overrides(self):
+        root = Path(__file__).resolve().parents[1]
+        for flags in ['', '-j2 --jobserver-auth=300,301', '--trace']:
+            with self.subTest(flags=flags):
+                env = dict(os.environ, MAKEFLAGS=flags + ' -- CXXFLAGS=-DFIXTURE=7')
+                settings = make_settings(root, env, 3)
+                self.assertEqual(settings['WORKERS'], '3')
+                self.assertEqual(settings['CXXFLAGS'], '-DFIXTURE=7')
+                self.assertIn('PYTHON', settings)
 
 
 if __name__ == '__main__':

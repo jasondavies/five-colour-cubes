@@ -1,5 +1,6 @@
 module
-public import FiveColour.ExtremalTripleData
+public import FiveColour.ExtremalFamilyTheorems
+public import FiveColour.SmallSupport
 @[expose] public section
 namespace FiveColour.Physical
 
@@ -19,31 +20,11 @@ lemma extremal_multiplicity (j : Fin 5) (i : Fin 75) :
   triple_multiplicity _ _ _ (extremal_distinct j).1 (extremal_distinct j).2.1
     (extremal_distinct j).2.2 i
 
-def tripleMaskNeighbours (a b c t : Fin 75) (d : ℕ) : Finset (Fin 14) :=
-  Finset.univ.filter fun i => (Replay.fits t (tripleVariety a b c i)).land d ≠ 0
-
-lemma tripleMaskNeighbours_eq (a b c t : Fin 75) (d : ℕ) (hd : d < 256) :
-    tripleMaskNeighbours a b c t d = neighbours (tripleFamily a b c) (catalogue t) (cornerSet d) := by
-  ext i
-  simp only [tripleMaskNeighbours, neighbours, Finset.mem_filter, Finset.mem_univ, true_and,
-    mask_overlap_iff _ _ hd, cornerSet, tripleFamily, incidence_fits]
-
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
-lemma extremal_deficits (j : Fin 5) : ∀ t : Fin 75,
-    extremalDeficit j t < 256 ∧
-    (tripleMaskNeighbours 0 (extremalB j) (extremalC j) t (extremalDeficit j t)).card <
-      (cornerSet (extremalDeficit j t)).card := by
-  fin_cases j <;> decide +kernel
-
-/-- Each of the five representatives fails, with a Hall deficiency at every target. -/
+/-- The five concentrated distributions are instances of the uniform support patterns. -/
 theorem extremal_no_solution (j : Fin 5) : ¬ HasSolution (extremalFamily j) := by
-  apply (not_hasSolution_iff_hall _).mpr
-  intro t
-  refine ⟨cornerSet (extremalDeficit j t), ?_⟩
-  unfold extremalFamily
-  rw [← tripleMaskNeighbours_eq _ _ _ _ _ (extremal_deficits j t).1]
-  exact (extremal_deficits j t).2
+  let p : Fin 4 := ![0,1,0,2,2] j
+  apply uniform_no_solution p (tripleVariety 0 (extremalB j) (extremalC j))
+  fin_cases j <;> decide +kernel
 
 set_option maxRecDepth 100000 in
 lemma extremal_support (j : Fin 5) : (varietySupport (extremalFamily j)).card = 3 := by

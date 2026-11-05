@@ -8,6 +8,7 @@ import shlex
 import stat
 import subprocess
 import sys
+import tempfile
 
 
 def dependency_state(root):
@@ -71,13 +72,24 @@ def dependency_state(root):
     return result
 
 
+def make_settings(root, env, workers):
+    # Make may emit jobserver warnings or --trace text on either output stream.
+    # A file keeps that diagnostic channel separate from the machine protocol.
+    with tempfile.TemporaryDirectory(prefix='q5-make-settings-') as directory:
+        path = Path(directory) / 'settings.json'
+        subprocess.run(['make', '--no-print-directory', 'verification-config',
+                        f'WORKERS={workers}', f'VERIFICATION_CONFIG_FILE={path}'],
+                       cwd=root, env=env, check=True, stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE, text=True)
+        return json.loads(path.read_text())
+
+
 def environment_state(root, env, workers):
     def run(command):
         return subprocess.check_output(command, cwd=root, env=env, text=True,
                                        stderr=subprocess.STDOUT).strip()
 
-    settings = json.loads(run(['make', '--no-print-directory', 'verification-config',
-                               f'WORKERS={workers}']))
+    settings = make_settings(root, env, workers)
     python = json.loads(run(shlex.split(settings['PYTHON']) + ['-S', '-c',
         'import json,sys; print(json.dumps(dict(version=sys.version, '
         'executable=sys.executable, assertions_enabled=__debug__)))']))

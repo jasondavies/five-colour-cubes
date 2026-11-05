@@ -1,6 +1,5 @@
 module
 public import FiveColour.ExtremalMatching
-public import FiveColour.SmallSupport
 public import FiveColour.StabiliserData
 @[expose] public section
 namespace FiveColour.Physical
@@ -35,23 +34,78 @@ lemma triple_multiplicity (a b c : Fin 75) (hab : a ≠ b) (hac : a ≠ c) (hbc 
         decide +kernel
       · simp [tripleVariety, ite_eq_iff, ha, hb, hc, Ne.symm ha, Ne.symm hb, Ne.symm hc]
 
-/-- A small positive witness specifies an actual copy at each target corner. -/
-structure TriplePlacement where
-  target : Fin 75
-  copies : Fin 8 → Fin 14
-  deriving Inhabited
+/-- For 4+5+5 copies, any two source groups already exceed the eight positions.
+Thus Hall reduces to coverage and three private-position bounds. -/
+def TripleCriterion (a b c t : Fin 75) : Prop :=
+  (Replay.fits t a).lor ((Replay.fits t b).lor (Replay.fits t c)) = 255 ∧
+  (cornerSet (Replay.fits t a) \ (cornerSet (Replay.fits t b) ∪ cornerSet (Replay.fits t c))).card ≤ 4 ∧
+  (cornerSet (Replay.fits t b) \ (cornerSet (Replay.fits t a) ∪ cornerSet (Replay.fits t c))).card ≤ 5 ∧
+  (cornerSet (Replay.fits t c) \ (cornerSet (Replay.fits t a) ∪ cornerSet (Replay.fits t b))).card ≤ 5
+instance (a b c t : Fin 75) : Decidable (TripleCriterion a b c t) := by
+  unfold TripleCriterion; infer_instance
 
-def TriplePlacement.Valid (a b c : Fin 75) (w : TriplePlacement) : Prop :=
-  Function.Injective w.copies ∧ ∀ k,
-    (Replay.fits w.target (tripleVariety a b c (w.copies k))).testBit k.val = true
+private lemma private_hall (A B C K : Finset (Fin 8))
+    (hcover : ∀ k, k ∈ A ∨ k ∈ B ∨ k ∈ C)
+    (ha : (A \ (B ∪ C)).card ≤ 4) (hb : (B \ (A ∪ C)).card ≤ 5)
+    (hc : (C \ (A ∪ B)).card ≤ 5) :
+    K.card ≤ (if (K ∩ A).Nonempty then 4 else 0) +
+      (if (K ∩ B).Nonempty then 5 else 0) + (if (K ∩ C).Nonempty then 5 else 0) := by
+  have h8 : K.card ≤ 8 := by simpa using Finset.card_le_univ K
+  have hsub (X Y Z : Finset (Fin 8)) (hcov : ∀ k, k ∈ X ∨ k ∈ Y ∨ k ∈ Z)
+      (hy : ¬ (K ∩ Y).Nonempty) (hz : ¬ (K ∩ Z).Nonempty) : K ⊆ X \ (Y ∪ Z) := by
+    intro k hk
+    have hny : k ∉ Y := fun h => hy ⟨k,Finset.mem_inter.mpr ⟨hk,h⟩⟩
+    have hnz : k ∉ Z := fun h => hz ⟨k,Finset.mem_inter.mpr ⟨hk,h⟩⟩
+    exact Finset.mem_sdiff.mpr ⟨(hcov k).resolve_right (fun h => h.elim hny hnz),
+      by simpa using And.intro hny hnz⟩
+  by_cases hA : (K ∩ A).Nonempty <;> by_cases hB : (K ∩ B).Nonempty <;>
+    by_cases hC : (K ∩ C).Nonempty <;> simp only [hA,hB,hC,↓reduceIte] <;> try omega
+  · exact (Finset.card_le_card (hsub A B C hcover hB hC)).trans ha
+  · exact (Finset.card_le_card (hsub B A C (fun k => by have := hcover k; tauto) hA hC)).trans hb
+  · exact (Finset.card_le_card (hsub C A B (fun k => by have := hcover k; tauto) hA hB)).trans hc
+  · have he : K = ∅ := by
+      apply Finset.eq_empty_iff_forall_notMem.mpr
+      intro k hk
+      rcases hcover k with h | h | h
+      · exact hA ⟨k,Finset.mem_inter.mpr ⟨hk,h⟩⟩
+      · exact hB ⟨k,Finset.mem_inter.mpr ⟨hk,h⟩⟩
+      · exact hC ⟨k,Finset.mem_inter.mpr ⟨hk,h⟩⟩
+    simp [he]
 
-instance instDecidableTriplePlacementValid (a b c : Fin 75) (w : TriplePlacement) : Decidable (w.Valid a b c) := by
-  unfold TriplePlacement.Valid Function.Injective
-  infer_instance
+lemma triple_neighbours_card (a b c t : Fin 75) (K : Finset (Fin 8)) :
+    (neighbours (tripleFamily a b c) (catalogue t) K).card =
+      (if (K ∩ usableSlots (catalogue a) (catalogue t)).Nonempty then 4 else 0) +
+      (if (K ∩ usableSlots (catalogue b) (catalogue t)).Nonempty then 5 else 0) +
+      (if (K ∩ usableSlots (catalogue c) (catalogue t)).Nonempty then 5 else 0) := by
+  have he : neighbours (tripleFamily a b c) (catalogue t) K = Finset.univ.filter
+      (fun i : Fin 14 => if i.val < 4 then (K ∩ usableSlots (catalogue a) (catalogue t)).Nonempty
+        else if i.val < 9 then (K ∩ usableSlots (catalogue b) (catalogue t)).Nonempty
+        else (K ∩ usableSlots (catalogue c) (catalogue t)).Nonempty) := by
+    ext i
+    simp only [neighbours, Finset.mem_filter, Finset.mem_univ, true_and]
+    by_cases h4 : i.val < 4 <;> by_cases h9 : i.val < 9 <;>
+      simp [tripleFamily, tripleVariety, h4, h9, usableSlots,
+        Finset.Nonempty, Finset.mem_inter]
+  rw [he]
+  by_cases ha : (K ∩ usableSlots (catalogue a) (catalogue t)).Nonempty <;>
+    by_cases hb : (K ∩ usableSlots (catalogue b) (catalogue t)).Nonempty <;>
+    by_cases hc : (K ∩ usableSlots (catalogue c) (catalogue t)).Nonempty <;>
+    simp only [ha,hb,hc,↓reduceIte] <;> decide +kernel
 
-lemma triple_placement_solves (a b c : Fin 75) (w : TriplePlacement)
-    (h : w.Valid a b c) : HasSolution (tripleFamily a b c) :=
-  (hasSolution_iff_catalogue _).mpr
-    ⟨w.target, ⟨w.copies,h.1⟩, fun k => (incidence_fits _ _ _).mp (h.2 k)⟩
+lemma triple_criterion_solves (a b c t : Fin 75) (h : TripleCriterion a b c t) :
+    HasSolution (tripleFamily a b c) := by
+  obtain ⟨hu,ha,hb,hc⟩ := h
+  have hcover : ∀ k, k ∈ cornerSet (Replay.fits t a) ∨
+      k ∈ cornerSet (Replay.fits t b) ∨ k ∈ cornerSet (Replay.fits t c) := by
+    intro k
+    have hfull : ∀ k : Fin 8, (255 : Nat).testBit k.val = true := by decide +kernel
+    have hk := congrArg (fun mask => mask.testBit k.val) hu
+    simpa only [Nat.lor_eq, Nat.testBit_lor, hfull k, Bool.or_eq_true,
+      cornerSet, Finset.mem_filter, Finset.mem_univ, true_and] using hk
+  apply (hasSolution_iff_catalogue _).mpr
+  refine ⟨t,(solvesTarget_iff_hall _ _).mpr ?_⟩
+  intro K
+  rw [triple_neighbours_card, ← cornerSet_fits, ← cornerSet_fits, ← cornerSet_fits]
+  exact private_hall _ _ _ K hcover ha hb hc
 
 end FiveColour.Physical

@@ -1,0 +1,91 @@
+{
+  "status": "incomplete: local execution budget reached",
+  "source_snapshot": "7be31ee3e064bf535d3a07eb664fa9fde1328014747ac24e19f8480a71aa66cd",
+  "official_verifier_revision": "14aa8d6b3c2f14a8540605e37144560b9a00e7e7",
+  "export_sha256": "d8d083fd11d0b944feedce8e2019c74c5d1728c0abcbcf4655fa2a82414a4d59",
+  "export_bytes": 330770073,
+  "nanoda_configuration": {
+    "nat_extension": true,
+    "num_threads": 4,
+    "permitted_axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ],
+    "string_extension": true,
+    "unpermitted_axiom_hard_error": false,
+    "use_stdin": false
+  },
+  "recorded_utc": "2026-11-05T18:41:47.844286+00:00",
+  "statement_definition_and_axiom_comparison": "passed before the external kernels ran",
+  "nanoda": {
+    "status": "accepted",
+    "checker": "NanoDa",
+    "observed_utc": "2026-11-05T16:06:09.265021+00:00",
+    "source_snapshot": "7be31ee3e064bf535d3a07eb664fa9fde1328014747ac24e19f8480a71aa66cd",
+    "export_sha256": "d8d083fd11d0b944feedce8e2019c74c5d1728c0abcbcf4655fa2a82414a4d59",
+    "tool_sha256": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5",
+    "log_sha256_at_acceptance": "f300f22a44b7ccea45926807366bf7fdaffaa32c327257c374e72ab3cb913f5d",
+    "scope": "Complete solution export after successful statement, definition and permitted-axiom comparison; Lean standalone replay still pending."
+  },
+  "lean_standalone": {
+    "status": "incomplete",
+    "reason": "supervisor stopped the serial export replay at the combined local execution budget; no rejection was observed before termination"
+  },
+  "conron": {
+    "status": "not run",
+    "reason": "mandatory standalone Lean replay did not finish"
+  },
+  "budget_seconds": 19800,
+  "budget_scope": "Fresh full verification plus external comparison on this local machine",
+  "fresh_verification_seconds": 3982.0,
+  "source_archive_sha256": "25a1bbf2231e92313b0c674429eed588d1835f8d7d5b58df6b7e9c9c2d2108d9",
+  "source_preflight": {
+    "verifier_revision": "14aa8d6b3c2f14a8540605e37144560b9a00e7e7",
+    "source_scan": {
+      "schema_version": 1,
+      "module_required": true,
+      "maximum_lines": 10000,
+      "files_checked": 505
+    },
+    "metadata_status": "passed"
+  },
+  "theorem_names": [
+    "ColourCubes.exposed_face_rule",
+    "FiveColour.Puzzle.lower_bound",
+    "FiveColour.Puzzle.threshold15",
+    "FiveColour.Puzzle.sharp_threshold15",
+    "FiveColour.Puzzle.least_guaranteed_size",
+    "FiveColour.Submission.frame_threshold",
+    "FiveColour.Submission.box_threshold",
+    "FiveColour.Submission.support_threshold",
+    "FiveColour.Submission.multiplicity_bound",
+    "FiveColour.Submission.three_variety_classification",
+    "FiveColour.Submission.extremal_examples",
+    "FiveColour.Submission.extremal_inequivalent",
+    "FiveColour.Submission.generalized_obstructions"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "tool_sha256": {
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanexport": "f6a6483d518a11b323c28b9bac176d2220df0e9fc3230833815db9586669c074",
+    "leanchecker": "12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6",
+    "nanoda_bin": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5"
+  },
+  "logs": {
+    "comparator.log": {
+      "sha256": "8e0ae6c9287ccdc99a147094d7d9bd7275cf5b6987d96b8a004037e2809f1978",
+      "bytes": 2850
+    },
+    "comparator-time.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "scope": "Local evidence only. Fresh complete Lean build and NanoDa passed; the separate mandatory Lean export replay did not finish within the local budget. No hosted Palomar pass or registration is claimed."
+}

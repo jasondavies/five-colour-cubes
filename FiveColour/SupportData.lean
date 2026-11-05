@@ -11,14 +11,12 @@ def supportPairTarget : Fin 75 → Fin 75 → Fin 75 :=
 
 def supportPairAmount (i j : Fin 75) : ℕ := if Replay.fits i j = 0 then 4 else 7
 
-def pairP : Fin 75 := 3
-def pairQ : Fin 75 := 11
-def pairLowerCutMask : Fin 75 → ℕ := ![16,16,2,223,4,1,2,1,2,16,1,253,1,2,2,2,1,2,2,4,2,8,2,4,1,2,1,2,4,64,1,1,16,4,1,1,1,1,2,2,2,8,1,1,1,4,1,4,16,1,1,1,1,64,1,2,2,8,2,1,2,1,2,2,2,2,32,1,2,2,32,2,1,2,2]
+def pairP : Fin 75 := 16
+def pairQ : Fin 75 := 49
+def pairLowerCutMask : Fin 75 → ℕ := ![1,1,1,1,1,1,1,1,1,1,2,1,4,1,1,4,253,4,1,1,1,2,8,1,1,1,1,1,1,1,2,2,1,1,4,4,2,2,1,1,1,1,2,1,1,1,2,1,1,251,128,2,2,1,4,1,1,1,1,4,1,2,1,1,1,1,1,2,1,1,1,1,4,1,1]
 def pairLowerCut (t : Fin 75) : Finset (Fin 8) := cornerSet (pairLowerCutMask t)
 
 /-- A, C and the three members of the B-group, in that order. -/
 def mixedRepresentatives : Fin 5 → Fin 75 := ![0,49,16,17,22]
-def mixedLowerCutMask : Fin 75 → ℕ := ![31,1,1,1,1,1,1,1,1,32,16,1,4,1,32,128,249,252,4,4,4,8,252,8,1,1,1,1,32,32,64,16,1,32,4,4,4,4,1,128,8,32,8,1,1,1,4,1,64,250,128,128,128,1,4,1,1,1,64,64,1,4,1,32,64,64,64,64,1,1,1,64,4,1,64]
-def mixedLowerCut (t : Fin 75) : Finset (Fin 8) := cornerSet (mixedLowerCutMask t)
 
 end FiveColour.Physical

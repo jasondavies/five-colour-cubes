@@ -154,27 +154,35 @@ obstruction family have separate physical Lean proofs, independent of
 \path{ExtremalMultiplicity.lean} uses the anchor lemma and explicit corner
 allocations for small grouped inventories. The allocation theorem reserves
 distinct physical copies, and kernel checks validate both the assignments
-and the exhaustive weak-composition lists. The main-text proof instead uses
+and the filtered weak-composition lists. Four disjoint sources are handled
+first by a separate lemma, leaving 2,702 six-copy inventories and 35
+four-disjoint inventories. The main-text proof instead uses
 the directed-cut intersection calculation.
 
 For the three-variety classification, the multiplicity bound forces
 $(4,5,5)$. Normalizing the four-copy variety to one of the two anchor types
-leaves $2\binom{74}{2}=5,402$ candidates. Kernel checks verify explicit
-assemblies for 5,346 and symmetry witnesses for the other 56. Separate Hall
-witnesses prove that all five representatives fail. Completeness of the
+leaves $2\binom{74}{2}=5,402$ candidates. Kernel checks verify a target and the coverage/private-position criterion
+for 5,346 and symmetry witnesses for the other 56. A shared uniform Hall
+argument proves that all five representatives fail. Completeness of the
 sixteen-element stabilizer of the opposite anchor is checked on physical
 faces; this establishes pairwise inequivalence under every allowed global
 symmetry. \path{ExtremalClassification.lean} joins these results for arbitrary
-physical collections. \path{ExtremalFamilyTheorems.lean} proves the generalized
-family. The face tuples and orbit sizes are in
+physical collections.
+
+\path{ExtremalFamilyTheorems.lean} proves the generalized
+family as an equivalence: failure holds exactly when the two blocks have
+disjoint repeated-colour supports. Four enlarged support patterns require
+only 300 Hall witnesses; two uniform allocations prove the converse. The
+original 21-member family and the five representatives reuse this proof.
+The face tuples and orbit sizes are in
 \path{data/five-colour-extremal.json}; a separate Python audit checks all
-202,575 labelled $(4,5,5)$ collections and all 91 normalized family members.
+202,575 labelled $(4,5,5)$ collections and all 441 normalized distributions (91 failures and 350 solutions).
 These finite formal proofs supplement the elementary main-text arguments;
 no interval certificates are added or changed.
 
 \subsection{Reproduction}
 The dependency audits cover 140 declarations listed in \path{Audit.lean},
-fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
+twenty-two extension and submission statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
 and audits with:
@@ -199,26 +207,35 @@ were reused; project and shared cube-library artifacts were rebuilt. All
 \toprule
 Stage & Wall time\\
 \midrule
-C++/Python audit & 5.6 s\\
-Shared Lean library and audit & 13.8 min\\
-Certificate proof generation & 3.7 s\\
-Certificate replay and final corner theorem & 37.6 min\\
-Unconditional extensions and audit & 2.5 s\\
-Complete verification command & 51.6 min\\
+C++/Python audit & 10.3 s\\
+Shared Lean library and audit & 17.5 min\\
+Certificate proof generation & 4.0 s\\
+Certificate replay and final corner theorem & 48.5 min\\
+Unconditional extensions and audit & 3.2 s\\
+Complete verification command & 66.4 min\\
 \bottomrule
 \end{tabular}
 \end{center}
 Peak sampled combined process-tree proportional set size (PSS) was
-49.0\,GiB, sampled approximately every two seconds; this accounts for shared pages
-proportionally. Peak summed RSS was 54.2\,GiB and double-counts shared pages.
+29.2\,GiB, sampled approximately every two seconds; this accounts for shared pages
+proportionally. Peak summed RSS was 35.0\,GiB and double-counts shared pages.
+The retained record \path{verification/benchmark.json} identifies source snapshot
+\texttt{7be31ee3e064}, based on commit
+\texttt{af991ff3b111}, with the full source manifest, archive digest,
+dependency trees and tool settings. Its Lean sources are those of this proof.
 
-A Mathlib-only comparator challenge states the corner problem geometrically,
-restating the library's definitions locally. It covers only the corner
-problem: the cuboid statements rest on the definitions in
-\path{FiveColour/BoxModel.lean}. Its equivalence with the development's
-model is proved by
-\path{FiveColour.Puzzle.hasSolution_iff} in
-\path{FiveColour/ComparatorBridge.lean}. The solution module applies the
-completed threshold theorem. A full external comparator pass remains
-unconfirmed; it is separate from the completed Lean proof.
-
+A Mathlib-only comparator challenge states thirteen claims: the corner
+threshold and sharpness, both cuboid thresholds, support thresholds, the
+multiplicity bound, the five-class classification including representative
+failure and inequivalence, and the generalized obstruction family. It defines
+varieties by proper rotations and counts physical copies without a catalogue.
+The cuboid model explicitly specifies corners, edges, face interiors and
+interior positions with their exposed faces. The bridges in
+\path{FiveColour/ComparatorBridge.lean} and
+\path{FiveColour/SubmissionBridge.lean} identify these statements with the
+proof models. The generated replay sources are retained for clean Lake builds.
+The thirteen statements and their shared definitions matched, and NanoDa
+accepted the full solution export. The separate serial Lean export replay did
+not finish within a local 330-minute budget shared with the fresh build and
+NanoDa check. The record is \path{verification/palomar.json}; no completed
+Palomar verification or registration is claimed.

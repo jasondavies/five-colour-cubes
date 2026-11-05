@@ -35,7 +35,7 @@ sources:
     note: "Working manuscript; not released or submitted."
   - title: "The 4-Color Cubes Puzzle"
     authors: ["Ethan Berkove", "Andrew Eickemeyer", "Michael Schulman"]
-    type: article
+    type: paper
     relationship: background
     id: "https://doi.org/10.5281/zenodo.10680216"
     location: "Integers 18 (2018), A68; Section 8, Table 7"
@@ -66,8 +66,9 @@ status:
     Physical.Threshold15 and Physical.SharpThreshold15 via
     Packed.ProjectedChunks.threshold15 and sharpThreshold15. Their axiom audit
     contains only propext, Classical.choice and Quot.sound.
-    The default target builds the infrastructure and checkpoint controls; full
-    generated replay is opt-in and reproducible from the committed archive.
+    The default Lake target builds the infrastructure and checkpoint controls; full
+    generated replay is opt-in, retained for clean Lake builds, and reproducible
+    from the committed archive.
     The extension library proves the rare-pair Hall argument, the physical
     frame and complete-cube deductions, the sharp two-variety bound of thirteen,
     and a family of fourteen-cube obstructions. Finite kernel checks cover the
@@ -75,8 +76,8 @@ status:
     small-support witnesses; no new interval certificates are needed.
     The extremal extension independently proves the multiplicity-five bound,
     the complete five-class classification of three-variety fourteen-cube
-    obstructions and the generalized obstruction family. Its formal route uses
-    kernel-checked finite allocations and symmetry reductions, while the paper
+    obstructions and the exact generalized-family obstruction criterion. Its formal route uses
+    kernel-checked finite allocations, private-position criteria and symmetry reductions, while the paper
     gives elementary geometric proofs. Completeness, failure of every listed
     representative and inequivalence under common colour relabelling and
     simultaneous reflection are all included. This extension does not import
@@ -93,17 +94,22 @@ status:
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and
     complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
-    140 declarations; ExtensionsAudit.lean covers fourteen unconditional
-    extension statements.
-    Solution.lean transfers the result to the Mathlib-only geometric challenge
-    and builds successfully. The latest full external comparator run ended
-    without a recorded outcome; a full pass remains unconfirmed.
-    The Mathlib-only Challenge.lean covers only the corner theorem. Cuboid
-    fidelity is relative to the physical definitions in BoxModel.lean and
-    their checked bridges to proper rotations and exposed-face matching;
-    it is not an external comparator claim for cuboids. The three box223,
-    box224 and box233 exports include both the lower and upper statements.
-    No Palomar submission exists. The five intentional theorem holes in
+    140 declarations; ExtensionsAudit.lean covers twenty-two unconditional
+    extension and submission-interface statements.
+    Solution.lean transfers the results to a Mathlib-only geometric Challenge.
+    Its thirteen comparison targets include the corner threshold and sharpness,
+    both cuboid thresholds, support thresholds, multiplicity bound, five-class
+    classification, representative failure and inequivalence, and generalized
+    obstruction family. The 261-line Challenge defines physical rotation
+    classes and copy counts without importing the catalogue. Its cuboid slots
+    explicitly represent corners, edges, face interiors and interior positions.
+    SubmissionBridge.lean proves agreement with the proof models.
+    All thirteen statements and shared definitions matched, and NanoDa accepted
+    the full export. The separate serial Lean export replay did not finish
+    within the combined local 330-minute build/comparison budget. The source-bound
+    evidence is retained in verification/palomar.json. The fresh complete Lean
+    build passed; no complete Palomar verification is claimed.
+    No Palomar submission exists. The thirteen intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -140,7 +146,7 @@ fidelity:
     rather than the paper's elementary classification of the three possible
     targets. The upper bound formalises the physical reduction and budget
     projection, then checks all 279 projected interval certificates and their
-    final composition. Generated replay sources are ignored and reproducible;
+    final composition. Generated replay sources are retained and reproducible;
     logs are transient build outputs. For the extensions, Lean uses generic
     Hall and reservation lemmas with kernel-checked finite geometry bounds.
     The fixed-missing-pair lemma uses a checked nine-variety compatibility
@@ -160,7 +166,9 @@ fidelity:
     The compressed flow construction and its complexity bound are proved
     in the manuscript, not formalised in Lean.
     The full source and generated-proof verification route is make verify-full;
-    its revision, hashes, logs and axiom reports are ignored release artifacts.
+    the publication measurement and its source-bound record are retained in
+    verification/benchmark.json; detailed logs and further run records are
+    ignored release artifacts.
     Rosenfeld (2026), pp. 78-82, has been read: it presents a six-colour
     eight-cube puzzle and does not state the five-colour thresholds.
     No human peer review or publication-priority claim is made.

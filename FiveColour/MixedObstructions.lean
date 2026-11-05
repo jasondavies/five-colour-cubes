@@ -1,6 +1,7 @@
 module
 public import Mathlib.Data.Fintype.Prod
-public import FiveColour.SmallSupport
+public import FiveColour.ExtremalFamilyTheorems
+public import FiveColour.SupportData
 @[expose] public section
 namespace FiveColour.Physical
 
@@ -10,39 +11,38 @@ def mixedFamily (x y : ℕ) (i : Fin 14) : Cube := catalogue (mixedRepresentativ
   (if i.val < 4 then 0 else if i.val < 9 then 1 else
    if i.val < 9+x then 2 else if i.val < 9+x+y then 3 else 4))
 
-/-- Overestimate neighbours by allowing each of the last five copies to be
-any of the three B-varieties. This proves every distribution at once. -/
-def mixedNeighbours (t : Fin 75) : Finset (Fin 14) := Finset.univ.filter fun i =>
-  if i.val < 4 then ∃ k ∈ mixedLowerCut t, Fits (catalogue (mixedRepresentatives 0)) (catalogue t) k
-  else if i.val < 9 then ∃ k ∈ mixedLowerCut t, Fits (catalogue (mixedRepresentatives 1)) (catalogue t) k
-  else ∃ b : Fin 5, 2 ≤ b.val ∧ ∃ k ∈ mixedLowerCut t,
-    Fits (catalogue (mixedRepresentatives b)) (catalogue t) k
+private def swapFamilyBlocks : Fin 14 → Fin 14 :=
+  ![0,1,2,3,9,10,11,12,13,4,5,6,7,8]
 
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
-theorem mixed_deficit (t : Fin 75) : (mixedNeighbours t).card < (mixedLowerCut t).card := by
-  fin_cases t <;> decide +kernel
+private lemma swapFamilyBlocks_involution : Function.Involutive swapFamilyBlocks := by
+  intro i
+  fin_cases i <;> rfl
 
-lemma mixed_neighbours_subset (x y : ℕ) (t : Fin 75) :
-    neighbours (mixedFamily x y) (catalogue t) (mixedLowerCut t) ⊆ mixedNeighbours t := by
-  intro i hi
-  obtain ⟨k,hk,hfit⟩ := (Finset.mem_filter.mp hi).2
-  apply Finset.mem_filter.mpr
-  refine ⟨Finset.mem_univ _,?_⟩
-  unfold mixedFamily at hfit
-  split_ifs at hfit ⊢ with h4 h9 hx hxy
-  · exact ⟨k,hk,hfit⟩
-  · exact ⟨k,hk,hfit⟩
-  · exact ⟨2,by decide,k,hk,hfit⟩
-  · exact ⟨3,by decide,k,hk,hfit⟩
-  · exact ⟨4,by decide,k,hk,hfit⟩
-
+/-- The original family is the first uniform support pattern, for arbitrary x,y.
+The definition itself clamps the B blocks to the five available physical copies. -/
 theorem mixed_no_solution (x y : ℕ) : ¬ HasSolution (mixedFamily x y) := by
+  let v := fun i : Fin 14 => mixedRepresentatives
+    (if i.val < 4 then 0 else if i.val < 9 then 1 else
+      if i.val < 9+x then 2 else if i.val < 9+x+y then 3 else 4)
+  have hu : ¬ HasSolution (fun i => catalogue (v (swapFamilyBlocks i))) := by
+    apply uniform_no_solution 0
+    intro i
+    fin_cases i <;> simp only [familyAllowed, swapFamilyBlocks, v, Matrix.cons_val_zero,
+      Matrix.cons_val_one, Matrix.cons_val, Fin.reduceFinMk,
+      Fin.isValue, Nat.reduceLT, ↓reduceIte]
+    all_goals simp [familyBAllowed, familyCAllowed, mixedRepresentatives,
+      extremalBGroup, extremalCGroup]
+    all_goals split_ifs <;> decide +kernel
   intro h
   obtain ⟨t,p,hp⟩ := (hasSolution_iff_catalogue _).mp h
-  have hle := (solution_card_le _ _ p hp (mixedLowerCut t)).trans
-    (Finset.card_le_card (mixed_neighbours_subset x y t))
-  exact Nat.not_le_of_gt (mixed_deficit t) hle
+  apply hu
+  apply (hasSolution_iff_catalogue _).mpr
+  let e : Fin 14 ↪ Fin 14 := ⟨swapFamilyBlocks, swapFamilyBlocks_involution.injective⟩
+  refine ⟨t,p.trans e,?_⟩
+  intro k
+  change Fits (catalogue (v (swapFamilyBlocks (swapFamilyBlocks (p k))))) (catalogue t) k
+  rw [swapFamilyBlocks_involution]
+  exact hp k
 
 theorem mixed_uses_all (x y : ℕ) : ∀ i, UsesAllColours (mixedFamily x y i) :=
   fun _ => catalogue_uses_all_colours _

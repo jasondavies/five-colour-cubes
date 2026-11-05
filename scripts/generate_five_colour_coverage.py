@@ -5,9 +5,8 @@ The costly proof checks are split into eight modules. Lean validates the
 physical symmetry actions, mask transport, and lookup in the actual case ledger.
 """
 import argparse
-import itertools
 from pathlib import Path
-from cube_geometry import ROT, canonical
+from cube_witnesses import ordered_anchor_symmetries
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,25 +35,7 @@ def generate(root, check=False):
     index = {c: i for i, c in enumerate(cubes)}
     anchors = (3, 0)
 
-    def apply(p, mirror, cube):
-        c = tuple(p[a] for a in cube)
-        return (c[1], c[0], *c[2:]) if mirror else c
-
-    symmetries, actions, rotations = [], [], []
-    for p in itertools.permutations(range(5)):
-        for mirror in (False, True):
-            if not any(canonical(apply(p, mirror, cubes[a])) == cubes[a] for a in anchors):
-                continue
-            action, rotation = [], []
-            for cube in cubes:
-                c = apply(p, mirror, cube)
-                i = index[canonical(c)]
-                r = next(r for r, perm in enumerate(ROT) if c == tuple(cubes[i][f] for f in perm))
-                action.append(i)
-                rotation.append(r)
-            symmetries.append((p, mirror))
-            actions.append(action)
-            rotations.append(rotation)
+    symmetries, actions, rotations = ordered_anchor_symmetries(cubes, anchors)
     count = len(symmetries)
     groups = [[g for g, action in enumerate(actions) if action[a] == a] for a in anchors]
 

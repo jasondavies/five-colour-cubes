@@ -1,0 +1,570 @@
+module
+public import FiveColour.ProjectedChunks.Case0
+public import FiveColour.ProjectedChunks.Case1
+public import FiveColour.ProjectedChunks.Case2
+public import FiveColour.ProjectedChunks.Case3
+public import FiveColour.ProjectedChunks.Case4
+public import FiveColour.ProjectedChunks.Case5
+public import FiveColour.ProjectedChunks.Case6
+public import FiveColour.ProjectedChunks.Case7
+public import FiveColour.ProjectedChunks.Case8
+public import FiveColour.ProjectedChunks.Case9
+public import FiveColour.ProjectedChunks.Case10
+public import FiveColour.ProjectedChunks.Case11
+public import FiveColour.ProjectedChunks.Case12
+public import FiveColour.ProjectedChunks.Case13
+public import FiveColour.ProjectedChunks.Case14
+public import FiveColour.ProjectedChunks.Case15
+public import FiveColour.ProjectedChunks.Case16
+public import FiveColour.ProjectedChunks.Case17
+public import FiveColour.ProjectedChunks.Case18
+public import FiveColour.ProjectedChunks.Case19
+public import FiveColour.ProjectedChunks.Case20
+public import FiveColour.ProjectedChunks.Case21
+public import FiveColour.ProjectedChunks.Case22
+public import FiveColour.ProjectedChunks.Case23
+public import FiveColour.ProjectedChunks.Case24
+public import FiveColour.ProjectedChunks.Case25
+public import FiveColour.ProjectedChunks.Case26
+public import FiveColour.ProjectedChunks.Case27
+public import FiveColour.ProjectedChunks.Case28
+public import FiveColour.ProjectedChunks.Case29
+public import FiveColour.ProjectedChunks.Case30
+public import FiveColour.ProjectedChunks.Case31
+public import FiveColour.ProjectedChunks.Case32
+public import FiveColour.ProjectedChunks.Case33
+public import FiveColour.ProjectedChunks.Case34
+public import FiveColour.ProjectedChunks.Case35
+public import FiveColour.ProjectedChunks.Case36
+public import FiveColour.ProjectedChunks.Case37
+public import FiveColour.ProjectedChunks.Case38
+public import FiveColour.ProjectedChunks.Case39
+public import FiveColour.ProjectedChunks.Case40
+public import FiveColour.ProjectedChunks.Case41
+public import FiveColour.ProjectedChunks.Case42
+public import FiveColour.ProjectedChunks.Case43
+public import FiveColour.ProjectedChunks.Case44
+public import FiveColour.ProjectedChunks.Case45
+public import FiveColour.ProjectedChunks.Case46
+public import FiveColour.ProjectedChunks.Case47
+public import FiveColour.ProjectedChunks.Case48
+public import FiveColour.ProjectedChunks.Case49
+public import FiveColour.ProjectedChunks.Case50
+public import FiveColour.ProjectedChunks.Case51
+public import FiveColour.ProjectedChunks.Case52
+public import FiveColour.ProjectedChunks.Case53
+public import FiveColour.ProjectedChunks.Case54
+public import FiveColour.ProjectedChunks.Case55
+public import FiveColour.ProjectedChunks.Case56
+public import FiveColour.ProjectedChunks.Case57
+public import FiveColour.ProjectedChunks.Case58
+public import FiveColour.ProjectedChunks.Case59
+public import FiveColour.ProjectedChunks.Case60
+public import FiveColour.ProjectedChunks.Case61
+public import FiveColour.ProjectedChunks.Case62
+public import FiveColour.ProjectedChunks.Case63
+public import FiveColour.ProjectedChunks.Case64
+public import FiveColour.ProjectedChunks.Case65
+public import FiveColour.ProjectedChunks.Case66
+public import FiveColour.ProjectedChunks.Case67
+public import FiveColour.ProjectedChunks.Case68
+public import FiveColour.ProjectedChunks.Case69
+public import FiveColour.ProjectedChunks.Case70
+public import FiveColour.ProjectedChunks.Case71
+public import FiveColour.ProjectedChunks.Case72
+public import FiveColour.ProjectedChunks.Case73
+public import FiveColour.ProjectedChunks.Case74
+public import FiveColour.ProjectedChunks.Case75
+public import FiveColour.ProjectedChunks.Case76
+public import FiveColour.ProjectedChunks.Case77
+public import FiveColour.ProjectedChunks.Case78
+public import FiveColour.ProjectedChunks.Case79
+public import FiveColour.ProjectedChunks.Case80
+public import FiveColour.ProjectedChunks.Case81
+public import FiveColour.ProjectedChunks.Case82
+public import FiveColour.ProjectedChunks.Case83
+public import FiveColour.ProjectedChunks.Case84
+public import FiveColour.ProjectedChunks.Case85
+public import FiveColour.ProjectedChunks.Case86
+public import FiveColour.ProjectedChunks.Case87
+public import FiveColour.ProjectedChunks.Case88
+public import FiveColour.ProjectedChunks.Case89
+public import FiveColour.ProjectedChunks.Case90
+public import FiveColour.ProjectedChunks.Case91
+public import FiveColour.ProjectedChunks.Case92
+public import FiveColour.ProjectedChunks.Case93
+public import FiveColour.ProjectedChunks.Case94
+public import FiveColour.ProjectedChunks.Case95
+public import FiveColour.ProjectedChunks.Case96
+public import FiveColour.ProjectedChunks.Case97
+public import FiveColour.ProjectedChunks.Case98
+public import FiveColour.ProjectedChunks.Case99
+public import FiveColour.ProjectedChunks.Case100
+public import FiveColour.ProjectedChunks.Case101
+public import FiveColour.ProjectedChunks.Case102
+public import FiveColour.ProjectedChunks.Case103
+public import FiveColour.ProjectedChunks.Case104
+public import FiveColour.ProjectedChunks.Case105
+public import FiveColour.ProjectedChunks.Case106
+public import FiveColour.ProjectedChunks.Case107
+public import FiveColour.ProjectedChunks.Case108
+public import FiveColour.ProjectedChunks.Case109
+public import FiveColour.ProjectedChunks.Case110
+public import FiveColour.ProjectedChunks.Case111
+public import FiveColour.ProjectedChunks.Case112
+public import FiveColour.ProjectedChunks.Case113
+public import FiveColour.ProjectedChunks.Case114
+public import FiveColour.ProjectedChunks.Case115
+public import FiveColour.ProjectedChunks.Case116
+public import FiveColour.ProjectedChunks.Case117
+public import FiveColour.ProjectedChunks.Case118
+public import FiveColour.ProjectedChunks.Case119
+public import FiveColour.ProjectedChunks.Case120
+public import FiveColour.ProjectedChunks.Case121
+public import FiveColour.ProjectedChunks.Case122
+public import FiveColour.ProjectedChunks.Case123
+public import FiveColour.ProjectedChunks.Case124
+public import FiveColour.ProjectedChunks.Case125
+public import FiveColour.ProjectedChunks.Case126
+public import FiveColour.ProjectedChunks.Case127
+public import FiveColour.ProjectedChunks.Case128
+public import FiveColour.ProjectedChunks.Case129
+public import FiveColour.ProjectedChunks.Case130
+public import FiveColour.ProjectedChunks.Case131
+public import FiveColour.ProjectedChunks.Case132
+public import FiveColour.ProjectedChunks.Case133
+public import FiveColour.ProjectedChunks.Case134
+public import FiveColour.ProjectedChunks.Case135
+public import FiveColour.ProjectedChunks.Case136
+public import FiveColour.ProjectedChunks.Case137
+public import FiveColour.ProjectedChunks.Case138
+public import FiveColour.ProjectedChunks.Case139
+public import FiveColour.ProjectedChunks.Case140
+public import FiveColour.ProjectedChunks.Case141
+public import FiveColour.ProjectedChunks.Case142
+public import FiveColour.ProjectedChunks.Case143
+public import FiveColour.ProjectedChunks.Case144
+public import FiveColour.ProjectedChunks.Case145
+public import FiveColour.ProjectedChunks.Case146
+public import FiveColour.ProjectedChunks.Case147
+public import FiveColour.ProjectedChunks.Case148
+public import FiveColour.ProjectedChunks.Case149
+public import FiveColour.ProjectedChunks.Case150
+public import FiveColour.ProjectedChunks.Case151
+public import FiveColour.ProjectedChunks.Case152
+public import FiveColour.ProjectedChunks.Case153
+public import FiveColour.ProjectedChunks.Case154
+public import FiveColour.ProjectedChunks.Case155
+public import FiveColour.ProjectedChunks.Case156
+public import FiveColour.ProjectedChunks.Case157
+public import FiveColour.ProjectedChunks.Case158
+public import FiveColour.ProjectedChunks.Case159
+public import FiveColour.ProjectedChunks.Case160
+public import FiveColour.ProjectedChunks.Case161
+public import FiveColour.ProjectedChunks.Case162
+public import FiveColour.ProjectedChunks.Case163
+public import FiveColour.ProjectedChunks.Case164
+public import FiveColour.ProjectedChunks.Case165
+public import FiveColour.ProjectedChunks.Case166
+public import FiveColour.ProjectedChunks.Case167
+public import FiveColour.ProjectedChunks.Case168
+public import FiveColour.ProjectedChunks.Case169
+public import FiveColour.ProjectedChunks.Case170
+public import FiveColour.ProjectedChunks.Case171
+public import FiveColour.ProjectedChunks.Case172
+public import FiveColour.ProjectedChunks.Case173
+public import FiveColour.ProjectedChunks.Case174
+public import FiveColour.ProjectedChunks.Case175
+public import FiveColour.ProjectedChunks.Case176
+public import FiveColour.ProjectedChunks.Case177
+public import FiveColour.ProjectedChunks.Case178
+public import FiveColour.ProjectedChunks.Case179
+public import FiveColour.ProjectedChunks.Case180
+public import FiveColour.ProjectedChunks.Case181
+public import FiveColour.ProjectedChunks.Case182
+public import FiveColour.ProjectedChunks.Case183
+public import FiveColour.ProjectedChunks.Case184
+public import FiveColour.ProjectedChunks.Case185
+public import FiveColour.ProjectedChunks.Case186
+public import FiveColour.ProjectedChunks.Case187
+public import FiveColour.ProjectedChunks.Case188
+public import FiveColour.ProjectedChunks.Case189
+public import FiveColour.ProjectedChunks.Case190
+public import FiveColour.ProjectedChunks.Case191
+public import FiveColour.ProjectedChunks.Case192
+public import FiveColour.ProjectedChunks.Case193
+public import FiveColour.ProjectedChunks.Case194
+public import FiveColour.ProjectedChunks.Case195
+public import FiveColour.ProjectedChunks.Case196
+public import FiveColour.ProjectedChunks.Case197
+public import FiveColour.ProjectedChunks.Case198
+public import FiveColour.ProjectedChunks.Case199
+public import FiveColour.ProjectedChunks.Case200
+public import FiveColour.ProjectedChunks.Case201
+public import FiveColour.ProjectedChunks.Case202
+public import FiveColour.ProjectedChunks.Case203
+public import FiveColour.ProjectedChunks.Case204
+public import FiveColour.ProjectedChunks.Case205
+public import FiveColour.ProjectedChunks.Case206
+public import FiveColour.ProjectedChunks.Case207
+public import FiveColour.ProjectedChunks.Case208
+public import FiveColour.ProjectedChunks.Case209
+public import FiveColour.ProjectedChunks.Case210
+public import FiveColour.ProjectedChunks.Case211
+public import FiveColour.ProjectedChunks.Case212
+public import FiveColour.ProjectedChunks.Case213
+public import FiveColour.ProjectedChunks.Case214
+public import FiveColour.ProjectedChunks.Case215
+public import FiveColour.ProjectedChunks.Case216
+public import FiveColour.ProjectedChunks.Case217
+public import FiveColour.ProjectedChunks.Case218
+public import FiveColour.ProjectedChunks.Case219
+public import FiveColour.ProjectedChunks.Case220
+public import FiveColour.ProjectedChunks.Case221
+public import FiveColour.ProjectedChunks.Case222
+public import FiveColour.ProjectedChunks.Case223
+public import FiveColour.ProjectedChunks.Case224
+public import FiveColour.ProjectedChunks.Case225
+public import FiveColour.ProjectedChunks.Case226
+public import FiveColour.ProjectedChunks.Case227
+public import FiveColour.ProjectedChunks.Case228
+public import FiveColour.ProjectedChunks.Case229
+public import FiveColour.ProjectedChunks.Case230
+public import FiveColour.ProjectedChunks.Case231
+public import FiveColour.ProjectedChunks.Case232
+public import FiveColour.ProjectedChunks.Case233
+public import FiveColour.ProjectedChunks.Case234
+public import FiveColour.ProjectedChunks.Case235
+public import FiveColour.ProjectedChunks.Case236
+public import FiveColour.ProjectedChunks.Case237
+public import FiveColour.ProjectedChunks.Case238
+public import FiveColour.ProjectedChunks.Case239
+public import FiveColour.ProjectedChunks.Case240
+public import FiveColour.ProjectedChunks.Case241
+public import FiveColour.ProjectedChunks.Case242
+public import FiveColour.ProjectedChunks.Case243
+public import FiveColour.ProjectedChunks.Case244
+public import FiveColour.ProjectedChunks.Case245
+public import FiveColour.ProjectedChunks.Case246
+public import FiveColour.ProjectedChunks.Case247
+public import FiveColour.ProjectedChunks.Case248
+public import FiveColour.ProjectedChunks.Case249
+public import FiveColour.ProjectedChunks.Case250
+public import FiveColour.ProjectedChunks.Case251
+public import FiveColour.ProjectedChunks.Case252
+public import FiveColour.ProjectedChunks.Case253
+public import FiveColour.ProjectedChunks.Case254
+public import FiveColour.ProjectedChunks.Case255
+public import FiveColour.ProjectedChunks.Case256
+public import FiveColour.ProjectedChunks.Case257
+public import FiveColour.ProjectedChunks.Case258
+public import FiveColour.ProjectedChunks.Case259
+public import FiveColour.ProjectedChunks.Case260
+public import FiveColour.ProjectedChunks.Case261
+public import FiveColour.ProjectedChunks.Case262
+public import FiveColour.ProjectedChunks.Case263
+public import FiveColour.ProjectedChunks.Case264
+public import FiveColour.ProjectedChunks.Case265
+public import FiveColour.ProjectedChunks.Case266
+public import FiveColour.ProjectedChunks.Case267
+public import FiveColour.ProjectedChunks.Case268
+public import FiveColour.ProjectedChunks.Case269
+public import FiveColour.ProjectedChunks.Case270
+public import FiveColour.ProjectedChunks.Case271
+public import FiveColour.ProjectedChunks.Case272
+public import FiveColour.ProjectedChunks.Case273
+public import FiveColour.ProjectedChunks.Case274
+public import FiveColour.ProjectedChunks.Case275
+public import FiveColour.ProjectedChunks.Case276
+public import FiveColour.ProjectedChunks.Case277
+public import FiveColour.ProjectedChunks.Case278
+@[expose] public section
+namespace FiveColour.Packed.ProjectedChunks
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+def roots : Fin 279 → Box := ![Case0.root, Case1.root, Case2.root, Case3.root, Case4.root, Case5.root, Case6.root, Case7.root, Case8.root, Case9.root, Case10.root, Case11.root, Case12.root, Case13.root, Case14.root, Case15.root, Case16.root, Case17.root, Case18.root, Case19.root, Case20.root, Case21.root, Case22.root, Case23.root, Case24.root, Case25.root, Case26.root, Case27.root, Case28.root, Case29.root, Case30.root, Case31.root, Case32.root, Case33.root, Case34.root, Case35.root, Case36.root, Case37.root, Case38.root, Case39.root, Case40.root, Case41.root, Case42.root, Case43.root, Case44.root, Case45.root, Case46.root, Case47.root, Case48.root, Case49.root, Case50.root, Case51.root, Case52.root, Case53.root, Case54.root, Case55.root, Case56.root, Case57.root, Case58.root, Case59.root, Case60.root, Case61.root, Case62.root, Case63.root, Case64.root, Case65.root, Case66.root, Case67.root, Case68.root, Case69.root, Case70.root, Case71.root, Case72.root, Case73.root, Case74.root, Case75.root, Case76.root, Case77.root, Case78.root, Case79.root, Case80.root, Case81.root, Case82.root, Case83.root, Case84.root, Case85.root, Case86.root, Case87.root, Case88.root, Case89.root, Case90.root, Case91.root, Case92.root, Case93.root, Case94.root, Case95.root, Case96.root, Case97.root, Case98.root, Case99.root, Case100.root, Case101.root, Case102.root, Case103.root, Case104.root, Case105.root, Case106.root, Case107.root, Case108.root, Case109.root, Case110.root, Case111.root, Case112.root, Case113.root, Case114.root, Case115.root, Case116.root, Case117.root, Case118.root, Case119.root, Case120.root, Case121.root, Case122.root, Case123.root, Case124.root, Case125.root, Case126.root, Case127.root, Case128.root, Case129.root, Case130.root, Case131.root, Case132.root, Case133.root, Case134.root, Case135.root, Case136.root, Case137.root, Case138.root, Case139.root, Case140.root, Case141.root, Case142.root, Case143.root, Case144.root, Case145.root, Case146.root, Case147.root, Case148.root, Case149.root, Case150.root, Case151.root, Case152.root, Case153.root, Case154.root, Case155.root, Case156.root, Case157.root, Case158.root, Case159.root, Case160.root, Case161.root, Case162.root, Case163.root, Case164.root, Case165.root, Case166.root, Case167.root, Case168.root, Case169.root, Case170.root, Case171.root, Case172.root, Case173.root, Case174.root, Case175.root, Case176.root, Case177.root, Case178.root, Case179.root, Case180.root, Case181.root, Case182.root, Case183.root, Case184.root, Case185.root, Case186.root, Case187.root, Case188.root, Case189.root, Case190.root, Case191.root, Case192.root, Case193.root, Case194.root, Case195.root, Case196.root, Case197.root, Case198.root, Case199.root, Case200.root, Case201.root, Case202.root, Case203.root, Case204.root, Case205.root, Case206.root, Case207.root, Case208.root, Case209.root, Case210.root, Case211.root, Case212.root, Case213.root, Case214.root, Case215.root, Case216.root, Case217.root, Case218.root, Case219.root, Case220.root, Case221.root, Case222.root, Case223.root, Case224.root, Case225.root, Case226.root, Case227.root, Case228.root, Case229.root, Case230.root, Case231.root, Case232.root, Case233.root, Case234.root, Case235.root, Case236.root, Case237.root, Case238.root, Case239.root, Case240.root, Case241.root, Case242.root, Case243.root, Case244.root, Case245.root, Case246.root, Case247.root, Case248.root, Case249.root, Case250.root, Case251.root, Case252.root, Case253.root, Case254.root, Case255.root, Case256.root, Case257.root, Case258.root, Case259.root, Case260.root, Case261.root, Case262.root, Case263.root, Case264.root, Case265.root, Case266.root, Case267.root, Case268.root, Case269.root, Case270.root, Case271.root, Case272.root, Case273.root, Case274.root, Case275.root, Case276.root, Case277.root, Case278.root]
+def families : Fin 279 → Fin 78 → List Cut := ![Case0.families, Case1.families, Case2.families, Case3.families, Case4.families, Case5.families, Case6.families, Case7.families, Case8.families, Case9.families, Case10.families, Case11.families, Case12.families, Case13.families, Case14.families, Case15.families, Case16.families, Case17.families, Case18.families, Case19.families, Case20.families, Case21.families, Case22.families, Case23.families, Case24.families, Case25.families, Case26.families, Case27.families, Case28.families, Case29.families, Case30.families, Case31.families, Case32.families, Case33.families, Case34.families, Case35.families, Case36.families, Case37.families, Case38.families, Case39.families, Case40.families, Case41.families, Case42.families, Case43.families, Case44.families, Case45.families, Case46.families, Case47.families, Case48.families, Case49.families, Case50.families, Case51.families, Case52.families, Case53.families, Case54.families, Case55.families, Case56.families, Case57.families, Case58.families, Case59.families, Case60.families, Case61.families, Case62.families, Case63.families, Case64.families, Case65.families, Case66.families, Case67.families, Case68.families, Case69.families, Case70.families, Case71.families, Case72.families, Case73.families, Case74.families, Case75.families, Case76.families, Case77.families, Case78.families, Case79.families, Case80.families, Case81.families, Case82.families, Case83.families, Case84.families, Case85.families, Case86.families, Case87.families, Case88.families, Case89.families, Case90.families, Case91.families, Case92.families, Case93.families, Case94.families, Case95.families, Case96.families, Case97.families, Case98.families, Case99.families, Case100.families, Case101.families, Case102.families, Case103.families, Case104.families, Case105.families, Case106.families, Case107.families, Case108.families, Case109.families, Case110.families, Case111.families, Case112.families, Case113.families, Case114.families, Case115.families, Case116.families, Case117.families, Case118.families, Case119.families, Case120.families, Case121.families, Case122.families, Case123.families, Case124.families, Case125.families, Case126.families, Case127.families, Case128.families, Case129.families, Case130.families, Case131.families, Case132.families, Case133.families, Case134.families, Case135.families, Case136.families, Case137.families, Case138.families, Case139.families, Case140.families, Case141.families, Case142.families, Case143.families, Case144.families, Case145.families, Case146.families, Case147.families, Case148.families, Case149.families, Case150.families, Case151.families, Case152.families, Case153.families, Case154.families, Case155.families, Case156.families, Case157.families, Case158.families, Case159.families, Case160.families, Case161.families, Case162.families, Case163.families, Case164.families, Case165.families, Case166.families, Case167.families, Case168.families, Case169.families, Case170.families, Case171.families, Case172.families, Case173.families, Case174.families, Case175.families, Case176.families, Case177.families, Case178.families, Case179.families, Case180.families, Case181.families, Case182.families, Case183.families, Case184.families, Case185.families, Case186.families, Case187.families, Case188.families, Case189.families, Case190.families, Case191.families, Case192.families, Case193.families, Case194.families, Case195.families, Case196.families, Case197.families, Case198.families, Case199.families, Case200.families, Case201.families, Case202.families, Case203.families, Case204.families, Case205.families, Case206.families, Case207.families, Case208.families, Case209.families, Case210.families, Case211.families, Case212.families, Case213.families, Case214.families, Case215.families, Case216.families, Case217.families, Case218.families, Case219.families, Case220.families, Case221.families, Case222.families, Case223.families, Case224.families, Case225.families, Case226.families, Case227.families, Case228.families, Case229.families, Case230.families, Case231.families, Case232.families, Case233.families, Case234.families, Case235.families, Case236.families, Case237.families, Case238.families, Case239.families, Case240.families, Case241.families, Case242.families, Case243.families, Case244.families, Case245.families, Case246.families, Case247.families, Case248.families, Case249.families, Case250.families, Case251.families, Case252.families, Case253.families, Case254.families, Case255.families, Case256.families, Case257.families, Case258.families, Case259.families, Case260.families, Case261.families, Case262.families, Case263.families, Case264.families, Case265.families, Case266.families, Case267.families, Case268.families, Case269.families, Case270.families, Case271.families, Case272.families, Case273.families, Case274.families, Case275.families, Case276.families, Case277.families, Case278.families]
+def goals : Fin 279 → Nat := ![15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 15, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 11, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 14, 13, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 12, 15, 15, 15, 15, 14, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 13, 15, 15, 15, 15, 15, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 15, 15, 15, 15, 15, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13]
+theorem all_excluded : ∀ i, Chunks.Excludes (goals i) (families i) (roots i) := by
+  intro i
+  fin_cases i
+  · exact Case0.excludes
+  · exact Case1.excludes
+  · exact Case2.excludes
+  · exact Case3.excludes
+  · exact Case4.excludes
+  · exact Case5.excludes
+  · exact Case6.excludes
+  · exact Case7.excludes
+  · exact Case8.excludes
+  · exact Case9.excludes
+  · exact Case10.excludes
+  · exact Case11.excludes
+  · exact Case12.excludes
+  · exact Case13.excludes
+  · exact Case14.excludes
+  · exact Case15.excludes
+  · exact Case16.excludes
+  · exact Case17.excludes
+  · exact Case18.excludes
+  · exact Case19.excludes
+  · exact Case20.excludes
+  · exact Case21.excludes
+  · exact Case22.excludes
+  · exact Case23.excludes
+  · exact Case24.excludes
+  · exact Case25.excludes
+  · exact Case26.excludes
+  · exact Case27.excludes
+  · exact Case28.excludes
+  · exact Case29.excludes
+  · exact Case30.excludes
+  · exact Case31.excludes
+  · exact Case32.excludes
+  · exact Case33.excludes
+  · exact Case34.excludes
+  · exact Case35.excludes
+  · exact Case36.excludes
+  · exact Case37.excludes
+  · exact Case38.excludes
+  · exact Case39.excludes
+  · exact Case40.excludes
+  · exact Case41.excludes
+  · exact Case42.excludes
+  · exact Case43.excludes
+  · exact Case44.excludes
+  · exact Case45.excludes
+  · exact Case46.excludes
+  · exact Case47.excludes
+  · exact Case48.excludes
+  · exact Case49.excludes
+  · exact Case50.excludes
+  · exact Case51.excludes
+  · exact Case52.excludes
+  · exact Case53.excludes
+  · exact Case54.excludes
+  · exact Case55.excludes
+  · exact Case56.excludes
+  · exact Case57.excludes
+  · exact Case58.excludes
+  · exact Case59.excludes
+  · exact Case60.excludes
+  · exact Case61.excludes
+  · exact Case62.excludes
+  · exact Case63.excludes
+  · exact Case64.excludes
+  · exact Case65.excludes
+  · exact Case66.excludes
+  · exact Case67.excludes
+  · exact Case68.excludes
+  · exact Case69.excludes
+  · exact Case70.excludes
+  · exact Case71.excludes
+  · exact Case72.excludes
+  · exact Case73.excludes
+  · exact Case74.excludes
+  · exact Case75.excludes
+  · exact Case76.excludes
+  · exact Case77.excludes
+  · exact Case78.excludes
+  · exact Case79.excludes
+  · exact Case80.excludes
+  · exact Case81.excludes
+  · exact Case82.excludes
+  · exact Case83.excludes
+  · exact Case84.excludes
+  · exact Case85.excludes
+  · exact Case86.excludes
+  · exact Case87.excludes
+  · exact Case88.excludes
+  · exact Case89.excludes
+  · exact Case90.excludes
+  · exact Case91.excludes
+  · exact Case92.excludes
+  · exact Case93.excludes
+  · exact Case94.excludes
+  · exact Case95.excludes
+  · exact Case96.excludes
+  · exact Case97.excludes
+  · exact Case98.excludes
+  · exact Case99.excludes
+  · exact Case100.excludes
+  · exact Case101.excludes
+  · exact Case102.excludes
+  · exact Case103.excludes
+  · exact Case104.excludes
+  · exact Case105.excludes
+  · exact Case106.excludes
+  · exact Case107.excludes
+  · exact Case108.excludes
+  · exact Case109.excludes
+  · exact Case110.excludes
+  · exact Case111.excludes
+  · exact Case112.excludes
+  · exact Case113.excludes
+  · exact Case114.excludes
+  · exact Case115.excludes
+  · exact Case116.excludes
+  · exact Case117.excludes
+  · exact Case118.excludes
+  · exact Case119.excludes
+  · exact Case120.excludes
+  · exact Case121.excludes
+  · exact Case122.excludes
+  · exact Case123.excludes
+  · exact Case124.excludes
+  · exact Case125.excludes
+  · exact Case126.excludes
+  · exact Case127.excludes
+  · exact Case128.excludes
+  · exact Case129.excludes
+  · exact Case130.excludes
+  · exact Case131.excludes
+  · exact Case132.excludes
+  · exact Case133.excludes
+  · exact Case134.excludes
+  · exact Case135.excludes
+  · exact Case136.excludes
+  · exact Case137.excludes
+  · exact Case138.excludes
+  · exact Case139.excludes
+  · exact Case140.excludes
+  · exact Case141.excludes
+  · exact Case142.excludes
+  · exact Case143.excludes
+  · exact Case144.excludes
+  · exact Case145.excludes
+  · exact Case146.excludes
+  · exact Case147.excludes
+  · exact Case148.excludes
+  · exact Case149.excludes
+  · exact Case150.excludes
+  · exact Case151.excludes
+  · exact Case152.excludes
+  · exact Case153.excludes
+  · exact Case154.excludes
+  · exact Case155.excludes
+  · exact Case156.excludes
+  · exact Case157.excludes
+  · exact Case158.excludes
+  · exact Case159.excludes
+  · exact Case160.excludes
+  · exact Case161.excludes
+  · exact Case162.excludes
+  · exact Case163.excludes
+  · exact Case164.excludes
+  · exact Case165.excludes
+  · exact Case166.excludes
+  · exact Case167.excludes
+  · exact Case168.excludes
+  · exact Case169.excludes
+  · exact Case170.excludes
+  · exact Case171.excludes
+  · exact Case172.excludes
+  · exact Case173.excludes
+  · exact Case174.excludes
+  · exact Case175.excludes
+  · exact Case176.excludes
+  · exact Case177.excludes
+  · exact Case178.excludes
+  · exact Case179.excludes
+  · exact Case180.excludes
+  · exact Case181.excludes
+  · exact Case182.excludes
+  · exact Case183.excludes
+  · exact Case184.excludes
+  · exact Case185.excludes
+  · exact Case186.excludes
+  · exact Case187.excludes
+  · exact Case188.excludes
+  · exact Case189.excludes
+  · exact Case190.excludes
+  · exact Case191.excludes
+  · exact Case192.excludes
+  · exact Case193.excludes
+  · exact Case194.excludes
+  · exact Case195.excludes
+  · exact Case196.excludes
+  · exact Case197.excludes
+  · exact Case198.excludes
+  · exact Case199.excludes
+  · exact Case200.excludes
+  · exact Case201.excludes
+  · exact Case202.excludes
+  · exact Case203.excludes
+  · exact Case204.excludes
+  · exact Case205.excludes
+  · exact Case206.excludes
+  · exact Case207.excludes
+  · exact Case208.excludes
+  · exact Case209.excludes
+  · exact Case210.excludes
+  · exact Case211.excludes
+  · exact Case212.excludes
+  · exact Case213.excludes
+  · exact Case214.excludes
+  · exact Case215.excludes
+  · exact Case216.excludes
+  · exact Case217.excludes
+  · exact Case218.excludes
+  · exact Case219.excludes
+  · exact Case220.excludes
+  · exact Case221.excludes
+  · exact Case222.excludes
+  · exact Case223.excludes
+  · exact Case224.excludes
+  · exact Case225.excludes
+  · exact Case226.excludes
+  · exact Case227.excludes
+  · exact Case228.excludes
+  · exact Case229.excludes
+  · exact Case230.excludes
+  · exact Case231.excludes
+  · exact Case232.excludes
+  · exact Case233.excludes
+  · exact Case234.excludes
+  · exact Case235.excludes
+  · exact Case236.excludes
+  · exact Case237.excludes
+  · exact Case238.excludes
+  · exact Case239.excludes
+  · exact Case240.excludes
+  · exact Case241.excludes
+  · exact Case242.excludes
+  · exact Case243.excludes
+  · exact Case244.excludes
+  · exact Case245.excludes
+  · exact Case246.excludes
+  · exact Case247.excludes
+  · exact Case248.excludes
+  · exact Case249.excludes
+  · exact Case250.excludes
+  · exact Case251.excludes
+  · exact Case252.excludes
+  · exact Case253.excludes
+  · exact Case254.excludes
+  · exact Case255.excludes
+  · exact Case256.excludes
+  · exact Case257.excludes
+  · exact Case258.excludes
+  · exact Case259.excludes
+  · exact Case260.excludes
+  · exact Case261.excludes
+  · exact Case262.excludes
+  · exact Case263.excludes
+  · exact Case264.excludes
+  · exact Case265.excludes
+  · exact Case266.excludes
+  · exact Case267.excludes
+  · exact Case268.excludes
+  · exact Case269.excludes
+  · exact Case270.excludes
+  · exact Case271.excludes
+  · exact Case272.excludes
+  · exact Case273.excludes
+  · exact Case274.excludes
+  · exact Case275.excludes
+  · exact Case276.excludes
+  · exact Case277.excludes
+  · exact Case278.excludes
+end FiveColour.Packed.ProjectedChunks

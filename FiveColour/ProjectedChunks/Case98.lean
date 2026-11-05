@@ -1,0 +1,54 @@
+module
+public import FiveColour.PackedCalibration
+public import FiveColour.PackedChunks
+@[expose] public section
+namespace FiveColour.Packed.ProjectedChunks.Case98
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+
+def root : Box := ⟨3221225472, 15410569095717432481535464385687030409294294611718197590307904932128702664653758458985750653254047969415741066085507295890927596006104333592161011654483935797504528678670512667404759083363659870779794918473728⟩
+def families (r : Fin 78) : List Cut :=
+  if r.val = 0 then [⟨0, 0, 0⟩]
+  else if r.val = 1 then [⟨37778931862957161709567, 5789234136395753411692881238169227500374407193496930116368373143805044077937094972115936759690115912617314174413936735084852813557058259367152415505988832845545998909917068502141873407714778287950081323505138605108075955201, 15⟩]
+  else if r.val = 2 then [⟨37033564156298044177383, 5789234131004114112605798393242650429804653116085229495907826956687667789266125362145452370754004878501022282187955398943580153440264784719876785736443695986532384820264588047565369260442422522659787644311954017558436250625, 0⟩]
+  else (cuts[r.val-3]!).toList
+
+theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
+  intro r c hc
+  unfold families at hc
+  split at hc
+  · have he := List.mem_singleton.mp hc
+    subst c
+    apply cut_valid_of_weight
+    decide +kernel
+  · split at hc
+    · have he := List.mem_singleton.mp hc
+      subst c
+      apply cut_valid_of_weight
+      decide +kernel
+    · split at hc
+      · have he := List.mem_singleton.mp hc
+        subst c
+        apply cut_valid_of_weight
+        decide +kernel
+      · exact cuts_valid ⟨r.val-3, by omega⟩ c hc
+
+namespace Part0
+def root : Box := ⟨3221225472, 15410569095717432481535464385687030409294294611718197590307904932128702664653758458985750653254047969415741066085507295890927596006104333592161011654483935797504528678670512667404759083363659870779794918473728⟩
+def references : Fin 0 → Box := Fin.elim0
+def proof : Chunks.Proof 0 := (.run (.split 16 1 (.split 17 1 (.split 22 1 (.split 34 1 (.split 36 1 (.split 42 1 (.split 43 1 (.split 49 1 (.split 50 1 (.split 51 1 (.split 59 1 (.split 67 1 (.split 4 1 (.split 10 1 (.split 61 1 (.step 7 (.step 65 (.close 7))) (.step 18 (.step 64 (.step 4 (.close 7))))) (.step 7 (.close 18))) (.step 7 (.close 18))) (.step 7 (.step 64 (.step 65 (.close 70))))) (.step 7 (.step 64 (.step 65 (.step 70 (.step 72 (.split 61 1 (.split 62 1 (.step 7 (.step 62 (.close 7))) (.step 53 (.step 7 (.step 62 (.close 7))))) (.step 52 (.step 62 (.step 7 (.step 9 (.step 27 (.step 53 (.close 64)))))))))))))) (.step 7 (.step 54 (.step 22 (.step 36 (.step 54 (.close 64))))))) (.step 7 (.step 53 (.step 54 (.step 64 (.step 53 (.step 65 (.step 7 (.step 53 (.step 7 (.step 52 (.step 64 (.step 7 (.step 9 (.step 27 (.close 70)))))))))))))))) (.step 18 (.step 52 (.step 54 (.step 64 (.step 65 (.step 52 (.step 7 (.step 53 (.step 65 (.step 7 (.step 9 (.step 27 (.close 70)))))))))))))) (.step 7 (.step 46 (.step 52 (.step 53 (.step 62 (.step 46 (.step 64 (.step 65 (.step 72 (.step 46 (.close 7)))))))))))) (.step 7 (.step 31 (.close 7)))) (.step 7 (.step 31 (.close 7)))) (.step 7 (.step 31 (.close 7)))) (.step 7 (.step 18 (.close 7)))) (.step 7 (.step 18 (.close 7)))) (.step 7 (.step 18 (.close 7)))))
+theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
+
+theorem root_valid : root.Valid := by decide +kernel
+
+theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
+  intro i
+  exact Fin.elim0 i
+
+theorem excludes : Chunks.Excludes 15 families root :=
+  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+end Part0
+
+/-- All chunk exclusions compose to the original concrete root. -/
+theorem excludes : Chunks.Excludes 15 families root := Part0.excludes
+end FiveColour.Packed.ProjectedChunks.Case98

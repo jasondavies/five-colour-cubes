@@ -9,6 +9,7 @@ augmenting-path matching. This is an audit, not a Lean proof.
 import argparse
 from collections import Counter
 import itertools
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -92,7 +93,19 @@ def main():
     require(all(arcs(faces[i]) == cut({1,2,4}) for i in cs.values()), 'C directed-cut dictionary')
     require(arcs(faces[a]) == {(u,v) for u in (1,2) for v in (3,4)} |
             {(v,u) for u in (1,2) for v in (3,4)}, 'opposite anchor dictionary')
-    representatives = [(2,1),(2,4),(3,1),(3,2),(4,2)]
+    dictionary = json.loads((repo / 'data/five-colour-extremal.json').read_text())
+    require(dictionary['face_order'] == ['+x','-x','+y','-y','+z','-z'], 'face order')
+    require(dictionary['anchor']['catalogue_index'] == a and
+            dictionary['anchor']['singleton_pairs'] == [[1,2],[3,4]], 'anchor dictionary')
+    classes = dictionary['classes']
+    require(len(classes) == 5, 'five advertised classes required')
+    representatives = []
+    for j, entry in enumerate(classes):
+        require(entry['class'] == j+1 and entry['multiplicities'] == [4,5,5],
+                'class number or multiplicities')
+        pair = entry['repeated_colours']
+        require(len(pair) == 2 and pair[0] in bs and pair[1] in cs, 'class repeat colours')
+        representatives.append(tuple(pair))
     all_orbits, orbits = set(), []
     for r, s in representatives:
         orbit = set()
@@ -125,34 +138,53 @@ def main():
             return False
         return all(augment(k, set()) for k in range(8))
 
+    positive_checks = 0
+    for a0 in (a, lookup[canonical((0,1,0,2,3,4))]):
+        for b0, c0 in itertools.combinations([i for i in range(75) if i != a0], 2):
+            target = next((t for t in range(75) if target_solves(a0,b0,c0,t)), None)
+            if target is not None:
+                require(copy_match([a0]*4+[b0]*5+[c0]*5,target),
+                        'positive private-position criterion disagrees with copy matching')
+                positive_checks += 1
+    require(positive_checks == 5346, 'normalized positive classification count')
+
     for a0,b0,c0 in failures:
         require(not any(copy_match([a0]*4+[b0]*5+[c0]*5, t) for t in range(75)),
                 'private-position failure disagrees with physical-copy matching')
-    dictionary = json.loads((repo / 'data/five-colour-extremal.json').read_text())
     require(dictionary['anchor']['faces'] == list(faces[a]), 'anchor face dictionary')
     for label,group in [('B',bs),('C',cs)]:
         for r,i in group.items():
             require(dictionary[label][str(r)]['faces'] == list(faces[i]) and
-                    dictionary[label][str(r)]['catalogue_index'] == i, 'face dictionary')
+                    dictionary[label][str(r)]['catalogue_index'] == i and
+                    dictionary[label][str(r)]['cut'] == ([0,1] if label == 'B' else [1,2,4]), 'face dictionary')
     require([entry['labelled_orbit_size'] for entry in dictionary['classes']] ==
             [entry['size'] for entry in orbits], 'orbit-size dictionary')
     parts = [(x, y, 5-x-y) for x in range(6) for y in range(6-x)]
     family = []
+    successes = 0
     for x, y in itertools.product(parts, repeat=2):
-        if x[0] * y[1] or x[2] * y[2]:
-            continue
         ids = [a] * 4
         for i, n in zip([bs[2],bs[3],bs[4],cs[1],cs[2],cs[4]], x+y):
             ids.extend([i] * n)
+        if x[0] * y[1] or x[2] * y[2]:
+            repeat = 2 if x[0] * y[1] else 4
+            require(copy_match(ids, bs[repeat]), 'shared repeat fails to solve its B target')
+            successes += 1
+            continue
         require(not any(copy_match(ids, target) for target in range(75)), 'mixed family has a solution')
         family.append({'x': x, 'y': y})
-    require(len(family) == 91, 'mixed-family count')
+    require(len(family) == 91 and successes == 350, 'family equivalence counts')
     is_opposite = lambda i: any(faces[i][j] == faces[i][j+1] for j in (0,2,4))
     kinds = Counter(''.join('O' if is_opposite(i) else 'A' for i in t) for t in necessary)
     git = subprocess.run(['git','-C',str(repo),'rev-parse','HEAD'], capture_output=True, text=True)
     result = {
         'status': 'computational audit passed; not a Lean proof',
-        'commit': git.stdout.strip() if git.returncode == 0 else None,
+        'base_git_revision': git.stdout.strip() if git.returncode == 0 else None,
+        'input_sha256': {name: hashlib.sha256((repo / name).read_bytes()).hexdigest()
+                         for name in ['data/five-colour-geometry.txt', 'data/five-colour-extremal.json']},
+        'auditor_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        'positive_targets_checked_by_copy_matching': positive_checks,
+        'family_distributions_checked': 441, 'family_successes': successes,
         'pattern': [4,5,5], 'collections_checked': checked,
         'necessary_condition_candidates': len(necessary), 'candidate_types': dict(kinds),
         'failures': len(failures), 'orbits': orbits,

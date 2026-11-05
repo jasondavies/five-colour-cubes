@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Local comparator checks with Lean's kernel, NanoDa and con-ron.
+# Palomar's mandatory local comparison: Lean's kernel and NanoDa.
 # --lower-bound checks only the exposed-face rule and the explicit obstruction.
-# The default checks all five targets and requires the complete archive replay.
+# The default checks all targets in comparator.json.
 repository_root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$repository_root"
 mode=full
@@ -17,7 +17,7 @@ for tool in bwrap lake lean python3; do
   command -v "$tool" >/dev/null || { echo "error: missing $tool" >&2; exit 2; }
 done
 prefix=$(lean --print-prefix)
-for tool in leanexport leanchecker nanoda_bin con-ron; do
+for tool in leanexport leanchecker nanoda_bin; do
   [[ -x "$prefix/bin/$tool" ]] || { echo "error: toolchain lacks $tool" >&2; exit 2; }
 done
 if [[ "$mode" == full && ! -f FiveColour/ProjectedChunks/Threshold.lean ]]; then
@@ -27,17 +27,15 @@ fi
 config=$(mktemp "${TMPDIR:-/tmp}/five-colour-comparator.XXXXXX")
 trap 'rm -f "$config"' EXIT
 python3 - "$config" "$prefix" "$mode" <<'PYCONFIG'
-import json, os, pathlib, sys
+import json, pathlib, sys
 out, prefix, mode = sys.argv[1:]
 config = json.loads(pathlib.Path('comparator.json').read_text())
 if mode == 'lower-bound':
     config['solution_module'] = 'FiveColour.ComparatorBridge'
     config['theorem_names'] = ['ColourCubes.exposed_face_rule', 'FiveColour.Puzzle.lower_bound']
 # Keep machine-specific kernel paths out of the submitted configuration.
-jobs = os.environ.get('CON_RON_JOBS', '2')
 config['external_kernels'] = {
     'nanoda': [f'{prefix}/bin/nanoda_bin'],
-    'con-ron': [f'{prefix}/bin/con-ron', f'--jobs={jobs}'],
 }
 pathlib.Path(out).write_text(json.dumps(config, indent=2) + '\n')
 PYCONFIG
@@ -45,5 +43,5 @@ lake comparator --config "$config"
 if [[ "$mode" == lower-bound ]]; then
   echo "Lower-bound comparator passed (2 targets); upper bound and sharp threshold NOT checked."
 else
-  echo "Full comparator passed (5 targets)."
+  echo "Full comparator passed (all configured targets; Lean and NanoDa)."
 fi

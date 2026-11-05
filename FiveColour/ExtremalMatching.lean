@@ -106,22 +106,4 @@ lemma sourcePools_total {n : ℕ} (tag : Fin n → Option (Fin 8)) :
   rw [← hh, Nat.add_comm]
   exact hp
 
-/-- Multiplicity comparison transports solutions without identifying physical copies. -/
-theorem hasSolution_of_multiplicity_le {m n : ℕ} (small : Fin m → Cube)
-    (large : Fin n → Cube) (hs : ∀ i, UsesAllColours (small i))
-    (hl : ∀ i, UsesAllColours (large i))
-    (hcount : ∀ a, multiplicity small a ≤ multiplicity large a)
-    (hsol : HasSolution small) : HasSolution large := by
-  by_contra hno
-  obtain ⟨t, ht⟩ := (hasSolution_iff_catalogue small).mp hsol
-  obtain ⟨K, _, hK⟩ := (counterexample_iff_deficient_mass large hl).mp hno t
-  have hm : Certificate.mass (multiplicityVector small) (varietyNeighbours t K) ≤
-      Certificate.mass (multiplicityVector large) (varietyNeighbours t K) :=
-    Finset.sum_le_sum fun i _ => by
-      change (multiplicity small i : Int) ≤ multiplicity large i
-      exact_mod_cast hcount i
-  rw [mass_varietyNeighbours small hs] at hm
-  have hh := (solvesTarget_iff_hall small (catalogue t)).mp ht K
-  omega
-
 end FiveColour.Physical

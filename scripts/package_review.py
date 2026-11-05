@@ -75,7 +75,7 @@ def main():
         identification='Exact source snapshot is identified by checksums; it may differ from the base Git revision.',
         source_files=hashes, omitted_tracked_files=omitted, project_dependencies=dependencies,
         dependency_history='shallow bundles: pinned commit and complete source tree',
-        formal_status='Complete physical Lean proof; full external comparator pass unconfirmed.'), indent=2)+'\n').encode()
+        formal_status='Complete physical Lean proof; see formalization.yaml for external comparison status.'), indent=2)+'\n').encode()
     payload['REVIEW.txt'] = b"""Five-colour cube threshold: fixed review snapshot
 
 REVIEW.json identifies the base Git revision, exact source snapshot and pinned
@@ -97,7 +97,7 @@ colour-cubes-core dependency is bundled at its exact pinned Git revision.
 Checked conditional upper-bound theorem:
   FiveColour.Physical.threshold_of_integer_root_exclusions
   lake build FiveColour.CaseProblem
-Unconditional physical threshold and sharpness (after generating replay):
+Unconditional physical threshold and sharpness (retained replay sources):
   FiveColour.Packed.ProjectedChunks.threshold15
   FiveColour.Packed.ProjectedChunks.sharpThreshold15
   lake build FiveColour.ProjectedChunks.Threshold

@@ -31,8 +31,9 @@ five-colour frame column left open by Berkove, Eickemeyer and Schulman
 (2018). All threshold statements are formalised in Lean. A fixed-size flow
 formulation decides feasibility and constructs assemblies in time linear
 in the explicit source list. We also determine the corner thresholds when the
-number of source varieties is bounded, and classify the fourteen-cube
-obstructions using the minimum possible number of varieties.
+number of source varieties is bounded, and show that the fourteen-cube
+obstructions using the minimum possible number of varieties form exactly
+five classes.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -474,7 +475,7 @@ Its first instruction refines using target 4. Of that target's 255 cuts,
 $\{4,10,30\}$ and their maximum slack is $\sigma_*=1$.
 The three corresponding upper bounds therefore decrease from 2 to 1.
 Here varieties 3 and 4 have face tuples $(0,1,0,2,3,4)$ and
-$(0,1,0,2,4,3)$; all indices refer to the accompanying geometry table.
+$(0,1,0,2,4,3)$; all indices refer to \texttt{data/five-colour-geometry.txt}.
 
 The root budget is treated as
 a family containing a single cut. The total $\sum_i x_i=G$ gives
