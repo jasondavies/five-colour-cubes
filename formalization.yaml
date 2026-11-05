@@ -24,7 +24,7 @@ repository:
   role: substantive-development
 classification:
   arxiv: ["math.CO", "cs.LO"]
-  msc2020: ["05C70", "68V15", "00A08"]
+  msc2020: ["05C70", "68V05", "68V20", "00A08"]
 sources:
   - title: "Sharp thresholds for five-colour cube assemblies"
     authors: ["Jason Davies"]
