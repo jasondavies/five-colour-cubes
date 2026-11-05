@@ -203,8 +203,8 @@ whether the aggregate was already cached.
 Defaults are two certificate workers and one Lean thread per process. On a
 machine with more memory, raise `WORKERS`; do not assume more workers are faster.
 `LEAN_NUM_THREADS` separately controls shared-library and extension builds.
-The replay driver always gives each case one Lean thread. Small-case benchmarks
-have used several GiB per Lean process. Larger chunks can save a little time
+The replay driver always gives each case one Lean thread. Memory use
+increases with concurrent workers. Larger chunks can save a little time
 while increasing peak memory, so the production limit remains 128.
 
 For measurements on the retained archive, without reusing a cached case proof:
@@ -219,27 +219,29 @@ To compare the original and reduced lists on the same certificate:
 python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-modes original reduced --repeats 3
 ```
 
-A representative largest-case trial on a Ryzen 7 9700X, with 128-instruction
-chunks and one Lean thread, gave:
+A fresh full verification on an AMD Ryzen 7 9700X (8 cores, 16 logical CPUs)
+with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=1` gave:
 
-| Case 4 (51,652 instructions) | Wall time | Peak process RSS |
-| --- | ---: | ---: |
-| Original cut lists, narrow imports | 34.6 min | 2.86 GiB |
-| Reduced cut lists, narrow imports | 27.0 min | 3.33 GiB |
+| Stage | Wall time |
+| --- | ---: |
+| C++/Python audit | 4.5 s |
+| Shared Lean library and audit | 41.8 min |
+| Certificate proof generation | 3.7 s |
+| Certificate replay and final corner theorem | 37.4 min |
+| Unconditional extensions and audit | 2.5 s |
+| Complete verification command | 79.5 min |
 
-Both were fresh case checks with shared dependencies cached and passed their
-axiom reports. Other checks ran concurrently; these are representative samples,
-not an isolated whole-project timing. Reduction saved about 22% of both wall
-and CPU time here, at a cost of roughly 0.5 GiB per process. On case 19, two
-runs per mode in alternating order reduced the median from 7.8 to 6.2 minutes
-(about 20%). Separately, narrowing
-the imports reduced case 120's measured peak from 2.58 to 1.71 GiB with similar
-runtime. Keep worker counts within the available memory.
+All 279 certificate proofs and the unconditional publication theorems passed.
+Only the pinned public Mathlib and transitive dependency caches were reused;
+project and shared cube-library artifacts were rebuilt. Peak combined
+process-tree proportional set size (PSS) was **23.3 GiB**, sampled approximately
+every two seconds. Peak summed RSS was 33.9 GiB; it double-counts shared pages,
+whereas PSS apportions them.
 
-Results include wall/CPU time and peak memory under `build/replay-benchmark/`.
-These experiments reuse the shared checker dependencies and do not time a fresh
-build of the whole project. Do not delete `.lake` to tidy a publication package:
-it is already ignored, and deleting it removes useful dependency/build caches.
+Case benchmark results include wall/CPU time and peak memory under
+`build/replay-benchmark/`. Those experiments reuse the shared checker dependencies.
+Do not delete `.lake` to tidy a publication package: it is already ignored,
+and deleting it removes useful dependency/build caches.
 
 Replay progress is in `build/five-colour-chunks/ProjectedChunks/progress.json`.
 Create `build/five-colour-chunks/ProjectedChunks/STOP` to stop the case workers;

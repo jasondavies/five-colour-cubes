@@ -162,26 +162,28 @@ tracked bytes against its pinned Git tree before and after the run. It also
 records source hashes, tool versions, compiler flags and concurrency settings.
 Ignored build caches are permitted; modified dependency sources are rejected.
 
-A fresh baseline run at revision \texttt{3922ac12d784}, before the cut-list and
-import optimisations described above, used an AMD Ryzen 7 9700X (8 cores,
+A fresh full verification used an AMD Ryzen 7 9700X (8 cores,
 16 logical CPUs), 249\,GiB RAM, eight certificate workers and one Lean thread
 per process. Only the pinned public mathlib and transitive dependency caches
-were reused; project and shared cube-library artifacts were rebuilt.
+were reused; project and shared cube-library artifacts were rebuilt. All
+279 certificate proofs and the unconditional publication theorems passed.
 \begin{center}
 \begin{tabular}{lr}
 \toprule
 Stage & Wall time\\
 \midrule
-Shared Lean library and audit & 54.5 min\\
-Certificate replay and final corner theorem & 44.9 min\\
-Complete verification command & 99.6 min\\
+C++/Python audit & 4.5 s\\
+Shared Lean library and audit & 41.8 min\\
+Certificate proof generation & 3.7 s\\
+Certificate replay and final corner theorem & 37.4 min\\
+Unconditional extensions and audit & 2.5 s\\
+Complete verification command & 79.5 min\\
 \bottomrule
 \end{tabular}
 \end{center}
 Peak sampled combined process-tree proportional set size (PSS) was
-22.5\,GiB, sampled every two seconds; this accounts for shared pages proportionally. Summed RSS was
-37.4\,GiB and double-counts shared pages. These are baseline measurements,
-not timings for the optimised revision or a cached rerun.
+23.3\,GiB, sampled approximately every two seconds; this accounts for shared pages
+proportionally. Peak summed RSS was 33.9\,GiB and double-counts shared pages.
 
 A Mathlib-only comparator challenge states the corner problem geometrically,
 restating the library's definitions locally. It covers only the corner
