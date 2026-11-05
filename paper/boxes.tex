@@ -389,7 +389,8 @@ among those missed edge positions.
 \end{lemma}
 
 \begin{proof}
-The nonzero edge lengths are $1,M$. By Lemma~\ref{lem:cube-incidence},
+The nonzero edge weights, counting noncorner positions, are $1,M$.
+By Lemma~\ref{lem:cube-incidence},
 for an opposite-repeat source,
 at most six corners are incompatible. Its two missing bichromatic pairs
 are disjoint, so at most three geometric edges are incompatible, with
@@ -399,7 +400,7 @@ $k_1,k_M$, the defect is at most
  6+k_1+Mk_M\le6+3+2(M-1)=2M+7=d+1.
 \]
 Equality requires six incompatible corners, two incompatible long
-edges, and one incompatible unit-length edge. These three geometric
+edges, and one incompatible edge of weight $1$. These three geometric
 edges display exactly two bichromatic types: there are at least two
 because any target type occurs at most twice, and at most two because
 the source lacks only two types. They are disjoint and determine the
