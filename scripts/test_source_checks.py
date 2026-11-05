@@ -40,22 +40,30 @@ class SourceChecks(unittest.TestCase):
                     self.assertIn('Case278', result.stderr)
 
     def test_replay_drift_is_reported_without_repairing_sources(self):
-        for change in ('modified', 'missing', 'extra'):
+        for change in ('modified', 'missing', 'extra', 'modified and extra'):
             with self.subTest(change=change), tempfile.TemporaryDirectory(prefix='q5-replay-test-') as temp:
                 generated, retained = Path(temp) / 'generated', Path(temp) / 'retained'
                 generated.mkdir(); retained.mkdir()
                 (generated / 'Case0.lean').write_text('module\n')
                 (retained / 'Case0.lean').write_text('module\n')
                 check_sources(generated, retained)
-                if change == 'modified':
+                if change in ('modified', 'modified and extra'):
                     (retained / 'Case0.lean').write_text('module\n-- drift\n')
                 elif change == 'missing':
                     (retained / 'Case0.lean').unlink()
-                else:
+                if change in ('extra', 'modified and extra'):
                     (retained / 'Unexpected.lean').write_text('module\n')
                 before = {p.name: p.read_bytes() for p in retained.iterdir()}
-                with self.assertRaisesRegex(ValueError, 'Retained replay sources differ'):
+                with self.assertRaisesRegex(ValueError, 'Retained replay sources differ') as error:
                     check_sources(generated, retained)
+                message = str(error.exception)
+                if 'extra' in change:
+                    self.assertIn('extra: Unexpected.lean', message)
+                    self.assertIn('remove the files listed as extra', message)
+                if change == 'extra':
+                    self.assertNotIn('make replay-data', message)
+                else:
+                    self.assertIn('make replay-data', message)
                 self.assertEqual(before, {p.name: p.read_bytes() for p in retained.iterdir()})
 
 

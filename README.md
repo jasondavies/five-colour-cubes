@@ -17,7 +17,7 @@ A frame consists of the eight corners and noncorner edge positions of a box.
 The thresholds F₅ and G₅ count available source cubes guaranteeing a frame or
 a complete box, respectively; an assembly may use fewer cubes than are available.
 
-**Every cuboid threshold is now determined**, for side lengths a, b, c ≥ 2:
+**For all side lengths a, b, c ≥ 2, the exact thresholds are:**
 
 - **F₅(a,b,c) = max(15, 4(a+b+c) − 16, 2(a+b+c) + 1)** for frames.
 - **G₅(a,b,c) = max(abc, 15, 2(a+b+c) + 1)** for complete boxes.
@@ -92,10 +92,10 @@ independently of the fifteen-cube certificate replay. The classification include
 exhaustiveness, failure of each representative, and pairwise inequivalence.
 The [face-tuple dictionary](data/five-colour-extremal.json) lists representatives
 and labelled orbit sizes. A [generalized obstruction family](FiveColour/ExtremalFamilyTheorems.lean)
-allows mixtures within both adjacent cuts. Such a collection fails exactly
-when the two groups have disjoint repeated-colour supports; examples can have
-maximum multiplicity four. An independent audit checks all 202,575 labelled (4,5,5)
-collections, their 840 failures, the five orbits, and all 441 normalized family
+keeps the four-copy variety fixed and allows mixtures within each five-cube
+group. Such a collection fails exactly when no colour is the repeated colour
+of a variety in both groups; examples can have maximum multiplicity four.
+An independent audit checks all 202,575 labelled (4,5,5) collections, their 840 failures, the five orbits, and all 441 normalized family
 distributions (91 failures and 350 solutions); its record is `build/checks/extremal.json`.
 
 The lower example is four copies of A, five of B and five of C, with faces

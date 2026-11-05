@@ -11,9 +11,9 @@ exhaustive regimes:
 \toprule
 Shape & Main mechanism\\
 \midrule
-$a+b\ge6$ & Weighted compatibility and reservations\\
-$a=b=2$ & Concentration and retargeting along a rod\\
 $a=2,\ b=3$ & Exceptional-defect control and retargeting\\
+$a=b=2$ & Concentration and retargeting along a rod\\
+$a+b\ge6$ & Weighted compatibility and reservations\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -30,9 +30,9 @@ $N-d+1$ copies. The main bounds are:
 \toprule
 Regime & $N=L$ & $d$ & Exceptional Hall sets\\
 \midrule
-$a+b\ge6$ & $8+4\tau$ & $\tau+M+6$ & Reservations; Lemma~\ref{lem:box-weighted}\\
-$2\times2\times c$, $c\ge5$ & $8+4M$ & $2M+4$ & Sizes $d+1,d+2$; Lemma~\ref{lem:rod-concentration}\\
 $2\times3\times c$, $c\ge4$ & $12+4M$ & $2M+6$ & Size $d+1$; Lemma~\ref{lem:23c-compatibility}\\
+$2\times2\times c$, $c\ge5$ & $8+4M$ & $2M+4$ & Sizes $d+1,d+2$; Lemma~\ref{lem:rod-concentration}\\
+$a+b\ge6$ & $8+4\tau$ & $\tau+M+6$ & Reservations; Lemma~\ref{lem:box-weighted}\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -56,7 +56,7 @@ pairs forces them to be disjoint, by Lemma~\ref{lem:cube-incidence}.
 There are at most two disjoint pairs in a five-colour palette.
 \end{proof}
 
-\subsection{Signed corner projections}
+\subsection{Corners from a missing-pair family}
 Retain the family $\mathcal H_{\alpha\beta}$ from Lemma~\ref{lem:fixed-missing-pair},
 with its opposite-repeat varieties and their $2\times2$ corner array.
 Write $K(W)$ for the cyclic corner types of $W$.
@@ -114,30 +114,6 @@ The projections of the nine family
 varieties themselves are $(6,0),(0,6)$, and $(4,4)$, as follows directly
 from their ring descriptions.
 \end{proof}
-
-\begin{lemma}[Compatibility for a thin frame]\label{lem:thin-compatibility}
-Choose an orientation of a five-colour target for a $2\times2\times3$
-frame such that its four noncorner edge positions are bichromatic.
-Every source cube fits at least four of the twelve positions.
-\end{lemma}
-
-\begin{proof}
-If either source or target is opposite-repeat,
-Lemma~\ref{lem:cube-incidence} gives two shared corners.
-The four parallel bichromatic edges have either four distinct types or
-two types occurring twice each. In the latter case both contain the
-target's repeated colour. The source's missing pairs are disjoint, so
-it fits at least two of these edges, giving four compatible positions.
-
-If both varieties are adjacent-repeat, the four parallel edge types are
-distinct and transverse to the monochromatic edge. The source fits either
-all four, or at least three and a corner by
-Lemma~\ref{lem:transverse-corner}. Again it fits four positions.
-\end{proof}
-
-\subsection{Eight family cubes and three arbitrary additions}
-
-% Analytic lemma for the 2 x 2 x 3 five-colour problem.
 
 \begin{lemma}[Eight cubes with a common missing pair]\label{lem:eight-common-missing}
 Eight cubes from $\mathcal H_{\alpha\beta}$, together with any three additional
@@ -271,8 +247,8 @@ distinct unordered tricoloured triples. The union above contains both
 orientations only for $013$ and $123$. Thus no opposite-repeat target
 is possible. The only corner-supported targets are $U,V,W$.
 
-Target $U$ needs two copies possessing a $00$ corner, but the collection
-has only one such copy.
+The corners $003$ and $004$ of target $U$ each require a $U$ copy, but only
+one is available.
 
 For target $V$, seven of its corner types are absent from $W$; the only
 shared type is $024$. In addition, exactly one geometric edge in each
@@ -315,6 +291,8 @@ the number of frame positions, and
 Lemma~\ref{lem:thin-three-variety-obstruction}, respectively.
 \end{proof}
 
+\subsection{Choosing a thin target}
+
 \begin{lemma}[Choosing a target when one side has length two]\label{lem:thin-target}
 Let $2\le b\le c$ and suppose $N\ge15$ five-colour sources are available.
 There is a corner-solvable target and an orientation for a $2\times b\times c$
@@ -349,6 +327,26 @@ so it can simultaneously be put along $c$.
 \end{proof}
 
 \subsection{The smallest thin box}
+
+\begin{lemma}[Compatibility for a thin frame]\label{lem:thin-compatibility}
+Choose an orientation of a five-colour target for a $2\times2\times3$
+frame such that its four noncorner edge positions are bichromatic.
+Every source cube fits at least four of the twelve positions.
+\end{lemma}
+
+\begin{proof}
+If either source or target is opposite-repeat,
+Lemma~\ref{lem:cube-incidence} gives two shared corners.
+The four parallel bichromatic edges have either four distinct types or
+two types occurring twice each. In the latter case both contain the
+target's repeated colour. The source's missing pairs are disjoint, so
+it fits at least two of these edges, giving four compatible positions.
+
+If both varieties are adjacent-repeat, the four parallel edge types are
+distinct and transverse to the monochromatic edge. The source fits either
+all four, or at least three and a corner by
+Lemma~\ref{lem:transverse-corner}. Again it fits four positions.
+\end{proof}
 
 \begin{theorem}[The $2\times2\times3$ box]\label{thm:223}
 We have
@@ -599,8 +597,9 @@ First let $c=4$, so $M=2$ and $L=16$, and take seventeen source
 copies. Lemma~\ref{lem:thin-target} gives a corner target, transverse if
 adjacent-repeat and axial if opposite-repeat, with at least nine sources
 for every long-edge type.
-If the target is opposite-repeat, its defect is at most eight by
-Lemma~\ref{lem:rod-compatibility}, and Hall's theorem completes it.
+If the target is opposite-repeat, every source misses at most eight positions
+by Lemma~\ref{lem:rod-compatibility}. Lemma~\ref{lem:partial-matching},
+with the corners as the matched subset, completes the frame.
 
 For an adjacent-repeat target, adjacent-repeat sources miss at most nine
 positions and opposite-repeat sources at most ten. A failing Hall set

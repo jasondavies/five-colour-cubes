@@ -191,7 +191,12 @@ def check_sources(generated, retained):
     if missing or extra or changed:
         details = '; '.join(f'{label}: {", ".join(map(str, paths))}'
                             for label, paths in [('missing', missing), ('extra', extra), ('changed', changed)] if paths)
-        raise ValueError(f'Retained replay sources differ ({details}); run make replay-data to regenerate.')
+        advice = []
+        if extra:
+            advice.append('remove the files listed as extra')
+        if missing or changed:
+            advice.append('run make replay-data to regenerate missing or changed files')
+        raise ValueError(f'Retained replay sources differ ({details}); {"; then ".join(advice)}.')
 
 
 def generate_sources(dest, workers, cut_mode):

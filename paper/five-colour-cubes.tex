@@ -145,14 +145,17 @@ An elementary fourteen-cube obstruction proves the lower bound.
 For the upper bound, Hall deficiencies and symmetry reduce hypothetical
 counterexamples to finite problems, excluded by interval certificates
 (Sections~\ref{sec:cases}--\ref{sec:certificates}).
-The eight-family-plus-three lemma (Lemma~\ref{lem:eight-common-missing}),
-proved independently of $N_5=15$, builds corners from eight sources
-sharing a missing pair and three arbitrary additions. Together with
-geometric compatibility bounds it extends the corner threshold to every
-cuboid (Sections~\ref{sec:frames}--\ref{sec:boxes}). A uniform
-three-variety obstruction supplies the additional lower bound responsible
-for the two sixteen-position exceptions. These extensions require no
-new interval certificates. Section~\ref{sec:construction} gives a
+The cuboid extensions (Sections~\ref{sec:frames}--\ref{sec:boxes}) use the
+connection between scarce edge requirements and large missing-pair families.
+Eight sources lacking a common pair, together with any three others, build
+corners for a target that also lacks that pair
+(Lemma~\ref{lem:eight-common-missing}, independent of $N_5=15$).
+Choosing such targets avoids scarce edge requirements; compatibility
+estimates then complete the matching argument. In thin boxes, an exceptional
+Hall deficiency forces concentration on one variety and permits a change of
+target. A uniform three-variety obstruction supplies the additional lower
+bound responsible for the two sixteen-position exceptions. These extensions
+require no new interval certificates. Section~\ref{sec:construction} gives a
 compressed flow algorithm for finding assemblies, and
 Section~\ref{sec:support} determines the thresholds for collections
 with a bounded number of varieties and classifies the three-variety
@@ -282,7 +285,7 @@ None is solvable.
 \input{obstruction-figure}
 \caption{The fourteen-cube obstruction $4A+5B+5C$. Each net has $+x$ at its
 centre. Corner types are read counterclockwise from outside; the
-full-colour types occur on neither of the other two displayed varieties.
+highlighted corner types occur on neither of the other two displayed varieties.
 A target of variety $X$ has
 these private positions, and only copies of $X$ fit them.}
 \label{fig:obstruction}
@@ -515,6 +518,12 @@ and the sound interval deductions exclude. Hence $N_5\le15$.
 \end{proof}
 
 \section{Compatibility and missing-pair families}\label{sec:frames}
+An edge type is the unordered pair of its incident face colours, with
+repetition allowed. A source fits a noncorner edge position exactly when it
+has an edge of the required type, since the incident faces can be aligned
+by a proper rotation. A geometric edge parallel to a side of length $a$
+contributes $a-2$ frame positions.
+
 The frame arguments depend on how many positions a source can miss.
 Lemmas~\ref{lem:cube-incidence} and~\ref{lem:transverse-corner} state the
 shape-independent facts used in the directional bounds of
