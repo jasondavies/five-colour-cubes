@@ -31,7 +31,8 @@ five-colour frame column left open by Berkove, Eickemeyer and Schulman
 (2018). All threshold statements are formalised in Lean. A fixed-size flow
 formulation decides feasibility and constructs assemblies in time linear
 in the explicit source list. We also determine the corner thresholds when the
-number of source varieties is bounded.
+number of source varieties is bounded, and classify the fourteen-cube
+obstructions using the minimum possible number of varieties.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -153,7 +154,8 @@ for the two sixteen-position exceptions. These extensions require no
 new interval certificates. Section~\ref{sec:construction} gives a
 compressed flow algorithm for finding assemblies, and
 Section~\ref{sec:support} determines the thresholds for collections
-with a bounded number of varieties.
+with a bounded number of varieties and classifies the three-variety
+fourteen-cube obstructions.
 The threshold classification is fully formalised in Lean;
 Section~\ref{sec:formal} describes the verification scope.
 
@@ -656,118 +658,7 @@ all three adjacent-repeat sources of a given sign fit the same column.}
 \input{boxes}
 \input{construction}
 
-\section{Collections with few varieties}\label{sec:support}
-Let $M(k)$ be the least number of cubes guaranteeing a corner solution when
-the collection contains at most $k$ varieties.
-
-We use a directed encoding of tricoloured corners. Write $V=\col$ and
-encode the cyclic triple $(i,j,k)$ by the complementary ordered pair $ab$
-for which $(a,b,i,j,k)$ is an even permutation of $V$. Cyclically rotating
-the triple preserves $ab$; reversing it gives $ba$. Write $b(r,p)$ for the
-bicoloured corner $rrp$.
-The six tricoloured corners of an adjacent-repeat variety form a cut
-\[
- C(S)=S\times(V\setminus S),\qquad |S|\in\{2,3\}.
-\]
-Its smaller side is a pair $P$; its repeated colour is some $r\notin P$,
-and its other corners are $b(r,p)$ for $p\in P$. For each $P,r$ the two
-cuts $C(P)$ and $C(V\setminus P)$ give the two mirror varieties.
-To see this directly, the representative $(0,1,0,2,3,4)$ has cut
-$C(34)$ and bicoloured corners $b(0,3),b(0,4)$. All adjacent-repeat
-varieties arise by permuting its colours; an odd permutation also reverses
-every arc, which gives the stated description. Here and below, a string
-such as $34$ in $C(34)$ denotes the set $\{3,4\}$.
-An opposite-repeat variety with singleton opposite pairs $P,Q$ has arcs
-$(P\times Q)\cup(Q\times P)$: its corners contain the repeated colour
-and one colour from each pair, in both orientations. Thus its arcs form
-a bidirected $K_{2,2}$, with the repeated colour the omitted vertex.
-
-\begin{lemma}\label{lem:disjoint-pair}
-Two five-colour varieties with disjoint corner sets can build an
-opposite-repeat target from four copies of each.
-\end{lemma}
-\begin{proof}
-Lemma~\ref{lem:cube-incidence} makes both varieties adjacent-repeat.
-Their cuts $C(S)$ and $C(T)$ satisfy
-\[
- C(S)\cap C(T)=(S\cap T)\times\bigl(V\setminus(S\cup T)\bigr).
-\]
-Thus disjointness implies $S\cap T=\varnothing$ or $S\cup T=V$.
-In either case $|S\setminus T|,|T\setminus S|\ge2$: in the first
-case use $|S|,|T|\ge2$, and in the second use $|S|,|T|\le3$.
-Choose pairs $P\subseteq S\setminus T$ and $Q\subseteq T\setminus S$.
-The opposite target with singleton opposite pairs $P,Q$ has four arcs
-$P\times Q$ supplied by the first variety and four arcs $Q\times P$
-supplied by the second. Four distinct copies of each fill these positions.
-\end{proof}
-
-\begin{theorem}\label{thm:support}
-For every integer $k\ge1$,
-\[
- M(k)=\begin{cases}8&k=1,\\13&k=2,\\15&k\ge3.\end{cases}
-\]
-Consequently, three is the minimum number of varieties in a fourteen-cube
-collection without a solution.
-\end{theorem}
-\begin{proof}
-Eight identical copies build their own variety, and fewer than eight pieces
-cannot form a corner solution. For two varieties, consider thirteen copies.
-If either variety occurs at least eight times, it builds itself. Otherwise
-the multiplicities are seven and six. If the varieties share a corner type,
-use a minority copy at that corner of the majority target and seven majority
-copies elsewhere. If their corner sets are disjoint, apply
-Lemma~\ref{lem:disjoint-pair}.
-
-For the lower bound take six copies each of
-\[
- U=(0,1,0,2,3,4),\qquad Q=(0,1,1,3,2,4),
-\]
-where $U$ is the variety of Lemma~\ref{lem:thin-three-variety-obstruction}.
-Their cuts are $C(34),C(013)$, and their bicoloured corners are respectively
-$b(0,3),b(0,4)$ and $b(1,2),b(1,4)$. These force any supported
-adjacent target to be $U,Q$ or their mirrors. The mirrors require the
-absent arcs $03,20$, respectively. The only bidirected edges in the union
-are $04,14$, too few for an opposite target's $K_{2,2}$.
-Thus only $U,Q$ can be targets. Their cuts intersect only at $32$
-(the cyclic corner $041$), and they share no bicoloured corner.
-Each therefore has seven private positions, so neither can be built with
-six copies. Thus $M(2)=13$. For $k\ge3$,
-Theorem~\ref{thm:main} supplies the upper bound, and the collection in
-Lemma~\ref{lem:lower} supplies the lower bound.
-\end{proof}
-
-\begin{remark}[A family of fourteen-cube obstructions]
-Keep $A,C$ from Section~\ref{sec:lower}, and put
-\[
- B_1=(0,1,2,3,2,4),\quad B_2=(0,1,2,3,3,4),\quad B_3=(0,1,2,4,3,4).
-\]
-All 21 collections
-\[
- 4A+5C+x_1B_1+x_2B_2+x_3B_3,\qquad
- x_1+x_2+x_3=5,\quad x_i\in\mathbb Z_{\ge0},
-\]
-are unsolvable. The $B_i$ share the cut $C(01)$ and repeat colours
-$2,3,4$, respectively; $C$ has cut $C(124)$ and repeats colour $1$.
-Their bicoloured corners force an adjacent target to be one of these four
-varieties or a mirror. The reverse $B$ cut requires the absent arc $21$,
-and the reverse $C$ cut requires the absent arc $01$.
-The bidirected edges in the combined union are
-\[
- 02,\ 04,\ 13,\ 14,\ 23,\ 24.
-\]
-A four-cycle through $0$ would need a second common neighbour of $2,4$;
-there is none. On $\{1,2,3,4\}$ the only four-cycle is the $K_{2,2}$
-with parts $\{1,2\},\{3,4\}$, so $A$ is the only opposite target.
-The five arcs $24,31,32,41,42$ of $A$ occur in neither $C$ nor the
-$B$-group. Four arcs $10,20,40,43$ and both bicoloured corners of $C$
-occur in neither $A$ nor the $B$-group. Finally, the four arcs
-$02,03,04,12$ and both bicoloured corners of each $B_i$ occur in neither
-$A$ nor $C$.
-Thus $A$ needs five $A$-copies, $C$ needs six $C$-copies, and any $B_i$
-needs six copies from the $B$-group. The respective supplies are four,
-five and five, regardless of their distribution within the $B$-group.
-The original example is $x_1=5,x_2=x_3=0$.
-\end{remark}
+\input{extremal}
 
 \section{Formal verification}\label{sec:formal}
 All threshold statements are formalised in Lean~4 and mathlib~\cite{Lean4,mathlib},
@@ -794,10 +685,10 @@ and audit details; generated verification records belong to the release
 artifacts, rather than the versioned source.
 
 \section{Remaining questions}
-The sharp frame and complete-box thresholds leave the structure of
-extremal corner obstructions to be determined. Can all fourteen-cube
-obstructions be classified? The support bound and the family in
-Section~\ref{sec:support} give initial constraints and examples.
+The classification in Section~\ref{sec:support} settles fourteen-cube
+obstructions with three varieties. Can those using four or more varieties
+be classified? The generalized family provides examples with maximum
+multiplicity four.
 A second question is whether $N_5=15$ admits a short elementary proof,
 replacing the finite certificates used here. Finally, boxes with a side of
 length one fall outside the model, since a source there exposes opposite

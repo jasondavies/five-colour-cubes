@@ -76,8 +76,22 @@ not part of the Lean formalisation.
 
 With at most k source varieties, the exact corner threshold is **8 for k=1,
 13 for k=2, and 15 for k≥3**. Three varieties are therefore necessary for a
-fourteen-cube obstruction. See [small support](FiveColour/SmallSupport.lean)
-and [the 21-member obstruction family](FiveColour/MixedObstructions.lean).
+fourteen-cube obstruction. Every such obstruction has **maximum multiplicity
+at most five**. Those using exactly three varieties have multiplicities
+**(4,5,5)** and fall into **exactly five classes**, under common colour
+relabelling and simultaneous reflection of the entire collection. Reflections
+remain forbidden as individual cube moves.
+
+The [multiplicity theorem](FiveColour/ExtremalMultiplicity.lean) and
+[complete classification](FiveColour/ExtremalClassification.lean) are formalised
+independently of the fifteen-cube certificate replay. The classification includes
+exhaustiveness, failure of each representative, and pairwise inequivalence.
+The [face-tuple dictionary](data/five-colour-extremal.json) lists representatives
+and labelled orbit sizes. A [generalized obstruction family](FiveColour/ExtremalFamilyTheorems.lean)
+allows mixtures within both adjacent cuts, including examples whose maximum
+multiplicity is four. An independent audit checks all 202,575 labelled (4,5,5)
+collections, their 840 failures, the five orbits, and all 91 normalized family
+members; its record is `build/checks/extremal.json`.
 
 The lower example is four copies of A, five of B and five of C, with faces
 listed as `+x,-x,+y,-y,+z,-z`:
@@ -140,6 +154,13 @@ The corner proof is `FiveColour.Packed.ProjectedChunks.threshold15`, with
 `sharpThreshold15` proving sharpness. Its generated sources are intentionally
 ignored and reproducible. Audits permit only the standard axioms `propext`,
 `Classical.choice` and `Quot.sound`; the proof uses no `sorry` or `native_decide`.
+
+The multiplicity, classification and generalized-family theorems can be checked
+without generating or replaying interval certificates:
+
+```sh
+lake build FiveColour.ExtremalClassification FiveColour.ExtremalFamilyTheorems
+```
 
 ## What the computer-assisted proof does
 
@@ -220,22 +241,23 @@ python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-
 ```
 
 A fresh full verification on an AMD Ryzen 7 9700X (8 cores, 16 logical CPUs)
-with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=1` gave:
+with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=8` for shared builds
+(the replay driver uses one thread per case) gave:
 
 | Stage | Wall time |
 | --- | ---: |
-| C++/Python audit | 4.5 s |
-| Shared Lean library and audit | 41.8 min |
+| C++/Python audit | 5.6 s |
+| Shared Lean library and audit | 13.8 min |
 | Certificate proof generation | 3.7 s |
-| Certificate replay and final corner theorem | 37.4 min |
+| Certificate replay and final corner theorem | 37.6 min |
 | Unconditional extensions and audit | 2.5 s |
-| Complete verification command | 79.5 min |
+| Complete verification command | 51.6 min |
 
 All 279 certificate proofs and the unconditional publication theorems passed.
 Only the pinned public Mathlib and transitive dependency caches were reused;
 project and shared cube-library artifacts were rebuilt. Peak combined
-process-tree proportional set size (PSS) was **23.3 GiB**, sampled approximately
-every two seconds. Peak summed RSS was 33.9 GiB; it double-counts shared pages,
+process-tree proportional set size (PSS) was **49.0 GiB**, sampled approximately
+every two seconds. Peak summed RSS was 54.2 GiB; it double-counts shared pages,
 whereas PSS apportions them.
 
 Case benchmark results include wall/CPU time and peak memory under

@@ -1,0 +1,235 @@
+\section{Support and extremal corner obstructions}\label{sec:support}
+Let $M(k)$ be the least number of cubes guaranteeing a corner solution when
+the collection contains at most $k$ varieties. We determine these thresholds
+and classify all fourteen-cube obstructions with the minimum possible number
+of varieties. Write $K(X)$ for a variety's eight cyclic corner types.
+
+\paragraph{Directed corners.}
+Write $V=\col$ and encode the cyclic triple $(i,j,k)$ by the complementary
+ordered pair $ab$ for which $(a,b,i,j,k)$ is an even permutation of $V$.
+Cyclically rotating the triple preserves $ab$; reversing it gives $ba$.
+Write $b(r,p)$ for the bicoloured corner $rrp$.
+The tricoloured corners of an adjacent-repeat variety form a cut
+\[
+ C(S)=S\times(V\setminus S),\qquad |S|\in\{2,3\}.
+\]
+Its smaller side is a pair $P$, its repeated colour is $r\notin P$, and
+its other corners are $b(r,p)$ for $p\in P$. Call $C(P)$ positive and
+$C(V\setminus P)$ negative. For example, $(0,1,0,2,3,4)$ has cut $C(34)$
+and bicoloured corners $b(0,3),b(0,4)$. Colour permutations give all adjacent
+varieties; odd permutations also reverse the arcs. A string such as $34$
+in $C(34)$ denotes $\{3,4\}$.
+An opposite-repeat variety with singleton opposite pairs $P,Q$ has arcs
+$(P\times Q)\cup(Q\times P)$, a bidirected $K_{2,2}$ omitting its repeated
+colour.
+
+The identity
+\[
+ C(S)\cap C(T)=(S\cap T)\times\bigl(V\setminus(S\cup T)\bigr)
+\]
+gives the following tricoloured intersection sizes for smaller pairs $P,Q$:
+\[
+\begin{array}{c|ccc}
+ |P\cap Q|&2&1&0\\\hline
+ \text{same sign}&6&2&0\\
+ \text{opposite signs}&0&1&4
+\end{array}
+\]
+There are additionally $|P\cap Q|$ shared bicoloured corners when the
+repeated colours agree, and none otherwise. In particular, a singleton
+full intersection is tricoloured and joins opposite signs with different
+repeated colours. By Lemma~\ref{lem:cube-incidence}, a pair involving an
+opposite-repeat variety shares at least two corners; two opposite varieties
+sharing exactly two corners share one bidirected edge.
+
+\begin{lemma}\label{lem:disjoint-pair}
+Four copies of $A$, together with any four sources individually
+corner-disjoint from $A$, can build an opposite-repeat target.
+\end{lemma}
+\begin{proof}
+The anchor and all four other sources are adjacent-repeat. Reflect the entire instance
+if necessary so that $A$ has cut $C(P)$, $|P|=2$, and put $R=V\setminus P$.
+Each disjoint source has cut $C(R)$ or $C(Q)$ for a pair $Q\subset R$.
+Choose a most frequent pair-cut class $C(Q)$. Four $A$ copies fill
+$P\times Q$ of the opposite target with singleton pairs $P,Q$.
+On $Q\times P$, sources of classes $C(Q),C(R)$ are unrestricted; each other
+pair class fits one two-position row. Neither row-only class occurs more
+than twice, by maximality of the chosen class. Place them in their rows
+and fill the remaining positions with the unrestricted sources.
+\end{proof}
+
+Consequently, eleven sources containing seven copies of one variety solve:
+eight identical copies solve themselves; otherwise a source sharing a corner
+completes the seven-copy target, or four disjoint sources invoke the lemma.
+
+\begin{theorem}\label{thm:support}
+For every integer $k\ge1$,
+\[
+ M(k)=\begin{cases}8&k=1,\\13&k=2,\\15&k\ge3.\end{cases}
+\]
+Three is therefore the minimum number of varieties in a fourteen-cube obstruction.
+\end{theorem}
+\begin{proof}
+The one-variety case is immediate. Thirteen sources in two varieties include
+seven of one variety, so the preceding consequence gives the upper bound.
+For the lower bound take six copies each of
+\[
+ U=(0,1,0,2,3,4),\qquad Q=(0,1,1,3,2,4).
+\]
+Their cuts are $C(34),C(013)$, and their bicoloured corners are respectively
+$b(0,3),b(0,4)$ and $b(1,2),b(1,4)$. These force any supported adjacent
+target to be $U,Q$ or their mirrors. The mirrors require the absent arcs
+$03,20$, respectively. The union has only two bidirected edges, $04,14$,
+so supports no opposite target. The only shared corner of $U,Q$ is $32$
+(the cyclic corner $041$); each target therefore needs seven copies of its
+own variety. Six of each fail. For $k\ge3$, Theorem~\ref{thm:main} and
+Lemma~\ref{lem:lower} give the matching bounds.
+\end{proof}
+
+\begin{theorem}\label{thm:multiplicity-five}
+Every fourteen-cube obstruction has maximum multiplicity at most five.
+\end{theorem}
+\begin{proof}
+The seven-copy case follows above. Suppose there are exactly six copies
+of $A$ and eight other sources. Two others fitting distinct $A$ corners
+complete $A$; four disjoint others invoke Lemma~\ref{lem:disjoint-pair}.
+In a failure, therefore, at most three others are disjoint and at least
+five meet $A$, all in the same singleton corner $k$.
+
+Normalize $A$ to $C(P)$ with $P=\{p,p'\}$, and put $R=V\setminus P$.
+The intersection table makes $k=pq$ for some $q\in R$ and forces every
+meeting source to have cut
+\[
+ C(T),\qquad T=\{p\}\cup(R\setminus\{q\}).
+\]
+Write $g$ for their number and $d=8-g\le3$ for the disjoint sources.
+There are at most three varieties with this common cut, so reserve two
+copies of some variety $B$ for its bicoloured corners. A disjoint source's
+intersection with $C(T)$ is
+\[
+\begin{array}{c|c}
+ \text{source cut}&\text{intersection with }C(T)\\\hline
+ C(R)&(R\setminus\{q\})\times\{p'\}\\
+ C(R\setminus\{q\})&(R\setminus\{q\})\times\{p',q\}\\
+ C(\{q,r\}),\ r\in R\setminus\{q\}&\{rp'\}
+\end{array}
+\]
+and always avoids $k$. If $g\ge7$, five remaining common-cut sources and
+one $A$ at $k$ complete $B$. If $g=6$, use four common-cut sources, one
+$A$ at $k$, and one disjoint source. If $g=5$, use three common-cut sources,
+one $A$ at $k$, and two disjoint sources at distinct corners, whenever possible.
+Otherwise all three disjoint sources meet $C(T)$ in the same singleton
+$rp'$, hence have cut $C(Q)$ with $Q=\{q,r\}$. Retarget to the opposite
+variety with singleton pairs $P,Q$: four $A$ copies fill $P\times Q$;
+three disjoint sources and one $B$ at $rp'$ fill $Q\times P$.
+Every case gives an assembly, independently of the fifteen-cube theorem.
+\end{proof}
+
+For classification, equivalence permits common colour relabelling and
+simultaneous reflection of the entire collection. Reflection is not an
+additional move for an individual source. In directed notation this is
+arbitrary vertex relabelling and independent global arc reversal.
+
+\begin{theorem}\label{thm:three-variety-classification}
+Up to this equivalence, the fourteen-cube obstructions using exactly three
+varieties are precisely five collections $4A+5B_r+5C_s$. Here $A$ is the
+opposite variety with singleton pairs $\{1,2\},\{3,4\}$, while $B_r$ has
+cut $C(01)$ and repeat $r$, and $C_s$ has cut $C(124)$ and repeat $s$.
+Representatives are
+\[
+\begin{array}{c|ccccc}
+ \text{class}&\mathrm{I}&\mathrm{II}&\mathrm{III}&\mathrm{IV}&\mathrm{V}\\\hline
+ r&2&2&3&3&4\\
+ s&1&4&1&2&2
+\end{array}
+\]
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm:multiplicity-five} forces multiplicities $(4,5,5)$;
+write $A$ for the four-copy variety. For any target, two source varieties
+already supply at least nine copies. Hall's condition thus reduces to
+coverage and the bounds $4,5,5$ on positions private to each variety.
+In particular, failure to build the three sources themselves implies
+\begin{align*}
+ |K(A)\cap(K(B)\cup K(C))|&\le3,\\
+ |K(B)\cap(K(A)\cup K(C))|&\le2,\\
+ |K(C)\cap(K(A)\cup K(B))|&\le2.
+\end{align*}
+No pair is disjoint, by Lemma~\ref{lem:disjoint-pair}, so each pairwise
+intersection has size one or two.
+
+No two adjacent varieties have the same sign. Otherwise, after reversal,
+their cuts are $C(uv),C(uw)$, with intersection $\{ux,uy\}$ on the remaining
+vertices $x,y$. At least one, say $X=C(uv)$, has five copies. Its intersection
+with the third variety $Z$ must be a nonempty subset of $\{ux,uy\}$.
+If $Z$ is positive, its cut must be $C(uw)$, giving six shared corners with
+the second variety. If $Z=C(S)$ is negative and contains, say, $ux$, the bound
+two excludes $v$ from $S$; since $x\notin S$, this forces $S=\{u,w,y\}$,
+which shares four arcs with $C(uw)$. If $Z$ is opposite, it contains both
+$ux,uy$ and has parts $\{x,y\},\{u,z\}$, with $z=v$ or $w$; again it
+shares four arcs with one of the two cuts. All are contradictions.
+
+Three adjacent varieties are excluded by this observation. Two opposite
+varieties and one adjacent are also impossible: their pairwise intersections
+would coincide in a bidirected edge, which a cut cannot contain. If all
+three are opposite, their undirected four-cycles share one edge and are
+otherwise pairwise edge-disjoint, so their union is $K_5$. Choose an opposite
+target avoiding one endpoint of the common edge. Each required edge then
+belongs to exactly one source, and each source supplies at most two target
+edges, hence at most four directed corners. Its copies suffice.
+
+Thus exactly one variety is opposite. It cannot have five copies, for its
+two overlaps would coincide in two tricoloured corners, forcing the adjacent
+cuts to have the same sign. Consequently $A$ is opposite and $B,C$ have
+opposite signs. Their intersections with $A$ have size two, while
+$K(B)\cap K(C)\subseteq K(A)$ is nonempty and, by the table, a single arc.
+Write the smaller pairs as $\{o,u\},\{o,v\}$; the common arc is $uv$.
+The four-cycle of $A$ must omit $o$: otherwise one of these pairs would
+be a whole part of its $K_{2,2}$, giving four shared arcs. Normalize
+$o=0,u=1,v=3$ and name their partners $2,4$. This gives the stated cuts,
+with $r\in\{2,3,4\}$, $s\in\{1,2,4\}$ and $r\ne s$; equality would
+add the common bicoloured corner $b(r,0)$.
+
+Conversely, all seven such pairs fail. The arc union misses $01,21,30,34$;
+its bidirected edges are $02,04,13,14,23,24$. No four-cycle passes through
+$0$, since its neighbours $2,4$ have no second common neighbour; on the
+other four vertices the only four-cycle is $A$. The bicoloured corners
+force an adjacent target to be $B_r,C_s$ or a mirror. The mirrors require
+absent arcs $21,01$, respectively. The remaining targets have the private
+requirements
+\[
+\begin{array}{c|l|c}
+ \text{target}&\text{positions private to its source variety}&\text{number}\\\hline
+ A&24,31,32,41,42&5\\
+ B_r&02,03,04,12\text{ and both bicoloured corners}&6\\
+ C_s&10,20,40,43\text{ and both bicoloured corners}&6
+\end{array}
+\]
+exceeding the available $4,5,5$ copies.
+
+Finally, a symmetry between normalized collections fixes the unique
+four-copy variety $A$, hence fixes $0$ and preserves its two unordered
+pairs. Without arc reversal it fixes both cuts, hence every vertex.
+With reversal it exchanges the cuts and is $\sigma=(1\ 3)(2\ 4)$.
+It sends $(r,s)$ to $(\sigma(s),\sigma(r))$, pairing $(2,1)$ with $(3,4)$
+and $(3,2)$ with $(4,1)$, while fixing $(2,4),(3,1),(4,2)$.
+This gives exactly the five inequivalent representatives displayed.
+\end{proof}
+
+\begin{corollary}\label{cor:extremal-family}
+With the same $A,B_r,C_s$, every collection
+\[
+ 4A+\sum_{r\in\{2,3,4\}}x_rB_r+\sum_{s\in\{1,2,4\}}y_sC_s,
+ \qquad \sum_r x_r=\sum_s y_s=5,\quad x_2y_2=x_4y_4=0,
+\]
+where the counts are nonnegative integers, is an obstruction.
+\end{corollary}
+\begin{proof}
+The two groups have disjoint repeated-colour supports. The preceding
+supported-target and private-position arguments therefore apply to the
+whole groups: the only targets are $A$ and active $B_r,C_s$, demanding
+respectively five $A$ copies, six $B$-group copies, or six $C$-group copies.
+Their supplies are four, five and five. Taking $y_1=5$ gives a 21-member
+subfamily. The general family also contains, for example,
+$4A+2B_2+3B_3+2C_1+3C_4$, whose maximum multiplicity is four.
+\end{proof}

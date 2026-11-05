@@ -42,6 +42,9 @@ check-code: build/check_five_colour_certificate build/five_colour_extensions bui
 	build/five_colour_box_geometry
 	$(PYTHON) -S scripts/generate_five_colour_corner_projections.py --check
 	$(PYTHON) -S scripts/generate_five_colour_support.py --check
+	$(PYTHON) -S scripts/generate_five_colour_extremal.py --check
+	$(PYTHON) -S scripts/generate_five_colour_triples.py --check
+	$(PYTHON) -S scripts/check_five_colour_extremal.py
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/test_verification_state.py

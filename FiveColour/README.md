@@ -54,6 +54,26 @@ unconditional cuboid results, with `make verify-full`.
 | `PackedPruning.lean` | Root-specific cut coverage, fixed-coordinate reduction and sound transfer to the original families. |
 | `PackedChunks.lean` | Composition of checked chunks with exact boundary comparisons and supplied exclusion proofs. |
 
+The extremal results are independent of the interval replay:
+
+- `ExtremalMultiplicity.lean`: the maximum multiplicity in a fourteen-cube
+  obstruction is five. `ExtremalMatching.lean` lifts explicit group allocations
+  to distinct physical copies; `ExtremalSixChecks*.lean` checks the small local
+  inventories after the anchor reduction.
+- `ExtremalClassification.lean`: exactly five symmetry classes with three
+  varieties. `ExtremalTripleChecks*.lean` covers all 5,402 normalized candidates
+  with explicit placements or orbit witnesses. `ExtremalSymmetry.lean` proves
+  completeness of the stabilizer used to establish inequivalence; reflections
+  act on entire collections. `ExtremalExamples.lean` proves failure and support
+  size for each representative.
+- `ExtremalFamilyTheorems.lean`: the generalized family with disjoint
+  repeated-colour supports in the two adjacent groups.
+
+These use kernel-checked finite geometry and allocations alongside the paper's
+elementary arguments; they do not claim a purely symbolic formalization of the
+directed-cut normalization. The generators are untrusted, and every witness is
+checked against the physical incidence theorem.
+
 ## Correspondence with the paper
 
 The geometric challenge and the proof's physical model express the same puzzle:

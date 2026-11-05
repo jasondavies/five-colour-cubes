@@ -130,3 +130,13 @@ import FiveColour
 #print axioms FiveColour.Physical.box_frame_lower
 #print axioms FiveColour.Physical.box_frame_threshold_iff
 #print axioms FiveColour.Physical.box_threshold_iff
+#print axioms FiveColour.Physical.cornerAllocation_solves
+#print axioms FiveColour.Physical.fourteen_multiplicity_le_five
+#print axioms FiveColour.Physical.fourteen_six_suffices
+#print axioms FiveColour.Physical.three_variety_pattern
+#print axioms FiveColour.Physical.three_variety_obstruction_iff
+#print axioms FiveColour.Physical.extremal_no_solution
+#print axioms FiveColour.Physical.extremal_support
+#print axioms FiveColour.Physical.extremal_inequivalent
+#print axioms FiveColour.Physical.generalized_no_solution
+#print axioms FiveColour.Physical.generalized_uses_all

@@ -12,7 +12,9 @@ project:
     the exact frame function max(15,12n-16) for n >= 2, including twenty cubes
     for a 3-frame, and the exact complete-cube threshold
     max(n^3,15) for n >= 2. Exact corner thresholds by support
-    size and a 21-member obstruction family are also formalised. For all
+    size, a maximum-multiplicity-five bound for fourteen-cube obstructions,
+    the complete five-class three-variety classification, and a generalized
+    obstruction family are also formalised. For all
     a,b,c >= 2, the exact cuboid frame and complete-box thresholds are
     max(15,4(a+b+c)-16,2(a+b+c)+1) and max(abc,15,2(a+b+c)+1).
   authors: ["Jason Davies"]
@@ -71,6 +73,14 @@ status:
     and a family of fourteen-cube obstructions. Finite kernel checks cover the
     source-target compatibility bounds, missing-pair classification and
     small-support witnesses; no new interval certificates are needed.
+    The extremal extension independently proves the multiplicity-five bound,
+    the complete five-class classification of three-variety fourteen-cube
+    obstructions and the generalized obstruction family. Its formal route uses
+    kernel-checked finite allocations and symmetry reductions, while the paper
+    gives elementary geometric proofs. Completeness, failure of every listed
+    representative and inequivalence under common colour relabelling and
+    simultaneous reflection are all included. This extension does not import
+    Threshold15 or depend on interval-certificate replay.
     Solution.lean applies the unconditional threshold to prove frame_bound,
     frame_threshold, frame_threshold_all, frame20, full_cube, full_cube27, full_cube64, complete_cube_threshold and
     support_threshold, audited by ExtensionsAudit.lean. BoxThresholds.lean
@@ -83,7 +93,7 @@ status:
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and
     complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
-    129 declarations; ExtensionsAudit.lean covers fourteen unconditional
+    140 declarations; ExtensionsAudit.lean covers fourteen unconditional
     extension statements.
     Solution.lean transfers the result to the Mathlib-only geometric challenge
     and builds successfully. The latest full external comparator run ended

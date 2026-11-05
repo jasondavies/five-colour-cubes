@@ -146,8 +146,34 @@ No new interval certificates are used. The flow algorithm and its
 complexity bound in Section~\ref{sec:construction} are mathematical
 deductions, not additional Lean claims.
 
+\subsection{Extremal obstructions}
+The multiplicity bound, three-variety classification and generalized
+obstruction family have separate physical Lean proofs, independent of
+\path{Threshold15} and the interval replay.
+
+\path{ExtremalMultiplicity.lean} uses the anchor lemma and explicit corner
+allocations for small grouped inventories. The allocation theorem reserves
+distinct physical copies, and kernel checks validate both the assignments
+and the exhaustive weak-composition lists. The main-text proof instead uses
+the directed-cut intersection calculation.
+
+For the three-variety classification, the multiplicity bound forces
+$(4,5,5)$. Normalizing the four-copy variety to one of the two anchor types
+leaves $2\binom{74}{2}=5,402$ candidates. Kernel checks verify explicit
+assemblies for 5,346 and symmetry witnesses for the other 56. Separate Hall
+witnesses prove that all five representatives fail. Completeness of the
+sixteen-element stabilizer of the opposite anchor is checked on physical
+faces; this establishes pairwise inequivalence under every allowed global
+symmetry. \path{ExtremalClassification.lean} joins these results for arbitrary
+physical collections. \path{ExtremalFamilyTheorems.lean} proves the generalized
+family. The face tuples and orbit sizes are in
+\path{data/five-colour-extremal.json}; a separate Python audit checks all
+202,575 labelled $(4,5,5)$ collections and all 91 normalized family members.
+These finite formal proofs supplement the elementary main-text arguments;
+no interval certificates are added or changed.
+
 \subsection{Reproduction}
-The dependency audits cover 130 declarations listed in \path{Audit.lean},
+The dependency audits cover 140 declarations listed in \path{Audit.lean},
 fourteen extension statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
@@ -163,8 +189,9 @@ records source hashes, tool versions, compiler flags and concurrency settings.
 Ignored build caches are permitted; modified dependency sources are rejected.
 
 A fresh full verification used an AMD Ryzen 7 9700X (8 cores,
-16 logical CPUs), 249\,GiB RAM, eight certificate workers and one Lean thread
-per process. Only the pinned public mathlib and transitive dependency caches
+16 logical CPUs), 249\,GiB RAM, eight threads for shared builds and eight
+certificate workers, each using one Lean thread. Only the pinned public
+mathlib and transitive dependency caches
 were reused; project and shared cube-library artifacts were rebuilt. All
 279 certificate proofs and the unconditional publication theorems passed.
 \begin{center}
@@ -172,18 +199,18 @@ were reused; project and shared cube-library artifacts were rebuilt. All
 \toprule
 Stage & Wall time\\
 \midrule
-C++/Python audit & 4.5 s\\
-Shared Lean library and audit & 41.8 min\\
+C++/Python audit & 5.6 s\\
+Shared Lean library and audit & 13.8 min\\
 Certificate proof generation & 3.7 s\\
-Certificate replay and final corner theorem & 37.4 min\\
+Certificate replay and final corner theorem & 37.6 min\\
 Unconditional extensions and audit & 2.5 s\\
-Complete verification command & 79.5 min\\
+Complete verification command & 51.6 min\\
 \bottomrule
 \end{tabular}
 \end{center}
 Peak sampled combined process-tree proportional set size (PSS) was
-23.3\,GiB, sampled approximately every two seconds; this accounts for shared pages
-proportionally. Peak summed RSS was 33.9\,GiB and double-counts shared pages.
+49.0\,GiB, sampled approximately every two seconds; this accounts for shared pages
+proportionally. Peak summed RSS was 54.2\,GiB and double-counts shared pages.
 
 A Mathlib-only comparator challenge states the corner problem geometrically,
 restating the library's definitions locally. It covers only the corner
