@@ -10,7 +10,7 @@ Every emitted allocation, inventory coverage and group mask is kernel checked.
 import argparse
 from pathlib import Path
 from cube_geometry import corners
-from cube_witnesses import match_copies
+from cube_witnesses import allocation
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -20,14 +20,6 @@ def compositions(g,n):
     else:
         for a in range(n+1):
             for tail in compositions(g-1,n-a): yield (a,)+tail
-
-def allocation(masks,cap):
-    for t,row in enumerate(masks):
-        copies=[g for g,n in enumerate(cap) for _ in range(n)]
-        matched=match_copies(row,copies)
-        if matched is not None:
-            return t,[copies[i] for i in matched]
-    raise ValueError(('No local allocation',cap))
 
 def render():
     lines=(ROOT/'data/five-colour-geometry.txt').read_text().splitlines()
@@ -55,8 +47,26 @@ def render():
         masks.append(table)
     vec=lambda xs:'!['+','.join(map(str,xs))+']'
     pre='module\npublic import FiveColour.ExtremalMatching\n@[expose] public section\nset_option maxRecDepth 100000\nset_option maxHeartbeats 0\nnamespace FiveColour.Physical\n'
-    text=pre+'\n/-- Anchor, four disjoint cut classes, and up to three singleton varieties. -/\ndef sixGroup : Fin 8 → Fin 75 → Option (Fin 8) :=\n'+vec(vec('some '+str(next(g for g,xs in enumerate(gs) if i in xs)) if any(i in xs for xs in gs) else 'none' for i in range(75)) for gs in groups)+'\n'
-    text+='\ndef sixMasks : Fin 8 → Fin 75 → Fin 8 → ℕ :=\n'+vec(vec(vec(row) for row in table) for table in masks)+'\n'
+    text=pre+'\ndef disjointGroup : Fin 75 → Option (Fin 4) :=\n'+vec('some '+str(next(g for g,xs in enumerate(ds) if i in xs)) if i in dis else 'none' for i in range(75))+'\n'
+    text+='\ndef singletonVariety : Fin 8 → Fin 3 → Option (Fin 75) :=\n'+vec(vec('some '+str(xs[0]) if xs else 'none' for xs in gs[5:]) for gs in groups)+'\n'
+    text+='\ndef disjointMasks : Fin 75 → Fin 4 → ℕ :=\n'+vec(vec(row[1:5]) for row in masks[0])+'\n'
+    text+="""
+/-- The anchor and four disjoint pools are shared by all eight corner cases. -/
+def sixGroup (k : Fin 8) (i : Fin 75) : Option (Fin 8) :=
+  if i = 3 then some 0 else
+  match disjointGroup i with
+  | some g => some ⟨g.val+1, by omega⟩
+  | none => if singletonVariety k 0 = some i then some 5 else
+      if singletonVariety k 1 = some i then some 6 else
+      if singletonVariety k 2 = some i then some 7 else none
+
+def sixMasks (k : Fin 8) (t : Fin 75) : Fin 8 → ℕ :=
+  ![Replay.fits t 3, disjointMasks t 0, disjointMasks t 1,
+    disjointMasks t 2, disjointMasks t 3,
+    (singletonVariety k 0).elim 255 (Replay.fits t),
+    (singletonVariety k 1).elim 255 (Replay.fits t),
+    (singletonVariety k 2).elim 255 (Replay.fits t)]
+"""
     text+='''
 def singletonCount : Fin 8 → ℕ := ![0,0,2,2,2,2,3,3]
 
@@ -100,10 +110,6 @@ end FiveColour.Physical
 
 theorem six_inventories_valid_{k} :
     ∀ w ∈ sixInventories{k}, w.Valid {k} 6 := by decide +kernel
-
-theorem six_masks_valid_{k} : ∀ (t i : Fin 75) (g : Fin 8),
-    sixGroup {k} i = some g → ∀ q : Fin 8, (sixMasks {k} t g).testBit q.val = true →
-        (Replay.fits t i).testBit q.val = true := by decide +kernel
 
 end FiveColour.Physical
 '''

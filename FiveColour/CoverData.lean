@@ -1,5 +1,6 @@
 module
 public import FiveColour.StabiliserData
+public import FiveColour.CoverMasks
 public import FiveColour.RootCapacityData
 @[expose] public section
 set_option maxRecDepth 100000

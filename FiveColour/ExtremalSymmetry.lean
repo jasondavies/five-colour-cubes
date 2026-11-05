@@ -1,5 +1,6 @@
 module
 public import FiveColour.ExtremalTriples
+public import FiveColour.StabiliserData
 public import FiveColour.Inventory
 @[expose] public section
 namespace FiveColour.Physical

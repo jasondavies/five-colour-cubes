@@ -15,6 +15,17 @@ theorem support_pair_verified (i : Fin 75) : ∀ j,
     supportPairAmount i j ≤ 7 ∧ 8-supportPairAmount i j ≤ 6 := by
   fin_cases i <;> decide +kernel
 
+/-- The existing pair certificate needs only four copies of each disjoint variety. -/
+theorem disjoint_pair_suffices {n : ℕ} (cubes : Fin n → Cube)
+    (hc : ∀ i, UsesAllColours (cubes i)) (a b : Fin 75) (hab : a ≠ b)
+    (hdis : Replay.fits a b = 0)
+    (ha : 4 ≤ multiplicity cubes a) (hb : 4 ≤ multiplicity cubes b) : HasSolution cubes := by
+  have hcrit := (support_pair_verified a b).1
+  simp only [supportPairAmount, hdis, ↓reduceIte] at hcrit
+  exact (hasSolution_iff_catalogue cubes).mpr
+    ⟨supportPairTarget a b, two_varieties_suffice cubes hc a b _ hab 4
+      (pairMaskCriterion_sound _ _ _ _ hcrit) ha (by simpa using hb)⟩
+
 lemma support_mem {n : ℕ} (cubes : Fin n → Cube) (i : Fin n) :
     catalogueIndex (cubes i) ∈ varietySupport cubes :=
   Finset.mem_image.mpr ⟨i,Finset.mem_univ _,rfl⟩

@@ -41,19 +41,6 @@ theorem six_inventories_valid (k : Fin 8) :
   · exact six_inventories_valid_6
   · exact six_inventories_valid_7
 
-theorem six_masks_valid (k : Fin 8) : ∀ (t i : Fin 75) (g : Fin 8),
-    sixGroup k i = some g → ∀ q : Fin 8, (sixMasks k t g).testBit q.val = true →
-      (Replay.fits t i).testBit q.val = true := by
-  fin_cases k
-  · exact six_masks_valid_0
-  · exact six_masks_valid_1
-  · exact six_masks_valid_2
-  · exact six_masks_valid_3
-  · exact six_masks_valid_4
-  · exact six_masks_valid_5
-  · exact six_masks_valid_6
-  · exact six_masks_valid_7
-
 lemma local_allocation {n : ℕ} (cubes : Fin n → Cube)
     (hc : ∀ i, UsesAllColours (cubes i)) (k : Fin 8) (a : ℕ) (w : LocalInventory)
     (hw : w.Valid k a) (ha : a ≤ multiplicity cubes 3)

@@ -244,8 +244,4 @@ theorem six_inventories_cover_4 :
 theorem six_inventories_valid_4 :
     ∀ w ∈ sixInventories4, w.Valid 4 6 := by decide +kernel
 
-theorem six_masks_valid_4 : ∀ (t i : Fin 75) (g : Fin 8),
-    sixGroup 4 i = some g → ∀ q : Fin 8, (sixMasks 4 t g).testBit q.val = true →
-        (Replay.fits t i).testBit q.val = true := by decide +kernel
-
 end FiveColour.Physical

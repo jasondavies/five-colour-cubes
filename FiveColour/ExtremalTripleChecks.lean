@@ -8,158 +8,158 @@ public import FiveColour.ExtremalTripleChecks12
 @[expose] public section
 namespace FiveColour.Physical
 
-theorem triple_reductions_valid (kind : Fin 2) (b c : Fin 75)
-    (hbc : b < c) (hab : tripleAnchor kind ≠ b) (hac : tripleAnchor kind ≠ c) :
-    (tripleReduction kind b c).Valid (tripleAnchor kind) b c := by
+theorem triple_residuals_cover (kind : Fin 2) (b c : Fin 75)
+    (h : TripleResidual kind b c) :
+    ∃ w ∈ tripleResiduals, w.kind = kind ∧ w.b = b ∧ w.c = c := by
   fin_cases kind <;> fin_cases b
-  · exact triple_reduction_0_0 c hbc hab hac
-  · exact triple_reduction_0_1 c hbc hab hac
-  · exact triple_reduction_0_2 c hbc hab hac
-  · exact triple_reduction_0_3 c hbc hab hac
-  · exact triple_reduction_0_4 c hbc hab hac
-  · exact triple_reduction_0_5 c hbc hab hac
-  · exact triple_reduction_0_6 c hbc hab hac
-  · exact triple_reduction_0_7 c hbc hab hac
-  · exact triple_reduction_0_8 c hbc hab hac
-  · exact triple_reduction_0_9 c hbc hab hac
-  · exact triple_reduction_0_10 c hbc hab hac
-  · exact triple_reduction_0_11 c hbc hab hac
-  · exact triple_reduction_0_12 c hbc hab hac
-  · exact triple_reduction_0_13 c hbc hab hac
-  · exact triple_reduction_0_14 c hbc hab hac
-  · exact triple_reduction_0_15 c hbc hab hac
-  · exact triple_reduction_0_16 c hbc hab hac
-  · exact triple_reduction_0_17 c hbc hab hac
-  · exact triple_reduction_0_18 c hbc hab hac
-  · exact triple_reduction_0_19 c hbc hab hac
-  · exact triple_reduction_0_20 c hbc hab hac
-  · exact triple_reduction_0_21 c hbc hab hac
-  · exact triple_reduction_0_22 c hbc hab hac
-  · exact triple_reduction_0_23 c hbc hab hac
-  · exact triple_reduction_0_24 c hbc hab hac
-  · exact triple_reduction_0_25 c hbc hab hac
-  · exact triple_reduction_0_26 c hbc hab hac
-  · exact triple_reduction_0_27 c hbc hab hac
-  · exact triple_reduction_0_28 c hbc hab hac
-  · exact triple_reduction_0_29 c hbc hab hac
-  · exact triple_reduction_0_30 c hbc hab hac
-  · exact triple_reduction_0_31 c hbc hab hac
-  · exact triple_reduction_0_32 c hbc hab hac
-  · exact triple_reduction_0_33 c hbc hab hac
-  · exact triple_reduction_0_34 c hbc hab hac
-  · exact triple_reduction_0_35 c hbc hab hac
-  · exact triple_reduction_0_36 c hbc hab hac
-  · exact triple_reduction_0_37 c hbc hab hac
-  · exact triple_reduction_0_38 c hbc hab hac
-  · exact triple_reduction_0_39 c hbc hab hac
-  · exact triple_reduction_0_40 c hbc hab hac
-  · exact triple_reduction_0_41 c hbc hab hac
-  · exact triple_reduction_0_42 c hbc hab hac
-  · exact triple_reduction_0_43 c hbc hab hac
-  · exact triple_reduction_0_44 c hbc hab hac
-  · exact triple_reduction_0_45 c hbc hab hac
-  · exact triple_reduction_0_46 c hbc hab hac
-  · exact triple_reduction_0_47 c hbc hab hac
-  · exact triple_reduction_0_48 c hbc hab hac
-  · exact triple_reduction_0_49 c hbc hab hac
-  · exact triple_reduction_0_50 c hbc hab hac
-  · exact triple_reduction_0_51 c hbc hab hac
-  · exact triple_reduction_0_52 c hbc hab hac
-  · exact triple_reduction_0_53 c hbc hab hac
-  · exact triple_reduction_0_54 c hbc hab hac
-  · exact triple_reduction_0_55 c hbc hab hac
-  · exact triple_reduction_0_56 c hbc hab hac
-  · exact triple_reduction_0_57 c hbc hab hac
-  · exact triple_reduction_0_58 c hbc hab hac
-  · exact triple_reduction_0_59 c hbc hab hac
-  · exact triple_reduction_0_60 c hbc hab hac
-  · exact triple_reduction_0_61 c hbc hab hac
-  · exact triple_reduction_0_62 c hbc hab hac
-  · exact triple_reduction_0_63 c hbc hab hac
-  · exact triple_reduction_0_64 c hbc hab hac
-  · exact triple_reduction_0_65 c hbc hab hac
-  · exact triple_reduction_0_66 c hbc hab hac
-  · exact triple_reduction_0_67 c hbc hab hac
-  · exact triple_reduction_0_68 c hbc hab hac
-  · exact triple_reduction_0_69 c hbc hab hac
-  · exact triple_reduction_0_70 c hbc hab hac
-  · exact triple_reduction_0_71 c hbc hab hac
-  · exact triple_reduction_0_72 c hbc hab hac
-  · exact triple_reduction_0_73 c hbc hab hac
-  · exact triple_reduction_0_74 c hbc hab hac
-  · exact triple_reduction_1_0 c hbc hab hac
-  · exact triple_reduction_1_1 c hbc hab hac
-  · exact triple_reduction_1_2 c hbc hab hac
-  · exact triple_reduction_1_3 c hbc hab hac
-  · exact triple_reduction_1_4 c hbc hab hac
-  · exact triple_reduction_1_5 c hbc hab hac
-  · exact triple_reduction_1_6 c hbc hab hac
-  · exact triple_reduction_1_7 c hbc hab hac
-  · exact triple_reduction_1_8 c hbc hab hac
-  · exact triple_reduction_1_9 c hbc hab hac
-  · exact triple_reduction_1_10 c hbc hab hac
-  · exact triple_reduction_1_11 c hbc hab hac
-  · exact triple_reduction_1_12 c hbc hab hac
-  · exact triple_reduction_1_13 c hbc hab hac
-  · exact triple_reduction_1_14 c hbc hab hac
-  · exact triple_reduction_1_15 c hbc hab hac
-  · exact triple_reduction_1_16 c hbc hab hac
-  · exact triple_reduction_1_17 c hbc hab hac
-  · exact triple_reduction_1_18 c hbc hab hac
-  · exact triple_reduction_1_19 c hbc hab hac
-  · exact triple_reduction_1_20 c hbc hab hac
-  · exact triple_reduction_1_21 c hbc hab hac
-  · exact triple_reduction_1_22 c hbc hab hac
-  · exact triple_reduction_1_23 c hbc hab hac
-  · exact triple_reduction_1_24 c hbc hab hac
-  · exact triple_reduction_1_25 c hbc hab hac
-  · exact triple_reduction_1_26 c hbc hab hac
-  · exact triple_reduction_1_27 c hbc hab hac
-  · exact triple_reduction_1_28 c hbc hab hac
-  · exact triple_reduction_1_29 c hbc hab hac
-  · exact triple_reduction_1_30 c hbc hab hac
-  · exact triple_reduction_1_31 c hbc hab hac
-  · exact triple_reduction_1_32 c hbc hab hac
-  · exact triple_reduction_1_33 c hbc hab hac
-  · exact triple_reduction_1_34 c hbc hab hac
-  · exact triple_reduction_1_35 c hbc hab hac
-  · exact triple_reduction_1_36 c hbc hab hac
-  · exact triple_reduction_1_37 c hbc hab hac
-  · exact triple_reduction_1_38 c hbc hab hac
-  · exact triple_reduction_1_39 c hbc hab hac
-  · exact triple_reduction_1_40 c hbc hab hac
-  · exact triple_reduction_1_41 c hbc hab hac
-  · exact triple_reduction_1_42 c hbc hab hac
-  · exact triple_reduction_1_43 c hbc hab hac
-  · exact triple_reduction_1_44 c hbc hab hac
-  · exact triple_reduction_1_45 c hbc hab hac
-  · exact triple_reduction_1_46 c hbc hab hac
-  · exact triple_reduction_1_47 c hbc hab hac
-  · exact triple_reduction_1_48 c hbc hab hac
-  · exact triple_reduction_1_49 c hbc hab hac
-  · exact triple_reduction_1_50 c hbc hab hac
-  · exact triple_reduction_1_51 c hbc hab hac
-  · exact triple_reduction_1_52 c hbc hab hac
-  · exact triple_reduction_1_53 c hbc hab hac
-  · exact triple_reduction_1_54 c hbc hab hac
-  · exact triple_reduction_1_55 c hbc hab hac
-  · exact triple_reduction_1_56 c hbc hab hac
-  · exact triple_reduction_1_57 c hbc hab hac
-  · exact triple_reduction_1_58 c hbc hab hac
-  · exact triple_reduction_1_59 c hbc hab hac
-  · exact triple_reduction_1_60 c hbc hab hac
-  · exact triple_reduction_1_61 c hbc hab hac
-  · exact triple_reduction_1_62 c hbc hab hac
-  · exact triple_reduction_1_63 c hbc hab hac
-  · exact triple_reduction_1_64 c hbc hab hac
-  · exact triple_reduction_1_65 c hbc hab hac
-  · exact triple_reduction_1_66 c hbc hab hac
-  · exact triple_reduction_1_67 c hbc hab hac
-  · exact triple_reduction_1_68 c hbc hab hac
-  · exact triple_reduction_1_69 c hbc hab hac
-  · exact triple_reduction_1_70 c hbc hab hac
-  · exact triple_reduction_1_71 c hbc hab hac
-  · exact triple_reduction_1_72 c hbc hab hac
-  · exact triple_reduction_1_73 c hbc hab hac
-  · exact triple_reduction_1_74 c hbc hab hac
+  · exact triple_residual_cover_0_0 c h
+  · exact triple_residual_cover_0_1 c h
+  · exact triple_residual_cover_0_2 c h
+  · exact triple_residual_cover_0_3 c h
+  · exact triple_residual_cover_0_4 c h
+  · exact triple_residual_cover_0_5 c h
+  · exact triple_residual_cover_0_6 c h
+  · exact triple_residual_cover_0_7 c h
+  · exact triple_residual_cover_0_8 c h
+  · exact triple_residual_cover_0_9 c h
+  · exact triple_residual_cover_0_10 c h
+  · exact triple_residual_cover_0_11 c h
+  · exact triple_residual_cover_0_12 c h
+  · exact triple_residual_cover_0_13 c h
+  · exact triple_residual_cover_0_14 c h
+  · exact triple_residual_cover_0_15 c h
+  · exact triple_residual_cover_0_16 c h
+  · exact triple_residual_cover_0_17 c h
+  · exact triple_residual_cover_0_18 c h
+  · exact triple_residual_cover_0_19 c h
+  · exact triple_residual_cover_0_20 c h
+  · exact triple_residual_cover_0_21 c h
+  · exact triple_residual_cover_0_22 c h
+  · exact triple_residual_cover_0_23 c h
+  · exact triple_residual_cover_0_24 c h
+  · exact triple_residual_cover_0_25 c h
+  · exact triple_residual_cover_0_26 c h
+  · exact triple_residual_cover_0_27 c h
+  · exact triple_residual_cover_0_28 c h
+  · exact triple_residual_cover_0_29 c h
+  · exact triple_residual_cover_0_30 c h
+  · exact triple_residual_cover_0_31 c h
+  · exact triple_residual_cover_0_32 c h
+  · exact triple_residual_cover_0_33 c h
+  · exact triple_residual_cover_0_34 c h
+  · exact triple_residual_cover_0_35 c h
+  · exact triple_residual_cover_0_36 c h
+  · exact triple_residual_cover_0_37 c h
+  · exact triple_residual_cover_0_38 c h
+  · exact triple_residual_cover_0_39 c h
+  · exact triple_residual_cover_0_40 c h
+  · exact triple_residual_cover_0_41 c h
+  · exact triple_residual_cover_0_42 c h
+  · exact triple_residual_cover_0_43 c h
+  · exact triple_residual_cover_0_44 c h
+  · exact triple_residual_cover_0_45 c h
+  · exact triple_residual_cover_0_46 c h
+  · exact triple_residual_cover_0_47 c h
+  · exact triple_residual_cover_0_48 c h
+  · exact triple_residual_cover_0_49 c h
+  · exact triple_residual_cover_0_50 c h
+  · exact triple_residual_cover_0_51 c h
+  · exact triple_residual_cover_0_52 c h
+  · exact triple_residual_cover_0_53 c h
+  · exact triple_residual_cover_0_54 c h
+  · exact triple_residual_cover_0_55 c h
+  · exact triple_residual_cover_0_56 c h
+  · exact triple_residual_cover_0_57 c h
+  · exact triple_residual_cover_0_58 c h
+  · exact triple_residual_cover_0_59 c h
+  · exact triple_residual_cover_0_60 c h
+  · exact triple_residual_cover_0_61 c h
+  · exact triple_residual_cover_0_62 c h
+  · exact triple_residual_cover_0_63 c h
+  · exact triple_residual_cover_0_64 c h
+  · exact triple_residual_cover_0_65 c h
+  · exact triple_residual_cover_0_66 c h
+  · exact triple_residual_cover_0_67 c h
+  · exact triple_residual_cover_0_68 c h
+  · exact triple_residual_cover_0_69 c h
+  · exact triple_residual_cover_0_70 c h
+  · exact triple_residual_cover_0_71 c h
+  · exact triple_residual_cover_0_72 c h
+  · exact triple_residual_cover_0_73 c h
+  · exact triple_residual_cover_0_74 c h
+  · exact triple_residual_cover_1_0 c h
+  · exact triple_residual_cover_1_1 c h
+  · exact triple_residual_cover_1_2 c h
+  · exact triple_residual_cover_1_3 c h
+  · exact triple_residual_cover_1_4 c h
+  · exact triple_residual_cover_1_5 c h
+  · exact triple_residual_cover_1_6 c h
+  · exact triple_residual_cover_1_7 c h
+  · exact triple_residual_cover_1_8 c h
+  · exact triple_residual_cover_1_9 c h
+  · exact triple_residual_cover_1_10 c h
+  · exact triple_residual_cover_1_11 c h
+  · exact triple_residual_cover_1_12 c h
+  · exact triple_residual_cover_1_13 c h
+  · exact triple_residual_cover_1_14 c h
+  · exact triple_residual_cover_1_15 c h
+  · exact triple_residual_cover_1_16 c h
+  · exact triple_residual_cover_1_17 c h
+  · exact triple_residual_cover_1_18 c h
+  · exact triple_residual_cover_1_19 c h
+  · exact triple_residual_cover_1_20 c h
+  · exact triple_residual_cover_1_21 c h
+  · exact triple_residual_cover_1_22 c h
+  · exact triple_residual_cover_1_23 c h
+  · exact triple_residual_cover_1_24 c h
+  · exact triple_residual_cover_1_25 c h
+  · exact triple_residual_cover_1_26 c h
+  · exact triple_residual_cover_1_27 c h
+  · exact triple_residual_cover_1_28 c h
+  · exact triple_residual_cover_1_29 c h
+  · exact triple_residual_cover_1_30 c h
+  · exact triple_residual_cover_1_31 c h
+  · exact triple_residual_cover_1_32 c h
+  · exact triple_residual_cover_1_33 c h
+  · exact triple_residual_cover_1_34 c h
+  · exact triple_residual_cover_1_35 c h
+  · exact triple_residual_cover_1_36 c h
+  · exact triple_residual_cover_1_37 c h
+  · exact triple_residual_cover_1_38 c h
+  · exact triple_residual_cover_1_39 c h
+  · exact triple_residual_cover_1_40 c h
+  · exact triple_residual_cover_1_41 c h
+  · exact triple_residual_cover_1_42 c h
+  · exact triple_residual_cover_1_43 c h
+  · exact triple_residual_cover_1_44 c h
+  · exact triple_residual_cover_1_45 c h
+  · exact triple_residual_cover_1_46 c h
+  · exact triple_residual_cover_1_47 c h
+  · exact triple_residual_cover_1_48 c h
+  · exact triple_residual_cover_1_49 c h
+  · exact triple_residual_cover_1_50 c h
+  · exact triple_residual_cover_1_51 c h
+  · exact triple_residual_cover_1_52 c h
+  · exact triple_residual_cover_1_53 c h
+  · exact triple_residual_cover_1_54 c h
+  · exact triple_residual_cover_1_55 c h
+  · exact triple_residual_cover_1_56 c h
+  · exact triple_residual_cover_1_57 c h
+  · exact triple_residual_cover_1_58 c h
+  · exact triple_residual_cover_1_59 c h
+  · exact triple_residual_cover_1_60 c h
+  · exact triple_residual_cover_1_61 c h
+  · exact triple_residual_cover_1_62 c h
+  · exact triple_residual_cover_1_63 c h
+  · exact triple_residual_cover_1_64 c h
+  · exact triple_residual_cover_1_65 c h
+  · exact triple_residual_cover_1_66 c h
+  · exact triple_residual_cover_1_67 c h
+  · exact triple_residual_cover_1_68 c h
+  · exact triple_residual_cover_1_69 c h
+  · exact triple_residual_cover_1_70 c h
+  · exact triple_residual_cover_1_71 c h
+  · exact triple_residual_cover_1_72 c h
+  · exact triple_residual_cover_1_73 c h
+  · exact triple_residual_cover_1_74 c h
 end FiveColour.Physical

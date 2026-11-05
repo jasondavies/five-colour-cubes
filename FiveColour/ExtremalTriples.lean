@@ -1,6 +1,5 @@
 module
 public import FiveColour.ExtremalMatching
-public import FiveColour.StabiliserData
 @[expose] public section
 namespace FiveColour.Physical
 open scoped BigOperators

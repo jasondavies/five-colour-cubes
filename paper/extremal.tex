@@ -101,9 +101,9 @@ meeting source to have cut
 \[
  C(T),\qquad T=\{p\}\cup(R\setminus\{q\}).
 \]
-Write $g$ for their number and $d=8-g\le3$ for the disjoint sources.
-There are at most three varieties with this common cut, so reserve two
-copies of some variety $B$ for its bicoloured corners. A disjoint source's
+There are at most three varieties with this common cut. Reserve two
+identical $B$ copies for its bicoloured corners, set aside any three further
+common-cut copies, and reserve one $A$ copy for $k$. A disjoint source's
 intersection with $C(T)$ is
 \[
 \begin{array}{c|c}
@@ -113,12 +113,19 @@ intersection with $C(T)$ is
  C(\{q,r\}),\ r\in R\setminus\{q\}&\{rp'\}
 \end{array}
 \]
-and always avoids $k$. If $g\ge7$, five remaining common-cut sources and
-one $A$ at $k$ complete $B$. If $g=6$, use four common-cut sources, one
-$A$ at $k$, and one disjoint source. If $g=5$, use three common-cut sources,
-one $A$ at $k$, and two disjoint sources at distinct corners, whenever possible.
-Otherwise all three disjoint sources meet $C(T)$ in the same singleton
-$rp'$, hence have cut $C(Q)$ with $Q=\{q,r\}$. Retarget to the opposite
+and always avoids $k$. Exactly three of the eight non-$A$ copies remain.
+Each meets $C(T)\setminus\{k\}$: a common-cut copy fits all five positions,
+and the displayed intersections for disjoint sources are nonempty.
+If two remaining copies fit distinct corners there, use them and fill the
+other three positions with the set-aside common-cut copies. Together with
+the two reserved $B$ copies and the $A$ at $k$, this completes $B$.
+
+Otherwise the three nonempty compatibility sets are one common singleton.
+Indeed, a set containing two corners can be paired at distinct corners
+with any other nonempty set; two different singleton sets also give such
+a pair. None of the three remaining copies therefore has the common cut.
+They are all disjoint from $A$, and the table identifies their shared singleton
+as $rp'$. They hence have cut $C(Q)$ with $Q=\{q,r\}$. Retarget to the opposite
 variety with singleton pairs $P,Q$: four $A$ copies fill $P\times Q$;
 three disjoint sources and one $B$ at $rp'$ fill $Q\times P$.
 Every case gives an assembly, independently of the fifteen-cube theorem.

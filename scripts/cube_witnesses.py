@@ -23,6 +23,16 @@ def match_copies(masks, sources):
     return [owned.index(corner) for corner in range(8)]
 
 
+def allocation(masks, capacities):
+    """Return a target and source-group tags for a capacity-bounded matching."""
+    copies = [group for group, count in enumerate(capacities) for _ in range(count)]
+    for target, row in enumerate(masks):
+        matched = match_copies(row, copies)
+        if matched is not None:
+            return target, [copies[i] for i in matched]
+    raise ValueError(('No local allocation', capacities))
+
+
 def ordered_anchor_symmetries(cubes, anchors):
     """The stable numeric symmetry order used by coverage and triple witnesses."""
     index = {canonical(c): i for i, c in enumerate(cubes)}

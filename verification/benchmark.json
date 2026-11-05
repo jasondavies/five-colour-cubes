@@ -2,44 +2,39 @@
   "measurement": {
     "status": "passed",
     "git_commit": null,
-    "source_snapshot_sha256": "7be31ee3e064bf535d3a07eb664fa9fde1328014747ac24e19f8480a71aa66cd",
-    "source_archive": "five-colour-cubes-review-7be31ee3e064.tar.gz",
-    "source_archive_sha256": "25a1bbf2231e92313b0c674429eed588d1835f8d7d5b58df6b7e9c9c2d2108d9",
-    "elapsed_seconds": 3982.0,
+    "source_snapshot_sha256": "dc9c85dc9ded14a44d61b91f8327d2c383ab6674b4526cc544ca19e62841e469",
+    "source_archive": "five-colour-cubes-review-dc9c85dc9ded.tar.gz",
+    "source_archive_sha256": "b0aa788e51be94553960a91ca5df5c7a1ada74fcc6a3205cd6920df617bc3030",
+    "elapsed_seconds": 3155.41,
     "elapsed_source": "GNU time wall clock",
-    "sampling_elapsed_seconds": 3982.73,
+    "sampling_elapsed_seconds": 3155.49,
     "workers": 8,
     "shared_build_threads": 8,
     "replay_threads_per_process": 1,
     "sample_delay_seconds": 2,
-    "memory_samples": 1554,
-    "peak_sampled_process_tree_pss_gib": 29.21547222137451,
-    "peak_sampled_process_tree_rss_gib": 34.97273254394531,
+    "memory_samples": 1318,
+    "peak_sampled_process_tree_pss_gib": 33.497260093688965,
+    "peak_sampled_process_tree_rss_gib": 37.40095901489258,
     "stages": [
       {
         "target": "check-code",
         "exit_code": 0,
-        "seconds": 10.316
+        "seconds": 13.027
       },
       {
         "target": "check-lean",
         "exit_code": 0,
-        "seconds": 1052.24
-      },
-      {
-        "target": "replay-data",
-        "exit_code": 0,
-        "seconds": 3.986
+        "seconds": 836.7
       },
       {
         "target": "replay",
         "exit_code": 0,
-        "seconds": 2910.362
+        "seconds": 2300.134
       },
       {
         "target": "check-extensions",
         "exit_code": 0,
-        "seconds": 3.249
+        "seconds": 3.27
       }
     ],
     "replayed_cases": 279,
@@ -48,130 +43,130 @@
     "slowest_shared_modules": [
       {
         "module": "FiveColour.RareGeometry",
-        "seconds": 639.0
-      },
-      {
-        "module": "FiveColour.RootCapacityChecks1",
-        "seconds": 219.0
-      },
-      {
-        "module": "FiveColour.RootCapacityChecks5",
-        "seconds": 200.0
+        "seconds": 469.0
       },
       {
         "module": "FiveColour.RootCapacityChecks3",
-        "seconds": 197.0
+        "seconds": 165.0
       },
       {
-        "module": "FiveColour.RootCapacityChecks7",
-        "seconds": 161.0
+        "module": "FiveColour.RootCapacityChecks5",
+        "seconds": 162.0
       },
       {
         "module": "FiveColour.RootCapacityChecks6",
-        "seconds": 157.0
+        "seconds": 141.0
+      },
+      {
+        "module": "FiveColour.RootCapacityChecks7",
+        "seconds": 138.0
       },
       {
         "module": "FiveColour.RootCapacityChecks4",
-        "seconds": 156.0
-      },
-      {
-        "module": "FiveColour.ExtremalLocalGeometry",
-        "seconds": 148.0
+        "seconds": 137.0
       },
       {
         "module": "FiveColour.SharpGeometry",
-        "seconds": 142.0
+        "seconds": 137.0
       },
       {
-        "module": "FiveColour.SmallSupport",
+        "module": "FiveColour.ExtremalLocalGeometry",
         "seconds": 130.0
       },
       {
-        "module": "FiveColour.CoverChecks1",
-        "seconds": 126.0
+        "module": "FiveColour.RootCapacityChecks1",
+        "seconds": 130.0
+      },
+      {
+        "module": "FiveColour.SmallSupport",
+        "seconds": 111.0
       },
       {
         "module": "FiveColour.RootCapacityChecks2",
-        "seconds": 123.0
+        "seconds": 102.0
       },
       {
-        "module": "FiveColour.CoverChecks2",
-        "seconds": 107.0
-      },
-      {
-        "module": "FiveColour.CoverChecks3",
-        "seconds": 86.0
+        "module": "FiveColour.CoverChecks1",
+        "seconds": 55.0
       },
       {
         "module": "FiveColour.RootCapacityChecks0",
-        "seconds": 64.0
+        "seconds": 52.0
+      },
+      {
+        "module": "FiveColour.RingWeights",
+        "seconds": 51.0
+      },
+      {
+        "module": "FiveColour.CoverChecks2",
+        "seconds": 50.0
       }
     ],
     "slowest_cases": [
       {
         "case": 4,
         "exit_code": 0,
-        "seconds": 2352.64,
+        "seconds": 1755.21,
         "commands": 51652
       },
       {
         "case": 0,
         "exit_code": 0,
-        "seconds": 1943.97,
+        "seconds": 1461.71,
         "commands": 43688
       },
       {
         "case": 63,
         "exit_code": 0,
-        "seconds": 895.92,
+        "seconds": 798.61,
         "commands": 27996
       },
       {
         "case": 62,
         "exit_code": 0,
-        "seconds": 851.98,
+        "seconds": 743.05,
         "commands": 25730
       },
       {
         "case": 19,
         "exit_code": 0,
-        "seconds": 436.8,
+        "seconds": 396.05,
         "commands": 11464
       },
       {
         "case": 2,
         "exit_code": 0,
-        "seconds": 421.77,
+        "seconds": 377.05,
         "commands": 10284
-      },
-      {
-        "case": 18,
-        "exit_code": 0,
-        "seconds": 410.7,
-        "commands": 10220
-      },
-      {
-        "case": 6,
-        "exit_code": 0,
-        "seconds": 410.49,
-        "commands": 7436
       },
       {
         "case": 3,
         "exit_code": 0,
-        "seconds": 408.93,
+        "seconds": 370.94,
         "commands": 10268
       },
       {
-        "case": 90,
+        "case": 5,
         "exit_code": 0,
-        "seconds": 408.48,
-        "commands": 6379
+        "seconds": 368.04,
+        "commands": 10501
+      },
+      {
+        "case": 18,
+        "exit_code": 0,
+        "seconds": 355.27,
+        "commands": 10220
+      },
+      {
+        "case": 7,
+        "exit_code": 0,
+        "seconds": 345.11,
+        "commands": 9811
       }
     ],
     "provenance": "Fresh project and colour-cubes-core build; pinned public Mathlib/transitive caches reused.",
     "scope": "Fresh complete verification of the consolidated publication proof, including the exact generalized-family criterion.",
-    "base_git_revision": "af991ff3b111ecc5ea4b02ef8a9071239e3fe983",
+    "base_git_revision": "42aa7b64b15a6881a182d08aedc5f478db3ea452",
     "command": "LEAN_NUM_THREADS=8 make verify-full WORKERS=8",
     "cpu_model": "AMD Ryzen 7 9700X",
     "physical_cores": 8,
@@ -181,7 +176,7 @@
   },
   "verification": {
     "status": "passed",
-    "started_utc": "2026-11-05T13:11:04.117567+00:00",
+    "started_utc": "2026-11-05T21:12:44.823174+00:00",
     "git_commit": null,
     "git_status": [],
     "workers": 8,
@@ -191,27 +186,22 @@
       {
         "target": "check-code",
         "exit_code": 0,
-        "seconds": 10.316
+        "seconds": 13.027
       },
       {
         "target": "check-lean",
         "exit_code": 0,
-        "seconds": 1052.24
-      },
-      {
-        "target": "replay-data",
-        "exit_code": 0,
-        "seconds": 3.986
+        "seconds": 836.7
       },
       {
         "target": "replay",
         "exit_code": 0,
-        "seconds": 2910.362
+        "seconds": 2300.134
       },
       {
         "target": "check-extensions",
         "exit_code": 0,
-        "seconds": 3.249
+        "seconds": 3.27
       }
     ],
     "build_threads": "8",
@@ -220,7 +210,7 @@
       ".github/workflows/full-replay.yml": "8f12f4e852746edde880d837ecd4f5a877a516e20e989e670a8e4effdd8f543b",
       ".gitignore": "69dd58a4fd6988033e47290383e93769078e4cbc05ff9da171a0130f9c185cdc",
       "Audit.lean": "f91fca1ead529724c64b80520bdd93971658d25ca7ea00ad4e76707749ed3857",
-      "Challenge.lean": "256231e6d8214aa523cfb4bd9a1001ae1163a81d6df0e6be02f2980758e1e319",
+      "Challenge.lean": "f9d404d3c1a185ff8693b74b636c1e4ec47a71f5f33f98090342f0666b245327",
       "ExtensionsAudit.lean": "9131c458f74f109e94da1461368e3dfdd2268256a0bf3360f45e1eb2cf8ee6bc",
       "FiveColour.lean": "a1b3a6a0326987d738f82993adda1b67137a7fee10f37b3c6a98d38b5dfcbc43",
       "FiveColour/Anchor.lean": "a96a03af39c3a02a63b4777cbc932d0f50721d41dbc67d8685f26e9d31002c77",
@@ -277,7 +267,7 @@
       "FiveColour/CoverChecks5.lean": "d9b1d8edce09a9fec2f31dd515833fcfe615a9a6d53b21ba79fdb973c93a79c7",
       "FiveColour/CoverChecks6.lean": "29bbb51c388e69291491ad7400cf4ac5e956803aa6883b691c0623937a1830b4",
       "FiveColour/CoverChecks7.lean": "0f126def8a9a64564fa88f4e971ec9d2b4e879dafa61872849ac83c40e4728ca",
-      "FiveColour/CoverData.lean": "284111249948cbf7c631da76c3d6c30742423f3e7849575c652a42a751485b78",
+      "FiveColour/CoverData.lean": "453498a8230261269128327422060697d9377440f72f2c70b67c231282a563d5",
       "FiveColour/CoverMasks.lean": "96ab4d2476adc7c72bacbf5d953b7ddc894506dfb77df39a1146e8e78fc7e95b",
       "FiveColour/CoverReduction.lean": "52776d925d5443731d6576b002191a843788210f3046f31d312f17bc9ca66119",
       "FiveColour/CubeBoxBridge.lean": "9363eb2d0bba4550b5504277ece29f2aad979796848ac68d96144ba3bf4ef3b6",
@@ -286,34 +276,34 @@
       "FiveColour/EightPairReserve.lean": "100ffe5d603cb1d2b1cce28c95410c08d4c8163c1b6ab552579fe816ff66db30",
       "FiveColour/EightPlusThree.lean": "35d34e4a6c81f49fbdd9fd9cdf859bb72b129adbc5db560d3647aa37f1713f90",
       "FiveColour/ExtraHall.lean": "b444e20fa28ba277844faaac8f6c3882c5c0d659c8e8d410703c92893c11177e",
-      "FiveColour/ExtremalClassification.lean": "7503f6534bee340b56995a01dc82f6d3ad374427ddadab44c6a566d7baa33f6b",
+      "FiveColour/ExtremalClassification.lean": "4d48bcf3637a4353fe2d80c946fac54519ce16b090b51269d4421658ac43db1e",
       "FiveColour/ExtremalDisjointChecks.lean": "bc83b45c091e1dc34c90a55760a40e84937f68077c52e6a435c11aefdb628d3e",
       "FiveColour/ExtremalExamples.lean": "6517b367608bf48534817c0d584feaa339b7258882320362c5b81ccca7437235",
       "FiveColour/ExtremalFamily.lean": "9b9de106fcbec3a817fbcb6c0bb0b214ac060add0d9b04e8b5e47f871ec6a66f",
       "FiveColour/ExtremalFamilyData.lean": "e12061e142ad76830fec48ddb1dc9b477accd9d6d0a78bf2b0bf974eb5309a89",
       "FiveColour/ExtremalFamilyTheorems.lean": "842090f192ff47489acfacbe33b546350fb4b01fd2da6dc66b634b26acab9009",
-      "FiveColour/ExtremalLocalData.lean": "cd709db131179630a06d85159a6710f62195f9dc324f4dad3c00901d98e84580",
-      "FiveColour/ExtremalLocalGeometry.lean": "df93e9b290346387b1c3d64dac2b2a8b2240fb9a5e12e3d1118f491c5d678bec",
+      "FiveColour/ExtremalLocalData.lean": "2043f487bb2ff0bb8da03570b7da3bbb8a67e4255f3e1e36b7e8e6c4da29b96b",
+      "FiveColour/ExtremalLocalGeometry.lean": "4b2ddf61e63f6d6001f92036af4d2e99ee1dce71b5176e40dc4c39bf264cc84d",
       "FiveColour/ExtremalMatching.lean": "7913a1545c46ab3fc97f93d74775b548bcb99b73c3718391dd91fffbd624e32d",
-      "FiveColour/ExtremalMultiplicity.lean": "db47dbfff59d24a3833278a194bb1e9c3b3f96457e29ef08dfd521a363585414",
-      "FiveColour/ExtremalSixChecks0.lean": "3b15360d08e1baca5fa79c5fc83a18d6239ced498e5f041cddc058c5aa0c6a8e",
-      "FiveColour/ExtremalSixChecks1.lean": "8df1a5f40378b358b2818cf9dcfd74b4a315bb7292866f2f3279afd3bf77af14",
-      "FiveColour/ExtremalSixChecks2.lean": "f216f9e9ceabfd48dd903f18cf214bbe0d6cd6b78195fbf796ba826181f29967",
-      "FiveColour/ExtremalSixChecks3.lean": "bf7148cf1f37df21696fe8c928387ef49403ec50f645316612cad761c6c9fd37",
-      "FiveColour/ExtremalSixChecks4.lean": "5214bbe90f631b11ab7f0c5c45280edf5e4fdc74e8b9ed6372f3adec992d6146",
-      "FiveColour/ExtremalSixChecks5.lean": "6e127910390806a0db4ea51cff5df7e3222254d467ce05f0080d28abe047d7b2",
-      "FiveColour/ExtremalSixChecks6.lean": "dbbf7518d1b4a77d3428c09bb6074b4771a55b245a450f236639f8d0adca432d",
-      "FiveColour/ExtremalSixChecks7.lean": "b41b121b8ba5409b2d45424d2ca0db54fc94e778cc83e1d745173731bc0341bb",
-      "FiveColour/ExtremalSymmetry.lean": "fc088b5879f400c6f3b06fcce0a7d3d8c6f523877c36d552b4c11eefb2dc2493",
-      "FiveColour/ExtremalTripleChecks.lean": "0ce6ffbcbd6205638888b28ed4adecc292966ff4d6ada8761c4c7288c1a36177",
-      "FiveColour/ExtremalTripleChecks00.lean": "b8f9ed846882a59c4e3b9a2cb31d6c699fccd83d4e2c8f1fb4fff3b1296fb9f3",
-      "FiveColour/ExtremalTripleChecks01.lean": "dc5847aa8e0e02301122dbb20f4e14704727269edec7115fac0738dfafb29433",
-      "FiveColour/ExtremalTripleChecks02.lean": "26a8f60ddcb7c7275a2edb638e6180076127aa126ffcd9e5f5cf1c03344faf8a",
-      "FiveColour/ExtremalTripleChecks10.lean": "a7e177eeeaffc8809b90de99dbee5b676b6aebe0d82ceb92e281e6447b69cb44",
-      "FiveColour/ExtremalTripleChecks11.lean": "df18c28bb532f596c38b92d8bdd4b6dba2e606b150ae35d77a68cf1d03b311b1",
-      "FiveColour/ExtremalTripleChecks12.lean": "9b00e0f4d883238e3159fa37e042741196e9449618280a0a51faae08f8c570ba",
-      "FiveColour/ExtremalTripleData.lean": "4d68099c959950ba9ab1a35371767b4d77f88565b6ae36f4cb3e45264007df16",
-      "FiveColour/ExtremalTriples.lean": "d4eca11d52a520cc62bed1d0a3b6bb3c489e3dc73371c727c4482f74ae5c0946",
+      "FiveColour/ExtremalMultiplicity.lean": "8853510eca02dc66889acaa81f6540893bc702c93e39c6682dddcff54b155ff6",
+      "FiveColour/ExtremalSixChecks0.lean": "ecf2a60330725d559eb8eaaca39e73b0b5c3bc780e466e4975d6740afbaa93e4",
+      "FiveColour/ExtremalSixChecks1.lean": "b762136b0ee08440600a49c23c2bd125036b247fa5cdbdf7d9048fe3ce319be9",
+      "FiveColour/ExtremalSixChecks2.lean": "d316985dcc2e5b009122bc8c4c58b30f2e26e49f011c97dfe57565bf4a954ce3",
+      "FiveColour/ExtremalSixChecks3.lean": "7c017b922e56e22def68ec25ebcbbe74182152d71ff8c57ca9ec24f905f01f32",
+      "FiveColour/ExtremalSixChecks4.lean": "f65e185fd70713e802041f489bc759315d9a4682b7e4dc58b8cadd66055c6be0",
+      "FiveColour/ExtremalSixChecks5.lean": "2a446e40c1910d7bc595faa2f8f734f611f2e8d7668e259c5b70206a33629970",
+      "FiveColour/ExtremalSixChecks6.lean": "6da9f9a05020f69beb0d2358df6ae63007ba2f6109b9e424a5a228ae8c213200",
+      "FiveColour/ExtremalSixChecks7.lean": "f37400596483eb649cc6aa84e22999b457b3e8ebe004c8e5f80e781aa88fee60",
+      "FiveColour/ExtremalSymmetry.lean": "3b256940eecf72a074eaab6dc94bcedf11d4666af6e88c8cbf8afc5bcb0b6c80",
+      "FiveColour/ExtremalTripleChecks.lean": "05bd2e23d47f88757ecd0bc2b587590131b9cdccffec14f1d2f579fafd0dcbf9",
+      "FiveColour/ExtremalTripleChecks00.lean": "7b62313009d5f819c4d846de519c3776573b095584e28fedcbb470733965fdf7",
+      "FiveColour/ExtremalTripleChecks01.lean": "83c0a7cc7b1535197b013aeb97651bf730dea39c51a55f0631a76d0e9e405b73",
+      "FiveColour/ExtremalTripleChecks02.lean": "03319899bcdea67cd8adcb24f17cccf634f5e617804bbf8941b7c0b19cb9c6e4",
+      "FiveColour/ExtremalTripleChecks10.lean": "8787ae3ff58bdf92461ce4efb0e8a34e38d4fd537e2c569e60fb0dc3689b1586",
+      "FiveColour/ExtremalTripleChecks11.lean": "5f06cd8a4e3761e7cae0767af74cd3ac70494673dcc26445115a1af881a83b32",
+      "FiveColour/ExtremalTripleChecks12.lean": "a4e09aacd379006fd9d7f582224fcf53fe2ec25f0dd0e5b761a9f2730e710042",
+      "FiveColour/ExtremalTripleData.lean": "12bb629a8876cdf2d8782297ab06bd17b742047aaf3ad963a1b5274cf8a41c8d",
+      "FiveColour/ExtremalTriples.lean": "3f0250e1d1bb85649cd1dc9f1d9417c7dece19a192b953671c72bf799dcea6fd",
       "FiveColour/ExtremalVarieties.lean": "7d17d6a612ebb45cdbc23834131acc8f64ff1b178adfee7f7f1ddde713339e17",
       "FiveColour/FamilyAlignment.lean": "77f466ca24ed63a854feab55e8f83b62926ba78de37337aa384bbfca912bb200",
       "FiveColour/FastCertificates.lean": "bcc9cc92c8c99befa8d919d214be08a2e3f534b4002a1502845ec429a5a54aca",
@@ -670,7 +660,7 @@
       "FiveColour/ProjectionGeometry.lean": "88ae77b809d52914abf9bdb8dae070eff7ed2918a02b6f0c46dfc63650644d51",
       "FiveColour/ProjectionPool.lean": "c27089b0b7abb867a9a302dd329b007bb5ac9513eb0d1573342019abd6fac777",
       "FiveColour/Puzzle.lean": "6b71c9227f65b31b6cda8a2e47aea418cfa7a76df94ca181929b8be6b0a41718",
-      "FiveColour/README.md": "e58a8bfabb544e933a162452e2d690226ee2f4aa85adb80eac80873e4439ffc0",
+      "FiveColour/README.md": "7d3044a7a8a69e9727cd74cece9ddf3d106c75a0a7c348dc05b4204a1acc178b",
       "FiveColour/RareFrames.lean": "b23a5496934a951667e54aedea9e1ebd3910160d9991cc79ab93e49e6e310e26",
       "FiveColour/RareGeometry.lean": "a5a363a64253ba0317c2128059b233436717a02ac021bc59532846cf54c26607",
       "FiveColour/RectCore.lean": "2378f89265f0bbd42fb86525269e1a38465615767413ec6c024a9b72304c0a34",
@@ -684,8 +674,8 @@
       "FiveColour/RingWeights.lean": "07e20b93d5276b9001c49abec354f3ba9a1077c54aa37707d91a07ce9ee8d284",
       "FiveColour/RodAxes.lean": "8a62c3f4144f4abb1f8183f6d0190348474d425e6379327e7c99fd60b56e58f2",
       "FiveColour/RodBounds.lean": "cd0e7e83c40326d4c9503cab7f084fb100784beb0a861e8fdf0ec2dcaffa6d30",
-      "FiveColour/RodChoice.lean": "f14599271706a5d5457f1c49ceb82da170a07ef6dc654c21b66468b2485906ce",
-      "FiveColour/RodFrames.lean": "f2c57e49c40a10fe899eaadca9e3904cfd942d2077181a3b976518d49c9d0ad6",
+      "FiveColour/RodChoice.lean": "e8eecfc15553ccd00ccb83dc76ca8a0066388b5eb32a73c13f167edca101ad1b",
+      "FiveColour/RodFrames.lean": "5c0c53cbd841a2dbd091b55dc990871f2d644760b99eb07717b6ae6a350da51e",
       "FiveColour/RodModel.lean": "f36c8dce5fd54cfb73a4cc41fd66f88324b381f95030613ba4385f27345b2268",
       "FiveColour/RodProfiles.lean": "1a7a6051edc79aede7bcd8f88f2517e861b678aac83774eafabe3185d5f9cd1d",
       "FiveColour/RodSymmetry.lean": "1707980a6b1b02b8e6b91e681f1da6b2070b1f60d3332eb2ad098148d22e0290",
@@ -708,26 +698,27 @@
       "FiveColour/SharedCorners.lean": "ebc3c12a4520d5571f7913cd3586cdafccdaee9c8db61882e2d5ae7cac2bc9ed",
       "FiveColour/SharpFrames.lean": "4528e98a1094c097e2eaa89a7c690f7193658f7165af43db9fb3436cb1af4582",
       "FiveColour/SharpGeometry.lean": "bf64381eef5ff6d9c0faae4124406336b4b16973edf496456100c91dd60705a8",
-      "FiveColour/SmallSupport.lean": "2e39f729f527657ada9cc06c8af8132e2f98f464c55f671b33a4d619ca7f6598",
-      "FiveColour/StabiliserData.lean": "0c5ec7f23a7e90ef743c1d0772fada20687e04cda409518b5fa44571aa582777",
+      "FiveColour/SmallSupport.lean": "7ea474e1b4402fa4830a375a80042772eb04218b7b0b35a077a1f245e1e3a577",
+      "FiveColour/StabiliserData.lean": "5b5b4c9feb941ceee48f6d9c6ecce2cde10933e0a6085138cfbd9e82a3ea8d5c",
       "FiveColour/StripBounds.lean": "baa4a325928498eb252a784515bcf35e22e0bca755a9696a5f2b74480656a234",
-      "FiveColour/StripFrames.lean": "9414b9461421198fc196cf819c7adeaff27dc1b83e538e95e2c5fd21336e5a10",
+      "FiveColour/StripFrames.lean": "9ec59ed7afbccaa39627040f9acef4bcf14bfddda47d646d3acc6fef3b6ae714",
       "FiveColour/StripProfiles.lean": "e0b9ca6d74e2183dfb9812ef59590e0f96525e475be91180ac04f54cfeb92249",
-      "FiveColour/SubmissionBridge.lean": "517020fd52a2653fbda1c3ba25e2ce45c3a562d7a9219921ed4f910f04c79540",
+      "FiveColour/SubmissionBridge.lean": "1c32effe9c349c29f160a202e8f30e281cc394372f8bb718f19de2eb556e349a",
       "FiveColour/SubmissionModel.lean": "b7fea072aef7fdb1c764d3c08e73f7443ce68a88fa89deeea81f570ed4f1e811",
       "FiveColour/SupportData.lean": "4731abb642e655568d7a7a28fa659752e998da553abdd465a7bc69c31e846026",
       "FiveColour/Symmetry.lean": "8f68975b87ec5e21674e93d59d8d626d6a5cd5b9b7bedf5e58f89b9fd9fe41a2",
       "FiveColour/SymmetryAction.lean": "822330e4bcdfc5dc50aeabe86557e13b9f85dbd36884143cb1d3481b999214da",
       "FiveColour/SymmetryConstraints.lean": "e3d98e23e12d8036a1a6b8a6f684ae24b87c4c977abdf28a79d9e0170e3e9fcb",
-      "FiveColour/ThinChoice.lean": "d202dbc64997c24bbf905d47a343e2a84e730a84db1fc202f26df3e9bc6ac9b2",
-      "FiveColour/ThinFrames.lean": "2c2f7abd419f170947cf59739fca334024befbe93bb0d3bbbf33282ae76177ec",
+      "FiveColour/TargetChoice.lean": "c80b893497915c5c02b6022494f903520a61f837bbacf52e413b86ca55f37ff7",
+      "FiveColour/ThinChoice.lean": "294aa94e390d6d16b8bf8a7412d44735f1e62b50bdb5cb6e597c55b61bba0308",
+      "FiveColour/ThinFrames.lean": "b37607d92fe9f564ab40935779823a6b8daaaa7e7f4e24c0d1f63810ff19613a",
       "FiveColour/ThinGeometry.lean": "e745b1ec39e14bb8463e57b442dff1a2c995235fe677ece303cc16299fe571fe",
       "FiveColour/TwoVarieties.lean": "a98cf2a9195d9e56f8e661dea6d8902fc5571792103e9e489fcea8170aa4b36e",
       "FiveColour/WeightedHall.lean": "250daa543d88d959f43a9386408b02c54a21acb32cbf8d63a2f1eadafabb8728",
       "FiveColour/WideFrames.lean": "7d0711b391a1ddf8fcd68158053d208140d0ba4d7f80b613d784777fce4e7509",
       "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
-      "Makefile": "2d37587fa79f8b27d29d6ec7d7fe4ffdc6f786a1baef96d3494b5976e6a8eaae",
-      "README.md": "cc2dcdf072d3a6197b7d9d666d021651c87fe2677d95097dcae09d45128588fd",
+      "Makefile": "073fb6d83e7a5b0f7adf06479bc0e74a24d0b2ed0e0dd801a8c18edfefc5b8c0",
+      "README.md": "1ce6f9a240a0a28b7e3c1f7083ff47e8fa6f1c179f0fa31d084de8996dd0ff7f",
       "Solution.lean": "edb74a62f0cfda692fe0be246579ac41fd0da0f5ac025b19e9e0ac369752b3ac",
       "comparator.json": "25efda2e763df8f2150286bae2cb38eef20f14ad7c5b488fafc3acd6a42690a9",
       "data/README.md": "e1b9577f257c9acd98148944b3d6ac040e2251ef726fbb6321f13f9e84fc75a5",
@@ -743,20 +734,20 @@
       "data/q5-root-reduction.json": "659d98d1f5e1335ccb077796d3c355897ea65a2d33903781d10368b03284ebfd",
       "data/q5-three-variety-obstruction.json": "67b6e810bc54f065affe5c37d17a543b80cd1b0fe142659fcd8486e4e006c0d6",
       "data/q5-threshold-cases-size15.txt": "8bf2954f6c8cde5056e80b76159bc543f7199ae1c553ef431617973376b92aba",
-      "formalization.yaml": "51ae020cb4e831411664f2321978b24e473608d9e7833a9f4b0c01fc1c4fcdae",
+      "formalization.yaml": "aa5da6b6cd8a90c878baeb5bfc89cc986750047693bad47ecccd60b4663ea074",
       "lake-manifest.json": "b6c5406b81c31a41ef0c56cda9f911ab79bd285fe7e9181843d10379b62aa282",
       "lakefile.toml": "25042c84d793644ff953db4caecbcd03d208bd5c8c744c40820933c756e277a5",
       "lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
-      "paper/boxes.tex": "69579ec65277106a949aa0b5041231ed93db997b56f3685eacabce2aa70b1e2d",
+      "paper/boxes.tex": "1df7a2f0409b23dd12f69eea92c124de08fb701db8311767694327d55c9ed8df",
       "paper/construction.tex": "b27467b434c97b45c262a5dbca2b63fd29a1ba575419b0552ebdd4ce4d8d4089",
-      "paper/extremal.tex": "62ed2fc59ca7a08b1077ada28d376596b6242a4c73c772e9d18963457182ae6e",
-      "paper/five-colour-cubes.pdf": "f356480cd8251688a11607d4e4e836ab194ce55d5e170a88edffc08992322d6a",
-      "paper/five-colour-cubes.tex": "48682becec26692371cf28b1424f1bdd1d54c1479fecacd8c69be6a7939d763e",
+      "paper/extremal.tex": "3725b7915fd3213b7d4a56643f49a18f712a37e4feb21be9f5a710854d38b1c4",
+      "paper/five-colour-cubes.pdf": "fe0c8ebd624255a1691d5c0bdfb90815d0441e57da1c5362f42c9b4206113828",
+      "paper/five-colour-cubes.tex": "9fd1f8871e625a566cb3e3cbd53cfe81311020e1c52a4af2550cb57fc42d2e0a",
       "paper/obstruction-figure.svg": "04eb7b35689e01aee280b32058efa2adcc8560a85dffb21e6cffc330420de36b",
       "paper/obstruction-figure.tex": "bdf9f62aa284effa8d833d50a876820d5ab5fd942443013c263589aa749238fe",
       "paper/uniform-obstruction.svg": "5649f5a16f87d218ca74a01d64ca72e201f2298439c27c5aa666ee7648c823b2",
       "paper/uniform-obstruction.tex": "41cfc0f49cdd39e78eac17431a85974bd217f3ecff58de2936319b07034c6f2f",
-      "paper/verification.tex": "c6a4bda5af1cda34c4a61fd1061e057a1959c849c033685c45a158c4917ec020",
+      "paper/verification.tex": "52a5a1b38fd3be2072c4e3d32f4fb85412c980224e6944f534a76127854ef526",
       "scripts/audit_lean.py": "4078a963b7df03e4c5a5cdbc3a57f0f2e74a03e19e93dc77ef3284274603454b",
       "scripts/benchmark_five_colour_replay.py": "806e683ba758533a4d4e528999538d561eb88a8d6562257116a8cf352a81a289",
       "scripts/bootstrap_local.py": "3aa7c08e750d92e78f5205d7a0698a410c81d13fe2643e1dc409de37d99f47d1",
@@ -765,12 +756,12 @@
       "scripts/check_five_colour.py": "1a8cfd0394bb74788ec0f74d8fcb10c8c6df25ae109b6aa898a77cd40ea39759",
       "scripts/check_five_colour_certificates.py": "defec80dda1b42e924c67d9fb83b711f80ffe6214926a5f41afc677c6f0a7c2e",
       "scripts/check_five_colour_distinct.py": "002b2a7dfb2bf931597f2766266bc1676f60e0f3370238294dd070232e8babe5",
-      "scripts/check_five_colour_extremal.py": "d0fb0211000ef547cc024e1cc7ba04c6e72b55fd9dbd17839eb718ade33ae319",
+      "scripts/check_five_colour_extremal.py": "71febc4febaadc2ef5c1111361e2cddcc0c4143bb29ead878b407f00e4a05be7",
       "scripts/check_five_colour_root_projection.py": "cc627985d755d7e252f68eec8e075c8871fe27f0235a76fe5349a1620d1d3274",
-      "scripts/check_package.py": "7843c8459bb54afeab439e10051b8395314f78254324dd71030c21db47597acd",
+      "scripts/check_package.py": "f5e2349e541ba2c4ebc877641ce2a79ac86646a78d3eccb1cf7737f73d76c119",
       "scripts/cpp_build_config.py": "1a42acf25726414260587f0f3fdb3233e7e428ded04d762900769bdd9cd31af7",
       "scripts/cube_geometry.py": "5b32679f42941e0f3c30e81e53cb2d4b6ca69b81bbf0d2518cdf36d438b9bbda",
-      "scripts/cube_witnesses.py": "2ff3e48de0a3c7adf285b66c9fe1b3fe2ceb9d828306c14d50ad2a8deaf7a9a7",
+      "scripts/cube_witnesses.py": "dc971119c21ca8db8b7333f27e4812a190c1f3752457cb0dbe16a36aec5500e1",
       "scripts/five_colour_cases.py": "b9df50253c9808522149b488a48dd8148bfeeb7a441868e51a37ccf8997746fe",
       "scripts/five_colour_distinct_cases.py": "5f42c5631fbf6f949b25f79f159ad8a79fce1e568ce9fbc04f04cb07c0fe2c19",
       "scripts/five_colour_geometry.py": "ccb4df0fdffc077f6d5b1f3aee759d9ed3d6e148ae52f4bfdc01b0c7ce6c4d97",
@@ -778,10 +769,10 @@
       "scripts/generate_five_colour_archive.py": "57388726fba9579210ebb53e9c9ab85615213da4d2a6c475c68074b75c6f50c8",
       "scripts/generate_five_colour_capacities.py": "77617e3937ccc1ae3021488ccdb4e836737dd753c2b73c30dfc7630b3e57b0ba",
       "scripts/generate_five_colour_catalogue.py": "252eb94671170ae074e6d760d820d7a9c34bf59b73c51e498ad36243ccd63ee1",
-      "scripts/generate_five_colour_chunks.py": "8715dfc0305a147f24cc6abd881410dccf5de3e8a7169bb8e1cd5558daaa62a7",
+      "scripts/generate_five_colour_chunks.py": "2ed279576165110f06f6fbb533df91ef7894b116fe003ab56de8599d1adca3b4",
       "scripts/generate_five_colour_corner_projections.py": "178e01ba5f258e8225090f7fe2fd5978121cf5c6d3a07b63586857f38c2178fa",
-      "scripts/generate_five_colour_coverage.py": "a71436c61582bf95a7f1cd9c9f01cadb2eae9fee099eac8397f467a58ed2da50",
-      "scripts/generate_five_colour_extremal.py": "6955924c0789c1891e476942c8af504ac7ad826dbc49c75bee2b88484e75707b",
+      "scripts/generate_five_colour_coverage.py": "7b9ea0bb6136c5fffea038fbbfa7b2357e95137a19dd20c16e2e8ff0077d1315",
+      "scripts/generate_five_colour_extremal.py": "6f4e4f72b5cb4a19ee3c7a2653c4c53f7bc51880175cc73461cbfc14ffba3cbd",
       "scripts/generate_five_colour_figure.py": "de595db3bfa06b74a2ce9014704ea4b3233bba6ef0066d0a2d575abf045fe859",
       "scripts/generate_five_colour_hall.py": "b48e19f11e3f36420d2289897ec3bce61562937d8f5907a45ed5cbb7fc27edea",
       "scripts/generate_five_colour_incidence.py": "61779f0bb9ff064b09e6a31871d71515858f08c9960ab694aafff42a3b6b7927",
@@ -791,22 +782,25 @@
       "scripts/generate_five_colour_reduction.py": "b1f3cc80e0e3b1ef32febd4c8552145d5209f5985a9c7c8ba193647c01a32621",
       "scripts/generate_five_colour_support.py": "07ac327f2422292ab4eeb8f920726bbff057132c8758d0f24498790793cddc83",
       "scripts/generate_five_colour_symmetry.py": "4a2ee4ae3b8490c92f515e75e2921046f6fedca6f66d40a341e43376d5165a46",
-      "scripts/generate_five_colour_triples.py": "1101b1661c79af61e36712039240ad9cbc92316a32469920b10cb5275d04b23c",
-      "scripts/package_review.py": "a323d05d8e4b3331db6aa6f8b8cd124d5021f912627bc2caa8849c6d7c699426",
+      "scripts/generate_five_colour_triples.py": "0516e714a0d7831952766c67a3ebe97d1cae4465ad94971441134d5e51719f95",
+      "scripts/package_review.py": "113280bf5c4871e2b81cf95a397c1d44ad73e57490c302ef8e13926a3cb640a7",
       "scripts/physical_geometry.py": "bee693756165531c43b8fa75d153eaff44830be3221bab58fe4c420cb3959a4e",
       "scripts/replay_five_colour_chunks.py": "1e44154e13c703f674e3adb4dd00137e4073529b3958c41a5d6432536802fa9f",
       "scripts/test_extremal_dictionary.py": "123e4f3044b9b688f19318bec568740c71c66cd65e0805b53fcc657fdd9d6f79",
-      "scripts/test_verification_state.py": "355bfed8da12f734e46d34c8da364f3d7fa04ccf2545dec4537fff72ea2f4503",
+      "scripts/test_source_checks.py": "1b319b124ff101a996fd855d680e9e9677c540d6f05ee23be072ed6181b9a846",
+      "scripts/test_verification_state.py": "015cdb8da2395939e0070100e5156eba5ae34538bd95cea1f96a05f576c943ab",
       "scripts/verification_state.py": "ec1015a2b9c3203ea277cd53f45b90aa58323303e9294c1b62068eef8815a1e1",
       "scripts/verify-comparator.sh": "a2435243921d20607590b861575c23e3d651c1447577bf0b905d31897f22b8ed",
-      "scripts/verify_full.py": "d07ee761c98dadc8ff20f5ad6e58fdadd05c15a0c9dd7000d274fe73583901ef",
+      "scripts/verify_full.py": "eb9d02d67368ba669d8e3d56f4c4306dc2b224bd81ce1bd634eb44bb1cd68e61",
       "src/check_five_colour_certificate.cpp": "d99e91df6b16fe42181a0d23aaa37c8d286b304d85835943e2b9bdb59042f543",
       "src/five_colour_box_geometry.cpp": "7b6aea6fa2aec77953228915233a2061f989de3f80db1b2a71c7516858419055",
       "src/five_colour_boxes.cpp": "dc16533166f5fc15c6b73685bd3862a1d17b2226e7f709d1478a0ae1acf3418b",
       "src/five_colour_chunks.cpp": "6cc424cdd95b701043caf6a18fc3ab4316cd7f9b6685eb59a3b066b8bc0df685",
       "src/five_colour_extensions.cpp": "5734b1ccc5f173d70d3182f44d4b79ce75cc07f73eece05fbdaa8a18dac565da",
       "src/five_colour_fixed_pair.cpp": "fbcadb70abc451494dcb217899b5bad6305ecd5187c90f4823c805afefc341ef",
-      "src/five_colour_rare_geometry.cpp": "e8397665d13c6180ef190456aa0f72f2497088a6be107626ab6e3aa53e344202"
+      "src/five_colour_rare_geometry.cpp": "e8397665d13c6180ef190456aa0f72f2497088a6be107626ab6e3aa53e344202",
+      "verification/benchmark.json": "72214b057b5528c0e657a8a23f9a5b3bca85997a53211af1e12e58c24bfd561c",
+      "verification/palomar.json": "43e29f836e8b08e23aba3928554aae21acaff5c501baf8b8707a4ab3c21cb9f7"
     },
     "deleted_tracked_files": [],
     "dependencies": {
@@ -1304,6 +1298,6 @@
       "FiveColour/ProjectedChunks/Threshold.lean": "1c678f224d496892268da802f7cb36bd5b37e8c93f46967484f61a5a8c1d8d79",
       "FiveColour/ProjectedChunks/manifest.json": "66c6a346510ddcd64d247cee26d52a11e941e6ddb4ab19e8c2614729f8ceffcc"
     },
-    "finished_utc": "2026-11-05T14:17:26.102109+00:00"
+    "finished_utc": "2026-11-05T22:05:20.214224+00:00"
   }
 }

@@ -13,7 +13,7 @@ theorem thin_frame_of_threshold (h : Threshold15) {n : ℕ} (w : Fin 2) (M : ℕ
   classical
   let d := 2*M+6+w.val
   have hw := w.isLt
-  obtain ⟨t,corners,hf,z,hz,hedges⟩ := thin_target h d cubes hc (by omega) (by dsimp [d]; omega) (by dsimp [d]; omega)
+  obtain ⟨t,corners,hf,z,hz,hedges⟩ := thin_target h d cubes hc (by omega) (by dsimp [d]; omega)
   let axes := Equiv.swap (0 : Fin 3) z
   let l := fun a => ![0,w.val,M] (axes a)
   have hmono : ∀ a, axes a ≠ 0 → BichromaticAxis (catalogue t) a := by

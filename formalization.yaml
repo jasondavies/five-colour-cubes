@@ -100,12 +100,14 @@ status:
     Its thirteen comparison targets include the corner threshold and sharpness,
     both cuboid thresholds, support thresholds, multiplicity bound, five-class
     classification, representative failure and inequivalence, and generalized
-    obstruction family. The 261-line Challenge defines physical rotation
+    obstruction family. The independent Challenge defines physical rotation
     classes and copy counts without importing the catalogue. Its cuboid slots
     explicitly represent corners, edges, face interiors and interior positions.
     SubmissionBridge.lean proves agreement with the proof models.
-    All thirteen statements and shared definitions matched, and NanoDa accepted
-    the full export. The separate serial Lean export replay did not finish
+    For the source snapshot recorded in verification/palomar.json, all thirteen
+    statements and shared definitions matched, and NanoDa accepted
+    the full export. These external checks have not been repeated for the current proof consolidation.
+    The separate serial Lean export replay did not finish
     within the combined local 330-minute build/comparison budget. The source-bound
     evidence is retained in verification/palomar.json. The fresh complete Lean
     build passed; no complete Palomar verification is claimed.

@@ -25,7 +25,8 @@ for name in sorted(source_names):
  assert len(text.splitlines())<=10000,name
  for module in re.findall(r'^(?:public )?import ([A-Za-z0-9_.]+)',text,re.M):
   if module == 'Solution' or module == 'FiveColour' or module.startswith('FiveColour.'):
-   assert module.replace('.','/')+'.lean' in source_names,(name,module,'missing submitted source')
+   imported = module.replace('.','/')+'.lean'
+   assert imported in source_names and (root/imported).is_file() and not (root/imported).is_symlink(),(name,module,'missing submitted source')
 assert (root/'Challenge.lean').stat().st_size<=100*1024
 assert len((root/'Challenge.lean').read_text().splitlines())<=1000
 config=tomllib.loads((root/'lakefile.toml').read_text())

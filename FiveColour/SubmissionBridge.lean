@@ -122,7 +122,7 @@ lemma supportGuarantee_iff (k v : ℕ) :
     exact (Puzzle.hasSolution_iff cubes).mpr (h n cubes hc
       (by simpa only [varietyCount_eq cubes hc] using hs) hn)
 
-/-- Every fourteen-source obstruction has maximum variety multiplicity five. -/
+/-- Every fourteen-source obstruction has maximum variety multiplicity at most five. -/
 theorem multiplicity_bound (cubes : Fin 14 → Cube)
     (hc : ∀ i, UsesAllColours (cubes i)) (hno : ¬ HasSolution cubes)
     (c : Cube) (hcol : UsesAllColours c) : copyCount cubes c ≤ 5 := by

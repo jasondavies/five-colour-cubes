@@ -47,9 +47,51 @@ lemma six_group_unpopulated : ∀ (k : Fin 8) (g : Fin 7),
     4 + singletonCount k ≤ g.val → ∀ i : Fin 75, sixGroup k i ≠ some g.succ := by
   decide +kernel
 
-lemma six_group_disjoint : ∀ (k : Fin 8) (g : Fin 4) (i : Fin 75),
-    sixGroup k i = some ⟨g.val+1, by omega⟩ ↔ sixGroup 0 i = some ⟨g.val+1, by omega⟩ := by
+lemma six_group_disjoint_index : ∀ (k : Fin 8) (g : Fin 4) (i : Fin 75),
+    sixGroup k i = some ⟨g.val+1, by omega⟩ ↔ disjointGroup i = some g := by
   decide +kernel
+
+lemma six_group_disjoint (k : Fin 8) (g : Fin 4) (i : Fin 75) :
+    sixGroup k i = some ⟨g.val+1, by omega⟩ ↔ sixGroup 0 i = some ⟨g.val+1, by omega⟩ := by
+  simp only [six_group_disjoint_index]
+
+lemma six_group_singleton : ∀ (k : Fin 8) (r : Fin 3) (i : Fin 75),
+    sixGroup k i = some ⟨r.val+5, by omega⟩ → singletonVariety k r = some i := by
+  decide +kernel
+
+/-- Calibrate all bits of each shared mask with one containment identity. -/
+lemma disjoint_masks_subset : ∀ (t i : Fin 75) (g : Fin 4),
+    disjointGroup i = some g →
+      (disjointMasks t g).land (Replay.fits t i) = disjointMasks t g := by
+  decide +kernel
+
+lemma disjoint_masks_valid (t i : Fin 75) (g : Fin 4)
+    (hg : disjointGroup i = some g) (q : Fin 8)
+    (hq : (disjointMasks t g).testBit q.val = true) : (Replay.fits t i).testBit q.val = true := by
+  have h := congrArg (fun mask : ℕ => mask.testBit q.val) (disjoint_masks_subset t i g hg)
+  simpa only [Nat.land_eq, Nat.testBit_land, hq, Bool.true_and] using h
+
+/-- The other columns reuse incidence directly; no repeated geometry table is needed. -/
+theorem six_masks_valid (k : Fin 8) (t i : Fin 75) (g : Fin 8)
+    (hg : sixGroup k i = some g) (q : Fin 8)
+    (hq : (sixMasks k t g).testBit q.val = true) : (Replay.fits t i).testBit q.val = true := by
+  fin_cases g
+  · have hi := (six_group_anchor k i).mp hg
+    subst i
+    exact hq
+  · exact disjoint_masks_valid t i 0 ((six_group_disjoint_index k 0 i).mp hg) q hq
+  · exact disjoint_masks_valid t i 1 ((six_group_disjoint_index k 1 i).mp hg) q hq
+  · exact disjoint_masks_valid t i 2 ((six_group_disjoint_index k 2 i).mp hg) q hq
+  · exact disjoint_masks_valid t i 3 ((six_group_disjoint_index k 3 i).mp hg) q hq
+  · have hs := six_group_singleton k 0 i hg
+    change ((singletonVariety k 0).elim 255 (Replay.fits t)).testBit q.val = true at hq
+    simpa only [hs, Option.elim_some] using hq
+  · have hs := six_group_singleton k 1 i hg
+    change ((singletonVariety k 1).elim 255 (Replay.fits t)).testBit q.val = true at hq
+    simpa only [hs, Option.elim_some] using hq
+  · have hs := six_group_singleton k 2 i hg
+    change ((singletonVariety k 2).elim 255 (Replay.fits t)).testBit q.val = true at hq
+    simpa only [hs, Option.elim_some] using hq
 
 lemma localPools_populated {n : ℕ} (cubes : Fin n → Cube) (k : Fin 8) :
     populatedCounts k (fun g => (localPools cubes k g.succ).card) := by

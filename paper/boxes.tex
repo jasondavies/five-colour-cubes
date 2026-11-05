@@ -315,6 +315,39 @@ the number of frame positions, and
 Lemma~\ref{lem:thin-three-variety-obstruction}, respectively.
 \end{proof}
 
+\begin{lemma}[Choosing a target when one side has length two]\label{lem:thin-target}
+Let $2\le b\le c$ and suppose $N\ge15$ five-colour sources are available.
+There is a corner-solvable target and an orientation for a $2\times b\times c$
+frame in which every noncorner edge position has a bichromatic requirement
+possessed by at least $\lceil N/2\rceil$ sources. An adjacent-repeat target's
+monochromatic edge is parallel to a side of length two. If $b=2$ and the
+target is opposite-repeat, its repeated-colour axis can also be placed along $c$.
+\end{lemma}
+\begin{proof}
+Put $h=\lceil N/2\rceil$ and call a bichromatic pair rare if fewer than $h$
+sources possess it. Its missing family has at least
+$N-h+1=\lfloor N/2\rfloor+1>N/2$ members, hence at least eight.
+The missing families of any two rare pairs intersect, so
+Lemma~\ref{lem:rare-pairs} gives at most two rare pairs, which are disjoint.
+
+If no pair is rare, the fifteen-cube theorem supplies a corner target.
+Put its monochromatic edge, if any, parallel to a side of length two,
+where it contributes no noncorner positions. All actual edge requirements
+are then bichromatic and have at least $h$ neighbours. For an opposite
+rod target, put the repeated-colour axis along $c$.
+
+Otherwise choose a rare pair $\alpha\beta$. Apply
+Lemma~\ref{lem:eight-common-missing} to eight sources from
+$\mathcal H_{\alpha\beta}$ and any three others. The resulting corner
+solution has a target in that family. Put its singleton $\alpha\beta$
+axis along a side of length two. Every actual edge requirement joins a
+pole colour to a ring colour, so it avoids $\alpha\beta$ and the other
+possible rare pair, whose colours are both ring colours. The possible
+monochromatic edge is parallel to the short axis. In an opposite rod
+target the repeated-colour axis is perpendicular to the singleton axis,
+so it can simultaneously be put along $c$.
+\end{proof}
+
 \subsection{The smallest thin box}
 
 \begin{theorem}[The $2\times2\times3$ box]\label{thm:223}
@@ -331,33 +364,11 @@ colours.
 The fourteen-cube corner obstruction (Lemma~\ref{lem:lower}) gives the lower bound: the eight
 corner cubes of any box would themselves give a corner solution.
 
-For the upper bound, take fifteen arbitrary source copies. Call a
-bichromatic pair rare if at most seven sources possess it. Each rare
-pair is missing from at least eight sources. The missing sets for any
-two rare pairs intersect, since $8+8>15$. Lemma~\ref{lem:rare-pairs}
-therefore gives at most two disjoint rare pairs.
+For the upper bound, apply Lemma~\ref{lem:thin-target} to fifteen sources.
+The target has a corner matching, and each of its four noncorner edge
+positions has a bichromatic requirement with at least eight neighbours.
 
-Suppose first that there is no rare pair. The corner theorem supplies
-a target $T$ and a corner matching. If $T$ is adjacent-repeat, choose
-the long axis perpendicular to its monochromatic edge. If $T$ is
-opposite-repeat, any choice of long axis is suitable. In either case
-all four noncorner frame positions have bichromatic requirements, and
-each requirement has at least eight source neighbours.
-
-If there is a rare pair $e=\alpha\beta$, at least eight sources belong to
-$\mathcal H_{\alpha\beta}$. Choose eight of them and any three additional copies.
-Lemma~\ref{lem:eight-common-missing} gives a corner matching with target
-$T\in\mathcal H_{\alpha\beta}$. Orient its $\alpha\beta$ axis along
-one of the two short directions, and choose a perpendicular direction
-as the long axis. The four noncorner edge requirements then each join
-a pole colour, $\alpha$ or $\beta$, to a ring colour. None is $\alpha\beta$, and none can
-be the other rare pair, if present, since that pair is disjoint from
-$\alpha\beta$ and uses only ring colours. The target's monochromatic edge,
-when present, is parallel to the $\alpha\beta$ axis and contributes no noncorner
-position. Again all four edge requirements are bichromatic and have
-at least eight source neighbours.
-
-For either chosen target and orientation, every source fits at least
+For this target and orientation, every source fits at least
 four of the twelve positions, by Lemma~\ref{lem:thin-compatibility}.
 Thus each source misses at most eight positions.
 
@@ -436,16 +447,9 @@ so at most six further positions are missed.
 \end{theorem}
 
 \begin{proof}
-First let $c=3$ and take seventeen sources. Call a bichromatic pair
-rare if at most eight sources possess it. Each rare pair is absent from
-at least nine sources. By Lemma~\ref{lem:rare-pairs} there are
-at most two, and they are disjoint. If no pair is rare, choose a corner target using $N_5=15$
-and put its possible monochromatic edge along the side of length two.
-Otherwise choose a rare pair $\alpha\beta$ and apply
-Lemma~\ref{lem:eight-common-missing} to eight sources in $\mathcal H_{\alpha\beta}$
-and any three others. Orient the target's $\alpha\beta$ axis along the side of
-length two. All actual edge types join a pole colour to a ring colour,
-so they avoid both possible rare pairs and are bichromatic.
+First let $c=3$ and take seventeen sources. Lemma~\ref{lem:thin-target}
+gives a corner target with its possible monochromatic edge along the side
+of length two and at least nine neighbours for each actual edge position.
 
 Every source misses at most nine of the sixteen frame positions. Indeed,
 if source or target is opposite-repeat, at most six corners and three
@@ -464,22 +468,10 @@ Now let $c\ge4$, put $M=c-2\ge2$, and set
 \[
  d=2M+6,\qquad N=4M+12=2d.
 \]
-There are $N=4c+4$ frame positions. Take any $N$ source copies, and call
-a bichromatic pair rare if at most $d-1$ copies possess it. Each rare
-pair is absent from at least $d+1>N/2$ sources. Lemma~\ref{lem:rare-pairs}
-gives at most two disjoint rare pairs.
-
-If no pair is rare, use the corner theorem and orient the target's
-possible monochromatic edge along the side of length two. Otherwise,
-choose a rare pair $\alpha\beta$. At least $d+1\ge11$ sources belong to
-$\mathcal H_{\alpha\beta}$. Lemma~\ref{lem:eight-common-missing} supplies a corner solution
-whose target belongs to that family. Orient its $\alpha\beta$ axis along the side
-of length two. All actual edge types join a pole colour to a ring colour,
-and hence avoid both rare pairs; the monochromatic edge, if present,
-has no noncorner positions.
-
-In either case the chosen target has a corner matching and every actual
-edge requirement has at least $d$ source neighbours. Hall's inequality
+There are $N=4c+4$ frame positions. Apply Lemma~\ref{lem:thin-target} to
+any $N$ sources. The target has a corner matching, its possible monochromatic
+edge lies along the side of length two, and every actual edge requirement
+has at least $d=N/2$ neighbours. Hall's inequality
 holds for corner-only sets, and for any set of at most $d$ positions
 containing an edge. By Lemma~\ref{lem:23c-compatibility}, sets of more
 than $d+1$ positions neighbour every source.
@@ -493,9 +485,8 @@ copies, the inventory contains at least $d$ copies of $V$.
 
 Retarget the frame to $V$ with its repeated-colour axis along the side
 of length two. By Lemma~\ref{lem:23c-opposite-short}, every source misses
-at most $d$ positions. The $d$ copies of $V$ are compatible with every
-position, so they verify Hall's inequality for every set of size at most
-$d$. Larger sets neighbour every source. This gives a frame after all.
+at most $d$ positions. The $d$ copies of $V$ fit every position, so the universal-copy consequence
+of Lemma~\ref{lem:partial-matching} supplies a frame.
 
 Thus $N$ sources always suffice. The number of frame positions supplies
 the matching lower bound.
@@ -580,9 +571,8 @@ $2\times2\times(M+2)$ box.
 
 \begin{proof}
 Let that variety be $V$ with multiplicity $v$. Use its axial target
-orientation. Every source misses at most $d$ positions. If $v\ge d$,
-Hall's inequality is immediate: sets of at most $d$ positions have the
-$v$ copies of $V$ as neighbours, and larger sets neighbour every source.
+orientation. Every source misses at most $d$ positions. If $v\ge d$, the universal-copy consequence of
+Lemma~\ref{lem:partial-matching} applies, since $N=L=2d$.
 
 Suppose $v=d-1$. The same reasoning handles all position sets except
 sets $D$ of size exactly $d$. If such a set fails Hall, no non-$V$
@@ -596,31 +586,6 @@ therefore one variety $W$. Using $W$ as the axial target gives the
 previous case, with at least $d$ universal copies, and completes the box.
 \end{proof}
 
-\begin{lemma}[A target avoiding scarce long-edge types]\label{lem:rod-target}
-Suppose a collection has $N\ge15$ cubes. Call a bichromatic pair rare
-when at most $\rho$ sources possess it, where $N-\rho\ge8$ and
-$2(N-\rho)>N$. Then there is a corner-solvable target, transverse if
-adjacent-repeat and axial if opposite-repeat, whose four long-edge
-types are all non-rare.
-\end{lemma}
-
-\begin{proof}
-Each rare pair is missing from more than half the collection. Thus any
-two rare pairs are disjoint and there are at most two, by
-Lemma~\ref{lem:rare-pairs}. If there is no
-rare pair, use the corner theorem and choose either specified orientation.
-
-Otherwise let $\alpha\beta$ be rare. At least eight sources belong to
-$\mathcal H_{\alpha\beta}$. Lemma~\ref{lem:eight-common-missing} supplies a corner target
-in this family. Its $\alpha\beta$ axis is a singleton opposite pair and can be
-put along a short direction. If the target is opposite-repeat, choose
-its repeated-colour axis as the long direction; otherwise choose either
-axis perpendicular to the $\alpha\beta$ axis. Every long-edge type then joins
-one of $\alpha,\beta$ to a ring colour. It is neither $\alpha\beta$ nor the other possible
-rare pair, whose colours are both ring colours. These orientations are
-axial or transverse as required.
-\end{proof}
-
 \begin{theorem}[Thin rods]\label{thm:sharp-rods-upper}
 \[
  F_5(2,2,4)\le17,
@@ -631,8 +596,9 @@ axial or transverse as required.
 
 \begin{proof}
 First let $c=4$, so $M=2$ and $L=16$, and take seventeen source
-copies. In Lemma~\ref{lem:rod-target} use $\rho=8$. The chosen target has
-a corner matching, and every long-edge type has at least nine sources.
+copies. Lemma~\ref{lem:thin-target} gives a corner target, transverse if
+adjacent-repeat and axial if opposite-repeat, with at least nine sources
+for every long-edge type.
 If the target is opposite-repeat, its defect is at most eight by
 Lemma~\ref{lem:rod-compatibility}, and Hall's theorem completes it.
 
@@ -648,14 +614,13 @@ Lemma~\ref{lem:rod-compatibility}(i) have complementary missing
 long-edge types. As $D$ contains an edge position, all eight copies
 must be the same opposite-repeat variety $V$.
 
-The axial target $V$ is solved by Hall directly: its eight copies
-neighbour every nonempty set of at most eight positions, and larger
-sets neighbour all seventeen sources, since each misses at most eight
-positions. This proves the seventeen-cube upper bound.
+For the axial target $V$, every source misses at most eight positions.
+Its eight universal copies and $N=17\ge L=16$ satisfy the universal-copy
+consequence of Lemma~\ref{lem:partial-matching}, proving the upper bound.
 
 Now let $M=c-2\ge3$, put $d=2M+4$, and take exactly $N=2d=L$
-cubes. Use $\rho=d-1$ in Lemma~\ref{lem:rod-target}. Every long-edge type
-of the chosen target has at least $d$ sources. An opposite-repeat
+cubes. Lemma~\ref{lem:thin-target} gives a transverse or axial corner
+target as appropriate, with at least $d=N/2$ sources for each long-edge type. An opposite-repeat
 target is completed directly by Hall, since every source misses at
 most $d$ positions.
 

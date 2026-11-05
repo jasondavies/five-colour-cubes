@@ -20,7 +20,8 @@ verification-config:
 help:
 	@echo 'make verify-full   Complete proof, audits and source-bound verification record'
 	@echo 'make check         Geometry, certificates and Lean infrastructure (partial proof)'
-	@echo 'make replay-data   Generate the 279 projected certificate proofs'
+	@echo 'make check-replay-data   Check retained replay sources without rewriting them'
+	@echo 'make replay-data   Regenerate the 279 projected certificate proofs'
 	@echo 'make replay        Check those proofs and the final corner theorem; resumable'
 	@echo 'make paper         Compile the manuscript PDF'
 	@echo 'WORKERS=2 defaults to two concurrent certificate cases; each uses one Lean thread'
@@ -35,7 +36,7 @@ build/%: src/%.cpp build/cxx-config.json
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $< -o $@
 
-check-code: build/check_five_colour_certificate build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair build/five_colour_box_geometry
+check-code: check-replay-data build/check_five_colour_certificate build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair build/five_colour_box_geometry
 	@$(PYTHON) -c 'import sys; sys.exit(0 if __debug__ else "Checks require Python assertions; remove -O/PYTHONOPTIMIZE")'
 	build/five_colour_extensions
 	build/five_colour_rare_geometry
@@ -50,6 +51,7 @@ check-code: build/check_five_colour_certificate build/five_colour_extensions bui
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/test_verification_state.py
+	$(PYTHON) -S scripts/test_source_checks.py
 	$(PYTHON) -S scripts/generate_five_colour_incidence.py --check
 	$(PYTHON) -S scripts/generate_five_colour_packed.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
@@ -72,10 +74,13 @@ check: check-code check-lean
 verify-full:
 	$(PYTHON) -u -S scripts/verify_full.py --workers $(WORKERS)
 
-# Requires the completed projected replay (generated modules).
+# Requires the completed projected replay.
 check-extensions:
 	lake build Solution
 	$(PYTHON) -S scripts/audit_lean.py --file ExtensionsAudit.lean
+
+check-replay-data: build/five_colour_chunks
+	$(PYTHON) -S scripts/generate_five_colour_chunks.py --check --workers $(WORKERS)
 
 replay-data: build/five_colour_chunks
 	$(PYTHON) -S scripts/generate_five_colour_chunks.py --workers $(WORKERS)
@@ -99,4 +104,4 @@ figure:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: FORCE verification-config help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower comparator paper
+.PHONY: check-replay-data FORCE verification-config help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower comparator paper

@@ -156,13 +156,18 @@ allocations for small grouped inventories. The allocation theorem reserves
 distinct physical copies, and kernel checks validate both the assignments
 and the filtered weak-composition lists. Four disjoint sources are handled
 first by a separate lemma, leaving 2,702 six-copy inventories and 35
-four-disjoint inventories. The main-text proof instead uses
-the directed-cut intersection calculation.
+four-disjoint inventories. Their geometry uses 300 shared disjoint-group
+masks and 24 optional singleton references; other masks reuse the incidence
+data. The main-text proof instead uses the directed-cut intersection
+calculation and a uniform reservation argument.
 
 For the three-variety classification, the multiplicity bound forces
 $(4,5,5)$. Normalizing the four-copy variety to one of the two anchor types
-leaves $2\binom{74}{2}=5,402$ candidates. Kernel checks verify a target and the coverage/private-position criterion
-for 5,346 and symmetry witnesses for the other 56. A shared uniform Hall
+leaves $2\binom{74}{2}=5,402$ candidates. The coverage/private-position
+criterion solves 5,143 at one of their own source targets, and the existing
+four-plus-four lemma solves another 199 with a disjoint pair. Kernel checks
+prove that the residual list covers both anchor kinds: it has 60 records,
+comprising four positive target witnesses and 56 symmetry witnesses. A shared uniform Hall
 argument proves that all five representatives fail. Completeness of the
 sixteen-element stabilizer of the opposite anchor is checked on physical
 faces; this establishes pairwise inequivalence under every allowed global
@@ -207,21 +212,20 @@ were reused; project and shared cube-library artifacts were rebuilt. All
 \toprule
 Stage & Wall time\\
 \midrule
-C++/Python audit & 10.3 s\\
-Shared Lean library and audit & 17.5 min\\
-Certificate proof generation & 4.0 s\\
-Certificate replay and final corner theorem & 48.5 min\\
-Unconditional extensions and audit & 3.2 s\\
-Complete verification command & 66.4 min\\
+C++/Python audit & 13.0 s\\
+Shared Lean library and audit & 13.9 min\\
+Certificate replay and final corner theorem & 38.3 min\\
+Unconditional extensions and audit & 3.3 s\\
+Complete verification command & 52.6 min\\
 \bottomrule
 \end{tabular}
 \end{center}
 Peak sampled combined process-tree proportional set size (PSS) was
-29.2\,GiB, sampled approximately every two seconds; this accounts for shared pages
-proportionally. Peak summed RSS was 35.0\,GiB and double-counts shared pages.
+33.5\,GiB, sampled approximately every two seconds; this accounts for shared pages
+proportionally. Peak summed RSS was 37.4\,GiB and double-counts shared pages.
 The retained record \path{verification/benchmark.json} identifies source snapshot
-\texttt{7be31ee3e064}, based on commit
-\texttt{af991ff3b111}, with the full source manifest, archive digest,
+\texttt{dc9c85dc9ded}, based on commit
+\texttt{42aa7b64b15a}, with the full source manifest, archive digest,
 dependency trees and tool settings. Its Lean sources are those of this proof.
 
 A Mathlib-only comparator challenge states thirteen claims: the corner
@@ -234,8 +238,10 @@ interior positions with their exposed faces. The bridges in
 \path{FiveColour/ComparatorBridge.lean} and
 \path{FiveColour/SubmissionBridge.lean} identify these statements with the
 proof models. The generated replay sources are retained for clean Lake builds.
-The thirteen statements and their shared definitions matched, and NanoDa
-accepted the full solution export. The separate serial Lean export replay did
+For the source snapshot identified in \path{verification/palomar.json}, the
+thirteen statements and their shared definitions matched, and NanoDa accepted
+the full solution export. These external checks have not been repeated for
+the current proof consolidation. The separate serial Lean export replay did
 not finish within a local 330-minute budget shared with the fresh build and
 NanoDa check. The record is \path{verification/palomar.json}; no completed
 Palomar verification or registration is claimed.

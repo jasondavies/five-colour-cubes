@@ -77,7 +77,7 @@ def main():
     env = dict(os.environ)
     env.setdefault('LEAN_NUM_THREADS', '1')
     record['build_threads'] = env['LEAN_NUM_THREADS']
-    targets = ['check-code', 'check-lean', 'replay-data', 'replay', 'check-extensions']
+    targets = ['check-code', 'check-lean', 'replay', 'check-extensions']
     try:
         if not __debug__:
             raise RuntimeError('verification requires Python assertions; remove -O/PYTHONOPTIMIZE')

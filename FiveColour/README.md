@@ -60,10 +60,13 @@ The extremal results are independent of the interval replay:
   obstruction is at most five. `ExtremalMatching.lean` lifts explicit group allocations
   to distinct physical copies; `ExtremalSixChecks*.lean` checks the small local
   inventories after the anchor reduction and disjoint-source lemma (2,702
-  six-copy cases and 35 four-disjoint cases).
+  six-copy cases and 35 four-disjoint cases). Their geometry shares 300
+  disjoint-group masks and 24 optional singleton references.
 - `ExtremalClassification.lean`: exactly five symmetry classes with three
-  varieties. `ExtremalTripleChecks*.lean` covers all 5,402 normalized candidates
-  with target/private-position criteria or orbit witnesses. `ExtremalSymmetry.lean` proves
+  varieties. Own-source targets handle 5,143 normalized candidates, and a
+  disjoint pair handles 199. `ExtremalTripleChecks*.lean` proves completeness
+  of the 60-record remainder over both anchor kinds: four positive targets
+  and 56 orbit witnesses. `ExtremalSymmetry.lean` proves
   completeness of the stabilizer used to establish inequivalence; reflections
   act on entire collections. `ExtremalExamples.lean` proves failure and support
   size for each representative.
@@ -139,9 +142,10 @@ valid initial bounds and composition. There is no `native_decide`, proof hole
 or added axiom in the proof sources. The audited dependencies are confined to
 `propext`, `Classical.choice` and `Quot.sound`.
 
-The preferred full replay uses `make replay-data` followed by
-`make replay`; see the root README for concurrency and stop/resume
-instructions. `Packed.Projected.sharp_threshold_of_exclusions` consumes exactly
+Use `make verify-full` to check the retained replay sources without rewriting
+them and then verify the complete proof. `make check-replay-data` checks their
+regeneration separately; `make replay-data` explicitly replaces them. See the
+root README for concurrency and stop/resume instructions. `Packed.Projected.sharp_threshold_of_exclusions` consumes exactly
 the 279 projected exclusions, totalling 499,829 instructions. The generated
 `ProjectedChunks.Threshold` module supplies them and proves the unconditional
 physical threshold and sharpness; its four-declaration audit uses only standard axioms.
@@ -300,7 +304,9 @@ The proof is organised as follows:
   collection, then retains enough of the prescribed missing-pair family.
   `BoxDirectional`, `BoxGeometry`, `RectCore`, `RectSmallHall` and
   `FamilyAlignment` give the weighted bounds used by `WideFrames`.
-- `ThinChoice`, `ThinGeometry` and `ThinFrames` handle 2×2×3 and 2×3×3.
+- `TargetChoice` shares the rare-pair target selection and supplier counts.
+  `ThinChoice`, `ThinGeometry` and `ThinFrames` handle 2×2×3 and 2×3×3;
+  `RodChoice` preserves the extra axial orientation for rods.
   `RodProfiles`, `RodBounds` and `RodFrames` handle 2×2×c; `StripProfiles`,
   `StripBounds` and `StripFrames` handle 2×3×c. `ConcentrationHall` turns a
   deficient Hall set into enough identical opposite-repeat sources to

@@ -1,8 +1,8 @@
 # Sharp thresholds for five-colour cube assemblies
 
 - [Paper (PDF)](paper/five-colour-cubes.pdf) and [LaTeX](paper/five-colour-cubes.tex).
-- [Physical target statements](FiveColour/Problem.lean), [fourteen-cube lower bound](FiveColour/LowerBound.lean), and [formalisation guide](FiveColour/README.md).
-- [Interval checker](FiveColour/BoxCertificates.lean), [packed checker](FiveColour/PackedVerified.lean), and [chunk composition](FiveColour/PackedChunks.lean).
+- [Cuboid results](#cuboid-thresholds) and [extremal corner results](#extremal-corner-obstructions).
+- [Reproduction](#verification) and [formalisation guide](FiveColour/README.md).
 - [Provenance and verification scope](formalization.yaml).
 
 **Every collection of fifteen cubes, each using all five colours of a fixed
@@ -132,7 +132,8 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 | --- | --- |
 | `make verify-full` | All code audits, Lean infrastructure, all 279 certificates, the final corner theorem, unconditional cuboid results and axiom audits. |
 | `make check` | Code audits and Lean infrastructure. **Partial verification:** it does not check the complete corner proof. |
-| `make replay-data` | Generates Lean proof sources from the saved certificates. Generation alone proves nothing. |
+| `make check-replay-data` | Regenerates in a temporary directory and compares every retained file without modifying it. Included in `check-code`. |
+| `make replay-data` | Explicitly regenerates the retained Lean proof sources. Generation alone proves nothing. |
 | `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. The generated proof sources are retained. |
 | `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
@@ -149,7 +150,8 @@ modes against its manifest pin, rejects dirty or additional nonignored sources,
 and records a SHA-256 digest of each source tree. Ignored build caches are allowed.
 It also records actual tool versions and effective Make settings, including the
 C++ compiler flags. Success requires unchanged project and dependency sources
-and tool settings. It also works from an extracted review
+and tool settings. Retained replay sources are checked before the Lean builds,
+without overwriting them. It also works from an extracted review
 archive, checking its source manifest. Archive a successful record with the
 exact submission source; do not commit machine-local verification logs.
 
@@ -168,6 +170,9 @@ lake build FiveColour.ExtremalClassification FiveColour.ExtremalFamilyTheorems
 ```
 
 ## What the computer-assisted proof does
+
+The implementation separates the [interval checker](FiveColour/BoxCertificates.lean),
+[packed checker](FiveColour/PackedVerified.lean), and [chunk composition](FiveColour/PackedChunks.lean).
 
 1. **Reduce the physical puzzle to finite constraints.** Lean verifies the
    75 cube varieties, physical corner compatibility, Hall's theorem, symmetry
@@ -222,23 +227,22 @@ with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=8` for shared builds
 
 | Stage | Wall time |
 | --- | ---: |
-| C++/Python audit | 10.3 s |
-| Shared Lean library and audit | 17.5 min |
-| Certificate proof generation | 4.0 s |
-| Certificate replay and final corner theorem | 48.5 min |
-| Unconditional extensions and audit | 3.2 s |
-| Complete verification command | 66.4 min |
+| C++/Python audit | 13.0 s |
+| Shared Lean library and audit | 13.9 min |
+| Certificate replay and final corner theorem | 38.3 min |
+| Unconditional extensions and audit | 3.3 s |
+| Complete verification command | 52.6 min |
 
 All 279 certificate proofs and the unconditional publication theorems passed.
 Only the pinned public Mathlib and transitive dependency caches were reused;
 project and shared cube-library artifacts were rebuilt. Peak combined
-process-tree proportional set size (PSS) was **29.2 GiB**, sampled approximately
-every two seconds. Peak summed RSS was 35.0 GiB; it double-counts shared pages,
+process-tree proportional set size (PSS) was **33.5 GiB**, sampled approximately
+every two seconds. Peak summed RSS was 37.4 GiB; it double-counts shared pages,
 whereas PSS apportions them.
 
 The [retained measurement and verification record](verification/benchmark.json)
-identifies source snapshot `7be31ee3e064` (based on commit
-`af991ff3b111`), the full source manifest and archive digest,
+identifies source snapshot `dc9c85dc9ded` (based on commit
+`42aa7b64b15a`), the full source manifest and archive digest,
 actual dependency trees, tool versions and build settings. The measured Lean
 sources are the publication proof sources; the record distinguishes the snapshot
 from its base commit.
@@ -281,7 +285,7 @@ describes the workflow artifacts and what to preserve for a permanent release.
 [Challenge.lean](Challenge.lean) states 13 claims using only Mathlib: the corner
 threshold and sharpness, both cuboid thresholds, support thresholds, the
 multiplicity bound, the complete five-class classification and the generalized
-obstruction family. Its 261 lines define varieties through proper rotations,
+obstruction family. It defines varieties through proper rotations,
 not catalogue indices. The cuboid model specifies corners, edge positions,
 face interiors and interior positions by their exposed faces.
 
@@ -294,8 +298,10 @@ are retained, so `lake build Solution` works without a separate generation step.
 `make comparator` runs the complete statement comparison with Lean's kernel and
 NanoDa, the two mandatory Palomar checkers. It exports the complete proof
 dependency closure and checks it again, so cached Lake artifacts do not make
-this comparison a cached verification. All thirteen statements and their shared
-definitions matched, and NanoDa accepted the full solution export. The separate
+this comparison a cached verification. For the source snapshot identified in the retained comparison record, all
+thirteen statements and their shared definitions matched, and NanoDa accepted
+the full solution export. These external checks have not been repeated for the
+current proof consolidation. The separate
 serial Lean export replay did not finish within a local 330-minute budget shared
 with the fresh build and NanoDa check. See the [retained comparison record](verification/palomar.json).
 This is incomplete Palomar verification; no submission or registration is claimed.

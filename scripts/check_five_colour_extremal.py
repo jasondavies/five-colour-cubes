@@ -138,14 +138,28 @@ def main():
             return False
         return all(augment(k, set()) for k in range(8))
 
+    reduction_counts = []
+    residual_positive = set()
     positive_checks = 0
     for a0 in (a, lookup[canonical((0,1,0,2,3,4))]):
+        counts = [0, 0, 0]
         for b0, c0 in itertools.combinations([i for i in range(75) if i != a0], 2):
+            if any(target_solves(a0,b0,c0,t) for t in (a0,b0,c0)):
+                counts[0] += 1
+            elif any(geometry[i][j] == 0 for i,j in [(a0,b0),(a0,c0),(b0,c0)]):
+                counts[1] += 1
+            else:
+                counts[2] += 1
+                if target_solves(a0,b0,c0,1):
+                    residual_positive.add((a0,b0,c0))
             target = next((t for t in range(75) if target_solves(a0,b0,c0,t)), None)
             if target is not None:
                 require(copy_match([a0]*4+[b0]*5+[c0]*5,target),
                         'positive private-position criterion disagrees with copy matching')
                 positive_checks += 1
+        reduction_counts.append(counts)
+    require(reduction_counts == [[2641,0,60],[2502,199,0]], 'normalized residual coverage')
+    require(residual_positive == {(0,20,55),(0,21,68),(0,37,45),(0,40,60)}, 'residual positive targets')
     require(positive_checks == 5346, 'normalized positive classification count')
 
     for a0,b0,c0 in failures:
@@ -184,6 +198,8 @@ def main():
                          for name in ['data/five-colour-geometry.txt', 'data/five-colour-extremal.json']},
         'auditor_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         'positive_targets_checked_by_copy_matching': positive_checks,
+        'own_disjoint_residual_counts_by_anchor': reduction_counts,
+        'residual_positive_target_one': sorted(residual_positive),
         'family_distributions_checked': 441, 'family_successes': successes,
         'pattern': [4,5,5], 'collections_checked': checked,
         'necessary_condition_candidates': len(necessary), 'candidate_types': dict(kinds),

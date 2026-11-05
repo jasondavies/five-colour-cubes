@@ -182,14 +182,19 @@ end {namespace}
         ''.join(f'#print axioms {namespace}.{name}\n' for name in ['all_excluded', 'threshold15', 'sharpThreshold15']))
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--cut-mode', choices=['auto', 'original', 'reduced'], default='auto',
-                        help='auto reduces only cases with at least 4096 instructions')
-    parser.add_argument('--workers', type=int, default=2, help='concurrent C++ exporters')
-    args = parser.parse_args()
-    if args.workers < 1:
-        parser.error('--workers must be positive')
+def check_sources(generated, retained):
+    expected = {p.relative_to(generated): p.read_bytes() for p in generated.rglob('*') if p.is_file()}
+    actual = {p.relative_to(retained): p.read_bytes() for p in retained.rglob('*') if p.is_file()}
+    missing = sorted(expected.keys() - actual.keys())
+    extra = sorted(actual.keys() - expected.keys())
+    changed = sorted(p for p in expected.keys() & actual.keys() if expected[p] != actual[p])
+    if missing or extra or changed:
+        details = '; '.join(f'{label}: {", ".join(map(str, paths))}'
+                            for label, paths in [('missing', missing), ('extra', extra), ('changed', changed)] if paths)
+        raise ValueError(f'Retained replay sources differ ({details}); run make replay-data to regenerate.')
+
+
+def generate_sources(dest, workers, cut_mode):
     case_file = RESULTS / 'q5-projected-root-cases.txt'
     archive_file = RESULTS / 'q5-projected-certificates.tar.gz'
     rows = [list(map(int, line.split())) for line in case_file.read_text().splitlines()[1:]]
@@ -197,7 +202,7 @@ def main():
         raise ValueError('Expected exactly 279 projected cases')
     cases = list(range(279))
     subprocess.run(['make', 'build/five_colour_chunks'], cwd=ROOT, check=True)
-    DEST.mkdir(exist_ok=True)
+    dest.mkdir(parents=True, exist_ok=True)
     with tarfile.open(archive_file, 'r:gz') as archive:
         payloads = {case: archive.extractfile(f'case-{case}.q5p').read() for case in cases}
     with tempfile.TemporaryDirectory(prefix='q5-chunks-') as temp:
@@ -208,15 +213,39 @@ def main():
             subprocess.run([str(ROOT / 'build/five_colour_chunks'),
                             str(RESULTS / 'five-colour-geometry.txt'), str(case_file),
                             str(raw), str(case), '128', str(tsv)], check=True, capture_output=True)
-            return generate(case, rows[case], tsv, 128, cut_mode=args.cut_mode)
-        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            return generate(case, rows[case], tsv, 128, dest=dest, cut_mode=cut_mode)
+        with ThreadPoolExecutor(max_workers=workers) as pool:
             stats = list(pool.map(export, cases))
-    projected_aggregate(DEST, cases, rows)
+    projected_aggregate(dest, cases, rows)
     manifest = {'status': 'generated, not a verification record',
                 'module_group': 'ProjectedChunks', 'cases': stats}
-    (DEST / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
-    print(f"Generated {len(cases)} cases, {sum(s['chunks'] for s in stats)} chunks, "
+    (dest / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    return manifest
+
+
+def report(manifest, action):
+    stats = manifest['cases']
+    print(f"{action} {len(stats)} cases, {sum(s['chunks'] for s in stats)} chunks, "
           f"{sum(s['commands'] for s in stats):,} instructions.")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cut-mode', choices=['auto', 'original', 'reduced'], default='auto',
+                        help='auto reduces only cases with at least 4096 instructions')
+    parser.add_argument('--workers', type=int, default=2, help='concurrent C++ exporters')
+    parser.add_argument('--check', action='store_true', help='compare all retained files without writing them')
+    args = parser.parse_args()
+    if args.workers < 1:
+        parser.error('--workers must be positive')
+    if args.check:
+        with tempfile.TemporaryDirectory(prefix='q5-replay-check-') as temp:
+            generated = Path(temp) / 'ProjectedChunks'
+            manifest = generate_sources(generated, args.workers, args.cut_mode)
+            check_sources(generated, DEST)
+        report(manifest, 'Checked')
+    else:
+        report(generate_sources(DEST, args.workers, args.cut_mode), 'Generated')
 
 
 if __name__ == '__main__':

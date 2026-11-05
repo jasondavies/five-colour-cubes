@@ -233,7 +233,7 @@ theorem box_threshold (a b c n : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) (hc : 2 ≤ 
 theorem support_threshold (k : ℕ) (hk : 1 ≤ k) :
     IsLeast {v | SupportGuarantee k v} (if k = 1 then 8 else if k = 2 then 13 else 15) := by sorry
 
-/-- Every fourteen-source obstruction has maximum variety multiplicity five. -/
+/-- Every fourteen-source obstruction has maximum variety multiplicity at most five. -/
 theorem multiplicity_bound (cubes : Fin 14 → Cube)
     (hc : ∀ i, UsesAllColours (cubes i)) (hno : ¬ HasSolution cubes)
     (c : Cube) (hcol : UsesAllColours c) : copyCount cubes c ≤ 5 := by sorry

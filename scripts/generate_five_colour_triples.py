@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explicit witnesses for the 5,402 normalised three-variety candidates.
+"""Sixty residual witnesses after own-target and disjoint-pair reductions.
 
 Every positive record names a target whose coverage and private-position
 bounds certify a matching of distinct physical copies. Every negative record gives a global symmetry of one of five examples.
@@ -7,8 +7,7 @@ The Lean checker verifies both possibilities, rather than trusting enumeration.
 """
 import argparse,json
 from pathlib import Path
-from cube_witnesses import match_copies, ordered_anchor_symmetries
-from generate_five_colour_extremal import allocation
+from cube_witnesses import allocation, match_copies, ordered_anchor_symmetries
 ROOT=Path(__file__).resolve().parents[1]
 
 def render():
@@ -43,7 +42,7 @@ def tripleAnchor : Fin 2 → Fin 75 := ![0,3]
 inductive TripleReduction where
   | solve (target : Fin 75)
   | orbit (representative : Fin 5) (symmetry : Fin 16) (swap : Bool)
-  deriving Inhabited
+  deriving Inhabited, DecidableEq
 
 def TripleReduction.Valid (a b c : Fin 75) : TripleReduction → Prop
   | .solve t => TripleCriterion a b c t
@@ -53,45 +52,76 @@ def TripleReduction.Valid (a b c : Fin 75) : TripleReduction → Prop
 instance instDecidableTripleReductionValid (a b c : Fin 75) (w : TripleReduction) : Decidable (w.Valid a b c) := by
   cases w <;> unfold TripleReduction.Valid <;> infer_instance
 '''
-    tables=[];positive=0
-    for a in [0,3]:
-        rows=[]
+    def criterion(a,b,c,t):
+        x,y,z=(fits[t][i] for i in (a,b,c))
+        return ((x|y|z)==255 and (x & ~(y|z)).bit_count()<=4 and
+                (y & ~(x|z)).bit_count()<=5 and (z & ~(x|y)).bit_count()<=5)
+    records=[];counts=[]
+    for kind,a in enumerate([0,3]):
+        own=disjoint=residual=0
         for b in range(75):
-            row=[]
-            for c in range(75):
-                if b>=c or a in (b,c):w='default'
-                elif a==0 and (b,c) in orbit:
+            for c in range(b+1,75):
+                if a in (b,c):continue
+                if any(criterion(a,b,c,t) for t in (a,b,c)):
+                    own+=1;continue
+                if any(fits[i][j]==0 for i,j in [(a,b),(a,c),(b,c)]):
+                    disjoint+=1;continue
+                residual+=1
+                if a==0 and (b,c) in orbit:
                     j,g,swap=orbit[b,c];w=f'.orbit {j} {g} {str(swap).lower()}'
                 else:
-                    for t in dict.fromkeys([a,b,c]+list(range(75))):
-                        result=match(a,b,c,t)
-                        if result is not None:break
-                    assert result is not None,(a,b,c)
-                    positive+=1;w=f'.solve {t}'
-                row.append('('+w+')')
-            rows.append(vec(row))
-        tables.append(vec(rows))
-    assert positive==5346
-    text+='\ndef tripleReduction : Fin 2 → Fin 75 → Fin 75 → TripleReduction :=\n'+vec(tables)+'\n'
-    text+='\nend FiveColour.Physical\n'
+                    assert (a,b,c) in [(0,20,55),(0,21,68),(0,37,45),(0,40,60)]
+                    assert criterion(a,b,c,1) and match(a,b,c,1) is not None
+                    w='.solve 1'
+                records.append(f'⟨{kind},{b},{c},{w}⟩')
+        counts.append((own,disjoint,residual))
+    assert counts==[(2641,0,60),(2502,199,0)],counts
+    text += """
+/-- The own-target and disjoint-pair arguments leave this finite remainder. -/
+def TripleResidual (kind : Fin 2) (b c : Fin 75) : Prop :=
+  tripleAnchor kind ≠ b ∧ tripleAnchor kind ≠ c ∧ b < c ∧
+  ¬ TripleCriterion (tripleAnchor kind) b c (tripleAnchor kind) ∧
+  ¬ TripleCriterion (tripleAnchor kind) b c b ∧
+  ¬ TripleCriterion (tripleAnchor kind) b c c ∧
+  Replay.fits (tripleAnchor kind) b ≠ 0 ∧
+  Replay.fits (tripleAnchor kind) c ≠ 0 ∧ Replay.fits b c ≠ 0
+instance (kind : Fin 2) (b c : Fin 75) : Decidable (TripleResidual kind b c) := by
+  unfold TripleResidual; infer_instance
+
+structure TripleResidualRecord where
+  kind : Fin 2
+  b : Fin 75
+  c : Fin 75
+  reduction : TripleReduction
+  deriving DecidableEq
+"""
+    text+='\ndef tripleResiduals : List TripleResidualRecord := [\n'+',\n'.join(records)+']\n'
+    text+="""
+lemma triple_residuals_valid : ∀ w ∈ tripleResiduals,
+    w.reduction.Valid (tripleAnchor w.kind) w.b w.c := by decide +kernel
+
+end FiveColour.Physical
+"""
+    text=text.replace('public import FiveColour.ExtremalVarieties',
+                      'public import FiveColour.ExtremalVarieties\npublic import FiveColour.StabiliserData')
     output={'FiveColour/ExtremalTripleData.lean':text, 'FiveColour/ExtremalVarieties.lean':varieties}
     for kind in range(2):
         for block in range(3):
             text=pre.replace('FiveColour.ExtremalVarieties','FiveColour.ExtremalTripleData')
             for b in range(block*25,(block+1)*25):
-                text+=f'''\nlemma triple_reduction_{kind}_{b} : ∀ c : Fin 75,
-    {b} < c → tripleAnchor {kind} ≠ {b} → tripleAnchor {kind} ≠ c →
-      (tripleReduction {kind} {b} c).Valid (tripleAnchor {kind}) {b} c := by decide +kernel
-'''
+                text+=f"""\nlemma triple_residual_cover_{kind}_{b} : ∀ c : Fin 75,
+    TripleResidual {kind} {b} c → ∃ w ∈ tripleResiduals,
+      w.kind = {kind} ∧ w.b = {b} ∧ w.c = c := by decide +kernel
+"""
             output[f'FiveColour/ExtremalTripleChecks{kind}{block}.lean']=text+'\nend FiveColour.Physical\n'
-    text='module\n'+''.join(f'public import FiveColour.ExtremalTripleChecks{k}{g}\n' for k in range(2) for g in range(3))+'''@[expose] public section
+    text='module\n'+''.join(f'public import FiveColour.ExtremalTripleChecks{k}{g}\n' for k in range(2) for g in range(3))+"""@[expose] public section
 namespace FiveColour.Physical
 
-theorem triple_reductions_valid (kind : Fin 2) (b c : Fin 75)
-    (hbc : b < c) (hab : tripleAnchor kind ≠ b) (hac : tripleAnchor kind ≠ c) :
-    (tripleReduction kind b c).Valid (tripleAnchor kind) b c := by
+theorem triple_residuals_cover (kind : Fin 2) (b c : Fin 75)
+    (h : TripleResidual kind b c) :
+    ∃ w ∈ tripleResiduals, w.kind = kind ∧ w.b = b ∧ w.c = c := by
   fin_cases kind <;> fin_cases b
-'''+''.join(f'  · exact triple_reduction_{k}_{b} c hbc hab hac\n' for k in range(2) for b in range(75))+'end FiveColour.Physical\n'
+"""+''.join(f'  · exact triple_residual_cover_{k}_{b} c h\n' for k in range(2) for b in range(75))+'end FiveColour.Physical\n'
     output['FiveColour/ExtremalTripleChecks.lean']=text
     patterns=[([0,1,2],[0]),([0,1],[0,2]),([1,2],[0,1]),([1],[0,1,2])]
     cuts=[]
@@ -146,5 +176,5 @@ def main():
         if a.check:
             if path.read_text()!=data:raise SystemExit(f'{name} differs from regeneration')
         else:path.write_text(data)
-    print('Checked 5,402 normalised candidates: 5,346 target criteria and 56 orbit witnesses.')
+    print('Checked 5,402 candidates: 5,143 own targets, 199 disjoint pairs, 4 residual targets and 56 orbit witnesses.')
 if __name__=='__main__':main()

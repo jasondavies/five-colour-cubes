@@ -32,8 +32,8 @@ five-colour frame column left open by Berkove, Eickemeyer and Schulman
 formulation decides feasibility and constructs assemblies in time linear
 in the explicit source list. We also determine the corner thresholds when the
 number of source varieties is bounded, and show that the fourteen-cube
-obstructions using the minimum possible number of varieties form exactly
-five classes.
+obstructions using three varieties form exactly five classes under common
+colour relabelling and simultaneous reflection.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The research, code and manuscript were
 developed using GPT-6-Astra (OpenAI), through Codex, under the author's
@@ -535,6 +535,11 @@ source neighbours $D$, since none can miss all its positions. In each case
 Hall's inequality holds.
 \end{proof}
 
+\emph{Universal-copy consequence.} In a pool of $N\ge L$ sources, if each
+source misses at most $d$ of the $L$ positions and at least $d$ sources fit
+every position, a complete matching exists. This is the case $P_0=\varnothing$
+of Lemma~\ref{lem:partial-matching}.
+
 \begin{lemma}[Missing pairs and shared corners]\label{lem:cube-incidence}
 Every five-colour variety has eight distinct cyclic corner types.
 An adjacent-repeat variety lacks exactly one bichromatic edge type;
@@ -673,17 +678,19 @@ In namespace \path{FiveColour.Puzzle}, the unconditional endpoints are
 \path{box_frame_threshold} and \path{complete_box_threshold}, exported
 by \path{Solution.lean}.
 They use the project's physical box definitions and proper-rotation bridges.
-The separate Mathlib-only comparator challenge covers the corner problem;
-a full external comparator pass remains unconfirmed. The construction
+The separate Mathlib-only comparator challenge states thirteen claims covering
+the corner theorem, cuboids, support and extremal results; a complete external
+comparator pass remains unconfirmed. The construction
 algorithm's complexity bound is a mathematical consequence, not an additional
 Lean claim.
 
-The command \texttt{make verify-full} checks the computational audits,
-replays all projected certificates, builds the unconditional cuboid results
+Running \texttt{make verify-full} checks the computational audits, replays
+all projected certificates, builds the unconditional cuboid results
 and audits their axioms. The shorter \texttt{make check} does not reproduce
 the full theorem. Appendix~\ref{app:verification} gives the implementation
-and audit details; generated verification records belong to the release
-artifacts, rather than the versioned source.
+and audit details. Source-bound measurement and comparison summaries are
+retained under \path{verification/}; detailed machine-local logs accompany
+release artifacts.
 
 \section{Remaining questions}
 The classification in Section~\ref{sec:support} settles fourteen-cube

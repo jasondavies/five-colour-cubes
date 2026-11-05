@@ -24,7 +24,7 @@ theorem sharp_strip_of_threshold (h : Threshold15) {n : ℕ} (M : ℕ) (hM : 2 �
   classical
   by_contra hbox
   let d := 2*M+6
-  obtain ⟨t,corners,hf,z,hz,hedges⟩ := thin_target h d cubes hc (by omega) (by dsimp [d]; omega) (by dsimp [d]; omega)
+  obtain ⟨t,corners,hf,z,hz,hedges⟩ := thin_target h d cubes hc (by omega) (by dsimp [d]; omega)
   let axes := Equiv.swap (0 : Fin 3) z
   let l := Strip.Lengths axes M
   let fits := fun (i : Fin n) (p : RectSlot l) => RectFits (cubes i) (catalogue t) p

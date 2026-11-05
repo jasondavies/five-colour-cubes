@@ -32,7 +32,6 @@ def generate(root, check=False):
     cubes = [tuple(map(int, s.split())) for s in lines[1:76]]
     masks = [list(map(int, s.split())) for s in lines[76:]]
     assert len(cubes) == len(masks) == 75
-    index = {c: i for i, c in enumerate(cubes)}
     anchors = (3, 0)
 
     symmetries, actions, rotations = ordered_anchor_symmetries(cubes, anchors)
@@ -75,7 +74,7 @@ def generate(root, check=False):
                 eligible += 1
 
     emit('StabiliserData.lean', f'''module
-public import FiveColour.CoverMasks
+public import FiveColour.SymmetryAction
 @[expose] public section
 set_option maxRecDepth 100000
 set_option maxHeartbeats 0
@@ -125,6 +124,7 @@ end FiveColour.Physical
 ''')
     emit('CoverData.lean', '''module
 public import FiveColour.StabiliserData
+public import FiveColour.CoverMasks
 public import FiveColour.RootCapacityData
 @[expose] public section
 set_option maxRecDepth 100000

@@ -103,7 +103,8 @@ class DependencyStateTests(unittest.TestCase):
             self.assertEqual(verify_full.main(), 1)
         record = json.loads(next((self.root / 'build/verification').glob('*/record.json')).read_text())
         self.assertEqual(record['status'], 'failed')
-        self.assertEqual(len(record['steps']), 5)
+        self.assertEqual([s['target'] for s in record['steps']],
+                         ['check-code', 'check-lean', 'replay', 'check-extensions'])
         self.assertIn('dirty source tree', record['error'])
         self.assertIn('fixture', record['dependencies'])
 

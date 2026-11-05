@@ -96,8 +96,27 @@ lemma normalised_triple_class (kind : Fin 2) (b c : Fin 75)
     (hab : tripleAnchor kind ≠ b) (hac : tripleAnchor kind ≠ c) (hbc : b < c)
     (hno : ¬ HasSolution (tripleFamily (tripleAnchor kind) b c)) :
     ∃ j : Fin 5, SymmetryEquivalent (tripleFamily (tripleAnchor kind) b c) (extremalFamily j) := by
-  have hw := triple_reductions_valid kind b c hbc hab hac
-  cases he : tripleReduction kind b c with
+  have hbc' : b ≠ c := ne_of_lt hbc
+  have hm (i : Fin 75) (hi : i = tripleAnchor kind ∨ i = b ∨ i = c) :
+      4 ≤ multiplicity (tripleFamily (tripleAnchor kind) b c) i := by
+    rw [triple_multiplicity _ _ _ hab hac hbc']
+    rcases hi with rfl | rfl | rfl <;> simp_all <;> split_ifs <;> omega
+  have nonzero (i j : Fin 75) (hij : i ≠ j)
+      (hi : i = tripleAnchor kind ∨ i = b ∨ i = c)
+      (hj : j = tripleAnchor kind ∨ j = b ∨ j = c) : Replay.fits i j ≠ 0 := by
+    intro hz
+    exact hno (disjoint_pair_suffices _ (triple_uses_all _ _ _) i j hij hz (hm i hi) (hm j hj))
+  have hr : TripleResidual kind b c := ⟨hab,hac,hbc,
+    fun h => hno (triple_criterion_solves _ _ _ _ h),
+    fun h => hno (triple_criterion_solves _ _ _ _ h),
+    fun h => hno (triple_criterion_solves _ _ _ _ h),
+    nonzero _ _ hab (Or.inl rfl) (Or.inr (Or.inl rfl)),
+    nonzero _ _ hac (Or.inl rfl) (Or.inr (Or.inr rfl)),
+    nonzero _ _ hbc' (Or.inr (Or.inl rfl)) (Or.inr (Or.inr rfl))⟩
+  obtain ⟨w,hw,hkind,hb,hc⟩ := triple_residuals_cover kind b c hr
+  have hw := triple_residuals_valid w hw
+  rw [hkind,hb,hc] at hw
+  cases he : w.reduction with
   | solve w =>
     rw [he] at hw
     exact False.elim (hno (triple_criterion_solves _ _ _ w hw))

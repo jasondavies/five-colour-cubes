@@ -76,11 +76,11 @@ theorem rod_concentrated {n : ℕ} (M : ℕ) (hM : 3 ≤ M) (cubes : Fin n → C
 lemma rod_alternative (h : Threshold15) {n : ℕ} (M d : ℕ) (hM : 2 ≤ M)
     (cubes : Fin n → Cube) (hc : ∀ i, UsesAllColours (cubes i))
     (hn : 4*M+8 ≤ n) (hn15 : 15 ≤ n) (hd8 : 8 ≤ d)
-    (hMd : M+7 ≤ d) (hdmax : d ≤ 2*M+6) (hdn : 2*d ≤ n+1) (hfamily : 8+d ≤ n+1) :
+    (hMd : M+7 ≤ d) (hdmax : d ≤ 2*M+6) (hdn : 2*d ≤ n+1) :
     BoxFrameSolvable 2 2 (M+2) cubes ∨
       ∃ v : Fin 75, OppositeRepeat (catalogue v) ∧ n+1 ≤ (varietyCopies cubes v).card+2*M+6 := by
   classical
-  obtain ⟨t,corners,hf,a,ha,haxial,hedges⟩ := rod_target h d cubes hc hn15 hdn hfamily
+  obtain ⟨t,corners,hf,a,ha,haxial,hedges⟩ := rod_target h d cubes hc hn15 hdn
   let l := RodLengths a M
   let fits := fun (i : Fin n) (p : RectSlot l) => RectFits (cubes i) (catalogue t) p
   have htarget : RodTarget t a := ⟨ha,haxial⟩
@@ -117,7 +117,7 @@ lemma rod_alternative (h : Threshold15) {n : ℕ} (M d : ℕ) (hM : 2 ≤ M)
 theorem box224_of_threshold (h : Threshold15) {n : ℕ} (cubes : Fin n → Cube)
     (hc : ∀ i, UsesAllColours (cubes i)) (hn : 17 ≤ n) : BoxFrameSolvable 2 2 4 cubes := by
   rcases rod_alternative h 2 9 (by decide) cubes hc (by omega) (by omega)
-    (by decide) (by decide) (by decide) (by omega) (by omega) with hbox | ⟨v,ho,hv⟩
+    (by decide) (by decide) (by decide) (by omega) with hbox | ⟨v,ho,hv⟩
   · exact hbox
   · exact rod_universal 2 (by decide) cubes hc (by omega) v ho (by omega)
 
@@ -125,7 +125,7 @@ theorem sharp_rod_of_threshold (h : Threshold15) {n : ℕ} (M : ℕ) (hM : 3 ≤
     (cubes : Fin n → Cube) (hc : ∀ i, UsesAllColours (cubes i)) (hn : 4*M+8 ≤ n) :
     BoxFrameSolvable 2 2 (M+2) cubes := by
   rcases rod_alternative h M (2*M+4) (by omega) cubes hc hn (by omega)
-    (by omega) (by omega) (by omega) (by omega) (by omega) with hbox | ⟨v,ho,hv⟩
+    (by omega) (by omega) (by omega) (by omega) with hbox | ⟨v,ho,hv⟩
   · exact hbox
   · exact rod_concentrated M hM cubes hc hn v ho (by omega)
 end FiveColour.Physical
