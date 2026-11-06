@@ -22,8 +22,6 @@ def render():
                     and fits[t][i].bit_count() >= 4 and fits[t][j].bit_count() >= 4))
         targets.append(row)
     P,Q = [faces.index(c) for c in [(0,1,2,3,2,4),(0,3,1,2,4,1)]]
-    group = [faces.index(c) for c in [(0,0,1,2,3,4),(0,3,1,2,4,1),
-        (0,1,2,3,2,4),(0,1,2,3,3,4),(0,1,2,4,3,4)]]
     def missing(mask):
         return next(1 << k for k in range(8) if not mask & (1 << k))
     pairCuts=[]
@@ -48,9 +46,6 @@ def pairP : Fin 75 := {P}
 def pairQ : Fin 75 := {Q}
 def pairLowerCutMask : Fin 75 → ℕ := {vec(pairCuts)}
 def pairLowerCut (t : Fin 75) : Finset (Fin 8) := cornerSet (pairLowerCutMask t)
-
-/-- A, C and the three members of the B-group, in that order. -/
-def mixedRepresentatives : Fin 5 → Fin 75 := {vec(group)}
 
 end FiveColour.Physical
 '''

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install the exact bundled project dependencies without private GitHub access."""
+"""Install the bundled project dependencies at their exact pinned revisions."""
 import json
 from pathlib import Path
 import subprocess

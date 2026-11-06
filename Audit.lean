@@ -85,9 +85,6 @@ import FiveColour
 #print axioms FiveColour.Physical.pair_lower_no_solution
 #print axioms FiveColour.Physical.fourteen_requires_three
 #print axioms FiveColour.Physical.support_threshold_of_threshold
-#print axioms FiveColour.Physical.mixed_no_solution
-#print axioms FiveColour.Physical.mixed_representatives_faces
-#print axioms FiveColour.Physical.mixed_distribution_count
 #print axioms FiveColour.FrameHall.match_of_small_sets
 #print axioms FiveColour.FrameHall.match_of_universal_copies
 #print axioms FiveColour.FrameHall.match_of_partial

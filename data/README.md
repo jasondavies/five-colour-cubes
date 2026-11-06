@@ -58,10 +58,7 @@ All current Lean-table serializers support `--check`, as listed in the Makefile.
 `FiveColour/ProjectedChunks/`; `make replay` checks their complete assembly.
 Current reports belong under ignored `build/`, not in this input directory.
 
-The old 357-certificate archive, partial replay inventory, exact-search program
-and historical solver reports are retained in Git history through commit
-`aeb81d0`. They are not needed to reproduce the current proof. The retained
-`src/five_colour_boxes.cpp` can search for interval certificates for the current
+The optional developer tool `src/five_colour_boxes.cpp` can search for interval certificates for the current
 root file, but rerunning search is not required for verification. A new valid
 certificate archive may have different bytes and requires updating and checking
 its manifest; a solver timeout is never an exclusion proof.

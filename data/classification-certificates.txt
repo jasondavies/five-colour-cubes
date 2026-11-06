@@ -50,8 +50,9 @@ Commands
   make classification-replay WORKERS=2
     Replay all Lean roots, build the physical classification, and audit its
     axioms. Lake validates cached dependencies. Logs and status are under
-    build/classification-replay/. A complete run records the source hashes,
-    dependency trees and tool settings before and after verification. Failures
+    build/classification-replay/. A complete run records the initial source
+    hashes, dependency trees and tool settings, then checks that the final
+    values match those recorded snapshots. Failures
     and interruptions receive terminal records; a roots-only run is explicitly
     marked as partial. This is separate from the established threshold proof
     and its verification records.

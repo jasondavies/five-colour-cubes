@@ -16,7 +16,4 @@ def pairQ : Fin 75 := 49
 def pairLowerCutMask : Fin 75 → ℕ := ![1,1,1,1,1,1,1,1,1,1,2,1,4,1,1,4,253,4,1,1,1,2,8,1,1,1,1,1,1,1,2,2,1,1,4,4,2,2,1,1,1,1,2,1,1,1,2,1,1,251,128,2,2,1,4,1,1,1,1,4,1,2,1,1,1,1,1,2,1,1,1,1,4,1,1]
 def pairLowerCut (t : Fin 75) : Finset (Fin 8) := cornerSet (pairLowerCutMask t)
 
-/-- A, C and the three members of the B-group, in that order. -/
-def mixedRepresentatives : Fin 5 → Fin 75 := ![0,49,16,17,22]
-
 end FiveColour.Physical

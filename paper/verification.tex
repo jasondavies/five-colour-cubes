@@ -108,10 +108,10 @@ paper is used. The auxiliary eleven-cube missing-pair lemma remains in
 \path{FiveColour/RingEleven.lean}, with its multiplicity argument proved
 without enumerating collections.
 
-The small-support proofs check pair witnesses directly, without reducing
-them to five colour orbits, and use deficient corner sets for the two
-obstruction constructions. The modules are \path{SmallSupport.lean} and
-\path{MixedObstructions.lean} in the \path{FiveColour} directory.
+The small-support proofs in \path{FiveColour/SmallSupport.lean} check pair
+witnesses directly, without reducing them to five colour orbits. The general
+obstruction family is proved in \path{ExtremalFamilyTheorems.lean} using
+uniform deficient corner sets; it includes the 21-member subfamily.
 
 The full cuboid classification is formalised in
 \path{FiveColour/BoxThresholds.lean}. In namespace
@@ -186,9 +186,9 @@ These finite formal proofs supplement the elementary main-text arguments;
 no interval certificates are added or changed.
 
 \subsection{Reproduction}
-The dependency audits cover 146 declarations listed in \path{Audit.lean},
-twenty-four extension and submission statements listed in \path{ExtensionsAudit.lean}, and the
-final replay theorems. Their dependencies are confined to
+The dependency audits cover the declarations listed in \path{Audit.lean}
+and \path{ExtensionsAudit.lean}, together with the final replay theorems.
+Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
 and audits with:
 \begin{verbatim}
@@ -262,13 +262,3 @@ source-bound record and complete output are \path{verification/universal.json}
 and \path{verification/universal-output.txt}; the command
 \texttt{make} \path{check-comparator-universal} reproduces this restricted scope.
 A combined run of all fifteen claims remains to be recorded.
-
-The complete fourteen-cube classification is staged separately and is not
-included in this manuscript or the fifteen-claim comparator interface.
-Separate computational audits check its certificates, physical and orbit
-data, and generated Lean sources. Its Lean endpoint classifies obstructions
-by 56 concrete representatives. Their identification with the symbolic $51+4+1$ forms and the
-count of 11,430 labelled collections are supported by the mathematical
-arguments and a separate normal-form and orbit audit; they are not additional
-assertions of that Lean endpoint. Promotion awaits a completed replay and
-physical-endpoint axiom audit.

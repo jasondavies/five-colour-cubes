@@ -94,7 +94,7 @@ status:
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and
     complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
-    146 declarations; ExtensionsAudit.lean covers twenty-four unconditional
+    the shared proof declarations; ExtensionsAudit.lean covers unconditional
     extension and submission-interface statements.
     Solution.lean transfers the results to a Mathlib-only geometric Challenge.
     Its fifteen comparison targets include the corner threshold and sharpness,
@@ -197,8 +197,6 @@ fidelity:
     the publication measurement and its source-bound record are retained in
     verification/benchmark.json; detailed logs and further run records are
     ignored release artifacts.
-    Rosenfeld (2026), pp. 78-82, has been read: it presents a six-colour
-    eight-cube puzzle and does not state the five-colour thresholds.
     No human peer review or publication-priority claim is made.
 review:
   status: "Automated checks and AI review only; author and independent human review pending"

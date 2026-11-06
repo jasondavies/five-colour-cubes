@@ -97,10 +97,6 @@ replay-data: build/five_colour_chunks
 replay:
 	$(PYTHON) -u -S scripts/replay_five_colour_chunks.py --workers $(WORKERS)
 
-# Compatibility aliases for commands in earlier copies of the manuscript.
-projected-replay-data: replay-data
-projected-replay: replay
-
 check-comparator-lower:
 	./scripts/verify-comparator.sh --lower-bound
 
@@ -116,7 +112,7 @@ figure:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: check-replay-data FORCE verification-config help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower check-comparator-universal comparator paper
+.PHONY: check-replay-data FORCE verification-config help verify-full figure check-extensions all check-code check-lean check replay-data replay check-comparator-lower check-comparator-universal comparator paper
 
 build/five_colour_enumeration: src/five_colour_enumeration.cpp build/cxx-config.json
 	$(CXX) $(CXXFLAGS) $< -o $@

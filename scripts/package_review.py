@@ -94,40 +94,19 @@ Lean 4.35.0, Git, Python 3.12+, Make and a C++20/OpenMP compiler are required.
 Only the toolchain and public mathlib dependencies need network access. The shared
 colour-cubes-core dependency is bundled at its exact pinned Git revision.
 
-Checked conditional upper-bound theorem:
-  FiveColour.Physical.threshold_of_integer_root_exclusions
-  lake build FiveColour.CaseProblem
-Unconditional physical threshold and sharpness (retained replay sources):
-  FiveColour.Packed.ProjectedChunks.threshold15
-  FiveColour.Packed.ProjectedChunks.sharpThreshold15
-  lake build FiveColour.ProjectedChunks.Threshold
-Physical lower-bound theorem:
-  FiveColour.Physical.lower_bound
-  lake build FiveColour.LowerBound
-Cuboid classification (conditional on the corner threshold):
-  FiveColour.Physical.box_frame_threshold_iff
-  FiveColour.Physical.box_threshold_iff
-  lake build FiveColour.BoxThresholds
-Unconditional cuboid, larger-cube and support conclusions (after replay):
-  FiveColour.Puzzle.box_frame_threshold
-  FiveColour.Puzzle.complete_box_threshold
-  FiveColour.Puzzle.frame_bound
-  FiveColour.Puzzle.frame_threshold
-  FiveColour.Puzzle.full_cube
-  FiveColour.Puzzle.full_cube27
-  FiveColour.Puzzle.complete_cube_threshold
-  FiveColour.Puzzle.support_threshold
-  make check-extensions
-Complete lists of audited declarations: Audit.lean and ExtensionsAudit.lean
-  python3 -S scripts/audit_lean.py
+The archived README.md is the entry point for theorem statements, commands and
+verification scope. formalization.yaml records the formalisation and external
+comparison status. Audit.lean, ExtensionsAudit.lean, FiveColour/ProjectedChunks/Audit.lean and
+ClassificationAudit.lean list their separately audited declarations.
 
-The complete physical proof is reproduced by make verify-full, including
-all 279 certificates, final theorem assembly and unconditional cuboid results.
-The external comparator is optional and separate:
+make verify-full checks the established threshold route and its extensions.
+The staged complete classification is separate; see README.md and
+data/classification-certificates.txt for its commands and current status.
+The external comparison is also a separate command:
   make comparator
 
-No publication or Palomar submission is asserted. See README.md and the paper
-for the physical theorem statements and the scope of comparator checking.
+The paper and FiveColour/README.md explain the mathematical and formal models.
+No publication or hosted Palomar verification is asserted by this archive.
 """
     payload['SHA256SUMS'] = ''.join(f'{hashlib.sha256(data).hexdigest()}  {name}\n'
         for name, data in sorted(payload.items())).encode()

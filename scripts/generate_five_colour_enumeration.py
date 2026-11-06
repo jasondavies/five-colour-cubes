@@ -60,7 +60,7 @@ def reduced_families(row, geometry):
 def generate_case(i,row,original,points,hall_cuts,families,checkpoint,dest):
     lines=checkpoint.read_text().splitlines()
     used=sorted({int(x)-3 for line in lines for x in re.findall(r'\.(?:step|close) (\d+)',line) if int(x)>=3})
-    lo=[0]*75;hi=list(row[6:81]);lo[row[4]]=hi[row[4]]=row[1]
+    hi=list(row[6:81]);hi[row[4]]=row[1]
     buf=io.StringIO();w=buf.write
     w(f'''module
 public import FiveColour.EnumerationRoot
@@ -76,11 +76,14 @@ def points : List Nat := ['''+','.join(str(packed(v)) for v in points)+']\n')
     for t in used:
         cs=families[t];witnesses=[]
         for subset,(mask,rhs) in enumerate(hall_cuts[t],1):
-            lm=sum(lo[j] for j in range(75) if mask>>j&1)
+            # Only the anchor has a nonzero lower bound. Reduced masks omit
+            # it, so their lower-bound mass is zero.
+            lm = row[1] if mask >> row[4] & 1 else 0
             if lm>rhs or 14>rhs+sum(hi[j] for j in range(75) if not mask>>j&1):witnesses.append(0);continue
-            candidates=[k for k,(d,s) in enumerate(cs) if d&mask==d and rhs+sum(lo[j] for j in range(75) if d>>j&1)<=s+lm]
-            if not candidates:raise ValueError(('uncovered cut',i,t,subset))
-            witnesses.append(candidates[0])
+            candidate = next((k for k,(d,s) in enumerate(cs)
+                              if d & mask == d and rhs <= s + lm), None)
+            if candidate is None:raise ValueError(('uncovered cut',i,t,subset))
+            witnesses.append(candidate)
         w(f'def reduced{t} : Array Cut := #['+','.join(cut([j for j in range(75) if m>>j&1],r) for m,r in cs)+']\n')
         w(f'def witnesses{t} : List Nat := ['+','.join(map(str,witnesses))+']\n')
         w(f'''theorem valid{t} : ∀ c ∈ reduced{t}.toList, c.Valid := by

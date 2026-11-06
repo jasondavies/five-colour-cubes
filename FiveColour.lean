@@ -9,7 +9,6 @@ public import FiveColour.ComparatorBridge
 public import FiveColour.RootReduction
 public import FiveColour.ProjectedBridge
 public import FiveColour.FrameResults
-public import FiveColour.MixedObstructions
 public import FiveColour.BoxThresholds
 public import FiveColour.ExtremalClassification
 public import FiveColour.ExtremalFamilyTheorems

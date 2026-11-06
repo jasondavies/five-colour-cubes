@@ -38,9 +38,9 @@ unconditional cuboid results, with `make verify-full`.
 | `CaseCoverage.lean` | `Physical.physical_root_cover` places every counterexample with at least eleven copies in a transformed exported root box, with all root premises proved. |
 | `CaseProblem.lean` | Defines the 78 integer constraint families in archive order, proves their admissibility for a fifteen-cube counterexample, and derives the threshold conditionally on all integer root exclusions. |
 | `ArchiveCore.lean`, `ArchiveData.lean`, `ArchiveChecks*.lean` | Verifies the encodings and semantic fields of all 357 actual Q5P2 headers against the integer root model. |
-| `ArchiveBridge.lean` | Proves exact box and 78-family problem equivalence; supplies the threshold and sharp-threshold implications from all concrete archive exclusions. |
+| `ArchiveBridge.lean` | Supplies the root-bound and cut-model equivalences shared by the projected threshold proof and fourteen-cube enumeration. |
 | `RootContainment.lean` | Cut and box monotonicity, transport of complete integer root problems, and direct exclusion by an impossible initial budget. |
-| `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and supplies the reduced archive-to-threshold interface. Original case IDs are preserved. |
+| `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and derives the threshold from the retained integer exclusions. Original case IDs are preserved. |
 | `BudgetProjection.lean`, `RootProjection.lean`, `ProjectedChecks*.lean`, `ProjectedBridge.lean` | Proves deletion with fixed anchor, checks all 279 projected headers, and identifies their complete integer and packed models. |
 | retained generated `ProjectedChunks/Threshold.lean` | Checked unconditional physical threshold and sharpness theorems, composing all 279 certificate proofs. Outside the default build; reproduced by full projected replay. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
@@ -100,14 +100,12 @@ The geometric challenge and the proof's physical model express the same puzzle:
 The colour relabellings and global reflections in the case reduction transport
 whole hypothetical counterexamples and preserve solvability. They add no moves
 to `HasSolution`. All anchor-selection and cover premises are discharged in
-`counterexample_integer_root`; only the concrete archive exclusions remain in
-`Archive.threshold_of_exclusions`. The projected replay supplies these exclusions through the checked deletion
-lemma and retained-root coverage.
-Alternatively, `Physical.root_exclusions_of_reduced` recovers that same
-357-root interface from the 279 members of `Physical.replayRoots`.
-`Physical.counterexample_reduced_root` proves the corresponding physical
-coverage theorem, and `Archive.sharp_threshold_of_reduced_exclusions` uses
-only those archive exclusions. The membership and cardinality checks are
+`counterexample_integer_root`. `Physical.root_exclusions_of_reduced`
+recovers the original 357-root interface from the 279 members of
+`Physical.replayRoots`. The projected packed exclusions transfer to these
+retained integer roots through checked deletion and coverage;
+`Physical.threshold_of_reduced_root_exclusions` then gives the physical result.
+The membership and cardinality checks are
 kernel proofs; the generator merely proposes the finite witnesses.
 
 Regenerate or check the reduction with
@@ -158,12 +156,9 @@ The three checked interfaces describe successive stages of the same reduction:
 | 279 retained roots, with their original total and budget | `Physical.threshold_of_reduced_root_exclusions` | `RootReduction.lean` |
 | 279 projected packed problems | `Packed.Projected.sharp_threshold_of_exclusions` | `ProjectedBridge.lean` |
 
-`ArchiveBridge.lean` identifies the original packed root definitions with the integer
-roots through `Packed.Archive.root_model` and `problem_model`.
-`RootReduction.lean` also supplies
-`Packed.Archive.sharp_threshold_of_reduced_exclusions`, reusing original
-case IDs. The original 357 root definitions remain part of the coverage proof; their
-older certificate bodies and alternate replay implementations have been retired.
+`ArchiveBridge.lean` identifies the original packed bounds with integer roots
+through `Packed.Archive.root_model`, and supplies the shared cut-model lemmas.
+The original 357 root definitions remain part of the coverage proof.
 
 Original and projected integer problems specialise `Physical.caseProblem`,
 whose `caseProblem_admissible_iff` characterises the prescribed total, anchor
@@ -252,9 +247,8 @@ placement lemmas, adapted from the companion four-to-three development.
 transports that construction through the equal-length equivalence.
 `CubeModel.lean` retains the existing cube position definitions and cardinality
 lemmas. The complete-cube threshold remains max(n³,15) for every n≥2.
-The unused older reserve bound in `FrameReserve.lean` has been retired.
-`FramePools.lean` contains shared colour-pair helpers. `RareFrames.lean` remains
-because its definitions and reserve lemmas enter the current proof.
+`FramePools.lean` contains shared colour-pair helpers. `RareFrames.lean`
+supplies the missing-pair definitions and reserve lemmas used by the frame proof.
 
 `src/five_colour_fixed_pair.cpp` is a supplementary direct-rotation audit of
 the geometry and all 75,582 eleven-copy collections in one missing-pair family.
@@ -263,10 +257,11 @@ The Lean argument uses multiplicity inequalities rather than that enumeration.
 
 `SmallSupport.lean` proves thirteen cubes suffice with at most two varieties,
 checks the twelve-cube counterexample, and derives the exact support thresholds
-8, 13, 15. `MixedObstructions.lean` uses common deficient corner sets to rule
-out all 21 distributions in the fourteen-cube family. The untrusted witness
-generator is `scripts/generate_five_colour_support.py`; all witnesses are
-checked by the Lean kernel. The C++ program `src/five_colour_extensions.cpp`
+8, 13, 15. Its witness generator is `scripts/generate_five_colour_support.py`;
+all witnesses are checked by the Lean kernel. `ExtremalFamilyTheorems.lean`
+proves the general fourteen-cube obstruction family, including the
+21-member subfamily, using uniform deficient corner sets.
+The C++ program `src/five_colour_extensions.cpp`
 regenerates geometry separately and checks the five pair-orbit witnesses.
 
 The unconditional frame and complete-cube conclusions, and the combined
@@ -378,6 +373,8 @@ The replay driver always gives each case one Lean thread. Memory use
 increases with concurrent workers. Larger chunks can save a little time
 while increasing peak memory, so the production limit remains 128.
 
+### Developer tools
+
 For measurements on the retained archive, without reusing a cached case proof:
 
 ```sh
@@ -426,7 +423,3 @@ audit reports and GNU time measurements as a `verification-<commit>-<attempt>`
 artifact, including evidence from failed runs. Artifacts are retained for 90 days;
 download the successful record for the permanent submission archive. GNU time's
 maximum RSS is the largest process peak, not total concurrent build memory.
-
-The unprojected
-11,599,651-instruction archive over all 357 roots, partial replay routes, duplicate
-implementations and historical solver reports have been retired to Git history.

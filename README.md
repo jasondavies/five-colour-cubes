@@ -172,8 +172,6 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 
 Plain `make` runs the complete `verify-full` route. `make help` lists the main commands.
-The earlier `projected-replay-data` and `projected-replay` names are compatibility
-aliases for `replay-data` and `replay`; there is only one supported threshold replay route.
 
 `verify-full` records the source revision, working-tree changes (including
 removed files), source and generated-proof hashes, per-stage elapsed times, logs
