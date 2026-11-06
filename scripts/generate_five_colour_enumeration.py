@@ -23,24 +23,41 @@ ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/'FiveColour/EnumerationChunks'
 
 
-def reduced_families(row,geometry):
-    anchor,m=row[4],row[1]
-    active=sum(1<<i for i in range(75) if i!=anchor and row[6+i]>0)
-    result=[]
-    for masks in geometry:
-        best={}
-        for subset in range(1,256):
-            mask=sum(1<<i for i,g in enumerate(masks) if g&subset)
-            rhs=subset.bit_count()-1-(m if mask>>anchor&1 else 0)
-            if rhs<0:continue
-            mask &= active
-            best[mask]=max(best.get(mask,-1),rhs)
-        result.append([(a,r) for a,r in sorted(best.items())
-            if not any(b!=a and b&a==b and s>=r for b,s in best.items())])
-    return result
+class HallFamilies:
+    """Geometry-only cuts and reduced families shared by identical root keys."""
+    def __init__(self, geometry):
+        self.cuts = tuple(tuple(
+            (sum(1 << i for i, mask in enumerate(masks) if mask & subset),
+             subset.bit_count() - 1)
+            for subset in range(1, 256)) for masks in geometry)
+        self.cache = {}
+
+    def reduced(self, row):
+        anchor, multiplicity = row[4], row[1]
+        active = sum(1 << i for i in range(75) if i != anchor and row[6+i] > 0)
+        key = (anchor, multiplicity, active)
+        if key not in self.cache:
+            result = []
+            for cuts in self.cuts:
+                best = {}
+                for mask, rhs in cuts:
+                    rhs -= multiplicity if mask >> anchor & 1 else 0
+                    if rhs < 0:
+                        continue
+                    mask &= active
+                    best[mask] = max(best.get(mask, -1), rhs)
+                result.append(tuple((a, r) for a, r in sorted(best.items())
+                    if not any(b != a and b & a == b and t >= r for b, t in best.items())))
+            self.cache[key] = tuple(result)
+        return self.cache[key]
 
 
-def generate_case(i,row,original,points,geometry,families,checkpoint,dest):
+def reduced_families(row, geometry):
+    """Single-root convenience entry point used by the rejection controls."""
+    return HallFamilies(geometry).reduced(row)
+
+
+def generate_case(i,row,original,points,hall_cuts,families,checkpoint,dest):
     lines=checkpoint.read_text().splitlines()
     used=sorted({int(x)-3 for line in lines for x in re.findall(r'\.(?:step|close) (\d+)',line) if int(x)>=3})
     lo=[0]*75;hi=list(row[6:81]);lo[row[4]]=hi[row[4]]=row[1]
@@ -58,8 +75,7 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := Enumeration.fam
 def points : List Nat := ['''+','.join(str(packed(v)) for v in points)+']\n')
     for t in used:
         cs=families[t];witnesses=[]
-        for subset in range(1,256):
-            mask=sum(1<<j for j,g in enumerate(geometry[t]) if g&subset);rhs=subset.bit_count()-1
+        for subset,(mask,rhs) in enumerate(hall_cuts[t],1):
             lm=sum(lo[j] for j in range(75) if mask>>j&1)
             if lm>rhs or 14>rhs+sum(hi[j] for j in range(75) if not mask>>j&1):witnesses.append(0);continue
             candidates=[k for k,(d,s) in enumerate(cs) if d&mask==d and rhs+sum(lo[j] for j in range(75) if d>>j&1)<=s+lm]
@@ -130,16 +146,19 @@ def generate(dest,work,workers):
             if hashlib.sha256(payload).hexdigest()!=r['certificate_sha256']:raise ValueError('certificate hash mismatch')
             (work/f'case-{i}.q5p').write_bytes(payload)
     dest.mkdir(parents=True,exist_ok=True)
+    hall = HallFamilies(geometry)
+    # Populate once before workers: subsequent accesses are read-only.
+    root_families = [hall.reduced(row) for row in rows]
     def one(i):
         entry=info['roots'][i];points=[]
         for j in entry['terminals']:
             counts=Counter(info['terminals'][j]);points.append([counts[k] for k in range(75)])
-        fs=reduced_families(rows[i],geometry)
+        fs=root_families[i]
         ffile=work/f'families{i}.txt';pfile=work/f'points{i}.txt';tsv=work/f'chunks{i}.tsv'
         ffile.write_text('\n'.join(str(len(f))+'\n'+'\n'.join(f'{m&((1<<64)-1)} {m>>64} {r}' for m,r in f) for f in fs)+'\n')
         pfile.write_text(str(len(points))+'\n'+'\n'.join(' '.join(map(str,v)) for v in points)+'\n')
         subprocess.run([str(ROOT/'build/five_colour_enumeration'),str(ROOT/'data/five-colour-geometry.txt'),str(cases),str(work/f'case-{i}.q5p'),str(i),'128',str(tsv),str(ffile),str(pfile)],check=True,stdout=subprocess.DEVNULL)
-        return generate_case(i,rows[i],entry['original_root'],points,geometry,fs,tsv,dest)
+        return generate_case(i,rows[i],entry['original_root'],points,hall.cuts,fs,tsv,dest)
     with ThreadPoolExecutor(max_workers=workers) as pool:records=list(pool.map(one,range(349)))
     (dest/'manifest.json').write_text(json.dumps({'format':'Q5E1','cases':records,'commands':sum(r['commands'] for r in records),'chunks':sum(r['chunks'] for r in records)},indent=2)+'\n')
     # Keep groups small so the aggregate does not import hundreds of proofs into

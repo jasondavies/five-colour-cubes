@@ -285,6 +285,14 @@ pair. The cardinalities of the five disjoint source groups then sum to at
 least fifteen. `UniversalGeometry.lean` checks the small geometric facts and
 the four-type combinatorial lemma in the kernel.
 
+`UniversalStructure.lean` strengthens the necessity statement for a pool of
+size fifteen: its varieties are all distinct and adjacent-repeat, with exactly
+three sources per repeated colour. Their three smaller pairs form a spanning
+tree on the other four colours. The proof combines the physical supplier lemma
+with a kernel-checked three-pair lemma and Mathlib's tree criterion. These
+structural conclusions are included in `Audit.lean`, but are outside the
+current fifteen-claim comparator interface.
+
 The fifteen-source upper witness is the cyclic orbit of three face tuples in
 `Submission.universalFamily`. `UniversalData.lean` stores 75 injective copy
 assignments, checked against the physical incidence theorem and transported
@@ -400,7 +408,7 @@ The first command checks candidates only in C++. The second proves the selected
 complete certificate exclusions with the unchanged Lean checker, audits their
 axioms, and times standalone Lean replay of all concrete chunk-acceptance proofs.
 That last measurement isolates certificate execution; it is not the full
-full Comparator. Measurements include the candidate hashes and input
+Comparator. Measurements include the candidate hashes and input
 identities. Promoting candidates still requires complete verification and a new
 full Comparator run. Repeats alternate baseline and candidate order.
 

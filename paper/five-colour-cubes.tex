@@ -696,11 +696,9 @@ They use the project's physical box definitions and proper-rotation bridges.
 The separate Mathlib-only comparator challenge states fifteen claims covering
 the corner theorem, cuboids, support, extremal results and universal collections.
 The universal minimum and explicit construction are formalised independently
-of the interval certificates. The retained full external comparison covers
-the preceding thirteen-claim interface. The two new universal-collection
-claims separately passed comparison and both external kernels.
-Appendix~\ref{app:verification} distinguishes these records; a combined
-fifteen-claim run remains to be recorded.
+of the interval certificates. Appendix~\ref{app:verification} gives the precise
+scope and source identities of the retained external-comparison records;
+they do not yet include a combined run of the fifteen-claim interface.
 The construction
 algorithm's complexity bound is a mathematical consequence, not an additional
 Lean claim.
@@ -723,19 +721,20 @@ replacing the finite certificates used here. Finally, boxes with a side of
 length one fall outside the model, since a source there exposes opposite
 faces; their thresholds remain open.
 
-The \emph{Domino condition}, requiring touching interior faces to agree,
+The \emph{Domino condition}, requiring touching interior faces to agree
+\cite[Section~8]{BES},
 changes the guarantee fundamentally. For any fixed $a,b,c\ge2$, arbitrarily
 many copies of one adjacent-repeat variety cannot assemble a Domino frame
 or box. To see this, write that variety as $D=(r,p,r,q,s,t)$, with the five
 colours distinct. The corner encoding in Section~\ref{sec:support} determines
 a variety from its eight distinct corner types. An identical-source pool
 can therefore reproduce only $D$, up to a common proper rotation: containment
-of its eight corner types forces equality. Along the exterior edge joining
-the $p$ and $q$ faces, every source must align its unique $p$ and $q$ faces
+of its eight corner types forces equality. Along the edge common to
+the $p$- and $q$-faces, every source must align its unique $p$ and $q$ faces
 with the same two perpendicular directions. This fixes its proper orientation.
 Consecutive copies then meet with colour $s$ against colour $t$, which differ.
 The edge contains at least two cubes and is present in both a frame and a
-complete box. Thus there is no finite universal guarantee for arbitrary
+complete box. Thus there is no finite threshold for arbitrary
 multisets under the Domino condition. This observation concerns a different
 model and is not included in the Lean interface; its universal-collection
 questions are left for separate investigation.

@@ -7,7 +7,7 @@ only a search check: --measure kernel proves each selected root using the
 unchanged Lean checker and audits its axioms. --measure export additionally
 replays all concrete chunk-acceptance proofs in the standalone Lean kernel.
 That export measurement isolates certificate execution; it is NOT the full
-thirteen-claim Comparator or its complete soundness/geometry dependency closure.
+configured Comparator or its complete soundness/geometry dependency closure.
 
 Examples:
   python3 -S scripts/benchmark_five_colour_minimization.py --cases all

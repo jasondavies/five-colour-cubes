@@ -4,7 +4,8 @@
 The preceding family accounts for most, but not all, extremal obstructions.
 There are two further forms, both using six varieties. Throughout this
 subsection equivalence means common colour relabelling and optional
-simultaneous reflection of the collection.
+simultaneous reflection of the collection. A labelled collection keeps the
+five colour names fixed; identical physical copies remain indistinguishable.
 
 \paragraph{An all-adjacent family.}
 Choose a colour $o$, an ordered partition $P,Q$ of $V\setminus\{o\}$ into
@@ -19,14 +20,14 @@ Their tricoloured union omits exactly $Q\times P$. Its bidirected graph is
 the two triangles on $P\cup\{o\}$ and $Q\cup\{o\}$, sharing only $o$.
 It has no four-cycle, so no opposite-repeat target is covered. For any
 repeat other than $o$, the bicoloured corners fix the smaller pair of its
-unique triple-copy variety; the reverse cut requires a missing arc.
+unique three-copy variety; the reverse cut requires a missing arc.
 For repeat $o$, a smaller pair crossing $P,Q$ also requires a missing arc
 in either orientation. Thus precisely the six source varieties are covered.
 
-For $v\in P$, with $w$ the other member of $P$, the triple-copy target's
+For $v\in P$, with $w$ the other member of $P$, the three-copy target's
 private arcs are $vw,ow$. For $v\in Q$, with $w$ the other member of $Q$,
 they are $wv,wo$. Its two bicoloured corners are also private, since $\rho$
-is bijective. Each triple therefore faces four private positions, and each
+is bijective. Each three-copy variety therefore faces four private positions, and each
 singleton faces its two private bicoloured positions. Every target fails.
 
 The colour $o$ is recovered from the two singleton varieties, and the
@@ -66,7 +67,7 @@ $0\!-\!1\!-\!4\!-\!2\!-\!0$, corresponding to $O$. For each repeated colour,
 exactly two bicoloured corners occur. They fix the listed adjacent variety
 up to reversal, and every reverse requires a missing arc. These six
 varieties are therefore exactly the covered targets. The private
-tricoloured positions are $30,31,32,40$ for $X_0$, none for the $X_i$,
+tricoloured positions are $30,31,32,40$ for $X_0$, none for $X_1,X_2,X_3$,
 $10,14,20,24$ for $O$, and $12,13$ for $Y$; every adjacent target also has
 two private bicoloured positions. Each target needs one more copy than is
 available. The collection fails and its labelled orbit has size 240.
@@ -116,15 +117,14 @@ Hall deficiencies, the full symmetry group and pairwise inequivalence.
 The retained data give the displayed orbit and support counts.
 \end{proof}
 
-In particular, any fourteen-cube collection using at least seven varieties,
-or at most two copies of each variety, solves. The all-adjacent obstructions
+In particular, any fourteen-cube collection using at least seven varieties solves. The all-adjacent obstructions
 are exactly the derangement family.
 
 The classification also explains the corner threshold by a short deletion
 argument. Suppose an unsolvable fifteen-cube pool existed. Every deletion
 would be a classified fourteen-cube obstruction. If all sources were
 adjacent-repeat, every deletion would have profile $(3,3,3,3,1,1)$.
-A triple in one deletion came from multiplicity three or four in the
+A variety occurring three times in one deletion had multiplicity three or four in the
 original pool. Deleting from that variety in the first case, or from
 another variety in the second, leaves multiplicity two or four, both
 impossible.

@@ -50,11 +50,19 @@ Commands
   make classification-replay WORKERS=2
     Replay all Lean roots, build the physical classification, and audit its
     axioms. Lake validates cached dependencies. Logs and status are under
-    build/classification-replay/. This is separate from the established
-    threshold proof and its verification records.
+    build/classification-replay/. A complete run records the source hashes,
+    dependency trees and tool settings before and after verification. Failures
+    and interruptions receive terminal records; a roots-only run is explicitly
+    marked as partial. This is separate from the established threshold proof
+    and its verification records.
   make classification-data WORKERS=2
     Explicit regeneration; writes generated Lean sources.
 
 The example/orbit audit alone does not prove exhaustive coverage. A successful
 classification replay and final axiom audit are required for that claim.
 Neither operation runs an external-kernel comparator.
+
+The Lean endpoint uses 56 concrete representatives. The symbolic 51 + 4 + 1
+forms and the 11,430 labelled inventories are checked by the separate physical
+and orbit audit and explained in the mathematical notes; those counts and
+normal forms are not additional assertions of the current Lean endpoint.

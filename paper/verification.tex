@@ -186,7 +186,7 @@ These finite formal proofs supplement the elementary main-text arguments;
 no interval certificates are added or changed.
 
 \subsection{Reproduction}
-The dependency audits cover 144 declarations listed in \path{Audit.lean},
+The dependency audits cover 146 declarations listed in \path{Audit.lean},
 twenty-four extension and submission statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
@@ -232,7 +232,12 @@ universal-collection addition and excludes its new proofs.
 The universal lower bound counts three sources for each repeated colour.
 Small kernel-checked geometry relates the bicoloured types to physical sources;
 the upper bound checks 75 explicit matchings and transports them to arbitrary
-target orientations. These proofs do not use the interval certificates.
+target orientations. The minimum-collection structure in Corollary~\ref{cor:universal-structure}
+is proved in \path{UniversalStructure.lean}: the physical supplier argument
+reduces to a kernel-checked lemma about three pairs on four vertices, followed
+by the graph-theoretic tree criterion. These proofs do not use the interval
+certificates. The current comparator interface includes the minimum and the
+explicit universal construction, but not this structural corollary.
 
 A Mathlib-only comparator challenge independently states fifteen corner,
 cuboid, support, extremal and universal-collection claims. It defines varieties by proper rotations
@@ -255,5 +260,15 @@ The two universal-collection claims separately passed statement, definition
 and axiom comparison and both external kernels on 6 November 2026. Their
 source-bound record and complete output are \path{verification/universal.json}
 and \path{verification/universal-output.txt}; the command
-\texttt{make check-comparator-universal} reproduces this restricted scope.
+\texttt{make} \path{check-comparator-universal} reproduces this restricted scope.
 A combined run of all fifteen claims remains to be recorded.
+
+The complete fourteen-cube classification is staged separately and is not
+included in this manuscript or the fifteen-claim comparator interface.
+Separate computational audits check its certificates, physical and orbit
+data, and generated Lean sources. Its Lean endpoint classifies obstructions
+by 56 concrete representatives. Their identification with the symbolic $51+4+1$ forms and the
+count of 11,430 labelled collections are supported by the mathematical
+arguments and a separate normal-form and orbit audit; they are not additional
+assertions of that Lean endpoint. Promotion awaits a completed replay and
+physical-endpoint axiom audit.

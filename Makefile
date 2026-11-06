@@ -23,6 +23,8 @@ help:
 	@echo 'make check-replay-data   Check retained replay sources without rewriting them'
 	@echo 'make replay-data   Regenerate the 279 projected certificate proofs'
 	@echo 'make replay        Check those proofs and the final corner theorem; resumable'
+	@echo 'make check-classification-data   Audit the separate staged enumeration'
+	@echo 'make classification-replay   Check its full Lean classification and axioms'
 	@echo 'make paper         Compile the manuscript PDF'
 	@echo 'WORKERS=2 defaults to two concurrent certificate cases; each uses one Lean thread'
 
@@ -124,6 +126,7 @@ check-classification-data: build/five_colour_enumeration
 	$(PYTHON) -S scripts/generate_five_colour_classification.py --check
 	$(PYTHON) -S scripts/check_five_colour_classification.py
 	$(PYTHON) -S scripts/test_enumeration_checks.py
+	$(PYTHON) -S scripts/test_enumeration_driver.py
 	$(PYTHON) -S scripts/generate_five_colour_enumeration.py --check --workers $(WORKERS)
 
 classification-data: build/five_colour_enumeration

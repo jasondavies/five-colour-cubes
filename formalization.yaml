@@ -94,7 +94,7 @@ status:
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and
     complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
-    144 declarations; ExtensionsAudit.lean covers twenty-four unconditional
+    146 declarations; ExtensionsAudit.lean covers twenty-four unconditional
     extension and submission-interface statements.
     Solution.lean transfers the results to a Mathlib-only geometric Challenge.
     Its fifteen comparison targets include the corner threshold and sharpness,
@@ -102,6 +102,12 @@ status:
     classification, representative failure and inequivalence, and generalized
     obstruction family, and the universal minimum and cyclic construction.
     Universal.lean proves both bounds independently of the interval archive.
+    UniversalStructure.lean proves that every minimum universal collection
+    has distinct adjacent-repeat varieties and a spanning tree of smaller pairs
+    for each repeated colour; this corollary is outside the comparator interface.
+    The complete 56-representative classification is staged separately pending
+    full Lean replay and its physical-endpoint axiom audit; verify-full and the
+    fifteen-claim comparator do not certify that additional result.
     The independent Challenge defines physical rotation
     classes and copy counts without importing the catalogue. Its cuboid slots
     explicitly represent corners, edges, face interiors and interior positions.
@@ -118,7 +124,7 @@ status:
     A complete run of the expanded fifteen-claim interface remains to be recorded.
     The source-bound record and complete output are retained in
     verification/palomar.json and verification/comparator-output.txt.
-    The run took 7 hours 11 minutes 57 seconds using validated Lake build
+    The thirteen-claim run took 7 hours 11 minutes 57 seconds using validated Lake build
     artifacts, excluding a fresh project build. It exceeded the currently
     published 330-minute hosted execution budget; fitting that budget remains
     unresolved. The separate bounded con-ron check was not run.

@@ -87,7 +87,7 @@ relabelling and simultaneous reflection of the entire collection. Reflections
 remain forbidden as individual cube moves.
 
 The [multiplicity theorem](FiveColour/ExtremalMultiplicity.lean) and
-[complete classification](FiveColour/ExtremalClassification.lean) are formalised
+[three-variety classification](FiveColour/ExtremalClassification.lean) are formalised
 independently of the fifteen-cube certificate replay. The classification includes
 exhaustiveness, failure of each representative, and pairwise inequivalence.
 The [face-tuple dictionary](data/five-colour-extremal.json) lists representatives
@@ -114,12 +114,24 @@ be targets. Each such target has more corners that only its own variety fits
 than there are copies of that variety: five corners need A, with four copies,
 and six need B or C, with five copies each.
 
+The **56-class classification of all fourteen-cube obstructions is staged
+separately**. Its computational certificates and independent physical/orbit
+audits pass, but its complete Lean replay and physical-endpoint axiom audit
+remain pending. The [draft section](paper/classification.tex) is therefore not
+included in the manuscript PDF. The [classification route](data/classification-certificates.txt)
+is separate from `verify-full` and from the current fifteen-claim Comparator
+interface; neither certifies this additional result.
+
 ## Universal collections
 
 A smallest fixed collection capable of building **every prescribed target**
 has **15 cubes**, even if only the sixty adjacent-repeat targets are required.
 This differs from the threshold theorem, which lets the target depend on an
-arbitrary source collection. One universal collection consists of all five
+arbitrary source collection. Every minimum universal collection has distinct
+adjacent-repeat varieties; for each repeated colour, its three smaller pairs
+form a spanning tree on the other four colours. This necessity statement is
+proved in [UniversalStructure.lean](FiveColour/UniversalStructure.lean), separately
+from the current comparator interface. One universal collection consists of all five
 cyclic colour shifts of these three seeds (add 0 through 4 modulo 5 to every
 colour), in face order `+x,-x,+y,-y,+z,-z`:
 
@@ -155,11 +167,13 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 | `make replay-data` | Explicitly regenerates the retained Lean proof sources. Generation alone proves nothing. |
 | `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. The generated proof sources are retained. |
 | `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
+| `make check-classification-data` | Separately checks all 349 enumeration certificates, the physical/orbit data, rejection controls and retained generated sources. |
+| `make classification-replay` | Separately checks the complete 56-representative Lean classification and its axiom report. |
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 
 Plain `make` runs the complete `verify-full` route. `make help` lists the main commands.
 The earlier `projected-replay-data` and `projected-replay` names are compatibility
-aliases for `replay-data` and `replay`; there is only one supported replay route.
+aliases for `replay-data` and `replay`; there is only one supported threshold replay route.
 
 `verify-full` records the source revision, working-tree changes (including
 removed files), source and generated-proof hashes, per-stage elapsed times, logs
@@ -181,7 +195,7 @@ The corner proof is `FiveColour.Packed.ProjectedChunks.threshold15`, with
 reproducible with `make replay-data`. Audits permit only the standard axioms `propext`,
 `Classical.choice` and `Quot.sound`; the proof uses no `sorry` or `native_decide`.
 
-The multiplicity, classification and generalized-family theorems can be checked
+The multiplicity, three-variety classification and generalized-family theorems can be checked
 without generating or replaying interval certificates:
 
 ```sh
@@ -303,7 +317,7 @@ describes the workflow artifacts and what to preserve for a permanent release.
 
 [Challenge.lean](Challenge.lean) states 15 claims using only Mathlib: the corner
 threshold and sharpness, both cuboid thresholds, support thresholds, the
-multiplicity bound, the complete five-class classification and the generalized
+multiplicity bound, the five-class three-variety classification and the generalized
 obstruction family, and the universal minimum and construction. It defines varieties through proper rotations,
 not catalogue indices. The cuboid model specifies corners, edge positions,
 face interiors and interior positions by their exposed faces.
@@ -333,7 +347,7 @@ and axiom comparison, NanoDa and standalone Lean on 6 November 2026. Their
 are retained. `make check-comparator-universal` reproduces that two-claim scope.
 A complete run of the expanded fifteen-claim interface remains to be recorded.
 
-The run took **7 h 11 min 57 s** on an AMD Ryzen 7 9700X, using validated Lake
+The thirteen-claim run took **7 h 11 min 57 s** on an AMD Ryzen 7 9700X, using validated Lake
 build artifacts; this excludes a fresh project build. The serial Lean export
 replay accounts for most of that time. Both published
 [Palomar execution profiles](https://github.com/PalomarRegistry/PalomarSubmission/blob/main/execution-profiles.json)

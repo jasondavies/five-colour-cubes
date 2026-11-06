@@ -57,8 +57,6 @@ def main():
  text+='def action (g : Fin 240) (i : Fin 75) : Fin 75 := (actionData[g.val]!)[i.val]!\n'
  text+='def rotation (g : Fin 240) (i : Fin 75) : Fin 24 := (rotationData[g.val]!)[i.val]!\n'
  text+='def mirror (g : Fin 240) : Bool := g.val % 2 == 1\n'
- codes={sum(x*5**i for i,x in enumerate(p)):j for j,p in enumerate(perms)}
- text+='def permutationIndex : Array (Fin 120) := '+arr(codes.get(i,0) for i in range(3125))+'\n'
  text+='''lemma inverse_check : ∀ (g : Fin 240) (a : Fin 5),
     inverseColour g (colour g a) = a ∧ colour g (inverseColour g a) = a := by decide +kernel
 
@@ -80,13 +78,34 @@ lemma action_eq (g : Fin 240) (i : Fin 75) : varietyEquiv (symmetry g) i = actio
   rw [funext (faces g i)]
   exact catalogue_index_rotations _ _
 
-def permutationCode (p : Fin 5 → Fin 5) : Nat :=
-  (p 0).val + 5*(p 1).val + 25*(p 2).val + 125*(p 3).val + 625*(p 4).val
+def permutationDigit (p : Fin 5 → Fin 5) (i : Fin 5) : ℕ :=
+  (Finset.univ.filter fun j : Fin 5 => i < j ∧ p j < p i).card
+
+def permutationRank (p : Fin 5 → Fin 5) : ℕ :=
+  24 * permutationDigit p 0 + 6 * permutationDigit p 1 + 2 * permutationDigit p 2 + permutationDigit p 3
+
+lemma permutationRank_lt (p : Fin 5 → Fin 5) : permutationRank p < 120 := by
+  have h (i : Fin 5) : permutationDigit p i ≤ (Finset.univ.filter fun j : Fin 5 => i < j).card := by
+    apply Finset.card_le_card
+    intro j hj
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, (Finset.mem_filter.mp hj).2.1⟩
+  have h0 := h 0
+  have h1 := h 1
+  have h2 := h 2
+  have h3 := h 3
+  have e0 : (Finset.univ.filter fun j : Fin 5 => (0 : Fin 5) < j).card = 4 := by decide
+  have e1 : (Finset.univ.filter fun j : Fin 5 => (1 : Fin 5) < j).card = 3 := by decide
+  have e2 : (Finset.univ.filter fun j : Fin 5 => (2 : Fin 5) < j).card = 2 := by decide
+  have e3 : (Finset.univ.filter fun j : Fin 5 => (3 : Fin 5) < j).card = 1 := by decide
+  rw [e0] at h0
+  rw [e1] at h1
+  rw [e2] at h2
+  rw [e3] at h3
+  unfold permutationRank
+  omega
 
 def symmetryIndex (p : Fin 5 → Fin 5) (b : Bool) : Fin 240 :=
-  ⟨2*(permutationIndex[permutationCode p]!).val + (if b then 1 else 0), by
-    have := (permutationIndex[permutationCode p]!).isLt
-    split <;> omega⟩
+  ⟨2 * permutationRank p + (if b then 1 else 0), by have := permutationRank_lt p; split <;> omega⟩
 
 lemma complete_check : ∀ (p : Fin 5 → Fin 5) (b : Bool), Function.Injective p →
     colour (symmetryIndex p b) = p ∧ mirror (symmetryIndex p b) = b := by decide +kernel

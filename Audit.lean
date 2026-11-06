@@ -144,3 +144,6 @@ import FiveColour
 #print axioms FiveColour.Physical.adjacent_universal_minimum
 #print axioms FiveColour.Physical.universal_family_builds
 #print axioms FiveColour.Physical.universal_placements
+
+#print axioms FiveColour.Physical.minimum_universal_pair_trees
+#print axioms FiveColour.Physical.minimum_universal_distinct_adjacent
