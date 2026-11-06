@@ -298,13 +298,22 @@ are retained, so `lake build Solution` works without a separate generation step.
 `make comparator` runs the complete statement comparison with Lean's kernel and
 NanoDa, the two mandatory Palomar checkers. It exports the complete proof
 dependency closure and checks it again, so cached Lake artifacts do not make
-this comparison a cached verification. For the source snapshot identified in the retained comparison record, all
-thirteen statements and their shared definitions matched, and NanoDa accepted
-the full solution export. These external checks have not been repeated for the
-current proof consolidation. The separate
-serial Lean export replay did not finish within a local 330-minute budget shared
-with the fresh build and NanoDa check. See the [retained comparison record](verification/palomar.json).
-This is incomplete Palomar verification; no submission or registration is claimed.
+this comparison a cached verification. The full local run on commit
+`15be39de01c881d92f0714fec717f542a5078ccb` passed on 6 November 2026: all
+thirteen statements and their shared definitions matched, the permitted-axiom
+check passed, and both NanoDa and Lean's standalone kernel accepted the full
+solution export. All 506 Lean source files remain identical to that snapshot.
+The [comparison record](verification/palomar.json) binds the source files,
+actual dependency trees, tools and export; the [complete output](verification/comparator-output.txt)
+and [wall-clock record](verification/comparator-resources.txt) are retained too.
+
+The run took **7 h 11 min 57 s** on an AMD Ryzen 7 9700X, using validated Lake
+build artifacts; this excludes a fresh project build. The serial Lean export
+replay accounts for most of that time. Both published
+[Palomar execution profiles](https://github.com/PalomarRegistry/PalomarSubmission/blob/main/execution-profiles.json)
+currently allow 330 minutes. This local pass therefore does not establish that
+verification fits the hosted budget; that needs resolving before submission.
+No hosted Palomar verification, submission or registration is claimed.
 The narrower `make check-comparator-lower` checks only the face rule and lower
 bound. Palomar also attempts a separate, bounded con-ron check; a recognized
 support or capacity decline is distinguished from a rejection.
@@ -317,8 +326,12 @@ support or capacity decline is distinguished from a rejection.
 - `scripts/`: reproducible serializers, independent audits and verification driver.
 - `src/`: certificate checker, exporter, interval search and geometric audits.
 
-The research and manuscript were developed with AI assistance under Jason
-Davies's direction; see the disclosure in the paper. Author mathematical review
+GPT-6-Astra (OpenAI), through Codex, developed the arguments, computational
+search, verification programs, Lean formalisation and manuscript under Jason
+Davies's direction. Claude Opus 5.5 (Anthropic), through Claude Code,
+contributed illustrations, the migration to the shared `colour-cubes-core`
+library, and manuscript review and editing. The author takes responsibility
+for the content; see the disclosure in the paper. Author mathematical review
 and submission approval are pending. Automated checks are not independent
 human peer review. Before publication, freeze the source revision, run full
 verification, and archive the source, manuscript and verification record with

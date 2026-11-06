@@ -35,10 +35,11 @@ number of source varieties is bounded, and show that the fourteen-cube
 obstructions using three varieties form exactly five classes under common
 colour relabelling and simultaneous reflection.
 \end{abstract}
-\noindent\small\textit{AI transparency.} The research, code and manuscript were
-developed using GPT-6-Astra (OpenAI), through Codex, under the author's
-direction. This working manuscript has not received independent human peer
-review; Section~\ref{sec:formal} states the formal verification scope.
+\noindent\small\textit{AI transparency.} This work used GPT-6-Astra (OpenAI)
+through Codex and Claude Opus 5.5 (Anthropic) through Claude Code, under the
+author's direction; their contributions are detailed in the closing disclosure.
+It has not received independent human peer review.
+Section~\ref{sec:formal} states the formal verification scope.
 \normalsize
 
 \section{Introduction}
@@ -689,8 +690,10 @@ In namespace \path{FiveColour.Puzzle}, the unconditional endpoints are
 by \path{Solution.lean}.
 They use the project's physical box definitions and proper-rotation bridges.
 The separate Mathlib-only comparator challenge states thirteen claims covering
-the corner theorem, cuboids, support and extremal results; a complete external
-comparator pass remains unconfirmed. The construction
+the corner theorem, cuboids, support and extremal results. The full local
+comparison passed, with the complete proof export accepted by both NanoDa and
+Lean's standalone kernel; Appendix~\ref{app:verification} records its scope.
+The construction
 algorithm's complexity bound is a mathematical consequence, not an additional
 Lean claim.
 
@@ -713,10 +716,13 @@ length one fall outside the model, since a source there exposes opposite
 faces; their thresholds remain open.
 
 \section*{AI disclosure and review status}
-GPT-6-Astra (OpenAI), used through Codex, developed the arguments, search and
-verification programs, Lean formalisation and manuscript under the human
-author's direction. The author initiated and directed the research. Author
-review and submission approval of this working manuscript are pending.
+GPT-6-Astra (OpenAI), used through Codex, developed the arguments, computational
+search, verification programs, Lean formalisation and manuscript under the
+author's direction. Claude Opus 5.5 (Anthropic), used through Claude Code,
+contributed illustrations, the migration to the shared
+\path{colour-cubes-core} library, and review and editing of the manuscript.
+The author initiated and directed the research and takes responsibility for
+the content. Author review and submission approval are pending.
 The inherited geometry has its own provenance in the pinned dependency.
 Automated checks and AI review are not independent human peer review.
 

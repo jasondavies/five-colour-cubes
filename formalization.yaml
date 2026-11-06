@@ -104,13 +104,18 @@ status:
     classes and copy counts without importing the catalogue. Its cuboid slots
     explicitly represent corners, edges, face interiors and interior positions.
     SubmissionBridge.lean proves agreement with the proof models.
-    For the source snapshot recorded in verification/palomar.json, all thirteen
-    statements and shared definitions matched, and NanoDa accepted
-    the full export. These external checks have not been repeated for the current proof consolidation.
-    The separate serial Lean export replay did not finish
-    within the combined local 330-minute build/comparison budget. The source-bound
-    evidence is retained in verification/palomar.json. The fresh complete Lean
-    build passed; no complete Palomar verification is claimed.
+    The full local Comparator run at commit
+    15be39de01c881d92f0714fec717f542a5078ccb passed on 6 November 2026.
+    All thirteen statements and shared definitions matched, the permitted-axiom
+    check passed, and both NanoDa and Lean's standalone kernel accepted the
+    complete export. All 506 Lean source files remain identical to that snapshot.
+    The source-bound record and complete output are retained in
+    verification/palomar.json and verification/comparator-output.txt.
+    The run took 7 hours 11 minutes 57 seconds using validated Lake build
+    artifacts, excluding a fresh project build. It exceeded the currently
+    published 330-minute hosted execution budget; fitting that budget remains
+    unresolved. The separate bounded con-ron check was not run.
+    No hosted Palomar verification is claimed.
     No Palomar submission exists. The thirteen intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
@@ -132,15 +137,23 @@ automation:
         spend_usd: "not tracked"
         hardware: "local CPU"
       prompting_notes: "Publishable research, efficient compiled solvers, Lean formalisation and a standalone paper repository."
+    - method: agent
+      models: ["Claude Opus 5.5 (Anthropic)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        Contributed illustrations, the migration to the shared colour-cubes-core
+        library, and review and editing of the manuscript under the author's direction.
   spend_usd: "not tracked"
   notes: >-
     GPT-6-Astra (OpenAI), used through Codex, developed the research and
-    manuscript under Jason Davies's direction. Author review and submission
+    manuscript under Jason Davies's direction. Claude Opus 5.5 (Anthropic),
+    used through Claude Code, contributed illustrations, the migration to the
+    shared colour-cubes-core library, and manuscript review and editing.
+    The author takes responsibility for the content. Author review and submission
     approval of this draft are pending. Upstream geometry has the separate
     attribution recorded in its pinned repository. The generic frame-completion
     argument is adapted from the companion four-to-three development, without
-    importing its catalogue or threshold theorem. No other model is claimed
-    as a contributor to this manuscript. No native_decide is used.
+    importing its catalogue or threshold theorem. No native_decide is used.
 fidelity:
   divergences: >-
     Both the paper and Lean prove the complete physical sharp threshold.

@@ -228,20 +228,19 @@ The retained record \path{verification/benchmark.json} identifies source snapsho
 \texttt{42aa7b64b15a}, with the full source manifest, archive digest,
 dependency trees and tool settings. Its Lean sources are those of this proof.
 
-A Mathlib-only comparator challenge states thirteen claims: the corner
-threshold and sharpness, both cuboid thresholds, support thresholds, the
-multiplicity bound, the five-class classification including representative
-failure and inequivalence, and the generalized obstruction family. It defines
-varieties by proper rotations and counts physical copies without a catalogue.
-The cuboid model explicitly specifies corners, edges, face interiors and
-interior positions with their exposed faces. The bridges in
+A Mathlib-only comparator challenge independently states the thirteen corner,
+cuboid, support and extremal claims. It defines varieties by proper rotations
+and counts physical copies without catalogue indices; cuboid slots specify
+their exposed faces. The bridges in
 \path{FiveColour/ComparatorBridge.lean} and
 \path{FiveColour/SubmissionBridge.lean} identify these statements with the
-proof models. The generated replay sources are retained for clean Lake builds.
-For the source snapshot identified in \path{verification/palomar.json}, the
-thirteen statements and their shared definitions matched, and NanoDa accepted
-the full solution export. These external checks have not been repeated for
-the current proof consolidation. The separate serial Lean export replay did
-not finish within a local 330-minute budget shared with the fresh build and
-NanoDa check. The record is \path{verification/palomar.json}; no completed
-Palomar verification or registration is claimed.
+proof models.
+The full local comparison at commit \texttt{15be39de01c8} passed on
+6 November 2026: all thirteen statements, shared definitions and permitted
+axioms passed comparison, and both NanoDa and Lean's standalone kernel accepted
+the complete export. Its 506 Lean source files are unchanged. The run took
+7 hours 11 minutes 57 seconds on an AMD Ryzen 7 9700X, using validated Lake
+build artifacts and excluding a fresh project build. The source-bound record
+and full output are retained under \path{verification/}, in
+\path{palomar.json} and \path{comparator-output.txt}. No hosted Palomar result or
+registration is claimed.
