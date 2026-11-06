@@ -1,0 +1,8 @@
+module
+public import FiveColour.ClassificationSubmission
+#print axioms FiveColour.Physical.Classification.physical_reduction
+#print axioms FiveColour.Physical.Classification.representative_fails
+#print axioms FiveColour.Physical.Classification.representative_inequivalent
+#print axioms FiveColour.Physical.Classification.complete_classification
+#print axioms FiveColour.Physical.Classification.classification_iff
+#print axioms FiveColour.Submission.complete_extremal_classification

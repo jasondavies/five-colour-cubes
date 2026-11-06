@@ -1,0 +1,60 @@
+FOURTEEN-CUBE ENUMERATION CERTIFICATES
+
+The retained classification consists of 349 normalized root certificates.
+The roots are the original 357-root cover restricted to anchor multiplicity
+at most five, with total size fourteen. The independent physical multiplicity
+lemma excludes the other eight roots. No fifteen-cube threshold assumption
+is used in this reduction.
+
+Files
+  five-colour-classification.json
+    56 representatives, 75 Hall deficiencies per representative, 81 normalized
+    terminal inventories, original-root indices, and certificate hashes.
+  five-colour-classification-certificates.tar.gz
+    Exactly case-0.q5p through case-348.q5p. These use the Q5E1 format below.
+  FiveColour/EnumerationChunks/
+    Generated Lean source: 5,150,973 instructions in 48,543 checkpoints.
+    Generated source is retained so verification need not rewrite it.
+
+Certificate format
+  Magic Q5E1, followed by the 156-byte normalized root header. Each subsequent
+  instruction starts with an opcode and argument byte. Opcode 0 closes with its indicated family (255
+  means inconsistent total bounds); opcode 1 splits its argument coordinate
+  at a third byte's threshold; opcode 2 refines using a family; opcode 3 closes an exact
+  singleton box that must belong to the explicit terminal list.
+
+  Split records use the existing preorder tree convention. The independent
+  C++ reader rejects invalid instructions, truncated streams, trailing bytes,
+  unsupported singleton points, and a terminal set different from the input
+  list. Bounds and every root-wise weakening are checked during replay.
+
+Lean proof
+  PackedEnumeration extends the interval proof checker with the singleton
+  leaf. Its conclusion is coverage by a list of explicit vectors, not
+  exclusion of the root. Its soundness proof reuses the verified arithmetic,
+  refinement and splitting rules. Checkpoints require exact bound agreement.
+
+  EnumerationRoot connects the root families to the physical fourteen-cube
+  problem. ClassificationReduction uses the general anchored Hall cover and
+  the independent multiplicity-five theorem. EnumerationCoverage joins all
+  349 root proofs. ClassificationCore checks terminal counts and the failure
+  witnesses. ClassificationOrbits connects each terminal to a representative
+  and proves pairwise inequivalence using all 240 global symmetries, whose
+  completeness is separately proved. Classification56 combines these into a
+  unique-class characterization of failing physical collections.
+
+Commands
+  make check-classification-data WORKERS=2
+    Independently audit physical failures and symmetry orbits, replay the
+    binary archive in C++, and compare regenerated Lean sources read-only.
+  make classification-replay WORKERS=2
+    Replay all Lean roots, build the physical classification, and audit its
+    axioms. Lake validates cached dependencies. Logs and status are under
+    build/classification-replay/. This is separate from the established
+    threshold proof and its verification records.
+  make classification-data WORKERS=2
+    Explicit regeneration; writes generated Lean sources.
+
+The example/orbit audit alone does not prove exhaustive coverage. A successful
+classification replay and final axiom audit are required for that claim.
+Neither operation runs an external-kernel comparator.

@@ -28,6 +28,7 @@ Lean verifies the same rules and their soundness; the exporter is untrusted.
 | `q5-root-reduction.json` | Checked containments and arithmetic exclusions leaving 279 roots. |
 | `q5-projected-root-*`, `q5-projected-certificates.tar.gz` | Current projected problems, mappings, witnesses and certificates. |
 | `five-colour-extremal.json` | Face tuples, repeat colours and orbit sizes for all five three-variety obstruction classes. |
+| `five-colour-universal.json` | Three cyclic seeds, fifteen distinct source varieties and 75 physical-copy matchings. |
 | `q5-three-variety-obstruction.json` | The fourteen-cube lower-bound witness and manuscript figure input. |
 | `q5-local-distinct.json`, `q5-distinct-known-control.txt` | An independently checked failing eleven-cube pool and a root containing it; invalid closing claims must be rejected. |
 
@@ -64,3 +65,21 @@ and historical solver reports are retained in Git history through commit
 root file, but rerunning search is not required for verification. A new valid
 certificate archive may have different bytes and requires updating and checking
 its manifest; a solver timeout is never an exclusion proof.
+
+`five-colour-universal.json` records the three cyclic seeds, fifteen source
+indices and 75 eight-copy matchings. `generate_five_colour_universal.py --check`
+reproduces it and `UniversalData.lean`. The independent
+`check_five_colour_universal.py` reconstructs rotations, all 75 varieties and
+physical compatibility, checks the advertised data and every Hall subset,
+and writes its report under `build/checks/`.
+
+`five-colour-classification.json` and
+`five-colour-classification-certificates.tar.gz` contain the separate
+fourteen-cube enumeration: 349 roots, 81 terminal inventories and 56 symmetry
+representatives. See [classification-certificates.txt](classification-certificates.txt)
+for the format, proof connections and commands. `make check-classification-data`
+checks the archive and generated sources without rewriting them;
+`make classification-replay` builds the physical classification and audits its
+axioms. This route has its own verification record under
+`build/classification-replay/`; the existing threshold verification records do
+not certify this additional result.

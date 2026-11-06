@@ -112,6 +112,30 @@ abbrev Cube := FiveColour.Puzzle.Cube
 abbrev UsesAllColours := FiveColour.Puzzle.UsesAllColours
 abbrev HasSolution := @FiveColour.Puzzle.HasSolution
 
+/-- Equal colours on two faces from different coordinate axes. -/
+def AdjacentRepeat (c : Cube) : Prop :=
+  ∃ f g : Fin 6, f.val / 2 ≠ g.val / 2 ∧ c f = c g
+
+/-- One fixed pool builds every prescribed target; each assembly may select
+different physical copies and proper rotations. -/
+def Universal {n : ℕ} (cubes : Fin n → Cube) : Prop :=
+  ∀ target : Cube, UsesAllColours target → ColourCubes.Builds cubes target
+
+/-- Universality restricted to adjacent-repeat targets. -/
+def AdjacentUniversal {n : ℕ} (cubes : Fin n → Cube) : Prop :=
+  ∀ target : Cube, UsesAllColours target → AdjacentRepeat target →
+    ColourCubes.Builds cubes target
+
+def universalSeed : Fin 3 → Cube :=
+  ![![0,2,0,3,1,4], ![0,2,0,4,3,1], ![0,3,0,4,1,2]]
+
+/-- All five cyclic colour shifts of the three seeds. -/
+def universalFamily (i : Fin 15) : Cube :=
+  fun f => universalSeed ⟨i.val % 3, Nat.mod_lt _ (by decide)⟩ f +
+    ⟨i.val / 3, (Nat.div_lt_iff_lt_mul (by decide)).mpr i.isLt⟩
+
+
+
 /-- All exposed faces of a position must match one properly rotated source. -/
 def FacesFit (source target : Cube) (faces : Finset (Fin 6)) : Prop :=
   ∃ r : Fin 6 → Fin 6, ColourCubes.ProperRotation r ∧
@@ -257,5 +281,19 @@ theorem generalized_obstructions (x y : Fin 3 → ℕ)
     (hx : ∑ i, x i = 5) (hy : ∑ i, y i = 5) :
     (∀ i, UsesAllColours (generalizedFamily x y i)) ∧
       (¬ HasSolution (generalizedFamily x y) ↔ x 0 * y 1 = 0 ∧ x 2 * y 2 = 0) := by sorry
+
+/-- A fixed pool of fifteen distinct adjacent-repeat varieties builds every target. -/
+theorem universal_collection :
+    (∀ i, UsesAllColours (universalFamily i)) ∧
+    (∀ i, AdjacentRepeat (universalFamily i)) ∧
+    (∀ i j, SameVariety (universalFamily i) (universalFamily j) → i = j) ∧
+    Universal universalFamily := by sorry
+
+/-- The minimum is fifteen, even when only adjacent-repeat targets are required. -/
+theorem universal_minimum :
+    IsLeast {n : ℕ | ∃ cubes : Fin n → Cube,
+      (∀ i, UsesAllColours (cubes i)) ∧ Universal cubes} 15 ∧
+    IsLeast {n : ℕ | ∃ cubes : Fin n → Cube,
+      (∀ i, UsesAllColours (cubes i)) ∧ AdjacentUniversal cubes} 15 := by sorry
 
 end FiveColour.Submission

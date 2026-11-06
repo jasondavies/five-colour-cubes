@@ -22,3 +22,5 @@ import Solution
 #print axioms FiveColour.Submission.extremal_examples
 #print axioms FiveColour.Submission.extremal_inequivalent
 #print axioms FiveColour.Submission.generalized_obstructions
+#print axioms FiveColour.Submission.universal_collection
+#print axioms FiveColour.Submission.universal_minimum

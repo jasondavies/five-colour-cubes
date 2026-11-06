@@ -140,3 +140,7 @@ import FiveColour
 #print axioms FiveColour.Physical.extremal_inequivalent
 #print axioms FiveColour.Physical.generalized_no_solution_iff
 #print axioms FiveColour.Physical.generalized_uses_all
+#print axioms FiveColour.Physical.universal_three_per_colour
+#print axioms FiveColour.Physical.adjacent_universal_minimum
+#print axioms FiveColour.Physical.universal_family_builds
+#print axioms FiveColour.Physical.universal_placements

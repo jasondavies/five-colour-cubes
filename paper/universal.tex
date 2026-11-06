@@ -1,0 +1,61 @@
+\section{Universal collections}\label{sec:universal}
+Universal sets for four-colour cubes were studied in~\cite[Section~6]{BES}.
+A collection is \emph{universal} if, for every five-colour target variety,
+eight of its copies can form a corner solution of that variety. The chosen
+copies and their placements may depend on the target. The palette is fixed,
+and only proper rotations are allowed, as before.
+
+\begin{theorem}\label{thm:universal}
+The minimum size of a universal collection is $15$, attained by fifteen
+distinct adjacent-repeat varieties. Requiring only the sixty adjacent-repeat
+targets already forces this minimum.
+\end{theorem}
+\begin{proof}
+For each colour $r$, universality requires all four bicoloured corner types
+$b(r,p)$, $p\ne r$. Only adjacent-repeat sources repeating $r$ can supply
+them, and each such source supplies exactly two. If there were at most two
+such copies, covering all four types would force exactly two copies with
+disjoint pairs of types. A target whose bicoloured pair equals either pair
+would then require two copies from a pool of one. Thus at least three
+adjacent-repeat sources are needed for each of the five repeated colours,
+giving the lower bound $15$. A minimum universal collection therefore has
+exactly three adjacent-repeat sources of each repeated colour and no
+opposite-repeat sources.
+
+For the upper bound, use the directed-corner notation of
+Section~\ref{sec:support} and read the colours modulo $5$. For every $r$ and
+$p\notin\{r,r+1\}$, take the positive adjacent-repeat variety with repeated
+colour $r$ and smaller pair $\{r+1,p\}$. These are fifteen distinct varieties.
+For each $r$, their bicoloured pairs form a three-edge star on the other
+four colours, so any two required bicoloured corners can be assigned to
+distinct sources.
+
+Represent each source by its smaller pair in an auxiliary multigraph on the
+five colours. Pairs consecutive in the colour cycle occur once and the other
+pairs twice. Every vertex therefore has degree six, and every pair has
+multiplicity at most two. A source supplies the tricoloured corner $uv$
+exactly when its pair contains $u$ but not $v$. Hence one arc has at least
+four neighbouring sources. Two distinct arcs have at least six: if their
+tails agree, their neighbourhood union contains all six incident sources;
+otherwise each has at least four neighbours and their intersection has at
+most two.
+
+The tricoloured corners of any target have at most four tails and at most
+three arcs per tail. A set of at least five such corners therefore contains
+two arcs with the same tail and one with a different tail. Their neighbourhood
+union has size at least $6+4-2=8$. Thus a set of $k$ tricoloured target corners
+has at least
+\[
+\begin{array}{c|ccc}
+ k&1&2\text{--}4&5\text{--}8\\\hline
+ \text{neighbouring sources}&4&6&8
+\end{array}
+\]
+sources. For an opposite-repeat target these bounds imply every Hall
+inequality. For an adjacent-repeat target, a Hall set with $k\ge1$
+tricoloured corners has at most $k+2$ positions, and $k\le6$; the same bounds
+again suffice. Sets containing only bicoloured corners were handled by the
+star construction. Hall's theorem completes every target.
+\end{proof}
+
+Both bounds are independent of the certified fifteen-cube corner theorem.

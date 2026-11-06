@@ -205,9 +205,9 @@ from the pinned `colour-cubes-core` library. `Puzzle.HasSolution` specialises th
 shared geometric model to targets using all five colours; `Physical.HasSolution`
 is its equivalent enumerated-rotation form.
 
-The root `Challenge.lean` imports only Mathlib and has thirteen intentional
+The root `Challenge.lean` imports only Mathlib and has fifteen intentional
 theorem holes. It is excluded from the proof library. `Solution.lean` supplies
-the corner, cuboid, support and extremal statements. `SubmissionModel.lean`
+the corner, cuboid, support, extremal and universal-collection statements. `SubmissionModel.lean`
 restates the physical models without a catalogue; `SubmissionBridge.lean` proves
 that rotation classes, physical copy counts, global symmetries and box slots
 agree with the models used by the proofs. External comparison uses Lean and NanoDa.
@@ -274,6 +274,29 @@ support threshold, are in `Solution.lean`. After projected replay, run
 `make check-extensions` to build and audit them. `Audit.lean` includes the
 conditional deductions and unconditional small-support lemmas;
 `ExtensionsAudit.lean` audits the final wrappers. The geometric challenge includes the support and cuboid conclusions.
+
+## Universal collections
+
+`Universal.lean` proves that a fixed universal pool needs at least fifteen
+sources, even when only adjacent-repeat targets are prescribed. For each
+repeated colour, universality forces three physical sources: two sources,
+each carrying at most two of the four bicoloured types, cannot match every
+pair. The cardinalities of the five disjoint source groups then sum to at
+least fifteen. `UniversalGeometry.lean` checks the small geometric facts and
+the four-type combinatorial lemma in the kernel.
+
+The fifteen-source upper witness is the cyclic orbit of three face tuples in
+`Submission.universalFamily`. `UniversalData.lean` stores 75 injective copy
+assignments, checked against the physical incidence theorem and transported
+to arbitrary target orientations. The paper supplies a separate structural
+Hall argument for this construction. Neither bound imports the threshold
+certificates. `SubmissionBridge.lean` exports `universal_minimum` and
+`universal_collection`; the latter includes validity, adjacent repeats,
+distinct varieties and universality. Both have independent geometric
+statements in `Challenge.lean` and appear in the extension axiom audit.
+`make check-comparator-universal` checks these two claims with both external
+kernels; it does not require the interval replay. Their successful comparison
+is recorded in [`verification/universal.json`](../verification/universal.json).
 
 ## Cuboid classification
 
@@ -361,6 +384,26 @@ python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-
 
 Case benchmark results include wall/CPU time and peak memory under
 `build/replay-benchmark/`. Those experiments reuse the shared checker dependencies.
+
+An optional minimization pilot tries removing refinements and splits when an
+existing subtree also excludes its larger parent box. It uses the C++ checker
+as a search oracle and writes candidate copies under ignored
+`build/certificate-minimization/`; it never rewrites the retained archive or
+production Lean sources:
+
+```sh
+python3 -S scripts/benchmark_five_colour_minimization.py --cases all --label corpus
+python3 -S scripts/benchmark_five_colour_minimization.py --cases 16 19 --measure export --label timing
+```
+
+The first command checks candidates only in C++. The second proves the selected
+complete certificate exclusions with the unchanged Lean checker, audits their
+axioms, and times standalone Lean replay of all concrete chunk-acceptance proofs.
+That last measurement isolates certificate execution; it is not the full
+full Comparator. Measurements include the candidate hashes and input
+identities. Promoting candidates still requires complete verification and a new
+full Comparator run. Repeats alternate baseline and candidate order.
+
 Do not delete `.lake` to tidy a publication package: it is already ignored,
 and deleting it removes useful dependency/build caches.
 

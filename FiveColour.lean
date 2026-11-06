@@ -13,3 +13,4 @@ public import FiveColour.MixedObstructions
 public import FiveColour.BoxThresholds
 public import FiveColour.ExtremalClassification
 public import FiveColour.ExtremalFamilyTheorems
+public import FiveColour.Universal

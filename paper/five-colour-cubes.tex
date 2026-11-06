@@ -33,7 +33,8 @@ formulation decides feasibility and constructs assemblies in time linear
 in the explicit source list. We also determine the corner thresholds when the
 number of source varieties is bounded, and show that the fourteen-cube
 obstructions using three varieties form exactly five classes under common
-colour relabelling and simultaneous reflection.
+colour relabelling and simultaneous reflection. A smallest universal
+collection, capable of reproducing every target, also has fifteen cubes.
 \end{abstract}
 \noindent\small\textit{AI transparency.} This work used GPT-6-Astra (OpenAI)
 through Codex and Claude Opus 5.5 (Anthropic) through Claude Code, under the
@@ -160,7 +161,9 @@ require no new interval certificates. Section~\ref{sec:construction} gives a
 compressed flow algorithm for finding assemblies, and
 Section~\ref{sec:support} determines the thresholds for collections
 with a bounded number of varieties and classifies the three-variety
-fourteen-cube obstructions.
+fourteen-cube obstructions. Section~\ref{sec:universal} proves that fifteen
+cubes are also necessary and sufficient for a single collection capable of
+reproducing every target.
 The threshold classification is fully formalised in Lean;
 Section~\ref{sec:formal} describes the verification scope.
 
@@ -676,6 +679,7 @@ all three adjacent-repeat sources of a given sign fit the same column.}
 \input{construction}
 
 \input{extremal}
+\input{universal}
 
 \section{Formal verification}\label{sec:formal}
 All threshold statements are formalised in Lean~4 and mathlib~\cite{Lean4,mathlib},
@@ -689,10 +693,14 @@ In namespace \path{FiveColour.Puzzle}, the unconditional endpoints are
 \path{box_frame_threshold} and \path{complete_box_threshold}, exported
 by \path{Solution.lean}.
 They use the project's physical box definitions and proper-rotation bridges.
-The separate Mathlib-only comparator challenge states thirteen claims covering
-the corner theorem, cuboids, support and extremal results. The full local
-comparison passed, with the complete proof export accepted by both NanoDa and
-Lean's standalone kernel; Appendix~\ref{app:verification} records its scope.
+The separate Mathlib-only comparator challenge states fifteen claims covering
+the corner theorem, cuboids, support, extremal results and universal collections.
+The universal minimum and explicit construction are formalised independently
+of the interval certificates. The retained full external comparison covers
+the preceding thirteen-claim interface. The two new universal-collection
+claims separately passed comparison and both external kernels.
+Appendix~\ref{app:verification} distinguishes these records; a combined
+fifteen-claim run remains to be recorded.
 The construction
 algorithm's complexity bound is a mathematical consequence, not an additional
 Lean claim.
@@ -714,6 +722,23 @@ A second question is whether $N_5=15$ admits a short elementary proof,
 replacing the finite certificates used here. Finally, boxes with a side of
 length one fall outside the model, since a source there exposes opposite
 faces; their thresholds remain open.
+
+The \emph{Domino condition}, requiring touching interior faces to agree,
+changes the guarantee fundamentally. For any fixed $a,b,c\ge2$, arbitrarily
+many copies of one adjacent-repeat variety cannot assemble a Domino frame
+or box. To see this, write that variety as $D=(r,p,r,q,s,t)$, with the five
+colours distinct. The corner encoding in Section~\ref{sec:support} determines
+a variety from its eight distinct corner types. An identical-source pool
+can therefore reproduce only $D$, up to a common proper rotation: containment
+of its eight corner types forces equality. Along the exterior edge joining
+the $p$ and $q$ faces, every source must align its unique $p$ and $q$ faces
+with the same two perpendicular directions. This fixes its proper orientation.
+Consecutive copies then meet with colour $s$ against colour $t$, which differ.
+The edge contains at least two cubes and is present in both a frame and a
+complete box. Thus there is no finite universal guarantee for arbitrary
+multisets under the Domino condition. This observation concerns a different
+model and is not included in the Lean interface; its universal-collection
+questions are left for separate investigation.
 
 \section*{AI disclosure and review status}
 GPT-6-Astra (OpenAI), used through Codex, developed the arguments, computational

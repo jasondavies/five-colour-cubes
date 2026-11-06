@@ -186,8 +186,8 @@ These finite formal proofs supplement the elementary main-text arguments;
 no interval certificates are added or changed.
 
 \subsection{Reproduction}
-The dependency audits cover 140 declarations listed in \path{Audit.lean},
-twenty-two extension and submission statements listed in \path{ExtensionsAudit.lean}, and the
+The dependency audits cover 144 declarations listed in \path{Audit.lean},
+twenty-four extension and submission statements listed in \path{ExtensionsAudit.lean}, and the
 final replay theorems. Their dependencies are confined to
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
 and audits with:
@@ -226,10 +226,16 @@ proportionally. Peak summed RSS was 37.4\,GiB and double-counts shared pages.
 The retained record \path{verification/benchmark.json} identifies source snapshot
 \texttt{dc9c85dc9ded}, based on commit
 \texttt{42aa7b64b15a}, with the full source manifest, archive digest,
-dependency trees and tool settings. Its Lean sources are those of this proof.
+dependency trees and tool settings. This measurement predates the
+universal-collection addition and excludes its new proofs.
 
-A Mathlib-only comparator challenge independently states the thirteen corner,
-cuboid, support and extremal claims. It defines varieties by proper rotations
+The universal lower bound counts three sources for each repeated colour.
+Small kernel-checked geometry relates the bicoloured types to physical sources;
+the upper bound checks 75 explicit matchings and transports them to arbitrary
+target orientations. These proofs do not use the interval certificates.
+
+A Mathlib-only comparator challenge independently states fifteen corner,
+cuboid, support, extremal and universal-collection claims. It defines varieties by proper rotations
 and counts physical copies without catalogue indices; cuboid slots specify
 their exposed faces. The bridges in
 \path{FiveColour/ComparatorBridge.lean} and
@@ -238,9 +244,16 @@ proof models.
 The full local comparison at commit \texttt{15be39de01c8} passed on
 6 November 2026: all thirteen statements, shared definitions and permitted
 axioms passed comparison, and both NanoDa and Lean's standalone kernel accepted
-the complete export. Its 506 Lean source files are unchanged. The run took
+the complete export. That record predates the universal-collection addition
+and does not certify the expanded fifteen-claim interface. The run took
 7 hours 11 minutes 57 seconds on an AMD Ryzen 7 9700X, using validated Lake
 build artifacts and excluding a fresh project build. The source-bound record
 and full output are retained under \path{verification/}, in
 \path{palomar.json} and \path{comparator-output.txt}. No hosted Palomar result or
 registration is claimed.
+The two universal-collection claims separately passed statement, definition
+and axiom comparison and both external kernels on 6 November 2026. Their
+source-bound record and complete output are \path{verification/universal.json}
+and \path{verification/universal-output.txt}; the command
+\texttt{make check-comparator-universal} reproduces this restricted scope.
+A combined run of all fifteen claims remains to be recorded.

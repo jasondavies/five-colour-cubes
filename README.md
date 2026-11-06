@@ -1,7 +1,7 @@
 # Sharp thresholds for five-colour cube assemblies
 
 - [Paper (PDF)](paper/five-colour-cubes.pdf) and [LaTeX](paper/five-colour-cubes.tex).
-- [Cuboid results](#cuboid-thresholds) and [extremal corner results](#extremal-corner-obstructions).
+- [Cuboid results](#cuboid-thresholds), [extremal corner results](#extremal-corner-obstructions) and [universal collections](#universal-collections).
 - [Reproduction](#verification) and [formalisation guide](FiveColour/README.md).
 - [Provenance and verification scope](formalization.yaml).
 
@@ -113,6 +113,25 @@ The paper's elementary proof first shows that only A, B and C themselves can
 be targets. Each such target has more corners that only its own variety fits
 than there are copies of that variety: five corners need A, with four copies,
 and six need B or C, with five copies each.
+
+## Universal collections
+
+A smallest fixed collection capable of building **every prescribed target**
+has **15 cubes**, even if only the sixty adjacent-repeat targets are required.
+This differs from the threshold theorem, which lets the target depend on an
+arbitrary source collection. One universal collection consists of all five
+cyclic colour shifts of these three seeds (add 0 through 4 modulo 5 to every
+colour), in face order `+x,-x,+y,-y,+z,-z`:
+
+```text
+(0,2,0,3,1,4)   (0,2,0,4,3,1)   (0,3,0,4,1,2)
+```
+
+Its fifteen varieties are distinct and adjacent-repeat. The [proof](FiveColour/Universal.lean)
+is independent of the interval certificates: the lower bound needs three
+sources of each repeated colour, and the upper bound checks one matching for
+each target. The paper gives a structural Hall proof. The [construction data](data/five-colour-universal.json)
+and independent physical audit include all 75 target matchings.
 
 ## Verification
 
@@ -244,8 +263,8 @@ The [retained measurement and verification record](verification/benchmark.json)
 identifies source snapshot `dc9c85dc9ded` (based on commit
 `42aa7b64b15a`), the full source manifest and archive digest,
 actual dependency trees, tool versions and build settings. The measured Lean
-sources are the publication proof sources; the record distinguishes the snapshot
-from its base commit.
+sources predate the universal-collection addition; these timings do not include
+its new proofs. The record distinguishes the snapshot from its base commit.
 
 ## Review archives and CI
 
@@ -282,10 +301,10 @@ describes the workflow artifacts and what to preserve for a permanent release.
 
 ## Palomar interface and external comparison
 
-[Challenge.lean](Challenge.lean) states 13 claims using only Mathlib: the corner
+[Challenge.lean](Challenge.lean) states 15 claims using only Mathlib: the corner
 threshold and sharpness, both cuboid thresholds, support thresholds, the
 multiplicity bound, the complete five-class classification and the generalized
-obstruction family. It defines varieties through proper rotations,
+obstruction family, and the universal minimum and construction. It defines varieties through proper rotations,
 not catalogue indices. The cuboid model specifies corners, edge positions,
 face interiors and interior positions by their exposed faces.
 
@@ -302,10 +321,17 @@ this comparison a cached verification. The full local run on commit
 `15be39de01c881d92f0714fec717f542a5078ccb` passed on 6 November 2026: all
 thirteen statements and their shared definitions matched, the permitted-axiom
 check passed, and both NanoDa and Lean's standalone kernel accepted the full
-solution export. All 506 Lean source files remain identical to that snapshot.
+solution export. That record predates the universal-collection addition; it
+does not certify the expanded fifteen-claim interface.
 The [comparison record](verification/palomar.json) binds the source files,
 actual dependency trees, tools and export; the [complete output](verification/comparator-output.txt)
 and [wall-clock record](verification/comparator-resources.txt) are retained too.
+
+The two new universal-collection claims separately passed statement, definition
+and axiom comparison, NanoDa and standalone Lean on 6 November 2026. Their
+[source-bound record](verification/universal.json) and [complete output](verification/universal-output.txt)
+are retained. `make check-comparator-universal` reproduces that two-claim scope.
+A complete run of the expanded fifteen-claim interface remains to be recorded.
 
 The run took **7 h 11 min 57 s** on an AMD Ryzen 7 9700X, using validated Lake
 build artifacts; this excludes a fresh project build. The serial Lean export

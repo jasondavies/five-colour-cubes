@@ -36,6 +36,11 @@ build/%: src/%.cpp build/cxx-config.json
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $< -o $@
 
+# The optional minimizer uses the unchanged checker as its search oracle.
+build/minimize_five_colour_certificate: src/minimize_five_colour_certificate.cpp src/check_five_colour_certificate.cpp build/cxx-config.json
+	mkdir -p build
+	$(CXX) $(CXXFLAGS) $< -o $@
+
 check-code: check-replay-data build/check_five_colour_certificate build/five_colour_extensions build/five_colour_rare_geometry build/five_colour_fixed_pair build/five_colour_box_geometry
 	@$(PYTHON) -c 'import sys; sys.exit(0 if __debug__ else "Checks require Python assertions; remove -O/PYTHONOPTIMIZE")'
 	build/five_colour_extensions
@@ -46,6 +51,8 @@ check-code: check-replay-data build/check_five_colour_certificate build/five_col
 	$(PYTHON) -S scripts/generate_five_colour_support.py --check
 	$(PYTHON) -S scripts/generate_five_colour_extremal.py --check
 	$(PYTHON) -S scripts/generate_five_colour_triples.py --check
+	$(PYTHON) -S scripts/generate_five_colour_universal.py --check
+	$(PYTHON) -S scripts/check_five_colour_universal.py
 	$(PYTHON) -S scripts/check_five_colour_extremal.py
 	$(PYTHON) -S scripts/test_extremal_dictionary.py
 	$(PYTHON) -S scripts/generate_five_colour_figure.py --check
@@ -95,6 +102,9 @@ projected-replay: replay
 check-comparator-lower:
 	./scripts/verify-comparator.sh --lower-bound
 
+check-comparator-universal:
+	./scripts/verify-comparator.sh --universal
+
 comparator:
 	./scripts/verify-comparator.sh
 
@@ -104,4 +114,23 @@ figure:
 paper:
 	cd paper && latexmk -pdf -interaction=nonstopmode -halt-on-error five-colour-cubes.tex
 
-.PHONY: check-replay-data FORCE verification-config help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower comparator paper
+.PHONY: check-replay-data FORCE verification-config help verify-full figure check-extensions projected-replay-data projected-replay all check-code check-lean check replay-data replay check-comparator-lower check-comparator-universal comparator paper
+
+build/five_colour_enumeration: src/five_colour_enumeration.cpp build/cxx-config.json
+	$(CXX) $(CXXFLAGS) $< -o $@
+
+# Complete fourteen-copy classification, separate from the established threshold route.
+check-classification-data: build/five_colour_enumeration
+	$(PYTHON) -S scripts/generate_five_colour_classification.py --check
+	$(PYTHON) -S scripts/check_five_colour_classification.py
+	$(PYTHON) -S scripts/test_enumeration_checks.py
+	$(PYTHON) -S scripts/generate_five_colour_enumeration.py --check --workers $(WORKERS)
+
+classification-data: build/five_colour_enumeration
+	$(PYTHON) -S scripts/generate_five_colour_classification.py
+	$(PYTHON) -S scripts/generate_five_colour_enumeration.py --workers $(WORKERS)
+
+classification-replay:
+	$(PYTHON) -u -S scripts/replay_five_colour_enumeration.py --workers $(WORKERS)
+
+.PHONY: check-classification-data classification-data classification-replay

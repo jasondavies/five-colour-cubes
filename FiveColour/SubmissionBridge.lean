@@ -1,4 +1,5 @@
 module
+public import FiveColour.Universal
 public import FiveColour.SubmissionModel
 public import FiveColour.ComparatorBridge
 public import FiveColour.BoxThresholds
@@ -167,5 +168,37 @@ theorem generalized_obstructions (x y : Fin 3 → ℕ)
       change (¬ Puzzle.HasSolution (Physical.generalizedFamily x y)) ↔ _
       rw [Puzzle.hasSolution_iff]
       exact Physical.generalized_no_solution_iff x y hx hy⟩
+
+/-- A fixed pool of fifteen distinct adjacent-repeat varieties builds every target. -/
+theorem universal_collection :
+    (∀ i, UsesAllColours (universalFamily i)) ∧
+    (∀ i, AdjacentRepeat (universalFamily i)) ∧
+    (∀ i j, SameVariety (universalFamily i) (universalFamily j) → i = j) ∧
+    Universal universalFamily := by
+  refine ⟨fun i => (Physical.universal_sources i).1,
+    fun i => (Physical.universal_sources i).2.2, ?_, Physical.universal_family_builds⟩
+  intro i j h
+  apply Physical.universal_sources_distinct
+  have he := (sameVariety_iff _ _ (Physical.universal_sources i).1
+    (Physical.universal_sources j).1).mp h
+  simpa only [(Physical.universal_sources i).2.1, (Physical.universal_sources j).2.1] using he
+
+/-- The minimum is fifteen, even when only adjacent-repeat targets are required. -/
+theorem universal_minimum :
+    IsLeast {n : ℕ | ∃ cubes : Fin n → Cube,
+      (∀ i, UsesAllColours (cubes i)) ∧ Universal cubes} 15 ∧
+    IsLeast {n : ℕ | ∃ cubes : Fin n → Cube,
+      (∀ i, UsesAllColours (cubes i)) ∧ AdjacentUniversal cubes} 15 := by
+  have hu := Physical.universal_family_builds
+  have ha : AdjacentUniversal universalFamily := fun t ht _ => hu t ht
+  have lower (n : ℕ) (cubes : Fin n → Cube) (hc : ∀ i, UsesAllColours (cubes i))
+      (h : AdjacentUniversal cubes) : 15 ≤ n := Physical.adjacent_universal_minimum cubes hc h
+  constructor
+  · refine ⟨⟨universalFamily, universal_collection.1, hu⟩, ?_⟩
+    rintro n ⟨cubes,hc,h⟩
+    exact lower n cubes hc (fun t ht _ => h t ht)
+  · refine ⟨⟨universalFamily, universal_collection.1, ha⟩, ?_⟩
+    rintro n ⟨cubes,hc,h⟩
+    exact lower n cubes hc h
 
 end FiveColour.Submission

@@ -19,6 +19,28 @@ abbrev Cube := FiveColour.Puzzle.Cube
 abbrev UsesAllColours := FiveColour.Puzzle.UsesAllColours
 abbrev HasSolution := @FiveColour.Puzzle.HasSolution
 
+/-- Equal colours on two faces from different coordinate axes. -/
+def AdjacentRepeat (c : Cube) : Prop :=
+  ∃ f g : Fin 6, f.val / 2 ≠ g.val / 2 ∧ c f = c g
+
+/-- One fixed pool builds every prescribed target; each assembly may select
+different physical copies and proper rotations. -/
+def Universal {n : ℕ} (cubes : Fin n → Cube) : Prop :=
+  ∀ target : Cube, UsesAllColours target → ColourCubes.Builds cubes target
+
+/-- Universality restricted to adjacent-repeat targets. -/
+def AdjacentUniversal {n : ℕ} (cubes : Fin n → Cube) : Prop :=
+  ∀ target : Cube, UsesAllColours target → AdjacentRepeat target →
+    ColourCubes.Builds cubes target
+
+def universalSeed : Fin 3 → Cube :=
+  ![![0,2,0,3,1,4], ![0,2,0,4,3,1], ![0,3,0,4,1,2]]
+
+/-- All five cyclic colour shifts of the three seeds. -/
+def universalFamily (i : Fin 15) : Cube :=
+  fun f => universalSeed ⟨i.val % 3, Nat.mod_lt _ (by decide)⟩ f +
+    ⟨i.val / 3, (Nat.div_lt_iff_lt_mul (by decide)).mpr i.isLt⟩
+
 /-- All exposed faces of a position must match one properly rotated source. -/
 def FacesFit (source target : Cube) (faces : Finset (Fin 6)) : Prop :=
   ∃ r : Fin 6 → Fin 6, ColourCubes.ProperRotation r ∧

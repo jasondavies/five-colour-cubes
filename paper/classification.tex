@@ -1,0 +1,141 @@
+% Staged section: include from extremal.tex only after the complete enumeration
+% replay and physical-classification axiom audit have passed.
+\subsection{The complete fourteen-cube classification}\label{sec:classification14}
+The preceding family accounts for most, but not all, extremal obstructions.
+There are two further forms, both using six varieties. Throughout this
+subsection equivalence means common colour relabelling and optional
+simultaneous reflection of the collection.
+
+\paragraph{An all-adjacent family.}
+Choose a colour $o$, an ordered partition $P,Q$ of $V\setminus\{o\}$ into
+pairs, and a derangement $\rho$ of those four colours. Take one copy of each
+repeat-$o$ variety with cuts $C(P)$ and $C(P\cup\{o\})$. For each $v\in P$,
+take three copies with cut $C(\{v,o\})$ and repeat $\rho(v)$; for each
+$v\in Q$, take three copies with cut $C(V\setminus\{v,o\})$ and repeat
+$\rho(v)$. The condition $\rho(v)\ne v$ makes every variety well defined.
+These collections have multiplicities $(3,3,3,3,1,1)$.
+
+Their tricoloured union omits exactly $Q\times P$. Its bidirected graph is
+the two triangles on $P\cup\{o\}$ and $Q\cup\{o\}$, sharing only $o$.
+It has no four-cycle, so no opposite-repeat target is covered. For any
+repeat other than $o$, the bicoloured corners fix the smaller pair of its
+unique triple-copy variety; the reverse cut requires a missing arc.
+For repeat $o$, a smaller pair crossing $P,Q$ also requires a missing arc
+in either orientation. Thus precisely the six source varieties are covered.
+
+For $v\in P$, with $w$ the other member of $P$, the triple-copy target's
+private arcs are $vw,ow$. For $v\in Q$, with $w$ the other member of $Q$,
+they are $wv,wo$. Its two bicoloured corners are also private, since $\rho$
+is bijective. Each triple therefore faces four private positions, and each
+singleton faces its two private bicoloured positions. Every target fails.
+
+The colour $o$ is recovered from the two singleton varieties, and the
+missing cut recovers $P,Q$ up to reversal. The eight-element partition
+stabilizer acts on $\rho$ by conjugation. For $o=4$, $P=\{0,3\}$ and
+$Q=\{1,2\}$, its four orbits are represented by
+\[
+\begin{array}{c|c|r}
+ \text{type}&\rho&\text{labelled orbit size}\\\hline
+ \text{within-pair transpositions}&(0\ 3)(1\ 2)&30\\
+ \text{cross-pair transpositions}&(0\ 1)(3\ 2)&60\\
+ \text{alternating four-cycle}&(0\ 1\ 3\ 2)&60\\
+ \text{nonalternating four-cycle}&(0\ 3\ 1\ 2)&120
+\end{array}
+\]
+The normalized orbit sizes are $1,2,2,4$, accounting for the nine
+derangements. There are $5\binom42=30$ ordered templates, giving 270
+labelled collections in these four classes.
+
+\paragraph{A mixed exception.}
+The remaining form is the following single collection, in the face order
+$(+x,-x,+y,-y,+z,-z)$:
+\[
+\begin{array}{c|c|c|c}
+ \text{variety}&\text{face tuple}&\text{copies}&\text{private positions}\\\hline
+ X_0&(0,1,0,2,3,4)&5&6\\
+ X_1&(0,4,1,2,3,1)&1&2\\
+ X_2&(0,4,1,2,3,2)&1&2\\
+ X_3&(0,4,1,3,3,2)&1&2\\
+ O&(0,4,1,2,3,3)&3&4\\
+ Y&(0,4,1,4,3,2)&3&4
+\end{array}
+\]
+Only $O$ is opposite-repeat. The arc union misses $04,21,23,34$; its
+bidirected edges are $01,02,03,13,14,24$. The only four-cycle is
+$0\!-\!1\!-\!4\!-\!2\!-\!0$, corresponding to $O$. For each repeated colour,
+exactly two bicoloured corners occur. They fix the listed adjacent variety
+up to reversal, and every reverse requires a missing arc. These six
+varieties are therefore exactly the covered targets. The private
+tricoloured positions are $30,31,32,40$ for $X_0$, none for the $X_i$,
+$10,14,20,24$ for $O$, and $12,13$ for $Y$; every adjacent target also has
+two private bicoloured positions. Each target needs one more copy than is
+available. The collection fails and its labelled orbit has size 240.
+
+\begin{theorem}[Fourteen-cube obstructions]\label{thm:classification14}
+Every fourteen-cube obstruction is equivalent to a member of exactly one
+of the following forms:
+\begin{enumerate}
+ \item the failing collections of Corollary~\ref{cor:extremal-family};
+ \item the all-adjacent derangement family above;
+ \item the mixed exception above.
+\end{enumerate}
+There are respectively $51,4,1$ symmetry classes, hence 56 in total.
+Their distribution by number of varieties is
+\[
+\begin{array}{c|rrrr|r}
+ \text{varieties}&3&4&5&6&\text{total}\\\hline
+ \text{classes}&5&20&26&5&56\\
+ \text{labelled collections}&840&4800&5280&510&11430.
+\end{array}
+\]
+\end{theorem}
+\begin{proof}
+The preceding arguments prove failure of all three forms. In the first
+form, there are 91 distributions satisfying the disjoint-repeat condition.
+The only residual nonidentity symmetry sends
+\[
+ (x_2,x_3,x_4;y_1,y_2,y_4)
+ \longmapsto (y_4,y_1,y_2;x_3,x_4,x_2).
+\]
+It fixes 11 distributions: $y_4=x_2$, $y_1=x_3$, $y_2=x_4$ and
+$x_2x_4=0$. Burnside's lemma gives $(91+11)/2=51$ classes. The three
+forms cannot be equivalent, since their opposite-repeat totals are
+respectively four, zero and three.
+
+Necessity is the finite part of the proof. The anchored Hall cover applies
+to fourteen sources. Theorem~\ref{thm:multiplicity-five}, independently of
+the fifteen-cube threshold, removes the eight roots with anchor
+multiplicity six or seven. The remaining 349 roots use total fourteen.
+Their interval certificates retain 81 explicit terminal count vectors.
+In addition to the exclusion, refinement and splitting rules, the checker
+accepts an exact singleton box only when its vector occurs in the terminal
+list. Thus every admissible vector in every root belongs to that list.
+Each terminal is carried to one of the 56 representatives by an explicit
+common colour/reflection symmetry. Separate finite checks verify the
+Hall deficiencies, the full symmetry group and pairwise inequivalence.
+The retained data give the displayed orbit and support counts.
+\end{proof}
+
+In particular, any fourteen-cube collection using at least seven varieties,
+or at most two copies of each variety, solves. The all-adjacent obstructions
+are exactly the derangement family.
+
+The classification also explains the corner threshold by a short deletion
+argument. Suppose an unsolvable fifteen-cube pool existed. Every deletion
+would be a classified fourteen-cube obstruction. If all sources were
+adjacent-repeat, every deletion would have profile $(3,3,3,3,1,1)$.
+A triple in one deletion came from multiplicity three or four in the
+original pool. Deleting from that variety in the first case, or from
+another variety in the second, leaves multiplicity two or four, both
+impossible.
+
+Otherwise there is exactly one opposite-repeat variety $A$: two distinct
+ones could both be retained by a deletion. There are adjacent sources as
+well, since every classified obstruction has at most four opposite copies.
+Deleting an adjacent copy shows that the multiplicity of $A$ is three or
+four; deleting an $A$ shows that one less is also three or four. Hence it
+is four. Deleting an $A$ gives the mixed exception, so the adjacent
+multiplicities in the original pool are $(5,3,1,1,1)$. Delete from the
+five-copy variety. The resulting obstruction has four opposite copies
+and six varieties, whereas the first form has at most five varieties.
+This final contradiction proves the fifteen-cube upper bound.

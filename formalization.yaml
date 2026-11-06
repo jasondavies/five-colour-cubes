@@ -94,13 +94,15 @@ status:
     retargeting arguments, uniform three-variety obstruction and completion
     are kernel-checked. Solution.lean exports box_frame_threshold and
     complete_box_threshold, plus box223, box224 and box233. Audit.lean covers
-    140 declarations; ExtensionsAudit.lean covers twenty-two unconditional
+    144 declarations; ExtensionsAudit.lean covers twenty-four unconditional
     extension and submission-interface statements.
     Solution.lean transfers the results to a Mathlib-only geometric Challenge.
-    Its thirteen comparison targets include the corner threshold and sharpness,
+    Its fifteen comparison targets include the corner threshold and sharpness,
     both cuboid thresholds, support thresholds, multiplicity bound, five-class
     classification, representative failure and inequivalence, and generalized
-    obstruction family. The independent Challenge defines physical rotation
+    obstruction family, and the universal minimum and cyclic construction.
+    Universal.lean proves both bounds independently of the interval archive.
+    The independent Challenge defines physical rotation
     classes and copy counts without importing the catalogue. Its cuboid slots
     explicitly represent corners, edges, face interiors and interior positions.
     SubmissionBridge.lean proves agreement with the proof models.
@@ -108,7 +110,12 @@ status:
     15be39de01c881d92f0714fec717f542a5078ccb passed on 6 November 2026.
     All thirteen statements and shared definitions matched, the permitted-axiom
     check passed, and both NanoDa and Lean's standalone kernel accepted the
-    complete export. All 506 Lean source files remain identical to that snapshot.
+    complete export. That record predates the universal-collection addition;
+    it does not certify the expanded fifteen-claim interface.
+    The two new universal-collection claims separately passed statement, definition
+    and axiom comparison, NanoDa and standalone Lean on 6 November 2026; see
+    verification/universal.json and verification/universal-output.txt.
+    A complete run of the expanded fifteen-claim interface remains to be recorded.
     The source-bound record and complete output are retained in
     verification/palomar.json and verification/comparator-output.txt.
     The run took 7 hours 11 minutes 57 seconds using validated Lake build
@@ -116,7 +123,7 @@ status:
     published 330-minute hosted execution budget; fitting that budget remains
     unresolved. The separate bounded con-ron check was not run.
     No hosted Palomar verification is claimed.
-    No Palomar submission exists. The thirteen intentional theorem holes in
+    No Palomar submission exists. The fifteen intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
   sorry_in_definitions: 0
