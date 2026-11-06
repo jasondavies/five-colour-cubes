@@ -24,7 +24,7 @@ Lean verifies the same rules and their soundness; the exporter is untrusted.
 | `five-colour-geometry.txt` | 75 canonical face tuples and the 75×75 target/source corner masks. |
 | `q5-cases-size15.txt` | Anchored Hall-cover cases, used to generate and independently check the repeated-variety cover. |
 | `q5-distinct-shared-cases-size15.txt` | 113 distinct-variety cases, including the shared-corner reduction. |
-| `q5-threshold-cases-size15.txt` | Combined 357-root cover. These definitions are still required even though the old certificate archive is not. |
+| `q5-threshold-cases-size15.txt` | Combined 357-root cover used by the threshold reduction and fourteen-cube classification. |
 | `q5-root-reduction.json` | Checked containments and arithmetic exclusions leaving 279 roots. |
 | `q5-projected-root-*`, `q5-projected-certificates.tar.gz` | Current projected problems, mappings, witnesses and certificates. |
 | `five-colour-extremal.json` | Face tuples, repeat colours and orbit sizes for all five three-variety obstruction classes. |

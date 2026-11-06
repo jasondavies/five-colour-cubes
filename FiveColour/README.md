@@ -73,7 +73,6 @@ The extremal results are independent of the interval replay:
 - `ExtremalFamilyTheorems.lean`: the exact generalized-family criterion. Four
   uniform support patterns (300 Hall masks) prove failure precisely when the
   groups have disjoint repeat supports; two allocations prove the converse.
-  The original mixed family and five representatives reuse this theorem.
 - `Inventory.lean`: shared multiplicity and inventory transport under physical
   symmetries, independent of the classification tables.
 
