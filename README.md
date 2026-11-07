@@ -252,32 +252,6 @@ Defaults are two certificate workers and one Lean thread per case. Raise
 shared-library and extension builds. See the [formalisation guide](FiveColour/README.md#replay-operation-and-provenance)
 for cache validation, tuning, case benchmarks and resumable replay.
 
-A fresh full verification on an AMD Ryzen 7 9700X (8 cores, 16 logical CPUs)
-with 249 GiB RAM, `WORKERS=8` and `LEAN_NUM_THREADS=8` for shared builds
-(the replay driver uses one thread per case) gave:
-
-| Stage | Wall time |
-| --- | ---: |
-| C++/Python audit | 13.0 s |
-| Shared Lean library and audit | 13.9 min |
-| Certificate replay and final corner theorem | 38.3 min |
-| Unconditional extensions and audit | 3.3 s |
-| Complete verification command | 52.6 min |
-
-All 279 certificate proofs and the unconditional publication theorems passed.
-Only the pinned public Mathlib and transitive dependency caches were reused;
-project and shared cube-library artifacts were rebuilt. Peak combined
-process-tree proportional set size (PSS) was **33.5 GiB**, sampled approximately
-every two seconds. Peak summed RSS was 37.4 GiB; it double-counts shared pages,
-whereas PSS apportions them.
-
-The [retained measurement and verification record](verification/benchmark.json)
-identifies source snapshot `dc9c85dc9ded` (based on commit
-`42aa7b64b15a`), the full source manifest and archive digest,
-actual dependency trees, tool versions and build settings. The measured Lean
-sources predate the universal-collection addition and certificate minimization;
-these timings describe the recorded snapshot, not the current proof inputs. The record distinguishes the snapshot from its base commit.
-
 ## Review archives and CI
 
 ```sh
@@ -341,23 +315,16 @@ snapshot `19dc6a061c54`, the actual dependency trees, tool binaries and settings
 Its [complete output](verification/optimized-comparator-output.txt),
 [resource measurements](verification/optimized-comparator-resources.txt), and
 [preceding full-verification record](verification/optimized-full.json) are retained.
-The Lean sources, proof inputs and verification code match that snapshot;
-subsequent changes update documentation, the PDF and retained evidence only.
+The Lean proof sources and certificate inputs match that snapshot.
 This scope excludes the separately staged complete 56-class classification and
 the minimum-universal spanning-tree corollary, which is outside the comparator
 interface. The corollary is included in the ordinary Lean build and axiom audit.
 
-The earlier [thirteen-claim record](verification/palomar.json) and
-[two-claim universal record](verification/universal.json) remain unchanged as
-evidence for their respective snapshots. `make check-comparator-universal`
-reproduces the latter scope. Local elapsed time does not establish hosted
-performance.
-No hosted Palomar verification, submission or registration is claimed.
-The narrower `make check-comparator-lower` checks only the face rule and lower
-bound. Palomar also attempts a separate, bounded con-ron check; a recognized
-support or capacity decline is distinguished from a rejection.
+The narrower `make check-comparator-universal` checks the two universal claims
+without the interval replay; `make check-comparator-lower` checks only the face
+rule and lower bound.
 
-## Repository and publication status
+## Repository and attribution
 
 - `paper/`: manuscript source and PDF.
 - `FiveColour/`: physical definitions, proof infrastructure and cuboid deductions.
@@ -370,8 +337,5 @@ search, verification programs, Lean formalisation and manuscript under Jason
 Davies's direction. Claude Opus 5.5 (Anthropic), through Claude Code,
 contributed illustrations, the migration to the shared `colour-cubes-core`
 library, and manuscript review and editing. The author takes responsibility
-for the content; see the disclosure in the paper. Author mathematical review
-and submission approval are pending. Automated checks are not independent
-human peer review. Before publication, freeze the source revision, run full
-verification, and archive the source, manuscript and verification record with
-an immutable identifier.
+for the content; see the disclosure in the paper. Automated checks are not
+independent human peer review.

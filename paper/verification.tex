@@ -20,11 +20,8 @@ have solution-free collections, supplied and checked by physical matching in
 the projected manifest. The projected totals range from 9 to 15. The 101 roots
 whose original budget was zero retain their original problem statements.
 
-The projected archive contains 298,167 instructions, against 11,599,651 in the
-unprojected archive over all 357 roots. The projected archive is the publication
-proof input; the unprojected archive and search reports are retained in
-repository history. Every projected certificate header is checked against its
-exported root case. Eighty
+The projected archive contains 298,167 instructions. Every certificate header
+is checked against its exported root case. Eighty
 negative controls are rejected, including all 77 possible direct closing
 claims against a separate $G=11$ fixture, not a $G=15$ root problem.
 This fixture is a known solution-free eleven-cube collection: it satisfies
@@ -184,7 +181,7 @@ physical collections.
 family as an equivalence: failure holds exactly when the two blocks have
 disjoint repeated-colour supports. Four enlarged support patterns require
 only 300 Hall witnesses; two uniform allocations prove the converse. The
-original 21-member family and the five representatives reuse this proof.
+21-member family and the five representatives reuse this proof.
 The face tuples and orbit sizes are in
 \path{data/five-colour-extremal.json}; a separate Python audit checks all
 202,575 labelled $(4,5,5)$ collections and all 441 normalized distributions (91 failures and 350 solutions).
@@ -207,35 +204,6 @@ tracked bytes against its pinned Git tree before and after the run. It also
 records source hashes, tool versions, compiler flags and concurrency settings.
 Ignored build caches are permitted; modified dependency sources are rejected.
 
-A fresh full verification used an AMD Ryzen 7 9700X (8 cores,
-16 logical CPUs), 249\,GiB RAM, eight threads for shared builds and eight
-certificate workers, each using one Lean thread. Only the pinned public
-mathlib and transitive dependency caches
-were reused; project and shared cube-library artifacts were rebuilt. All
-279 certificate proofs and the unconditional publication theorems passed.
-\begin{center}
-\begin{tabular}{lr}
-\toprule
-Stage & Wall time\\
-\midrule
-C++/Python audit & 13.0 s\\
-Shared Lean library and audit & 13.9 min\\
-Certificate replay and final corner theorem & 38.3 min\\
-Unconditional extensions and audit & 3.3 s\\
-Complete verification command & 52.6 min\\
-\bottomrule
-\end{tabular}
-\end{center}
-Peak sampled combined process-tree proportional set size (PSS) was
-33.5\,GiB, sampled approximately every two seconds; this accounts for shared pages
-proportionally. Peak summed RSS was 37.4\,GiB and double-counts shared pages.
-The retained record \path{verification/benchmark.json} identifies source snapshot
-\texttt{dc9c85dc9ded}, based on commit
-\texttt{42aa7b64b15a}, with the full source manifest, archive digest,
-dependency trees and tool settings. This measurement predates the
-universal-collection addition and certificate minimization; it describes the
-recorded snapshot rather than the current proof inputs.
-
 The universal lower bound counts three sources for each repeated colour.
 Small kernel-checked geometry relates the bicoloured types to physical sources;
 the upper bound checks 75 explicit matchings and transports them to arbitrary
@@ -249,21 +217,14 @@ explicit universal construction, but not this structural corollary.
 A Mathlib-only comparator challenge independently states fifteen corner,
 cuboid, support, extremal and universal-collection claims. It defines varieties by proper rotations
 and counts physical copies without catalogue indices; cuboid slots specify
-their exposed faces. The bridges in
-\path{FiveColour/ComparatorBridge.lean} and
-\path{FiveColour/SubmissionBridge.lean} identify these statements with the
-proof models.
+their exposed faces. Within \path{FiveColour/},
+\path{ComparatorBridge.lean} and \path{SubmissionBridge.lean} identify these
+statements with the proof models.
 All fifteen statements, shared definitions and permitted axioms passed local
 comparison on 7 November 2026, and both NanoDa and Lean's standalone kernel
 accepted the complete solution export. The run took 3 hours 22 minutes
 1 second, using validated Lake artifacts and excluding a fresh project build.
 The retained record \path{verification/optimized-comparator.json} identifies
-source snapshot \texttt{19dc6a061c54}, actual dependency trees, tool binaries
-and settings. The complete output and resource measurements are
-\path{verification/optimized-comparator-output.txt} and
-\path{verification/optimized-comparator-resources.txt};
-\path{verification/optimized-full.json} retains the preceding successful
-full-verification record. The proof sources, inputs and verification code
-match that snapshot; subsequent changes concern documentation, the PDF and
-retained evidence only. The earlier comparison records remain unchanged for
-their respective snapshots. No hosted Palomar result or registration is claimed.
+snapshot \texttt{19dc6a061c54}, dependencies, tool binaries and settings. The same directory retains the complete comparison output,
+resource measurements and preceding successful full-verification record.
+The Lean proof sources and certificate inputs match that snapshot.

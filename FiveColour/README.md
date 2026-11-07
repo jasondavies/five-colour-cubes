@@ -298,8 +298,8 @@ certificates. `SubmissionBridge.lean` exports `universal_minimum` and
 distinct varieties and universality. Both have independent geometric
 statements in `Challenge.lean` and appear in the extension axiom audit.
 `make check-comparator-universal` checks these two claims with both external
-kernels; it does not require the interval replay. Their successful comparison
-is recorded in [`verification/universal.json`](../verification/universal.json).
+kernels; it does not require the interval replay. Both claims also passed the
+[complete fifteen-claim comparison](../verification/optimized-comparator.json).
 
 ## Cuboid classification
 

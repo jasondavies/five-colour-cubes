@@ -32,7 +32,6 @@ sources:
     relationship: other
     id: "https://github.com/jasondavies/five-colour-cubes"
     location: "paper/five-colour-cubes.tex"
-    note: "Working manuscript; not released or submitted."
   - title: "The 4-Color Cubes Puzzle"
     authors: ["Ethan Berkove", "Andrew Eickemeyer", "Michael Schulman"]
     type: paper
@@ -121,16 +120,11 @@ status:
     actual dependency trees and tool identities. Its complete output and
     resource measurements are optimized-comparator-output.txt and
     optimized-comparator-resources.txt in verification/; optimized-full.json
-    retains the preceding successful full-verification record. The proof
-    sources, inputs and verification code match that snapshot; later edits
-    concern documentation, the PDF and retained evidence only. The structural
+    retains the preceding successful full-verification record. The Lean proof
+    sources and certificate inputs match that snapshot. The structural
     minimum-universal corollary is checked by the ordinary Lean build and axiom
-    audit but is outside the comparator interface. Historical thirteen-claim
-    and universal-only records remain unchanged in verification/palomar.json
-    and verification/universal.json. Local timing does not establish hosted
-    performance. The separate bounded con-ron check was not run.
-    No hosted Palomar verification is claimed.
-    No Palomar submission exists. The fifteen intentional theorem holes in
+    audit but is outside the comparator interface.
+    The fifteen intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -163,8 +157,7 @@ automation:
     manuscript under Jason Davies's direction. Claude Opus 5.5 (Anthropic),
     used through Claude Code, contributed illustrations, the migration to the
     shared colour-cubes-core library, and manuscript review and editing.
-    The author takes responsibility for the content. Author review and submission
-    approval of this draft are pending. Upstream geometry has the separate
+    The author takes responsibility for the content. Upstream geometry has the separate
     attribution recorded in its pinned repository. The generic frame-completion
     argument is adapted from the companion four-to-three development, without
     importing its catalogue or threshold theorem. No native_decide is used.
@@ -195,9 +188,8 @@ fidelity:
     The compressed flow construction and its complexity bound are proved
     in the manuscript, not formalised in Lean.
     The full source and generated-proof verification route is make verify-full;
-    the publication measurement and its source-bound record are retained in
-    verification/benchmark.json; detailed logs and further run records are
-    ignored release artifacts.
-    No human peer review or publication-priority claim is made.
+    its source-bound record is retained in verification/optimized-full.json.
+    The comparison record and its complete output are retained alongside it;
+    further machine-local logs and run records are ignored build outputs.
 review:
-  status: "Automated checks and AI review only; author and independent human review pending"
+  status: "Automated checks and AI review; not independent human peer review"

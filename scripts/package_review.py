@@ -106,7 +106,6 @@ The external comparison is also a separate command:
   make comparator
 
 The paper and FiveColour/README.md explain the mathematical and formal models.
-No publication or hosted Palomar verification is asserted by this archive.
 """
     payload['SHA256SUMS'] = ''.join(f'{hashlib.sha256(data).hexdigest()}  {name}\n'
         for name, data in sorted(payload.items())).encode()
