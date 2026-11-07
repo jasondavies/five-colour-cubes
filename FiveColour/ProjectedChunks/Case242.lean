@@ -1,6 +1,7 @@
 module
 public import FiveColour.PackedCalibration
-public import FiveColour.PackedChunks
+public import FiveColour.PackedFast
+public import FiveColour.PackedComputations
 @[expose] public section
 namespace FiveColour.Packed.ProjectedChunks.Case242
 set_option maxHeartbeats 0
@@ -19,34 +20,35 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
   split at hc
   · have he := List.mem_singleton.mp hc
     subst c
-    apply cut_valid_of_weight
+    apply FastWeight.cut_valid_of_fast_weight
     decide +kernel
   · split at hc
     · have he := List.mem_singleton.mp hc
       subst c
-      apply cut_valid_of_weight
+      apply FastWeight.cut_valid_of_fast_weight
       decide +kernel
     · split at hc
       · have he := List.mem_singleton.mp hc
         subst c
-        apply cut_valid_of_weight
+        apply FastWeight.cut_valid_of_fast_weight
         decide +kernel
       · exact cuts_valid ⟨r.val-3, by omega⟩ c hc
 
 namespace Part0
 def root : Box := ⟨1073741824, 5783580587434429433756673792145735206580520661873432413930091811010963534734505009995389894990493733299354520747423412594371113130017162316079069306338423024812671756013854899244834558871948243410637680861614365895957676032⟩
 def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.step 7 (.split 14 0 (.split 38 0 (.step 20 (.close 14)) (.step 23 (.step 14 (.close 16)))) (.step 13 (.step 43 (.close 5))))))
-theorem accepted : Chunks.check 12 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 0 := (.run (.step 7 (.split 14 0 (.split 38 0 (.step 20 (.close 14)) (.step 23 (.close 33))) (.step 13 (.step 43 (.close 5))))))
+theorem accepted : Fast.check 12 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 12 families (references i) := by
   intro i
   exact Fin.elim0 i
 
 theorem excludes : Chunks.Excludes 12 families root :=
-  Chunks.check_sound 12 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 12 families families_valid references references_excluded proof root root_valid accepted
 end Part0
 
 /-- All chunk exclusions compose to the original concrete root. -/

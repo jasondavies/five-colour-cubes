@@ -1,6 +1,7 @@
 module
 public import FiveColour.PackedCalibration
-public import FiveColour.PackedChunks
+public import FiveColour.PackedFast
+public import FiveColour.PackedComputations
 @[expose] public section
 namespace FiveColour.Packed.ProjectedChunks.Case233
 set_option maxHeartbeats 0
@@ -19,34 +20,35 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
   split at hc
   · have he := List.mem_singleton.mp hc
     subst c
-    apply cut_valid_of_weight
+    apply FastWeight.cut_valid_of_fast_weight
     decide +kernel
   · split at hc
     · have he := List.mem_singleton.mp hc
       subst c
-      apply cut_valid_of_weight
+      apply FastWeight.cut_valid_of_fast_weight
       decide +kernel
     · split at hc
       · have he := List.mem_singleton.mp hc
         subst c
-        apply cut_valid_of_weight
+        apply FastWeight.cut_valid_of_fast_weight
         decide +kernel
       · exact cuts_valid ⟨r.val-3, by omega⟩ c hc
 
 namespace Part0
 def root : Box := ⟨1073741824, 5515652263101992197612038864773350743462566772022452223414230330376331696413793774961053209756195714202226062881002554841756544659090282998731189681632781772299293014141111432660525349210247919217617187001487910240256⟩
 def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.step 7 (.split 6 0 (.step 7 (.split 12 0 (.split 49 0 (.split 10 0 (.step 43 (.step 9 (.close 19))) (.step 52 (.step 43 (.step 9 (.close 19))))) (.step 13 (.step 43 (.step 9 (.close 33))))) (.step 13 (.step 29 (.step 15 (.step 19 (.step 20 (.close 33)))))))) (.step 7 (.close 9)))))
-theorem accepted : Chunks.check 13 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 0 := (.run (.split 6 0 (.step 7 (.split 12 0 (.split 49 0 (.split 10 0 (.step 43 (.close 29)) (.step 52 (.step 43 (.close 29)))) (.step 13 (.step 43 (.close 45)))) (.step 13 (.step 29 (.step 15 (.close 43)))))) (.step 7 (.close 9))))
+theorem accepted : Fast.check 13 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 13 families (references i) := by
   intro i
   exact Fin.elim0 i
 
 theorem excludes : Chunks.Excludes 13 families root :=
-  Chunks.check_sound 13 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 13 families families_valid references references_excluded proof root root_valid accepted
 end Part0
 
 /-- All chunk exclusions compose to the original concrete root. -/

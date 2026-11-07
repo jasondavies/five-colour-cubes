@@ -17,10 +17,10 @@ Total & 98 & 76 & 42 & 20 & 6 & 2\\
 Of the 279 remaining roots, 277 admit an exclusion certificate with $\lambda=0$. The other two, original
 cases 68 and 69, use $\lambda=1$ and $G=12$. Their $\lambda=0$, $G=11$ problems actually
 have solution-free collections, supplied and checked by physical matching in
-the projected manifest. The projected totals range from 9 to 15. All 101 roots
-whose original budget was zero retain their original certificates.
+the projected manifest. The projected totals range from 9 to 15. The 101 roots
+whose original budget was zero retain their original problem statements.
 
-The projected archive contains 499,829 instructions, against 11,599,651 in the
+The projected archive contains 298,167 instructions, against 11,599,651 in the
 unprojected archive over all 357 roots. The projected archive is the publication
 proof input; the unprojected archive and search reports are retained in
 repository history. Every projected certificate header is checked against its
@@ -69,13 +69,21 @@ Then
 Every coefficient in the product is at most $75\cdot7<1024$, so no carry
 can affect this coefficient extraction. Lean proves the identity, decoding,
 coordinate updates and equivalence with the integer inequalities, and
-checks all 19,125 neighbourhood weights.
+checks all 19,125 neighbourhood weights. The evaluator in
+\path{FiveColour/PackedFast.lean} computes digit places directly as powers;
+Lean proves it equal to the original evaluator on every certificate.
+The helpers in \path{FiveColour/PackedComputations.lean} prove that
+containment in the packed all-seven digit mask establishes bounded digits
+and exact reconstruction. A second helper converts a neighbourhood mask
+to its reversed base-1024 weight by consuming successive low bits. These
+helpers discharge the original validity and calibration propositions.
 
 For larger certificate cases, the generated checker specialises the cut
 families to the initial root. It discards alternatives that fail
 \eqref{eq:possible}, removes fixed coordinates (subtracting their mass from
 the right-hand side), and merges equal remaining neighbourhoods by keeping
-the largest right-hand side. Each original feasible cut has a checked witness
+the largest right-hand side. An alternative is also discarded if it implies
+a weaker retained alternative. Each original feasible cut has a checked witness
 pointing to a weaker replacement. Concretely, a cut $x(C)\le b_C$ may
 be replaced by $x(D)\le b_D$ when
 \[
@@ -88,7 +96,7 @@ to the original families at the root; it does not assume that intermediate
 split boxes are contained in that root. Small cases retain the original
 families to avoid the additional validation cost.
 
-The 279 certificates are split into 4,786 chunks of at most 128
+The 279 certificates are split into 2,926 chunks of at most 128
 instructions. Composition requires exact boundary-vector agreement and a
 proof for every referenced box; the exporter is untrusted. All chunks and
 their final assembly have passed kernel checking. The case mapping and
@@ -225,7 +233,8 @@ The retained record \path{verification/benchmark.json} identifies source snapsho
 \texttt{dc9c85dc9ded}, based on commit
 \texttt{42aa7b64b15a}, with the full source manifest, archive digest,
 dependency trees and tool settings. This measurement predates the
-universal-collection addition and excludes its new proofs.
+universal-collection addition and certificate minimization; it describes the
+recorded snapshot rather than the current proof inputs.
 
 The universal lower bound counts three sources for each repeated colour.
 Small kernel-checked geometry relates the bicoloured types to physical sources;
@@ -244,19 +253,17 @@ their exposed faces. The bridges in
 \path{FiveColour/ComparatorBridge.lean} and
 \path{FiveColour/SubmissionBridge.lean} identify these statements with the
 proof models.
-The full local comparison at commit \texttt{15be39de01c8} passed on
-6 November 2026: all thirteen statements, shared definitions and permitted
-axioms passed comparison, and both NanoDa and Lean's standalone kernel accepted
-the complete export. That record predates the universal-collection addition
-and does not certify the expanded fifteen-claim interface. The run took
-7 hours 11 minutes 57 seconds on an AMD Ryzen 7 9700X, using validated Lake
-build artifacts and excluding a fresh project build. The source-bound record
-and full output are retained under \path{verification/}, in
-\path{palomar.json} and \path{comparator-output.txt}. No hosted Palomar result or
-registration is claimed.
-The two universal-collection claims separately passed statement, definition
-and axiom comparison and both external kernels on 6 November 2026. Their
-source-bound record and complete output are \path{verification/universal.json}
-and \path{verification/universal-output.txt}; the command
-\texttt{make} \path{check-comparator-universal} reproduces this restricted scope.
-A combined run of all fifteen claims remains to be recorded.
+All fifteen statements, shared definitions and permitted axioms passed local
+comparison on 7 November 2026, and both NanoDa and Lean's standalone kernel
+accepted the complete solution export. The run took 3 hours 22 minutes
+1 second, using validated Lake artifacts and excluding a fresh project build.
+The retained record \path{verification/optimized-comparator.json} identifies
+source snapshot \texttt{19dc6a061c54}, actual dependency trees, tool binaries
+and settings. The complete output and resource measurements are
+\path{verification/optimized-comparator-output.txt} and
+\path{verification/optimized-comparator-resources.txt};
+\path{verification/optimized-full.json} retains the preceding successful
+full-verification record. The proof sources, inputs and verification code
+match that snapshot; subsequent changes concern documentation, the PDF and
+retained evidence only. The earlier comparison records remain unchanged for
+their respective snapshots. No hosted Palomar result or registration is claimed.

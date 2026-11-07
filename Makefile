@@ -61,6 +61,7 @@ check-code: check-replay-data build/check_five_colour_certificate build/five_col
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/test_verification_state.py
 	$(PYTHON) -S scripts/test_source_checks.py
+	$(PYTHON) -S scripts/test_hall_reduction.py
 	$(PYTHON) -S scripts/generate_five_colour_incidence.py --check
 	$(PYTHON) -S scripts/generate_five_colour_packed.py --check
 	$(PYTHON) -S scripts/generate_five_colour_catalogue.py --check
@@ -123,6 +124,7 @@ check-classification-data: build/five_colour_enumeration
 	$(PYTHON) -S scripts/check_five_colour_classification.py
 	$(PYTHON) -S scripts/test_enumeration_checks.py
 	$(PYTHON) -S scripts/test_enumeration_driver.py
+	$(PYTHON) -S scripts/test_enumeration_sources.py
 	$(PYTHON) -S scripts/generate_five_colour_enumeration.py --check --workers $(WORKERS)
 
 classification-data: build/five_colour_enumeration

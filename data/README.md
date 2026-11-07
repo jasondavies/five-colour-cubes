@@ -1,11 +1,11 @@
 # Publication proof inputs
 
 The complete Lean proof uses `q5-projected-certificates.tar.gz`: 279 certificates,
-499,829 instructions, 1,134,573 uncompressed bytes and 313,094 compressed bytes.
+298,167 instructions, 712,187 uncompressed bytes and 232,866 compressed bytes.
 Its SHA-256 is:
 
 ```text
-e7b40f79831b5e0a44b374397d90bc4068f43d07e4226e1a45a829fd5b900e4a
+7df56cc4b252e460c9e3a762b068010b1a894405ae105218f6cea545e9b80467
 ```
 
 `q5-projected-root-cases.txt` specifies the problems. The fixed

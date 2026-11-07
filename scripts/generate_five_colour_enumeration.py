@@ -57,6 +57,62 @@ def reduced_families(row, geometry):
     return HallFamilies(geometry).reduced(row)
 
 
+def case_sources(case, text, limit=10000):
+    """Split oversized roots only at complete checkpoint namespace boundaries.
+
+    The public declaration names and every proof term stay unchanged. Smaller
+    roots retain their exact source bytes; each split root imports a chain of
+    modules, so Lake checks all checkpoints before its existing endpoint.
+    """
+    entry = f'Case{case}.lean'
+    if len(text.splitlines()) <= limit:
+        return {entry: text}
+    namespace = f'FiveColour.Packed.EnumerationChunks.Case{case}'
+    chunks = re.split(r'(?m)(?=^namespace Part\d+\n)', text)
+    base, blocks = chunks[0], chunks[1:]
+    if not blocks:
+        raise ValueError(f'oversized root {case} has no checkpoint boundaries')
+    marker = '/-- Every admissible vector in the original root'
+    last, separator, footer = blocks[-1].partition(marker)
+    if not separator:
+        raise ValueError(f'root {case} has no coverage endpoint')
+    blocks[-1] = last
+    footer = separator + footer
+    sources = {f'Case{case}/Base.lean': base + f'end {namespace}\n'}
+    previous = f'FiveColour.EnumerationChunks.Case{case}.Base'
+    batch = []
+    lines = 0
+
+    def emit():
+        nonlocal previous, batch, lines
+        name = f'Case{case}/Parts{len(sources)-1}.lean'
+        header = (f'module\npublic import {previous}\n@[expose] public section\n'
+                  f'namespace {namespace}\nset_option maxHeartbeats 0\n'
+                  'set_option maxRecDepth 100000\n')
+        sources[name] = header + ''.join(batch) + f'end {namespace}\n'
+        previous = 'FiveColour.EnumerationChunks.' + name[:-5].replace('/', '.')
+        batch = []
+        lines = 0
+
+    for index, block in enumerate(blocks):
+        if not block.startswith(f'namespace Part{index}\n'):
+            raise ValueError(f'nonconsecutive checkpoint {case}:{index}')
+        count = len(block.splitlines())
+        if batch and lines + count + 7 > limit:
+            emit()
+        batch.append(block)
+        lines += count
+    if batch:
+        emit()
+    sources[entry] = (f'module\npublic import {previous}\n@[expose] public section\n'
+                      f'namespace {namespace}\nset_option maxHeartbeats 0\n'
+                      'set_option maxRecDepth 100000\n' + footer)
+    oversized = [name for name, source in sources.items() if len(source.splitlines()) > limit]
+    if oversized:
+        raise ValueError(f'generated modules exceed {limit} lines: {oversized}')
+    return sources
+
+
 def generate_case(i,row,original,points,hall_cuts,families,checkpoint,dest):
     lines=checkpoint.read_text().splitlines()
     used=sorted({int(x)-3 for line in lines for x in re.findall(r'\.(?:step|close) (\d+)',line) if int(x)>=3})
@@ -127,7 +183,10 @@ theorem covered : Enumeration.Covers points 14 families root :=
     families_valid checkedFamilies_valid checkedFamilies_cover Part{len(sizes)-1}.covered
 end FiveColour.Packed.EnumerationChunks.Case{i}
 ''')
-    (dest/f'Case{i}.lean').write_text(buf.getvalue())
+    for name, source in case_sources(i, buf.getvalue()).items():
+        path = dest/name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(source)
     return {'case':i,'original_root':original,'commands':sum(sizes),'chunks':len(sizes),'points':len(points)}
 
 
@@ -186,7 +245,7 @@ def main():
         work=Path(temp);dest=work/'generated' if args.check else DEST
         records=generate(dest,work,args.workers)
         if args.check:
-            expected={p.name for p in dest.iterdir()};actual={p.name for p in DEST.iterdir()}
+            expected={str(p.relative_to(dest)) for p in dest.rglob('*') if p.is_file()};actual={str(p.relative_to(DEST)) for p in DEST.rglob('*') if p.is_file()}
             if expected!=actual:raise SystemExit(f'enumeration file set differs: missing={sorted(expected-actual)}, extra={sorted(actual-expected)}')
             changed=[name for name in expected if (dest/name).read_bytes()!=(DEST/name).read_bytes()]
             if changed:raise SystemExit(f'enumeration files differ: {changed}')

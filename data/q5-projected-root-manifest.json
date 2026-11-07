@@ -6,8 +6,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 43688,
-      "certificate_sha256": "9c32a99c0036d84eb12f24fed344230488a2611855a1f3ca9b6cdbd25b19bb54"
+      "instructions": 25809,
+      "certificate_sha256": "21ea7d5c19ec18388855c197f98cc01da1121921c504a00ea98032eb13df8910"
     },
     {
       "case": 1,
@@ -15,8 +15,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 5693,
-      "certificate_sha256": "a3176e4658836fdc691b0969252e3484960fe0fa1c8900ca8d6e88c4b23bd525"
+      "instructions": 3495,
+      "certificate_sha256": "e60179b3c317e7e4fb9cba01e1c86c472d788ae72bb878d2132116bc1343fb74"
     },
     {
       "case": 2,
@@ -24,8 +24,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 10284,
-      "certificate_sha256": "c0a3ae1aad7ccf15ad34abafee534c71b5cec3ececc21cc3c9fd6d24b620f92c"
+      "instructions": 6043,
+      "certificate_sha256": "14b6081fb6c60aee45abdc78a1fb69d25237ab0197e1d1801eff4bc213b3b905"
     },
     {
       "case": 3,
@@ -33,8 +33,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 10268,
-      "certificate_sha256": "ac909bda624491e58f0bdc874b35b920f7e674bc66213dac9ca9074afbde130a"
+      "instructions": 6112,
+      "certificate_sha256": "a03a60c6f45492a8635f914cc93f21b25bf7d715c05bf57ebafc3efcf003a0fc"
     },
     {
       "case": 4,
@@ -42,8 +42,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 51652,
-      "certificate_sha256": "6bb85110beea3ff62aacbc43ab71309ef5598ea095fa0519057aee77350ceb2f"
+      "instructions": 29354,
+      "certificate_sha256": "4fd628e9a6ff1456f9e17dafa9890c1492f9eb5c041f8d99c1574bb9363bb583"
     },
     {
       "case": 5,
@@ -51,8 +51,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 10501,
-      "certificate_sha256": "f5902a0193594a98e2270ac34cf70e7d2f2b63003095ca765734a4ba6d819998"
+      "instructions": 6745,
+      "certificate_sha256": "f49f816252c0eb46dbbb685051c570a7d717ffe86401c89465e5f5abc4610a8a"
     },
     {
       "case": 6,
@@ -60,8 +60,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 7436,
-      "certificate_sha256": "0643099c28a8d1fb3162ce43c4f8ad4c88baa04743546d3ffafd5aad4f5aa587"
+      "instructions": 4581,
+      "certificate_sha256": "44c6d5ea8505e522acd48eec295a9577a5199f0711d6fe259fb307086eb88cfe"
     },
     {
       "case": 7,
@@ -69,8 +69,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 9811,
-      "certificate_sha256": "b2f980f8aaf90f38edb4bed773dafdb0964577d561a6118f04d1cdcbe9351117"
+      "instructions": 6026,
+      "certificate_sha256": "143bc8d37abc926c078aaf4287c6fef5b554a68c89c409cff67e4a8b52de0b59"
     },
     {
       "case": 8,
@@ -78,8 +78,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 6277,
-      "certificate_sha256": "d7d37bcc61d54973e72f93fefe494e1f60f0fa995e02c00d633824319964c804"
+      "instructions": 4035,
+      "certificate_sha256": "d763d00c635862628927c164144e386d037b6f359d66bd42050723b0ec79c1ef"
     },
     {
       "case": 9,
@@ -87,8 +87,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1509,
-      "certificate_sha256": "233c644b16ebaa9b33465a8cfcd24670262879657a51b8e673a5ca6ce58b3ab7"
+      "instructions": 1030,
+      "certificate_sha256": "8be9dab824857e053bccda641752c6eaeaea1f6807fb9af9c9e8bec642efb7b0"
     },
     {
       "case": 10,
@@ -96,8 +96,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1779,
-      "certificate_sha256": "f451525a3b1a72b4d35f6ffc52521f2dde108eeb43ec7116af8cf5dab5d3299d"
+      "instructions": 1193,
+      "certificate_sha256": "80c2f319145d5a5dbb90423b7bde31c45d9bef0076f3156db926c78753040aea"
     },
     {
       "case": 11,
@@ -105,8 +105,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 9349,
-      "certificate_sha256": "a51aad75f4f43e3e1446b493209244fca7467a5a863ca2b1d1a14ad303bd974c"
+      "instructions": 5968,
+      "certificate_sha256": "2abb43d64621437939e9c2883ccbb42e4cf277f6fffd13053001b5f73501b894"
     },
     {
       "case": 12,
@@ -114,8 +114,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1300,
-      "certificate_sha256": "5d05b4e27db200e382f470e4fdc46b487b08544cebf62bab0e0a246c3ad1af6b"
+      "instructions": 814,
+      "certificate_sha256": "c2cddb253a1c99f9032ee98b0917a5b1ac1585ef374dfbc84e18fb73f49f0016"
     },
     {
       "case": 13,
@@ -123,8 +123,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 4604,
-      "certificate_sha256": "ce39ca979c63d72791bad43f8def726950dbcdc3285fa62f4f1080f63f027553"
+      "instructions": 2923,
+      "certificate_sha256": "8a778782dbdc4c209f682158d1141a7dd1d26bfe3d78498baaac705dddd55083"
     },
     {
       "case": 14,
@@ -132,8 +132,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 7362,
-      "certificate_sha256": "b67f4cf8476f16ead2d91a8c6a8c10c4e00d06a74a2b19fd8218f34ee61797a7"
+      "instructions": 4610,
+      "certificate_sha256": "1811172b8c55dedf134c44961739d6f7cec6feebb56787f76a7f53cda2df87e3"
     },
     {
       "case": 15,
@@ -141,8 +141,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1204,
-      "certificate_sha256": "396a9f509e9536a3a588ec8eaeb98802623a27d8d3203cedad437af3f2c1fa45"
+      "instructions": 776,
+      "certificate_sha256": "113d9fcd5b677b4a215698f3d2f60d973ae8026596d4e2cadfad7d18c349c116"
     },
     {
       "case": 16,
@@ -150,8 +150,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 2135,
-      "certificate_sha256": "baaab70ac00aa92ff885fdfcdcba0a2a201de1d4fddc4bc9f8264314f0862cc2"
+      "instructions": 1378,
+      "certificate_sha256": "1aa9464a14d7802ecba20577a31cf7fdccc07d6433a094b3e89a99941a786027"
     },
     {
       "case": 17,
@@ -159,8 +159,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 5223,
-      "certificate_sha256": "fed4287b0be2b63140adceefd53d276c65aa3b5dc3534d9a79fa51cbfcdae93a"
+      "instructions": 3254,
+      "certificate_sha256": "e900b6053c155e1db16fc86645a4021af102b89e77f4aa1cd5505c1dca67de29"
     },
     {
       "case": 18,
@@ -168,8 +168,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 10220,
-      "certificate_sha256": "f3c8a1665db954266d75d1dbfe3b7617895cf3d4893c3e1452537954bc53d19a"
+      "instructions": 6027,
+      "certificate_sha256": "3e52d19e85235448de006534b40dd82663f6384b35ec613a11c31b6a0ef64cd4"
     },
     {
       "case": 19,
@@ -177,8 +177,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 11464,
-      "certificate_sha256": "12d7f04b6411187f7069961c45448fb5fdc1dee57b59dc193c787bdc55a7b7ba"
+      "instructions": 7299,
+      "certificate_sha256": "19c83c5f493346fc830860a39516a5f47bfe2c72d47c35dcbcc7aab0a79258be"
     },
     {
       "case": 20,
@@ -186,8 +186,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 7850,
-      "certificate_sha256": "8b9ac8fe1f6fd61b7b5d6829ab1ec31bb82be337eda70a7b9c1c44c465652c6f"
+      "instructions": 4759,
+      "certificate_sha256": "679623efef11f7488024e7a26f17ba4c6fe064130131fdab51a1862bd3d02d7d"
     },
     {
       "case": 21,
@@ -195,8 +195,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 5398,
-      "certificate_sha256": "48d413ce735a8360fd0daba6f94162ce89d72b8b7a73dbddedeada76d69e8779"
+      "instructions": 3416,
+      "certificate_sha256": "e7d1d82a52fcfc4acc83a1da92bd59d40b6a75762dcb3d647d067705fff9985d"
     },
     {
       "case": 22,
@@ -204,8 +204,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 5987,
-      "certificate_sha256": "1f012ccb71a6d42780f18dcfb896313349e6b281672b5473eb78479f6cd1d508"
+      "instructions": 3630,
+      "certificate_sha256": "d6412be65c96cefe1a5161c7d3630ea5474d103e9de7b9630e1d40cba2649a85"
     },
     {
       "case": 23,
@@ -213,8 +213,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1517,
-      "certificate_sha256": "6cefb435f1344a5ec608aca9c8fb3eaadba5d504657feb0eefbdbbf6785d3159"
+      "instructions": 1007,
+      "certificate_sha256": "2255e3fe6c878141f60256cb6d9f3852ba5e17bbfab34c826666310e3cd3de73"
     },
     {
       "case": 24,
@@ -222,8 +222,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1209,
-      "certificate_sha256": "f6b3b5aab123edde8b6effbcc7aaa86f6e7c9c3cbe0037c2894634df9227353c"
+      "instructions": 838,
+      "certificate_sha256": "b48570d7475838d5814e131545858688c751e9c55ea27d192c0a5d46c5d37cfd"
     },
     {
       "case": 25,
@@ -231,8 +231,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 909,
-      "certificate_sha256": "85de988224e31de46dfe27bce74e250a4c82546bdd1da30e2e7298b9750a6231"
+      "instructions": 626,
+      "certificate_sha256": "b50a806e03c9182f90d80672da01223bca37378ccfe81027510296eeed2639d7"
     },
     {
       "case": 26,
@@ -240,8 +240,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1914,
-      "certificate_sha256": "538b6b4b834190f77f1774ce223acea9eee4c3d43e8c7be7b6828435932d9819"
+      "instructions": 1266,
+      "certificate_sha256": "a9d2b1353689dd0877ba6055b20e06592c35d257cf1c6ed8adc0428821347d2b"
     },
     {
       "case": 27,
@@ -249,8 +249,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1327,
-      "certificate_sha256": "87a9c6759cde7ac770c5a798f1b2ba2055ceb6bb35e486c4b00408d44c5be451"
+      "instructions": 884,
+      "certificate_sha256": "4a64051326926a2a984eca9f3b7f4a4a458f8f02c73460c8d51d23b1f6eb257c"
     },
     {
       "case": 28,
@@ -258,8 +258,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 135,
-      "certificate_sha256": "5f31afd35ee4d9e92da9c2ee96bc249d6b47096fe369f58b4795654ae1d631b8"
+      "instructions": 104,
+      "certificate_sha256": "4b30fe84c872fd91c95f6035a58d3e6558845bfc858d0190ad013c98af1fc9e2"
     },
     {
       "case": 29,
@@ -267,8 +267,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 10146,
-      "certificate_sha256": "d51861e153598ae09771ae37a77968f836725140e3798a9db9d6f6ae38cac787"
+      "instructions": 6340,
+      "certificate_sha256": "e3a55875b0cc0e29da80ca3d03ea195d0c32b82fb79184cab11a4f4476f2850f"
     },
     {
       "case": 30,
@@ -276,8 +276,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1369,
-      "certificate_sha256": "7b5c1bc3c7cb42be2b24c2d4f29b5fec11077fedc7818f256c0a9c4faf3d0fbb"
+      "instructions": 864,
+      "certificate_sha256": "754e899f008f02c3ede3c84ae3993c1a7aa80d7b2fb604602b6ec95ce4fbb4b2"
     },
     {
       "case": 31,
@@ -285,8 +285,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1419,
-      "certificate_sha256": "5b42157a64e1632e54b6480f111547bedbce4627058368fd6a89ba93142f43d3"
+      "instructions": 912,
+      "certificate_sha256": "850b88bf8f489c20e9ff9ca72169e8a5dcd6908cf28b9925e118fa2104c1c66c"
     },
     {
       "case": 32,
@@ -294,8 +294,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 5914,
-      "certificate_sha256": "32b218fbb055d1cdd4575f6174fede7ef59756e323e82f00cb33d4418e4b868d"
+      "instructions": 3748,
+      "certificate_sha256": "0e7f7a8175a5bb3f50cc85b370be2477f7d22d56397f1a3ad64fb0e2e4b833ca"
     },
     {
       "case": 33,
@@ -303,8 +303,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 926,
-      "certificate_sha256": "4ea9ced1c037095742ece5fccb73edf2e0cbcd400369a96b551456437284a4f3"
+      "instructions": 609,
+      "certificate_sha256": "6524e1597d95a545442d00271bcf02566eaacd46303fd78dbd4a56598d50d2b8"
     },
     {
       "case": 34,
@@ -312,8 +312,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1489,
-      "certificate_sha256": "4ab551b6069dcb566c13c16f194534ad15368dec015cb7e0dec4b3eaf7d55c3e"
+      "instructions": 919,
+      "certificate_sha256": "1a4122a627d501073c902240cc4c4739e219b3ec073cb7f63c0c87b636e0e0c6"
     },
     {
       "case": 35,
@@ -321,8 +321,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 812,
-      "certificate_sha256": "259b3bb9489280e5f850f759d86d5a7439cbd6986ac3d39e975c716f287bbaba"
+      "instructions": 557,
+      "certificate_sha256": "175c18088aa8c1208f3f5db2d025c47ccd51ef84f3fa07a7ea2844b27f42e125"
     },
     {
       "case": 36,
@@ -330,8 +330,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 31,
-      "certificate_sha256": "2c418e808cd18ce4c568039852a37dfd73c635ccdcce8ec8dadb8f0cf46bd4c7"
+      "instructions": 24,
+      "certificate_sha256": "ceac9ca90a1bcfcbd9defd50d91decf0c56e2ba21457857fc14201fedacf8af8"
     },
     {
       "case": 37,
@@ -339,8 +339,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 54,
-      "certificate_sha256": "d26ca4a5dbd408234116b708fb6caad976d91dded66e79b25afdfe21fd427734"
+      "instructions": 42,
+      "certificate_sha256": "4595f3346f1364221048b3c7eb1c31014e20ae5c6f8d411af407b621df1fa905"
     },
     {
       "case": 38,
@@ -348,8 +348,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2821,
-      "certificate_sha256": "dd3cb9ea052689f6bad0ab3a9986eea95070baf8c431e9fa8a5ae41e7f96ad70"
+      "instructions": 1819,
+      "certificate_sha256": "8c0656a5fa0db5ab5c09b3cb3b75b974f9affcd4b9daf0f43c7dc4af68228eb2"
     },
     {
       "case": 39,
@@ -357,8 +357,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 149,
-      "certificate_sha256": "adca7ee6fc9acbd131f889e4e94daf2a4352971e96d297f1d9278b23dcaa9304"
+      "instructions": 105,
+      "certificate_sha256": "572f513dc444e0559fa1c47ba33927674561eb7368a51dd4641aefcc719eabb8"
     },
     {
       "case": 40,
@@ -366,8 +366,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 5653,
-      "certificate_sha256": "6f8a8a782687cd7d58eab21b95e03918a5bfda4f4b558304bd06df922587cb14"
+      "instructions": 3619,
+      "certificate_sha256": "b92c4cfb92af8883b335d3dd835b3ae3d90d7bd6b16ad2e881c66ac9b8c3640b"
     },
     {
       "case": 41,
@@ -375,8 +375,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1474,
-      "certificate_sha256": "191b51e0527ef1e6fa3c8b45274054e9453873598befe98ff75f67ffd1b5893d"
+      "instructions": 990,
+      "certificate_sha256": "01b263a29f0f34f5f193bdedd1bb27a33d22538806a00a6089d3da9fc2bb3ec4"
     },
     {
       "case": 42,
@@ -384,8 +384,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1071,
-      "certificate_sha256": "419d7cfb5becdbea279e8888f905d88117fd5922bc4de7e4060623c4f432338d"
+      "instructions": 767,
+      "certificate_sha256": "9981dc4ba33df6f3ca53b0f7d3272486d4bb7d2f673e47a5120f1069509ba130"
     },
     {
       "case": 43,
@@ -393,8 +393,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1508,
-      "certificate_sha256": "56dbc92f3e119bc88dcd289cc7945daaac549971498e3c9e6a69509f958f51e6"
+      "instructions": 1013,
+      "certificate_sha256": "29a1dc3276a4160d3f6b8e0d1b870a50001bef338530c5c3cc7174de38cef431"
     },
     {
       "case": 44,
@@ -402,8 +402,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 144,
-      "certificate_sha256": "a9fe94479ec198494517384f1b474f55f6d8391853108d3bda1d144667be041b"
+      "instructions": 99,
+      "certificate_sha256": "ccbf1c9a066a88f95508ed27dcdc829ac9b5c6ceacfa35fca7ceb68ebe54b4db"
     },
     {
       "case": 45,
@@ -411,8 +411,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1523,
-      "certificate_sha256": "0c8b68a2261d2cc36209891efbe7914aa9c6cfe369e6511e0c3d55de6972f9cf"
+      "instructions": 1023,
+      "certificate_sha256": "53e8905ee62c4e524bb209cc0880ad7f9604607f27ed51d05a0047bd1a0ea4b1"
     },
     {
       "case": 46,
@@ -420,8 +420,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1166,
-      "certificate_sha256": "4fbd7f1da7151dfd43a096135b4b7502f51e3dd1d22569394a2a18e57f9bcc93"
+      "instructions": 770,
+      "certificate_sha256": "e4a81e8f3c98a95d3c09bf106d1d98ccc798d4a55328d858bcefc688e82e9333"
     },
     {
       "case": 47,
@@ -429,8 +429,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 779,
-      "certificate_sha256": "0eaeda88dab9b0ff5075415e8c6de24a917cc43e674881999f24644f53d7570d"
+      "instructions": 521,
+      "certificate_sha256": "af94369dcedcf85d611cb739e12600e251696a132f08cf4b7ff6743a432ff834"
     },
     {
       "case": 48,
@@ -438,8 +438,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 849,
-      "certificate_sha256": "57926f64199a394525c17d1198f1076c49d40a206c84920b519c96ca5da203b5"
+      "instructions": 598,
+      "certificate_sha256": "0d5277d060408f196ca58801f1ecc274bb9e9f7dc7d08ae14f0230c419025b7e"
     },
     {
       "case": 49,
@@ -447,8 +447,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 44,
-      "certificate_sha256": "7cc608939671ee5e67a5ae73488f2ce7e591cbd13686a9ebf31f2ace6399ac7a"
+      "instructions": 30,
+      "certificate_sha256": "34e5e217fcaab5fa68958c9f6963c0076697881666ca6f97b2e9657530bbba5c"
     },
     {
       "case": 50,
@@ -456,8 +456,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 22,
-      "certificate_sha256": "1c051cf8d5dc6f7e240d545b243b7e4374ab243ac7c88e8a333af70a7b36b96b"
+      "instructions": 8,
+      "certificate_sha256": "de8c172613ffa591326558f08017e3f199fd00cacbd8a7ef64af17bb52ca8caf"
     },
     {
       "case": 51,
@@ -465,8 +465,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 2476,
-      "certificate_sha256": "b4557ef473cb9497989fd48a6a0498da19b23a2bafb57956bc453bce7b92b523"
+      "instructions": 1674,
+      "certificate_sha256": "97335d4fc10414c5b1e3f8d6408a5d046ec9a214fd1e89625182823b47c6cf56"
     },
     {
       "case": 52,
@@ -474,8 +474,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 288,
-      "certificate_sha256": "ba8ccf9b686c64cb506fb62b78419f1272490056b6ce9a16c4fc8ed97183b45e"
+      "instructions": 198,
+      "certificate_sha256": "b7c0c506ada85863335efb91cc1171946b96345977d51059745a5fcb870d897a"
     },
     {
       "case": 53,
@@ -483,8 +483,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 24,
-      "certificate_sha256": "933c43dfe81c1d25f441392e2c77b395a827f609c9aafee9e6826025b09aeb51"
+      "instructions": 18,
+      "certificate_sha256": "58558794b189e0601040b50512bbf0a8fa34250b80584b7d4b07376c151fd5e8"
     },
     {
       "case": 54,
@@ -492,8 +492,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 1115,
-      "certificate_sha256": "a0bcb55bf7fd15e8ace8770c68e8016856a39e7e8aa8054b42a966cc95d5b139"
+      "instructions": 734,
+      "certificate_sha256": "2ed19f5c1edbccf77efd72c06dc236d179eaf5455d158ff1037d1afd97e231c5"
     },
     {
       "case": 55,
@@ -501,8 +501,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 129,
-      "certificate_sha256": "93867e6c1b079d121f0f0683e2cff28235afd9b830b2263c67a857040b96744c"
+      "instructions": 101,
+      "certificate_sha256": "513bfde92f7419a32979bdc401d8071ee945d01384da5a2f91b17386b2f07162"
     },
     {
       "case": 56,
@@ -510,8 +510,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 950,
-      "certificate_sha256": "6d9bfe0d75a7e29c59c513a111974ea56803b686c71abeaef239e9fe65b43a45"
+      "instructions": 650,
+      "certificate_sha256": "20a1b94be3782b9aa84e2958ba14e6231607f22728ac063761a833c563fe180b"
     },
     {
       "case": 57,
@@ -519,8 +519,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 48,
-      "certificate_sha256": "8a93368e470a75cbc1ea4034cae53ca7934fd31c0ba77e60679b3be8951893aa"
+      "instructions": 36,
+      "certificate_sha256": "7f2124c1defa0d1ee5d3d41744df82e20acafad0d0b654c9627d5cc7e296d779"
     },
     {
       "case": 58,
@@ -528,8 +528,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 33,
-      "certificate_sha256": "11545a65dae6177f0742f85fa4f9085ceaede08260fcb9fa81ed88f89bf3b173"
+      "instructions": 25,
+      "certificate_sha256": "ac8eac6a24dd1da3fb593274047a3238a55c02a1d57c5486ec0a33ec16fa6cce"
     },
     {
       "case": 59,
@@ -537,8 +537,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 277,
-      "certificate_sha256": "07a1b21fc59874a843ce2bd73c04507a0ada11bd38f022ba085cc49f5084ca90"
+      "instructions": 217,
+      "certificate_sha256": "64d7ea6b265d41f0ed657e03918c8c02cc487c46afcbcbb20d71b7b6ef7c944d"
     },
     {
       "case": 60,
@@ -546,8 +546,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 274,
-      "certificate_sha256": "16e6966d0849e9eb796b2c3f2414645667136a3f3da3f32b6e47737c605be771"
+      "instructions": 201,
+      "certificate_sha256": "48da8899d17b920def68be5261d9fb57de09ce5285d585031b737ec47b0ab766"
     },
     {
       "case": 61,
@@ -564,8 +564,8 @@
       "original_budget": 4,
       "retained_budget": 1,
       "goal": 12,
-      "instructions": 25730,
-      "certificate_sha256": "1d716dca38b71077ece408578439fd8ce9065b83b5aaad0d0ab5ee4d97d708dc"
+      "instructions": 6515,
+      "certificate_sha256": "ba1b2e71ab50cb75524db28cef3a1db135d09a563f90857127c2bca12d1bbabb"
     },
     {
       "case": 63,
@@ -573,8 +573,8 @@
       "original_budget": 4,
       "retained_budget": 1,
       "goal": 12,
-      "instructions": 27996,
-      "certificate_sha256": "783b6bf179c5d44a6b8027f0fc2f3ee6461f6ed59f33b5c1171816a5b9ca3e5d"
+      "instructions": 8373,
+      "certificate_sha256": "71ee52b1bb772b4726d85e63b8b41c92f118a8986233e4d3a7c7814e896697d2"
     },
     {
       "case": 64,
@@ -591,8 +591,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 95,
-      "certificate_sha256": "e037bb6a8b201f13604d7f9a692186532924b1b7f029cc80a6326f3b834060d4"
+      "instructions": 73,
+      "certificate_sha256": "c786d4026f097648ab345c49a4945cbac92e41954a9441dbd93dedbfcddc36f2"
     },
     {
       "case": 66,
@@ -600,8 +600,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 309,
-      "certificate_sha256": "af0e66b33a07fe8eef4a130cdf69b712c48ed5496ae61cccf3a85ddb0b12c655"
+      "instructions": 250,
+      "certificate_sha256": "f9c12d8715c7a8b723ec5fdca1be076952d07aff3f441d06dca98a6aa9c837b4"
     },
     {
       "case": 67,
@@ -609,8 +609,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 27,
-      "certificate_sha256": "b2c7bccf3b7338977fade3c78ec1703aa033b4e546441bcdd6ea5cea0a0a4d1c"
+      "instructions": 19,
+      "certificate_sha256": "b7952137f6955e9c908329390b4322097b30f7d4ca9ac47f859af4a653128adf"
     },
     {
       "case": 68,
@@ -618,8 +618,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 33,
-      "certificate_sha256": "ae27984271eb14620f0ca71090884f8388f852a744f3c3623b6a385661949126"
+      "instructions": 23,
+      "certificate_sha256": "8e40b4714b9f14f1e2146327d2f5adf77222fff366a831e1298a10f66970dfec"
     },
     {
       "case": 69,
@@ -627,8 +627,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 4,
-      "certificate_sha256": "d0c9f73d85aca7c75372d38dba542bc5f53aaed532dec354811610782be73daf"
+      "instructions": 2,
+      "certificate_sha256": "8a9dbdbe49d19563cc71ffe629161adc53ad3f01245f1da23e5e153b0a0eec09"
     },
     {
       "case": 70,
@@ -636,8 +636,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 9,
-      "certificate_sha256": "873cab9a797d4593af2f1f26c35b3d937712b00c4bb7847efadab22c393a8c88"
+      "instructions": 6,
+      "certificate_sha256": "f200de0929516668c78cb07b372d6e5a6be8d90533d49c533f0442de28bf206b"
     },
     {
       "case": 71,
@@ -645,8 +645,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 4,
-      "certificate_sha256": "82602a1692b45817689d27a23b534e105c40e8b9da3fce67b4a840de17e5313d"
+      "instructions": 1,
+      "certificate_sha256": "74017cfafe538563b5db5c3bade1661323a4a17f5ce7c66ae50ed2f560eb6282"
     },
     {
       "case": 72,
@@ -654,8 +654,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2,
-      "certificate_sha256": "d550cd87eff1e4a74232a6cc2e684f54d112fa28eeb1b3e9f6cae92cdb2c4b0a"
+      "instructions": 1,
+      "certificate_sha256": "40717a014e0b6d77f15264c751f536b6df9360cf5f4daf79f1ff06e8a72aa5dc"
     },
     {
       "case": 73,
@@ -663,8 +663,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 5,
-      "certificate_sha256": "d94fa41834caf2ddbf4e9fa0cb0f3c08fdf598a9fa689375c00c1ea2aeb0d827"
+      "instructions": 3,
+      "certificate_sha256": "d04e97705ea7764b4aa814c2db2415d37eab895697950b46f7bc7dba76070437"
     },
     {
       "case": 74,
@@ -681,8 +681,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2,
-      "certificate_sha256": "5a15c53236e3095d6f0981792017a9ed65198e97fe1e1e536e3782ec8d74ab50"
+      "instructions": 1,
+      "certificate_sha256": "6c57a74ee1b67016ec5193af344e3be0a387f27fa50f3e035572229c145b98b5"
     },
     {
       "case": 76,
@@ -690,8 +690,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 18,
-      "certificate_sha256": "a12314c52c14383dc6bea7cd9efdb855c150490dc04085bc157db23929652892"
+      "instructions": 13,
+      "certificate_sha256": "4c4db7d82fcdeda2fadd762c75795cc4e0da410c6d8f858f9167d1e78a0f8564"
     },
     {
       "case": 77,
@@ -699,8 +699,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2,
-      "certificate_sha256": "0dd20f7b0b28297ad85fd0edc6735635d61712f6999692f831fd295792330980"
+      "instructions": 1,
+      "certificate_sha256": "95ed69c240e299568c4cf2ebb1bdf963f14fefcd95ceb5c83a1c1f933edf1119"
     },
     {
       "case": 78,
@@ -708,8 +708,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 3031,
-      "certificate_sha256": "f5dfc1a0aa8576fe61794f301da72de3f663d533919c24337c31a4a5fdff47d5"
+      "instructions": 1937,
+      "certificate_sha256": "8dfcce461f7df1085a4b135ad8fd7224569c864b41918e84c50565e9e68f8dff"
     },
     {
       "case": 79,
@@ -717,8 +717,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 6582,
-      "certificate_sha256": "8f2e5a3b76e9358da3ef46f613011c8d1300413005c3c27696f020d05ae89ad6"
+      "instructions": 3763,
+      "certificate_sha256": "189bef3778f94366386e04baf29bd5a78a4667cd33f17e6b7e5bfc80e2280cd4"
     },
     {
       "case": 80,
@@ -726,8 +726,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 8545,
-      "certificate_sha256": "85518336c5eaaa96d7d54eaffb4d8ee8d1903d471947f1f43ca4a51b1488d28f"
+      "instructions": 5550,
+      "certificate_sha256": "471f4cadcf5c5dd248a786e34bb5d617cd4e19c917fdfaf6b21be6f17b60adcb"
     },
     {
       "case": 81,
@@ -735,8 +735,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 5615,
-      "certificate_sha256": "d8dc6e4592783696dcacf6a3185e84ad51573f1b6af0114e3e4da969cfeaa92f"
+      "instructions": 3312,
+      "certificate_sha256": "dcfd62682750617fe0b6d7c9edab6f0e8aac7f6b25fad6cf19f4e3dc07e871f7"
     },
     {
       "case": 82,
@@ -744,8 +744,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 3693,
-      "certificate_sha256": "3a4bab9104d347758fef7afeaeec4c1a9451141ff8dbc9503620920fb56810d0"
+      "instructions": 2240,
+      "certificate_sha256": "1f5f79316d9a21e704449522daf7b540d6170e0e580f44693cbc3bede7386264"
     },
     {
       "case": 83,
@@ -753,8 +753,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 4155,
-      "certificate_sha256": "6342893f7ea80bcbe96fffb826848eb4e5ca5084a9f6456e8a9750da148de576"
+      "instructions": 2467,
+      "certificate_sha256": "279f264e0b333d05afc4549a1c99cb69504a1267f8e7eb3e3ac8772d1081f947"
     },
     {
       "case": 84,
@@ -762,8 +762,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1134,
-      "certificate_sha256": "b1eb71f0b3f979c6ea3ecff54411d662b4a3486dcd48459630c5c5b9f3366c11"
+      "instructions": 703,
+      "certificate_sha256": "479d343d73e9d2b5b7c3764d8f4c1798293baebca0394b5d882eddafdc9ed110"
     },
     {
       "case": 85,
@@ -771,8 +771,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 849,
-      "certificate_sha256": "1c80cdd50cdcce03ddaa986f84dadc87d99f748b9d0561c0de12c4e245d453e5"
+      "instructions": 541,
+      "certificate_sha256": "bfa5d0735bff03dcaf584ee7d4e215511271146c710ea12f5eaf36c7be6bc9d7"
     },
     {
       "case": 86,
@@ -780,8 +780,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 686,
-      "certificate_sha256": "4fce7360aa1b055276525794818a85b12312489ef552ae37761e9de8a53d9cf9"
+      "instructions": 463,
+      "certificate_sha256": "269d2665330c30d90510424d3fd075f703bc1126f2ac5db4461cfbe172956a46"
     },
     {
       "case": 87,
@@ -789,8 +789,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1283,
-      "certificate_sha256": "8743e12b39dea83e94c085dfcb8f17a754d06664e16d0fa3b30355ca29fe0771"
+      "instructions": 809,
+      "certificate_sha256": "fb300385a38deb44ad2639e5895e1d5953791a6958209f72b786342204dc07fd"
     },
     {
       "case": 88,
@@ -798,8 +798,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 918,
-      "certificate_sha256": "7dbcc9ba4de438df5f4695650d8d98441786bb201fe0553fedbd9379fec3faf6"
+      "instructions": 619,
+      "certificate_sha256": "f27ad8481076676e685064d8ea0399507741670fa66257257300d6c10ac39ab6"
     },
     {
       "case": 89,
@@ -807,8 +807,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 128,
-      "certificate_sha256": "0f5a267a39cab2283680b072497a784c5acfaf83cb275f7f3d5bd6c010c54a7e"
+      "instructions": 95,
+      "certificate_sha256": "afc913b1f15d50fb6dc9d87759ca2d2e0e60eeb5d061e5908996b0b8372db831"
     },
     {
       "case": 90,
@@ -816,8 +816,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 6379,
-      "certificate_sha256": "375bc949737cd3c6936a55ea00ef180298cd09f3766f41b946f14e464e0719a9"
+      "instructions": 4201,
+      "certificate_sha256": "830decbc6b4de977e9c1c2fed0752fc725907e7894488a40ebf188f2b3535c70"
     },
     {
       "case": 91,
@@ -825,8 +825,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 881,
-      "certificate_sha256": "4118680db1dedf3d9e0796789119f79bfabefadce173b613411dc1a2eca8cfe5"
+      "instructions": 546,
+      "certificate_sha256": "072d83ae567ae968bbd34aaa9e97e21ff26e283737b397a5e8872b3b8a0c6c7d"
     },
     {
       "case": 92,
@@ -834,8 +834,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 776,
-      "certificate_sha256": "6c7a25fe8947d527aa35cd8d018d9083325c82a23c85fbdcc721d13080a9de7f"
+      "instructions": 502,
+      "certificate_sha256": "532bfc2b97edbacc04d4bc23ac7b0cd867d67555e9ead888624055cbe8648958"
     },
     {
       "case": 93,
@@ -843,8 +843,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 3775,
-      "certificate_sha256": "2b47978f79d38c473d08211f78e0aaeff2841fa45fb716554504428da1118fd2"
+      "instructions": 2299,
+      "certificate_sha256": "7e9d5e7bc743a09f285fc5bb14ba2466748f86ba753f521362e9f5877052dab7"
     },
     {
       "case": 94,
@@ -852,8 +852,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 676,
-      "certificate_sha256": "92736ddc120b0fd0a098b85c2a14e7147754668f77091f48323edbdf6b71e062"
+      "instructions": 400,
+      "certificate_sha256": "042d31a109b403ad3e031e4567954d559899b78151084f7571c7c9c886a12e70"
     },
     {
       "case": 95,
@@ -861,8 +861,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 896,
-      "certificate_sha256": "17d562c627f1803b99c5a33ffc37adfcc259db17f9fae86ff54fb8a86714b9a1"
+      "instructions": 523,
+      "certificate_sha256": "3af45376db94c68cb04bf24d2d5663d69aca49272a6406037454f63c68abdb21"
     },
     {
       "case": 96,
@@ -870,8 +870,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 573,
-      "certificate_sha256": "0e3b5bd3f99713c291c1a700119d7369235b8373783557f8c663ec15ecf56f12"
+      "instructions": 375,
+      "certificate_sha256": "12aa39e64e839412ea4712e3afdbf3c242200964e1d6b93860ea5090903c19d9"
     },
     {
       "case": 97,
@@ -879,8 +879,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 57,
-      "certificate_sha256": "7d46f0c986e26f5a870452627c8a4b0ad583ec580c64727d90c826fccf2370d3"
+      "instructions": 47,
+      "certificate_sha256": "c1526d9fd0a8306673480bcf7612cca965accacb20898e0bc0487752dcf48dfe"
     },
     {
       "case": 98,
@@ -888,8 +888,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 114,
-      "certificate_sha256": "da114778117051b3e0e1f1c909fd2de4be3474aade88d586c9c40d29c5bf7480"
+      "instructions": 77,
+      "certificate_sha256": "81443a3763c1cff2b99fb56697d0ae7a7e226907204efb984ea40148bd8146e1"
     },
     {
       "case": 99,
@@ -897,8 +897,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1811,
-      "certificate_sha256": "83369d5d969de1f82bd5cb44178f1d31b8300ba7b24994441a647af906f5a090"
+      "instructions": 1158,
+      "certificate_sha256": "6c28c8fa71085a4526f458d6c21a5fa5dc34e244f44cc13e3e9599ac84da20e9"
     },
     {
       "case": 100,
@@ -906,8 +906,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 162,
-      "certificate_sha256": "9938bc3a7bca66ed453d2bc9939f0076b65bd39b663353eab69c8bf2f06e08e2"
+      "instructions": 103,
+      "certificate_sha256": "ac18d655cdbf48d4aad7d9ae4c3142d9ba1c7ee547680cf78384f0014dec8646"
     },
     {
       "case": 101,
@@ -915,8 +915,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 3876,
-      "certificate_sha256": "0caeb304fac5294bc6c29101d0f29a8d3b625ef89c6639b9c82b7300ba43fb09"
+      "instructions": 2266,
+      "certificate_sha256": "75a2b403fa7a7a0338688aeca5a8caff7f951448adaa4a5081df841f522c2b89"
     },
     {
       "case": 102,
@@ -924,8 +924,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 925,
-      "certificate_sha256": "651ac16986a145d866b8c4d5692522be4ee706cce5b850e05864c6e040a3cea6"
+      "instructions": 612,
+      "certificate_sha256": "add280b5e19a4511bc27381110289b68d1a7a71ecd73c676ec54ac40c27fd457"
     },
     {
       "case": 103,
@@ -933,8 +933,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 807,
-      "certificate_sha256": "a31fef2047b1f7c31db869ffc23eacd75354938897451172c7b9defc4f3f8557"
+      "instructions": 525,
+      "certificate_sha256": "9e15f004a245e581c6d009e513c9fac52cd057ec38c2d194266d62bdf070bf46"
     },
     {
       "case": 104,
@@ -942,8 +942,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1004,
-      "certificate_sha256": "e3d81783279f515b4885dca8667dc18e48c7675abb3c8e74734b5fd4c4d27d3c"
+      "instructions": 670,
+      "certificate_sha256": "ea6858ab77b850789f39590cdae85fe5e414b155f358b9407413ebd404d9e284"
     },
     {
       "case": 105,
@@ -951,8 +951,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 140,
-      "certificate_sha256": "3ee179f242ef32daab8df29939aabeb261f30c2614919a494ed01532bdc9defc"
+      "instructions": 98,
+      "certificate_sha256": "846d154b7aa43bb02f9df93b69282465b21c888c55a4d6173dc9a91cc9a22368"
     },
     {
       "case": 106,
@@ -960,8 +960,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 968,
-      "certificate_sha256": "d64fe7330ec5903198749b6c75eb59bd268263ab90884deeb073a8c6e5a7ed39"
+      "instructions": 599,
+      "certificate_sha256": "4ce0847f184f7023acd21cf564adfbfe54a9c010076e6ced078928d6a20d3d00"
     },
     {
       "case": 107,
@@ -969,8 +969,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 801,
-      "certificate_sha256": "7ba5a74e5ef841043345d4e3754a133de1779366ab887bc7f2a09f8d4bf1ea55"
+      "instructions": 493,
+      "certificate_sha256": "5e384a26b06b50438407ea3d572686cc0be8068b8d66a4f17d193c396b991a34"
     },
     {
       "case": 108,
@@ -978,8 +978,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 597,
-      "certificate_sha256": "ef16866aefe0f871a5018ff9b16513328bc97cfc07e8990fab1bb53f4aa2b977"
+      "instructions": 371,
+      "certificate_sha256": "c7122adee00d0a03a92a7edbbb47def072160a463a36074bccd4dc4b2eb0c5d1"
     },
     {
       "case": 109,
@@ -987,8 +987,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 534,
-      "certificate_sha256": "461454d28b99af9963f2815d0b592944af9ed09082da11576375ee18e22c125a"
+      "instructions": 335,
+      "certificate_sha256": "76f6646c0d55cf12749dbb74d0c133d1ee85284f7208674dc3ea894cab8023e1"
     },
     {
       "case": 110,
@@ -996,8 +996,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 91,
-      "certificate_sha256": "8055b3d193630f4a32e7ca6728b5dbf45786faa54bed5211a167fc5667156de7"
+      "instructions": 59,
+      "certificate_sha256": "4f85cf32cf767c38003ef765ff6fea243649668411b40a0083b936ee25d06c5c"
     },
     {
       "case": 111,
@@ -1005,8 +1005,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 67,
-      "certificate_sha256": "d8c1dcaeb81a10bf504816de338d56a1ff10f172dc7c968c02746be88c16229a"
+      "instructions": 44,
+      "certificate_sha256": "0956ace6b5f1b60b4cdfbfef99c3635d7f975709fa4cec68a9ed3286ee397523"
     },
     {
       "case": 112,
@@ -1014,8 +1014,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1496,
-      "certificate_sha256": "525a0f9beb31c68829220c68f0dfb2e91262483f63a5f9929c77d141b9884f85"
+      "instructions": 970,
+      "certificate_sha256": "0ff7f346059cb2287cc9952f8e8c08ef3097924c4c4bc9f45d4f3baaa4f60cf5"
     },
     {
       "case": 113,
@@ -1023,8 +1023,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 306,
-      "certificate_sha256": "f60460f36b6c901bfbfdc5745c0658a00214055ede37dcf8fa7cbb51ffa47a8f"
+      "instructions": 186,
+      "certificate_sha256": "589b0b3ae5efbee4512192ea76e95192430752acafb9d351c9c0fbfb5fe14bd8"
     },
     {
       "case": 114,
@@ -1032,8 +1032,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 105,
-      "certificate_sha256": "dd3734f78be1101946c3f88156582180c8bae0bf3f8b72a5dbf719aab242fd38"
+      "instructions": 60,
+      "certificate_sha256": "a3573d86dcd69b4478f788407d5efa6c97f0cf0ae55c0e596db9cda710844256"
     },
     {
       "case": 115,
@@ -1041,8 +1041,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 651,
-      "certificate_sha256": "2dec6f0949bfc8e6208334768becdc4ed1f39a417993355219d1317a554e96e2"
+      "instructions": 440,
+      "certificate_sha256": "8af91e4ae4e6d8463410cd5c112806af61004e9ee5b808d44ec95fedd700d239"
     },
     {
       "case": 116,
@@ -1050,8 +1050,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 131,
-      "certificate_sha256": "6227bb945cb43980791ad145ee85cb6f43c4e02977c077349fae9218b21826a0"
+      "instructions": 97,
+      "certificate_sha256": "4ca4543ab6d8a2fcf3247a06e608908a110f5f3999704bc1e0904b8160a96ff5"
     },
     {
       "case": 117,
@@ -1059,8 +1059,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 618,
-      "certificate_sha256": "24781e0cc383213a8939e275480b75cec9f1241a523bfa28cb36404afbb7cf0a"
+      "instructions": 415,
+      "certificate_sha256": "8c701089e2d9e00f80250e08cbd76eaa761a91aeb54e4dbd4914c7f4c444d1de"
     },
     {
       "case": 118,
@@ -1068,8 +1068,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 80,
-      "certificate_sha256": "d67b4bd882ae370ebf2c0aec2e9ad3e486fd922721f56fb5b182898ca8a99073"
+      "instructions": 67,
+      "certificate_sha256": "bf15c2d6012c7f750140c4fcab4ef6ec03d8c73709005f1f6ea17ef909266dac"
     },
     {
       "case": 119,
@@ -1077,8 +1077,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 81,
-      "certificate_sha256": "b97873884600b923bc7290374b4852560ace208b08210bfe70649a72579836cf"
+      "instructions": 58,
+      "certificate_sha256": "754b6f6c0f3db23f7f6609399abe5b329da558aec7b20e1f98ebe0c39440e111"
     },
     {
       "case": 120,
@@ -1086,8 +1086,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 465,
-      "certificate_sha256": "ce0cd0b5e9748571b7a3d699faa9680f86fb0d3366a6d21d3b686e27d5353f11"
+      "instructions": 317,
+      "certificate_sha256": "68ebdc91aa78256fef845b30cf3e82f5c913809442bf3120d035b562ac9afe91"
     },
     {
       "case": 121,
@@ -1095,8 +1095,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 261,
-      "certificate_sha256": "b44cf76ebbf79a5c3b6bc213534046a887b6e20c4441239e17076c5a65415c50"
+      "instructions": 183,
+      "certificate_sha256": "097074ced0ca6b39456d636041584e5f2e39e9b375823ea78a8488444ba36cd6"
     },
     {
       "case": 122,
@@ -1104,8 +1104,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 10,
-      "certificate_sha256": "53c1fb1713b75dd037f0d9491052749eb8902b33ebf4334a91ab9dd9f3564335"
+      "instructions": 8,
+      "certificate_sha256": "b1b8eb878cfa60e2583577ba3ca4d0874e6eac62503ef5e8fdc010d48ab9664b"
     },
     {
       "case": 123,
@@ -1113,8 +1113,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 46,
-      "certificate_sha256": "3feaf6401e62bf45ab6d75bab4e7c83800f25a29b0eda5e77556c6e6bb1bb31d"
+      "instructions": 38,
+      "certificate_sha256": "da877ff61459cefa6ea8eb0778717a50eb4923dc738b41e5e42951997456f3b3"
     },
     {
       "case": 124,
@@ -1122,8 +1122,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 195,
-      "certificate_sha256": "482e9047883b8dba7d0fae03c5f5e54887f46c4c873b5c82910a8657e71c142b"
+      "instructions": 139,
+      "certificate_sha256": "0d281ab2a2c49b7885c92c0456b97921187d333040e2a7f7063c2758ac9bad96"
     },
     {
       "case": 125,
@@ -1131,8 +1131,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 22,
-      "certificate_sha256": "d861bb328eae7479e7aae56d1c125aa01bc930207c31b9ec0f3208c9d454edef"
+      "instructions": 20,
+      "certificate_sha256": "3cb848e4b3ed175397708f1351b291a9280b7631c0e991cd12005087e3b9c092"
     },
     {
       "case": 126,
@@ -1140,8 +1140,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 926,
-      "certificate_sha256": "27e760480820cbdab890084098fc152bbae4c7e8149a4e9c905c8a274abad286"
+      "instructions": 616,
+      "certificate_sha256": "e57c4218c565527b8d6d11317043bb33491739316c7eece72221d5beecb1a2e2"
     },
     {
       "case": 127,
@@ -1149,8 +1149,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 150,
-      "certificate_sha256": "d6bdb108bedcda9cc513f60509c4eaa0fd4326421423b4285ac1355e5a1691eb"
+      "instructions": 111,
+      "certificate_sha256": "18e7ac054185f51d24b1c0c9afbe53ca94a8982c78ebecb06979cef8f0b67477"
     },
     {
       "case": 128,
@@ -1158,8 +1158,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 43,
-      "certificate_sha256": "f8b2b1bb2d14ee31cfc9daa82c4a8a2e8f517c2945a875fe76c881a4057e4070"
+      "instructions": 33,
+      "certificate_sha256": "87dc879a94d7a771188698cb5cbe320f5e8e94efc525857aec3925d5bcdb5489"
     },
     {
       "case": 129,
@@ -1167,8 +1167,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 128,
-      "certificate_sha256": "e7a707d1e49f413d3ed570cad49df9efd59ad0278de4c1d5ab63cd1d17ea25c1"
+      "instructions": 97,
+      "certificate_sha256": "71c8896747f7967ee8d998487035d514e5042f434b47be60c5e1c466aa838749"
     },
     {
       "case": 130,
@@ -1176,8 +1176,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 149,
-      "certificate_sha256": "d6dc02d2c3c0aa95550645b1921e5937da6c34c8ad3768f6acf16acf8006856c"
+      "instructions": 115,
+      "certificate_sha256": "71d71792b8483d5d4a5c14c97f78f95390d0cac780f6c4c43eb19e033f1c595a"
     },
     {
       "case": 131,
@@ -1185,8 +1185,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 33,
-      "certificate_sha256": "d445de60f4b1a34851a285651e14e49d9b99c9c8776427c4d14372161ccdcb43"
+      "instructions": 23,
+      "certificate_sha256": "e176e8867268dd81bcafa914b03f16f3e2badacbd73d13a324eb9cbff20f3260"
     },
     {
       "case": 132,
@@ -1194,8 +1194,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 910,
-      "certificate_sha256": "9a916c496185a3bf59cac65b1a505d90aa49a02b203fa6c1a869a96ead0f03be"
+      "instructions": 620,
+      "certificate_sha256": "9da6bec4c8c756057af2322d32604aea96c44ff4137ae9110d5d954152c3a47e"
     },
     {
       "case": 133,
@@ -1203,8 +1203,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 4,
-      "certificate_sha256": "9c0ff27188c4547b9b23d6e9f64d15638b9d39b6902af968526d5e4ad5ff9a8e"
+      "instructions": 3,
+      "certificate_sha256": "a600addaef0d4df5e9e068449e39a412158386099466c14a2fd2a46db27835ab"
     },
     {
       "case": 134,
@@ -1221,8 +1221,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 16,
-      "certificate_sha256": "26cd81c13ecc8764b9af8b70e5a6a1d8c944895022c77aa524c37d3cdffc259e"
+      "instructions": 14,
+      "certificate_sha256": "b3f4b5e9af3f3b4903ae3f2950cbb347e148f809427c8e3767bca88e42c9400d"
     },
     {
       "case": 136,
@@ -1230,8 +1230,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 8,
-      "certificate_sha256": "ca584cba9ff6651c531364660135c52010a07fc7169c07dd4c30a1e557c84ceb"
+      "instructions": 6,
+      "certificate_sha256": "132bd095fe38d460dff8a03b49b41dc1ddec6ed705e41bd26a0b91a158210e03"
     },
     {
       "case": 137,
@@ -1239,8 +1239,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2,
-      "certificate_sha256": "74e1facfa9c2c53401aeda58a11504bdfa33a66580d2fc8dcd3ab2d55ff33cee"
+      "instructions": 1,
+      "certificate_sha256": "0e22a71ad49eba5e84f4c57e91e6a5389cf5f71ae11414bde6cbe27dba17a628"
     },
     {
       "case": 138,
@@ -1248,8 +1248,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2,
-      "certificate_sha256": "39e5d4c04f3c0267b234a7c1425e3ce26376c0a1980d60968caec455e365cedb"
+      "instructions": 1,
+      "certificate_sha256": "532dab9ecf27b24ce1249abe0da3f0ecad9c89dc9c10c4eb06d524546441e65a"
     },
     {
       "case": 139,
@@ -1266,8 +1266,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 4935,
-      "certificate_sha256": "43cedec7b698312cd2da0ab594f229942a82610b5e4fdca82019e5e29c36f767"
+      "instructions": 2929,
+      "certificate_sha256": "e581d2187278e70d50b09f0c08875f533f051d4b3183ddceacfb276cddc29693"
     },
     {
       "case": 141,
@@ -1275,8 +1275,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 981,
-      "certificate_sha256": "4f9b8d448d5cd20d3a6e8f930d838876e22f4f814b346f7c2934211cd587c53e"
+      "instructions": 633,
+      "certificate_sha256": "6a602c7de477784f4bce9a57f2e58306a6d0052aa1251b367d8dce6d9881bc5e"
     },
     {
       "case": 142,
@@ -1284,8 +1284,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 716,
-      "certificate_sha256": "293ef8160dc01a6ca80efecdfc2844afaaf0e88feeeacabba51bea0dc4607c12"
+      "instructions": 493,
+      "certificate_sha256": "28a4c8202291dedfcd0ff5f1ca1c2c897cb33ae7c0c54a5961d03bd571438edc"
     },
     {
       "case": 143,
@@ -1293,8 +1293,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1403,
-      "certificate_sha256": "4f014d892b4c6c3b080ee2f3303b5c28621d106377c747ea69ae23f0fb7a5fc0"
+      "instructions": 878,
+      "certificate_sha256": "df81316231430cf1c114e05fff989e943555601516c48d5891bd453b8a649078"
     },
     {
       "case": 144,
@@ -1302,8 +1302,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 47,
-      "certificate_sha256": "7c4ecfabed2e28cef5f9b0c8aef496c6556e64e3c1923e42bc5a1051759ac035"
+      "instructions": 39,
+      "certificate_sha256": "50474d765d773002c836ec64d6ce0c43b5db65d4f0edddcaead43ee6be08b71a"
     },
     {
       "case": 145,
@@ -1311,8 +1311,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1206,
-      "certificate_sha256": "2784f2b935fbdb3223468c0f77960b503db2d911b1f8a9c76984766ce5907bb8"
+      "instructions": 696,
+      "certificate_sha256": "93c083f317b881b55a83e741927c59ddf7686ba1e00f71c277f936719ad825a4"
     },
     {
       "case": 146,
@@ -1320,8 +1320,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 967,
-      "certificate_sha256": "c662c3a878efc25136e3aa18f7f87eed14d946c0672f098967ccef1b85cd4597"
+      "instructions": 548,
+      "certificate_sha256": "1412a22f275637dbd6ed86dc742b48159650a9d6c93d375bb6b028266f5ca321"
     },
     {
       "case": 147,
@@ -1329,8 +1329,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 562,
-      "certificate_sha256": "726b7df0700b0d1887a0ca08ba4f015e47160bb6ba2276d56d10db1e34000459"
+      "instructions": 360,
+      "certificate_sha256": "ee33d653aac52d98e656aaafa45cd192232fb5aa16cef5554bd1daa4f026ad55"
     },
     {
       "case": 148,
@@ -1338,8 +1338,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 615,
-      "certificate_sha256": "91b4cb4aa7040e35012bdb44b07dec4c164d97fa598a01ecd9cfadb9cea62e76"
+      "instructions": 382,
+      "certificate_sha256": "77a5f00ad87dabf7bd7e0ded0ea99778582357189398c87aba345b1d23446841"
     },
     {
       "case": 149,
@@ -1347,8 +1347,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 33,
-      "certificate_sha256": "5d43e6b71f45a687a9bae9cdb5fd7037f24c9b2056f1a85d4aece48537cbacbb"
+      "instructions": 25,
+      "certificate_sha256": "c4536bbe851b9d8e22294f534fb5146f0a20970d6b8fe4ad72bfb2944a149e06"
     },
     {
       "case": 150,
@@ -1356,8 +1356,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 20,
-      "certificate_sha256": "702d0dcee074121d5e570c38ab8b71e62d4b717d8c6233231b688cb2df91d41c"
+      "instructions": 16,
+      "certificate_sha256": "1405727c86d5f887509a80c415c35a719dfea3bf244f24acac58782b07a3b4b5"
     },
     {
       "case": 151,
@@ -1365,8 +1365,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 2209,
-      "certificate_sha256": "c517e9284eef3b0e1c01820906caa5d23b7e035a608b7a3841a286c25ed17606"
+      "instructions": 1369,
+      "certificate_sha256": "347374a295f5a1d5d4636aa158b7ac710a3c989766836ecd6507ead84b7d8ea1"
     },
     {
       "case": 152,
@@ -1374,8 +1374,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 138,
-      "certificate_sha256": "d46674302859fd5a6cb72a52f0041a43a8e41a1ca08b238d7ee083f99ba8e6c7"
+      "instructions": 93,
+      "certificate_sha256": "1c90697ebbdc52f87f301d45242a9c25458b863fe156003a9478211ba245846e"
     },
     {
       "case": 153,
@@ -1383,8 +1383,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 25,
-      "certificate_sha256": "67b22e5dedb8f865805bfccb0f6d5b04662ed7017e6dec208587f736ef55ae7a"
+      "instructions": 20,
+      "certificate_sha256": "be190254756466b2d2997222a3d090b57f7542e762cdcae888d849efc24903c2"
     },
     {
       "case": 154,
@@ -1392,8 +1392,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 652,
-      "certificate_sha256": "d7c3b7318efad8ec971d6a5592fa82fcd877578d270299118413388d4de5fd71"
+      "instructions": 454,
+      "certificate_sha256": "a8bb01a2c2cea7fdc7698427356a9a8adcf0f3065e989716f4839b84c387e971"
     },
     {
       "case": 155,
@@ -1401,8 +1401,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 47,
-      "certificate_sha256": "b3346dbe849d0519c8e29712a26badf23ad083978fd904c4958ebef6b17fd20e"
+      "instructions": 39,
+      "certificate_sha256": "1cc2f028230b6ce15ab1f0cac81acf6e18020496f0b14f14c031209489691739"
     },
     {
       "case": 156,
@@ -1410,8 +1410,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 744,
-      "certificate_sha256": "216fbad83fefe221c38d6b7b155d9457818caaebd50559092f4ff7643f48552d"
+      "instructions": 435,
+      "certificate_sha256": "aab755cd3770091cc199ea8151f12217ceefc3aeca456ebe8bb051a0094b12eb"
     },
     {
       "case": 157,
@@ -1419,8 +1419,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 20,
-      "certificate_sha256": "27aedaf240974fd599d9b3e8c769efebe5c339836ee6d9cbd68c2ff29382b4b1"
+      "instructions": 18,
+      "certificate_sha256": "6e90ec393df3d9ef53345d44d6aaf92b5a9df18e7a02904233f77b566ff34968"
     },
     {
       "case": 158,
@@ -1428,8 +1428,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 35,
-      "certificate_sha256": "ba3065f01c6d6666752725986743459dc7387b49de32e52a4ffe962250da2694"
+      "instructions": 25,
+      "certificate_sha256": "5c925258fb72ddfa5975698cf845a5b4350cb5f8cc0dce7c88d9e6754fbae30d"
     },
     {
       "case": 159,
@@ -1437,8 +1437,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 46,
-      "certificate_sha256": "04c0f6bb1b255a55faf52a52314f65e6e831c28a42059548eaa243284f45c34c"
+      "instructions": 39,
+      "certificate_sha256": "c71347dbd3dcf2d4588aa1cb0c83a5bd4e4b019eb000c91a0f4f2a3548dce487"
     },
     {
       "case": 160,
@@ -1446,8 +1446,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 173,
-      "certificate_sha256": "3806ddd57cbb1f69b2aa85279db830ae279d864638371edbfa4e7069fdc8c5c8"
+      "instructions": 103,
+      "certificate_sha256": "4cfd0c76b00b3791d88e488aaef218ff4c3a390e45b2be319463b5feb4a921a7"
     },
     {
       "case": 161,
@@ -1464,8 +1464,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 20,
-      "certificate_sha256": "a4486f7bc58501da115cd82505ea218567a84abb96a70d381eedec4d605c15ea"
+      "instructions": 16,
+      "certificate_sha256": "2fac43d9eae9bd38133fc688eb7fe40a2b9d4f798862cc72740b3145f94c58cd"
     },
     {
       "case": 163,
@@ -1473,8 +1473,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 56,
-      "certificate_sha256": "ae51a85dac4b6d61212f34620edf53038ff9e6a2c683ac65bf94c3487ed6a4d8"
+      "instructions": 44,
+      "certificate_sha256": "7f6ba0b32de1d92decdb8d8380faa9e1095adf352f96022fa9fe0519734d35e8"
     },
     {
       "case": 164,
@@ -1491,8 +1491,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 55,
-      "certificate_sha256": "6aa44a53a6aa29ac50a600eef193535604d93da62a3993ac9d033240be0c3b6b"
+      "instructions": 39,
+      "certificate_sha256": "a1f53e9ad21d544d4a41c10b01641d095fe99defad7f2c7e13be69d27a5e91be"
     },
     {
       "case": 166,
@@ -1500,8 +1500,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 25,
-      "certificate_sha256": "05115f67ff3d60fc7f956f125fc8958344b0c7df9b682b463a694cade2c7b39f"
+      "instructions": 17,
+      "certificate_sha256": "30721dab733cf17498c350038f4e753a18f976eec5254b71e95dfaab0a3f4007"
     },
     {
       "case": 167,
@@ -1509,8 +1509,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 16,
-      "certificate_sha256": "bded619d9cee04ea38f3a8c024d1a81597b2f94be81f17624d94d2cdabfe92be"
+      "instructions": 14,
+      "certificate_sha256": "ad5f82829fa2a346ea0661d0541b6661494ce27128efa450415cd18d9665bb94"
     },
     {
       "case": 168,
@@ -1518,8 +1518,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 5,
-      "certificate_sha256": "28647608c0471afd35a265a057c5a10829cb02858a5713a0b3a31ea644449d63"
+      "instructions": 3,
+      "certificate_sha256": "39facb0fefa5a060f34a918e67e560672329208493cc4e58641a110a038ac62e"
     },
     {
       "case": 169,
@@ -1527,8 +1527,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 16,
-      "certificate_sha256": "1e7f49ec3bbe39f8fa940b08f327a3749c83f688f16de8fd8d497d6cd0e6208c"
+      "instructions": 12,
+      "certificate_sha256": "539cac1942319f4b3fa264add809df56b688c699f25fb6549efb07b439f4daa3"
     },
     {
       "case": 170,
@@ -1536,8 +1536,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 583,
-      "certificate_sha256": "332601c98c8710508f7f040c0d2cbd87f1d8ae7bcbcda2cfa7b389623357c3d3"
+      "instructions": 389,
+      "certificate_sha256": "efd40d2018d2a803c03ff6374b8269ff37226c04be658b8e102ce1d74af0c89d"
     },
     {
       "case": 171,
@@ -1545,8 +1545,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 93,
-      "certificate_sha256": "1cf2ea3c3f9dc505ab26ce3a39740e71b15367be82ed213eec785a506b18bf3d"
+      "instructions": 54,
+      "certificate_sha256": "d2f7dc6378fcf73b14df17067ed600c40a7718f5baa76d71d86b695a85db423d"
     },
     {
       "case": 172,
@@ -1554,8 +1554,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 648,
-      "certificate_sha256": "c77d82d7b6ae1897d660f98b171500a177d37c562e776a26b390301b219934d6"
+      "instructions": 392,
+      "certificate_sha256": "9f4773e23a265f97d6eb782a262f254cf740a95d24da75defdd3aea35de18919"
     },
     {
       "case": 173,
@@ -1563,8 +1563,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 28,
-      "certificate_sha256": "a9d8842a4a0192224873a9e3d6601c6dfa58c369b29c7bf3c39f0011384ff808"
+      "instructions": 20,
+      "certificate_sha256": "34737388e55a0ac8dc578485868e60eb7e5bdee77fa749d138321919d93d6dd0"
     },
     {
       "case": 174,
@@ -1572,8 +1572,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 34,
-      "certificate_sha256": "356260452a77817920ebb69fdc57869869f031839f848b56f5632120c75cf689"
+      "instructions": 26,
+      "certificate_sha256": "b9ecf401b570ca272f6572058aff54af50445ee7b8f51127c9aca6f228f991d6"
     },
     {
       "case": 175,
@@ -1581,8 +1581,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 88,
-      "certificate_sha256": "0503e9176307e72c2655e77cd3e0bac516ecab5b48db2d723a432a19b6bb2542"
+      "instructions": 67,
+      "certificate_sha256": "01e7dd421605cbee40f4f29bfc0f5c9ae411fde395fd8215475ce59c646cb17a"
     },
     {
       "case": 176,
@@ -1590,8 +1590,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 231,
-      "certificate_sha256": "8c5331aa1bdcc6fc8677b4b9a2389c82ba6391ab6a5e767c582092b9227fb1f2"
+      "instructions": 127,
+      "certificate_sha256": "fc1f107659b29ac7a6bdd20326150463ab69cf5f963e8c5558da79f62e50e5a6"
     },
     {
       "case": 177,
@@ -1608,8 +1608,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 31,
-      "certificate_sha256": "c9b95b7f46fe3cd21eb8eea2e747a80f0c07d83816597bbdbfa76fa843957e06"
+      "instructions": 24,
+      "certificate_sha256": "1a534bae29043caf7ed0a6e38c32b4dd96799e31ef713f0ac3f9b313ab3c1cbf"
     },
     {
       "case": 179,
@@ -1617,8 +1617,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 92,
-      "certificate_sha256": "8d27328b1a52dc86f7dfcbdb3b495881d0496ddfbe72903addc45ddfdaaafc3d"
+      "instructions": 55,
+      "certificate_sha256": "78fc89beba7b3a3cec1d357b13b9a4cb9602c975a1ca3bc3fc73fa2b6574d4c5"
     },
     {
       "case": 180,
@@ -1635,8 +1635,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 22,
-      "certificate_sha256": "63c58de1c23610d9630deebf588c21ed69940a5c09de054ea2acd73a8159aa8b"
+      "instructions": 15,
+      "certificate_sha256": "ed9df5ed0a6ac600e5ab01dcd68e6429187af94ad2a77d743cff6f81a184c567"
     },
     {
       "case": 182,
@@ -1644,8 +1644,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 2,
-      "certificate_sha256": "06ed482453dbd88b659cea5772fc74a1d49bd2430d239654291e2ab08daeda6b"
+      "instructions": 1,
+      "certificate_sha256": "d5412eb99104eec7a78ee5d2e4ac15180581164e84139bbd9ed7cac3e508a0f5"
     },
     {
       "case": 183,
@@ -1653,8 +1653,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 2,
-      "certificate_sha256": "a3c3b40482879e48f42e85e0f2ac94fc4a623dd9c4f28cd84930a6dae30da335"
+      "instructions": 1,
+      "certificate_sha256": "85863b589093ffcf820aedbda5ae162138d9efba021ad1f4cb3472302b8a4e90"
     },
     {
       "case": 184,
@@ -1662,8 +1662,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 33,
-      "certificate_sha256": "d3134d1baf75e99468661157643d165504d6080ae7d13acbfe1cac4d8f909aff"
+      "instructions": 25,
+      "certificate_sha256": "bd6f4dc5c65f446c8cc399c5910a814b3c8f5ff70bd2278074f90ea16b9d47f4"
     },
     {
       "case": 185,
@@ -1671,8 +1671,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 101,
-      "certificate_sha256": "c0e1a2825b7668c17085f996a3c5e8dc0a734975326daa660680f3f39560298f"
+      "instructions": 56,
+      "certificate_sha256": "1e98a22bf9a1e797b8c5140777db7f3ae4577a5be6c677a7efaecc91bb210505"
     },
     {
       "case": 186,
@@ -1698,8 +1698,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 6093,
-      "certificate_sha256": "0950d0a5d19687b5dc68f5aa11c83f68f62b112d0cc5d44fc7eda229b7f2f1fb"
+      "instructions": 4342,
+      "certificate_sha256": "1b8ce50d4f8e277e98ae9e64345eb329822d07d918fca454870182ee5ee14ff1"
     },
     {
       "case": 189,
@@ -1707,8 +1707,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 5588,
-      "certificate_sha256": "ce1afcedda8caf36e742696ed26686ec40840a1c032fc4f9e05a558edf7ece24"
+      "instructions": 4009,
+      "certificate_sha256": "c04fa28ee24257f3ff73a5c4f6c1f4fa6d6c5cc068f3b61fabbd9f05900d0efa"
     },
     {
       "case": 190,
@@ -1716,8 +1716,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 319,
-      "certificate_sha256": "c8d279d587e1eccd861635c94a0119c8a777ee09f84261f67a3d47f8f0d7e0ed"
+      "instructions": 273,
+      "certificate_sha256": "130244391f94d653d04ff6d078b8c2f33b0bb4304d4414a20e1cda8ebbec7918"
     },
     {
       "case": 191,
@@ -1725,8 +1725,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1651,
-      "certificate_sha256": "bcdc1faa13594b9a9c592cd122f29910f9c7863a5c2964f86b91f2bb176bf3c1"
+      "instructions": 1178,
+      "certificate_sha256": "1cadfa223c5a99dd65c91e416974df28592da67f8c44038715be73a25db31154"
     },
     {
       "case": 192,
@@ -1734,8 +1734,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 4861,
-      "certificate_sha256": "11f742300573f0c54320719d371b2e174cab56d266c4e81325b7635b5e71dda9"
+      "instructions": 3504,
+      "certificate_sha256": "2f9934a28c5d2966e214bed1e0a7d3c195df8c184b8c1955c503340065a4b3cf"
     },
     {
       "case": 193,
@@ -1743,8 +1743,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 7448,
-      "certificate_sha256": "33846915209280b0f8295454ffe72628c353db68bc811b99f66076a8f520e3de"
+      "instructions": 5271,
+      "certificate_sha256": "b0c02112009fc47bf2a74950b6a15a7f207e3a395c5e3db7370d1aa7e5c5af91"
     },
     {
       "case": 194,
@@ -1752,8 +1752,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1889,
-      "certificate_sha256": "4119463850de98a3716597d2f07e21be85ce1060839c65b35b5185c502b84e9c"
+      "instructions": 1460,
+      "certificate_sha256": "1c942180abf8729e67ae142140c5246eab4f70e99eb1983987da3626249018ad"
     },
     {
       "case": 195,
@@ -1761,8 +1761,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1511,
-      "certificate_sha256": "2c4acf53872308eaab5153a2f700bd909f27028820af303b5735f752a4565244"
+      "instructions": 1082,
+      "certificate_sha256": "b38103b56bc2206fd26df2b7dd1151c78b813602bce13dab4e744ce22b7036ed"
     },
     {
       "case": 196,
@@ -1770,8 +1770,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 1418,
-      "certificate_sha256": "ec0db892a18463f3c1138680224710b91df3348b51d0700f00ef928c020b0c78"
+      "instructions": 1066,
+      "certificate_sha256": "1c3efb255fddc895f2d8618ba0f0d34bc28ff19791dbb2ab1c4ab633fd44a2be"
     },
     {
       "case": 197,
@@ -1779,8 +1779,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 353,
-      "certificate_sha256": "7c92b0780edef4bc976b5b5a356c25c6c685339b37bc0655dbbb368cc4923d53"
+      "instructions": 254,
+      "certificate_sha256": "10f9a5abb1b762d1d10e26060b772b4d01b56dba24d55b7e9dbc5b8e50bf442c"
     },
     {
       "case": 198,
@@ -1788,8 +1788,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 5168,
-      "certificate_sha256": "3b2fb3e058c6d810d8316e0d73f7aa614f12cc7f9f8e78522f055a90c713607d"
+      "instructions": 3617,
+      "certificate_sha256": "2ad5dce9111cf834254b3c728f36bf427e9a5b9f30153d07cc2ddedc3c90bfea"
     },
     {
       "case": 199,
@@ -1797,8 +1797,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 297,
-      "certificate_sha256": "9da5fbb4a1cd058daec7c7bb52e6667cd34761f3dda0531bef07cb03e5a17089"
+      "instructions": 252,
+      "certificate_sha256": "f7928670558f4ce4a6b9f92d92a0d572c118b7ab3200613ae9486cba0a5f4e18"
     },
     {
       "case": 200,
@@ -1806,8 +1806,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1310,
-      "certificate_sha256": "56372e96164aadee153846b61d6d216bcd02e5abbf9e436427f46e6bde8b8de3"
+      "instructions": 967,
+      "certificate_sha256": "5a55f498b2cd25dcd72e0ff7acd69e6605998914ef18a785fba4bac6142cb349"
     },
     {
       "case": 201,
@@ -1815,8 +1815,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1198,
-      "certificate_sha256": "f495e06998bc0394b874dad117219ecaa9da7fa043ec6c5fd3cfa70a16f8a5b3"
+      "instructions": 890,
+      "certificate_sha256": "4fd080605a3e5d9a1d3c32f1f12cf99203df22679d300342d0a08a8bf5684b5d"
     },
     {
       "case": 202,
@@ -1824,8 +1824,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 6142,
-      "certificate_sha256": "d7099e9c781162cc26f6ceb51d809023e2f8bc7134e14fd525c53ff3eac334c9"
+      "instructions": 4438,
+      "certificate_sha256": "688cc94a10a92511ce2191306f197718400cd2915aeac6ade73fc835863b83e3"
     },
     {
       "case": 203,
@@ -1833,8 +1833,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1929,
-      "certificate_sha256": "245270077515ac7a302e873db73c8a3ebfa8d7f468e614fd7f736f0bd241c914"
+      "instructions": 1530,
+      "certificate_sha256": "3aff95144d6d5a8acecaf0035e9ff0e7734873ea115d59f526618c7272459589"
     },
     {
       "case": 204,
@@ -1842,8 +1842,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1048,
-      "certificate_sha256": "e5ed9ce924ed417690f0056d8d31079a4e2fd3cde45e731bf676f78cb374bc80"
+      "instructions": 762,
+      "certificate_sha256": "8f601da186b092d47fd96786c402198b08f5c4af911572dc25cfce1b6d662fa0"
     },
     {
       "case": 205,
@@ -1851,8 +1851,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1253,
-      "certificate_sha256": "03a650cb79f146794b73518f103578dc082666b9841686e8a1f6cd4d817f006d"
+      "instructions": 904,
+      "certificate_sha256": "65ca5afa0a1cc2159f64023faddd507ff271f089f26777bde5ad743f908b924b"
     },
     {
       "case": 206,
@@ -1860,8 +1860,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1282,
-      "certificate_sha256": "48aa2c01ae76189ecf8dc9454359637eab3b4eef5a0edc6edd1615e236550df2"
+      "instructions": 983,
+      "certificate_sha256": "42ad1286d78636d54e0bb9bfbd836fffbeafde5bc2bc0e81e2cf9aceff475136"
     },
     {
       "case": 207,
@@ -1869,8 +1869,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 64,
-      "certificate_sha256": "2c2c49d6e186013b1a4787c9f743cf2c8f5bad7dd6017fd832af70b7f1495fc8"
+      "instructions": 52,
+      "certificate_sha256": "146ba265beaae4d4eab8ce5c97c8aea7c5b972f2660f18dd09facff691327f83"
     },
     {
       "case": 208,
@@ -1878,8 +1878,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 47,
-      "certificate_sha256": "3d42c411608379bc011ef5c4edd222d3fd714ead409d63cd6d9e6892e3cb4d38"
+      "instructions": 38,
+      "certificate_sha256": "45c5b3da7ae1b2b91375e97f7f28a905feb2daba4ec7f9f0ca60584c22272d80"
     },
     {
       "case": 209,
@@ -1887,8 +1887,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 1212,
-      "certificate_sha256": "b48b30547ca9dc189893be2e9e2b5725f96e0ec139ae86fe5141bb163ddc24ae"
+      "instructions": 923,
+      "certificate_sha256": "1ce72628f2a5df7316840e073be75561ae56a2f77bcbef4df3056c6a805e7645"
     },
     {
       "case": 210,
@@ -1896,8 +1896,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 73,
-      "certificate_sha256": "6548eb713c4c0d1a25f426d45c928d90fd3fc5810af1c6cbb7464aecd56401ed"
+      "instructions": 60,
+      "certificate_sha256": "46f8721c67e0e5290f3f096421cc4b42f9db1f718664121b772ec2964aabe3ed"
     },
     {
       "case": 211,
@@ -1905,8 +1905,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 327,
-      "certificate_sha256": "4894a04fd58a914a7a73c0eb5358eb6c65baf7e19ea81044022429648c032fb8"
+      "instructions": 238,
+      "certificate_sha256": "c834f21eff0eaf25dce3f17369a95680669ca2575088a8c82accef907c11d80a"
     },
     {
       "case": 212,
@@ -1914,8 +1914,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 509,
-      "certificate_sha256": "1d4737650c8b8e6a24f6035f0de598532a17cf07a7726c0857be71f8082eccba"
+      "instructions": 388,
+      "certificate_sha256": "bec59f0ef80b879cd24ba4d17e58520df1ee2ece1302b4cf120be25d6198358d"
     },
     {
       "case": 213,
@@ -1923,8 +1923,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 47,
-      "certificate_sha256": "9b69cb49336372b08263456199ef905b2b6a549ab6c3c25144c82a632d3c6b5d"
+      "instructions": 38,
+      "certificate_sha256": "8d3f96038e6111e9d8bc78b5160933ff06863ecfaeea3581b3a1867b1911a239"
     },
     {
       "case": 214,
@@ -1932,8 +1932,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 65,
-      "certificate_sha256": "a2fc7fe367b0f6a0358c6a14dc72779c9a01c713193f697c4d177a9474aef523"
+      "instructions": 48,
+      "certificate_sha256": "d21a37e809645b6a4198df6fd48f20481bd42ebeaa6f58845c5ba3700bbf30db"
     },
     {
       "case": 215,
@@ -1941,8 +1941,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 430,
-      "certificate_sha256": "7a291f0af47d11a83e9628ac237fe423c04ebabc282e7131800486c19441db16"
+      "instructions": 340,
+      "certificate_sha256": "d6aff247ec7fb65831e9c35302cc3da7176f8dcd30a80b38ab2d7b3a24eb14df"
     },
     {
       "case": 216,
@@ -1950,8 +1950,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1367,
-      "certificate_sha256": "adf89b3c1fa4155ab2a0d5844f3f785744b588c80bfb4c569e53ad6ceb0f997b"
+      "instructions": 1003,
+      "certificate_sha256": "d62847ea9d82ddfde13bc9a2e5fdc145e69cfc84cb4acbaf6fcda6ec1461e136"
     },
     {
       "case": 217,
@@ -1959,8 +1959,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 2501,
-      "certificate_sha256": "81c56485e1e1c2440fad65886ec12f850fc0838df33c2a625812c8173e24a1c6"
+      "instructions": 1914,
+      "certificate_sha256": "136a2b839c053f1fc3722b670c76055d2c6ed9615d793f737c549eea583c6495"
     },
     {
       "case": 218,
@@ -1968,8 +1968,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1199,
-      "certificate_sha256": "30f21f2485117e13229e2fc048ecd190998e4eaa4ce7ed3f5aa6dfcff5a9fc61"
+      "instructions": 849,
+      "certificate_sha256": "fe002732a01111e407c572aea88dd1259cadeca3b0e2a841715212c98a4bb7b9"
     },
     {
       "case": 219,
@@ -1977,8 +1977,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 917,
-      "certificate_sha256": "bc49fb6231d2794a5133b75f79118b01d5e4e8149b89dff09addb13022b37700"
+      "instructions": 708,
+      "certificate_sha256": "0a5c9c2e114b72900581cb261ce573479ea602ebda419ab53795d6a89ad2d1ac"
     },
     {
       "case": 220,
@@ -1986,8 +1986,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 964,
-      "certificate_sha256": "035ca703140b01c562665e23d141bc8bb06e9630720d3905dd0ed9b8eadf6644"
+      "instructions": 735,
+      "certificate_sha256": "e215e1bba0a11726e193b2fd0309a706a54bffacf200f7539e6a4c3b6d12ac0d"
     },
     {
       "case": 221,
@@ -1995,8 +1995,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 105,
-      "certificate_sha256": "e4b32cd85247c37a37cb6c8feb2c99e289cfdc82caf525b001a9cdafe625c885"
+      "instructions": 84,
+      "certificate_sha256": "50e94f05cc0d50bd8ea41d643c3c2bb2fddc3a643870c16e75e684e66bd2fa0c"
     },
     {
       "case": 222,
@@ -2004,8 +2004,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 72,
-      "certificate_sha256": "5bfe017ef6c597cf1c3c4c8c2548033b96dbd4d6e6b482fa561ccf50813f59de"
+      "instructions": 57,
+      "certificate_sha256": "c1d4d614b9dacd1ad24c8d6af6f4851b4705a330a956d96be8ce055744dc1a59"
     },
     {
       "case": 223,
@@ -2013,8 +2013,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 23,
-      "certificate_sha256": "18886ef4e3eb7bba484681940c24d0e76bf7c6f4c50cbe3f2dd02a6c963754a5"
+      "instructions": 20,
+      "certificate_sha256": "dcdc7ba4e2afc4b4e64d4e7adfc2b680e914c9f9cfaaef0b9c553ffe94164310"
     },
     {
       "case": 224,
@@ -2022,8 +2022,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 98,
-      "certificate_sha256": "2cc982897837f8b795e7a6cef194f606da6d9c08bb027716d0b3adaccf4bcd15"
+      "instructions": 80,
+      "certificate_sha256": "c2c97892511ef20215729ea33a91312c99b0448cd02ecb2b3f2bfe56c7ee47eb"
     },
     {
       "case": 225,
@@ -2031,8 +2031,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 71,
-      "certificate_sha256": "76783c289faad4d71940035118a186e7b8911384f89f8b5e0c8272ed1d7a6740"
+      "instructions": 59,
+      "certificate_sha256": "30f3e559603f4ec751567058aab1bc055bb9822ff4f53fe36928841ad3ff462a"
     },
     {
       "case": 226,
@@ -2040,8 +2040,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 9,
-      "certificate_sha256": "4399e5d0758521f069d98caf49888bc8cf9eb35dc65a7d8e1dbb206ee5f4d391"
+      "instructions": 6,
+      "certificate_sha256": "7df4a86a57d9e0a6762111656d86a9cd56dd4fb1ff591f2094c3504aa8f6394c"
     },
     {
       "case": 227,
@@ -2049,8 +2049,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 1346,
-      "certificate_sha256": "4d26e88df861d225009e9b19e0ba62400428ba771d66dcb847947ab51ab4159e"
+      "instructions": 992,
+      "certificate_sha256": "d45a50d2625418a2ff51c708cffc43fae90ce635acd179f0adbe829c223769e3"
     },
     {
       "case": 228,
@@ -2058,8 +2058,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 111,
-      "certificate_sha256": "e992e0863bd0a8076928d841122e2a604c697dd1e04a8f9547dceb048376890d"
+      "instructions": 86,
+      "certificate_sha256": "77c6a36ddfa3f0384c2cf6b829d714f2c7afbd97ef32228b14074f51724a5629"
     },
     {
       "case": 229,
@@ -2067,8 +2067,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 103,
-      "certificate_sha256": "fc436252b82cd291a7b762e99131384675581d32b79ed7551c354a82b1f67083"
+      "instructions": 80,
+      "certificate_sha256": "0087be9361794a7306a38d60a822d99b79e53890cb4bddb64cc46b11d4538145"
     },
     {
       "case": 230,
@@ -2076,8 +2076,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 582,
-      "certificate_sha256": "085a21d5fe7d081089af57fc98a872464164776c269d36a542a486d358840120"
+      "instructions": 417,
+      "certificate_sha256": "f8f03a4108cec6cf522c3d5141a922732587e81c92c575bcefec27b632d612b6"
     },
     {
       "case": 231,
@@ -2085,8 +2085,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 64,
-      "certificate_sha256": "86b1db6efb3ca35416ed4c451a3768b5f579ae75d1204ea6dd735a173bb05f2e"
+      "instructions": 49,
+      "certificate_sha256": "8b23bc93f757b8689447c99bcf8cf85dec4a5dd7288d9e24590bab13d8a5b7c2"
     },
     {
       "case": 232,
@@ -2094,8 +2094,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 73,
-      "certificate_sha256": "0320475fe0ac4c83fcfd172188cdc75c49ca07256c36f1d45f48c530038cbd7c"
+      "instructions": 57,
+      "certificate_sha256": "b09ddaa69c1d8f318b2ce20158ba118fbf9c605d34acf051e71e7ef0bd95116c"
     },
     {
       "case": 233,
@@ -2103,8 +2103,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 25,
-      "certificate_sha256": "e6d27c28d92f7a07d2eec99e8d2e4564850a76df1323900a1c78bda676b6ef0a"
+      "instructions": 19,
+      "certificate_sha256": "cbba0a1196ebd917fedcf05be5c7802173fdef690961e1a1b4ad031ffe5f0659"
     },
     {
       "case": 234,
@@ -2112,8 +2112,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 8,
-      "certificate_sha256": "da5b4ac0643877ab7fa8bd559d376016968591fecb18b6d9b57883580c682b15"
+      "instructions": 6,
+      "certificate_sha256": "6488e832d8e13baff91564b7140b8ae78eacaa420da78e9e669bb0c6c7110ee5"
     },
     {
       "case": 235,
@@ -2121,8 +2121,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 27,
-      "certificate_sha256": "0c75d624b814de4c9ec1543693532e0d7d8653e57c85ff65c0e53a30be97d494"
+      "instructions": 20,
+      "certificate_sha256": "a8e38a9056e9b8b22b7c2f2d20ea52f43793882742aae0804cc6238f0a159aa0"
     },
     {
       "case": 236,
@@ -2130,8 +2130,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 161,
-      "certificate_sha256": "b158e28d1f84b0bac4d6b32d3f683127d6952633642095231b95258ffa1a3f75"
+      "instructions": 111,
+      "certificate_sha256": "ad68995dde56708afaa018094fd5340051e4bbb41b2fbd6c95fcc41b83e85e36"
     },
     {
       "case": 237,
@@ -2139,8 +2139,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 12,
-      "certificate_sha256": "bf762bcf3de8923b3b31efcadf081ab4f5e8471d0753d6d1041d104c17fe6c7f"
+      "instructions": 10,
+      "certificate_sha256": "3454b17ff746850039896394c2bc966a97938ea248a4811494451a66b79050f5"
     },
     {
       "case": 238,
@@ -2148,8 +2148,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 1101,
-      "certificate_sha256": "ce859af1514e10ba37464fa4c38250f5c6c450bd8b0dc1865c92f4529a39821b"
+      "instructions": 820,
+      "certificate_sha256": "6c03b9556ae713070ce00833afb9893ad633058ccb4e7f90c2a4634f4414b25a"
     },
     {
       "case": 239,
@@ -2157,8 +2157,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 170,
-      "certificate_sha256": "3147958c24250365c0046dc24caf3b91c959ea45e655f43306e6228dff8bbfbd"
+      "instructions": 132,
+      "certificate_sha256": "7bbd0dcc3700f9814ea2bc4e9936501c5708d1640d66f87660dec0e637e15957"
     },
     {
       "case": 240,
@@ -2166,8 +2166,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 80,
-      "certificate_sha256": "9cdbebfa2981addb2e4bf67b45d6b5a63b89285a17693b63cf6f67131147bf72"
+      "instructions": 69,
+      "certificate_sha256": "1e2005c2f3b22549ba82a670bb182671772775ff7a030364b2a8fc0e1aca50f9"
     },
     {
       "case": 241,
@@ -2175,8 +2175,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 138,
-      "certificate_sha256": "4a8fd706eaf0e5eebaae8ebb6d7125fa6ab6f31b0c0ac25c53c0c40817b498fa"
+      "instructions": 123,
+      "certificate_sha256": "5eae95594ea3117627db5d5eb49beb27eee740af0cae6a2dabdec6a5fc6ed891"
     },
     {
       "case": 242,
@@ -2184,8 +2184,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 11,
-      "certificate_sha256": "3245e15ceca15b59d542b7d54a52e581d48a4347f6517500b0d6c05b4ce461cd"
+      "instructions": 10,
+      "certificate_sha256": "a312a36a3b69ec8894ccc572b36deec7b6e746f518c36c355ea9c4d6a224c001"
     },
     {
       "case": 243,
@@ -2193,8 +2193,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 138,
-      "certificate_sha256": "da951abe3b26fce7e8804f792fca4cd4665763da838b5562f65bc3f7a464b8c8"
+      "instructions": 113,
+      "certificate_sha256": "f3dc14d955f498743a33f40f3982cdeef07b88349340d75f3f95b070f004dcfe"
     },
     {
       "case": 244,
@@ -2202,8 +2202,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 155,
-      "certificate_sha256": "e9cbfa85bc52db899f1bc2a556a1c2849e85d44542d8964d4c256009ee4d8821"
+      "instructions": 103,
+      "certificate_sha256": "8d08259255713626d2d0fd1c62c791b40c1ff1bb74738989c7322e6a35b8cfab"
     },
     {
       "case": 245,
@@ -2211,8 +2211,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 61,
-      "certificate_sha256": "dd95d0fc41f6ec5aaa3a9666b954eb5ab5826309d598d76cb1433b207acf9fd4"
+      "instructions": 49,
+      "certificate_sha256": "bcb44f9099defe7644fa294976acb8bccd1601c5e5ce5d7329d199b79f4da852"
     },
     {
       "case": 246,
@@ -2220,8 +2220,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 54,
-      "certificate_sha256": "765490e4f8244e50b2a3d9e4d197fc16126a950c1a11c15a17c5e257998fd99d"
+      "instructions": 43,
+      "certificate_sha256": "f17ab16b905c1a28f6e5e99aad654315f6192dbd59941d4f8faa5114dfad0a85"
     },
     {
       "case": 247,
@@ -2229,8 +2229,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 13,
-      "certificate_sha256": "c3d49b9ee827c61d79deb36d2e238182ddf224db85f33c7d6031715ce1a8d677"
+      "instructions": 11,
+      "certificate_sha256": "744fa8a7439944fb70636e86710beabfd3221ec7354561499c531a9dcb83d4c0"
     },
     {
       "case": 248,
@@ -2247,8 +2247,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 260,
-      "certificate_sha256": "8c578eedd723742399917f2474c6368e10d8c5181642bbd14c8613c8d72fe21a"
+      "instructions": 181,
+      "certificate_sha256": "d3a2d7af4c773b6bc58fbe9142f8c14646351f757e1273306ed1c2396a51aa32"
     },
     {
       "case": 250,
@@ -2256,8 +2256,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 23,
-      "certificate_sha256": "89f3aa5aa3ac24fb46cdda40da8bcff26708296c1ca549ee6a9b4971d431b441"
+      "instructions": 16,
+      "certificate_sha256": "93984e4d2a2a251372bc2564b1468b02eb3931ae2c10aa021434ae3f810065ff"
     },
     {
       "case": 251,
@@ -2265,8 +2265,8 @@
       "original_budget": 3,
       "retained_budget": 0,
       "goal": 12,
-      "instructions": 8,
-      "certificate_sha256": "4ffcacadf5f9ec45fc25ceec244844b81f56e07ca943292d0c0ac463628782a0"
+      "instructions": 7,
+      "certificate_sha256": "06a5f220648651c4387f2174ed0660f14ef45cc85a147145cf156573deadda09"
     },
     {
       "case": 252,
@@ -2274,8 +2274,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 139,
-      "certificate_sha256": "8066035e057c93c46fa1fb4e6d5f216a95ea638563a8a5cc89d9e2b26c71f4a3"
+      "instructions": 107,
+      "certificate_sha256": "cdd0ffbcbab593d57b881e0533178a7844f4da20c2b593e01ed78d254552d4cb"
     },
     {
       "case": 253,
@@ -2283,8 +2283,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 27,
-      "certificate_sha256": "b174584658688d0c063006099606618e2a0cfe8a6e305d28cae43890a8538c81"
+      "instructions": 17,
+      "certificate_sha256": "00163738f93d73b1b87b39aae87a1c6598174565a5eec0dcc7efc82d9abf3fe6"
     },
     {
       "case": 254,
@@ -2292,8 +2292,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 115,
-      "certificate_sha256": "0f997d258e329d78bf05984ad0ae028670b3b76f62d3ad66639f133adabf3ae3"
+      "instructions": 93,
+      "certificate_sha256": "fa8b77c0cec5d778ae9e728ac89b4af47856d52fd6c3a517269aa04cb8f09f21"
     },
     {
       "case": 255,
@@ -2301,8 +2301,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 25,
-      "certificate_sha256": "0634f67c1ef60cf22af230ac62a29722af21d5d387be723442921a819e3dbb11"
+      "instructions": 19,
+      "certificate_sha256": "c0d2ec93c4521279461a7b18b43ff4c5dab74dd35ad0e5d79847768ba00414bc"
     },
     {
       "case": 256,
@@ -2310,8 +2310,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 9,
-      "certificate_sha256": "45c5052df9692afe9f5cb1c3227c74ff3106d121c105bc59832b1e27336de3d8"
+      "instructions": 7,
+      "certificate_sha256": "7d129d0eacbaf2463e56625f02b5cccf82951096d0e3d52172648fc883e25823"
     },
     {
       "case": 257,
@@ -2319,8 +2319,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 87,
-      "certificate_sha256": "19d684cb57f91f46becdc4d6fc3c3a7586e234e9655a12847bb80d82034c10fc"
+      "instructions": 59,
+      "certificate_sha256": "747cc01db23b3ce30b2e40acb78e18f89bcdde80956f9b90518205b8805df8df"
     },
     {
       "case": 258,
@@ -2328,8 +2328,8 @@
       "original_budget": 4,
       "retained_budget": 0,
       "goal": 11,
-      "instructions": 42,
-      "certificate_sha256": "6aadfd5ff3e5cb250a8ff318c4a810a417bab179bf8d6d7ed9ea5b95917f9117"
+      "instructions": 34,
+      "certificate_sha256": "4b2b8e69e6ff2d3c1b9d92618db9e2a276d4a12143867a77cbc172f39c56d667"
     },
     {
       "case": 259,
@@ -2346,8 +2346,8 @@
       "original_budget": 5,
       "retained_budget": 0,
       "goal": 10,
-      "instructions": 25,
-      "certificate_sha256": "965d2990e0eeac1f676628fb277cdca3d59f523a7c125c5b30ae570e01b2ad61"
+      "instructions": 18,
+      "certificate_sha256": "492ae9f4b1de3314f7f69765383322d878391bffe3c97d285f8af7dd6bc512a1"
     },
     {
       "case": 261,
@@ -2355,8 +2355,8 @@
       "original_budget": 5,
       "retained_budget": 0,
       "goal": 10,
-      "instructions": 42,
-      "certificate_sha256": "7e86350108de61ec5384ab485ff9fd8d0a8abe01bb357659b05a68aed56f6fec"
+      "instructions": 29,
+      "certificate_sha256": "c40a3325f8235d3a63cb7176a74f0e8f0be79ba72bf2b94fb6645fa4cdc9150e"
     },
     {
       "case": 262,
@@ -2364,8 +2364,8 @@
       "original_budget": 6,
       "retained_budget": 0,
       "goal": 9,
-      "instructions": 19,
-      "certificate_sha256": "d92e04143f86c2937682da5bd36d91b06869315196dc2686321548010703536f"
+      "instructions": 16,
+      "certificate_sha256": "5454a6f8b2047f6744a575e4f1ce9f9b983d27cd83781f0dbdc1e76b43662bda"
     },
     {
       "case": 263,
@@ -2373,8 +2373,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 3763,
-      "certificate_sha256": "6090e1121a6bec80c3080ad41a60c7487bd241a872bf7f4c43fe0005eb801f57"
+      "instructions": 2806,
+      "certificate_sha256": "64d084d79a879cbe6fa873d51c7d481dc367f23e901040a92ff8de8381812262"
     },
     {
       "case": 264,
@@ -2382,8 +2382,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 2005,
-      "certificate_sha256": "d2ca2b8ea97906eb5c7c4760f500c80961c99a9d85e51c04ddb555c428ec685c"
+      "instructions": 1454,
+      "certificate_sha256": "65ab68e19acff6a45c1d7efb9994b77e991638175302531008debf61acdf78a1"
     },
     {
       "case": 265,
@@ -2391,8 +2391,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 450,
-      "certificate_sha256": "6fa4e36f09ed829626917c8835d0954aaf37df9aa021dfc61a52e0ea53788ed5"
+      "instructions": 319,
+      "certificate_sha256": "25e01e5dac8c1afe353012d309c92f25c7cb7897876661a972fb390ca12d1966"
     },
     {
       "case": 266,
@@ -2400,8 +2400,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 181,
-      "certificate_sha256": "3b68290f3f643433cae35dfa369a1fcd8232690243751dae2a145e4b302e1d70"
+      "instructions": 142,
+      "certificate_sha256": "eb2c1532547b41b9b286012dd5557de9c18a02157a4756902cc45fe6710a185e"
     },
     {
       "case": 267,
@@ -2409,8 +2409,8 @@
       "original_budget": 0,
       "retained_budget": 0,
       "goal": 15,
-      "instructions": 2266,
-      "certificate_sha256": "07aa8e4e37cded920621938241030125bc07173386a1bade6def50a136d57fd8"
+      "instructions": 1592,
+      "certificate_sha256": "41f8cb9952ab3f1d0594f3ecb11c63f1816055650e328240c5391fc437b42965"
     },
     {
       "case": 268,
@@ -2418,8 +2418,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 133,
-      "certificate_sha256": "ad365eb3a25f36b8f73dac8d0a5849a40d2c42f655b45ecb786b26bbe6ba4166"
+      "instructions": 101,
+      "certificate_sha256": "1b63d974fb2a071b22eca9c4bb30bcc423168a0ec63be6275d108d6b6e35f576"
     },
     {
       "case": 269,
@@ -2427,8 +2427,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 440,
-      "certificate_sha256": "62ce776426578e4465f1872257eeee28afd59909822710cab26d6dae30ac0a28"
+      "instructions": 344,
+      "certificate_sha256": "b1225fa35396deef287a29e38640c5d204aaced3562fd3e2a0756ef4698fa879"
     },
     {
       "case": 270,
@@ -2436,8 +2436,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 13,
-      "certificate_sha256": "e73d52e7f4ae3e441068c84f6e3f94f4bc47c47ecacaaad235e841abfd222485"
+      "instructions": 8,
+      "certificate_sha256": "f249f674df28a8dc1417483a0d9fd1d9c1851613523780f4d7aafe4bf84f7394"
     },
     {
       "case": 271,
@@ -2445,8 +2445,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 16,
-      "certificate_sha256": "da0d2dd9f38f4500f2e1a4cdbd798dd78969693d9eb6e87daffcf5c9a220e039"
+      "instructions": 9,
+      "certificate_sha256": "3629e40a87eb4cea5189cf488fa20c935d70abe22bad330350c6a9a733f460b9"
     },
     {
       "case": 272,
@@ -2454,8 +2454,8 @@
       "original_budget": 1,
       "retained_budget": 0,
       "goal": 14,
-      "instructions": 2,
-      "certificate_sha256": "d7545d455aff378668f293131585687ee9d095d0b7ab194ecb59f624b53d337f"
+      "instructions": 1,
+      "certificate_sha256": "feeb0254454510031bca4cd7827e9b36aa90baa29865387fbdab130949a90c4e"
     },
     {
       "case": 273,
@@ -2463,8 +2463,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 29,
-      "certificate_sha256": "717072d526b52c9c125634123f09e6e818dda74c7ccf947d87e0e57fb3857cc6"
+      "instructions": 28,
+      "certificate_sha256": "a84921a5514508cb9042538e5500945da0ebec05e23b3d8b77ed583b3dd5bef4"
     },
     {
       "case": 274,
@@ -2472,8 +2472,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 3,
-      "certificate_sha256": "c70194276e799bbf09af10812b48400a9eb4cb246aa41eba7b0c891e540b851e"
+      "instructions": 2,
+      "certificate_sha256": "846a3dbf3cb1ff46ab0c15e992a62f286243cc1babdb8e0fc9f4c0c896813077"
     },
     {
       "case": 275,
@@ -2481,8 +2481,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 2,
-      "certificate_sha256": "b05431a19ae09fb6a0b1c990974db0ab37817944d66f6ba29e34d5cd61e8ab77"
+      "instructions": 1,
+      "certificate_sha256": "ef24b4d8298d14204a26e8c03d9d03b50b93dfdff3223a83d6e9bddc3ec1c423"
     },
     {
       "case": 276,
@@ -2508,8 +2508,8 @@
       "original_budget": 2,
       "retained_budget": 0,
       "goal": 13,
-      "instructions": 38,
-      "certificate_sha256": "1ba935431dbd6bef735d09f1f20ec7a2762c09c89071f35108ae06379c237316"
+      "instructions": 34,
+      "certificate_sha256": "83c325c70577acaed60de02c7ed50a723d48ff6ac6c411466e9ee1b88c7d5f3e"
     }
   ],
   "retained_roots": 279,
@@ -2520,12 +2520,12 @@
   },
   "original_full_instructions": 11599651,
   "original_retained_instructions": 10562778,
-  "projected_instructions": 499829,
-  "uncompressed_bytes": 1134573,
-  "compressed_bytes": 313094,
+  "projected_instructions": 298167,
+  "uncompressed_bytes": 712187,
+  "compressed_bytes": 232866,
   "source_cases_sha256": "8bf2954f6c8cde5056e80b76159bc543f7199ae1c553ef431617973376b92aba",
   "projected_cases_sha256": "a8036bea142a01e90c5bc12dc4044479818c84bca9f140c330cf83a9b7e48848",
-  "projected_archive_sha256": "e7b40f79831b5e0a44b374397d90bc4068f43d07e4226e1a45a829fd5b900e4a",
+  "projected_archive_sha256": "7df56cc4b252e460c9e3a762b068010b1a894405ae105218f6cea545e9b80467",
   "scope": "Fixed projected proof objects and case mapping; verification is performed by the reproduction commands, not asserted by this manifest.",
   "zero_budget_counterexamples": [
     {

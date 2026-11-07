@@ -1,6 +1,7 @@
 module
 public import FiveColour.PackedCalibration
-public import FiveColour.PackedChunks
+public import FiveColour.PackedFast
+public import FiveColour.PackedComputations
 @[expose] public section
 namespace FiveColour.Packed.ProjectedChunks.Case88
 set_option maxHeartbeats 0
@@ -19,43 +20,45 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
   split at hc
   · have he := List.mem_singleton.mp hc
     subst c
-    apply cut_valid_of_weight
+    apply FastWeight.cut_valid_of_fast_weight
     decide +kernel
   · split at hc
     · have he := List.mem_singleton.mp hc
       subst c
-      apply cut_valid_of_weight
+      apply FastWeight.cut_valid_of_fast_weight
       decide +kernel
     · split at hc
       · have he := List.mem_singleton.mp hc
         subst c
-        apply cut_valid_of_weight
+        apply FastWeight.cut_valid_of_fast_weight
         decide +kernel
       · exact cuts_valid ⟨r.val-3, by omega⟩ c hc
 
 namespace Part0
 def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994274389529170594214600340844417290219481249533063345943983763165234683153281204528362401811244280921566048311241553993099478810657589405737878933961797258424214491234304⟩
 def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.split 51 1 (.split 56 1 (.split 58 1 (.split 59 1 (.split 67 1 (.split 74 1 (.split 55 1 (.step 7 (.step 31 (.step 3 (.step 18 (.close 5))))) (.step 31 (.step 27 (.step 58 (.close 3))))) (.split 55 1 (.split 2 0 (.split 34 0 (.step 11 (.step 3 (.step 18 (.step 5 (.close 17))))) (.step 3 (.step 11 (.step 3 (.step 5 (.close 17)))))) (.step 11 (.step 18 (.step 5 (.close 3))))) (.step 18 (.step 11 (.step 5 (.close 17)))))) (.step 3 (.close 7))) (.step 44 (.split 55 1 (.split 67 1 (.split 2 0 (.step 31 (.step 27 (.step 44 (.step 3 (.step 31 (.step 8 (.step 11 (.close 17)))))))) (.step 3 (.step 5 (.close 9)))) (.step 3 (.close 7))) (.step 3 (.step 31 (.step 48 (.step 3 (.close 5)))))))) (.step 3 (.step 27 (.step 61 (.step 3 (.split 59 1 (.step 31 (.step 44 (.step 18 (.step 5 (.close 9))))) (.step 44 (.step 31 (.step 48 (.close 5)))))))))) (.step 3 (.step 58 (.step 61 (.split 59 1 (.split 74 1 (.step 43 (.split 16 0 (.split 17 0 (.step 58 (.step 3 (.close 5))) (.step 3 (.close 5))) (.step 3 (.close 5)))) (.step 5 (.step 3 (.step 8 (.close 9))))) (.step 3 (.step 5 (.step 9 (.step 22 (.step 23 (.step 5 (.step 21 (.close 5))))))))))))) (.step 3 (.step 61 (.step 62 (.split 67 1 (.split 74 1 (.step 3 (.close 7)) (.step 3 (.close 8))) (.step 3 (.step 7 (.step 9 (.step 27 (.step 52 (.close 53))))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 0 := (.run (.split 51 1 (.split 56 1 (.split 58 1 (.split 59 1 (.split 67 1 (.split 74 1 (.split 55 1 (.step 7 (.step 31 (.step 3 (.step 18 (.close 5))))) (.step 58 (.close 3))) (.split 55 1 (.split 2 0 (.split 34 0 (.step 11 (.step 3 (.close 77))) (.step 3 (.step 11 (.close 31)))) (.step 11 (.step 18 (.step 5 (.close 3))))) (.step 18 (.step 11 (.close 58))))) (.step 3 (.close 7))) (.step 44 (.split 55 1 (.split 67 1 (.split 2 0 (.step 31 (.step 44 (.step 3 (.step 31 (.close 18))))) (.step 3 (.step 5 (.close 9)))) (.step 3 (.close 7))) (.step 31 (.step 48 (.close 62)))))) (.step 3 (.step 27 (.step 61 (.step 3 (.split 59 1 (.step 31 (.step 44 (.step 18 (.close 61)))) (.step 44 (.step 31 (.close 61))))))))) (.step 58 (.step 61 (.split 59 1 (.split 74 1 (.step 43 (.split 16 0 (.split 17 0 (.step 58 (.step 3 (.close 5))) (.step 3 (.close 5))) (.step 3 (.close 5)))) (.step 5 (.close 61))) (.step 3 (.step 9 (.step 22 (.step 23 (.step 5 (.close 62)))))))))) (.step 61 (.split 67 1 (.split 74 1 (.step 3 (.close 7)) (.step 3 (.close 8))) (.step 3 (.close 54))))))
+theorem accepted : Fast.check 15 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
   intro i
   exact Fin.elim0 i
 
 theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
 end Part0
 
 namespace Part1
-def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994274389529170594221147122060209573959507628926718544248417047257320812732247787264554669404053630031332588495893362307401252178912709547756313447053568044530871546413056⟩
+def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941829833112715212836213353650360377917705775022099156655130177874001340618038570521552385491407128606503342705318198825066903371776⟩
 def references : Fin 1 → Box := ![Part0.root]
-def proof : Chunks.Proof 1 := (.split 50 1 (.reuse 0) (.run (.step 58 (.step 53 (.step 61 (.split 51 1 (.split 67 1 (.split 74 1 (.split 55 1 (.split 56 1 (.split 59 1 (.split 2 0 (.split 8 0 (.split 14 0 (.split 16 0 (.split 58 1 (.step 31 (.close 3)) (.step 3 (.step 31 (.step 21 (.close 18))))) (.step 3 (.step 7 (.step 3 (.close 18))))) (.step 18 (.step 27 (.step 31 (.close 3))))) (.step 9 (.step 27 (.step 18 (.step 53 (.step 3 (.close 8))))))) (.step 3 (.step 5 (.step 9 (.step 5 (.step 17 (.close 21))))))) (.step 53 (.close 3))) (.step 3 (.step 5 (.step 9 (.step 5 (.step 21 (.step 5 (.step 22 (.step 5 (.close 23)))))))))) (.step 48 (.step 53 (.step 3 (.step 5 (.step 16 (.close 21))))))) (.step 27 (.step 31 (.step 44 (.step 23 (.step 48 (.step 23 (.step 11 (.step 18 (.step 53 (.step 3 (.step 17 (.close 18))))))))))))) (.step 3 (.step 7 (.step 9 (.step 27 (.step 52 (.close 53))))))) (.step 3 (.step 7 (.step 53 (.close 7))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 1 := (.split 43 1 (.step 58 (.split 49 1 (.split 50 1 (.reuse 0) (.run (.step 58 (.step 53 (.step 61 (.split 51 1 (.split 67 1 (.split 74 1 (.split 55 1 (.split 56 1 (.split 59 1 (.split 2 0 (.split 8 0 (.split 14 0 (.split 16 0 (.split 58 1 (.step 31 (.close 3)) (.step 3 (.step 31 (.close 32)))) (.step 7 (.step 3 (.close 18)))) (.step 18 (.step 31 (.close 3)))) (.step 9 (.step 53 (.close 8)))) (.step 3 (.step 9 (.step 5 (.close 21))))) (.step 53 (.close 3))) (.step 3 (.step 21 (.step 22 (.close 61))))) (.step 48 (.step 53 (.step 3 (.close 58))))) (.step 27 (.step 44 (.step 48 (.step 23 (.step 11 (.step 53 (.close 18)))))))) (.step 3 (.close 70))) (.step 3 (.close 54)))))))) (.run (.step 58 (.step 52 (.step 61 (.split 51 1 (.split 67 1 (.split 74 1 (.split 50 1 (.split 55 1 (.split 56 1 (.split 59 1 (.split 2 0 (.split 8 0 (.split 14 0 (.split 16 0 (.split 58 1 (.step 31 (.close 3)) (.step 3 (.step 31 (.close 32)))) (.step 7 (.step 3 (.close 18)))) (.step 18 (.close 52))) (.step 9 (.step 34 (.step 18 (.close 3))))) (.step 3 (.step 9 (.step 5 (.close 21))))) (.step 52 (.close 3))) (.step 3 (.step 31 (.close 5)))) (.step 48 (.step 52 (.step 3 (.close 58))))) (.step 52 (.close 5))) (.step 27 (.step 34 (.step 44 (.step 48 (.step 23 (.step 53 (.step 23 (.step 11 (.step 18 (.close 3))))))))))) (.step 3 (.close 70))) (.step 3 (.close 54))))))))) (.run (.step 27 (.step 3 (.step 46 (.step 9 (.step 27 (.step 46 (.close 52)))))))))
+theorem accepted : Fast.check 15 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
   intro i
@@ -63,16 +66,17 @@ theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) 
   · exact Part0.excludes
 
 theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
 end Part1
 
 namespace Part2
-def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248483211542552735967740563782378064049313262000046878557716932228550280378384097385441419050754116814172527107816418131836928⟩
+def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690953697962524693974082903962440187474131033127947878138454092611233040910787928913540996965215392509574884884480⟩
 def references : Fin 1 → Box := ![Part1.root]
-def proof : Chunks.Proof 1 := (.split 42 1 (.split 43 1 (.step 58 (.split 49 1 (.reuse 0) (.run (.step 58 (.step 52 (.step 61 (.split 51 1 (.split 67 1 (.split 74 1 (.split 50 1 (.split 55 1 (.split 56 1 (.split 59 1 (.split 2 0 (.split 8 0 (.split 14 0 (.split 16 0 (.split 58 1 (.step 31 (.close 3)) (.step 3 (.step 31 (.step 21 (.close 18))))) (.step 3 (.step 7 (.step 3 (.close 18))))) (.step 18 (.step 27 (.step 31 (.close 3))))) (.step 9 (.step 27 (.step 18 (.step 34 (.step 18 (.close 3))))))) (.step 3 (.step 5 (.step 9 (.step 5 (.step 17 (.close 21))))))) (.step 52 (.close 3))) (.step 3 (.step 5 (.step 9 (.step 5 (.step 22 (.step 31 (.close 5)))))))) (.step 48 (.step 52 (.step 3 (.step 5 (.step 16 (.close 21))))))) (.step 52 (.step 3 (.close 5)))) (.step 27 (.step 31 (.step 34 (.step 44 (.step 48 (.step 23 (.step 53 (.step 23 (.step 11 (.step 3 (.step 18 (.close 3))))))))))))) (.step 3 (.step 7 (.step 26 (.step 44 (.close 52)))))) (.step 3 (.step 52 (.close 7)))))))))) (.run (.step 3 (.step 27 (.step 3 (.step 46 (.step 9 (.step 27 (.step 46 (.close 52)))))))))) (.run (.step 7 (.step 31 (.step 44 (.split 49 1 (.split 50 1 (.step 7 (.step 5 (.close 31))) (.step 9 (.step 18 (.step 21 (.close 31))))) (.step 9 (.step 18 (.step 31 (.step 21 (.close 44)))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 1 := (.split 38 1 (.split 39 1 (.split 40 1 (.split 42 1 (.reuse 0) (.run (.step 31 (.step 44 (.split 49 1 (.split 50 1 (.step 7 (.close 31)) (.step 18 (.step 21 (.close 31)))) (.step 31 (.close 44))))))) (.run (.step 3 (.step 43 (.step 58 (.step 61 (.split 49 1 (.step 43 (.step 31 (.step 5 (.step 61 (.step 3 (.split 50 1 (.step 18 (.close 23)) (.step 21 (.close 31)))))))) (.step 3 (.step 31 (.step 52 (.close 5))))))))))) (.run (.step 5 (.step 31 (.step 44 (.step 58 (.step 61 (.split 40 1 (.split 49 1 (.split 50 1 (.split 59 1 (.split 74 1 (.step 3 (.step 42 (.step 3 (.step 18 (.close 31))))) (.step 11 (.step 42 (.close 3)))) (.step 42 (.close 62))) (.step 21 (.step 32 (.step 42 (.close 3))))) (.step 42 (.close 52))) (.step 3 (.step 5 (.step 31 (.close 42)))))))))))) (.run (.step 3 (.split 42 1 (.step 58 (.split 49 1 (.step 43 (.split 56 1 (.step 42 (.split 59 1 (.split 74 1 (.step 21 (.step 43 (.split 16 0 (.split 17 0 (.step 58 (.step 3 (.close 5))) (.step 3 (.close 5))) (.step 3 (.close 5))))) (.step 5 (.close 42))) (.step 3 (.step 21 (.step 23 (.close 58)))))) (.step 5 (.step 58 (.split 17 0 (.split 22 0 (.split 49 0 (.split 50 0 (.step 28 (.step 41 (.close 3))) (.step 3 (.close 58))) (.step 3 (.close 58))) (.step 3 (.close 5))) (.step 3 (.close 5))))))) (.step 21 (.step 31 (.step 42 (.close 58)))))) (.step 31 (.close 45))))))
+theorem accepted : Fast.check 15 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
   intro i
@@ -80,50 +84,53 @@ theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) 
   · exact Part1.excludes
 
 theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
 end Part2
 
 namespace Part3
-def root : Box := ⟨4925250774549309901534880012517951725634967408808180833493536675530715221437151326426783281860614455100831720013824, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690953697962524693974082903962440187474131033127947878138454092611233040910787928913540996965215392509574884884480⟩
-def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.step 3 (.step 21 (.step 43 (.step 58 (.split 39 1 (.split 42 1 (.step 58 (.split 49 1 (.step 43 (.split 56 1 (.step 42 (.split 59 1 (.split 74 1 (.step 21 (.step 43 (.split 16 0 (.split 17 0 (.step 58 (.step 3 (.close 5))) (.step 3 (.close 5))) (.step 3 (.close 5))))) (.step 5 (.step 11 (.step 3 (.close 17))))) (.step 3 (.step 5 (.step 9 (.step 21 (.step 5 (.step 23 (.step 5 (.close 16)))))))))) (.step 5 (.step 21 (.step 58 (.split 16 0 (.split 17 0 (.split 22 0 (.split 40 0 (.split 49 0 (.split 50 0 (.step 28 (.step 41 (.close 3))) (.step 3 (.step 5 (.close 21)))) (.step 3 (.step 5 (.step 16 (.close 21))))) (.step 5 (.close 3))) (.step 3 (.close 5))) (.step 3 (.close 5))) (.step 3 (.close 5)))))))) (.step 3 (.step 5 (.step 9 (.step 21 (.step 23 (.step 31 (.step 5 (.step 42 (.step 41 (.step 52 (.close 58))))))))))))) (.step 5 (.step 21 (.step 31 (.step 3 (.step 22 (.step 39 (.close 41)))))))) (.step 5 (.step 21 (.step 31 (.step 5 (.step 32 (.close 42))))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
+def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395052169731124898365416701319681495209944035797862380742170175148817495450305445505137771205561736194162688⟩
+def references : Fin 1 → Box := ![Part2.root]
+def proof : Chunks.Proof 1 := (.split 16 1 (.split 17 1 (.split 22 1 (.split 30 1 (.split 34 1 (.split 36 1 (.reuse 0) (.run (.step 36 (.split 38 1 (.split 42 1 (.split 49 1 (.split 50 1 (.step 31 (.close 7)) (.step 22 (.close 31))) (.step 22 (.step 31 (.close 21)))) (.step 31 (.step 7 (.close 39)))) (.step 31 (.step 3 (.close 39))))))) (.run (.step 7 (.step 34 (.step 31 (.split 36 1 (.split 38 1 (.split 42 1 (.split 49 1 (.split 50 1 (.step 31 (.close 7)) (.step 18 (.step 21 (.close 31)))) (.step 31 (.close 34))) (.step 31 (.close 37))) (.step 31 (.close 37))) (.step 31 (.close 37)))))))) (.run (.step 7 (.step 18 (.step 42 (.split 49 1 (.split 58 1 (.step 3 (.close 7)) (.step 3 (.close 11))) (.step 3 (.close 18)))))))) (.run (.step 7 (.step 18 (.step 42 (.split 49 1 (.split 50 1 (.split 58 1 (.step 18 (.close 7)) (.step 18 (.close 61))) (.step 18 (.close 53))) (.step 18 (.close 52)))))))) (.run (.step 7 (.step 18 (.step 61 (.split 22 1 (.step 42 (.split 49 1 (.split 50 1 (.split 59 1 (.step 18 (.close 7)) (.step 3 (.close 18))) (.step 18 (.close 53))) (.step 18 (.close 52)))) (.step 18 (.close 20)))))))) (.run (.step 7 (.step 18 (.split 17 1 (.split 22 1 (.step 42 (.split 49 1 (.split 50 1 (.split 58 1 (.step 18 (.close 7)) (.step 18 (.close 3))) (.step 18 (.close 53))) (.step 18 (.close 52)))) (.step 18 (.close 19))) (.step 18 (.close 19)))))))
+theorem accepted : Fast.check 15 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
-
-theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
-  intro i
-  exact Fin.elim0 i
-
-theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
-end Part3
-
-namespace Part4
-def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395047690241640538682923633766148185784493045694778195507193176105328838158130427924363212162046980948754432⟩
-def references : Fin 2 → Box := ![Part2.root, Part3.root]
-def proof : Chunks.Proof 2 := (.split 36 1 (.split 38 1 (.split 39 1 (.split 40 1 (.reuse 0) (.run (.step 3 (.step 31 (.step 43 (.step 58 (.step 61 (.split 49 1 (.step 43 (.step 31 (.step 5 (.step 27 (.step 61 (.step 3 (.split 50 1 (.step 18 (.step 9 (.step 17 (.step 21 (.close 23))))) (.step 3 (.step 9 (.step 21 (.step 17 (.step 23 (.close 31))))))))))))) (.step 3 (.step 5 (.step 9 (.step 23 (.step 31 (.step 52 (.close 5))))))))))))))) (.run (.step 3 (.step 5 (.step 31 (.step 27 (.step 42 (.step 44 (.step 27 (.step 58 (.step 61 (.split 40 1 (.split 49 1 (.split 50 1 (.split 59 1 (.split 74 1 (.step 3 (.step 42 (.step 3 (.step 18 (.step 5 (.close 9)))))) (.step 11 (.step 42 (.close 3)))) (.step 3 (.step 42 (.step 3 (.close 5))))) (.step 3 (.step 21 (.step 32 (.step 42 (.close 3)))))) (.step 3 (.step 34 (.step 42 (.close 52))))) (.step 3 (.step 5 (.step 21 (.step 31 (.close 42))))))))))))))))) (.reuse 1)) (.run (.step 7 (.step 31 (.step 36 (.step 31 (.split 38 1 (.split 42 1 (.split 49 1 (.split 50 1 (.step 31 (.step 3 (.close 7))) (.step 9 (.step 18 (.step 21 (.step 22 (.close 31)))))) (.step 9 (.step 18 (.step 22 (.step 21 (.step 31 (.close 21))))))) (.step 31 (.step 7 (.step 22 (.close 39))))) (.step 21 (.step 31 (.step 3 (.step 22 (.close 39))))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
-
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
   intro i
   fin_cases i
   · exact Part2.excludes
+
+theorem excludes : Chunks.Excludes 15 families root :=
+  Fast.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+end Part3
+
+namespace Part4
+def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395052169731124898365416701319681495209944035797862380742170175151605088600124308699030192448445774788820992⟩
+def references : Fin 1 → Box := ![Part3.root]
+def proof : Chunks.Proof 1 := (.split 10 1 (.split 14 1 (.reuse 0) (.run (.step 3 (.step 31 (.step 58 (.split 16 1 (.split 17 1 (.split 22 1 (.split 38 1 (.split 39 1 (.split 40 1 (.split 50 1 (.split 56 1 (.step 77 (.split 58 1 (.step 31 (.step 34 (.split 59 1 (.split 55 1 (.step 3 (.split 2 0 (.split 34 0 (.step 11 (.step 17 (.step 3 (.step 17 (.close 5))))) (.step 3 (.close 17))) (.step 11 (.step 17 (.step 18 (.step 5 (.close 3))))))) (.step 18 (.step 11 (.step 5 (.step 17 (.close 5)))))) (.step 3 (.step 27 (.step 34 (.step 23 (.step 44 (.step 18 (.close 48)))))))))) (.step 17 (.step 31 (.step 34 (.step 61 (.close 3))))))) (.step 31 (.step 5 (.close 17)))) (.step 3 (.step 27 (.step 34 (.step 48 (.step 53 (.step 23 (.step 61 (.step 77 (.step 55 (.step 23 (.step 17 (.close 3))))))))))))) (.step 5 (.step 18 (.step 23 (.step 17 (.close 31)))))) (.step 34 (.step 36 (.step 42 (.close 17))))) (.step 31 (.step 5 (.close 17)))) (.step 11 (.step 17 (.step 18 (.close 3))))) (.step 11 (.step 18 (.step 3 (.close 17))))) (.step 18 (.step 17 (.close 19))))))))) (.run (.step 18 (.split 14 1 (.split 39 1 (.step 3 (.step 7 (.close 18))) (.step 3 (.close 18))) (.step 3 (.close 17))))))
+theorem accepted : Fast.check 15 families references root proof = true := by decide +kernel
+
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
+
+theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
+  intro i
+  fin_cases i
   · exact Part3.excludes
 
 theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
 end Part4
 
 namespace Part5
-def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395052169731124898365416701319681495209944035797862380742167252145542833644469038135472338639522424329076736⟩
+def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395052169731124898365416701319681495209944035797862380742170175151605088600124308701448044087675033140330496⟩
 def references : Fin 1 → Box := ![Part4.root]
-def proof : Chunks.Proof 1 := (.split 17 1 (.split 22 1 (.split 30 1 (.split 34 1 (.reuse 0) (.run (.step 7 (.step 31 (.step 34 (.step 31 (.split 36 1 (.split 38 1 (.split 42 1 (.split 49 1 (.split 50 1 (.step 31 (.step 3 (.close 7))) (.step 9 (.step 15 (.step 18 (.step 21 (.close 31)))))) (.step 9 (.step 15 (.step 16 (.step 18 (.step 31 (.step 21 (.close 34)))))))) (.step 31 (.step 7 (.step 22 (.close 37))))) (.step 16 (.step 21 (.step 31 (.step 3 (.step 28 (.close 37))))))) (.step 31 (.close 37))))))))) (.run (.step 3 (.step 7 (.step 18 (.step 42 (.split 49 1 (.split 50 1 (.split 58 1 (.step 3 (.close 7)) (.step 3 (.close 11))) (.step 3 (.close 7))) (.step 3 (.step 7 (.close 18)))))))))) (.run (.step 7 (.step 18 (.step 42 (.step 77 (.split 49 1 (.split 50 1 (.split 58 1 (.step 18 (.step 3 (.close 7))) (.step 11 (.step 18 (.step 3 (.close 42))))) (.step 18 (.step 3 (.step 42 (.close 53))))) (.step 18 (.step 26 (.step 42 (.close 52))))))))))) (.run (.step 7 (.step 18 (.step 61 (.step 77 (.split 22 1 (.step 42 (.split 49 1 (.split 50 1 (.split 59 1 (.step 18 (.step 3 (.close 7))) (.step 3 (.step 11 (.close 18)))) (.step 18 (.step 3 (.step 42 (.close 53))))) (.step 18 (.step 22 (.step 42 (.close 52)))))) (.step 18 (.step 7 (.close 11))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 1 := (.split 2 1 (.split 8 1 (.reuse 0) (.run (.step 3 (.step 11 (.step 58 (.split 38 1 (.split 39 1 (.split 49 1 (.split 50 1 (.split 56 1 (.split 58 1 (.step 31 (.step 11 (.step 3 (.split 59 1 (.split 55 1 (.split 34 0 (.step 11 (.close 31)) (.step 3 (.close 11))) (.step 18 (.step 11 (.close 5)))) (.step 9 (.step 11 (.close 55))))))) (.step 11 (.step 31 (.close 61)))) (.step 31 (.step 5 (.close 11)))) (.step 9 (.step 11 (.step 48 (.step 53 (.step 11 (.close 53))))))) (.step 9 (.step 11 (.step 48 (.step 52 (.step 11 (.close 52))))))) (.step 11 (.step 31 (.close 42)))) (.step 31 (.step 5 (.close 11))))))))) (.run (.step 3 (.step 18 (.step 31 (.step 5 (.step 42 (.step 61 (.split 14 1 (.step 58 (.split 49 1 (.step 5 (.split 50 1 (.split 59 1 (.step 18 (.step 5 (.step 11 (.step 23 (.close 18))))) (.step 3 (.step 23 (.close 21)))) (.step 3 (.step 9 (.step 21 (.close 53)))))) (.step 3 (.step 9 (.step 23 (.step 34 (.step 42 (.step 52 (.close 5))))))))) (.step 5 (.step 23 (.close 17))))))))))))
+theorem accepted : Fast.check 15 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
   intro i
@@ -131,60 +138,9 @@ theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) 
   · exact Part4.excludes
 
 theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
 end Part5
 
-namespace Part6
-def root : Box := ⟨2787593149816327892691964784081048409473024, 17350741762303288301265122493126548277304614147387551354673552807568458789713901222670702678021559013838557627025765730471985312677309229379807638434969084497433991496415573257729468202624637152560024891466682769033831383040⟩
-def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.step 58 (.split 16 1 (.split 17 1 (.split 22 1 (.split 38 1 (.split 39 1 (.split 40 1 (.split 50 1 (.split 56 1 (.step 77 (.split 58 1 (.step 31 (.step 27 (.step 34 (.split 59 1 (.split 51 1 (.split 55 1 (.step 3 (.split 2 0 (.split 34 0 (.step 11 (.step 17 (.step 3 (.step 17 (.close 5))))) (.step 3 (.step 11 (.close 17)))) (.step 11 (.step 17 (.step 18 (.step 5 (.close 3))))))) (.step 12 (.step 18 (.step 11 (.step 5 (.step 17 (.close 5))))))) (.step 3 (.close 8))) (.step 3 (.step 27 (.step 34 (.step 23 (.step 44 (.step 18 (.step 9 (.step 11 (.step 5 (.close 21)))))))))))))) (.step 11 (.step 17 (.step 18 (.step 31 (.step 34 (.step 61 (.close 3))))))))) (.step 3 (.step 5 (.step 18 (.step 31 (.step 5 (.step 11 (.close 17)))))))) (.step 3 (.step 5 (.step 17 (.step 23 (.step 27 (.step 31 (.step 34 (.step 48 (.step 53 (.step 23 (.step 61 (.step 77 (.step 55 (.step 23 (.step 11 (.step 17 (.close 3)))))))))))))))))) (.step 3 (.step 5 (.step 17 (.step 18 (.step 23 (.step 17 (.close 31)))))))) (.step 5 (.step 11 (.step 17 (.step 18 (.step 34 (.step 36 (.step 42 (.step 3 (.close 5)))))))))) (.step 3 (.step 5 (.step 18 (.step 21 (.step 31 (.step 5 (.step 11 (.close 17))))))))) (.step 3 (.step 5 (.step 11 (.step 17 (.step 18 (.close 3))))))) (.step 3 (.step 5 (.step 11 (.step 17 (.step 18 (.step 3 (.close 17)))))))) (.step 3 (.step 5 (.step 11 (.step 17 (.step 18 (.step 3 (.step 17 (.step 3 (.close 19))))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
-
-theorem root_valid : root.Valid := by decide +kernel
-
-theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
-  intro i
-  exact Fin.elim0 i
-
-theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
-end Part6
-
-namespace Part7
-def root : Box := ⟨2417851639229261570637824, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395052169731124898365416701319681495209944035797862380742170175151605088600124308701448044087675033138233344⟩
-def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.step 3 (.step 11 (.step 31 (.step 58 (.split 38 1 (.split 39 1 (.split 40 1 (.split 49 1 (.split 50 1 (.split 56 1 (.split 58 1 (.step 31 (.step 11 (.step 3 (.split 59 1 (.split 55 1 (.split 2 0 (.split 34 0 (.step 11 (.step 3 (.close 5))) (.step 3 (.close 11))) (.step 11 (.step 3 (.close 5)))) (.step 18 (.step 11 (.close 5)))) (.step 9 (.step 11 (.step 18 (.close 11)))))))) (.step 11 (.step 3 (.step 31 (.step 11 (.close 61)))))) (.step 3 (.step 5 (.step 8 (.step 9 (.step 18 (.step 31 (.step 5 (.close 11))))))))) (.step 3 (.step 5 (.step 9 (.step 11 (.step 27 (.step 48 (.step 53 (.step 11 (.step 3 (.step 11 (.close 53)))))))))))) (.step 3 (.step 5 (.step 9 (.step 11 (.step 27 (.step 34 (.step 48 (.step 52 (.step 11 (.step 3 (.step 11 (.close 52))))))))))))) (.step 3 (.step 5 (.step 9 (.step 11 (.step 18 (.step 11 (.step 23 (.step 11 (.close 31)))))))))) (.step 5 (.step 11 (.step 31 (.step 11 (.close 42)))))) (.step 3 (.step 5 (.step 8 (.step 9 (.step 18 (.step 31 (.step 5 (.close 11))))))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
-
-theorem root_valid : root.Valid := by decide +kernel
-
-theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
-  intro i
-  exact Fin.elim0 i
-
-theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
-end Part7
-
-namespace Part8
-def root : Box := ⟨3221225472, 17350741762303288301270021376437205619741561997788952994278075039351084007630313794386117467941835248488381090690958395052169731124898365416701319681495209944035797862380742170175151605088600124308701448044087675033140330496⟩
-def references : Fin 3 → Box := ![Part5.root, Part6.root, Part7.root]
-def proof : Chunks.Proof 3 := (.split 2 1 (.split 8 1 (.split 10 1 (.split 14 1 (.split 16 1 (.reuse 0) (.run (.step 7 (.step 18 (.step 42 (.step 77 (.split 17 1 (.split 22 1 (.step 42 (.split 49 1 (.split 50 1 (.split 58 1 (.step 18 (.step 3 (.close 7))) (.step 11 (.step 18 (.close 3)))) (.step 18 (.step 3 (.step 42 (.close 53))))) (.step 18 (.step 21 (.step 42 (.close 52)))))) (.step 18 (.step 7 (.close 11)))) (.step 18 (.step 7 (.close 19)))))))))) (.step 3 (.step 31 (.step 34 (.reuse 1))))) (.run (.step 3 (.step 7 (.step 18 (.split 14 1 (.split 39 1 (.step 3 (.step 7 (.close 18))) (.step 3 (.step 11 (.close 17)))) (.step 3 (.step 11 (.close 17))))))))) (.reuse 2)) (.run (.step 3 (.step 11 (.step 18 (.step 31 (.step 5 (.step 42 (.step 58 (.step 61 (.split 14 1 (.step 58 (.split 49 1 (.step 5 (.split 50 1 (.split 59 1 (.step 18 (.step 5 (.step 11 (.step 3 (.step 23 (.close 18)))))) (.step 3 (.step 9 (.step 21 (.step 23 (.close 21)))))) (.step 3 (.step 9 (.step 21 (.step 17 (.step 23 (.step 34 (.close 44))))))))) (.step 3 (.step 9 (.step 23 (.step 34 (.step 42 (.step 52 (.close 5))))))))) (.step 5 (.step 11 (.step 17 (.step 23 (.close 17))))))))))))))))
-theorem accepted : Chunks.check 15 families references root proof = true := by decide +kernel
-
-theorem root_valid : root.Valid := by decide +kernel
-
-theorem references_excluded : ∀ i, Chunks.Excludes 15 families (references i) := by
-  intro i
-  fin_cases i
-  · exact Part5.excludes
-  · exact Part6.excludes
-  · exact Part7.excludes
-
-theorem excludes : Chunks.Excludes 15 families root :=
-  Chunks.check_sound 15 families families_valid references references_excluded proof root root_valid accepted
-end Part8
-
 /-- All chunk exclusions compose to the original concrete root. -/
-theorem excludes : Chunks.Excludes 15 families root := Part8.excludes
+theorem excludes : Chunks.Excludes 15 families root := Part5.excludes
 end FiveColour.Packed.ProjectedChunks.Case88

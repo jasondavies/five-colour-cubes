@@ -49,6 +49,10 @@ import FiveColour
 #print axioms FiveColour.Packed.Verified.check_sound
 #print axioms FiveColour.Packed.excludes_of_covered
 #print axioms FiveColour.Packed.Chunks.check_sound
+#print axioms FiveColour.Packed.Fast.check_sound
+#print axioms FiveColour.Packed.Fast.check_eq
+#print axioms FiveColour.Packed.FastValidity.box_valid_of_masks
+#print axioms FiveColour.Packed.FastWeight.fastMaskWeight_eq
 #print axioms FiveColour.Packed.cuts_valid
 #print axioms FiveColour.Puzzle.hasSolution_iff
 #print axioms FiveColour.Puzzle.lower_bound

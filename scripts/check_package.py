@@ -15,6 +15,8 @@ elif (root/'REVIEW.json').exists():
 else:
  source_names = {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file()
                  and not {'.git','.lake','build','__pycache__'} & set(p.relative_to(root).parts)}
+assert sum((root/name).stat().st_size for name in source_names
+           if (root/name).is_file() and not (root/name).is_symlink()) <= 500*1024*1024, 'submission snapshot exceeds 500 MiB'
 for name in sorted(source_names):
  path=root/name
  if not path.is_file(): continue
@@ -22,10 +24,7 @@ for name in sorted(source_names):
  if path.suffix != '.lean': continue
  text=path.read_text()
  assert not path.is_symlink() and text.startswith('module\n'),name
- # Enumeration roots retain larger checked trees than threshold exclusions.
- # Their generated modules still have a fixed source-size limit.
- line_limit = 20000 if name.startswith('FiveColour/EnumerationChunks/Case') else 10000
- assert len(text.splitlines())<=line_limit,name
+ assert len(text.splitlines())<=10000,name
  for module in re.findall(r'^(?:public )?import ([A-Za-z0-9_.]+)',text,re.M):
   if module == 'Solution' or module == 'FiveColour' or module.startswith('FiveColour.'):
    imported = module.replace('.','/')+'.lean'
@@ -56,6 +55,8 @@ assert int(rows[0])==len(rows)-1==279
 projection=json.loads((root/'data/q5-projected-root-manifest.json').read_text())
 with tarfile.open(root/'data/q5-projected-certificates.tar.gz') as archive:
  members=archive.getmembers()
+ assert sum(m.size for m in members)==projection['uncompressed_bytes'], 'uncompressed archive size'
+ assert (root/'data/q5-projected-certificates.tar.gz').stat().st_size==projection['compressed_bytes'], 'compressed archive size'
  assert len(members)==279 and {m.name for m in members}=={f'case-{i}.q5p' for i in range(279)}
  for m in members:
   assert m.isfile()

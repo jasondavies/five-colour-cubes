@@ -61,7 +61,7 @@ status:
     initial budget bounds leave 279 roots; the Hall-budget projection reduces
     their totals and budgets while preserving every target failure. All
     projected headers, bounds and constraint families are identified with
-    their integer models. All 279 projected certificates (499,829 instructions)
+    their integer models. All 279 projected certificates (298,167 instructions)
     have passed Lean kernel replay. The final assembly proves unconditional
     Physical.Threshold15 and Physical.SharpThreshold15 via
     Packed.ProjectedChunks.threshold15 and sharpThreshold15. Their axiom audit
@@ -112,22 +112,23 @@ status:
     classes and copy counts without importing the catalogue. Its cuboid slots
     explicitly represent corners, edges, face interiors and interior positions.
     SubmissionBridge.lean proves agreement with the proof models.
-    The full local Comparator run at commit
-    15be39de01c881d92f0714fec717f542a5078ccb passed on 6 November 2026.
-    All thirteen statements and shared definitions matched, the permitted-axiom
-    check passed, and both NanoDa and Lean's standalone kernel accepted the
-    complete export. That record predates the universal-collection addition;
-    it does not certify the expanded fifteen-claim interface.
-    The two new universal-collection claims separately passed statement, definition
-    and axiom comparison, NanoDa and standalone Lean on 6 November 2026; see
-    verification/universal.json and verification/universal-output.txt.
-    A complete run of the expanded fifteen-claim interface remains to be recorded.
-    The source-bound record and complete output are retained in
-    verification/palomar.json and verification/comparator-output.txt.
-    The thirteen-claim run took 7 hours 11 minutes 57 seconds using validated Lake build
-    artifacts, excluding a fresh project build. It exceeded the currently
-    published 330-minute hosted execution budget; fitting that budget remains
-    unresolved. The separate bounded con-ron check was not run.
+    All fifteen configured statements, shared definitions and permitted axioms
+    passed local comparison on 7 November 2026, and both NanoDa and Lean's
+    standalone kernel accepted the complete export. The run took 12121.274
+    seconds using validated Lake artifacts, excluding a fresh project build.
+    verification/optimized-comparator.json identifies source snapshot
+    19dc6a061c54a5da3d17b08eb869fe4130f722d85a75402dd41dbf6030eccfe5,
+    actual dependency trees and tool identities. Its complete output and
+    resource measurements are optimized-comparator-output.txt and
+    optimized-comparator-resources.txt in verification/; optimized-full.json
+    retains the preceding successful full-verification record. The proof
+    sources, inputs and verification code match that snapshot; later edits
+    concern documentation, the PDF and retained evidence only. The structural
+    minimum-universal corollary is checked by the ordinary Lean build and axiom
+    audit but is outside the comparator interface. Historical thirteen-claim
+    and universal-only records remain unchanged in verification/palomar.json
+    and verification/universal.json. Local timing does not establish hosted
+    performance. The separate bounded con-ron check was not run.
     No hosted Palomar verification is claimed.
     No Palomar submission exists. The fifteen intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.

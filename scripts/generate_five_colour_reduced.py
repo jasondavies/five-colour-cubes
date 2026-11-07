@@ -1,12 +1,30 @@
 """Serialize root-specific Hall weakenings and their kernel-checked witnesses.
 
 Drop impossible alternatives, subtract fixed coordinates, and merge equal
-residual neighbourhoods using the largest RHS. None of this Python arithmetic
+residual neighbourhoods using the largest RHS, then discard alternatives
+subsumed by a weaker retained alternative. None of this Python arithmetic
 is trusted: PackedPruning checks coverage and calibrates every replacement.
 """
 import re
 from collections import Counter
 from generate_five_colour_packed import cut
+
+
+def undominated(merged):
+    """Keep weaker cuts and a covering witness for every input neighbourhood.
+
+    Cuts form a disjunction. With nonnegative multiplicities, a subset of
+    coordinates and a greater RHS gives a weaker inequality. Every removed
+    cut therefore still implies its retained witness. Lean checks this again
+    for each concrete root; this function is only a serializer.
+    """
+    sets = {key: frozenset(key) for key in merged}
+    keys = [key for key in merged if not any(
+        other != key and sets[other] <= sets[key] and merged[other] >= merged[key]
+        for other in merged)]
+    witness = {key: next(other for other in keys
+        if sets[other] <= sets[key] and merged[other] >= merged[key]) for key in merged}
+    return keys, witness
 
 
 def reduction(row, checkpoints, geometry):
@@ -32,16 +50,17 @@ def reduction(row, checkpoints, geometry):
                 alternatives.append(free)
             else:
                 alternatives.append(None)
-        keys = list(merged)
+        keys, witness = undominated(merged)
         indices = {key: i for i, key in enumerate(keys)}
         counts.append(len(keys))
         viable_counts.append(sum(x is not None for x in alternatives))
         text += f'\ndef reduced{target} : Array Cut := #['
         text += ','.join(cut(key, merged[key]) for key in keys) + ']\n'
         text += f'def witnesses{target} : List Nat := ['
-        text += ','.join(str(indices[x]) if x is not None else '0' for x in alternatives) + ']\n'
+        text += ','.join(str(indices[witness[x]]) if x is not None else '0' for x in alternatives) + ']\n'
         text += f'''theorem valid{target} : ∀ c ∈ reduced{target}.toList, c.Valid := by
   apply list_valid_of_weights
+  apply FastWeight.list_weights_of_fast
   decide +kernel
 
 theorem covered{target} : ∀ c ∈ families {target+3}, possible root {goal} c →

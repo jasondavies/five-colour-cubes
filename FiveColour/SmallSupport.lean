@@ -8,12 +8,53 @@ namespace FiveColour.Physical
 def varietySupport {n : ℕ} (cubes : Fin n → Cube) : Finset (Fin 75) :=
   Finset.univ.image (fun i => catalogueIndex (cubes i))
 
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+section
+set_option maxRecDepth 100000
+set_option maxHeartbeats 0
+
+-- Factor the shared seven-copy construction once. Only corner-disjoint pairs
+-- need the generated target and its four-plus-four compatibility check.
+theorem support_pair_diagonal : ∀ i : Fin 75, Replay.fits i i = 255 := by
+  decide +kernel
+
+/-- The nonzero-incidence case is the same byte argument for every pair. -/
+theorem support_pair_own_mask : ∀ m : Fin 256, m.val ≠ 0 →
+    (255 : Nat).lor m.val = 255 ∧
+    7 ≤ (cornerSet 255).card ∧ 8-7 ≤ (cornerSet m.val).card := by
+  decide +kernel
+
+def SupportPairCheck (i j : Fin 75) : Prop :=
+  if Replay.fits i j = 0 then
+    PairMaskCriterion i j (supportPairTarget i j) 4
+  else supportPairTarget i j = i ∧ Replay.fits i j < 256
+
+instance (i j : Fin 75) : Decidable (SupportPairCheck i j) := by
+  unfold SupportPairCheck
+  infer_instance
+
+theorem support_pair_checked (i : Fin 75) : ∀ j, SupportPairCheck i j := by
+  fin_cases i <;> decide +kernel
+
+/-- The seven-copy construction handles intersecting pairs; checked four-copy
+constructions handle corner-disjoint pairs. -/
 theorem support_pair_verified (i : Fin 75) : ∀ j,
     PairMaskCriterion i j (supportPairTarget i j) (supportPairAmount i j) ∧
     supportPairAmount i j ≤ 7 ∧ 8-supportPairAmount i j ≤ 6 := by
-  fin_cases i <;> decide +kernel
+  intro j
+  have h := support_pair_checked i j
+  by_cases hz : Replay.fits i j = 0
+  · simp only [SupportPairCheck, hz, ↓reduceIte] at h
+    simpa only [supportPairAmount, hz, ↓reduceIte] using
+      And.intro h (by decide : 4 ≤ 7 ∧ 8-4 ≤ 6)
+  · simp only [SupportPairCheck, hz, ↓reduceIte] at h
+    obtain ⟨ht, hb⟩ := h
+    simp only [ht, supportPairAmount, hz, ↓reduceIte]
+    refine ⟨?_, by decide, by decide⟩
+    unfold PairMaskCriterion
+    rw [support_pair_diagonal i]
+    exact support_pair_own_mask ⟨Replay.fits i j, hb⟩ hz
+
+end
 
 /-- The existing pair certificate needs only four copies of each disjoint variety. -/
 theorem disjoint_pair_suffices {n : ℕ} (cubes : Fin n → Cube)

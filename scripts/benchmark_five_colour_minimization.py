@@ -8,6 +8,8 @@ unchanged Lean checker and audits its axioms. --measure export additionally
 replays all concrete chunk-acceptance proofs in the standalone Lean kernel.
 That export measurement isolates certificate execution; it is NOT the full
 configured Comparator or its complete soundness/geometry dependency closure.
+--measure endpoint exports the complete concrete exclusion, including validity,
+calibration, coverage and soundness. --measure both records both scopes.
 
 Examples:
   python3 -S scripts/benchmark_five_colour_minimization.py --cases all
@@ -38,7 +40,8 @@ def main():
     parser.add_argument('--cases', nargs='+', default=['16', '19'])
     parser.add_argument('--passes', type=int, default=2)
     parser.add_argument('--trial-limit', type=int, default=4096)
-    parser.add_argument('--measure', choices=['none', 'kernel', 'export'], default='none')
+    parser.add_argument('--measure', choices=['none', 'kernel', 'export', 'endpoint', 'both'], default='none')
+    parser.add_argument('--cut-mode', choices=['auto', 'original', 'reduced'], default='auto')
     parser.add_argument('--repeats', type=int, default=2)
     parser.add_argument('--label', default='pilot', help='output subdirectory under build/certificate-minimization')
     args = parser.parse_args()
@@ -61,7 +64,7 @@ def main():
                LEAN_PATH=str(destination) + (os.pathsep + os.environ['LEAN_PATH'] if os.environ.get('LEAN_PATH') else ''))
     if args.measure != 'none':
         subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration',
-                        'FiveColour.PackedChunks', 'FiveColour.PackedPruning'],
+                        'FiveColour.PackedFast', 'FiveColour.PackedPruning'],
                        cwd=ROOT, env=env, check=True)
     destination.mkdir(parents=True, exist_ok=True)
     archive = ROOT / 'data/q5-projected-certificates.tar.gz'
@@ -70,7 +73,7 @@ def main():
     rows = [list(map(int, line.split())) for line in case_file.read_text().splitlines()[1:]]
     record = {
         'scope': 'Experimental certificate candidates; production proof unchanged. '
-                 'Standalone timings cover chunk-acceptance proofs, not the full Comparator.',
+                 'Each standalone timing identifies its export scope; none is the full Comparator.',
         'settings': vars(args), 'cases': [], 'measurements': [],
         'inputs_sha256': {str(p.relative_to(ROOT)): digest(p) for p in [
             archive, geometry, case_file, Path(__file__),
@@ -125,7 +128,7 @@ def main():
                                 str(case_file), str(certificate), str(case), '128', str(chunks)],
                                check=True, capture_output=True)
                 group = f'Minimization{case}{mode}'
-                stats = generate(case, rows[case], chunks, 128, generated, group)
+                stats = generate(case, rows[case], chunks, 128, generated, group, args.cut_mode)
                 source = (generated / f'Case{case}.lean').read_text().replace(
                     '@[expose] public section', '@[expose] public section\nset_option Elab.async false')
                 endpoint = f'FiveColour.Packed.{group}.Case{case}.excludes'
@@ -153,28 +156,32 @@ def main():
                     print(json.dumps(measurement), flush=True)
                     if not passed:
                         raise SystemExit(f'Kernel check or axiom audit failed: {log}')
-                    if args.measure != 'export':
+                    if args.measure not in ('export', 'endpoint', 'both'):
                         continue
-                    names = [endpoint.removesuffix('excludes') + f'Part{i}.accepted'
-                             for i in range(stats['chunks'])]
-                    export = generated / 'acceptance.export.jsonl'
-                    with export.open('w') as stream:
-                        subprocess.run(['lake', 'env', 'leanexport', module, '--', *names],
-                                       cwd=ROOT, env=env, stdout=stream, check=True)
-                    started = time.monotonic()
-                    log = generated / f'export-{repeat}.log'
-                    with log.open('w') as stream:
-                        result = subprocess.run(['lake', 'env', 'leanchecker', '--from-export', str(export)],
-                                                cwd=ROOT, env=env, stdout=stream, stderr=subprocess.STDOUT)
-                    passed = result.returncode == 0 and 'Lean default kernel accepts the solution' in log.read_text()
-                    measurement = dict(case=case, mode=mode, repeat=repeat,
-                                       phase='standalone replay of all concrete chunk acceptances',
-                                       seconds=time.monotonic()-started, passed=passed,
-                                       export_bytes=export.stat().st_size, export_sha256=digest(export))
-                    record['measurements'].append(measurement); save()
-                    print(json.dumps(measurement), flush=True)
-                    if not passed:
-                        raise SystemExit(f'Standalone kernel replay failed: {log}')
+                    scopes = ['acceptance', 'endpoint'] if args.measure == 'both' else [
+                        'acceptance' if args.measure == 'export' else 'endpoint']
+                    for scope in scopes:
+                        names = [endpoint] if scope == 'endpoint' else [
+                            endpoint.removesuffix('excludes') + f'Part{i}.accepted'
+                            for i in range(stats['chunks'])]
+                        export = generated / f'{scope}.export.jsonl'
+                        with export.open('w') as stream:
+                            subprocess.run(['lake', 'env', 'leanexport', module, '--', *names],
+                                           cwd=ROOT, env=env, stdout=stream, check=True)
+                        started = time.monotonic()
+                        log = generated / f'{scope}-{repeat}.log'
+                        with log.open('w') as stream:
+                            result = subprocess.run(['lake', 'env', 'leanchecker', '--from-export', str(export)],
+                                                    cwd=ROOT, env=env, stdout=stream, stderr=subprocess.STDOUT)
+                        passed = result.returncode == 0 and 'Lean default kernel accepts the solution' in log.read_text()
+                        measurement = dict(case=case, mode=mode, repeat=repeat,
+                                           phase='standalone replay', export_scope=scope,
+                                           seconds=time.monotonic()-started, passed=passed,
+                                           export_bytes=export.stat().st_size, export_sha256=digest(export))
+                        record['measurements'].append(measurement); save()
+                        print(json.dumps(measurement), flush=True)
+                        if not passed:
+                            raise SystemExit(f'Standalone kernel replay failed: {log}')
     for name, value in record['inputs_sha256'].items():
         if digest(ROOT / name) != value:
             raise RuntimeError(f'Benchmark input changed during the run: {name}')

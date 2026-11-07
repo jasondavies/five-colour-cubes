@@ -1,6 +1,7 @@
 module
 public import FiveColour.PackedCalibration
-public import FiveColour.PackedChunks
+public import FiveColour.PackedFast
+public import FiveColour.PackedComputations
 @[expose] public section
 namespace FiveColour.Packed.ProjectedChunks.Case268
 set_option maxHeartbeats 0
@@ -19,53 +20,37 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
   split at hc
   · have he := List.mem_singleton.mp hc
     subst c
-    apply cut_valid_of_weight
+    apply FastWeight.cut_valid_of_fast_weight
     decide +kernel
   · split at hc
     · have he := List.mem_singleton.mp hc
       subst c
-      apply cut_valid_of_weight
+      apply FastWeight.cut_valid_of_fast_weight
       decide +kernel
     · split at hc
       · have he := List.mem_singleton.mp hc
         subst c
-        apply cut_valid_of_weight
+        apply FastWeight.cut_valid_of_fast_weight
         decide +kernel
       · exact cuts_valid ⟨r.val-3, by omega⟩ c hc
 
 namespace Part0
-def root : Box := ⟨1, 5653548956058700166731417831957222835792060869588458894420752633442121112516058933536319246290492648189535944136999435573090003575782175849212904177256684980701058685762056803967313027059914440807907887431732996608098305⟩
+def root : Box := ⟨1, 5653548956058700166731417831957222835792060869588458894420752633442121112516058933536319246290492648189535944136999435573090003575782175849212904177256684980701058685762056803967313027059914440807907888584654501214945281⟩
 def references : Fin 0 → Box := Fin.elim0
-def proof : Chunks.Proof 0 := (.run (.split 12 0 (.split 18 0 (.split 7 0 (.split 25 0 (.split 13 0 (.step 31 (.step 5 (.step 15 (.close 37)))) (.step 31 (.step 37 (.step 22 (.close 21))))) (.step 29 (.split 13 0 (.step 31 (.step 5 (.step 15 (.close 37)))) (.step 31 (.step 37 (.step 22 (.close 21))))))) (.step 29 (.step 31 (.step 63 (.close 16))))) (.split 7 0 (.split 23 0 (.step 31 (.step 38 (.step 31 (.close 16)))) (.step 75 (.step 31 (.close 16)))) (.split 19 0 (.step 29 (.step 31 (.close 16))) (.split 25 0 (.step 21 (.step 22 (.step 10 (.step 21 (.close 5))))) (.step 6 (.close 9)))))) (.split 7 0 (.split 23 0 (.split 25 0 (.split 18 0 (.step 31 (.step 15 (.step 31 (.close 15)))) (.step 15 (.step 21 (.close 5)))) (.step 29 (.step 31 (.step 15 (.step 37 (.step 15 (.step 21 (.close 5)))))))) (.step 31 (.step 63 (.step 75 (.step 15 (.step 6 (.close 21))))))) (.step 29 (.step 31 (.step 16 (.step 63 (.step 15 (.close 21)))))))))
-theorem accepted : Chunks.check 14 families references root proof = true := by decide +kernel
+def proof : Chunks.Proof 0 := (.run (.split 6 0 (.split 12 0 (.split 18 0 (.split 7 0 (.split 25 0 (.split 13 0 (.step 31 (.close 37)) (.step 37 (.close 31))) (.step 29 (.split 13 0 (.step 31 (.close 37)) (.step 37 (.close 31))))) (.step 29 (.step 31 (.step 63 (.close 16))))) (.split 7 0 (.split 23 0 (.step 38 (.step 31 (.close 16))) (.step 75 (.step 31 (.close 16)))) (.split 19 0 (.step 29 (.step 31 (.close 16))) (.split 25 0 (.step 21 (.step 22 (.step 10 (.close 31)))) (.step 6 (.close 9)))))) (.split 7 0 (.split 23 0 (.split 25 0 (.split 18 0 (.step 31 (.step 15 (.step 31 (.close 15)))) (.step 15 (.close 31))) (.step 29 (.step 31 (.step 37 (.step 15 (.close 31)))))) (.step 31 (.step 63 (.step 75 (.step 15 (.close 21)))))) (.step 29 (.step 31 (.step 63 (.step 15 (.close 21))))))) (.split 12 0 (.split 7 0 (.split 23 0 (.split 25 0 (.split 18 0 (.split 13 0 (.step 31 (.close 39)) (.step 28 (.close 31))) (.step 31 (.step 38 (.step 10 (.close 31))))) (.step 28 (.close 31))) (.step 75 (.step 31 (.close 22)))) (.step 31 (.step 63 (.close 9)))) (.split 7 0 (.split 23 0 (.split 25 0 (.step 15 (.step 31 (.close 28))) (.step 9 (.close 28))) (.step 9 (.step 15 (.step 31 (.step 26 (.close 31)))))) (.step 9 (.close 15))))))
+theorem accepted : Fast.check 14 families references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes 14 families (references i) := by
   intro i
   exact Fin.elim0 i
 
 theorem excludes : Chunks.Excludes 14 families root :=
-  Chunks.check_sound 14 families families_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound 14 families families_valid references references_excluded proof root root_valid accepted
 end Part0
 
-namespace Part1
-def root : Box := ⟨1, 5653548956058700166731417831957222835792060869588458894420752633442121112516058933536319246290492648189535944136999435573090003575782175849212904177256684980701058685762056803967313027059914440807907888584654501214945281⟩
-def references : Fin 1 → Box := ![Part0.root]
-def proof : Chunks.Proof 1 := (.split 6 0 (.reuse 0) (.run (.split 12 0 (.split 7 0 (.split 23 0 (.split 25 0 (.split 18 0 (.step 31 (.split 13 0 (.step 31 (.step 5 (.step 11 (.close 15)))) (.step 15 (.step 28 (.step 22 (.close 5)))))) (.step 31 (.step 38 (.step 10 (.step 21 (.step 12 (.step 15 (.close 16)))))))) (.step 28 (.step 9 (.close 12)))) (.step 31 (.step 63 (.step 75 (.step 31 (.step 9 (.close 10))))))) (.step 29 (.step 31 (.step 63 (.close 9))))) (.split 7 0 (.split 23 0 (.split 25 0 (.step 15 (.step 31 (.step 10 (.close 5)))) (.step 9 (.step 15 (.close 28)))) (.step 9 (.step 15 (.step 31 (.step 26 (.step 6 (.close 21))))))) (.step 9 (.step 6 (.close 15)))))))
-theorem accepted : Chunks.check 14 families references root proof = true := by decide +kernel
-
-theorem root_valid : root.Valid := by decide +kernel
-
-theorem references_excluded : ∀ i, Chunks.Excludes 14 families (references i) := by
-  intro i
-  fin_cases i
-  · exact Part0.excludes
-
-theorem excludes : Chunks.Excludes 14 families root :=
-  Chunks.check_sound 14 families families_valid references references_excluded proof root root_valid accepted
-end Part1
-
 /-- All chunk exclusions compose to the original concrete root. -/
-theorem excludes : Chunks.Excludes 14 families root := Part1.excludes
+theorem excludes : Chunks.Excludes 14 families root := Part0.excludes
 end FiveColour.Packed.ProjectedChunks.Case268

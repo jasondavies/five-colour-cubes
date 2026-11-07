@@ -35,7 +35,7 @@ def main():
     destination.mkdir(parents=True, exist_ok=True)
     subprocess.run(['make', 'build/five_colour_chunks'], cwd=ROOT, check=True)
     # This is a dependency build only; never schedule a production case replay.
-    subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedChunks', 'FiveColour.PackedPruning'],
+    subprocess.run(['lake', 'build', 'FiveColour.PackedCalibration', 'FiveColour.PackedFast', 'FiveColour.PackedPruning'],
                    cwd=ROOT, check=True)
     rows = [list(map(int, line.split())) for line in
             (ROOT / 'data/q5-projected-root-cases.txt').read_text().splitlines()[1:]]

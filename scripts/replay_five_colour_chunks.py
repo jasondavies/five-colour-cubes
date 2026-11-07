@@ -105,7 +105,7 @@ def main():
                                'validation': 'Lake aggregate dependency traces'} for case in selected})
         print('Lake validated the cached complete threshold and all 279 cases.', flush=True)
     else:
-        shared = ['FiveColour.PackedCalibration', 'FiveColour.PackedPruning']
+        shared = ['FiveColour.PackedCalibration', 'FiveColour.PackedPruning', 'FiveColour.PackedFast']
         if args.cases is None:
             shared.append('FiveColour.ProjectedBridge')
         subprocess.run(['lake', 'build', *shared], cwd=LEAN, check=True)
@@ -143,7 +143,8 @@ def main():
     (logs / 'audit.log').write_text(audit.stdout)
     reports = re.findall(r"'([^']+)' depends on axioms:\s*\[([^]]*)\]", audit.stdout)
     namespace = f'FiveColour.Packed.{args.group}'
-    expected = ['FiveColour.Packed.Chunks.check_sound', f'{namespace}.all_excluded']
+    expected = ['FiveColour.Packed.Chunks.check_sound', 'FiveColour.Packed.Fast.check_sound',
+                f'{namespace}.all_excluded']
     expected += [f'{namespace}.threshold15', f'{namespace}.sharpThreshold15']
     allowed = {'propext', 'Classical.choice', 'Quot.sound'}
     if audit.returncode or [name for name, _ in reports] != expected or any(

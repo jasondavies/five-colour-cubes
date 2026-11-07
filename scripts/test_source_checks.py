@@ -28,6 +28,12 @@ class SourceChecks(unittest.TestCase):
             subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
             command = [sys.executable, '-S', str(repo / 'scripts/check_package.py')]
             self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
+            unused = repo / 'FiveColour/EnumerationChunks/Unexpected.lean'
+            unused.write_text('module\n' + '-- padding\n' * 10000)
+            rejected = subprocess.run(command, capture_output=True, text=True)
+            self.assertNotEqual(rejected.returncode, 0)
+            self.assertIn('Unexpected.lean', rejected.stderr)
+            unused.unlink()
             missing = 'FiveColour/ProjectedChunks/Case278.lean'
             (repo / missing).unlink()
             for staged in (False, True):

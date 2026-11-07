@@ -38,17 +38,17 @@ theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := by
   split at hc
   · have he := List.mem_singleton.mp hc
     subst c
-    apply cut_valid_of_weight
+    apply FastWeight.cut_valid_of_fast_weight
     decide +kernel
   · split at hc
     · have he := List.mem_singleton.mp hc
       subst c
-      apply cut_valid_of_weight
+      apply FastWeight.cut_valid_of_fast_weight
       decide +kernel
     · split at hc
       · have he := List.mem_singleton.mp hc
         subst c
-        apply cut_valid_of_weight
+        apply FastWeight.cut_valid_of_fast_weight
         decide +kernel
       · exact cuts_valid ⟨r.val-3, by omega⟩ c hc
 '''
@@ -61,15 +61,17 @@ def generate(case, row, path, limit, dest=DEST, group="ProjectedChunks", cut_mod
     checkpoints = path.read_text()
     commands = sum(int(line.split('\t')[3]) for line in checkpoints.splitlines())
     # The root-coverage and calibration proofs have a fixed upfront cost.
-    # Preserve the original checker for small cases where it is faster.
-    reduced = cut_mode == "reduced" or (cut_mode == "auto" and commands >= 4096)
+    # Retain original families for small cases; complete-root benchmarks near
+    # 3,500 instructions include the extra coverage and calibration proofs.
+    reduced = cut_mode == "reduced" or (cut_mode == "auto" and commands >= 3500)
     families = 'checkedFamilies' if reduced else 'families'
     pruning_import = 'public import FiveColour.PackedPruning\n' if reduced else ''
     dest.mkdir(parents=True, exist_ok=True)
     prefix = f'FiveColour.Packed.{group}.Case{case}'
     text = f'''module
 public import FiveColour.PackedCalibration
-public import FiveColour.PackedChunks
+public import FiveColour.PackedFast
+public import FiveColour.PackedComputations
 {pruning_import}@[expose] public section
 namespace {prefix}
 set_option maxHeartbeats 0
@@ -99,9 +101,10 @@ namespace Part{ident}
 def root : Box := ⟨{packed(lo)}, {packed(hi)}⟩
 def references : Fin {len(refs)} → Box := {reference_value}
 def proof : Chunks.Proof {len(refs)} := {proof}
-theorem accepted : Chunks.check {row[3]} {families} references root proof = true := by decide +kernel
+theorem accepted : Fast.check {row[3]} {families} references root proof = true := by decide +kernel
 
-theorem root_valid : root.Valid := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
 
 theorem references_excluded : ∀ i, Chunks.Excludes {row[3]} {families} (references i) := by
 '''
@@ -112,14 +115,14 @@ theorem references_excluded : ∀ i, Chunks.Excludes {row[3]} {families} (refere
             text += '  intro i\n  exact Fin.elim0 i\n'
         text += f'''
 theorem excludes : Chunks.Excludes {row[3]} {families} root :=
-  Chunks.check_sound {row[3]} {families} {families}_valid references references_excluded proof root root_valid accepted
+  Fast.check_sound {row[3]} {families} {families}_valid references references_excluded proof root root_valid accepted
 end Part{ident}
 '''
     if not sizes:
         raise ValueError('empty chunk export')
     endpoint = f'Part{len(sizes)-1}.excludes'
     if reduced:
-        endpoint = (f'excludes_of_covered root (by decide +kernel) {row[3]} families '
+        endpoint = (f'excludes_of_covered root (by apply FastValidity.box_valid_of_masks <;> decide +kernel) {row[3]} families '
                     f'checkedFamilies families_valid checkedFamilies_valid checkedFamilies_cover {endpoint}')
     text += f'''
 /-- All chunk exclusions compose to the original concrete root. -/
@@ -179,6 +182,7 @@ end {namespace}
 ''')
     (dest/'Audit.lean').write_text('module\nimport FiveColour.ProjectedChunks.Threshold\n' +
         '#print axioms FiveColour.Packed.Chunks.check_sound\n' +
+        '#print axioms FiveColour.Packed.Fast.check_sound\n' +
         ''.join(f'#print axioms {namespace}.{name}\n' for name in ['all_excluded', 'threshold15', 'sharpThreshold15']))
 
 

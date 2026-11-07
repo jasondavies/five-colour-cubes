@@ -48,6 +48,7 @@ unconditional cuboid results, with `make verify-full`.
 | `FastCertificates.lean` | Sound intersection/union summaries of feasible cuts. |
 | `PackedArithmetic.lean` | Base-1024 subset sums, no-carry bounds, decoding and mask calibration. |
 | `PackedSemantics.lean` | Connection between packed arithmetic and the integer box model. |
+| `PackedComputations.lean` | Proved bit-mask validity test and scalar mask-weight conversion. |
 | `PackedVerified.lean` | Sound fast checking with guarded split values. |
 | `PackedCalibration*.lean` | Kernel calibration of all 19,125 Hall-cut weights against their masks. |
 | `CertificateControls.lean` | Kernel-checked positive and negative controls for checkpoint reuse and split bounds. |
@@ -143,9 +144,9 @@ Use `make verify-full` to check the retained replay sources without rewriting
 them and then verify the complete proof. `make check-replay-data` checks their
 regeneration separately; `make replay-data` explicitly replaces them. See the
 root README for concurrency and stop/resume instructions. `Packed.Projected.sharp_threshold_of_exclusions` consumes exactly
-the 279 projected exclusions, totalling 499,829 instructions. The generated
+the 279 projected exclusions, totalling 298,167 instructions. The generated
 `ProjectedChunks.Threshold` module supplies them and proves the unconditional
-physical threshold and sharpness; its four-declaration audit uses only standard axioms.
+physical threshold and sharpness; its axiom audit uses only standard axioms.
 
 The three checked interfaces describe successive stages of the same reduction:
 
@@ -352,13 +353,26 @@ classification and the three small thin-box examples.
 
 Run these commands from the repository root.
 
-For cases with at least 4,096 instructions, generated replay sources use
+For cases with at least 3,500 instructions, generated replay sources use
 root-specific cut lists: impossible alternatives are removed, fixed coordinates
-are subtracted, and equal residual neighbourhoods are merged. Lean checks the
+are subtracted, equal residual neighbourhoods are merged, and alternatives
+implying a weaker retained alternative are discarded. Lean checks the
 replacement weights and a coverage witness for every original alternative.
 The resulting exclusion is transferred back to the original root problem.
 Smaller cases retain the full lists because validating the reduction has an
 upfront cost. The packed base remains 1024.
+
+`PackedFast.lean` evaluates digit places as powers instead of array lookups.
+It proves equality with the original evaluator for every certificate, then
+transfers the existing soundness theorem. The original checker remains the
+reference semantics and continues to serve the enumeration proof.
+
+`PackedComputations.lean` proves that containment in the packed all-seven
+digit mask certifies bounded digits and exact reconstruction. Each checkpoint
+uses two bit-mask equalities to establish the existing box-validity proposition.
+The same module proves a scalar conversion from a 75-bit neighbourhood mask
+to its reversed base-1024 weight; original and reduced calibration proofs
+use this conversion without changing their statements.
 
 The replay driver tries Lake's `--no-build` validation of the complete theorem
 first. If anything is stale or missing, it falls back to bounded parallel case
@@ -389,22 +403,25 @@ python3 -S scripts/benchmark_five_colour_replay.py --case 19 --limits 128 --cut-
 Case benchmark results include wall/CPU time and peak memory under
 `build/replay-benchmark/`. Those experiments reuse the shared checker dependencies.
 
-An optional minimization pilot tries removing refinements and splits when an
-existing subtree also excludes its larger parent box. It uses the C++ checker
+An optional minimization pilot first tries the existing direct closing rules,
+then removes refinements and splits when an existing subtree also excludes
+its larger parent box. Repeated passes can expose further reductions. It uses the C++ checker
 as a search oracle and writes candidate copies under ignored
 `build/certificate-minimization/`; it never rewrites the retained archive or
 production Lean sources:
 
 ```sh
-python3 -S scripts/benchmark_five_colour_minimization.py --cases all --label corpus
-python3 -S scripts/benchmark_five_colour_minimization.py --cases 16 19 --measure export --label timing
+python3 -S scripts/benchmark_five_colour_minimization.py --cases all --passes 4 --label corpus
+python3 -S scripts/benchmark_five_colour_minimization.py --cases 62 63 --measure both --cut-mode reduced --label timing
 ```
 
 The first command checks candidates only in C++. The second proves the selected
 complete certificate exclusions with the unchanged Lean checker, audits their
-axioms, and times standalone Lean replay of all concrete chunk-acceptance proofs.
-That last measurement isolates certificate execution; it is not the full
-Comparator. Measurements include the candidate hashes and input
+axioms, and separately times standalone replay of chunk acceptances and the
+complete exclusion endpoint. The endpoint includes calibration, coverage,
+checkpoint validity and soundness; the acceptance export isolates certificate
+execution. Neither is the full Comparator. `--measure export` or
+`--measure endpoint` selects only one scope. Measurements include the candidate hashes and input
 identities. Promoting candidates still requires complete verification and a new
 full Comparator run. Repeats alternate baseline and candidate order.
 

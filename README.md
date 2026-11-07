@@ -225,8 +225,8 @@ The C++ implementation supplies a fast, independent audit. The Lean route
 computes the check inside the kernel and connects it to the physical theorem;
 the search and certificate exporters are not trusted.
 
-The retained archive contains **499,829 instructions in 279 certificates**,
-compressed to about 306 KiB. Lean checks them in 4,786 pieces of at most 128
+The retained archive contains **298,167 instructions in 279 certificates**,
+compressed to about 227 KiB. Lean checks them in 2,926 pieces of at most 128
 instructions, with proved composition and exact boundary checks. The **357 root
 definitions remain necessary**: the current proof derives its smaller cover
 from them. See [data provenance](data/README.md) and the
@@ -275,8 +275,8 @@ The [retained measurement and verification record](verification/benchmark.json)
 identifies source snapshot `dc9c85dc9ded` (based on commit
 `42aa7b64b15a`), the full source manifest and archive digest,
 actual dependency trees, tool versions and build settings. The measured Lean
-sources predate the universal-collection addition; these timings do not include
-its new proofs. The record distinguishes the snapshot from its base commit.
+sources predate the universal-collection addition and certificate minimization;
+these timings describe the recorded snapshot, not the current proof inputs. The record distinguishes the snapshot from its base commit.
 
 ## Review archives and CI
 
@@ -329,28 +329,29 @@ are retained, so `lake build Solution` works without a separate generation step.
 `make comparator` runs the complete statement comparison with Lean's kernel and
 NanoDa, the two mandatory Palomar checkers. It exports the complete proof
 dependency closure and checks it again, so cached Lake artifacts do not make
-this comparison a cached verification. The full local run on commit
-`15be39de01c881d92f0714fec717f542a5078ccb` passed on 6 November 2026: all
-thirteen statements and their shared definitions matched, the permitted-axiom
-check passed, and both NanoDa and Lean's standalone kernel accepted the full
-solution export. That record predates the universal-collection addition; it
-does not certify the expanded fifteen-claim interface.
-The [comparison record](verification/palomar.json) binds the source files,
-actual dependency trees, tools and export; the [complete output](verification/comparator-output.txt)
-and [wall-clock record](verification/comparator-resources.txt) are retained too.
+this comparison a cached verification.
 
-The two new universal-collection claims separately passed statement, definition
-and axiom comparison, NanoDa and standalone Lean on 6 November 2026. Their
-[source-bound record](verification/universal.json) and [complete output](verification/universal-output.txt)
-are retained. `make check-comparator-universal` reproduces that two-claim scope.
-A complete run of the expanded fifteen-claim interface remains to be recorded.
+**All fifteen claims passed on 7 November 2026.** Statements, shared definitions
+and permitted axioms passed comparison, and both NanoDa and Lean's standalone
+kernel accepted the complete solution export. The run took **3 h 22 min 1 s**
+using validated Lake artifacts; it excludes a fresh project build.
 
-The thirteen-claim run took **7 h 11 min 57 s** on an AMD Ryzen 7 9700X, using validated Lake
-build artifacts; this excludes a fresh project build. The serial Lean export
-replay accounts for most of that time. Both published
-[Palomar execution profiles](https://github.com/PalomarRegistry/PalomarSubmission/blob/main/execution-profiles.json)
-currently allow 330 minutes. This local pass therefore does not establish that
-verification fits the hosted budget; that needs resolving before submission.
+The [comparison record](verification/optimized-comparator.json) identifies source
+snapshot `19dc6a061c54`, the actual dependency trees, tool binaries and settings.
+Its [complete output](verification/optimized-comparator-output.txt),
+[resource measurements](verification/optimized-comparator-resources.txt), and
+[preceding full-verification record](verification/optimized-full.json) are retained.
+The Lean sources, proof inputs and verification code match that snapshot;
+subsequent changes update documentation, the PDF and retained evidence only.
+This scope excludes the separately staged complete 56-class classification and
+the minimum-universal spanning-tree corollary, which is outside the comparator
+interface. The corollary is included in the ordinary Lean build and axiom audit.
+
+The earlier [thirteen-claim record](verification/palomar.json) and
+[two-claim universal record](verification/universal.json) remain unchanged as
+evidence for their respective snapshots. `make check-comparator-universal`
+reproduces the latter scope. Local elapsed time does not establish hosted
+performance.
 No hosted Palomar verification, submission or registration is claimed.
 The narrower `make check-comparator-lower` checks only the face rule and lower
 bound. Palomar also attempts a separate, bounded con-ron check; a recognized

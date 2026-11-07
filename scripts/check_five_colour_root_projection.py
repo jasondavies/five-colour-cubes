@@ -64,6 +64,9 @@ def audit(workers, geometry):
         temp=Path(temp)
         with tarfile.open(DATA/'q5-projected-certificates.tar.gz') as archive:
             members=archive.getmembers()
+            require(sum(m.size for m in members)==manifest['uncompressed_bytes'], 'Uncompressed archive size')
+            require((DATA/'q5-projected-certificates.tar.gz').stat().st_size==manifest['compressed_bytes'],
+                    'Compressed archive size')
             require(len(members)==279 and {m.name for m in members}==
                     {f'case-{i}.q5p' for i in range(279)},'Archive members')
             for member in members:

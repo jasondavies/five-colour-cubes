@@ -62,6 +62,11 @@ struct Minimizer : Checker {
     int minimize(int id,Box box) {
         auto node=nodes[id];
         if(node.op==0)return id;
+        // Try the existing closing rules before retaining a saved subtree.
+        // The separate checker still validates the entire resulting certificate.
+        for(int reason=0;reason<n+2;++reason) if(excluded(box,reason)) {
+            int closed=nodes.size();nodes.push_back(Node{0,reason});return closed;
+        }
         // Dropping a refinement or split is permitted only when one complete
         // remaining subtree excludes the larger, unrefined parent box.
         if(trial(node.left,box))return minimize(node.left,box);

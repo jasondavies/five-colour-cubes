@@ -35,9 +35,9 @@ def write_data(rows):
     text += 'def cuts : Array (Array Cut) := #[' + ','.join(f'cutRow{i}' for i in range(75)) + ']\n'
     (DEST / 'PackedData.lean').write_text(text + 'end FiveColour.Packed\n')
     for group in range(8):
-        text = HEADER.replace('FiveColour.PackedCore', 'FiveColour.PackedData\npublic import FiveColour.PackedSemantics')
+        text = HEADER.replace('FiveColour.PackedCore', 'FiveColour.PackedData\npublic import FiveColour.PackedComputations')
         for i in range(group * 10, min(group * 10 + 10, 75)):
-            text += f'theorem cutRow{i}_weights : cutRow{i}.toList.all (fun c => decide (c.weight = maskWeight c.member)) = true := by decide +kernel\n'
+            text += f'theorem cutRow{i}_weights : cutRow{i}.toList.all (fun c => decide (c.weight = maskWeight c.member)) = true := by\n  apply FastWeight.list_weights_of_fast\n  decide +kernel\n'
         (DEST / f'PackedCalibration{group}.lean').write_text(text + 'end FiveColour.Packed\n')
     text = 'module\n' + ''.join(f'public import FiveColour.PackedCalibration{i}\n' for i in range(8))
     text += '''@[expose] public section
