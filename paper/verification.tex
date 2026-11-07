@@ -30,12 +30,6 @@ fails all 75 targets by physical matching. It is \path{data/q5-distinct-known-co
 checks are in \path{scripts/check_five_colour_distinct.py}.
 
 \subsection{Lean implementation}
-The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
-\texttt{v4.35.0}. It proves the physical theorems, including the connection
-between cube arrangements and the finite certificate problems.
-The physical model and palette-independent geometry come from the shared
-\texttt{colour-\allowbreak cubes-\allowbreak core} library~\cite{ColourCubes}.
-
 Lean proves completeness and uniqueness of the 75 varieties and checks all
 45,000 corner-compatibility bits using the shared corner--rotation theorem.
 The lower bound uses 75 deficient corner sets: 72 singletons and three
@@ -145,9 +139,6 @@ half-mask matching step uses greedy selection after single-mask checks.
 \path{FiveColour/BoxLowerBound.lean} proves the
 uniform three-variety obstruction for every shape and orientation.
 A separate C++ audit reconstructs the geometry and checks these profiles.
-No new interval certificates are used. The flow algorithm and its
-complexity bound in Section~\ref{sec:construction} are mathematical
-deductions, not additional Lean claims.
 
 \subsection{Extremal obstructions}
 The multiplicity bound, three-variety classification and generalized
@@ -184,35 +175,65 @@ only 300 Hall witnesses; two uniform allocations prove the converse. The
 21-member family and the five representatives reuse this proof.
 The face tuples and orbit sizes are in
 \path{data/five-colour-extremal.json}; a separate Python audit checks all
-202,575 labelled $(4,5,5)$ collections and all 441 normalized distributions (91 failures and 350 solutions).
+202,575 labelled $(4,5,5)$ collections, recovering 840 failures in five
+orbits of sizes $120,120,120,240,240$. It also checks all 441 normalized
+family distributions (91 failures and 350 solutions).
 These finite formal proofs supplement the elementary main-text arguments;
 no interval certificates are added or changed.
 
-\subsection{Reproduction}
-The dependency audits cover the declarations listed in \path{Audit.lean}
-and \path{ExtensionsAudit.lean}, together with the final replay theorems.
-Their dependencies are confined to
-\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No \texttt{native\_decide} is used. Reproduce the proof
-and audits with:
-\begin{verbatim}
-make verify-full WORKERS=2
-\end{verbatim}
-The module guide is \path{FiveColour/README.md}.
-
-The verification record checks every installed dependency's revision and
-tracked bytes against its pinned Git tree before and after the run. It also
-records source hashes, tool versions, compiler flags and concurrency settings.
-Ignored build caches are permitted; modified dependency sources are rejected.
-
-The universal lower bound counts three sources for each repeated colour.
+\paragraph{Universal collections.} The universal lower bound counts three sources for each repeated colour.
 Small kernel-checked geometry relates the bicoloured types to physical sources;
 the upper bound checks 75 explicit matchings and transports them to arbitrary
 target orientations. The minimum-collection structure in Corollary~\ref{cor:universal-structure}
 is proved in \path{UniversalStructure.lean}: the physical supplier argument
 reduces to a kernel-checked lemma about three pairs on four vertices, followed
 by the graph-theoretic tree criterion. These proofs do not use the interval
-certificates. The current comparator interface includes the minimum and the
-explicit universal construction, but not this structural corollary.
+certificates.
+
+
+\subsection{Reproduction}\label{app:reproduction}
+The proof artifact is the repository at Git commit
+\begin{center}\small\texttt{fb4f440675b784ecf994dd6866cd886ab36e4c63}.\end{center}
+The \href{https://github.com/jasondavies/five-colour-cubes/tree/fb4f440675b784ecf994dd6866cd886ab36e4c63}{pinned source tree}
+contains the mathematical sources, certificate inputs and verification records
+used here. Its certificate archive,
+\href{https://github.com/jasondavies/five-colour-cubes/blob/fb4f440675b784ecf994dd6866cd886ab36e4c63/data/q5-projected-certificates.tar.gz}{\texttt{data/q5-projected-certificates.tar.gz}},
+has SHA-256
+\begin{center}\small\texttt{7df56cc4b252e460c9e3a762b068010b1a894405ae105218f6cea545e9b80467}.\end{center}
+The Lean proof sources and certificate inputs in this manuscript's repository
+are byte-identical to those in that commit.
+
+With the pinned toolchain installed, check out that revision and run:
+\begin{verbatim}
+git clone https://github.com/jasondavies/five-colour-cubes
+cd five-colour-cubes
+git checkout fb4f440675b784ecf994dd6866cd886ab36e4c63
+lake exe cache get
+make verify-full WORKERS=2
+make comparator
+\end{verbatim}
+The two Make commands are separate: \texttt{verify-full} checks the native
+audits, all 279 Lean certificate proofs, unconditional extensions and axiom
+reports; \texttt{comparator} compares the fifteen statements and rechecks the
+exported dependency closure with both external kernels. The latter requires
+\texttt{bwrap} and the pinned toolchain's \texttt{leanexport},
+\texttt{leanchecker} and \texttt{nanoda\_bin} executables.
+The pinned README and \path{FiveColour/README.md} give prerequisites and tuning.
+The shorter \texttt{make check} omits the complete certificate replay.
+
+On a fresh project checkout, \texttt{verify-full} builds the proof after
+obtaining the dependency cache. On a cached rerun, Lake validates dependency
+traces and rebuilds only changed modules; this is not a fresh kernel replay.
+The comparator checks the exported proofs again even when Lake artifacts are
+cached. The dependency audits list their declarations in \path{Audit.lean}
+and \path{ExtensionsAudit.lean}, together with the final replay audit.
+Only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} occur;
+no \texttt{native\_decide} is used.
+
+The verification record checks every installed dependency's revision and
+tracked bytes against its pinned Git tree before and after the run. It also
+records source hashes, tool versions, compiler flags and concurrency settings.
+Ignored build caches are permitted; modified dependency sources are rejected.
 
 A Mathlib-only comparator challenge independently states fifteen corner,
 cuboid, support, extremal and universal-collection claims. It defines varieties by proper rotations
@@ -224,7 +245,10 @@ All fifteen statements, shared definitions and permitted axioms passed local
 comparison on 7 November 2026, and both NanoDa and Lean's standalone kernel
 accepted the complete solution export. The run took 3 hours 22 minutes
 1 second, using validated Lake artifacts and excluding a fresh project build.
-The retained record \path{verification/optimized-comparator.json} identifies
-snapshot \texttt{19dc6a061c54}, dependencies, tool binaries and settings. The same directory retains the complete comparison output,
+The \href{https://github.com/jasondavies/five-colour-cubes/blob/fb4f440675b784ecf994dd6866cd886ab36e4c63/verification/optimized-comparator.json}{retained comparator record}
+identifies the measured source snapshot by the SHA-256 digest of its manifest of file hashes
+and modes, rather than a Git commit:
+\begin{center}\small\texttt{19dc6a061c54a5da3d17b08eb869fe4130f722d85a75402dd41dbf6030eccfe5}.\end{center}
+It also records the dependencies, tool binaries and settings. The same directory retains the complete comparison output,
 resource measurements and preceding successful full-verification record.
 The Lean proof sources and certificate inputs match that snapshot.

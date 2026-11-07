@@ -2,10 +2,10 @@
 Let $M(k)$ be the least number of cubes guaranteeing a corner solution when
 the collection contains at most $k$ varieties. We determine these thresholds
 and classify all fourteen-cube obstructions with the minimum possible number
-of varieties. Write $K(X)$ for a variety's eight cyclic corner types.
+of varieties. Write $K(X)$ for the set of the eight distinct cyclic corner types of $X$.
 
 \paragraph{Directed corners.}
-Write $V=\col$ and encode the cyclic triple $(i,j,k)$ by the complementary
+Write $V=\col$ and encode a tricoloured cyclic triple $(i,j,k)$ by the complementary
 ordered pair $ab$ for which $(a,b,i,j,k)$ is an even permutation of $V$.
 Cyclically rotating the triple preserves $ab$; reversing it gives $ba$.
 Write $b(r,p)$ for the bicoloured corner $rrp$.
@@ -155,9 +155,9 @@ Class I is the original illustrated obstruction. Representatives are
 \emph{Necessity.} Theorem~\ref{thm:multiplicity-five} forces multiplicities $(4,5,5)$;
 write $A$ for the four-copy variety. Every target has eight positions,
 whereas any two source varieties supply at least nine copies. A Hall-deficient
-set can therefore have neighbours in at most one source variety. Thus Hall's
-condition is equivalent to coverage and the bounds $4,5,5$ on positions
-private to $A,B,C$, respectively.
+set can therefore have neighbours in at most one source variety. A target
+is solvable precisely when every position has a supplier and at most
+$4,5,5$ positions are supplied exclusively by $A,B,C$, respectively.
 In particular, failure to build the three sources themselves implies
 \begin{align*}
  |K(A)\cap(K(B)\cup K(C))|&\le3,\\
@@ -167,7 +167,7 @@ In particular, failure to build the three sources themselves implies
 No pair is disjoint, by Lemma~\ref{lem:disjoint-pair}, so each pairwise
 intersection has size one or two.
 
-No two adjacent varieties have the same sign. Otherwise, after reversal,
+\emph{Possible source types.} No two adjacent varieties have the same sign. Otherwise, after reversal,
 their cuts are $C(uv),C(uw)$, with intersection $\{ux,uy\}$ on the remaining
 vertices $x,y$. At least one, say $X$ with cut $C(uv)$, has five copies. Its intersection
 with the third variety $Z$ must be a nonempty subset of $\{ux,uy\}$.
@@ -187,7 +187,7 @@ target avoiding one endpoint of the common edge. Each required edge then
 belongs to exactly one source, and each source supplies at most two target
 edges, hence at most four directed corners. Its copies suffice.
 
-Thus exactly one variety is opposite. It cannot have five copies, for its
+\emph{Normal form.} Thus exactly one variety is opposite. It cannot have five copies, for its
 two overlaps would coincide in two tricoloured corners, forcing the adjacent
 cuts to have the same sign. Consequently $A$ is opposite and $B,C$ have
 opposite signs. Interchange $B,C$ if necessary so that $B$ is positive.

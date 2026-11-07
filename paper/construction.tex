@@ -55,6 +55,11 @@ and the number of configurations are constants. Thus all flow tests take
 $O(1)$ word operations, or polynomial time in the bit lengths for binary
 input. If every test fails, no frame exists.
 
+For binary input, retain the flow counts and the chosen rotations as the
+compressed frame assembly. For a complete box, also record counts of unused
+varieties and their rotations for each face-interior region and the interior;
+consecutive positions in a fixed coordinate order specify their placements.
+
 Expand a successful flow into $L$ distinct source copies and positions.
 A precomputed proper rotation for each compatible corner or edge,
 composed with the recorded source rotation, gives each placement's

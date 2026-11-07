@@ -13,7 +13,7 @@
 \newcommand{\mass}[2]{#1(#2)}
 \title{Sharp thresholds for five-colour cube assemblies}
 \author{Jason Davies}
-\date{November 5, 2026}
+\date{November 7, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -23,8 +23,6 @@ of a fixed palette, for every $a,b,c\ge2$. Proper rotations are allowed;
 the target has monochromatic exterior faces using all five colours.
 The frame threshold is $\max\{15,4(a+b+c)-16,2(a+b+c)+1\}$, and the
 complete-box threshold is $\max\{abc,15,2(a+b+c)+1\}$.
-Thus the frame threshold depends only on the sum of the side lengths,
-and only three complete-box shapes can require spare sources.
 The proof combines a certified fifteen-cube corner theorem with elementary
 Hall arguments and a uniform three-variety obstruction. It completes the
 five-colour frame column left open by Berkove, Eickemeyer and Schulman
@@ -33,14 +31,11 @@ formulation decides feasibility and constructs assemblies in time linear
 in the explicit source list. We also determine the corner thresholds when the
 number of source varieties is bounded, and show that the fourteen-cube
 obstructions using three varieties form exactly five classes under common
-colour relabelling and simultaneous reflection. A smallest universal
-collection, capable of reproducing every target, also has fifteen cubes.
+colour relabelling and simultaneous reflection. The minimum size of a
+collection capable of reproducing every $2\times2\times2$ target is also fifteen.
 \end{abstract}
-\noindent\small\textit{AI transparency.} This work used GPT-6-Astra (OpenAI)
-through Codex and Claude Opus 5.5 (Anthropic) through Claude Code, under the
-author's direction; their contributions are detailed in the closing disclosure.
-It has not received independent human peer review.
-Section~\ref{sec:formal} states the formal verification scope.
+\noindent\small\textit{AI transparency.} The closing disclosure describes the AI
+contributions; Section~\ref{sec:formal} states the formal verification scope.
 \normalsize
 
 \section{Introduction}
@@ -83,8 +78,8 @@ $2\times2\times4$, whose thresholds are $15,15,17$.
 The distinction between the two thresholds matters: a $2\times3\times3$
 frame has sixteen positions and needs seventeen available sources,
 whereas its complete box uses any eighteen sources without spares.
-Table~\ref{tab:small-boxes} lists the smallest shapes; from $s=9$ on, both
-thresholds equal the number of positions.
+Table~\ref{tab:small-boxes} lists the smallest shapes. For $s\ge9$,
+$F_5=L$ and $G_5=abc$.
 \begin{table}[ht]
 \centering
 \small
@@ -147,25 +142,13 @@ An elementary fourteen-cube obstruction proves the lower bound.
 For the upper bound, Hall deficiencies and symmetry reduce hypothetical
 counterexamples to finite problems, excluded by interval certificates
 (Sections~\ref{sec:cases}--\ref{sec:certificates}).
-The cuboid extensions (Sections~\ref{sec:frames}--\ref{sec:boxes}) use the
-connection between scarce edge requirements and large missing-pair families.
-Eight sources lacking a common pair, together with any three others, build
-corners for a target that also lacks that pair
-(Lemma~\ref{lem:eight-common-missing}, independent of $N_5=15$).
-Choosing such targets avoids scarce edge requirements; compatibility
-estimates then complete the matching argument. In thin boxes, an exceptional
-Hall deficiency forces concentration on one variety and permits a change of
-target. A uniform three-variety obstruction supplies the additional lower
-bound responsible for the two sixteen-position exceptions. These extensions
-require no new interval certificates. Section~\ref{sec:construction} gives a
-compressed flow algorithm for finding assemblies, and
-Section~\ref{sec:support} determines the thresholds for collections
-with a bounded number of varieties and classifies the three-variety
-fourteen-cube obstructions. Section~\ref{sec:universal} proves that fifteen
-cubes are also necessary and sufficient for a single collection capable of
-reproducing every target.
-The threshold classification is fully formalised in Lean;
-Section~\ref{sec:formal} describes the verification scope.
+For cuboids, Lemma~\ref{lem:eight-common-missing} builds corners from eight
+sources lacking a common pair and any three others. This lets the proof
+choose targets avoiding scarce edge requirements; compatibility bounds then
+complete the Hall argument (Sections~\ref{sec:frames}--\ref{sec:boxes}).
+Sections~\ref{sec:construction}--\ref{sec:universal} give the construction
+algorithm, support thresholds, extremal obstructions and minimum universal
+corner collections. Section~\ref{sec:formal} describes the verification scope.
 
 The side-length restriction is substantive. With a side of length one,
 a source can meet two opposite exterior faces and expose four or more
@@ -173,9 +156,10 @@ faces at once. The corner-and-edge model and the completion by arbitrary
 unused cubes then need replacement.
 
 The accompanying repository contains the certificates, programs,
-geometric audits and Lean sources.\footnote{\url{https://github.com/jasondavies/five-colour-cubes}.
-A fixed review archive includes source checksums, the base Git revision and
-bundled pinned project dependencies.}
+geometric audits and Lean sources.\footnote{The proof artifact is pinned to
+\href{https://github.com/jasondavies/five-colour-cubes/tree/fb4f440675b784ecf994dd6866cd886ab36e4c63}{Git commit \texttt{fb4f440675b7}}.
+Appendix~\ref{app:reproduction} gives the full identifier, certificate checksum
+and reproduction commands.}
 
 The companion paper~\cite{FourToThree} considers four-colour sources and
 targets using exactly three colours. It gives the sharp frame threshold
@@ -327,7 +311,8 @@ For each cover $K$ in Lemma~\ref{lem:anchor}, put
 \]
 Write $S=S(K)$ and $b=b(K)$. The case has
 $x_A=m$, $x(S)\le b$, and the multiplicity bounds just described.
-Additional upper bounds use two-variety solutions. If $j$ copies of $A$
+Additional upper bounds use two-variety solutions, for each variety $V\ne A$.
+If $j$ copies of $A$
 and $8-j$ copies of $V$ build a target, with $j\le m$, then
 $x_V\le 7-j$ in a solution-free collection. These tests are finite:
 the two varieties must cover all eight target positions, $A$ must fit at
@@ -370,6 +355,9 @@ capacities to zero. Its stabiliser preserves these positions, so the omission
 is compatible with the orbit reduction. It removes one of the 83
 adjacent-repeat constraint orbits, leaving 82 further cases.
 
+A \emph{root case} is an integer feasibility problem specified by an anchor
+multiplicity, coordinate bounds and an anchored Hall budget.
+
 \begin{proposition}\label{prop:cover}
 Every solution-free fifteen-cube collection is carried by colour relabelling
 and, if needed, global reflection into one of the 357 exported root cases.
@@ -399,7 +387,8 @@ A vector $x\in\mathbb Z_{\ge0}^{75}$ is \emph{admissible} for this root if
 \end{gathered}
 \end{equation}
 Thus admissibility includes failure of every target, in addition to the
-anchor constraints.
+anchor constraints. The cuts are alternatives within each target, but at
+least one cut must hold for every target.
 
 The cover can be reduced without further search. If $S'\subseteq S$ and
 $b'\ge b$, then $x(S)\le b$ implies $x(S')\le b'$ for nonnegative $x$.
@@ -474,8 +463,8 @@ target remain in the refined box
 Indeed, a failing vector satisfies one of the retained cuts, and its bounds
 in~\eqref{eq:refine} imply~\eqref{eq:summary}.
 
-For a concrete example, projected certificate 28 (zero-based archive numbering)
-starts with two copies of adjacent variety 3, total $G=14$ and budget zero.
+For a concrete example, use the archive's zero-based numbering for both
+certificates and varieties. Projected certificate 28 starts with two copies of adjacent variety 3, total $G=14$ and budget zero.
 All other lower bounds are zero, and the upper bounds sum to 40.
 Its first instruction refines using target 4. Of that target's 255 cuts,
 17 satisfy~\eqref{eq:possible}; their neighbourhood intersection is
@@ -549,8 +538,8 @@ Hall's inequality holds.
 \end{proof}
 
 \emph{Universal-copy consequence.} In a pool of $N\ge L$ sources, if each
-source misses at most $d$ of the $L$ positions and at least $d$ sources fit
-every position, a complete matching exists. This is the case $P_0=\varnothing$
+source misses at most $d$ of the $L$ positions and at least $d$ source copies
+each fit all $L$ target positions, a complete matching exists. This is the case $P_0=\varnothing$
 of Lemma~\ref{lem:partial-matching}.
 
 \begin{lemma}[Missing pairs and shared corners]\label{lem:cube-incidence}
@@ -682,34 +671,38 @@ all three adjacent-repeat sources of a given sign fit the same column.}
 \input{universal}
 
 \section{Formal verification}\label{sec:formal}
-All threshold statements are formalised in Lean~4 and mathlib~\cite{Lean4,mathlib},
-both at \texttt{v4.35.0}, using the physical model and palette-independent
-geometry of \texttt{colour-cubes-core}~\cite{ColourCubes}. The proof connects
-arbitrary physical cubes to the catalogue, Hall deficiencies, the complete
-root cover and the certified exclusions. The cuboid deductions then apply
-the verified corner theorem; they require no further exclusion certificates.
+The development uses Lean~4 and mathlib~\cite{Lean4,mathlib}, both at
+\texttt{v4.35.0}, with the physical model and palette-independent geometry of
+\texttt{colour-cubes-core}~\cite{ColourCubes}. It connects arbitrary physical
+cubes to the catalogue, Hall deficiencies, the complete root cover and the
+certified exclusions. The cuboid deductions apply the verified corner theorem.
+The following table distinguishes the proof scopes; ``comparison'' means the
+separate Mathlib-only statement interface, accepted by both NanoDa and Lean's
+standalone kernel.
+\begin{center}
+\small
+\begin{tabular}{p{.52\linewidth}ccc}
+\toprule
+Result & Lean & Interval proofs & Comparison\\
+\midrule
+Corner, cuboid and support thresholds & Yes & Yes & Yes\\
+Multiplicity bound, three-variety classification and obstruction family & Yes & No & Yes\\
+Universal minimum and cyclic construction & Yes & No & Yes\\
+Minimum-universal tree structure (Corollary~\ref{cor:universal-structure}) & Yes & No & No\\
+Construction complexity and Domino observation & No & No & No\\
+\bottomrule
+\end{tabular}
+\end{center}
+In namespace \path{FiveColour.Puzzle}, the unconditional endpoints
+\path{box_frame_threshold} and \path{complete_box_threshold} are exported
+by \path{Solution.lean}. They use the physical box definitions and
+proper-rotation bridges. The comparison interface contains fifteen claims;
+it is independent of the proof catalogue.
 
-In namespace \path{FiveColour.Puzzle}, the unconditional endpoints are
-\path{box_frame_threshold} and \path{complete_box_threshold}, exported
-by \path{Solution.lean}.
-They use the project's physical box definitions and proper-rotation bridges.
-The separate Mathlib-only comparator challenge states fifteen claims covering
-the corner theorem, cuboids, support, extremal results and universal collections.
-The universal minimum and explicit construction are formalised independently
-of the interval certificates. Appendix~\ref{app:verification} gives the precise
-scope and source identity of the retained comparison of all fifteen claims,
-accepted by both NanoDa and Lean's standalone kernel.
-The construction
-algorithm's complexity bound is a mathematical consequence, not an additional
-Lean claim.
-
-Running \texttt{make verify-full} checks the computational audits, replays
-all projected certificates, builds the unconditional cuboid results
-and audits their axioms. The shorter \texttt{make check} does not reproduce
-the full theorem. Appendix~\ref{app:verification} gives the implementation
-and audit details. Source-bound measurement and comparison summaries are
-retained under \path{verification/}; detailed machine-local logs accompany
-release artifacts.
+Appendix~\ref{app:verification} gives the soundness and audit details.
+Appendix~\ref{app:reproduction} pins the proof artifact and gives separate
+commands for full verification and external comparison, together with the
+scope of the retained execution records.
 
 \section{Remaining questions}
 Does $N_5=15$ admit a short elementary proof, replacing the finite

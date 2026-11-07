@@ -128,7 +128,12 @@ Thus $O+P+Q=8$; $C^+$ and $C^-$ are as in Lemma~\ref{lem:thin-projections}.
 
 If $O+\min(P,Q)\ge4$, the $2\times2$ Hall argument gives an
 opposite-repeat corner solution from these eight copies alone. Explicitly,
-choose $O_r$ whose opposite-repeat multiplicity is maximal. Each cell has
+choose $O_r$ whose opposite-repeat multiplicity is maximal. Each other
+opposite-repeat multiplicity is at most $O/2$: it is no larger than the
+chosen multiplicity, and their sum is at most $O$. Among these eight family
+sources, the two positions in a cell have identical neighbourhoods. Any
+deficient set can therefore be enlarged to a union of whole cells without
+enlarging its neighbourhood. Each cell has
 at least $O/2+\min(P,Q)\ge2$ neighbours, each row has at least
 $8-O/2\ge4$, and each column has at least $O+\min(P,Q)\ge4$.
 Every other nonempty union of cells has all eight copies as neighbours.
@@ -500,7 +505,7 @@ corners and four parallel geometric edges, each with $M$ positions. Its
 size is $L=4M+8=4c$. We call an orientation of an adjacent-repeat target
 \emph{transverse} if its monochromatic edge is not parallel to the long
 axis. For an opposite-repeat target, its \emph{axial} orientation has
-the repeated faces perpendicular to the long axis.
+its repeated-colour axis along the long direction.
 
 \begin{lemma}[Directional compatibility]\label{lem:rod-compatibility}
 Let $M\ge2$.
@@ -764,7 +769,9 @@ by the ring array. Place four such copies at distinct corners and fill
 the other four with $V$. In either case, $V$ has no monochromatic edge
 and avoids both rare pairs; the Hall observation applies.
 
-It remains that $v=2$ or $3$, forcing $m+t=2$ and $N=2d$. If $n_e,n_f$
+\emph{The final exceptional case: $v=2$ or $3$.} Since
+$v\ge2(m+t)-2$ and $v\le3$, we have $m+t=2$, hence $N=2d$.
+The ordering $m\le t$ also gives $m\le1$. If $n_e,n_f$
 count the sources possessing the rare pairs, then
 \[
  n_e,n_f\le d-1,\qquad
@@ -774,9 +781,14 @@ Consequently,
 \[
  n_e,n_f\ge d-2,\qquad n_f+v\ge d+1.
 \]
-Use exactly the reservation and the construction of Lemma~\ref{lem:eight-common-missing} from the
-one-rare-pair case to obtain a corner-and-monochromatic-edge matching
-for a target $T\in\mathcal H_e$, with its $e$ axis shortest.
+For each ring colour relative to $e$, reserve up to $m$ sources repeating
+that colour adjacently, taking all if fewer exist. As in the one-rare-pair
+case, at least eight $\mathcal H_e$-sources and eleven sources in total
+remain unreserved. Apply Lemma~\ref{lem:eight-common-missing} to eight
+unreserved family sources and three other unreserved sources. Orient the
+resulting target $T\in\mathcal H_e$ with its $e$ axis shortest. Its corners
+have a matching on the unreserved sources, and any monochromatic edge has
+its full reserve of $m$ copies by the same survivor argument.
 
 Within this family, $V$ shares at least four target corners and can
 miss at most two geometric edges, both parallel to the $e$ axis. For
