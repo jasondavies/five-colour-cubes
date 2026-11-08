@@ -107,8 +107,13 @@ Necessity is the finite part of the proof. The anchored Hall cover applies
 to fourteen sources. Theorem~\ref{thm:multiplicity-five}, independently of
 the fifteen-cube threshold, removes the eight roots with anchor
 multiplicity six or seven. The remaining 349 roots use total fourteen.
-Their interval certificates retain 81 explicit terminal count vectors.
-In addition to the exclusion, refinement and splitting rules, the checker
+Exactly seven roots contain the 81 explicit terminal count vectors.
+For the 342 empty roots, Lemma~\ref{lem:projection} at $N=14$ reduces the
+problem to exclusion: 137 use strictly smaller projected totals between
+9 and 13, while the other 205 use $\lambda=b$, retaining total fourteen.
+The same exclusion checker handles both choices. The seven nonempty roots
+are enumerated. In addition to the exclusion, refinement and splitting rules,
+the enumeration checker
 accepts an exact singleton box only when its vector occurs in the terminal
 list. Thus every admissible vector in every root belongs to that list.
 Each terminal is carried to one of the 56 representatives by an explicit

@@ -1,4 +1,5 @@
 module
+public import FiveColour.ClassificationProjection
 public import FiveColour.EnumerationChunks.Case340
 public import FiveColour.EnumerationChunks.Case341
 public import FiveColour.EnumerationChunks.Case342
@@ -10,18 +11,20 @@ public import FiveColour.EnumerationChunks.Case347
 public import FiveColour.EnumerationChunks.Case348
 @[expose] public section
 namespace FiveColour.Packed.EnumerationChunks
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
 def group17Roots : Fin 9 → Fin 357 := ![227,228,229,230,231,232,233,234,235]
-def group17Points : Fin 9 → List Nat := ![Case340.points,Case341.points,Case342.points,Case343.points,Case344.points,Case345.points,Case346.points,Case347.points,Case348.points]
+def group17Points : Fin 9 → List Nat := ![[],[],[],[],[],[],[],[],[]]
 theorem group17Covered : ∀ i, Enumeration.Covers (group17Points i) 14 (Enumeration.families (group17Roots i)) (Archive.root (group17Roots i)) := by
   intro i
   fin_cases i
-  · exact Case340.covered
-  · exact Case341.covered
-  · exact Case342.covered
-  · exact Case343.covered
-  · exact Case344.covered
-  · exact Case345.covered
-  · exact Case346.covered
-  · exact Case347.covered
-  · exact Case348.covered
+  · exact ClassificationProjected.covered 333 Case340.excludes
+  · exact ClassificationProjected.covered 334 Case341.excludes
+  · exact ClassificationProjected.covered 335 Case342.excludes
+  · exact ClassificationProjected.covered 336 Case343.excludes
+  · exact ClassificationProjected.covered 337 Case344.excludes
+  · exact ClassificationProjected.covered 338 Case345.excludes
+  · exact ClassificationProjected.covered 339 Case346.excludes
+  · exact ClassificationProjected.covered 340 Case347.excludes
+  · exact ClassificationProjected.covered 341 Case348.excludes
 end FiveColour.Packed.EnumerationChunks

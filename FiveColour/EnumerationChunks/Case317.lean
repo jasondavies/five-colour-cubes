@@ -1,5 +1,7 @@
 module
 public import FiveColour.EnumerationRoot
+public import FiveColour.PackedFast
+public import FiveColour.PackedComputations
 @[expose] public section
 namespace FiveColour.Packed.EnumerationChunks.Case317
 set_option maxHeartbeats 0
@@ -8,11 +10,11 @@ set_option maxRecDepth 100000
 def root : Box := Archive.root 204
 def families : Fin 78 → List Cut := Enumeration.families 204
 theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := Enumeration.families_valid 204
-def points : List Nat := []
 def reduced0 : Array Cut := #[⟨2257431573820877278259, 5789228615357111141498687855864798170908375994036816041478794689018177834875225060412774603589513584681981195184353617442523856158232606655908785097709254429530613829653204548013462587339552010971516158096386356423841284096, 0⟩,⟨4870543403497054803027, 5789228615357106009663678010144409210156459091370160464505369356935527601037821682894402831584388221343909558472836956449821934092706463955764590305850845349704585002512833265424884390102782966215008857128331434966836576256, 0⟩,⟨6980398764131275218035, 5789228615357111146515144365977916830694057242227051068974666622500791574262272526415259620954453603752349447339679360564501769737399217402612476634078063081820030398259973394536924429499150182275848321413608085347135127552, 1⟩,⟨10227640991416995292309, 5783586103091952671645520894385746067999067697813267143466522454295626305172006075118859478249021350828985469614014372302150479297410025049330304846136055405236152187052720986822137609442053040634190212614764772185111266304, 0⟩,⟨11703389524517449870519, 5789234131009374243490885467903662944263368556493860902985186523722615666057179315639528015461077193231367154211853344409986561535834535278073444280540247029564459174982826548175322911620946968069700481853310348663982130176, 1⟩,⟨14950608177243178939607, 5789234131009369111655875622183273983511451653827205326011761191639965432219775938118179112041237024067023234842515120980261252381503083748800614627503305339152761747884868977835947290962836941603199083451505696549247124480, 1⟩,⟨16426356710343633517815, 5789234131009374248507341978016781604049049804684095930481058457205229405444226781639035901411302406475463123709357525094941088026195837195648500955730523071268207143632009106947987328996745461983261837971093603967386518528, 2⟩,⟨19037949057589977531669, 5783586103091952671640626795140821789368848478926280315550559295495477674750735033309469479610138782971177556407037774414781522390193340228123788376184867684244463797336456713990495218832837070127560370567668322018399354881, 0⟩,⟨21147804418224193522999, 5789234131009374243485991368658738665633149333550651626372785989068448596731738120409148642235450047739291746196039150551655461745411565267015580032548005637961326840238350191938559206900216012664267606752515867094391193601, 1⟩,⟨23760333594698584413527, 5789234131009369111650981522938349704881232434940218498095798032839816801798504896311766244817069262035487604293360085529915682563091707756722733016919631985663901353606396067325495155782816777206450804150966088472131010561, 1⟩,⟨25870188955332800404855, 5789234131009374248502447878771857325418830581740886653868657922551062336118785586411633659600390066809659998351364893673633375324578176013719271567105796047167902804325324113032413879705210312687710525616855964487391379457, 2⟩,⟨29118013835820315960725, 5783586103091952671645525678451479131810045433270216091944598232930519289733801864320402762821700447711975681649643950046313411120731077681556127975904359333211695020017462536972432551054674135594943818626688325122007237633, 1⟩,⟨30593762368920766115255, 5789234131009374243490890251969396008074346287894587402766824926503490211714804951420081925447011712480089871438645326183187350475949302720447919632267497286928558062919356014920496537759594382450874345045847127235839919105, 2⟩,⟨33840398368444708550103, 5789234131009369111655880406249007047322429389284154274489836970274858416781571727319722396613916120950013446878144698724424184204824136381026437755460591024045463976329815602556635063220854165283063445010547617955849438209, 2⟩,⟨35316146901545158704631, 5789234131009374248507346762082514667860027536084822430262696859986103951101852417419589811397236925724185840936149506868141876966310604638022976305646755085549465427048743648263553785780789005083546456710748751008950649857, 3⟩]
 def witnesses0 : List Nat := [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0,0,0,0,0,0,1,0,0,0,1,0,1,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,11,0,0,0,0,0,0,0,0,0,0,3,0,3,0,0,9,0,0,0,0,0,0,1,0,0,0,1,0,1,1,9,13,0,0,1,0,1,0,0,0,1,1,0,1,5,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,12,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,10,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,14,0,0,2,0,2,0,0,0,0,2,0,2,0,0,0]
 theorem valid0 : ∀ c ∈ reduced0.toList, c.Valid := by
   apply list_valid_of_weights
+  apply FastWeight.list_weights_of_fast
   decide +kernel
 
 theorem covered0 : ∀ c ∈ families 3, possible root 14 c →
@@ -22,6 +24,7 @@ def reduced9 : Array Cut := #[⟨633318697625088, 467650163306700335256530391362
 def witnesses9 : List Nat := [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,2,0,0,0,0,0,0,0,2,0,0,0,2,0,2,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,12,0,0,0,0,0,0,0,2,0,0,0,2,0,2,2,13,0,0,0,0,0,0,0,14,0,0,0,6,0,16,3,19,0,0,0,0,0,0,0,2,0,0,0,2,0,17,2,5,0,0,0,0,0,1,1,2,0,0,1,2,1,2,4,5,0,0,0,2,0,2,2,15,0,2,2,7,2,18,5,20]
 theorem valid9 : ∀ c ∈ reduced9.toList, c.Valid := by
   apply list_valid_of_weights
+  apply FastWeight.list_weights_of_fast
   decide +kernel
 
 theorem covered9 : ∀ c ∈ families 12, possible root 14 c →
@@ -31,6 +34,7 @@ def reduced15 : Array Cut := #[⟨261460928709758000, 52652727530147293453110510
 def witnesses15 : List Nat := [1,3,5,0,0,0,0,0,0,0,0,0,0,0,0,0,2,4,6,0,0,0,0,0,0,0,0,0,0,0,0,7,11,9,13,0,0,0,0,0,0,0,0,0,0,0,1,8,12,10,14,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,3,5,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,1,0,1,3,5,0,0,3,0,7,0,9,0,0,0,0,2,0,0,0,0,0,0,0,0,8,0,0,0]
 theorem valid15 : ∀ c ∈ reduced15.toList, c.Valid := by
   apply list_valid_of_weights
+  apply FastWeight.list_weights_of_fast
   decide +kernel
 
 theorem covered15 : ∀ c ∈ families 18, possible root 14 c →
@@ -40,6 +44,7 @@ def reduced28 : Array Cut := #[⟨261460928709758000, 52652727530147293453110510
 def witnesses28 : List Nat := [0,0,0,3,0,0,0,1,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,3,0,0,0,1,0,1,1,5,0,0,0,0,4,0,0,0,2,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,2,0,7,0,0,0,11,0,0,0,9,0,0,0,13,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,1,0,1,1,0,0,0,0,7,0,3,0,0,0,1,1,9,1,5,0,0,8,0,0,0,12,0,0,0,10,0,0,0,14,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,2,0,0,0,0,8,0,0,0,0,0,0,0,0,2,0,0,0]
 theorem valid28 : ∀ c ∈ reduced28.toList, c.Valid := by
   apply list_valid_of_weights
+  apply FastWeight.list_weights_of_fast
   decide +kernel
 
 theorem covered28 : ∀ c ∈ families 31, possible root 14 c →
@@ -49,6 +54,7 @@ def reduced29 : Array Cut := #[⟨1266677660516352, 2910194113656892527300090185
 def witnesses29 : List Nat := [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,14,0,0,0,5,0,17,3,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,15,0,0,0,2,0,2,2,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,2,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1,12,0,0,0,1,0,1,0,2,0,1,1,6,0,2,2,4,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0,2,0,2,2,10,0,0,0,0,0,0,0,2,0,0,0,2,0,2,2,13,0,0,0,2,0,2,2,16,0,2,2,7,2,18,4,20]
 theorem valid29 : ∀ c ∈ reduced29.toList, c.Valid := by
   apply list_valid_of_weights
+  apply FastWeight.list_weights_of_fast
   decide +kernel
 
 theorem covered29 : ∀ c ∈ families 32, possible root 14 c →
@@ -228,43 +234,46 @@ theorem checkedFamilies_cover : ∀ r, ∀ c ∈ families r, possible root 14 c 
 namespace Part0
 def root : Box := ⟨4294967296, 17367702409187260235068845947886367816249325879687987069896074967849881797984853113948027851319670195049408330222120619180570869153314333772145488737765507473001665495742874130602845508936535682432995693722672809695639505923⟩
 def references : Fin 0 → Box := Fin.elim0
-def proof : Enumeration.Proof 0 := (.split 42 1 (.split 10 0 (.split 30 0 (.split 43 0 (.split 51 0 (.step 2 (.run (.close 3))) (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))))) (.split 51 0 (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.split 43 0 (.split 51 0 (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.split 22 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.split 30 0 (.split 43 0 (.split 51 0 (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.split 22 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.split 22 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 31 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))
-theorem accepted : Enumeration.check points 14 checkedFamilies references root proof = true := by decide +kernel
-theorem root_valid : root.Valid := by decide +kernel
-theorem references_covered : ∀ i, Enumeration.Covers points 14 checkedFamilies (references i) := by
+def proof : Chunks.Proof 0 := (.split 42 1 (.split 10 0 (.split 30 0 (.split 43 0 (.split 51 0 (.step 2 (.run (.close 3))) (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))))) (.split 51 0 (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.split 43 0 (.split 51 0 (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.split 22 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.split 30 0 (.split 43 0 (.split 51 0 (.split 67 0 (.step 2 (.run (.close 3))) (.split 16 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.split 22 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))) (.split 16 0 (.split 17 0 (.split 22 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 31 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))
+theorem accepted : Fast.check 14 checkedFamilies references root proof = true := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
+theorem references_covered : ∀ i, Chunks.Excludes 14 checkedFamilies (references i) := by
   intro i
   exact Fin.elim0 i
-theorem covered : Enumeration.Covers points 14 checkedFamilies root :=
-  Enumeration.check_sound points 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
+theorem covered : Chunks.Excludes 14 checkedFamilies root :=
+  Fast.check_sound 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
 end Part0
 namespace Part1
 def root : Box := ⟨4294967296, 17367702409187260235068845947886367816249325879687987069896074967849881797984853113948027851319670195049408330222125316270215906304125721154453951972957147397712766463347420752757621543142784793438795103678959188444581989379⟩
 def references : Fin 1 → Box := ![Part0.root]
-def proof : Enumeration.Proof 1 := (.split 16 1 (.split 17 1 (.split 22 1 (.split 34 1 (.split 36 1 (.reuse 0) (.step 31 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 31 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 31 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 2 (.step 2 (.run (.close 3))) (.step 31 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 18 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 2 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 18 (.split 10 0 (.split 16 0 (.split 17 2 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 18 (.split 10 0 (.split 16 2 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 3 (.run (.close 2))))))
-theorem accepted : Enumeration.check points 14 checkedFamilies references root proof = true := by decide +kernel
-theorem root_valid : root.Valid := by decide +kernel
-theorem references_covered : ∀ i, Enumeration.Covers points 14 checkedFamilies (references i) := by
+def proof : Chunks.Proof 1 := (.split 16 1 (.split 17 1 (.split 22 1 (.split 34 1 (.split 36 1 (.reuse 0) (.step 31 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 31 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 31 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 2 (.step 2 (.run (.close 3))) (.step 31 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 18 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 2 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 18 (.split 10 0 (.split 16 0 (.split 17 2 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 18 (.split 10 0 (.split 16 2 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 18 (.run (.close 2)))) (.step 3 (.run (.close 2))))))
+theorem accepted : Fast.check 14 checkedFamilies references root proof = true := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
+theorem references_covered : ∀ i, Chunks.Excludes 14 checkedFamilies (references i) := by
   intro i
   fin_cases i
   · exact Part0.covered
-theorem covered : Enumeration.Covers points 14 checkedFamilies root :=
-  Enumeration.check_sound points 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
+theorem covered : Chunks.Excludes 14 checkedFamilies root :=
+  Fast.check_sound 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
 end Part1
 namespace Part2
 def root : Box := ⟨4294967296, 17367702409187260235078643714507682501123221580490790349105119431415132233811284916347810279070347737851942523241810205254558440671174778101457246517966498536637996729751205506425620223144334863850243970515415815325301607427⟩
 def references : Fin 1 → Box := ![Part1.root]
-def proof : Enumeration.Proof 1 := (.split 10 1 (.split 30 1 (.split 43 1 (.split 51 1 (.split 67 1 (.reuse 0) (.step 3 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 3 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 3 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 31 (.step 18 (.split 4 0 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 2 (.step 32 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))))) (.step 31 (.step 18 (.split 4 0 (.split 10 2 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.step 12 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))))
-theorem accepted : Enumeration.check points 14 checkedFamilies references root proof = true := by decide +kernel
-theorem root_valid : root.Valid := by decide +kernel
-theorem references_covered : ∀ i, Enumeration.Covers points 14 checkedFamilies (references i) := by
+def proof : Chunks.Proof 1 := (.split 10 1 (.split 30 1 (.split 43 1 (.split 51 1 (.split 67 1 (.reuse 0) (.step 3 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 3 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 3 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.split 34 0 (.step 2 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))) (.step 31 (.step 18 (.split 4 0 (.split 10 0 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 2 (.step 32 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2))))))) (.step 31 (.step 18 (.split 4 0 (.split 10 2 (.split 16 0 (.split 17 0 (.split 22 0 (.split 30 0 (.step 12 (.run (.close 3))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))) (.step 3 (.run (.close 2)))))))
+theorem accepted : Fast.check 14 checkedFamilies references root proof = true := by decide +kernel
+theorem root_valid : root.Valid := by
+  apply FastValidity.box_valid_of_masks <;> decide +kernel
+theorem references_covered : ∀ i, Chunks.Excludes 14 checkedFamilies (references i) := by
   intro i
   fin_cases i
   · exact Part1.covered
-theorem covered : Enumeration.Covers points 14 checkedFamilies root :=
-  Enumeration.check_sound points 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
+theorem covered : Chunks.Excludes 14 checkedFamilies root :=
+  Fast.check_sound 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
 end Part2
-/-- Every admissible vector in the original root is one of the explicit points. -/
-theorem covered : Enumeration.Covers points 14 families root :=
-  Enumeration.covers_of_weakened points root (Archive.root_valid 204) 14 families checkedFamilies
+/-- All empty-root chunks prove exclusion. -/
+theorem excludes : Chunks.Excludes 14 families root :=
+  excludes_of_covered root (Archive.root_valid 204) 14 families checkedFamilies
     families_valid checkedFamilies_valid checkedFamilies_cover Part2.covered
 end FiveColour.Packed.EnumerationChunks.Case317

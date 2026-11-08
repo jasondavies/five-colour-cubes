@@ -245,10 +245,12 @@ All fifteen statements, shared definitions and permitted axioms passed local
 comparison on 7 November 2026, and both NanoDa and Lean's standalone kernel
 accepted the complete solution export. The run took 3 hours 22 minutes
 1 second, using validated Lake artifacts and excluding a fresh project build.
-The \href{https://github.com/jasondavies/five-colour-cubes/blob/fb4f440675b784ecf994dd6866cd886ab36e4c63/verification/optimized-comparator.json}{retained comparator record}
+The public provenance extract \path{verification/optimized-comparator.json}
 identifies the measured source snapshot by the SHA-256 digest of its manifest of file hashes
 and modes, rather than a Git commit:
 \begin{center}\small\texttt{19dc6a061c54a5da3d17b08eb869fe4130f722d85a75402dd41dbf6030eccfe5}.\end{center}
-It also records the dependencies, tool binaries and settings. The same directory retains the complete comparison output,
-resource measurements and preceding successful full-verification record.
-The Lean proof sources and certificate inputs match that snapshot.
+It also records dependencies, tool identities and settings. Public extracts
+omit local paths and process metadata while preserving the original records'
+checksums. The same directory retains comparison output, resource measurements
+and the preceding successful verification extract.
+The source manifest identifies the exact proof revision checked in that run.

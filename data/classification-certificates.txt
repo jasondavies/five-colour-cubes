@@ -35,14 +35,19 @@ Certificate format
   list. Bounds and every root-wise weakening are checked during replay.
 
 Lean proof
-  ClassificationProjection proves the Hall-budget deletion bridge at any
-  total N. For retained budget s, its projected total is N-b+s. It retains
-  the original anchor and upper bounds, tightening each budget-set cap to s.
-  No new root selection or threshold theorem is used at the smaller total.
-  The 137 Q5P2 certificates exclude their projected roots using the existing
-  fast packed checker. Each generated adapter transfers that exclusion back
-  to coverage of its original fourteen-copy root by the empty terminal list.
-  The generator rejects replacement of any root with a nonempty terminal list.
+  RootProjection proves Hall-budget deletion at any total N. For retained
+  budget s, its projected total is N-b+s. The threshold theorem root_projection
+  is the N=15 specialization. Both routes use ProjectionBridge: one encoded
+  header condition checks the inherited bounds and projection hypotheses,
+  and a uniform theorem transfers a checked exclusion to the original root.
+
+  All 342 empty roots use Fast.check. Of these, 137 have nontrivial projected
+  totals 9--13; the other 205 retain budget s=b and total 14. Their existing
+  Q5E1 streams have no point leaves and serialize directly to exclusion
+  proofs. No binary format translation or new search is required. Only the
+  seven roots containing the 81 terminal vectors use Enumeration.check.
+  EnumerationChunks/Headers.lean and HeaderChecks*.lean certify all 342
+  headers; ClassificationProjection transfers their exclusions to coverage.
 
   PackedEnumeration extends the interval proof checker with the singleton
   leaf. Its conclusion is coverage by a list of explicit vectors, not
@@ -61,7 +66,7 @@ Lean proof
 Commands
   make check-classification-data WORKERS=2
     Independently audit physical failures and symmetry orbits, replay the
-    137 Q5P2 exclusions and 212 Q5E1 enumerations in C++, and compare
+    137 Q5P2 exclusions and 212 Q5E1 streams in C++, and compare
     regenerated Lean sources read-only. The original 349-entry archive is
     also checked for exact membership and hashes, without replaying the
     superseded 137 enumeration certificates.
@@ -82,13 +87,30 @@ classification replay and final axiom audit are required for that claim.
 Neither operation runs an external-kernel comparator.
 
 The baseline classification replay and physical-endpoint audit passed on
-2026-11-08. verification/classification-baseline.json preserves its exact
-source hashes and resource scope; classification-baseline-axioms.txt contains
+2026-11-08. verification/classification-baseline.json is a sanitized provenance extract
+preserving its exact source hashes, resource scope and original-record checksum; classification-baseline-axioms.txt contains
 the six endpoint axiom reports. This was a Lake-validated run, not a controlled
 cold-build benchmark. It does not certify the subsequently projected route.
-The new geometric cut-group lemma is not assumed by either route.
 
 The Lean endpoint uses 56 concrete representatives. The symbolic 51 + 4 + 1
 forms and the 11,430 labelled inventories are checked by the separate physical
 and orbit audit and explained in the mathematical notes; those counts and
 normal forms are not additional assertions of the current Lean endpoint.
+
+Selection of the 137 nontrivial projections
+  The supplied search produced 133 accepted improvements at retained budget
+  zero and four at retained budget one. A replacement is retained only when
+  its header reconstructs from the original root, independent replay accepts
+  it, and its instruction count is strictly smaller than the original Q5E1
+  certificate. The generator checks this count against the retained archive.
+  No exhaustive or globally minimal search is claimed. Surviving smaller
+  failures and timeouts are not exclusions; all other empty roots use s=b.
+  The mappings and proof bytes needed to reproduce checking are in the repo.
+  source_bundle_sha256 identifies the external research bundle that supplied
+  these candidates, not an additional required input. That bundle contains
+  a verifier but no search program or complete discovery ledger.
+
+Instruction counts remain 1,356,051: 349,670 in nontrivial projections,
+981,985 in identity projections, and 24,396 in terminal enumerations.
+Changing the checker does not itself reduce instruction counts. Checkpoint
+counts and timings for the generated route are recorded separately.

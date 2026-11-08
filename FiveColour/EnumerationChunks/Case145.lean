@@ -3,9 +3,8 @@ public import FiveColour.PackedCalibration
 public import FiveColour.PackedFast
 public import FiveColour.PackedComputations
 public import FiveColour.PackedPruning
-public import FiveColour.ClassificationProjection
 @[expose] public section
-namespace FiveColour.Packed.EnumerationChunks.Projected.Case145
+namespace FiveColour.Packed.EnumerationChunks.Case145
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 
@@ -2660,53 +2659,4 @@ end Part92
 
 /-- All chunk exclusions compose to the original concrete root. -/
 theorem excludes : Chunks.Excludes 13 families root := excludes_of_covered root (by apply FastValidity.box_valid_of_masks <;> decide +kernel) 13 families checkedFamilies families_valid checkedFamilies_valid checkedFamilies_cover Part92.excludes
-end FiveColour.Packed.EnumerationChunks.Projected.Case145
-
-namespace FiveColour.Packed.EnumerationChunks.Projected.Case145
-open Physical
-set_option maxHeartbeats 0
-set_option maxRecDepth 100000
-lemma projected_header : ProjectionValidAt 14 32 0 13 := by decide +kernel
-lemma lower_model : ∀ i, root.model.lower i = (projectedBox 32 0).lower i := by decide +kernel
-lemma upper_model : ∀ i, root.model.upper i = (projectedBox 32 0).upper i := by decide +kernel
-lemma budget_model : (⟨32908127039438376985589, 5783586103091957813513448549065477704101332453097102403927030543402094319394108592887551773511915116652793239902302694320363413592187732277592161523456540874451485486766787986221277724849666005459465451175879706183626392577, 0⟩ : Cut).model =
-    (⟨rootBad (rootCapacity 32), 0⟩ : Certificate.Cut 75) := by
-  have h : (Finset.univ.filter fun i : Fin 75 => (⟨32908127039438376985589, 5783586103091957813513448549065477704101332453097102403927030543402094319394108592887551773511915116652793239902302694320363413592187732277592161523456540874451485486766787986221277724849666005459465451175879706183626392577, 0⟩ : Cut).member i = true) = rootBad (rootCapacity 32) := by decide +kernel
-  unfold Cut.model
-  rw [h]
-  rfl
-lemma families_models (t : Fin 78) :
-    (families t).map Cut.model = (caseProblem 32 0 13).alternatives t := by
-  dsimp only [families, caseProblem]
-  split_ifs
-  · simp only [List.map_cons, List.map_nil, Archive.emptyCut_model]
-  · exact congrArg (fun c : Certificate.Cut 75 => [c]) (Archive.totalCut_model 13)
-  · exact congrArg (fun c : Certificate.Cut 75 => [c]) budget_model
-  · exact hallCuts_models ⟨t.val-3, by omega⟩
-lemma problem_model : Verified.problem 13 families = caseProblem 32 0 13 := by
-  have h := funext families_models
-  unfold Verified.problem
-  rw [h]
-  rfl
-/-- Exclusion of the projected inventory excludes its original fourteen-copy root. -/
-theorem original_covered (points : List Nat) :
-    Enumeration.Covers points 14 (Enumeration.families 32) (Archive.root 32) := by
-  intro x hx hp
-  rw [Archive.root_model] at hx
-  rw [Enumeration.problem_model] at hp
-  obtain ⟨y,hy,hyp⟩ := root_projection_at 14 32 0 13 projected_header hx hp
-  have hroot : root.model.Contains y := by
-    intro i
-    simpa only [lower_model, upper_model] using hy i
-  change (caseProblem 32 0 13).Admissible y at hyp
-  rw [← problem_model] at hyp
-  exact False.elim (excludes y hroot hyp)
-end FiveColour.Packed.EnumerationChunks.Projected.Case145
-
-namespace FiveColour.Packed.EnumerationChunks.Case145
-def root : Box := Archive.root 32
-def families : Fin 78 → List Cut := Enumeration.families 32
-def points : List Nat := []
-theorem covered : Enumeration.Covers points 14 families root :=
-  Projected.Case145.original_covered points
 end FiveColour.Packed.EnumerationChunks.Case145

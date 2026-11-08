@@ -1,5 +1,5 @@
 module
-public import FiveColour.RootProjection
+public import FiveColour.ProjectionBridge
 @[expose] public section
 set_option maxRecDepth 100000
 set_option maxHeartbeats 0
@@ -302,11 +302,7 @@ def families (i : Fin 279) (t : Fin 78) : List Cut :=
 
 /-- Check the entire changed header, including the projection hypotheses. -/
 def HeaderValid (i : Fin 279) : Prop :=
-  ProjectionValid (caseNumbers i) (budgets i) (goals i) ∧
-  (root i).lower = encode (Archive.rootLower (caseNumbers i)) ∧
-  (root i).upper = encode (projectedUpper (caseNumbers i) (budgets i)) ∧
-  (budgetCut i).mask = (rootCapacity (caseNumbers i)).badMask ∧
-  (budgetCut i).rhs = budgets i
+  Projection.HeaderValid 15 (caseNumbers i) (budgets i) (goals i) headers[i.val]!
 
 instance (i : Fin 279) : Decidable (HeaderValid i) := by
   unfold HeaderValid

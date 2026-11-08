@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generated roots preserve checkpoint text while obeying the source-line cap."""
 import unittest
-from generate_five_colour_enumeration import case_sources
+from generate_five_colour_enumeration import case_sources, generate_case
 
 
 class EnumerationSources(unittest.TestCase):
@@ -40,6 +40,20 @@ class EnumerationSources(unittest.TestCase):
         for block in blocks:
             self.assertEqual(joined.count(block), 1)
         self.assertTrue(sources['Case7.lean'].endswith(footer))
+
+    def test_empty_root_split_preserves_exclusion_endpoint(self):
+        text, _, blocks, _ = self.source()
+        text = text.replace('/-- Every admissible vector in the original root is covered. -/',
+                            '/-- All empty-root chunks prove exclusion. -/')
+        text = text.replace('theorem covered', 'theorem excludes')
+        sources = case_sources(7, text, limit=30)
+        self.assertIn('theorem excludes', sources['Case7.lean'])
+        for block in blocks:
+            self.assertEqual(''.join(sources.values()).count(block), 1)
+
+    def test_nonempty_terminal_list_cannot_use_exclusion(self):
+        with self.assertRaisesRegex(ValueError, 'terminal points'):
+            generate_case(0, None, 0, [[1]], None, None, None, None, exclude=True)
 
     def test_unsplittable_checkpoint_is_rejected(self):
         text, _, _, _ = self.source(1, padding=40)

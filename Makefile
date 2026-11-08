@@ -61,6 +61,7 @@ check-code: check-replay-data build/check_five_colour_certificate build/five_col
 	$(PYTHON) -S scripts/check_package.py
 	$(PYTHON) -S scripts/test_verification_state.py
 	$(PYTHON) -S scripts/test_source_checks.py
+	$(PYTHON) -S scripts/test_publication_records.py
 	$(PYTHON) -S scripts/test_hall_reduction.py
 	$(PYTHON) -S scripts/generate_five_colour_incidence.py --check
 	$(PYTHON) -S scripts/generate_five_colour_packed.py --check

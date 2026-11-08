@@ -8,6 +8,17 @@ import tarfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def encoded_header(row):
+    """Packed bounds and budget cut, shared by both projection routes."""
+    _,m,_,_,a,b,*rest=row
+    lo,hi=[0]*75,rest[:75]
+    lo[a]=hi[a]=m
+    encode=lambda xs:sum(v << (10*i) for i,v in enumerate(xs))
+    bad=rest[75:]
+    return (encode(lo),encode(hi),sum(v<<i for i,v in enumerate(bad)),
+            sum(v<<(10*(74-i)) for i,v in enumerate(bad)),b)
+
+
 def generate(root, check=False):
     data = root / 'data'
     lines = (data/'q5-projected-root-cases.txt').read_text().splitlines()
@@ -30,17 +41,9 @@ def generate(root, check=False):
             p.write_text(text)
     def vector(values):
         return '!['+', '.join(map(str, values))+']'
-    encode = lambda xs: sum(v << (10*i) for i,v in enumerate(xs))
-    headers=[]
-    for row in rows:
-        _,m,_,_,a,s,*rest=row
-        lo,hi=[0]*75,rest[:75]
-        lo[a]=hi[a]=m
-        bad=rest[75:]
-        headers.append((encode(lo),encode(hi),sum(b<<i for i,b in enumerate(bad)),
-                        sum(b<<(10*(74-i)) for i,b in enumerate(bad)),s))
+    headers=[encoded_header(row) for row in rows]
     text='''module
-public import FiveColour.RootProjection
+public import FiveColour.ProjectionBridge
 @[expose] public section
 set_option maxRecDepth 100000
 set_option maxHeartbeats 0
@@ -65,11 +68,7 @@ def families (i : Fin 279) (t : Fin 78) : List Cut :=
 
 /-- Check the entire changed header, including the projection hypotheses. -/
 def HeaderValid (i : Fin 279) : Prop :=
-  ProjectionValid (caseNumbers i) (budgets i) (goals i) ∧
-  (root i).lower = encode (Archive.rootLower (caseNumbers i)) ∧
-  (root i).upper = encode (projectedUpper (caseNumbers i) (budgets i)) ∧
-  (budgetCut i).mask = (rootCapacity (caseNumbers i)).badMask ∧
-  (budgetCut i).rhs = budgets i
+  Projection.HeaderValid 15 (caseNumbers i) (budgets i) (goals i) headers[i.val]!
 
 instance (i : Fin 279) : Decidable (HeaderValid i) := by
   unfold HeaderValid

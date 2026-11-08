@@ -1,4 +1,5 @@
 module
+public import FiveColour.ClassificationProjection
 public import FiveColour.EnumerationChunks.Case260
 public import FiveColour.EnumerationChunks.Case261
 public import FiveColour.EnumerationChunks.Case262
@@ -21,29 +22,31 @@ public import FiveColour.EnumerationChunks.Case278
 public import FiveColour.EnumerationChunks.Case279
 @[expose] public section
 namespace FiveColour.Packed.EnumerationChunks
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
 def group13Roots : Fin 20 → Fin 357 := ![147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166]
-def group13Points : Fin 20 → List Nat := ![Case260.points,Case261.points,Case262.points,Case263.points,Case264.points,Case265.points,Case266.points,Case267.points,Case268.points,Case269.points,Case270.points,Case271.points,Case272.points,Case273.points,Case274.points,Case275.points,Case276.points,Case277.points,Case278.points,Case279.points]
+def group13Points : Fin 20 → List Nat := ![[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 theorem group13Covered : ∀ i, Enumeration.Covers (group13Points i) 14 (Enumeration.families (group13Roots i)) (Archive.root (group13Roots i)) := by
   intro i
   fin_cases i
-  · exact Case260.covered
-  · exact Case261.covered
-  · exact Case262.covered
-  · exact Case263.covered
-  · exact Case264.covered
-  · exact Case265.covered
-  · exact Case266.covered
-  · exact Case267.covered
-  · exact Case268.covered
-  · exact Case269.covered
-  · exact Case270.covered
-  · exact Case271.covered
-  · exact Case272.covered
-  · exact Case273.covered
-  · exact Case274.covered
-  · exact Case275.covered
-  · exact Case276.covered
-  · exact Case277.covered
-  · exact Case278.covered
-  · exact Case279.covered
+  · exact ClassificationProjected.covered 258 Case260.excludes
+  · exact ClassificationProjected.covered 259 Case261.excludes
+  · exact ClassificationProjected.covered 260 Case262.excludes
+  · exact ClassificationProjected.covered 261 Case263.excludes
+  · exact ClassificationProjected.covered 262 Case264.excludes
+  · exact ClassificationProjected.covered 263 Case265.excludes
+  · exact ClassificationProjected.covered 264 Case266.excludes
+  · exact ClassificationProjected.covered 265 Case267.excludes
+  · exact ClassificationProjected.covered 266 Case268.excludes
+  · exact ClassificationProjected.covered 267 Case269.excludes
+  · exact ClassificationProjected.covered 268 Case270.excludes
+  · exact ClassificationProjected.covered 269 Case271.excludes
+  · exact ClassificationProjected.covered 270 Case272.excludes
+  · exact ClassificationProjected.covered 271 Case273.excludes
+  · exact ClassificationProjected.covered 272 Case274.excludes
+  · exact ClassificationProjected.covered 273 Case275.excludes
+  · exact ClassificationProjected.covered 274 Case276.excludes
+  · exact ClassificationProjected.covered 275 Case277.excludes
+  · exact ClassificationProjected.covered 276 Case278.excludes
+  · exact ClassificationProjected.covered 277 Case279.excludes
 end FiveColour.Packed.EnumerationChunks

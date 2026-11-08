@@ -21,21 +21,21 @@ def projectedProblem (r : Fin 357) (s G : Nat) : Certificate.Problem 75 78 :=
   caseProblem r s G
 
 /-- Conditions checked separately for each concrete projected header. -/
-def ProjectionValid (r : Fin 357) (s G : Nat) : Prop :=
+def ProjectionValidAt (N : Nat) (r : Fin 357) (s G : Nat) : Prop :=
   canonicalAnchor (rootCapacity r).kind ∉ rootBad (rootCapacity r) ∧
   s ≤ (rootCapacity r).budget ∧
-  (G : Int) = 15 - (rootCapacity r).budget + s ∧
+  (G : Int) = (N : Int) - (rootCapacity r).budget + s ∧
   (rootCapacity r).copies.val ≤ G
 
-instance (r : Fin 357) (s G : Nat) : Decidable (ProjectionValid r s G) := by
-  unfold ProjectionValid
+instance (N : Nat) (r : Fin 357) (s G : Nat) : Decidable (ProjectionValidAt N r s G) := by
+  unfold ProjectionValidAt
   infer_instance
 
 /-- Project an already selected root. No new anchor selection or case coverage
 is asserted for the smaller collection. All inherited bounds remain valid. -/
-theorem root_projection (r : Fin 357) (s G : Nat) (hv : ProjectionValid r s G)
+theorem root_projection_at (N : Nat) (r : Fin 357) (s G : Nat) (hv : ProjectionValidAt N r s G)
     {x : Certificate.Vector 75} (hx : (rootBox (rootCapacity r)).Contains x)
-    (hp : (rootProblem r).Admissible x) :
+    (hp : (caseProblem r (rootCapacity r).budget N).Admissible x) :
     ∃ y, (projectedBox r s).Contains y ∧ (projectedProblem r s G).Admissible y := by
   obtain ⟨ha, hs, hG, hm⟩ := hv
   have hn (i : Fin 75) : 0 ≤ x i := by
@@ -47,10 +47,10 @@ theorem root_projection (r : Fin 357) (s G : Nat) (hv : ProjectionValid r s G)
     have h := hx (canonicalAnchor (rootCapacity r).kind)
     simp only [rootBox, rootUpper, ↓reduceIte] at h
     exact le_antisymm h.2 h.1
-  obtain ⟨ht, hb, hh⟩ := (root_admissible_iff r x).mp hp
+  obtain ⟨ht, hb, hh⟩ := (caseProblem_admissible_iff r _ N x).mp hp
   obtain ⟨y, hy, hya, hyt, hys⟩ := Certificate.exists_budget_projection x hn
     (canonicalAnchor (rootCapacity r).kind) (rootBad (rootCapacity r)) ha
-    15 (rootCapacity r).budget s ht hb (Int.natCast_nonneg _) (Int.ofNat_le.mpr hs)
+    N (rootCapacity r).budget s ht hb (Int.natCast_nonneg _) (Int.ofNat_le.mpr hs)
     (by rw [← hG, hanchor]; exact Int.ofNat_le.mpr hm)
   have htotal : Certificate.mass y Finset.univ = G := hyt.trans hG.symm
   refine ⟨y, ?_, (caseProblem_admissible_iff r s G y).mpr
@@ -70,5 +70,14 @@ theorem root_projection (r : Fin 357) (s G : Nat) (hv : ProjectionValid r s G)
         rw [Nat.cast_min]
         exact le_min ((hy i).2.trans (hx i).2) (hc.trans hys)
       · exact (hy i).2.trans (hx i).2
+
+/-- The threshold route is the fifteen-copy instance of the general projection. -/
+abbrev ProjectionValid (r : Fin 357) (s G : Nat) : Prop := ProjectionValidAt 15 r s G
+
+theorem root_projection (r : Fin 357) (s G : Nat) (hv : ProjectionValid r s G)
+    {x : Certificate.Vector 75} (hx : (rootBox (rootCapacity r)).Contains x)
+    (hp : (rootProblem r).Admissible x) :
+    ∃ y, (projectedBox r s).Contains y ∧ (projectedProblem r s G).Admissible y :=
+  root_projection_at 15 r s G hv hx hp
 
 end FiveColour.Physical

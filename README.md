@@ -116,9 +116,11 @@ and six need B or C, with five copies each.
 
 The **56-class classification of all fourteen-cube obstructions is staged
 separately**. The original 349-root route passed a complete Lean replay and
-physical-endpoint axiom audit; its [retained record](verification/classification-baseline.json)
-identifies the checked sources. The revised route replaces 137 empty roots by
-smaller Hall-budget projections, reducing certificate instructions from
+physical-endpoint axiom audit; its [provenance extract](verification/classification-baseline.json)
+identifies the checked sources. The revised route excludes all 342 empty roots through one projection bridge:
+137 use smaller Hall-budget projections, and 205 retain their original total
+and budget. Only the seven nonempty roots use terminal enumeration. The
+nontrivial projections reduce certificate instructions from
 5,150,973 to 1,356,051. Its separate replay must validate those changed sources;
 the baseline record does not certify the replacements. The
 [draft section](paper/classification.tex) is not yet included in the manuscript PDF.
@@ -171,7 +173,7 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 | `make replay-data` | Explicitly regenerates the retained Lean proof sources. Generation alone proves nothing. |
 | `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. The generated proof sources are retained. |
 | `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
-| `make check-classification-data` | Separately checks the 349-root route (137 projected exclusions and 212 enumerations), physical/orbit data, rejection controls and retained generated sources. |
+| `make check-classification-data` | Separately checks the 349-root route (342 exclusions and seven terminal enumerations), physical/orbit data, rejection controls and retained generated sources. |
 | `make classification-replay` | Separately checks the complete 56-representative Lean classification and its axiom report. |
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 
@@ -314,12 +316,17 @@ and permitted axioms passed comparison, and both NanoDa and Lean's standalone
 kernel accepted the complete solution export. The run took **3 h 22 min 1 s**
 using validated Lake artifacts; it excludes a fresh project build.
 
-The [comparison record](verification/optimized-comparator.json) identifies source
+The [comparison provenance extract](verification/optimized-comparator.json) identifies source
 snapshot `19dc6a061c54`, the actual dependency trees, tool binaries and settings.
 Its [complete output](verification/optimized-comparator-output.txt),
 [resource measurements](verification/optimized-comparator-resources.txt), and
-[preceding full-verification record](verification/optimized-full.json) are retained.
-The Lean proof sources and certificate inputs match that snapshot.
+[preceding verification extract](verification/optimized-full.json) are retained.
+The [publication policy](verification/README.md) distinguishes these sanitized
+extracts from raw local records, identified by their checksums.
+That record covers the proof sources used for that run. The certificate inputs
+are unchanged; the shared projection bridge and uniform classification checker
+require fresh verification and external comparison before extending the claim
+to this revision.
 This scope excludes the separately staged complete 56-class classification and
 the minimum-universal spanning-tree corollary, which is outside the comparator
 interface. The corollary is included in the ordinary Lean build and axiom audit.

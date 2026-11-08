@@ -1237,5 +1237,7 @@
       "certificate_sha256": "5fb1f7c5d355f1f564a656514aa2bfe7e9866fa4254e3ef86976de5e55b3ea3c",
       "certificate_bytes": 329
     }
-  ]
+  ],
+  "selection_policy": "Accepted supplied candidates only; reconstructed headers, native replay, and strictly fewer instructions than the original Q5E1 stream. 133 retained-budget-zero and four retained-budget-one replacements. Other empty roots use the identity projection.",
+  "source_bundle_role": "External discovery provenance only; all proof inputs are retained locally. The bundle did not supply a search program or complete search ledger."
 }

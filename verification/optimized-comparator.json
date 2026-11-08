@@ -1,11 +1,31 @@
 {
+  "format": "five-colour-verification-extract-v1",
+  "record_kind": "Sanitized provenance extract; not the original execution record.",
+  "raw_record_sha256": "9ad7b25c8d2e51dc55dd7f9241f49bf4e8bbd4a6050a945801e27f30f2dccfbf",
   "status": "passed",
-  "phase": "complete",
-  "started_utc": "2026-11-07T07:51:48.169558+00:00",
-  "pid": 3759009,
   "scope": "Full configured fifteen-claim comparison, including both Lean and NanoDa. Complete 56-class classification is outside this interface.",
-  "retry_reason": "Previous attempt failed before proof checking because the outer execution sandbox blocked bwrap NETLINK_ROUTE setup. Comparator sandbox remains enabled.",
+  "started_utc": "2026-11-07T07:51:48.169558+00:00",
+  "finished_utc": "2026-11-07T11:13:52.238590+00:00",
   "cache_policy": "Validated project/dependency caches; not a fresh-build measurement.",
+  "seconds": 12121.273769568186,
+  "exit_code": 0,
+  "theorem_names": [
+    "ColourCubes.exposed_face_rule",
+    "FiveColour.Puzzle.lower_bound",
+    "FiveColour.Puzzle.threshold15",
+    "FiveColour.Puzzle.sharp_threshold15",
+    "FiveColour.Puzzle.least_guaranteed_size",
+    "FiveColour.Submission.frame_threshold",
+    "FiveColour.Submission.box_threshold",
+    "FiveColour.Submission.support_threshold",
+    "FiveColour.Submission.multiplicity_bound",
+    "FiveColour.Submission.three_variety_classification",
+    "FiveColour.Submission.extremal_examples",
+    "FiveColour.Submission.extremal_inequivalent",
+    "FiveColour.Submission.generalized_obstructions",
+    "FiveColour.Submission.universal_collection",
+    "FiveColour.Submission.universal_minimum"
+  ],
   "source_sha256": {
     ".github/workflows/ci.yml": "1c5d3a2ac503ea142438de7ba94045e1cd6789b094200fe5cf97ec8af988c51c",
     ".github/workflows/full-replay.yml": "8f12f4e852746edde880d837ecd4f5a877a516e20e989e670a8e4effdd8f543b",
@@ -1043,9 +1063,6 @@
     "verification/universal.json": "5c61883ab60473c48362ed592dc6c6317a761a6ffb6ea25f0ac6a22e5cfbcb1d"
   },
   "source_snapshot_sha256": "19dc6a061c54a5da3d17b08eb869fe4130f722d85a75402dd41dbf6030eccfe5",
-  "verification_record": "/home/ttuser/five-colour-cubes/build/arithmetic-candidate/build/verification/20261106T233334.544012Z/record.json",
-  "verification_record_sha256": "286a43b897731828b6c2dd235be1a4e7ad25fb5e7eba9ee52f275ae39765d637",
-  "previous_attempt_sha256": "ce532f5f8f46be4ff2d6eb56533aae13e20a5a1d8330fc770c0a2178f9b9ba2b",
   "dependencies": {
     "mathlib": {
       "revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
@@ -1118,19 +1135,12 @@
       "status": "clean; tracked bytes and modes match pinned Git tree"
     }
   },
+  "source_dependency_tool_stability": "passed",
+  "log_sha256": "5bc3b17bfc8027fa967e08d0d340ab4e7053c6b8f6b7e9167286567654a234dc",
   "environment": {
     "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
     "machine": "x86_64",
     "logical_cpus": 16,
-    "driver_python": {
-      "executable": "/home/ttuser/.tenstorrent-venv/bin/python3",
-      "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
-    },
-    "audit_python": {
-      "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
-      "executable": "/home/ttuser/.tenstorrent-venv/bin/python3",
-      "assertions_enabled": true
-    },
     "build_settings": {
       "CXX": "g++",
       "CXXFLAGS": "-O3 -march=native -std=c++20 -Wall -Wextra -Wpedantic -fopenmp",
@@ -1140,38 +1150,20 @@
     },
     "lean": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "lake": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "make": "GNU Make 4.3\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
-    "cxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
-    "replay_threads_per_worker": 1
+    "replay_threads_per_worker": 1,
+    "python": {
+      "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "assertions_enabled": true
+    },
+    "make": "GNU Make 4.3",
+    "cxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
   },
-  "theorem_names": [
-    "ColourCubes.exposed_face_rule",
-    "FiveColour.Puzzle.lower_bound",
-    "FiveColour.Puzzle.threshold15",
-    "FiveColour.Puzzle.sharp_threshold15",
-    "FiveColour.Puzzle.least_guaranteed_size",
-    "FiveColour.Submission.frame_threshold",
-    "FiveColour.Submission.box_threshold",
-    "FiveColour.Submission.support_threshold",
-    "FiveColour.Submission.multiplicity_bound",
-    "FiveColour.Submission.three_variety_classification",
-    "FiveColour.Submission.extremal_examples",
-    "FiveColour.Submission.extremal_inequivalent",
-    "FiveColour.Submission.generalized_obstructions",
-    "FiveColour.Submission.universal_collection",
-    "FiveColour.Submission.universal_minimum"
-  ],
   "tool_sha256": {
-    "/home/ttuser/.elan/toolchains/leanprover--lean4---v4.35.0/bin/lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
-    "/home/ttuser/.elan/toolchains/leanprover--lean4---v4.35.0/bin/lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
-    "/home/ttuser/.elan/toolchains/leanprover--lean4---v4.35.0/bin/leanexport": "f6a6483d518a11b323c28b9bac176d2220df0e9fc3230833815db9586669c074",
-    "/home/ttuser/.elan/toolchains/leanprover--lean4---v4.35.0/bin/leanchecker": "12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6",
-    "/home/ttuser/.elan/toolchains/leanprover--lean4---v4.35.0/bin/nanoda_bin": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5"
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "leanexport": "f6a6483d518a11b323c28b9bac176d2220df0e9fc3230833815db9586669c074",
+    "leanchecker": "12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6",
+    "nanoda_bin": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5"
   },
-  "phase_started_utc": "2026-11-07T07:51:49.111126+00:00",
-  "exit_code": 0,
-  "seconds": 12121.273769568186,
-  "log_sha256": "5bc3b17bfc8027fa967e08d0d340ab4e7053c6b8f6b7e9167286567654a234dc",
-  "source_dependency_tool_stability": "passed",
-  "finished_utc": "2026-11-07T11:13:52.238590+00:00"
+  "preceding_raw_record_sha256": "286a43b897731828b6c2dd235be1a4e7ad25fb5e7eba9ee52f275ae39765d637"
 }

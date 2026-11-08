@@ -73,7 +73,7 @@ def case_sources(case, text, limit=10000):
     base, blocks = chunks[0], chunks[1:]
     if not blocks:
         raise ValueError(f'oversized root {case} has no checkpoint boundaries')
-    marker = '/-- Every admissible vector in the original root'
+    marker = '/-- All empty-root chunks prove exclusion.' if '/-- All empty-root chunks prove exclusion.' in text else '/-- Every admissible vector in the original root'
     last, separator, footer = blocks[-1].partition(marker)
     if not separator:
         raise ValueError(f'root {case} has no coverage endpoint')
@@ -114,14 +114,23 @@ def case_sources(case, text, limit=10000):
     return sources
 
 
-def generate_case(i,row,original,points,hall_cuts,families,checkpoint,dest):
+def generate_case(i,row,original,points,hall_cuts,families,checkpoint,dest,exclude=False):
+    if exclude and points:
+        raise ValueError('exclusion cannot have terminal points')
+    proposition = 'Chunks.Excludes' if exclude else 'Enumeration.Covers points'
+    proof_type = 'Chunks.Proof' if exclude else 'Enumeration.Proof'
+    check = 'Fast.check' if exclude else 'Enumeration.check points'
+    sound = 'Fast.check_sound' if exclude else 'Enumeration.check_sound points'
+    extra_import = 'public import FiveColour.PackedFast\npublic import FiveColour.PackedComputations\n' if exclude else ''
+    fast_weights = '  apply FastWeight.list_weights_of_fast\n' if exclude else ''
+    valid_proof = 'by\n  apply FastValidity.box_valid_of_masks <;> decide +kernel' if exclude else 'by decide +kernel'
     lines=checkpoint.read_text().splitlines()
     used=sorted({int(x)-3 for line in lines for x in re.findall(r'\.(?:step|close) (\d+)',line) if int(x)>=3})
     hi=list(row[6:81]);hi[row[4]]=row[1]
     buf=io.StringIO();w=buf.write
     w(f'''module
 public import FiveColour.EnumerationRoot
-@[expose] public section
+{extra_import}@[expose] public section
 namespace FiveColour.Packed.EnumerationChunks.Case{i}
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
@@ -129,7 +138,9 @@ set_option maxRecDepth 100000
 def root : Box := Archive.root {original}
 def families : Fin 78 → List Cut := Enumeration.families {original}
 theorem families_valid : ∀ r, ∀ c ∈ families r, c.Valid := Enumeration.families_valid {original}
-def points : List Nat := ['''+','.join(str(packed(v)) for v in points)+']\n')
+''')
+    if not exclude:
+        w('def points : List Nat := ['+','.join(str(packed(v)) for v in points)+']\n')
     for t in used:
         cs=families[t];witnesses=[]
         for subset,(mask,rhs) in enumerate(hall_cuts[t],1):
@@ -145,7 +156,7 @@ def points : List Nat := ['''+','.join(str(packed(v)) for v in points)+']\n')
         w(f'def witnesses{t} : List Nat := ['+','.join(map(str,witnesses))+']\n')
         w(f'''theorem valid{t} : ∀ c ∈ reduced{t}.toList, c.Valid := by
   apply list_valid_of_weights
-  decide +kernel
+{fast_weights}  decide +kernel
 
 theorem covered{t} : ∀ c ∈ families {t+3}, possible root 14 c →
     ∃ d ∈ reduced{t}.toList, relaxes root c d = true :=
@@ -167,18 +178,26 @@ theorem covered{t} : ∀ c ∈ families {t+3}, possible root 14 c →
         w(f'''namespace Part{ident}
 def root : Box := ⟨{packed(l)}, {packed(h)}⟩
 def references : Fin {len(refs)} → Box := {rv}
-def proof : Enumeration.Proof {len(refs)} := {proof}
-theorem accepted : Enumeration.check points 14 checkedFamilies references root proof = true := by decide +kernel
-theorem root_valid : root.Valid := by decide +kernel
-theorem references_covered : ∀ i, Enumeration.Covers points 14 checkedFamilies (references i) := by
+def proof : {proof_type} {len(refs)} := {proof}
+theorem accepted : {check} 14 checkedFamilies references root proof = true := by decide +kernel
+theorem root_valid : root.Valid := {valid_proof}
+theorem references_covered : ∀ i, {proposition} 14 checkedFamilies (references i) := by
 ''')
         if refs:w('  intro i\n  fin_cases i\n'+''.join(f'  · exact Part{r}.covered\n' for r in refs))
         else:w('  intro i\n  exact Fin.elim0 i\n')
-        w(f'''theorem covered : Enumeration.Covers points 14 checkedFamilies root :=
-  Enumeration.check_sound points 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
+        w(f'''theorem covered : {proposition} 14 checkedFamilies root :=
+  {sound} 14 checkedFamilies checkedFamilies_valid references references_covered proof root root_valid accepted
 end Part{ident}
 ''')
-    w(f'''/-- Every admissible vector in the original root is one of the explicit points. -/
+    if exclude:
+        w(f'''/-- All empty-root chunks prove exclusion. -/
+theorem excludes : Chunks.Excludes 14 families root :=
+  excludes_of_covered root (Archive.root_valid {original}) 14 families checkedFamilies
+    families_valid checkedFamilies_valid checkedFamilies_cover Part{len(sizes)-1}.covered
+end FiveColour.Packed.EnumerationChunks.Case{i}
+''')
+    else:
+        w(f'''/-- Every admissible vector in the original root is one of the explicit points. -/
 theorem covered : Enumeration.Covers points 14 families root :=
   Enumeration.covers_of_weakened points root (Archive.root_valid {original}) 14 families checkedFamilies
     families_valid checkedFamilies_valid checkedFamilies_cover Part{len(sizes)-1}.covered
@@ -188,7 +207,7 @@ end FiveColour.Packed.EnumerationChunks.Case{i}
         path = dest/name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(source)
-    return {'case':i,'original_root':original,'commands':sum(sizes),'chunks':len(sizes),'points':len(points)}
+    return {'case':i,'original_root':original,'commands':sum(sizes),'chunks':len(sizes),'points':len(points),'route':'identity projection' if exclude else 'enumeration'}
 
 
 def generate(dest,work,workers):
@@ -210,6 +229,18 @@ def generate(dest,work,workers):
         for i,r in enumerate(info['roots']):
             payload=archive.extractfile(f'case-{i}.q5p').read()
             if hashlib.sha256(payload).hexdigest()!=r['certificate_sha256']:raise ValueError('certificate hash mismatch')
+            if r['original_root'] in projections:
+                # Count the existing stream independently of the performance
+                # manifest. Q5E1 split records have three bytes, others two.
+                offset, count = 160, 0
+                while offset < len(payload):
+                    opcode = payload[offset]
+                    if opcode not in (0,1,2,3): raise ValueError('bad baseline opcode')
+                    offset += 3 if opcode == 1 else 2
+                    count += 1
+                if offset != len(payload): raise ValueError('truncated baseline instruction')
+                if projections[r['original_root']][0]['new_instructions'] >= count:
+                    raise ValueError('selected projection is not a strict instruction improvement')
             (work/f'case-{i}.q5p').write_bytes(payload)
     dest.mkdir(parents=True,exist_ok=True)
     hall = HallFamilies(geometry)
@@ -230,19 +261,21 @@ def generate(dest,work,workers):
         ffile.write_text('\n'.join(str(len(f))+'\n'+'\n'.join(f'{m&((1<<64)-1)} {m>>64} {r}' for m,r in f) for f in fs)+'\n')
         pfile.write_text(str(len(points))+'\n'+'\n'.join(' '.join(map(str,v)) for v in points)+'\n')
         subprocess.run([str(ROOT/'build/five_colour_enumeration'),str(ROOT/'data/five-colour-geometry.txt'),str(cases),str(work/f'case-{i}.q5p'),str(i),'128',str(tsv),str(ffile),str(pfile)],check=True,stdout=subprocess.DEVNULL)
-        return generate_case(i,rows[i],entry['original_root'],points,hall.cuts,fs,tsv,dest)
+        return generate_case(i,rows[i],entry['original_root'],points,hall.cuts,fs,tsv,dest,exclude=not points)
     with ThreadPoolExecutor(max_workers=workers) as pool:records=list(pool.map(one,range(349)))
     (dest/'manifest.json').write_text(json.dumps({'format':'Q5E1+Q5P2','projected_roots':len(projections),'cases':records,'commands':sum(r['commands'] for r in records),'chunks':sum(r['chunks'] for r in records)},indent=2)+'\n')
+    from classification_headers import generate_headers
+    indices = generate_headers(info, rows, projections, dest)
     # Keep groups small so the aggregate does not import hundreds of proofs into
     # one large tactic invocation.
     for group in range(18):
         ids=list(range(group*20,min(349,(group+1)*20)))
-        text='module\n'+''.join(f'public import FiveColour.EnumerationChunks.Case{i}\n' for i in ids)
-        text+='@[expose] public section\nnamespace FiveColour.Packed.EnumerationChunks\n'
+        text='module\npublic import FiveColour.ClassificationProjection\n'+''.join(f'public import FiveColour.EnumerationChunks.Case{i}\n' for i in ids)
+        text+='@[expose] public section\nnamespace FiveColour.Packed.EnumerationChunks\nset_option maxHeartbeats 0\nset_option maxRecDepth 100000\n'
         text+=f'def group{group}Roots : Fin {len(ids)} → Fin 357 := !['+','.join(str(info['roots'][i]['original_root']) for i in ids)+']\n'
-        text+=f'def group{group}Points : Fin {len(ids)} → List Nat := !['+','.join(f'Case{i}.points' for i in ids)+']\n'
+        text+=f'def group{group}Points : Fin {len(ids)} → List Nat := !['+','.join(f'Case{i}.points' if info['roots'][i]['terminals'] else '[]' for i in ids)+']\n'
         text+=f'theorem group{group}Covered : ∀ i, Enumeration.Covers (group{group}Points i) 14 (Enumeration.families (group{group}Roots i)) (Archive.root (group{group}Roots i)) := by\n  intro i\n  fin_cases i\n'
-        text+=''.join(f'  · exact Case{i}.covered\n' for i in ids)+'end FiveColour.Packed.EnumerationChunks\n'
+        text+=''.join(f'  · exact Case{i}.covered\n' if info['roots'][i]['terminals'] else f'  · exact ClassificationProjected.covered {indices[i]} Case{i}.excludes\n' for i in ids)+'end FiveColour.Packed.EnumerationChunks\n'
         (dest/f'Group{group}.lean').write_text(text)
     return records
 

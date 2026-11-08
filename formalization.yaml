@@ -104,8 +104,9 @@ status:
     UniversalStructure.lean proves that every minimum universal collection
     has distinct adjacent-repeat varieties and a spanning tree of smaller pairs
     for each repeated colour; this corollary is outside the comparator interface.
-    The complete 56-representative classification is staged separately pending
-    full Lean replay and its physical-endpoint axiom audit; verify-full and the
+    The complete 56-representative classification is staged separately. Its
+    original route passed Lean replay and the physical-endpoint axiom audit;
+    the projected replacements require a separate replay. verify-full and the
     fifteen-claim comparator do not certify that additional result.
     The independent Challenge defines physical rotation
     classes and copy counts without importing the catalogue. Its cuboid slots
@@ -120,8 +121,10 @@ status:
     actual dependency trees and tool identities. Its complete output and
     resource measurements are optimized-comparator-output.txt and
     optimized-comparator-resources.txt in verification/; optimized-full.json
-    retains the preceding successful full-verification record. The Lean proof
-    sources and certificate inputs match that snapshot. The structural
+    contains a sanitized extract of the preceding successful verification.
+    Its manifest identifies the checked proof revision. Certificate inputs
+    remain unchanged; the shared projection bridge requires fresh comparison.
+    The structural
     minimum-universal corollary is checked by the ordinary Lean build and axiom
     audit but is outside the comparator interface.
     The fifteen intentional theorem holes in
@@ -188,8 +191,9 @@ fidelity:
     The compressed flow construction and its complexity bound are proved
     in the manuscript, not formalised in Lean.
     The full source and generated-proof verification route is make verify-full;
-    its source-bound record is retained in verification/optimized-full.json.
-    The comparison record and its complete output are retained alongside it;
-    further machine-local logs and run records are ignored build outputs.
+    its provenance extract is retained in verification/optimized-full.json.
+    The comparison extract and concise output are retained alongside it.
+    Extracts retain source hashes and the raw-record checksum, omitting local
+    paths and process metadata. Raw run records stay under ignored build/.
 review:
   status: "Automated checks and AI review; not independent human peer review"
