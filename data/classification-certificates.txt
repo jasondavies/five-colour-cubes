@@ -91,6 +91,9 @@ The baseline classification replay and physical-endpoint audit passed on
 preserving its exact source hashes, resource scope and original-record checksum; classification-baseline-axioms.txt contains
 the six endpoint axiom reports. This was a Lake-validated run, not a controlled
 cold-build benchmark. It does not certify the subsequently projected route.
+The revised 342-exclusion route passed complete replay and its physical
+endpoint audit on 2026-11-08. verification/classification.json and
+classification-axioms.txt record that separate successful run.
 
 The Lean endpoint uses 56 concrete representatives. The symbolic 51 + 4 + 1
 forms and the 11,430 labelled inventories are checked by the separate physical

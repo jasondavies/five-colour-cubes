@@ -121,8 +121,9 @@ identifies the checked sources. The revised route excludes all 342 empty roots t
 137 use smaller Hall-budget projections, and 205 retain their original total
 and budget. Only the seven nonempty roots use terminal enumeration. The
 nontrivial projections reduce certificate instructions from
-5,150,973 to 1,356,051. Its separate replay must validate those changed sources;
-the baseline record does not certify the replacements. The
+5,150,973 to 1,356,051. The revised route passed the complete Lean replay and physical-endpoint
+axiom audit on 8 November; its [verification extract](verification/classification.json)
+identifies those proof sources. The
 [draft section](paper/classification.tex) is not yet included in the manuscript PDF.
 The [classification route](data/classification-certificates.txt)
 is separate from `verify-full` and from the current fifteen-claim Comparator

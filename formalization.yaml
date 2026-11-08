@@ -106,7 +106,8 @@ status:
     for each repeated colour; this corollary is outside the comparator interface.
     The complete 56-representative classification is staged separately. Its
     original route passed Lean replay and the physical-endpoint axiom audit;
-    the projected replacements require a separate replay. verify-full and the
+    the revised 342-exclusion route also passed complete replay and the physical
+    endpoint audit, recorded in verification/classification.json. verify-full and the
     fifteen-claim comparator do not certify that additional result.
     The independent Challenge defines physical rotation
     classes and copy counts without importing the catalogue. Its cuboid slots

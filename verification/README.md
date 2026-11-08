@@ -13,6 +13,10 @@ not constitute a new verification run.
   including NanoDa and Lean's standalone kernel. Its
   `preceding_raw_record_sha256` identifies the raw full-verification record;
   it equals `raw_record_sha256` in `optimized-full.json`.
+- `classification.json`: the successful revised 349-root classification,
+  including all 342 exclusions, seven terminal enumerations and the physical
+  endpoint audit; `classification-axioms.txt` retains the six axiom reports.
+  This is separate from the fifteen-claim external comparison.
 - `classification-baseline.json`: the successful original 349-root
   classification replay and physical-endpoint audit. It predates the revised
   342-exclusion route and does not certify its changed sources.
