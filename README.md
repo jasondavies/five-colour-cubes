@@ -311,22 +311,23 @@ NanoDa, the two mandatory Palomar checkers. It exports the complete proof
 dependency closure and checks it again, so cached Lake artifacts do not make
 this comparison a cached verification.
 
-**All fifteen claims passed on 7 November 2026.** Statements, shared definitions
+**All fifteen claims passed on 8 November 2026.** Statements, shared definitions
 and permitted axioms passed comparison, and both NanoDa and Lean's standalone
-kernel accepted the complete solution export. The run took **3 h 22 min 1 s**
+kernel accepted the complete solution export. The run took **4 h 13 min 28 s**
 using validated Lake artifacts; it excludes a fresh project build.
 
 The [comparison provenance extract](verification/optimized-comparator.json) identifies source
-snapshot `19dc6a061c54`, the actual dependency trees, tool binaries and settings.
+snapshot `060558e520c7`, the actual dependency trees, tool binaries and settings.
 Its [complete output](verification/optimized-comparator-output.txt),
 [resource measurements](verification/optimized-comparator-resources.txt), and
 [preceding verification extract](verification/optimized-full.json) are retained.
 The [publication policy](verification/README.md) distinguishes these sanitized
 extracts from raw local records, identified by their checksums.
-That record covers the proof sources used for that run. The certificate inputs
-are unchanged; the shared projection bridge and uniform classification checker
-require fresh verification and external comparison before extending the claim
-to this revision.
+The Lean proof sources and certificate inputs match this comparison and its
+preceding full verification, including the revised shared projection bridge.
+The comparison overlapped other verification work; its duration is an observed
+run time, not a controlled performance comparison. The complete classification
+has a separate replay.
 This scope excludes the separately staged complete 56-class classification and
 the minimum-universal spanning-tree corollary, which is outside the comparator
 interface. The corollary is included in the ordinary Lean build and axiom audit.

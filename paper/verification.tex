@@ -43,7 +43,7 @@ transport, anchor selection and shared-corner argument. Finite checks
 verify capacities, cover representatives and the reduction from 357 roots
 to 279. The deletion step is \path{FiveColour.Physical.root_projection}
 in \path{FiveColour/RootProjection.lean}. The bridge to the archive, in
-\path{FiveColour/ProjectedBridge.lean}, identifies the full admissibility
+\path{FiveColour/ProjectionBridge.lean}, identifies the full admissibility
 predicate: coordinate bounds, total, budget and all Hall-cut families.
 
 For efficient replay, Lean proves soundness of a packed implementation of
@@ -193,11 +193,12 @@ certificates.
 
 \subsection{Reproduction}\label{app:reproduction}
 The proof artifact is the repository at Git commit
-\begin{center}\small\texttt{fb4f440675b784ecf994dd6866cd886ab36e4c63}.\end{center}
-The \href{https://github.com/jasondavies/five-colour-cubes/tree/fb4f440675b784ecf994dd6866cd886ab36e4c63}{pinned source tree}
-contains the mathematical sources, certificate inputs and verification records
-used here. Its certificate archive,
-\href{https://github.com/jasondavies/five-colour-cubes/blob/fb4f440675b784ecf994dd6866cd886ab36e4c63/data/q5-projected-certificates.tar.gz}{\texttt{data/q5-projected-certificates.tar.gz}},
+\begin{center}\small\texttt{291f82b10b1d3175b0d59e0e42f8f51e0202761c}.\end{center}
+The \href{https://github.com/jasondavies/five-colour-cubes/tree/291f82b10b1d3175b0d59e0e42f8f51e0202761c}{pinned source tree}
+contains the mathematical sources and certificate inputs used here.
+The verification extracts accompanying this manuscript identify the later
+executions of those sources. Its certificate archive,
+\href{https://github.com/jasondavies/five-colour-cubes/blob/291f82b10b1d3175b0d59e0e42f8f51e0202761c/data/q5-projected-certificates.tar.gz}{\texttt{data/q5-projected-certificates.tar.gz}},
 has SHA-256
 \begin{center}\small\texttt{7df56cc4b252e460c9e3a762b068010b1a894405ae105218f6cea545e9b80467}.\end{center}
 The Lean proof sources and certificate inputs in this manuscript's repository
@@ -207,7 +208,7 @@ With the pinned toolchain installed, check out that revision and run:
 \begin{verbatim}
 git clone https://github.com/jasondavies/five-colour-cubes
 cd five-colour-cubes
-git checkout fb4f440675b784ecf994dd6866cd886ab36e4c63
+git checkout 291f82b10b1d3175b0d59e0e42f8f51e0202761c
 lake exe cache get
 make verify-full WORKERS=2
 make comparator
@@ -242,15 +243,17 @@ their exposed faces. Within \path{FiveColour/},
 \path{ComparatorBridge.lean} and \path{SubmissionBridge.lean} identify these
 statements with the proof models.
 All fifteen statements, shared definitions and permitted axioms passed local
-comparison on 7 November 2026, and both NanoDa and Lean's standalone kernel
-accepted the complete solution export. The run took 3 hours 22 minutes
-1 second, using validated Lake artifacts and excluding a fresh project build.
+comparison on 8 November 2026, and both NanoDa and Lean's standalone kernel
+accepted the complete solution export. The run took 4 hours 13 minutes
+28 seconds, using validated Lake artifacts and excluding a fresh project build.
+It overlapped other verification work.
 The public provenance extract \path{verification/optimized-comparator.json}
 identifies the measured source snapshot by the SHA-256 digest of its manifest of file hashes
 and modes, rather than a Git commit:
-\begin{center}\small\texttt{19dc6a061c54a5da3d17b08eb869fe4130f722d85a75402dd41dbf6030eccfe5}.\end{center}
+\begin{center}\small\texttt{060558e520c78f50cb45e723d59a6ac4f020d91eca0fe0bf060bd3a87b238c56}.\end{center}
 It also records dependencies, tool identities and settings. Public extracts
 omit local paths and process metadata while preserving the original records'
 checksums. The same directory retains comparison output, resource measurements
 and the preceding successful verification extract.
-The source manifest identifies the exact proof revision checked in that run.
+The source manifest matches the Lean proof sources and certificate inputs
+in this manuscript's repository.

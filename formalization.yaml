@@ -113,17 +113,18 @@ status:
     explicitly represent corners, edges, face interiors and interior positions.
     SubmissionBridge.lean proves agreement with the proof models.
     All fifteen configured statements, shared definitions and permitted axioms
-    passed local comparison on 7 November 2026, and both NanoDa and Lean's
-    standalone kernel accepted the complete export. The run took 12121.274
+    passed local comparison on 8 November 2026, and both NanoDa and Lean's
+    standalone kernel accepted the complete export. The run took 15207.544
     seconds using validated Lake artifacts, excluding a fresh project build.
     verification/optimized-comparator.json identifies source snapshot
-    19dc6a061c54a5da3d17b08eb869fe4130f722d85a75402dd41dbf6030eccfe5,
+    060558e520c78f50cb45e723d59a6ac4f020d91eca0fe0bf060bd3a87b238c56,
     actual dependency trees and tool identities. Its complete output and
     resource measurements are optimized-comparator-output.txt and
     optimized-comparator-resources.txt in verification/; optimized-full.json
     contains a sanitized extract of the preceding successful verification.
-    Its manifest identifies the checked proof revision. Certificate inputs
-    remain unchanged; the shared projection bridge requires fresh comparison.
+    Its manifest matches the current Lean proof sources and certificate inputs,
+    including the revised shared projection bridge. The comparison overlapped
+    other verification work and is not a controlled timing benchmark.
     The structural
     minimum-universal corollary is checked by the ordinary Lean build and axiom
     audit but is outside the comparator interface.
@@ -192,6 +193,9 @@ fidelity:
     in the manuscript, not formalised in Lean.
     The full source and generated-proof verification route is make verify-full;
     its provenance extract is retained in verification/optimized-full.json.
+    This 8 November run passed on the revised projection sources using
+    Lake-validated caches; it does not include external comparison or the
+    complete classification.
     The comparison extract and concise output are retained alongside it.
     Extracts retain source hashes and the raw-record checksum, omitting local
     paths and process metadata. Raw run records stay under ignored build/.

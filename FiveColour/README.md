@@ -41,7 +41,9 @@ unconditional cuboid results, with `make verify-full`.
 | `ArchiveBridge.lean` | Supplies the root-bound and cut-model equivalences shared by the projected threshold proof and fourteen-cube enumeration. |
 | `RootContainment.lean` | Cut and box monotonicity, transport of complete integer root problems, and direct exclusion by an impossible initial budget. |
 | `RootReductionChecks.lean`, `RootReduction.lean` | Checks 49 root containments and 29 direct arithmetic exclusions, proves that every physical counterexample lies in one of 279 remaining roots, and derives the threshold from the retained integer exclusions. Original case IDs are preserved. |
-| `BudgetProjection.lean`, `RootProjection.lean`, `ProjectedChecks*.lean`, `ProjectedBridge.lean` | Proves deletion with fixed anchor, checks all 279 projected headers, and identifies their complete integer and packed models. |
+| `BudgetProjection.lean`, `RootProjection.lean` | Proves deletion with fixed anchor for an arbitrary original total; `root_projection` specializes it to fifteen copies. |
+| `ProjectionBridge.lean` | Identifies the complete integer and packed projected problems from a checked header, uniformly in the original total. |
+| `ProjectedChecks*.lean`, `ProjectedBridge.lean` | Checks all 279 threshold headers and specializes the shared bridge to the fifteen-copy route. |
 | retained generated `ProjectedChunks/Threshold.lean` | Checked unconditional physical threshold and sharpness theorems, composing all 279 certificate proofs. Outside the default build; reproduced by full projected replay. |
 | `LowerData.lean`, `LowerBound.lean` | Explicit deficient corner sets and the theorem `Physical.lower_bound`: the fourteen physical cubes use all five colours and admit no solution. |
 | `BoxCertificates.lean` | Sound interval refinement and certificate checking for finite integer vectors. |
@@ -165,8 +167,17 @@ whose `caseProblem_admissible_iff` characterises the prescribed total, anchor
 budget and 75 target-failure families. `BudgetProjection.lean` proves trimming
 while preserving the anchor; `RootProjection.lean` applies it after original
 root selection. `ProjectedChecks*.lean` check all new headers and their
-coverage. `ProjectedBridge.lean` identifies the complete projected box and
-admissibility predicate, including totals from 9 to 15, with the packed archive.
+coverage. `ProjectionBridge.lean` identifies the complete projected box and
+admissibility predicate with the packed archive. `ProjectedBridge.lean`
+specializes this correspondence to the threshold route, with projected totals
+from 9 to 15.
+
+For the separate complete classification, `EnumerationChunks/Headers.lean`
+stores the 342 empty-root headers; `EnumerationChunks/HeaderChecks*.lean`
+checks them. `ClassificationProjection.lean` applies the same bridge at an
+original total of fourteen: 137 projections reduce the total, while 205
+retain it. The seven remaining roots use enumeration certificates containing
+the 81 terminal inventories. This route has its own replay and axiom audit.
 
 `Physical.counterexample_packed_vector` proves that any physical counterexample
 has an exact base-1024 encoding with digits at most seven, the correct total

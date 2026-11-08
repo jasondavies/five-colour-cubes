@@ -6,15 +6,16 @@ dependency revisions and relevant tool identities. `raw_record_sha256`
 identifies the exact original bytes. Removing machine-specific fields does
 not constitute a new verification run.
 
-- `optimized-full.json`: the successful threshold and extension verification,
-  using Lake-validated caches.
+- `optimized-full.json`: the successful 8 November threshold and extension
+  verification on the revised projection sources, using Lake-validated caches.
+  It does not run the external comparator or the complete classification.
 - `optimized-comparator.json`: the successful fifteen-claim comparison,
   including NanoDa and Lean's standalone kernel. Its
   `preceding_raw_record_sha256` identifies the raw full-verification record;
   it equals `raw_record_sha256` in `optimized-full.json`.
 - `classification-baseline.json`: the successful original 349-root
-  classification replay and physical-endpoint audit. It predates the 137
-  projected replacements and does not certify their changed sources.
+  classification replay and physical-endpoint audit. It predates the revised
+  342-exclusion route and does not certify its changed sources.
 
 Source-manifest keys are repository-relative paths. Tool hashes use executable
 names rather than installation paths. The concise comparison output, resource
