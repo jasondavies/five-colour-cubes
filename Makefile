@@ -119,9 +119,11 @@ build/five_colour_enumeration: src/five_colour_enumeration.cpp build/cxx-config.
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 # Complete fourteen-copy classification, separate from the established threshold route.
-check-classification-data: build/five_colour_enumeration
+check-classification-data: build/five_colour_enumeration build/five_colour_chunks build/check_five_colour_certificate
 	$(PYTHON) -S scripts/generate_five_colour_classification.py --check
 	$(PYTHON) -S scripts/check_five_colour_classification.py
+	$(PYTHON) -S scripts/check_classification_projections.py --workers $(WORKERS)
+	$(PYTHON) -S scripts/test_classification_projections.py
 	$(PYTHON) -S scripts/test_enumeration_checks.py
 	$(PYTHON) -S scripts/test_enumeration_driver.py
 	$(PYTHON) -S scripts/test_enumeration_sources.py

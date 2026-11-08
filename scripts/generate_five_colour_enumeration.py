@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay retained Q5E1 certificates and serialize kernel-checked enumeration.
+"""Replay Q5E1 enumerations and Q5P2 projections for the 349 classification roots.
 
 No search is run. --check compares the complete generated file set and bytes
 without changing retained sources. Python/C++ outputs are untrusted: Lean
@@ -16,6 +16,7 @@ import re
 import subprocess
 import tarfile
 import tempfile
+from classification_projection import load_projections, generate_projected_case
 from generate_five_colour_chunks import packed
 from generate_five_colour_packed import cut
 
@@ -194,6 +195,9 @@ def generate(dest,work,workers):
     info=json.loads((ROOT/'data/five-colour-classification.json').read_text())
     if info['format']!=1 or len(info['roots'])!=349:raise ValueError('bad classification input')
     originals=[list(map(int,l.split())) for l in (ROOT/'data/q5-threshold-cases-size15.txt').read_text().splitlines()[1:]]
+    projections, projection_cases = load_projections(originals, work)
+    if not projections.keys() <= {r['original_root'] for r in info['roots']}:
+        raise ValueError('projected root is outside the classification cover')
     rows=[]
     for r in info['roots']:
         row=list(originals[r['original_root']]);row[3]=14;rows.append(row)
@@ -213,6 +217,12 @@ def generate(dest,work,workers):
     root_families = [hall.reduced(row) for row in rows]
     def one(i):
         entry=info['roots'][i];points=[]
+        if entry['original_root'] in projections:
+            if entry['terminals']:
+                raise ValueError('cannot replace a nonempty terminal root by exclusion')
+            projected, row, certificate = projections[entry['original_root']]
+            return generate_projected_case(i, projected, row, certificate,
+                                           projection_cases, work, dest)
         for j in entry['terminals']:
             counts=Counter(info['terminals'][j]);points.append([counts[k] for k in range(75)])
         fs=root_families[i]
@@ -222,7 +232,7 @@ def generate(dest,work,workers):
         subprocess.run([str(ROOT/'build/five_colour_enumeration'),str(ROOT/'data/five-colour-geometry.txt'),str(cases),str(work/f'case-{i}.q5p'),str(i),'128',str(tsv),str(ffile),str(pfile)],check=True,stdout=subprocess.DEVNULL)
         return generate_case(i,rows[i],entry['original_root'],points,hall.cuts,fs,tsv,dest)
     with ThreadPoolExecutor(max_workers=workers) as pool:records=list(pool.map(one,range(349)))
-    (dest/'manifest.json').write_text(json.dumps({'format':'Q5E1','cases':records,'commands':sum(r['commands'] for r in records),'chunks':sum(r['chunks'] for r in records)},indent=2)+'\n')
+    (dest/'manifest.json').write_text(json.dumps({'format':'Q5E1+Q5P2','projected_roots':len(projections),'cases':records,'commands':sum(r['commands'] for r in records),'chunks':sum(r['chunks'] for r in records)},indent=2)+'\n')
     # Keep groups small so the aggregate does not import hundreds of proofs into
     # one large tactic invocation.
     for group in range(18):
@@ -240,14 +250,27 @@ def generate(dest,work,workers):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');parser.add_argument('--workers',type=int,default=2);args=parser.parse_args()
     if args.workers<1:parser.error('workers must be positive')
-    subprocess.run(['make','build/five_colour_enumeration'],cwd=ROOT,check=True)
+    subprocess.run(['make','build/five_colour_enumeration','build/five_colour_chunks'],cwd=ROOT,check=True)
     with tempfile.TemporaryDirectory(prefix='q5-enumeration-') as temp:
-        work=Path(temp);dest=work/'generated' if args.check else DEST
+        work=Path(temp);dest=work/'generated'
         records=generate(dest,work,args.workers)
         if args.check:
             expected={str(p.relative_to(dest)) for p in dest.rglob('*') if p.is_file()};actual={str(p.relative_to(DEST)) for p in DEST.rglob('*') if p.is_file()}
             if expected!=actual:raise SystemExit(f'enumeration file set differs: missing={sorted(expected-actual)}, extra={sorted(actual-expected)}')
             changed=[name for name in expected if (dest/name).read_bytes()!=(DEST/name).read_bytes()]
             if changed:raise SystemExit(f'enumeration files differ: {changed}')
+        else:
+            # Generate completely before replacing retained outputs. Retire
+            # obsolete split modules only within this generated directory.
+            expected={p.relative_to(dest) for p in dest.rglob('*') if p.is_file()}
+            for path in DEST.rglob('*'):
+                if path.is_file() and path.relative_to(DEST) not in expected:
+                    path.unlink()
+            for name in expected:
+                target=DEST/name
+                target.parent.mkdir(parents=True,exist_ok=True)
+                payload=(dest/name).read_bytes()
+                if not target.exists() or target.read_bytes()!=payload:
+                    target.write_bytes(payload)
     print(f'Checked {len(records)} classification certificates; {sum(r["commands"] for r in records):,} instructions.')
 if __name__=='__main__':main()

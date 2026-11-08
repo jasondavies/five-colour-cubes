@@ -73,7 +73,10 @@ and writes its report under `build/checks/`.
 `five-colour-classification.json` and
 `five-colour-classification-certificates.tar.gz` contain the separate
 fourteen-cube enumeration: 349 roots, 81 terminal inventories and 56 symmetry
-representatives. See [classification-certificates.txt](classification-certificates.txt)
+representatives. `five-colour-classification-projections.json` and its
+`.tar.gz` archive replace 137 empty-root enumerations with smaller projected
+exclusions, preserving the original root cover and terminal list.
+See [classification-certificates.txt](classification-certificates.txt)
 for the format, proof connections and commands. `make check-classification-data`
 checks the archive and generated sources without rewriting them;
 `make classification-replay` builds the physical classification and audits its

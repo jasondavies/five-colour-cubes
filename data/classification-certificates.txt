@@ -12,8 +12,14 @@ Files
     terminal inventories, original-root indices, and certificate hashes.
   five-colour-classification-certificates.tar.gz
     Exactly case-0.q5p through case-348.q5p. These use the Q5E1 format below.
+    The original archive is retained; the current Lean route uses 212 entries.
+  five-colour-classification-projections.json
+  five-colour-classification-projections.tar.gz
+    137 Q5P2 exclusions, with original-root mappings, retained budgets and
+    checksums. Headers are reconstructed from the original root bounds.
   FiveColour/EnumerationChunks/
-    Generated Lean source: 5,150,973 instructions in 48,543 checkpoints.
+    Generated Lean source: 1,356,051 instructions in 12,759 checkpoints.
+    The baseline used 5,150,973 instructions in 48,543 checkpoints.
     Generated source is retained so verification need not rewrite it.
 
 Certificate format
@@ -29,6 +35,15 @@ Certificate format
   list. Bounds and every root-wise weakening are checked during replay.
 
 Lean proof
+  ClassificationProjection proves the Hall-budget deletion bridge at any
+  total N. For retained budget s, its projected total is N-b+s. It retains
+  the original anchor and upper bounds, tightening each budget-set cap to s.
+  No new root selection or threshold theorem is used at the smaller total.
+  The 137 Q5P2 certificates exclude their projected roots using the existing
+  fast packed checker. Each generated adapter transfers that exclusion back
+  to coverage of its original fourteen-copy root by the empty terminal list.
+  The generator rejects replacement of any root with a nonempty terminal list.
+
   PackedEnumeration extends the interval proof checker with the singleton
   leaf. Its conclusion is coverage by a list of explicit vectors, not
   exclusion of the root. Its soundness proof reuses the verified arithmetic,
@@ -46,7 +61,10 @@ Lean proof
 Commands
   make check-classification-data WORKERS=2
     Independently audit physical failures and symmetry orbits, replay the
-    binary archive in C++, and compare regenerated Lean sources read-only.
+    137 Q5P2 exclusions and 212 Q5E1 enumerations in C++, and compare
+    regenerated Lean sources read-only. The original 349-entry archive is
+    also checked for exact membership and hashes, without replaying the
+    superseded 137 enumeration certificates.
   make classification-replay WORKERS=2
     Replay all Lean roots, build the physical classification, and audit its
     axioms. Lake validates cached dependencies. Logs and status are under
@@ -62,6 +80,13 @@ Commands
 The example/orbit audit alone does not prove exhaustive coverage. A successful
 classification replay and final axiom audit are required for that claim.
 Neither operation runs an external-kernel comparator.
+
+The baseline classification replay and physical-endpoint audit passed on
+2026-11-08. verification/classification-baseline.json preserves its exact
+source hashes and resource scope; classification-baseline-axioms.txt contains
+the six endpoint axiom reports. This was a Lake-validated run, not a controlled
+cold-build benchmark. It does not certify the subsequently projected route.
+The new geometric cut-group lemma is not assumed by either route.
 
 The Lean endpoint uses 56 concrete representatives. The symbolic 51 + 4 + 1
 forms and the 11,430 labelled inventories are checked by the separate physical

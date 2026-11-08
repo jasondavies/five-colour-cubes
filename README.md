@@ -115,10 +115,14 @@ than there are copies of that variety: five corners need A, with four copies,
 and six need B or C, with five copies each.
 
 The **56-class classification of all fourteen-cube obstructions is staged
-separately**. Its computational certificates and independent physical/orbit
-audits pass, but its complete Lean replay and physical-endpoint axiom audit
-remain pending. The [draft section](paper/classification.tex) is therefore not
-included in the manuscript PDF. The [classification route](data/classification-certificates.txt)
+separately**. The original 349-root route passed a complete Lean replay and
+physical-endpoint axiom audit; its [retained record](verification/classification-baseline.json)
+identifies the checked sources. The revised route replaces 137 empty roots by
+smaller Hall-budget projections, reducing certificate instructions from
+5,150,973 to 1,356,051. Its separate replay must validate those changed sources;
+the baseline record does not certify the replacements. The
+[draft section](paper/classification.tex) is not yet included in the manuscript PDF.
+The [classification route](data/classification-certificates.txt)
 is separate from `verify-full` and from the current fifteen-claim Comparator
 interface; neither certifies this additional result.
 
@@ -167,7 +171,7 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 | `make replay-data` | Explicitly regenerates the retained Lean proof sources. Generation alone proves nothing. |
 | `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. The generated proof sources are retained. |
 | `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
-| `make check-classification-data` | Separately checks all 349 enumeration certificates, the physical/orbit data, rejection controls and retained generated sources. |
+| `make check-classification-data` | Separately checks the 349-root route (137 projected exclusions and 212 enumerations), physical/orbit data, rejection controls and retained generated sources. |
 | `make classification-replay` | Separately checks the complete 56-representative Lean classification and its axiom report. |
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 

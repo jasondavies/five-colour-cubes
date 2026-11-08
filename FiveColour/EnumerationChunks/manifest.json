@@ -1,5 +1,6 @@
 {
-  "format": "Q5E1",
+  "format": "Q5E1+Q5P2",
+  "projected_roots": 137,
   "cases": [
     {
       "case": 0,
@@ -74,499 +75,783 @@
     {
       "case": 10,
       "original_root": 254,
-      "commands": 41841,
-      "chunks": 394,
-      "points": 0
+      "commands": 9598,
+      "chunks": 90,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 11,
       "original_root": 255,
-      "commands": 17619,
-      "chunks": 166,
-      "points": 0
+      "commands": 616,
+      "chunks": 6,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 12,
       "original_root": 256,
-      "commands": 22413,
-      "chunks": 208,
-      "points": 0
+      "commands": 2558,
+      "chunks": 26,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 13,
       "original_root": 257,
-      "commands": 21700,
-      "chunks": 208,
-      "points": 0
+      "commands": 2436,
+      "chunks": 25,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 14,
       "original_root": 258,
-      "commands": 34736,
-      "chunks": 322,
-      "points": 0
+      "commands": 12342,
+      "chunks": 117,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 15,
       "original_root": 259,
-      "commands": 25241,
-      "chunks": 237,
-      "points": 0
+      "commands": 4064,
+      "chunks": 41,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 16,
       "original_root": 260,
-      "commands": 19463,
-      "chunks": 179,
-      "points": 0
+      "commands": 2066,
+      "chunks": 21,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 17,
       "original_root": 261,
-      "commands": 25754,
-      "chunks": 243,
-      "points": 0
+      "commands": 2776,
+      "chunks": 27,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 18,
       "original_root": 262,
-      "commands": 22455,
-      "chunks": 213,
-      "points": 0
+      "commands": 2401,
+      "chunks": 24,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 19,
       "original_root": 263,
-      "commands": 11042,
-      "chunks": 107,
-      "points": 0
+      "commands": 151,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 20,
       "original_root": 264,
-      "commands": 10411,
-      "chunks": 100,
-      "points": 0
+      "commands": 119,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 21,
       "original_root": 265,
-      "commands": 31016,
-      "chunks": 290,
-      "points": 0
+      "commands": 2289,
+      "chunks": 23,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 22,
       "original_root": 266,
-      "commands": 10444,
-      "chunks": 99,
-      "points": 0
+      "commands": 152,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 23,
       "original_root": 267,
-      "commands": 12638,
-      "chunks": 122,
-      "points": 0
+      "commands": 752,
+      "chunks": 8,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 24,
       "original_root": 268,
-      "commands": 20924,
-      "chunks": 201,
-      "points": 0
+      "commands": 1080,
+      "chunks": 11,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 25,
       "original_root": 269,
-      "commands": 10988,
-      "chunks": 105,
-      "points": 0
+      "commands": 112,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 26,
       "original_root": 270,
-      "commands": 12440,
-      "chunks": 123,
-      "points": 0
+      "commands": 172,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 27,
       "original_root": 271,
-      "commands": 59922,
-      "chunks": 572,
-      "points": 0
+      "commands": 901,
+      "chunks": 9,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 28,
       "original_root": 272,
-      "commands": 71074,
-      "chunks": 678,
-      "points": 0
+      "commands": 2681,
+      "chunks": 28,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 29,
       "original_root": 273,
-      "commands": 77716,
-      "chunks": 741,
-      "points": 0
+      "commands": 4988,
+      "chunks": 51,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 30,
       "original_root": 274,
-      "commands": 72358,
-      "chunks": 689,
-      "points": 0
+      "commands": 2598,
+      "chunks": 26,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 31,
       "original_root": 275,
-      "commands": 79879,
-      "chunks": 776,
-      "points": 0
+      "commands": 1974,
+      "chunks": 21,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 32,
       "original_root": 276,
-      "commands": 81142,
-      "chunks": 783,
-      "points": 0
+      "commands": 2105,
+      "chunks": 23,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 33,
       "original_root": 277,
-      "commands": 37111,
-      "chunks": 357,
-      "points": 0
+      "commands": 247,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 34,
       "original_root": 278,
-      "commands": 29678,
-      "chunks": 287,
-      "points": 0
+      "commands": 206,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 35,
       "original_root": 279,
-      "commands": 34029,
-      "chunks": 327,
-      "points": 0
+      "commands": 97,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 36,
       "original_root": 280,
-      "commands": 32877,
-      "chunks": 312,
-      "points": 0
+      "commands": 221,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 37,
       "original_root": 281,
-      "commands": 29336,
-      "chunks": 278,
-      "points": 0
+      "commands": 154,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 38,
       "original_root": 282,
-      "commands": 9210,
-      "chunks": 85,
-      "points": 0
+      "commands": 11,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 39,
       "original_root": 283,
-      "commands": 90722,
-      "chunks": 871,
-      "points": 0
+      "commands": 2744,
+      "chunks": 27,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 40,
       "original_root": 284,
-      "commands": 33882,
-      "chunks": 318,
-      "points": 0
+      "commands": 250,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 41,
       "original_root": 285,
-      "commands": 34897,
-      "chunks": 330,
-      "points": 0
+      "commands": 181,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 42,
       "original_root": 286,
-      "commands": 57960,
-      "chunks": 562,
-      "points": 0
+      "commands": 1260,
+      "chunks": 13,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 43,
       "original_root": 287,
-      "commands": 30827,
-      "chunks": 286,
-      "points": 0
+      "commands": 166,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 44,
       "original_root": 288,
-      "commands": 34523,
-      "chunks": 322,
-      "points": 0
+      "commands": 201,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 45,
       "original_root": 289,
-      "commands": 33553,
-      "chunks": 323,
-      "points": 0
+      "commands": 73,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 46,
       "original_root": 290,
-      "commands": 10765,
-      "chunks": 101,
-      "points": 0
+      "commands": 13,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 47,
       "original_root": 291,
-      "commands": 15149,
-      "chunks": 142,
-      "points": 0
+      "commands": 64,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 48,
       "original_root": 292,
-      "commands": 36669,
-      "chunks": 347,
-      "points": 0
+      "commands": 354,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 49,
       "original_root": 293,
-      "commands": 27788,
-      "chunks": 258,
-      "points": 0
+      "commands": 260,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 50,
       "original_root": 294,
-      "commands": 11546,
-      "chunks": 108,
-      "points": 0
+      "commands": 23,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 51,
       "original_root": 295,
-      "commands": 121601,
-      "chunks": 1174,
-      "points": 0
+      "commands": 2642,
+      "chunks": 25,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 52,
       "original_root": 296,
-      "commands": 56382,
-      "chunks": 543,
-      "points": 0
+      "commands": 451,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 53,
       "original_root": 297,
-      "commands": 52918,
-      "chunks": 507,
-      "points": 0
+      "commands": 328,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 54,
       "original_root": 298,
-      "commands": 38038,
-      "chunks": 365,
-      "points": 0
+      "commands": 139,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 55,
       "original_root": 299,
-      "commands": 52797,
-      "chunks": 495,
-      "points": 0
+      "commands": 474,
+      "chunks": 6,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 56,
       "original_root": 300,
-      "commands": 14226,
-      "chunks": 130,
-      "points": 0
+      "commands": 28,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 57,
       "original_root": 301,
-      "commands": 54564,
-      "chunks": 515,
-      "points": 0
+      "commands": 406,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 58,
       "original_root": 302,
-      "commands": 50745,
-      "chunks": 483,
-      "points": 0
+      "commands": 362,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 59,
       "original_root": 303,
-      "commands": 43417,
-      "chunks": 407,
-      "points": 0
+      "commands": 176,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 60,
       "original_root": 304,
-      "commands": 43547,
-      "chunks": 412,
-      "points": 0
+      "commands": 133,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 61,
       "original_root": 305,
-      "commands": 15579,
-      "chunks": 140,
-      "points": 0
+      "commands": 26,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 62,
       "original_root": 306,
-      "commands": 9691,
-      "chunks": 88,
-      "points": 0
+      "commands": 9,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 63,
       "original_root": 307,
-      "commands": 22382,
-      "chunks": 210,
-      "points": 0
+      "commands": 87,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 64,
       "original_root": 308,
-      "commands": 57023,
-      "chunks": 541,
-      "points": 0
+      "commands": 779,
+      "chunks": 8,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 65,
       "original_root": 309,
-      "commands": 18831,
-      "chunks": 177,
-      "points": 0
+      "commands": 43,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 66,
       "original_root": 310,
-      "commands": 17553,
-      "chunks": 164,
-      "points": 0
+      "commands": 42,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 67,
       "original_root": 311,
-      "commands": 12092,
-      "chunks": 114,
-      "points": 0
+      "commands": 20,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 68,
       "original_root": 312,
-      "commands": 56824,
-      "chunks": 542,
-      "points": 0
+      "commands": 539,
+      "chunks": 6,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 69,
       "original_root": 313,
-      "commands": 21173,
-      "chunks": 192,
-      "points": 0
+      "commands": 86,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 70,
       "original_root": 314,
-      "commands": 52321,
-      "chunks": 498,
-      "points": 0
+      "commands": 377,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 71,
       "original_root": 315,
-      "commands": 21276,
-      "chunks": 194,
-      "points": 0
+      "commands": 53,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 72,
       "original_root": 316,
-      "commands": 13838,
-      "chunks": 125,
-      "points": 0
+      "commands": 26,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 73,
       "original_root": 317,
-      "commands": 9029,
-      "chunks": 83,
-      "points": 0
+      "commands": 25,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 74,
       "original_root": 318,
-      "commands": 34624,
-      "chunks": 327,
-      "points": 0
+      "commands": 212,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 75,
       "original_root": 319,
-      "commands": 29633,
-      "chunks": 278,
-      "points": 0
+      "commands": 122,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 76,
       "original_root": 320,
-      "commands": 16123,
-      "chunks": 152,
-      "points": 0
+      "commands": 42,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 77,
       "original_root": 321,
-      "commands": 3426,
-      "chunks": 31,
-      "points": 0
+      "commands": 4,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 78,
       "original_root": 322,
-      "commands": 19803,
-      "chunks": 184,
-      "points": 0
+      "commands": 89,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 9,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 79,
       "original_root": 323,
-      "commands": 27097,
-      "chunks": 254,
-      "points": 0
+      "commands": 150,
+      "chunks": 2,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 9,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 80,
       "original_root": 324,
-      "commands": 3783,
-      "chunks": 35,
-      "points": 0
+      "commands": 19,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 9,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 81,
@@ -613,72 +898,112 @@
     {
       "case": 87,
       "original_root": 331,
-      "commands": 6665,
-      "chunks": 61,
-      "points": 0
+      "commands": 244,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 88,
       "original_root": 332,
-      "commands": 10921,
-      "chunks": 101,
-      "points": 0
+      "commands": 892,
+      "chunks": 9,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 89,
       "original_root": 333,
-      "commands": 3410,
-      "chunks": 32,
-      "points": 0
+      "commands": 15,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 90,
       "original_root": 334,
-      "commands": 1911,
-      "chunks": 17,
-      "points": 0
+      "commands": 20,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 91,
       "original_root": 335,
-      "commands": 105,
+      "commands": 2,
       "chunks": 1,
-      "points": 0
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 92,
       "original_root": 336,
-      "commands": 16988,
-      "chunks": 161,
-      "points": 0
+      "commands": 83,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 93,
       "original_root": 337,
-      "commands": 743,
-      "chunks": 7,
-      "points": 0
+      "commands": 7,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 94,
       "original_root": 338,
-      "commands": 129,
-      "chunks": 2,
-      "points": 0
+      "commands": 2,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 95,
       "original_root": 339,
-      "commands": 2951,
-      "chunks": 27,
-      "points": 0
+      "commands": 6,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 96,
       "original_root": 340,
-      "commands": 373,
-      "chunks": 4,
-      "points": 0
+      "commands": 1,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 97,
@@ -690,9 +1015,13 @@
     {
       "case": 98,
       "original_root": 342,
-      "commands": 24388,
-      "chunks": 235,
-      "points": 0
+      "commands": 76,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 99,
@@ -914,289 +1243,453 @@
     {
       "case": 130,
       "original_root": 17,
-      "commands": 43603,
-      "chunks": 415,
-      "points": 0
+      "commands": 8494,
+      "chunks": 79,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 131,
       "original_root": 18,
-      "commands": 72143,
-      "chunks": 690,
-      "points": 0
+      "commands": 14502,
+      "chunks": 133,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 132,
       "original_root": 19,
-      "commands": 85343,
-      "chunks": 811,
-      "points": 0
+      "commands": 18187,
+      "chunks": 170,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 133,
       "original_root": 20,
-      "commands": 61084,
-      "chunks": 581,
-      "points": 0
+      "commands": 11534,
+      "chunks": 108,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 134,
       "original_root": 21,
-      "commands": 56001,
-      "chunks": 541,
-      "points": 0
+      "commands": 7724,
+      "chunks": 67,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 135,
       "original_root": 22,
-      "commands": 58490,
-      "chunks": 573,
-      "points": 0
+      "commands": 8757,
+      "chunks": 80,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 136,
       "original_root": 23,
-      "commands": 23994,
-      "chunks": 232,
-      "points": 0
+      "commands": 2215,
+      "chunks": 21,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 137,
       "original_root": 24,
-      "commands": 18240,
-      "chunks": 176,
-      "points": 0
+      "commands": 1803,
+      "chunks": 17,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 138,
       "original_root": 25,
-      "commands": 19038,
-      "chunks": 185,
-      "points": 0
+      "commands": 1427,
+      "chunks": 15,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 139,
       "original_root": 26,
-      "commands": 21439,
-      "chunks": 205,
-      "points": 0
+      "commands": 3052,
+      "chunks": 30,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 140,
       "original_root": 27,
-      "commands": 18716,
-      "chunks": 179,
-      "points": 0
+      "commands": 2067,
+      "chunks": 20,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 141,
       "original_root": 28,
-      "commands": 7834,
-      "chunks": 76,
-      "points": 0
+      "commands": 244,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 142,
       "original_root": 29,
-      "commands": 82444,
-      "chunks": 792,
-      "points": 0
+      "commands": 15818,
+      "chunks": 146,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 143,
       "original_root": 30,
-      "commands": 23902,
-      "chunks": 237,
-      "points": 0
+      "commands": 2450,
+      "chunks": 25,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 144,
       "original_root": 31,
-      "commands": 23161,
-      "chunks": 226,
-      "points": 0
+      "commands": 2268,
+      "chunks": 24,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 145,
       "original_root": 32,
-      "commands": 42987,
-      "chunks": 404,
-      "points": 0
+      "commands": 10111,
+      "chunks": 93,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 146,
       "original_root": 33,
-      "commands": 18477,
-      "chunks": 178,
-      "points": 0
+      "commands": 1490,
+      "chunks": 14,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 147,
       "original_root": 34,
-      "commands": 21918,
-      "chunks": 210,
-      "points": 0
+      "commands": 2184,
+      "chunks": 20,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 148,
       "original_root": 35,
-      "commands": 17883,
-      "chunks": 173,
-      "points": 0
+      "commands": 1287,
+      "chunks": 13,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 149,
       "original_root": 36,
-      "commands": 8720,
-      "chunks": 83,
-      "points": 0
+      "commands": 95,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 150,
       "original_root": 37,
-      "commands": 10105,
-      "chunks": 102,
-      "points": 0
+      "commands": 97,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 151,
       "original_root": 38,
-      "commands": 28396,
-      "chunks": 276,
-      "points": 0
+      "commands": 4115,
+      "chunks": 38,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 152,
       "original_root": 39,
-      "commands": 18551,
-      "chunks": 176,
-      "points": 0
+      "commands": 2476,
+      "chunks": 24,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 153,
       "original_root": 40,
-      "commands": 8382,
-      "chunks": 78,
-      "points": 0
+      "commands": 341,
+      "chunks": 4,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 154,
       "original_root": 41,
-      "commands": 134639,
-      "chunks": 1225,
-      "points": 0
+      "commands": 8998,
+      "chunks": 82,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 155,
       "original_root": 42,
-      "commands": 52217,
-      "chunks": 477,
-      "points": 0
+      "commands": 2334,
+      "chunks": 22,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 156,
       "original_root": 43,
-      "commands": 50751,
-      "chunks": 459,
-      "points": 0
+      "commands": 2023,
+      "chunks": 20,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 157,
       "original_root": 44,
-      "commands": 34062,
-      "chunks": 314,
-      "points": 0
+      "commands": 1115,
+      "chunks": 11,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 158,
       "original_root": 45,
-      "commands": 51700,
-      "chunks": 475,
-      "points": 0
+      "commands": 2741,
+      "chunks": 27,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 159,
       "original_root": 46,
-      "commands": 17567,
-      "chunks": 160,
-      "points": 0
+      "commands": 241,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 160,
       "original_root": 47,
-      "commands": 64734,
-      "chunks": 593,
-      "points": 0
+      "commands": 2696,
+      "chunks": 26,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 161,
       "original_root": 48,
-      "commands": 49959,
-      "chunks": 458,
-      "points": 0
+      "commands": 2077,
+      "chunks": 19,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 162,
       "original_root": 49,
-      "commands": 39581,
-      "chunks": 361,
-      "points": 0
+      "commands": 1327,
+      "chunks": 13,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 163,
       "original_root": 50,
-      "commands": 38113,
-      "chunks": 349,
-      "points": 0
+      "commands": 1414,
+      "chunks": 15,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 164,
       "original_root": 51,
-      "commands": 16071,
-      "chunks": 150,
-      "points": 0
+      "commands": 119,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 165,
       "original_root": 52,
-      "commands": 14343,
-      "chunks": 129,
-      "points": 0
+      "commands": 33,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 166,
       "original_root": 53,
-      "commands": 27724,
-      "chunks": 255,
-      "points": 0
+      "commands": 277,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 167,
       "original_root": 54,
-      "commands": 65076,
-      "chunks": 595,
-      "points": 0
+      "commands": 4486,
+      "chunks": 43,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "reduced"
     },
     {
       "case": 168,
       "original_root": 55,
-      "commands": 23407,
-      "chunks": 215,
-      "points": 0
+      "commands": 553,
+      "chunks": 5,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 169,
       "original_root": 56,
-      "commands": 19709,
-      "chunks": 178,
-      "points": 0
+      "commands": 274,
+      "chunks": 3,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 170,
       "original_root": 57,
-      "commands": 15754,
-      "chunks": 139,
-      "points": 0
+      "commands": 46,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 171,
@@ -1222,23 +1715,35 @@
     {
       "case": 174,
       "original_root": 61,
-      "commands": 44341,
-      "chunks": 405,
-      "points": 0
+      "commands": 38366,
+      "chunks": 337,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 1,
+      "cut_mode": "reduced"
     },
     {
       "case": 175,
       "original_root": 62,
-      "commands": 34292,
-      "chunks": 309,
-      "points": 0
+      "commands": 29314,
+      "chunks": 259,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 1,
+      "cut_mode": "reduced"
     },
     {
       "case": 176,
       "original_root": 63,
-      "commands": 27730,
-      "chunks": 251,
-      "points": 0
+      "commands": 25730,
+      "chunks": 232,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 1,
+      "cut_mode": "reduced"
     },
     {
       "case": 177,
@@ -1257,16 +1762,24 @@
     {
       "case": 179,
       "original_root": 66,
-      "commands": 37639,
-      "chunks": 341,
-      "points": 0
+      "commands": 27996,
+      "chunks": 253,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 12,
+      "retained_budget": 1,
+      "cut_mode": "reduced"
     },
     {
       "case": 180,
       "original_root": 67,
-      "commands": 19135,
-      "chunks": 177,
-      "points": 0
+      "commands": 1,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 11,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 181,
@@ -1285,9 +1798,13 @@
     {
       "case": 183,
       "original_root": 70,
-      "commands": 29301,
-      "chunks": 259,
-      "points": 0
+      "commands": 1,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 10,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 184,
@@ -1334,51 +1851,79 @@
     {
       "case": 190,
       "original_root": 77,
-      "commands": 958,
-      "chunks": 9,
-      "points": 0
+      "commands": 23,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 191,
       "original_root": 78,
-      "commands": 132,
-      "chunks": 2,
-      "points": 0
+      "commands": 10,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 192,
       "original_root": 79,
-      "commands": 17,
+      "commands": 2,
       "chunks": 1,
-      "points": 0
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 193,
       "original_root": 80,
-      "commands": 192,
-      "chunks": 2,
-      "points": 0
+      "commands": 11,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 194,
       "original_root": 81,
-      "commands": 320,
-      "chunks": 3,
-      "points": 0
+      "commands": 1,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 195,
       "original_root": 82,
-      "commands": 14,
+      "commands": 3,
       "chunks": 1,
-      "points": 0
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 196,
       "original_root": 83,
-      "commands": 1569,
-      "chunks": 15,
-      "points": 0
+      "commands": 25,
+      "chunks": 1,
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 197,
@@ -1390,9 +1935,13 @@
     {
       "case": 198,
       "original_root": 85,
-      "commands": 36,
+      "commands": 2,
       "chunks": 1,
-      "points": 0
+      "points": 0,
+      "route": "projection",
+      "projected_total": 13,
+      "retained_budget": 0,
+      "cut_mode": "original"
     },
     {
       "case": 199,
@@ -2445,6 +2994,6 @@
       "points": 0
     }
   ],
-  "commands": 5150973,
-  "chunks": 48543
+  "commands": 1356051,
+  "chunks": 12759
 }
