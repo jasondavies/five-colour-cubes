@@ -49,7 +49,7 @@ lake comparator --config "$config"
 if [[ "$mode" == lower-bound ]]; then
   echo "Lower-bound comparator passed (2 targets); upper bound and sharp threshold NOT checked."
 elif [[ "$mode" == universal ]]; then
-  echo "Universal-collection comparator passed (2 targets); the other 13 claims NOT checked."
+  echo "Universal-collection comparator passed (2 targets); the other 14 claims NOT checked."
 else
   echo "Full comparator passed (all configured targets; Lean and NanoDa)."
 fi

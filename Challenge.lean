@@ -296,4 +296,13 @@ theorem universal_minimum :
     IsLeast {n : ℕ | ∃ cubes : Fin n → Cube,
       (∀ i, UsesAllColours (cubes i)) ∧ AdjacentUniversal cubes} 15 := by sorry
 
+/-- Exactly fifty-six classes of failing fourteen-cube collections, under
+common colour relabelling and simultaneous reflection. -/
+theorem complete_extremal_classification :
+    ∃ representatives : Fin 56 → Fin 14 → Cube,
+      (∀ j i, UsesAllColours (representatives j i)) ∧
+      (∀ j, ¬ HasSolution (representatives j)) ∧
+      (∀ cubes : Fin 14 → Cube, (∀ i, UsesAllColours (cubes i)) →
+        (¬ HasSolution cubes ↔ ∃! j : Fin 56, Equivalent cubes (representatives j))) := by sorry
+
 end FiveColour.Submission

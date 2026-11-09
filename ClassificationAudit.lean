@@ -1,5 +1,7 @@
 module
 public import FiveColour.ClassificationSubmission
+#print axioms FiveColour.Physical.root_projection_below
+#print axioms FiveColour.Packed.CoreExtension.original_exclusion
 #print axioms FiveColour.Physical.Classification.physical_reduction
 #print axioms FiveColour.Physical.Classification.representative_fails
 #print axioms FiveColour.Physical.Classification.representative_inequivalent

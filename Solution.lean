@@ -1,6 +1,7 @@
 module
 public import FiveColour.ComparatorBridge
 public import FiveColour.SubmissionBridge
+public import FiveColour.ClassificationSubmission
 public import FiveColour.BoxThresholds
 public import FiveColour.FrameResults
 public import FiveColour.SmallSupport

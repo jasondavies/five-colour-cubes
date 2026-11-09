@@ -1,11 +1,12 @@
-"""One checked header table for all 342 empty classification roots."""
+"""One checked header table for the classification exclusion-only roots."""
 from generate_five_colour_projection import encoded_header
 from classification_projection import projected_row
 
 
-def generate_headers(info, rows, projections, dest):
-    empty=[i for i,entry in enumerate(info['roots']) if not entry['terminals']]
-    if len(empty)!=342:raise ValueError('unexpected empty-root count')
+def generate_headers(info, rows, projections, dest, core_roots=()):
+    empty=[i for i,entry in enumerate(info['roots']) if not entry['terminals'] and entry['original_root'] not in core_roots]
+    if len(empty)!=342-len(core_roots):raise ValueError('unexpected empty-root count')
+    count=len(empty)
     chosen=[]
     for i in empty:
         original=info['roots'][i]['original_root']
@@ -23,14 +24,14 @@ namespace FiveColour.Packed.ClassificationProjected
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 '''
-    text+='def caseNumbers : Fin 342 → Fin 357 := '+vector(info['roots'][i]['original_root'] for i in empty)+'\n'
-    text+='def goals : Fin 342 → Nat := '+vector(row[3] for row in chosen)+'\n'
-    text+='def budgets : Fin 342 → Nat := '+vector(row[5] for row in chosen)+'\n'
+    text+=f'def caseNumbers : Fin {count} → Fin 357 := '+vector(info['roots'][i]['original_root'] for i in empty)+'\n'
+    text+=f'def goals : Fin {count} → Nat := '+vector(row[3] for row in chosen)+'\n'
+    text+=f'def budgets : Fin {count} → Nat := '+vector(row[5] for row in chosen)+'\n'
     text+='def headers : Array Archive.Header := #[\n  '+',\n  '.join('⟨'+','.join(map(str,encoded_header(row)))+'⟩' for row in chosen)+']\n'
-    text+='''
-abbrev root (i : Fin 342) : Box := Projection.root headers[i.val]!
-abbrev families (i : Fin 342) : Fin 78 → List Cut := Projection.families (goals i) headers[i.val]!
-abbrev HeaderValid (i : Fin 342) : Prop :=
+    text+=f'''
+abbrev root (i : Fin {count}) : Box := Projection.root headers[i.val]!
+abbrev families (i : Fin {count}) : Fin 78 → List Cut := Projection.families (goals i) headers[i.val]!
+abbrev HeaderValid (i : Fin {count}) : Prop :=
   Projection.HeaderValid 14 (caseNumbers i) (budgets i) (goals i) headers[i.val]!
 end FiveColour.Packed.ClassificationProjected
 '''
@@ -48,11 +49,11 @@ set_option maxRecDepth 100000
         text+='end FiveColour.Packed.ClassificationProjected\n'
         (dest/f'HeaderChecks{g}.lean').write_text(text)
     text='module\n'+''.join(f'public import FiveColour.EnumerationChunks.HeaderChecks{g}\n' for g in range(groups))
-    text+='''@[expose] public section
+    text+=f'''@[expose] public section
 namespace FiveColour.Packed.ClassificationProjected
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
-theorem header_valid (i : Fin 342) : HeaderValid i := by
+theorem header_valid (i : Fin {count}) : HeaderValid i := by
   fin_cases i
 '''+''.join(f'  · exact header_valid_{j}\n' for j in range(len(empty)))+'end FiveColour.Packed.ClassificationProjected\n'
     (dest/'HeaderChecks.lean').write_text(text)

@@ -33,10 +33,11 @@ instance (N : Nat) (r : Fin 357) (s G : Nat) : Decidable (ProjectionValidAt N r 
 
 /-- Project an already selected root. No new anchor selection or case coverage
 is asserted for the smaller collection. All inherited bounds remain valid. -/
-theorem root_projection_at (N : Nat) (r : Fin 357) (s G : Nat) (hv : ProjectionValidAt N r s G)
+theorem root_projection_below (N : Nat) (r : Fin 357) (s G : Nat) (hv : ProjectionValidAt N r s G)
     {x : Certificate.Vector 75} (hx : (rootBox (rootCapacity r)).Contains x)
     (hp : (caseProblem r (rootCapacity r).budget N).Admissible x) :
-    ∃ y, (projectedBox r s).Contains y ∧ (projectedProblem r s G).Admissible y := by
+    ∃ y, (projectedBox r s).Contains y ∧ (∀ i, y i ≤ x i) ∧
+      (projectedProblem r s G).Admissible y := by
   obtain ⟨ha, hs, hG, hm⟩ := hv
   have hn (i : Fin 75) : 0 ≤ x i := by
     have hl : 0 ≤ (rootBox (rootCapacity r)).lower i := by
@@ -53,7 +54,7 @@ theorem root_projection_at (N : Nat) (r : Fin 357) (s G : Nat) (hv : ProjectionV
     N (rootCapacity r).budget s ht hb (Int.natCast_nonneg _) (Int.ofNat_le.mpr hs)
     (by rw [← hG, hanchor]; exact Int.ofNat_le.mpr hm)
   have htotal : Certificate.mass y Finset.univ = G := hyt.trans hG.symm
-  refine ⟨y, ?_, (caseProblem_admissible_iff r s G y).mpr
+  refine ⟨y, ?_, (fun i => (hy i).2), (caseProblem_admissible_iff r s G y).mpr
     ⟨htotal, hys, Certificate.hall_families_mono Replay.hallCuts (fun i => (hy i).2) hh⟩⟩
   · intro i
     constructor
@@ -70,6 +71,14 @@ theorem root_projection_at (N : Nat) (r : Fin 357) (s G : Nat) (hv : ProjectionV
         rw [Nat.cast_min]
         exact le_min ((hy i).2.trans (hx i).2) (hc.trans hys)
       · exact (hy i).2.trans (hx i).2
+
+/-- Projection without the coordinatewise conclusion, for exclusion-only clients. -/
+theorem root_projection_at (N : Nat) (r : Fin 357) (s G : Nat) (hv : ProjectionValidAt N r s G)
+    {x : Certificate.Vector 75} (hx : (rootBox (rootCapacity r)).Contains x)
+    (hp : (caseProblem r (rootCapacity r).budget N).Admissible x) :
+    ∃ y, (projectedBox r s).Contains y ∧ (projectedProblem r s G).Admissible y := by
+  obtain ⟨y, hy, _, hp⟩ := root_projection_below N r s G hv hx hp
+  exact ⟨y, hy, hp⟩
 
 /-- The threshold route is the fifteen-copy instance of the general projection. -/
 abbrev ProjectionValid (r : Fin 357) (s G : Nat) : Prop := ProjectionValidAt 15 r s G

@@ -10,7 +10,7 @@ public import FiveColour.EnumerationChunks.HeaderChecks6
 namespace FiveColour.Packed.ClassificationProjected
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
-theorem header_valid (i : Fin 342) : HeaderValid i := by
+theorem header_valid (i : Fin 329) : HeaderValid i := by
   fin_cases i
   · exact header_valid_0
   · exact header_valid_1
@@ -341,17 +341,4 @@ theorem header_valid (i : Fin 342) : HeaderValid i := by
   · exact header_valid_326
   · exact header_valid_327
   · exact header_valid_328
-  · exact header_valid_329
-  · exact header_valid_330
-  · exact header_valid_331
-  · exact header_valid_332
-  · exact header_valid_333
-  · exact header_valid_334
-  · exact header_valid_335
-  · exact header_valid_336
-  · exact header_valid_337
-  · exact header_valid_338
-  · exact header_valid_339
-  · exact header_valid_340
-  · exact header_valid_341
 end FiveColour.Packed.ClassificationProjected

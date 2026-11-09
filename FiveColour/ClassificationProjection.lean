@@ -5,7 +5,7 @@ public import FiveColour.EnumerationRoot
 namespace FiveColour.Packed.ClassificationProjected
 
 /-- Both strict and identity projections exclude the original fourteen-copy root. -/
-theorem covered (i : Fin 342)
+theorem covered (i : Fin 329)
     (h : Chunks.Excludes (goals i) (families i) (root i)) :
     Enumeration.Covers [] 14 (Enumeration.families (caseNumbers i)) (Archive.root (caseNumbers i)) := by
   intro x hx hp

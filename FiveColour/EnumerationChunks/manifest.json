@@ -1,6 +1,7 @@
 {
-  "format": "Q5E1+Q5P2",
-  "projected_roots": 137,
+  "format": "Q5E1+Q5P2+Q5L1",
+  "projected_roots": 133,
+  "core_roots": 13,
   "cases": [
     {
       "case": 0,
@@ -866,10 +867,14 @@
     {
       "case": 81,
       "original_root": 325,
-      "commands": 14957,
-      "chunks": 142,
+      "commands": 2930,
+      "chunks": 341,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 8,
+      "cores": 330,
+      "cover_commands": 1109,
+      "extension_commands": 1821
     },
     {
       "case": 82,
@@ -1742,86 +1747,110 @@
     {
       "case": 171,
       "original_root": 58,
-      "commands": 94990,
-      "chunks": 873,
+      "commands": 2165,
+      "chunks": 25,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 6,
+      "cover_commands": 2114,
+      "extension_commands": 51
     },
     {
       "case": 172,
       "original_root": 59,
-      "commands": 48180,
-      "chunks": 439,
+      "commands": 311,
+      "chunks": 9,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 6,
+      "cover_commands": 260,
+      "extension_commands": 51
     },
     {
       "case": 173,
       "original_root": 60,
-      "commands": 90479,
-      "chunks": 833,
+      "commands": 2169,
+      "chunks": 57,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 40,
+      "cover_commands": 1746,
+      "extension_commands": 423
     },
     {
       "case": 174,
       "original_root": 61,
-      "commands": 38366,
-      "chunks": 337,
+      "commands": 208,
+      "chunks": 8,
       "points": 0,
-      "route": "projection",
-      "projected_total": 12,
-      "retained_budget": 1,
-      "cut_mode": "reduced"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 6,
+      "cover_commands": 160,
+      "extension_commands": 48
     },
     {
       "case": 175,
       "original_root": 62,
-      "commands": 29314,
-      "chunks": 259,
+      "commands": 272,
+      "chunks": 19,
       "points": 0,
-      "route": "projection",
-      "projected_total": 12,
-      "retained_budget": 1,
-      "cut_mode": "reduced"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 18,
+      "cover_commands": 125,
+      "extension_commands": 147
     },
     {
       "case": 176,
       "original_root": 63,
-      "commands": 25730,
-      "chunks": 232,
+      "commands": 57,
+      "chunks": 4,
       "points": 0,
-      "route": "projection",
-      "projected_total": 12,
-      "retained_budget": 1,
-      "cut_mode": "reduced"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 3,
+      "cover_commands": 33,
+      "extension_commands": 24
     },
     {
       "case": 177,
       "original_root": 64,
-      "commands": 71642,
-      "chunks": 661,
+      "commands": 1492,
+      "chunks": 81,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 72,
+      "cover_commands": 779,
+      "extension_commands": 713
     },
     {
       "case": 178,
       "original_root": 65,
-      "commands": 61071,
-      "chunks": 568,
+      "commands": 1215,
+      "chunks": 47,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 39,
+      "cover_commands": 806,
+      "extension_commands": 409
     },
     {
       "case": 179,
       "original_root": 66,
-      "commands": 27996,
-      "chunks": 253,
+      "commands": 632,
+      "chunks": 39,
       "points": 0,
-      "route": "projection",
-      "projected_total": 12,
-      "retained_budget": 1,
-      "cut_mode": "reduced"
+      "route": "core extensions",
+      "projected_total": 11,
+      "cores": 36,
+      "cover_commands": 247,
+      "extension_commands": 385
     },
     {
       "case": 180,
@@ -1837,18 +1866,26 @@
     {
       "case": 181,
       "original_root": 68,
-      "commands": 47238,
-      "chunks": 433,
+      "commands": 207,
+      "chunks": 15,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 10,
+      "cores": 14,
+      "cover_commands": 84,
+      "extension_commands": 123
     },
     {
       "case": 182,
       "original_root": 69,
-      "commands": 61305,
-      "chunks": 565,
+      "commands": 2101,
+      "chunks": 124,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 10,
+      "cores": 116,
+      "cover_commands": 728,
+      "extension_commands": 1373
     },
     {
       "case": 183,
@@ -1864,10 +1901,14 @@
     {
       "case": 184,
       "original_root": 71,
-      "commands": 45696,
-      "chunks": 423,
+      "commands": 253,
+      "chunks": 25,
       "points": 0,
-      "route": "identity projection"
+      "route": "core extensions",
+      "projected_total": 9,
+      "cores": 24,
+      "cover_commands": 97,
+      "extension_commands": 156
     },
     {
       "case": 185,
@@ -3206,6 +3247,6 @@
       "route": "identity projection"
     }
   ],
-  "commands": 1356051,
-  "chunks": 12759
+  "commands": 713099,
+  "chunks": 7535
 }

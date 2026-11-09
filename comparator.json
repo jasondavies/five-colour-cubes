@@ -16,7 +16,8 @@
     "FiveColour.Submission.extremal_inequivalent",
     "FiveColour.Submission.generalized_obstructions",
     "FiveColour.Submission.universal_collection",
-    "FiveColour.Submission.universal_minimum"
+    "FiveColour.Submission.universal_minimum",
+    "FiveColour.Submission.complete_extremal_classification"
   ],
   "definition_names": [],
   "permitted_axioms": [

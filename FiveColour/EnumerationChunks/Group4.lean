@@ -30,23 +30,23 @@ theorem group4Covered : ∀ i, Enumeration.Covers (group4Points i) 14 (Enumerati
   intro i
   fin_cases i
   · exact ClassificationProjected.covered 80 Case80.excludes
-  · exact ClassificationProjected.covered 81 Case81.excludes
-  · exact ClassificationProjected.covered 82 Case82.excludes
-  · exact ClassificationProjected.covered 83 Case83.excludes
-  · exact ClassificationProjected.covered 84 Case84.excludes
-  · exact ClassificationProjected.covered 85 Case85.excludes
-  · exact ClassificationProjected.covered 86 Case86.excludes
-  · exact ClassificationProjected.covered 87 Case87.excludes
-  · exact ClassificationProjected.covered 88 Case88.excludes
-  · exact ClassificationProjected.covered 89 Case89.excludes
-  · exact ClassificationProjected.covered 90 Case90.excludes
-  · exact ClassificationProjected.covered 91 Case91.excludes
-  · exact ClassificationProjected.covered 92 Case92.excludes
-  · exact ClassificationProjected.covered 93 Case93.excludes
-  · exact ClassificationProjected.covered 94 Case94.excludes
-  · exact ClassificationProjected.covered 95 Case95.excludes
-  · exact ClassificationProjected.covered 96 Case96.excludes
-  · exact ClassificationProjected.covered 97 Case97.excludes
-  · exact ClassificationProjected.covered 98 Case98.excludes
-  · exact ClassificationProjected.covered 99 Case99.excludes
+  · exact Case81.covered
+  · exact ClassificationProjected.covered 81 Case82.excludes
+  · exact ClassificationProjected.covered 82 Case83.excludes
+  · exact ClassificationProjected.covered 83 Case84.excludes
+  · exact ClassificationProjected.covered 84 Case85.excludes
+  · exact ClassificationProjected.covered 85 Case86.excludes
+  · exact ClassificationProjected.covered 86 Case87.excludes
+  · exact ClassificationProjected.covered 87 Case88.excludes
+  · exact ClassificationProjected.covered 88 Case89.excludes
+  · exact ClassificationProjected.covered 89 Case90.excludes
+  · exact ClassificationProjected.covered 90 Case91.excludes
+  · exact ClassificationProjected.covered 91 Case92.excludes
+  · exact ClassificationProjected.covered 92 Case93.excludes
+  · exact ClassificationProjected.covered 93 Case94.excludes
+  · exact ClassificationProjected.covered 94 Case95.excludes
+  · exact ClassificationProjected.covered 95 Case96.excludes
+  · exact ClassificationProjected.covered 96 Case97.excludes
+  · exact ClassificationProjected.covered 97 Case98.excludes
+  · exact ClassificationProjected.covered 98 Case99.excludes
 end FiveColour.Packed.EnumerationChunks

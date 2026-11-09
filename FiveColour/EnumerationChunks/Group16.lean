@@ -30,23 +30,23 @@ theorem group16Covered : ∀ i, Enumeration.Covers (group16Points i) 14 (Enumera
   intro i
   fin_cases i
   · exact Case320.covered
-  · exact ClassificationProjected.covered 316 Case321.excludes
-  · exact ClassificationProjected.covered 317 Case322.excludes
-  · exact ClassificationProjected.covered 318 Case323.excludes
-  · exact ClassificationProjected.covered 319 Case324.excludes
-  · exact ClassificationProjected.covered 320 Case325.excludes
-  · exact ClassificationProjected.covered 321 Case326.excludes
-  · exact ClassificationProjected.covered 322 Case327.excludes
-  · exact ClassificationProjected.covered 323 Case328.excludes
+  · exact ClassificationProjected.covered 303 Case321.excludes
+  · exact ClassificationProjected.covered 304 Case322.excludes
+  · exact ClassificationProjected.covered 305 Case323.excludes
+  · exact ClassificationProjected.covered 306 Case324.excludes
+  · exact ClassificationProjected.covered 307 Case325.excludes
+  · exact ClassificationProjected.covered 308 Case326.excludes
+  · exact ClassificationProjected.covered 309 Case327.excludes
+  · exact ClassificationProjected.covered 310 Case328.excludes
   · exact Case329.covered
-  · exact ClassificationProjected.covered 324 Case330.excludes
+  · exact ClassificationProjected.covered 311 Case330.excludes
   · exact Case331.covered
-  · exact ClassificationProjected.covered 325 Case332.excludes
-  · exact ClassificationProjected.covered 326 Case333.excludes
-  · exact ClassificationProjected.covered 327 Case334.excludes
-  · exact ClassificationProjected.covered 328 Case335.excludes
-  · exact ClassificationProjected.covered 329 Case336.excludes
-  · exact ClassificationProjected.covered 330 Case337.excludes
-  · exact ClassificationProjected.covered 331 Case338.excludes
-  · exact ClassificationProjected.covered 332 Case339.excludes
+  · exact ClassificationProjected.covered 312 Case332.excludes
+  · exact ClassificationProjected.covered 313 Case333.excludes
+  · exact ClassificationProjected.covered 314 Case334.excludes
+  · exact ClassificationProjected.covered 315 Case335.excludes
+  · exact ClassificationProjected.covered 316 Case336.excludes
+  · exact ClassificationProjected.covered 317 Case337.excludes
+  · exact ClassificationProjected.covered 318 Case338.excludes
+  · exact ClassificationProjected.covered 319 Case339.excludes
 end FiveColour.Packed.EnumerationChunks

@@ -17,6 +17,8 @@ import subprocess
 import tarfile
 import tempfile
 from classification_projection import load_projections, generate_projected_case
+from classification_core_inputs import load_core_inputs
+from classification_cores import generate_core_case
 from generate_five_colour_chunks import packed
 from generate_five_colour_packed import cut
 
@@ -215,6 +217,9 @@ def generate(dest,work,workers):
     if info['format']!=1 or len(info['roots'])!=349:raise ValueError('bad classification input')
     originals=[list(map(int,l.split())) for l in (ROOT/'data/q5-threshold-cases-size15.txt').read_text().splitlines()[1:]]
     projections, projection_cases = load_projections(originals, work)
+    core_roots, _ = load_core_inputs(ROOT, work)
+    if not core_roots.keys() <= {r["original_root"] for r in info["roots"] if not r["terminals"]}:
+        raise ValueError("core replacement must exclude an originally empty root")
     if not projections.keys() <= {r['original_root'] for r in info['roots']}:
         raise ValueError('projected root is outside the classification cover')
     rows=[]
@@ -244,10 +249,15 @@ def generate(dest,work,workers):
             (work/f'case-{i}.q5p').write_bytes(payload)
     dest.mkdir(parents=True,exist_ok=True)
     hall = HallFamilies(geometry)
+    (work/"core-families.txt").write_text("".join(str(len(cs))+"\n"+"".join(
+        f"{m&((1<<64)-1)} {m>>64} {r}\n" for m,r in cs) for cs in hall.cuts))
     # Populate once before workers: subsequent accesses are read-only.
     root_families = [hall.reduced(row) for row in rows]
     def one(i):
         entry=info['roots'][i];points=[]
+        if entry['original_root'] in core_roots:
+            record, folder = core_roots[entry['original_root']]
+            return generate_core_case(ROOT,i,entry['original_root'],rows[i],record,folder,hall,work,dest)
         if entry['original_root'] in projections:
             if entry['terminals']:
                 raise ValueError('cannot replace a nonempty terminal root by exclusion')
@@ -263,9 +273,9 @@ def generate(dest,work,workers):
         subprocess.run([str(ROOT/'build/five_colour_enumeration'),str(ROOT/'data/five-colour-geometry.txt'),str(cases),str(work/f'case-{i}.q5p'),str(i),'128',str(tsv),str(ffile),str(pfile)],check=True,stdout=subprocess.DEVNULL)
         return generate_case(i,rows[i],entry['original_root'],points,hall.cuts,fs,tsv,dest,exclude=not points)
     with ThreadPoolExecutor(max_workers=workers) as pool:records=list(pool.map(one,range(349)))
-    (dest/'manifest.json').write_text(json.dumps({'format':'Q5E1+Q5P2','projected_roots':len(projections),'cases':records,'commands':sum(r['commands'] for r in records),'chunks':sum(r['chunks'] for r in records)},indent=2)+'\n')
+    (dest/'manifest.json').write_text(json.dumps({'format':'Q5E1+Q5P2+Q5L1','projected_roots':len(projections.keys()-core_roots.keys()),'core_roots':len(core_roots),'cases':records,'commands':sum(r['commands'] for r in records),'chunks':sum(r['chunks'] for r in records)},indent=2)+'\n')
     from classification_headers import generate_headers
-    indices = generate_headers(info, rows, projections, dest)
+    indices = generate_headers(info, rows, projections, dest, core_roots)
     # Keep groups small so the aggregate does not import hundreds of proofs into
     # one large tactic invocation.
     for group in range(18):
@@ -275,7 +285,7 @@ def generate(dest,work,workers):
         text+=f'def group{group}Roots : Fin {len(ids)} → Fin 357 := !['+','.join(str(info['roots'][i]['original_root']) for i in ids)+']\n'
         text+=f'def group{group}Points : Fin {len(ids)} → List Nat := !['+','.join(f'Case{i}.points' if info['roots'][i]['terminals'] else '[]' for i in ids)+']\n'
         text+=f'theorem group{group}Covered : ∀ i, Enumeration.Covers (group{group}Points i) 14 (Enumeration.families (group{group}Roots i)) (Archive.root (group{group}Roots i)) := by\n  intro i\n  fin_cases i\n'
-        text+=''.join(f'  · exact Case{i}.covered\n' if info['roots'][i]['terminals'] else f'  · exact ClassificationProjected.covered {indices[i]} Case{i}.excludes\n' for i in ids)+'end FiveColour.Packed.EnumerationChunks\n'
+        text+=''.join(f'  · exact Case{i}.covered\n' if info['roots'][i]['terminals'] or info['roots'][i]['original_root'] in core_roots else f'  · exact ClassificationProjected.covered {indices[i]} Case{i}.excludes\n' for i in ids)+'end FiveColour.Packed.EnumerationChunks\n'
         (dest/f'Group{group}.lean').write_text(text)
     return records
 

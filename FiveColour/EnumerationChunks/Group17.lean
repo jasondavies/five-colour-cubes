@@ -18,13 +18,13 @@ def group17Points : Fin 9 → List Nat := ![[],[],[],[],[],[],[],[],[]]
 theorem group17Covered : ∀ i, Enumeration.Covers (group17Points i) 14 (Enumeration.families (group17Roots i)) (Archive.root (group17Roots i)) := by
   intro i
   fin_cases i
-  · exact ClassificationProjected.covered 333 Case340.excludes
-  · exact ClassificationProjected.covered 334 Case341.excludes
-  · exact ClassificationProjected.covered 335 Case342.excludes
-  · exact ClassificationProjected.covered 336 Case343.excludes
-  · exact ClassificationProjected.covered 337 Case344.excludes
-  · exact ClassificationProjected.covered 338 Case345.excludes
-  · exact ClassificationProjected.covered 339 Case346.excludes
-  · exact ClassificationProjected.covered 340 Case347.excludes
-  · exact ClassificationProjected.covered 341 Case348.excludes
+  · exact ClassificationProjected.covered 320 Case340.excludes
+  · exact ClassificationProjected.covered 321 Case341.excludes
+  · exact ClassificationProjected.covered 322 Case342.excludes
+  · exact ClassificationProjected.covered 323 Case343.excludes
+  · exact ClassificationProjected.covered 324 Case344.excludes
+  · exact ClassificationProjected.covered 325 Case345.excludes
+  · exact ClassificationProjected.covered 326 Case346.excludes
+  · exact ClassificationProjected.covered 327 Case347.excludes
+  · exact ClassificationProjected.covered 328 Case348.excludes
 end FiveColour.Packed.EnumerationChunks

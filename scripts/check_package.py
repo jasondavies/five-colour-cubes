@@ -47,7 +47,7 @@ for path in [*(root/'FiveColour').rglob('*.lean'), root/'Solution.lean']:
 challenge=(root/'Challenge.lean').read_text()
 assert re.findall(r'^(?:public )?import (.+)$',challenge,re.M)==['Mathlib']
 comparison=json.loads((root/'comparator.json').read_text())
-assert len(re.findall(r':= by sorry',challenge))==len(comparison['theorem_names'])==15
+assert len(re.findall(r':= by sorry',challenge))==len(comparison['theorem_names'])==16
 for path in [*(root/'FiveColour').rglob('*.lean'),root/'FiveColour.lean',root/'Solution.lean']:
  assert not re.search(r'^(?:public )?import Challenge\b',path.read_text(),re.M),path
 rows=(root/'data/q5-projected-root-cases.txt').read_text().splitlines()

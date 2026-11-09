@@ -29,24 +29,24 @@ def group6Points : Fin 20 → List Nat := ![[],[],[],[],[],[],[],[],[],[],[],[],
 theorem group6Covered : ∀ i, Enumeration.Covers (group6Points i) 14 (Enumeration.families (group6Roots i)) (Archive.root (group6Roots i)) := by
   intro i
   fin_cases i
-  · exact ClassificationProjected.covered 120 Case120.excludes
-  · exact ClassificationProjected.covered 121 Case121.excludes
-  · exact ClassificationProjected.covered 122 Case122.excludes
-  · exact ClassificationProjected.covered 123 Case123.excludes
-  · exact ClassificationProjected.covered 124 Case124.excludes
-  · exact ClassificationProjected.covered 125 Case125.excludes
-  · exact ClassificationProjected.covered 126 Case126.excludes
-  · exact ClassificationProjected.covered 127 Case127.excludes
-  · exact ClassificationProjected.covered 128 Case128.excludes
-  · exact ClassificationProjected.covered 129 Case129.excludes
-  · exact ClassificationProjected.covered 130 Case130.excludes
-  · exact ClassificationProjected.covered 131 Case131.excludes
-  · exact ClassificationProjected.covered 132 Case132.excludes
-  · exact ClassificationProjected.covered 133 Case133.excludes
-  · exact ClassificationProjected.covered 134 Case134.excludes
-  · exact ClassificationProjected.covered 135 Case135.excludes
-  · exact ClassificationProjected.covered 136 Case136.excludes
-  · exact ClassificationProjected.covered 137 Case137.excludes
-  · exact ClassificationProjected.covered 138 Case138.excludes
-  · exact ClassificationProjected.covered 139 Case139.excludes
+  · exact ClassificationProjected.covered 119 Case120.excludes
+  · exact ClassificationProjected.covered 120 Case121.excludes
+  · exact ClassificationProjected.covered 121 Case122.excludes
+  · exact ClassificationProjected.covered 122 Case123.excludes
+  · exact ClassificationProjected.covered 123 Case124.excludes
+  · exact ClassificationProjected.covered 124 Case125.excludes
+  · exact ClassificationProjected.covered 125 Case126.excludes
+  · exact ClassificationProjected.covered 126 Case127.excludes
+  · exact ClassificationProjected.covered 127 Case128.excludes
+  · exact ClassificationProjected.covered 128 Case129.excludes
+  · exact ClassificationProjected.covered 129 Case130.excludes
+  · exact ClassificationProjected.covered 130 Case131.excludes
+  · exact ClassificationProjected.covered 131 Case132.excludes
+  · exact ClassificationProjected.covered 132 Case133.excludes
+  · exact ClassificationProjected.covered 133 Case134.excludes
+  · exact ClassificationProjected.covered 134 Case135.excludes
+  · exact ClassificationProjected.covered 135 Case136.excludes
+  · exact ClassificationProjected.covered 136 Case137.excludes
+  · exact ClassificationProjected.covered 137 Case138.excludes
+  · exact ClassificationProjected.covered 138 Case139.excludes
 end FiveColour.Packed.EnumerationChunks

@@ -1,3 +1,5 @@
+'FiveColour.Physical.root_projection_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiveColour.Packed.CoreExtension.original_exclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FiveColour.Physical.Classification.physical_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FiveColour.Physical.Classification.representative_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FiveColour.Physical.Classification.representative_inequivalent' depends on axioms: [propext,
@@ -6,4 +8,4 @@
 'FiveColour.Physical.Classification.complete_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FiveColour.Physical.Classification.classification_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
 'FiveColour.Submission.complete_extremal_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
-Audited 6 theorems; only standard axioms occur.
+Audited 8 theorems; only standard axioms occur.

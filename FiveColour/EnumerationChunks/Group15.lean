@@ -29,24 +29,24 @@ def group15Points : Fin 20 → List Nat := ![[],[],[],[],Case304.points,[],Case3
 theorem group15Covered : ∀ i, Enumeration.Covers (group15Points i) 14 (Enumeration.families (group15Roots i)) (Archive.root (group15Roots i)) := by
   intro i
   fin_cases i
-  · exact ClassificationProjected.covered 298 Case300.excludes
-  · exact ClassificationProjected.covered 299 Case301.excludes
-  · exact ClassificationProjected.covered 300 Case302.excludes
-  · exact ClassificationProjected.covered 301 Case303.excludes
+  · exact ClassificationProjected.covered 285 Case300.excludes
+  · exact ClassificationProjected.covered 286 Case301.excludes
+  · exact ClassificationProjected.covered 287 Case302.excludes
+  · exact ClassificationProjected.covered 288 Case303.excludes
   · exact Case304.covered
-  · exact ClassificationProjected.covered 302 Case305.excludes
+  · exact ClassificationProjected.covered 289 Case305.excludes
   · exact Case306.covered
-  · exact ClassificationProjected.covered 303 Case307.excludes
-  · exact ClassificationProjected.covered 304 Case308.excludes
-  · exact ClassificationProjected.covered 305 Case309.excludes
-  · exact ClassificationProjected.covered 306 Case310.excludes
-  · exact ClassificationProjected.covered 307 Case311.excludes
-  · exact ClassificationProjected.covered 308 Case312.excludes
-  · exact ClassificationProjected.covered 309 Case313.excludes
-  · exact ClassificationProjected.covered 310 Case314.excludes
-  · exact ClassificationProjected.covered 311 Case315.excludes
-  · exact ClassificationProjected.covered 312 Case316.excludes
-  · exact ClassificationProjected.covered 313 Case317.excludes
-  · exact ClassificationProjected.covered 314 Case318.excludes
-  · exact ClassificationProjected.covered 315 Case319.excludes
+  · exact ClassificationProjected.covered 290 Case307.excludes
+  · exact ClassificationProjected.covered 291 Case308.excludes
+  · exact ClassificationProjected.covered 292 Case309.excludes
+  · exact ClassificationProjected.covered 293 Case310.excludes
+  · exact ClassificationProjected.covered 294 Case311.excludes
+  · exact ClassificationProjected.covered 295 Case312.excludes
+  · exact ClassificationProjected.covered 296 Case313.excludes
+  · exact ClassificationProjected.covered 297 Case314.excludes
+  · exact ClassificationProjected.covered 298 Case315.excludes
+  · exact ClassificationProjected.covered 299 Case316.excludes
+  · exact ClassificationProjected.covered 300 Case317.excludes
+  · exact ClassificationProjected.covered 301 Case318.excludes
+  · exact ClassificationProjected.covered 302 Case319.excludes
 end FiveColour.Packed.EnumerationChunks
