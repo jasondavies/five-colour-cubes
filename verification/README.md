@@ -28,6 +28,25 @@ resource report measures the outer driver and does not aggregate all sandboxed
 subprocess CPU and memory use. Cache reuse in the preceding builds is distinct
 from the fresh external-kernel acceptance.
 
+No complete cold-build wall time, aggregate peak memory or disk requirement
+has been measured. For cheaper verification without Lean, run
+`make check-code WORKERS=2` and `make check-classification-data WORKERS=2`.
+These execute native certificate checks, independent audits and source
+regeneration checks, rather than kernel replay.
+
+To check the current publication proof inputs against the comparator record:
+
+```sh
+python3 -S scripts/check_publication_sources.py
+```
+
+This compares all Lean sources, mathematical data (including text root
+ledgers), toolchain and dependency pins, and Lake/comparator configuration.
+It rejects missing, changed or additional inputs in that scope. Manuscript,
+documentation and verification-script changes are outside the check; a pass
+establishes input identity, not a new verification run. Use `--record` to
+check another published extract.
+
 Source-manifest keys are repository-relative paths. Tool hashes use executable
 names rather than installation paths. The concise comparison output, resource
 report and axiom report are retained alongside these extracts. Each record's

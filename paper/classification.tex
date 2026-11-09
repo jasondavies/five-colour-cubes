@@ -99,7 +99,28 @@ The only residual nonidentity symmetry sends
  \longmapsto (y_4,y_1,y_2;x_3,x_4,x_2).
 \]
 It fixes 11 distributions: $y_4=x_2$, $y_1=x_3$, $y_2=x_4$ and
-$x_2x_4=0$. Burnside's lemma gives $(91+11)/2=51$ classes. The three
+$x_2x_4=0$. To refine the count by support, let $n$ count normalized
+distributions and $f$ those fixed by this involution:
+\[
+\begin{array}{c|rr|r|r}
+ \text{varieties}&n&f&\text{classes }(n+f)/2&\text{labelled }120n\\\hline
+ 3&7&3&5&840\\
+ 4&40&0&20&4800\\
+ 5&44&8&26&5280\\\hline
+ \text{total}&91&11&51&10920
+\end{array}
+\]
+With one active repeat in each group there are $3\cdot3-2=7$
+allowed pairs. Support sizes $(1,2)$ and $(2,1)$ in the two groups each
+give $5\cdot4=20$ distributions. Sizes $(1,3)$ and $(3,1)$ each give
+$\binom42=6$, while $(2,2)$ gives $2\cdot4^2=32$.
+The fixed-point equations give three distributions of support three and
+eight of support five. A fixed distribution has stabilizer of order two
+in the 240-element symmetry group; a nonfixed one has trivial stabilizer.
+Thus the labelled count in each row is
+$120f+240(n-f)/2=120n$.
+The other two forms contribute $270+240=510$ labelled collections,
+all of support six. The three
 forms cannot be equivalent, since their opposite-repeat totals are
 respectively four, zero and three.
 

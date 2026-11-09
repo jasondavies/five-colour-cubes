@@ -137,7 +137,7 @@ half-mask matching step uses greedy selection after single-mask checks.
 uniform three-variety obstruction for every shape and orientation.
 A separate C++ audit reconstructs the geometry and checks these profiles.
 
-\subsection{Extremal obstructions}
+\subsection{Extremal obstructions}\label{app:extremal}
 The multiplicity bound, three-variety classification and generalized
 obstruction family have separate physical Lean proofs, independent of
 \path{Threshold15} and the interval replay.
@@ -249,6 +249,10 @@ the exported dependency closure with both external kernels. The latter requires
 \texttt{leanchecker} and \texttt{nanoda\_bin} executables.
 The pinned README and \path{FiveColour/README.md} give prerequisites and tuning.
 The shorter \texttt{make check} omits the complete certificate replay.
+For verification without Lean, run \texttt{make check-code WORKERS=2}
+and \texttt{make check-classification-data WORKERS=2}. These check the
+native certificates, independent audits and generated sources; they do not
+replace kernel checking.
 
 A fresh checkout must build the proof after obtaining the dependency cache.
 Cached reruns validate Lake dependency traces; the external comparison checks
@@ -270,6 +274,9 @@ accepted the complete solution export. The run took 10 hours 32 minutes
 The preceding classification and full-project runs used validated caches;
 the external kernels checked the export afresh. These are observed execution
 times, not a controlled performance comparison.
+No complete cold-build time, aggregate peak memory or disk requirement has
+been measured. The retained resource report covers the outer comparison
+driver, not all sandboxed subprocesses.
 The public provenance extract \path{verification/optimized-comparator.json}
 identifies the measured source snapshot by the SHA-256 digest of its manifest of file hashes
 and modes, rather than a Git commit:

@@ -64,6 +64,7 @@ Consequently, eleven sources containing seven copies of one variety solve:
 one of the other four sources sharing a corner completes the seven-copy
 target; otherwise all four are disjoint and the lemma applies.
 
+\begin{samepage}
 \begin{theorem}[Support thresholds]\label{thm:support}
 For every integer $k\ge1$,
 \[
@@ -71,6 +72,7 @@ For every integer $k\ge1$,
 \]
 Three is therefore the minimum number of varieties in a fourteen-cube obstruction.
 \end{theorem}
+\end{samepage}
 \begin{proof}
 The one-variety case is immediate. Thirteen sources in two varieties include
 seven of one variety, so the preceding consequence gives the upper bound.
@@ -208,3 +210,7 @@ It sends $(r,s)$ to $(\sigma(s),\sigma(r))$, pairing $(2,1)$ with $(3,4)$
 and $(3,2)$ with $(4,1)$, while fixing $(2,4),(3,1),(4,2)$.
 This gives exactly the five inequivalent representatives displayed.
 \end{proof}
+This displayed proof uses the complete classification. The formal endpoint
+instead has an independent proof without interval certificates
+(Appendix~\ref{app:extremal}); the repository also retains the elementary
+necessity argument in \path{paper/three-variety-necessity.tex}.
