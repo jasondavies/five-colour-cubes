@@ -114,20 +114,31 @@ be targets. Each such target has more corners that only its own variety fits
 than there are copies of that variety: five corners need A, with four copies,
 and six need B or C, with five copies each.
 
-The **56-class classification of all fourteen-cube obstructions is staged
-separately**. The original 349-root route passed a complete Lean replay and
-physical-endpoint axiom audit; its [provenance extract](verification/classification-baseline.json)
-identifies the checked sources. The revised route excludes all 342 empty roots through one projection bridge:
-137 use smaller Hall-budget projections, and 205 retain their original total
-and budget. Only the seven nonempty roots use terminal enumeration. The
-nontrivial projections reduce certificate instructions from
-5,150,973 to 1,356,051. The revised route passed the complete Lean replay and physical-endpoint
-axiom audit on 8 November; its [verification extract](verification/classification.json)
-identifies those proof sources. The
-[draft section](paper/classification.tex) is not yet included in the manuscript PDF.
-The [classification route](data/classification-certificates.txt)
-is separate from `verify-full` and from the current fifteen-claim Comparator
-interface; neither certifies this additional result.
+The **complete classification has 56 symmetry classes**, described by three
+forms: 51 classes from the generalized family, four all-adjacent classes,
+and one mixed exception. With fixed colour names these give 11,430 inventories;
+every obstruction uses at most six varieties. The
+[complete section](paper/classification.tex) is included in the paper, and its
+deletion argument gives a second proof of the fifteen-cube threshold.
+The independent elementary necessity proof for the three-variety case is
+retained as a [supplementary proof note](paper/three-variety-necessity.tex).
+
+The [Lean classification](FiveColour/Classification56.lean) proves equivalence
+to exactly one of 56 concrete representatives, independently of the
+fifteen-cube theorem. The symbolic 51+4+1 forms and labelled counts follow from
+the paper's arguments and separate normal-form/orbit audit.
+The [certificate route](data/classification-certificates.txt) covers 349 roots:
+329 direct or projected exclusions, thirteen projected-core covers with
+extension exclusions, and seven terminal enumerations. It contains 713,099
+instructions and 81 classification terminals. All 710 smaller cores are ruled
+out as possible subcollections of fourteen-copy failures.
+
+Complete Lean replay and the physical-endpoint axiom audit passed on
+8 November; the [verification extract](verification/classification.json)
+identifies those sources. The **sixteen-claim external comparison**, including
+this classification, passed both kernels on 9 November. The exported threshold
+continues to use the separate 279-certificate proof; the deletion argument is
+proved in the manuscript.
 
 ## Universal collections
 
@@ -155,10 +166,12 @@ and independent physical audit include all 75 target matchings.
 ## Verification
 
 The complete physical corner theorem and cuboid classification have been checked
-in Lean. To reproduce the whole proof from the committed inputs:
+in Lean. To reproduce the proofs and classification audits from the committed inputs:
 
 ```sh
 lake exe cache get
+make check-classification-data WORKERS=2
+make classification-replay WORKERS=2
 make verify-full WORKERS=2
 ```
 
@@ -168,13 +181,13 @@ dependencies are pinned in `lean-toolchain` and `lake-manifest.json`.
 
 | Command | What it establishes |
 | --- | --- |
-| `make verify-full` | All code audits, Lean infrastructure, all 279 certificates, the final corner theorem, unconditional cuboid results and axiom audits. |
+| `make verify-full` | Threshold code audits, Lean infrastructure, all 279 threshold certificates, unconditional extensions and their axiom audits; builds the classification through `Solution`. Use the dedicated classification commands for its native checks and axiom report. |
 | `make check` | Code audits and Lean infrastructure. **Partial verification:** it does not check the complete corner proof. |
 | `make check-replay-data` | Regenerates in a temporary directory and compares every retained file without modifying it. Included in `check-code`. |
 | `make replay-data` | Explicitly regenerates the retained Lean proof sources. Generation alone proves nothing. |
 | `make replay` | Checks all generated certificates, assembles the corner theorem and audits its axioms. The generated proof sources are retained. |
 | `make check-extensions` | Applies the corner theorem to all cuboid and support results. Requires completed replay. |
-| `make check-classification-data` | Separately checks the 349-root route (342 exclusions and seven terminal enumerations), physical/orbit data, rejection controls and retained generated sources. |
+| `make check-classification-data` | Checks the 349-root route (329 exclusions, thirteen core-extension groups and seven terminal enumerations), physical/orbit data, rejection controls and retained generated sources. |
 | `make classification-replay` | Separately checks the complete 56-representative Lean classification and its axiom report. |
 | `make paper` | Builds the manuscript PDF; additionally requires latexmk and LaTeX. |
 
@@ -273,6 +286,8 @@ a dirty snapshot is not described as that commit. From the extracted archive:
 sha256sum -c SHA256SUMS
 python3 -S scripts/bootstrap_review.py
 lake exe cache get
+make check-classification-data WORKERS=2
+make classification-replay WORKERS=2
 make verify-full WORKERS=2
 ```
 
@@ -287,17 +302,18 @@ described in the paper and [formalization.yaml](formalization.yaml).
 Ordinary CI runs `make check` and caches project builds. The manually triggered
 [full verification workflow](.github/workflows/full-replay.yml) runs
 `make verify-full` from a fresh checkout, with two workers and a six-hour limit.
-Its complete run includes the unconditional cuboid results. Neither workflow
+Its complete run includes the unconditional cuboid results and builds the classification imported by `Solution`. The classification data and axiom checks have separate commands. Neither workflow
 claims an external-kernel comparator pass.
 The [formalisation guide](FiveColour/README.md#replay-operation-and-provenance)
 describes the workflow artifacts and what to preserve for a permanent release.
 
 ## Palomar interface and external comparison
 
-[Challenge.lean](Challenge.lean) states 15 claims using only Mathlib: the corner
+[Challenge.lean](Challenge.lean) states 16 claims using only Mathlib: the corner
 threshold and sharpness, both cuboid thresholds, support thresholds, the
 multiplicity bound, the five-class three-variety classification and the generalized
-obstruction family, and the universal minimum and construction. It defines varieties through proper rotations,
+obstruction family, the universal minimum and construction, and the complete
+56-class classification. It defines varieties through proper rotations,
 not catalogue indices. The cuboid model specifies corners, edge positions,
 face interiors and interior positions by their exposed faces.
 
@@ -312,26 +328,26 @@ NanoDa, the two mandatory Palomar checkers. It exports the complete proof
 dependency closure and checks it again, so cached Lake artifacts do not make
 this comparison a cached verification.
 
-**All fifteen claims passed on 8 November 2026.** Statements, shared definitions
+**All sixteen claims passed on 9 November 2026.** Statements, shared definitions
 and permitted axioms passed comparison, and both NanoDa and Lean's standalone
-kernel accepted the complete solution export. The run took **4 h 13 min 28 s**
-using validated Lake artifacts; it excludes a fresh project build.
+kernel accepted the complete solution export. The run took **10 h 32 min 48 s**
+using validated Lake artifacts; it excludes a fresh project build. This is an
+observed execution time, not a controlled performance comparison.
 
-The [comparison provenance extract](verification/optimized-comparator.json) identifies source
-snapshot `060558e520c7`, the actual dependency trees, tool binaries and settings.
-Its [complete output](verification/optimized-comparator-output.txt),
-[resource measurements](verification/optimized-comparator-resources.txt), and
-[preceding verification extract](verification/optimized-full.json) are retained.
-The [publication policy](verification/README.md) distinguishes these sanitized
-extracts from raw local records, identified by their checksums.
-The Lean proof sources and certificate inputs match this comparison and its
-preceding full verification, including the revised shared projection bridge.
-The comparison overlapped other verification work; its duration is an observed
-run time, not a controlled performance comparison. The complete classification
-has a separate replay.
-This scope excludes the separately staged complete 56-class classification and
-the minimum-universal spanning-tree corollary, which is outside the comparator
-interface. The corollary is included in the ordinary Lean build and axiom audit.
+The [comparison provenance extract](verification/optimized-comparator.json)
+identifies source snapshot `940980304874`, dependency trees, tool binaries and
+settings. Its [complete output](verification/optimized-comparator-output.txt),
+[resource report](verification/optimized-comparator-resources.txt),
+[preceding project verification](verification/optimized-full.json) and
+[classification verification](verification/classification.json) are retained.
+The Lean proof sources and certificate inputs match all three records. The
+[publication policy](verification/README.md) distinguishes these sanitized
+extracts from raw local records, identified by their checksums. The resource
+report measures the outer driver; sandboxed subprocess CPU and memory are
+not a complete aggregate measurement.
+
+The minimum-universal spanning-tree corollary is checked by the ordinary Lean
+build and axiom audit but remains outside the sixteen-claim interface.
 
 The narrower `make check-comparator-universal` checks the two universal claims
 without the interval replay; `make check-comparator-lower` checks only the face

@@ -99,9 +99,12 @@ verification scope. formalization.yaml records the formalisation and external
 comparison status. Audit.lean, ExtensionsAudit.lean, FiveColour/ProjectedChunks/Audit.lean and
 ClassificationAudit.lean list their separately audited declarations.
 
-make verify-full checks the established threshold route and its extensions.
-The staged complete classification is separate; see README.md and
-data/classification-certificates.txt for its commands and current status.
+make verify-full checks the threshold route and its extensions, and builds
+Solution including the complete classification. Run the dedicated classification
+checks as well:
+  make check-classification-data WORKERS=2
+  make classification-replay WORKERS=2
+See README.md and data/classification-certificates.txt for their exact scope.
 The external comparison is also a separate command:
   make comparator
 

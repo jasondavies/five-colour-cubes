@@ -173,11 +173,20 @@ specializes this correspondence to the threshold route, with projected totals
 from 9 to 15.
 
 For the separate complete classification, `EnumerationChunks/Headers.lean`
-stores the 342 empty-root headers; `EnumerationChunks/HeaderChecks*.lean`
+stores the 329 exclusion-only headers; `EnumerationChunks/HeaderChecks*.lean`
 checks them. `ClassificationProjection.lean` applies the same bridge at an
-original total of fourteen: 137 projections reduce the total, while 205
-retain it. The seven remaining roots use enumeration certificates containing
-the 81 terminal inventories. This route has its own replay and axiom audit.
+original total of fourteen: 133 projections reduce the total, while 196
+retain it. `CoreExtension.lean` handles thirteen further empty roots: complete
+projected-core covers identify 710 smaller vectors, and exclusions with the
+original upper bounds rule out all fourteen-copy extensions.
+`root_projection_below` retains the coordinatewise inequality needed for this
+transfer. The seven nonempty roots use enumeration certificates containing
+the 81 terminal inventories. This route has its own replay and axiom audit. The successful records are
+[`classification.json`](../verification/classification.json) and
+[`optimized-comparator.json`](../verification/optimized-comparator.json), whose
+sixteen claims include `Submission.complete_extremal_classification`. The
+formal endpoint uses 56 concrete representatives; the symbolic forms and
+labelled counts are established by the manuscript and independent audit.
 
 `Physical.counterexample_packed_vector` proves that any physical counterexample
 has an exact base-1024 encoding with digits at most seven, the correct total
@@ -211,9 +220,10 @@ from the pinned `colour-cubes-core` library. `Puzzle.HasSolution` specialises th
 shared geometric model to targets using all five colours; `Physical.HasSolution`
 is its equivalent enumerated-rotation form.
 
-The root `Challenge.lean` imports only Mathlib and has fifteen intentional
+The root `Challenge.lean` imports only Mathlib and has sixteen intentional
 theorem holes. It is excluded from the proof library. `Solution.lean` supplies
-the corner, cuboid, support, extremal and universal-collection statements. `SubmissionModel.lean`
+the corner, cuboid, support, extremal, universal-collection and complete
+classification statements. `SubmissionModel.lean`
 restates the physical models without a catalogue; `SubmissionBridge.lean` proves
 that rotation classes, physical copy counts, global symmetries and box slots
 agree with the models used by the proofs. External comparison uses Lean and NanoDa.
@@ -297,7 +307,7 @@ three sources per repeated colour. Their three smaller pairs form a spanning
 tree on the other four colours. The proof combines the physical supplier lemma
 with a kernel-checked three-pair lemma and Mathlib's tree criterion. These
 structural conclusions are included in `Audit.lean`, but are outside the
-current fifteen-claim comparator interface.
+current sixteen-claim comparator interface.
 
 The fifteen-source upper witness is the cyclic orbit of three face tuples in
 `Submission.universalFamily`. `UniversalData.lean` stores 75 injective copy
@@ -310,7 +320,7 @@ distinct varieties and universality. Both have independent geometric
 statements in `Challenge.lean` and appear in the extension axiom audit.
 `make check-comparator-universal` checks these two claims with both external
 kernels; it does not require the interval replay. Both claims also passed the
-[complete fifteen-claim comparison](../verification/optimized-comparator.json).
+[complete sixteen-claim comparison](../verification/optimized-comparator.json).
 
 ## Cuboid classification
 

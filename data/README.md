@@ -75,11 +75,16 @@ and writes its report under `build/checks/`.
 fourteen-cube enumeration: 349 roots, 81 terminal inventories and 56 symmetry
 representatives. `five-colour-classification-projections.json` and its
 `.tar.gz` archive replace 137 empty-root enumerations with smaller projected
-exclusions, preserving the original root cover and terminal list.
+exclusions, preserving the original root cover and terminal list. The
+`five-colour-classification-cores.json` manifest and its `.tar.gz` archive
+contain thirteen complete projected-core covers and 710 exclusions of all
+original-bound extensions. These supersede four of the retained projected
+candidates and nine direct enumerations.
 See [classification-certificates.txt](classification-certificates.txt)
 for the format, proof connections and commands. `make check-classification-data`
 checks the archive and generated sources without rewriting them;
 `make classification-replay` builds the physical classification and audits its
-axioms. This route has its own verification record under
-`build/classification-replay/`; the existing threshold verification records do
-not certify this additional result.
+axioms. Its successful extract is [classification.json](../verification/classification.json).
+The [sixteen-claim comparator](../verification/optimized-comparator.json) also
+includes its physical endpoint. Raw local logs remain under ignored
+`build/classification-replay/`.

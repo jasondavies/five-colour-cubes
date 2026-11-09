@@ -1,5 +1,3 @@
-% Staged section: include from extremal.tex only after the complete enumeration
-% replay and physical-classification axiom audit have passed.
 \subsection{The complete fourteen-cube classification}\label{sec:classification14}
 The preceding family accounts for most, but not all, extremal obstructions.
 There are two further forms, both using six varieties. Throughout this
@@ -61,8 +59,10 @@ $(+x,-x,+y,-y,+z,-z)$:
  Y&(0,4,1,4,3,2)&3&4
 \end{array}
 \]
-Only $O$ is opposite-repeat. The arc union misses $04,21,23,34$; its
-bidirected edges are $01,02,03,13,14,24$. The only four-cycle is
+Only $O$ is opposite-repeat. The arc union misses $04,21,23,34$.
+Its bidirected edges are
+\[01,02,03,13,14,24.\]
+The only four-cycle is
 $0\!-\!1\!-\!4\!-\!2\!-\!0$, corresponding to $O$. For each repeated colour,
 exactly two bicoloured corners occur. They fix the listed adjacent variety
 up to reversal, and every reverse requires a missing arc. These six
@@ -108,25 +108,34 @@ to fourteen sources. Theorem~\ref{thm:multiplicity-five}, independently of
 the fifteen-cube threshold, removes the eight roots with anchor
 multiplicity six or seven. The remaining 349 roots use total fourteen.
 Exactly seven roots contain the 81 explicit terminal count vectors.
-For the 342 empty roots, Lemma~\ref{lem:projection} at $N=14$ reduces the
-problem to exclusion: 137 use strictly smaller projected totals between
-9 and 13, while the other 205 use $\lambda=b$, retaining total fourteen.
-The same exclusion checker handles both choices. The seven nonempty roots
-are enumerated. In addition to the exclusion, refinement and splitting rules,
+For 329 empty roots, Lemma~\ref{lem:projection} at $N=14$ reduces the
+problem to exclusion: 133 use strictly smaller projected totals between
+9 and 13, while 196 use $\lambda=b$, retaining total fourteen.
+For the other thirteen empty roots, zero-budget projection gives a vector
+$y\le x$ of total between eight and eleven. Complete coverage certificates
+place $y$ in a list of 710 smaller cores. For each core $c$, an exclusion
+certificate rules out every fourteen-copy vector between $c$ and the
+original upper bounds, with the original Hall budget. Additional copies
+are allowed in every coordinate, not only in the deleted budget set.
+The seven nonempty roots are enumerated. In addition to the exclusion, refinement and splitting rules,
 the enumeration checker
 accepts an exact singleton box only when its vector occurs in the terminal
 list. Thus every admissible vector in every root belongs to that list.
 Each terminal is carried to one of the 56 representatives by an explicit
 common colour/reflection symmetry. Separate finite checks verify the
 Hall deficiencies, the full symmetry group and pairwise inequivalence.
-The retained data give the displayed orbit and support counts.
+The Lean endpoint establishes equivalence to exactly one of 56 concrete
+representatives. The geometric arguments above and a separate normal-form
+and orbit audit identify their union with the three stated forms and give
+the displayed labelled and support counts.
 \end{proof}
 
 In particular, any fourteen-cube collection using at least seven varieties solves. The all-adjacent obstructions
 are exactly the derangement family.
 
-The classification also explains the corner threshold by a short deletion
-argument. Suppose an unsolvable fifteen-cube pool existed. Every deletion
+\paragraph{The threshold by deletion.}
+The classification also gives a short proof of Theorem~\ref{thm:main},
+independent of the fifteen-cube exclusion archive. Suppose an unsolvable fifteen-cube pool existed. Every deletion
 would be a classified fourteen-cube obstruction. If all sources were
 adjacent-repeat, every deletion would have profile $(3,3,3,3,1,1)$.
 A variety occurring three times in one deletion had multiplicity three or four in the

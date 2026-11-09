@@ -13,7 +13,7 @@
 \newcommand{\mass}[2]{#1(#2)}
 \title{Sharp thresholds for five-colour cube assemblies}
 \author{Jason Davies\thanks{\href{mailto:jason@jasondavies.com}{\nolinkurl{jason@jasondavies.com}}}}
-\date{November 8, 2026}
+\date{November 9, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -29,9 +29,9 @@ five-colour frame column left open by Berkove, Eickemeyer and Schulman
 (2018). All threshold statements are formalised in Lean. A fixed-size flow
 formulation decides feasibility and constructs assemblies in time linear
 in the explicit source list. We also determine the corner thresholds when the
-number of source varieties is bounded, and show that the fourteen-cube
-obstructions using three varieties form exactly five classes under common
-colour relabelling and simultaneous reflection. The minimum size of a
+number of source varieties is bounded, and classify all fourteen-cube
+obstructions into 56 classes under common colour relabelling and simultaneous
+reflection, described by three structural forms. The minimum size of a
 collection capable of reproducing every $2\times2\times2$ target is also fifteen.
 \end{abstract}
 \noindent\small\textit{AI transparency.} The closing disclosure describes the AI
@@ -148,7 +148,9 @@ choose targets avoiding scarce edge requirements; compatibility bounds then
 complete the Hall argument (Sections~\ref{sec:frames}--\ref{sec:boxes}).
 Sections~\ref{sec:construction}--\ref{sec:universal} give the construction
 algorithm, support thresholds, extremal obstructions and minimum universal
-corner collections. Section~\ref{sec:formal} describes the verification scope.
+corner collections. The complete extremal classification in
+Section~\ref{sec:classification14} also yields a short deletion proof of the
+corner threshold. Section~\ref{sec:formal} describes the verification scope.
 
 The side-length restriction is substantive. With a side of length one,
 a source can meet two opposite exterior faces and expose four or more
@@ -157,7 +159,7 @@ unused cubes then need replacement.
 
 The accompanying repository contains the certificates, programs,
 geometric audits and Lean sources.\footnote{The proof artifact is pinned to
-\href{https://github.com/jasondavies/five-colour-cubes/tree/291f82b10b1d3175b0d59e0e42f8f51e0202761c}{Git commit \texttt{291f82b10b1d}}.
+\href{https://github.com/jasondavies/five-colour-cubes/tree/c4bd4efc20472049b7492589d8c86b573b32e0a0}{Git commit \texttt{c4bd4efc2047}}.
 Appendix~\ref{app:reproduction} gives the full identifier, certificate checksum
 and reproduction commands.}
 
@@ -687,6 +689,7 @@ Result & Lean & Interval proofs & Comparison\\
 \midrule
 Corner, cuboid and support thresholds & Yes & Yes & Yes\\
 Multiplicity bound, three-variety classification and obstruction family & Yes & No & Yes\\
+Complete fourteen-cube classification & Yes & Yes & Yes\\
 Universal minimum and cyclic construction & Yes & No & Yes\\
 Minimum-universal tree structure (Corollary~\ref{cor:universal-structure}) & Yes & No & No\\
 Construction complexity and Domino observation & No & No & No\\
@@ -696,8 +699,13 @@ Construction complexity and Domino observation & No & No & No\\
 In namespace \path{FiveColour.Puzzle}, the unconditional endpoints
 \path{box_frame_threshold} and \path{complete_box_threshold} are exported
 by \path{Solution.lean}. They use the physical box definitions and
-proper-rotation bridges. The comparison interface contains fifteen claims;
-it is independent of the proof catalogue.
+proper-rotation bridges. The comparison interface contains sixteen claims;
+it is independent of the proof catalogue. For the complete classification,
+the compared statement uses 56 concrete equivalence classes. The symbolic
+$51+4+1$ descriptions and labelled counts are established by the paper's
+arguments and the separate normal-form audit. The deletion deduction is a
+manuscript argument; the exported threshold retains its separate certificate
+proof.
 
 Appendix~\ref{app:verification} gives the soundness and audit details.
 Appendix~\ref{app:reproduction} pins the proof artifact and gives separate

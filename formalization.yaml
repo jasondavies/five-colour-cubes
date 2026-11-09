@@ -14,7 +14,8 @@ project:
     max(n^3,15) for n >= 2. Exact corner thresholds by support
     size, a maximum-multiplicity-five bound for fourteen-cube obstructions,
     the complete five-class three-variety classification, and a generalized
-    obstruction family are also formalised. For all
+    obstruction family are also formalised. The exhaustive classification of
+    all fourteen-cube obstructions has 56 symmetry classes. For all
     a,b,c >= 2, the exact cuboid frame and complete-box thresholds are
     max(15,4(a+b+c)-16,2(a+b+c)+1) and max(abc,15,2(a+b+c)+1).
   authors: ["Jason Davies"]
@@ -96,40 +97,42 @@ status:
     the shared proof declarations; ExtensionsAudit.lean covers unconditional
     extension and submission-interface statements.
     Solution.lean transfers the results to a Mathlib-only geometric Challenge.
-    Its fifteen comparison targets include the corner threshold and sharpness,
+    Its sixteen comparison targets include the corner threshold and sharpness,
     both cuboid thresholds, support thresholds, multiplicity bound, five-class
     classification, representative failure and inequivalence, and generalized
-    obstruction family, and the universal minimum and cyclic construction.
+    obstruction family, the universal minimum and cyclic construction, and
+    the complete 56-class classification.
     Universal.lean proves both bounds independently of the interval archive.
     UniversalStructure.lean proves that every minimum universal collection
     has distinct adjacent-repeat varieties and a spanning tree of smaller pairs
     for each repeated colour; this corollary is outside the comparator interface.
-    The complete 56-representative classification is staged separately. Its
-    original route passed Lean replay and the physical-endpoint axiom audit;
-    the revised 342-exclusion route also passed complete replay and the physical
-    endpoint audit, recorded in verification/classification.json. verify-full and the
-    fifteen-claim comparator do not certify that additional result.
+    The complete 56-representative classification is proved independently of
+    the fifteen-cube theorem. Its 349-root route contains 713,099 instructions:
+    329 exclusions, thirteen core-cover/extension groups and seven terminal
+    enumerations. Complete Lean replay and the physical-endpoint axiom audit
+    passed; verification/classification.json identifies the proof sources.
+    The sixteen-claim external comparator includes this physical classification.
     The independent Challenge defines physical rotation
     classes and copy counts without importing the catalogue. Its cuboid slots
     explicitly represent corners, edges, face interiors and interior positions.
     SubmissionBridge.lean proves agreement with the proof models.
-    All fifteen configured statements, shared definitions and permitted axioms
-    passed local comparison on 8 November 2026, and both NanoDa and Lean's
-    standalone kernel accepted the complete export. The run took 15207.544
-    seconds using validated Lake artifacts, excluding a fresh project build.
+    All sixteen statements, shared definitions and permitted axioms passed
+    local comparison on 9 November 2026. Both NanoDa and Lean's standalone
+    kernel accepted the complete export. The comparison took 37967.690 seconds
+    using validated Lake artifacts, excluding a fresh project build.
     verification/optimized-comparator.json identifies source snapshot
-    060558e520c78f50cb45e723d59a6ac4f020d91eca0fe0bf060bd3a87b238c56,
-    actual dependency trees and tool identities. Its complete output and
-    resource measurements are optimized-comparator-output.txt and
+    940980304874bf067ea978c4a2251381be6cb0fea2cf6ffa0fca7b97303c3f2c,
+    actual dependency trees and tool identities. The output and outer-driver
+    resource report are optimized-comparator-output.txt and
     optimized-comparator-resources.txt in verification/; optimized-full.json
-    contains a sanitized extract of the preceding successful verification.
-    Its manifest matches the current Lean proof sources and certificate inputs,
-    including the revised shared projection bridge. The comparison overlapped
-    other verification work and is not a controlled timing benchmark.
+    contains a sanitized extract of the preceding successful project verification.
+    Its Lean proof sources and certificate inputs match the publication sources.
+    Documentation and publication records were updated after the run.
+    The duration is an observed run time, not a controlled performance comparison.
     The structural
     minimum-universal corollary is checked by the ordinary Lean build and axiom
     audit but is outside the comparator interface.
-    The fifteen intentional theorem holes in
+    The sixteen intentional theorem holes in
     Challenge.lean are comparator targets, excluded from the proof-source counts below.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -195,9 +198,15 @@ fidelity:
     The full source and generated-proof verification route is make verify-full;
     its provenance extract is retained in verification/optimized-full.json.
     This 8 November run passed on the revised projection sources using
-    Lake-validated caches; it does not include external comparison or the
-    complete classification.
-    The comparison extract and concise output are retained alongside it.
+    Lake-validated caches and built Solution, including the classification.
+    The separate classification data checks and eight-declaration audit passed
+    in the same frozen pipeline. External comparison is recorded separately.
+    The classification endpoint proves 56 concrete classes; the symbolic
+    51+4+1 normal forms and 11,430 labelled inventories follow from manuscript
+    arguments and the independent normal-form/orbit audit. The short deletion
+    proof of the threshold is a manuscript deduction; the exported threshold
+    keeps its independent 279-certificate route.
+    The comparison extract and complete output are retained alongside it.
     Extracts retain source hashes and the raw-record checksum, omitting local
     paths and process metadata. Raw run records stay under ignored build/.
 review:

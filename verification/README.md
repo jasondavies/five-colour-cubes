@@ -6,20 +6,27 @@ dependency revisions and relevant tool identities. `raw_record_sha256`
 identifies the exact original bytes. Removing machine-specific fields does
 not constitute a new verification run.
 
-- `optimized-full.json`: the successful 8 November threshold and extension
-  verification on the revised projection sources, using Lake-validated caches.
-  It does not run the external comparator or the complete classification.
-- `optimized-comparator.json`: the successful fifteen-claim comparison,
-  including NanoDa and Lean's standalone kernel. Its
-  `preceding_raw_record_sha256` identifies the raw full-verification record;
-  it equals `raw_record_sha256` in `optimized-full.json`.
-- `classification.json`: the successful revised 349-root classification,
-  including all 342 exclusions, seven terminal enumerations and the physical
-  endpoint audit; `classification-axioms.txt` retains the six axiom reports.
-  This is separate from the fifteen-claim external comparison.
+- `optimized-full.json`: the successful 8 November project verification,
+  using Lake-validated caches. It builds the threshold, extensions and complete
+  classification through `Solution`; it does not run the external comparator.
+- `classification.json`: the successful 349-root classification replay with
+  329 exclusions, thirteen core-cover/extension groups and seven terminal
+  enumerations; `classification-axioms.txt` retains its eight axiom reports.
+- `optimized-comparator.json`: the successful sixteen-claim comparison,
+  completed 9 November, including NanoDa and Lean's standalone kernel. Its
+  `preceding_raw_record_sha256` equals `raw_record_sha256` in
+  `optimized-full.json`. All three extracts have the same source manifest.
 - `classification-baseline.json`: the successful original 349-root
   classification replay and physical-endpoint audit. It predates the revised
-  342-exclusion route and does not certify its changed sources.
+  route and does not certify its changed sources.
+
+The current records identify the frozen candidate checked before promotion.
+Its Lean proof sources and certificate inputs match the publication checkout;
+manuscript, documentation and publication records were updated afterward.
+The comparator took 10 h 32 min 48 s, excluding a fresh project build. Its GNU
+resource report measures the outer driver and does not aggregate all sandboxed
+subprocess CPU and memory use. Cache reuse in the preceding builds is distinct
+from the fresh external-kernel acceptance.
 
 Source-manifest keys are repository-relative paths. Tool hashes use executable
 names rather than installation paths. The concise comparison output, resource

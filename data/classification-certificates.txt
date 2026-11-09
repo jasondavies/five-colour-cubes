@@ -1,119 +1,105 @@
-FOURTEEN-CUBE ENUMERATION CERTIFICATES
+FOURTEEN-CUBE CLASSIFICATION CERTIFICATES
 
-The retained classification consists of 349 normalized root certificates.
-The roots are the original 357-root cover restricted to anchor multiplicity
-at most five, with total size fourteen. The independent physical multiplicity
-lemma excludes the other eight roots. No fifteen-cube threshold assumption
-is used in this reduction.
+The classification covers 349 normalized roots: the original 357-root cover
+restricted to anchor multiplicity at most five, at total fourteen. The
+independent physical multiplicity lemma excludes the other eight roots.
+Neither the reduction nor its certificates assume the fifteen-cube theorem.
 
-Files
-  five-colour-classification.json
-    56 representatives, 75 Hall deficiencies per representative, 81 normalized
-    terminal inventories, original-root indices, and certificate hashes.
-  five-colour-classification-certificates.tar.gz
-    Exactly case-0.q5p through case-348.q5p. These use the Q5E1 format below.
-    The original archive is retained; the current Lean route uses 212 entries.
-  five-colour-classification-projections.json
-  five-colour-classification-projections.tar.gz
-    137 Q5P2 exclusions, with original-root mappings, retained budgets and
-    checksums. Headers are reconstructed from the original root bounds.
-  FiveColour/EnumerationChunks/
-    Generated Lean source: 1,356,051 instructions in 12,759 checkpoints.
-    The baseline used 5,150,973 instructions in 48,543 checkpoints.
-    Generated source is retained so verification need not rewrite it.
+Selected proof route
+  133 strictly projected exclusions:       228,264 instructions
+  196 identity-projection exclusions:      446,427 instructions
+   13 core covers and extension exclusions:  14,012 instructions
+    7 terminal enumerations:                 24,396 instructions
+  Total: 349 roots, 713,099 instructions, 7,535 checked blocks.
+  The seven nonempty roots contain the 81 classification terminals.
+  The thirteen core covers contain 710 smaller vectors, none extendible to
+  an original fourteen-copy failure. These are not classification terminals.
 
-Certificate format
-  Magic Q5E1, followed by the 156-byte normalized root header. Each subsequent
-  instruction starts with an opcode and argument byte. Opcode 0 closes with its indicated family (255
-  means inconsistent total bounds); opcode 1 splits its argument coordinate
-  at a third byte's threshold; opcode 2 refines using a family; opcode 3 closes an exact
-  singleton box that must belong to the explicit terminal list.
+Inputs
+  five-colour-classification.json lists the 56 representatives, their Hall
+  deficiencies, 81 terminal inventories, root indices and certificate hashes.
+  five-colour-classification-certificates.tar.gz retains all 349 original Q5E1
+  streams. The selected route uses 203; all original hashes remain checked.
+  five-colour-classification-projections.json and .tar.gz retain 137 candidates.
+  The selected route uses 133 zero-budget exclusions; core covers supersede
+  the four budget-one candidates. Headers reconstruct from original bounds.
+  five-colour-classification-cores.json and .tar.gz contain thirteen complete
+  core covers, 710 extensions, core lists, root mappings and input hashes.
+  FiveColour/EnumerationChunks contains the retained generated Lean sources.
 
-  Split records use the existing preorder tree convention. The independent
-  C++ reader rejects invalid instructions, truncated streams, trailing bytes,
-  unsupported singleton points, and a terminal set different from the input
-  list. Bounds and every root-wise weakening are checked during replay.
+Proof interfaces
+  RootProjection proves deletion at arbitrary total N, to total N-b+s.
+  root_projection_below retains y <= x coordinatewise; root_projection_at
+  forgets that conclusion for exclusion-only clients. root_projection is
+  the N=15 specialization used by the threshold proof.
 
-Lean proof
-  RootProjection proves Hall-budget deletion at any total N. For retained
-  budget s, its projected total is N-b+s. The threshold theorem root_projection
-  is the N=15 specialization. Both routes use ProjectionBridge: one encoded
-  header condition checks the inherited bounds and projection hypotheses,
-  and a uniform theorem transfers a checked exclusion to the original root.
+  ProjectionBridge checks encoded headers and identifies their complete
+  integer admissibility predicates. Headers.lean and HeaderChecks*.lean
+  certify the 329 exclusion-only cases. ClassificationProjection transfers
+  these Fast.check exclusions to the original fourteen-copy roots.
 
-  All 342 empty roots use Fast.check. Of these, 137 have nontrivial projected
-  totals 9--13; the other 205 retain budget s=b and total 14. Their existing
-  Q5E1 streams have no point leaves and serialize directly to exclusion
-  proofs. No binary format translation or new search is required. Only the
-  seven roots containing the 81 terminal vectors use Enumeration.check.
-  EnumerationChunks/Headers.lean and HeaderChecks*.lean certify all 342
-  headers; ClassificationProjection transfers their exclusions to coverage.
+  CoreExtension handles thirteen more empty roots. Enumeration.Covers proves
+  that the smaller vector belongs to a complete core list. Fast.check excludes
+  each box with the core as lower bound and ALL original upper bounds, at
+  total fourteen with the original budget. Additions may occur anywhere,
+  including outside the budget set. Headers and calibration are shared, and
+  extensions are batched within each root, not separate per-core modules.
 
-  PackedEnumeration extends the interval proof checker with the singleton
-  leaf. Its conclusion is coverage by a list of explicit vectors, not
-  exclusion of the root. Its soundness proof reuses the verified arithmetic,
-  refinement and splitting rules. Checkpoints require exact bound agreement.
+  PackedEnumeration adds exact listed singleton leaves to the checked interval
+  rules. Every reused checkpoint requires exact boundary agreement. Group-level
+  coverage hides the choice of exclusion, core extension or terminal enumeration.
+  EnumerationCoverage joins all 349 groups' cases. ClassificationReduction
+  uses physical Hall coverage and the independent multiplicity bound;
+  ClassificationCore checks terminal counts and failures; ClassificationOrbits
+  checks global symmetries and inequivalence; Classification56 proves the
+  unique-class characterization of physical failures.
 
-  EnumerationRoot connects the root families to the physical fourteen-cube
-  problem. ClassificationReduction uses the general anchored Hall cover and
-  the independent multiplicity-five theorem. EnumerationCoverage joins all
-  349 root proofs. ClassificationCore checks terminal counts and the failure
-  witnesses. ClassificationOrbits connects each terminal to a representative
-  and proves pairwise inequivalence using all 240 global symmetries, whose
-  completeness is separately proved. Classification56 combines these into a
-  unique-class characterization of failing physical collections.
+Formats
+  Q5E1: magic, 156-byte root header, then preorder instructions. Opcode 0
+  closes a family (255 means inconsistent total bounds); opcode 1 splits
+  its coordinate at a third-byte threshold; opcode 2 refines a family;
+  opcode 3 accepts an exact listed singleton.
+  Q5C1 covers use native family 0 for a combined total refinement. Translation
+  expands it into existing empty-cut and full-cut steps; the production Q5E1
+  reader checks all translated checkpoint bounds. The covers contain 8,288
+  translated instructions, including 309 expanded mass-refinement steps.
+  Q5L1 extensions have the ORIGINAL header, then a 75-byte core lower bound.
+  Their 5,724 instructions use propagation only. Altered bounds, budgets,
+  totals, core identities and unsupported opcodes are rejected. Lean checks
+  the resulting existing Fast.check expressions independently.
 
-Commands
+Reproduction
   make check-classification-data WORKERS=2
-    Independently audit physical failures and symmetry orbits, replay the
-    137 Q5P2 exclusions and 212 Q5E1 streams in C++, and compare
-    regenerated Lean sources read-only. The original 349-entry archive is
-    also checked for exact membership and hashes, without replaying the
-    superseded 137 enumeration certificates.
+    Reconstruct geometry, replay the core/extension certificates, run 26
+    rejection controls, replay selected original/projected inputs, audit
+    physical failures and orbits, and compare regenerated sources read-only.
   make classification-replay WORKERS=2
-    Replay all Lean roots, build the physical classification, and audit its
-    axioms. Lake validates cached dependencies. Logs and status are under
-    build/classification-replay/. A complete run records the initial source
-    hashes, dependency trees and tool settings, then checks that the final
-    values match those recorded snapshots. Failures
-    and interruptions receive terminal records; a roots-only run is explicitly
-    marked as partial. This is separate from the established threshold proof
-    and its verification records.
+    Build all roots, the physical endpoint and its axiom audit. Lake validates
+    caches. The driver records initial source hashes, dependencies and settings
+    and checks their final identity. Logs are in build/classification-replay/.
+    Partial runs are explicitly labelled. External comparison is separate.
   make classification-data WORKERS=2
-    Explicit regeneration; writes generated Lean sources.
+    Regenerate retained sources after preparing all output in a temporary directory.
 
-The example/orbit audit alone does not prove exhaustive coverage. A successful
-classification replay and final axiom audit are required for that claim.
-Neither operation runs an external-kernel comparator.
+The example/orbit audit alone does not establish exhaustive coverage. A full
+classification replay and endpoint audit are required. The successful sixteen-claim comparison includes the physical endpoint;
+verification/optimized-comparator.json identifies the checked proof sources.
+verification/classification.json retains the completed 349-root replay and
+its eight-declaration physical-endpoint and shared-bridge axiom audit. The original 5,150,973-instruction route has
+historical evidence in verification/classification-baseline.json; its hashes
+identify those sources and do not certify subsequent replacements.
 
-The baseline classification replay and physical-endpoint audit passed on
-2026-11-08. verification/classification-baseline.json is a sanitized provenance extract
-preserving its exact source hashes, resource scope and original-record checksum; classification-baseline-axioms.txt contains
-the six endpoint axiom reports. This was a Lake-validated run, not a controlled
-cold-build benchmark. It does not certify the subsequently projected route.
-The revised 342-exclusion route passed complete replay and its physical
-endpoint audit on 2026-11-08. verification/classification.json and
-classification-axioms.txt record that separate successful run.
+The Lean endpoint uses 56 concrete representatives. The symbolic 51+4+1 forms
+and 11,430 labelled inventories follow from the separate normal-form/orbit
+audit and mathematical arguments, not additional assertions of that endpoint.
 
-The Lean endpoint uses 56 concrete representatives. The symbolic 51 + 4 + 1
-forms and the 11,430 labelled inventories are checked by the separate physical
-and orbit audit and explained in the mathematical notes; those counts and
-normal forms are not additional assertions of the current Lean endpoint.
-
-Selection of the 137 nontrivial projections
-  The supplied search produced 133 accepted improvements at retained budget
-  zero and four at retained budget one. A replacement is retained only when
-  its header reconstructs from the original root, independent replay accepts
-  it, and its instruction count is strictly smaller than the original Q5E1
-  certificate. The generator checks this count against the retained archive.
-  No exhaustive or globally minimal search is claimed. Surviving smaller
-  failures and timeouts are not exclusions; all other empty roots use s=b.
-  The mappings and proof bytes needed to reproduce checking are in the repo.
-  source_bundle_sha256 identifies the external research bundle that supplied
-  these candidates, not an additional required input. That bundle contains
-  a verifier but no search program or complete discovery ledger.
-
-Instruction counts remain 1,356,051: 349,670 in nontrivial projections,
-981,985 in identity projections, and 24,396 in terminal enumerations.
-Changing the checker does not itself reduce instruction counts. Checkpoint
-counts and timings for the generated route are recorded separately.
+Selection and provenance
+  The 137 projected candidates were selected for native acceptance, correct
+  reconstructed headers and strict instruction improvement over the original
+  streams. The generator checks that comparison. No globally minimal or
+  exhaustive discovery search is claimed.
+  The thirteen core replacements are the supplied accepted zero-budget covers
+  with checked exclusions of every original-bound extension. Their complete
+  core lists are certified independently of the classification census.
+  All checking inputs are retained. Bundle digests identify supplied research
+  archives; those archives are not additional reproduction dependencies.

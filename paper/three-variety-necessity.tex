@@ -1,0 +1,53 @@
+% Supplementary elementary proof, using the notation and theorem labels of
+% five-colour-cubes.tex. Not included in the main manuscript: the full
+% classification now supplies this necessity implication there.
+\begin{proof}[Elementary necessity for the three-variety classification]
+\emph{Necessity.} Theorem~\ref{thm:multiplicity-five} forces multiplicities $(4,5,5)$;
+write $A$ for the four-copy variety. Every target has eight positions,
+whereas any two source varieties supply at least nine copies. A Hall-deficient
+set can therefore have neighbours in at most one source variety. A target
+is solvable precisely when every position has a supplier and at most
+$4,5,5$ positions are supplied exclusively by $A,B,C$, respectively.
+In particular, failure to build the three sources themselves implies
+\begin{align*}
+ |K(A)\cap(K(B)\cup K(C))|&\le3,\\
+ |K(B)\cap(K(A)\cup K(C))|&\le2,\\
+ |K(C)\cap(K(A)\cup K(B))|&\le2.
+\end{align*}
+No pair is disjoint, by Lemma~\ref{lem:disjoint-pair}, so each pairwise
+intersection has size one or two.
+
+\emph{Possible source types.} No two adjacent varieties have the same sign. Otherwise, after reversal,
+their cuts are $C(uv),C(uw)$, with intersection $\{ux,uy\}$ on the remaining
+vertices $x,y$. At least one, say $X$ with cut $C(uv)$, has five copies. Its intersection
+with the third variety $Z$ must be a nonempty subset of $\{ux,uy\}$.
+If $Z$ is positive, its cut must be $C(uw)$, giving six shared corners with
+the second variety. If $Z$ has negative cut $C(S)$ and contains, say, $ux$, the bound
+two excludes $v$ from $S$; since $x\notin S$, this forces $S=\{u,w,y\}$,
+which shares four arcs with $C(uw)$. If $Z$ is opposite, it contains both
+$ux,uy$ and has parts $\{x,y\},\{u,z\}$, with $z=v$ or $w$; again it
+shares four arcs with one of the two cuts. All are contradictions.
+
+Three adjacent varieties are excluded by this observation. Two opposite
+varieties and one adjacent are also impossible: their pairwise intersections
+would coincide in a bidirected edge, which a cut cannot contain. If all
+three are opposite, their undirected four-cycles share one edge and are
+otherwise pairwise edge-disjoint, so their union is $K_5$. Choose an opposite
+target avoiding one endpoint of the common edge. Each required edge then
+belongs to exactly one source, and each source supplies at most two target
+edges, hence at most four directed corners. Its copies suffice.
+
+\emph{Normal form.} Thus exactly one variety is opposite. It cannot have five copies, for its
+two overlaps would coincide in two tricoloured corners, forcing the adjacent
+cuts to have the same sign. Consequently $A$ is opposite and $B,C$ have
+opposite signs. Interchange $B,C$ if necessary so that $B$ is positive.
+Their intersections with $A$ have size two, while
+$K(B)\cap K(C)\subseteq K(A)$ is nonempty and, by the table, a single arc.
+Write the smaller pairs as $\{o,u\},\{o,v\}$; the common arc is $uv$.
+The four-cycle of $A$ must omit $o$: otherwise one of these pairs would
+be a whole part of its $K_{2,2}$, giving four shared arcs. Normalize
+$o=0,u=1,v=3$ and name their partners $2,4$. This gives the stated cuts,
+with $r\in\{2,3,4\}$, $s\in\{1,2,4\}$ and $r\ne s$; equality would
+add the common bicoloured corner $b(r,0)$.
+
+\end{proof}

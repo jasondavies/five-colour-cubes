@@ -181,6 +181,23 @@ family distributions (91 failures and 350 solutions).
 These finite formal proofs supplement the elementary main-text arguments;
 no interval certificates are added or changed.
 
+\paragraph{Complete classification.}
+The separate 349-root proof in Section~\ref{sec:classification14} uses
+713,099 interval instructions: 228,264 for 133 strictly projected exclusions,
+446,427 for 196 identity projections, 14,012 for thirteen core covers and
+extension exclusions, and 24,396 for seven terminal enumerations.
+\path{CoreExtension.lean} retains the coordinatewise inequality from budget
+projection and composes complete core coverage with exclusions under all
+original upper bounds. The 710 smaller cores cannot extend to failures;
+they are distinct from the 81 classification terminals.
+\path{EnumerationCoverage.lean} assembles all 349 roots.
+\path{Classification56.lean} connects coverage, representative failures,
+symmetry transport and inequivalence to physical copies;
+\path{ClassificationSubmission.lean} transfers the result to the independent
+comparison model. The endpoint and its shared bridges are audited in
+\path{ClassificationAudit.lean}. A separate physical audit checks the three
+normal forms and the union of their 11,430 labelled inventories.
+
 \paragraph{Universal collections.} The universal lower bound counts three sources for each repeated colour.
 Small kernel-checked geometry relates the bicoloured types to physical sources;
 the upper bound checks 75 explicit matchings and transports them to arbitrary
@@ -193,30 +210,44 @@ certificates.
 
 \subsection{Reproduction}\label{app:reproduction}
 The proof artifact is the repository at Git commit
-\begin{center}\small\texttt{291f82b10b1d3175b0d59e0e42f8f51e0202761c}.\end{center}
-The \href{https://github.com/jasondavies/five-colour-cubes/tree/291f82b10b1d3175b0d59e0e42f8f51e0202761c}{pinned source tree}
+\begin{center}\small\texttt{c4bd4efc20472049b7492589d8c86b573b32e0a0}.\end{center}
+The \href{https://github.com/jasondavies/five-colour-cubes/tree/c4bd4efc20472049b7492589d8c86b573b32e0a0}{pinned source tree}
 contains the mathematical sources and certificate inputs used here.
-The verification extracts accompanying this manuscript identify the later
-executions of those sources. Its certificate archive,
-\href{https://github.com/jasondavies/five-colour-cubes/blob/291f82b10b1d3175b0d59e0e42f8f51e0202761c/data/q5-projected-certificates.tar.gz}{\texttt{data/q5-projected-certificates.tar.gz}},
+The verification extracts accompanying this manuscript identify the frozen
+working-tree snapshot checked before that commit. The threshold archive,
+\href{https://github.com/jasondavies/five-colour-cubes/blob/c4bd4efc20472049b7492589d8c86b573b32e0a0/data/q5-projected-certificates.tar.gz}{\texttt{q5-projected-certificates.tar.gz}},
 has SHA-256
 \begin{center}\small\texttt{7df56cc4b252e460c9e3a762b068010b1a894405ae105218f6cea545e9b80467}.\end{center}
-The Lean proof sources and certificate inputs in this manuscript's repository
-are byte-identical to those in that commit.
+The classification also uses three archives, whose exact hashes are retained
+in the verification manifests:
+\begin{center}\small
+\begin{tabular}{l}
+\path{data/five-colour-classification-certificates.tar.gz}\\
+\path{data/five-colour-classification-projections.tar.gz}\\
+\path{data/five-colour-classification-cores.tar.gz}
+\end{tabular}
+\end{center} The Lean proof sources and certificate
+inputs in this manuscript's repository are byte-identical to those in the
+pinned commit.
 
 With the pinned toolchain installed, check out that revision and run:
 \begin{verbatim}
 git clone https://github.com/jasondavies/five-colour-cubes
 cd five-colour-cubes
-git checkout 291f82b10b1d3175b0d59e0e42f8f51e0202761c
+git checkout c4bd4efc20472049b7492589d8c86b573b32e0a0
 lake exe cache get
+make check-classification-data WORKERS=2
+make classification-replay WORKERS=2
 make verify-full WORKERS=2
 make comparator
 \end{verbatim}
-The two Make commands are separate: \texttt{verify-full} checks the native
-audits, all 279 Lean certificate proofs, unconditional extensions and axiom
-reports; \texttt{comparator} compares the fifteen statements and rechecks the
-exported dependency closure with both external kernels. The latter requires
+The classification commands check the native data and generated sources,
+then build all 349 root proofs and audit the physical endpoint.
+\texttt{verify-full} checks the threshold audits, all 279 threshold certificate
+proofs, unconditional extensions and their axiom reports; building
+\path{Solution.lean} also includes the complete classification.
+\texttt{comparator} separately compares all sixteen statements and rechecks
+the exported dependency closure with both external kernels. The latter requires
 \texttt{bwrap} and the pinned toolchain's \texttt{leanexport},
 \texttt{leanchecker} and \texttt{nanoda\_bin} executables.
 The pinned README and \path{FiveColour/README.md} give prerequisites and tuning.
@@ -236,24 +267,27 @@ tracked bytes against its pinned Git tree before and after the run. It also
 records source hashes, tool versions, compiler flags and concurrency settings.
 Ignored build caches are permitted; modified dependency sources are rejected.
 
-A Mathlib-only comparator challenge independently states fifteen corner,
+A Mathlib-only comparator challenge independently states sixteen corner,
 cuboid, support, extremal and universal-collection claims. It defines varieties by proper rotations
 and counts physical copies without catalogue indices; cuboid slots specify
 their exposed faces. Within \path{FiveColour/},
 \path{ComparatorBridge.lean} and \path{SubmissionBridge.lean} identify these
 statements with the proof models.
-All fifteen statements, shared definitions and permitted axioms passed local
-comparison on 8 November 2026, and both NanoDa and Lean's standalone kernel
-accepted the complete solution export. The run took 4 hours 13 minutes
-28 seconds, using validated Lake artifacts and excluding a fresh project build.
-It overlapped other verification work.
+All sixteen statements, shared definitions and permitted axioms passed local
+comparison on 9 November 2026, and both NanoDa and Lean's standalone kernel
+accepted the complete solution export. The run took 10 hours 32 minutes
+48 seconds, using validated Lake artifacts and excluding a fresh project build.
+The preceding classification and full-project runs used validated caches;
+the external kernels checked the export afresh. These are observed execution
+times, not a controlled performance comparison.
 The public provenance extract \path{verification/optimized-comparator.json}
 identifies the measured source snapshot by the SHA-256 digest of its manifest of file hashes
 and modes, rather than a Git commit:
-\begin{center}\small\texttt{060558e520c78f50cb45e723d59a6ac4f020d91eca0fe0bf060bd3a87b238c56}.\end{center}
+\begin{center}\small\texttt{940980304874bf067ea978c4a2251381be6cb0fea2cf6ffa0fca7b97303c3f2c}.\end{center}
 It also records dependencies, tool identities and settings. Public extracts
 omit local paths and process metadata while preserving the original records'
 checksums. The same directory retains comparison output, resource measurements
-and the preceding successful verification extract.
+and the preceding successful verification extracts, including
+\path{verification/classification.json} and its eight axiom reports.
 The source manifest matches the Lean proof sources and certificate inputs
 in this manuscript's repository.
