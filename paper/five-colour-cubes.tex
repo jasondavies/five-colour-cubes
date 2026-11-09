@@ -216,12 +216,12 @@ positions having fewer than $|D|$ neighbouring copies.
 
 Index the varieties by $i=1,\ldots,75$, and let $x_i$ be their multiplicities.
 For a set $S$ of varieties, write $x(S)=\sum_{i\in S}x_i$.
-Let $N_T(D)$ be the varieties fitting at least one position of $D$. Then
-failure of $T$ is equivalent to the existence of a cut
+Let $N_T(D)$ be the varieties fitting at least one position of $D$.
+The 255 nonempty choices of $D$ give 19,125 cuts across the 75 targets.
+Failure of $T$ is equivalent to the existence of a cut
 \begin{equation}\label{eq:hall}
   x(N_T(D))\le |D|-1,\qquad \varnothing\ne D\subseteq\{1,\ldots,8\}.
 \end{equation}
-There are 255 cuts per target, hence 19,125 cuts altogether.
 
 \section{An elementary fourteen-cube obstruction}\label{sec:lower}
 Consider four copies of $A$, five of $B$, and five of $C$, where
@@ -709,8 +709,9 @@ Construction complexity and Domino observation & No & No & No\\
 In namespace \path{FiveColour.Puzzle}, the unconditional endpoints
 \path{box_frame_threshold} and \path{complete_box_threshold} are exported
 by \path{Solution.lean}. They use the physical box definitions and
-proper-rotation bridges. The sixteen-claim comparison interface is independent
-of the proof catalogue. The symbolic forms and labelled counts are proved here
+proper-rotation bridges. The sixteen-claim comparison interface describes
+physical copies, proper rotations and exposed faces without catalogue indices.
+The symbolic forms and labelled counts are proved here
 and checked by the separate normal-form audit. The deletion deduction is a
 manuscript argument; the exported threshold retains its separate certificate proof.
 

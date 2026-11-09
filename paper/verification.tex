@@ -42,8 +42,8 @@ The upper-bound formalisation follows the Hall reduction, symmetry
 transport, anchor selection and shared-corner argument. Finite checks
 verify capacities, cover representatives and the reduction from 357 roots
 to 279. The deletion step is \path{FiveColour.Physical.root_projection}
-in \path{FiveColour/RootProjection.lean}. The bridge to the archive, in
-\path{FiveColour/ProjectionBridge.lean}, identifies the full admissibility
+in \path{FiveColour/RootProjection.lean}. The shared
+\texttt{ProjectionBridge.lean} module identifies the full admissibility
 predicate: coordinate bounds, total, budget and all Hall-cut families.
 
 For efficient replay, Lean proves soundness of a packed implementation of
@@ -115,12 +115,9 @@ The full cuboid classification is formalised in
 \path{FiveColour.Physical}, \path{box_frame_threshold_iff} and
 \path{box_threshold_iff} give necessary and sufficient pool sizes for
 arbitrary side lengths at least two, assuming
-\path{FiveColour.Physical.Threshold15}. \path{Solution.lean} applies the
-completed corner theorem to discharge this assumption. In namespace
-\path{FiveColour.Puzzle}, it exports the unconditional theorems
-\path{box_frame_threshold} and \path{complete_box_threshold}, together with
-\path{frame20}, \path{frame_threshold_all}, \path{full_cube},
-\path{complete_cube_threshold} and \path{support_threshold}.
+\texttt{Threshold15}. \path{Solution.lean} discharges this assumption and
+exports the unconditional \path{FiveColour.Puzzle} theorems
+\path{box_frame_threshold} and \path{complete_box_threshold}.
 
 The rectangular model and completion are in
 \path{FiveColour/BoxModel.lean}; compatibility is connected to proper
