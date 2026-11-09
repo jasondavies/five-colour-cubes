@@ -253,12 +253,11 @@ the exported dependency closure with both external kernels. The latter requires
 The pinned README and \path{FiveColour/README.md} give prerequisites and tuning.
 The shorter \texttt{make check} omits the complete certificate replay.
 
-On a fresh project checkout, \texttt{verify-full} builds the proof after
-obtaining the dependency cache. On a cached rerun, Lake validates dependency
-traces and rebuilds only changed modules; this is not a fresh kernel replay.
-The comparator checks the exported proofs again even when Lake artifacts are
-cached. The dependency audits list their declarations in \path{Audit.lean}
-and \path{ExtensionsAudit.lean}, together with the final replay audit.
+A fresh checkout must build the proof after obtaining the dependency cache.
+Cached reruns validate Lake dependency traces; the external comparison checks
+the complete export afresh. Audit declarations are listed in \path{Audit.lean},
+\path{ExtensionsAudit.lean}, \path{ClassificationAudit.lean} and the final
+threshold replay audit.
 Only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} occur;
 no \texttt{native\_decide} is used.
 
@@ -267,12 +266,6 @@ tracked bytes against its pinned Git tree before and after the run. It also
 records source hashes, tool versions, compiler flags and concurrency settings.
 Ignored build caches are permitted; modified dependency sources are rejected.
 
-A Mathlib-only comparator challenge independently states sixteen corner,
-cuboid, support, extremal and universal-collection claims. It defines varieties by proper rotations
-and counts physical copies without catalogue indices; cuboid slots specify
-their exposed faces. Within \path{FiveColour/},
-\path{ComparatorBridge.lean} and \path{SubmissionBridge.lean} identify these
-statements with the proof models.
 All sixteen statements, shared definitions and permitted axioms passed local
 comparison on 9 November 2026, and both NanoDa and Lean's standalone kernel
 accepted the complete solution export. The run took 10 hours 32 minutes

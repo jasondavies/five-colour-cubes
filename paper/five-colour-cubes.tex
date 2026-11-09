@@ -146,11 +146,14 @@ For cuboids, Lemma~\ref{lem:eight-common-missing} builds corners from eight
 sources lacking a common pair and any three others. This lets the proof
 choose targets avoiding scarce edge requirements; compatibility bounds then
 complete the Hall argument (Sections~\ref{sec:frames}--\ref{sec:boxes}).
+These cuboid deductions need no further interval certificates.
 Sections~\ref{sec:construction}--\ref{sec:universal} give the construction
 algorithm, support thresholds, extremal obstructions and minimum universal
 corner collections. The complete extremal classification in
-Section~\ref{sec:classification14} also yields a short deletion proof of the
-corner threshold. Section~\ref{sec:formal} describes the verification scope.
+Section~\ref{sec:classification14} has its own certificate computation and
+yields a short deletion proof of the corner threshold. The universal minimum
+has an independent elementary proof. Section~\ref{sec:formal} describes the
+verification scope.
 
 The side-length restriction is substantive. With a side of length one,
 a source can meet two opposite exterior faces and expose four or more
@@ -325,7 +328,9 @@ assignment to $j$ positions that $A$ fits, and assign the remaining
 $8-j$ positions to $V$.
 
 Colour permutations and simultaneous reflection of the entire collection
-preserve solvability. First identify equal pairs $(S(K),b(K))$, even when
+preserve solvability. This action has $2\cdot5!=240$ elements; its anchor
+stabilisers have orders $240/15=16$ and $240/60=4$ for opposite-repeat and
+adjacent-repeat varieties, respectively. First identify equal pairs $(S(K),b(K))$, even when
 they arise from inequivalent position subsets $K$; then retain one
 representative per orbit of these pairs under the anchor stabiliser.
 The counts below refer to these constraint pairs. Transporting a cover
@@ -404,7 +409,8 @@ arithmetic exclusions. All 357 original root definitions remain available.
 
 \begin{lemma}[Hall-budget projection]\label{lem:projection}
 Suppose a root has anchor multiplicity $m$, budget $x(S)\le b$, and total
-$N$, with the anchor outside $S$. For $0\le \lambda\le b$, put $G=N-b+\lambda$
+$N$, with the anchor outside $S$. For an integer $\lambda$ with
+$0\le \lambda\le b$, put $G=N-b+\lambda$
 and suppose $G\ge m$. Every admissible vector $x$ has a vector $y\le x$
 with the same anchor multiplicity, total $G$, budget $y(S)\le \lambda$, and a
 Hall deficiency for every target. It obeys the original upper bounds,
@@ -681,15 +687,19 @@ certified exclusions. The cuboid deductions apply the verified corner theorem.
 The following table distinguishes the proof scopes; ``comparison'' means the
 separate Mathlib-only statement interface, accepted by both NanoDa and Lean's
 standalone kernel.
+The certificate column includes dependencies: the cuboid deductions use the
+certified corner theorem, and the symbolic classification uses the certified
+exhaustion by concrete representatives.
 \begin{center}
 \small
 \begin{tabular}{p{.52\linewidth}ccc}
 \toprule
-Result & Lean & Interval proofs & Comparison\\
+Result & Lean & \shortstack{Uses interval\\certificates} & Comparison\\
 \midrule
 Corner, cuboid and support thresholds & Yes & Yes & Yes\\
 Multiplicity bound, three-variety classification and obstruction family & Yes & No & Yes\\
-Complete fourteen-cube classification & Yes & Yes & Yes\\
+Fourteen-cube classification: 56 concrete classes & Yes & Yes & Yes\\
+Symbolic $51+4+1$ forms and labelled counts & No & Yes & No\\
 Universal minimum and cyclic construction & Yes & No & Yes\\
 Minimum-universal tree structure (Corollary~\ref{cor:universal-structure}) & Yes & No & No\\
 Construction complexity and Domino observation & No & No & No\\
@@ -699,13 +709,10 @@ Construction complexity and Domino observation & No & No & No\\
 In namespace \path{FiveColour.Puzzle}, the unconditional endpoints
 \path{box_frame_threshold} and \path{complete_box_threshold} are exported
 by \path{Solution.lean}. They use the physical box definitions and
-proper-rotation bridges. The comparison interface contains sixteen claims;
-it is independent of the proof catalogue. For the complete classification,
-the compared statement uses 56 concrete equivalence classes. The symbolic
-$51+4+1$ descriptions and labelled counts are established by the paper's
-arguments and the separate normal-form audit. The deletion deduction is a
-manuscript argument; the exported threshold retains its separate certificate
-proof.
+proper-rotation bridges. The sixteen-claim comparison interface is independent
+of the proof catalogue. The symbolic forms and labelled counts are proved here
+and checked by the separate normal-form audit. The deletion deduction is a
+manuscript argument; the exported threshold retains its separate certificate proof.
 
 Appendix~\ref{app:verification} gives the soundness and audit details.
 Appendix~\ref{app:reproduction} pins the proof artifact and gives separate
